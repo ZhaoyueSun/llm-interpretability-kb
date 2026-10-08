@@ -1,0 +1,80 @@
+---
+schema_version: 1
+paper_id: p_2023_li_inference_time_intervention
+title: 'Inference-Time Intervention: Eliciting Truthful Answers from a Language Model'
+year: 2023
+earliest_public_date: '2023-06-06'
+earliest_public_date_precision: day
+venue: Neural Information Processing Systems
+publication_type: preprint
+identifiers:
+  doi: 10.52202/075280-1797
+  arxiv_id: '2306.03341'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2306.03341
+  pdf: https://arxiv.org/pdf/2306.03341
+  code: 
+authors:
+- author_id: a_kenneth_li_f8f4d007
+  name: Kenneth Li
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_oam_patel_71ec6bb3
+  name: Oam Patel
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_fernanda_viegas_6ca3081a
+  name: Fernanda Viégas
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_h_pfister_9ee7769a
+  name: H. Pfister
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_m_wattenberg_127591b0
+  name: M. Wattenberg
+  position: 5
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2306.03341
+  en: 'We introduce Inference-Time Intervention (ITI), a technique designed to enhance
+    the"truthfulness"of large language models (LLMs). ITI operates by shifting model
+    activations during inference, following a set of directions across a limited number
+    of attention heads. This intervention significantly improves the performance of
+    LLaMA models on the TruthfulQA benchmark. On an instruction-finetuned LLaMA called
+    Alpaca, ITI improves its truthfulness from 32.5% to 65.1%. We identify a tradeoff
+    between truthfulness and helpfulness and demonstrate how to balance it by tuning
+    the intervention strength. ITI is minimally invasive and computationally inexpensive.
+    Moreover, the technique is data efficient: while approaches like RLHF require
+    extensive annotations, ITI locates truthful directions using only few hundred
+    examples. Our findings suggest that LLMs may have an internal representation of
+    the likelihood of something being true, even as they produce falsehoods on the
+    surface.'
+  zh: >-
+    我们提出推理时干预（Inference-Time Intervention，ITI），这是一种旨在提高大语言模型（LLM）“真实性”的技术。ITI 在推理过程中沿一组方向移动模型激活，且只作用于数量有限的注意力头。这种干预显著提升了 LLaMA 模型在 TruthfulQA 基准上的表现。在名为 Alpaca、经过指令微调的 LLaMA 上，ITI 将其真实性从 32.5% 提升至 65.1%。我们识别出真实性与有用性之间的权衡，并说明可以通过调节干预强度在二者之间取得平衡。ITI 的侵入性很低，计算成本也很小。此外，该技术具有很高的数据效率：RLHF 等方法需要大量标注，而 ITI 仅用数百个样本即可定位真实性方向。我们的发现表明，即使大语言模型表面上生成了错误陈述，其内部也可能表征着某件事为真的可能性。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_li_inference_time_intervention
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 27
+  abstract_verification: docling_token_coverage_at_least_0.95

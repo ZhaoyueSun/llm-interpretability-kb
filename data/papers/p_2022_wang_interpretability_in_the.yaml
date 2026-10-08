@@ -1,0 +1,83 @@
+---
+schema_version: 1
+paper_id: p_2022_wang_interpretability_in_the
+title: 'Interpretability in the Wild: a Circuit for Indirect Object Identification
+  in GPT-2 small'
+year: 2022
+earliest_public_date: '2022-11-01'
+earliest_public_date_precision: day
+venue: International Conference on Learning Representations
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2211.00593
+  arxiv_id: '2211.00593'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2211.00593
+  pdf: https://arxiv.org/pdf/2211.00593
+  code: 
+authors:
+- author_id: a_kevin_wang_7496448f
+  name: Kevin Wang
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_alexandre_variengien_34d668db
+  name: Alexandre Variengien
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_arthur_conmy_1734e7d3
+  name: Arthur Conmy
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_buck_shlegeris_a997ed75
+  name: Buck Shlegeris
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_jacob_steinhardt_bd43f01f
+  name: Jacob Steinhardt
+  position: 5
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2211.00593
+  en: Research in mechanistic interpretability seeks to explain behaviors of machine
+    learning models in terms of their internal components. However, most previous
+    work either focuses on simple behaviors in small models, or describes complicated
+    behaviors in larger models with broad strokes. In this work, we bridge this gap
+    by presenting an explanation for how GPT-2 small performs a natural language task
+    called indirect object identification (IOI). Our explanation encompasses 26 attention
+    heads grouped into 7 main classes, which we discovered using a combination of
+    interpretability approaches relying on causal interventions. To our knowledge,
+    this investigation is the largest end-to-end attempt at reverse-engineering a
+    natural behavior"in the wild"in a language model. We evaluate the reliability
+    of our explanation using three quantitative criteria--faithfulness, completeness
+    and minimality. Though these criteria support our explanation, they also point
+    to remaining gaps in our understanding. Our work provides evidence that a mechanistic
+    understanding of large ML models is feasible, opening opportunities to scale our
+    understanding to both larger models and more complex tasks.
+  zh: >-
+    机制可解释性研究试图用机器学习模型的内部组件来解释其行为。然而，此前大多数工作要么聚焦小模型中的简单行为，要么只对大模型中的复杂行为作粗略描述。在本研究中，我们通过解释 GPT-2 small 如何完成一种名为间接宾语识别（IOI）的自然语言任务，弥合了这一差距。我们的解释涵盖被分为七个主要类别的 26 个注意力头，它们是通过综合运用依赖因果干预的多种可解释性方法发现的。据我们所知，这是迄今对语言模型中一种自然、“野生”行为开展的最大规模端到端逆向工程尝试。我们使用三项定量标准——忠实性、完备性和最小性——评估这一解释的可靠性。尽管这些标准支持我们的解释，但它们也揭示了当前理解中仍然存在的缺口。我们的工作为大型机器学习模型的机制理解具有可行性提供了证据，并为把这种理解扩展至更大的模型和更复杂的任务创造了机会。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2022_wang_interpretability_in_the
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 31
+  abstract_verification: docling_token_coverage_at_least_0.95

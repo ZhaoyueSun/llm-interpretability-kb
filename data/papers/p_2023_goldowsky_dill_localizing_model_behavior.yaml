@@ -1,0 +1,70 @@
+---
+schema_version: 1
+paper_id: p_2023_goldowsky_dill_localizing_model_behavior
+title: Localizing Model Behavior with Path Patching
+year: 2023
+earliest_public_date: '2023-04-12'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2304.05969
+  arxiv_id: '2304.05969'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2304.05969
+  pdf: https://arxiv.org/pdf/2304.05969
+  code: 
+authors:
+- author_id: a_nicholas_goldowsky_dill_de056011
+  name: Nicholas Goldowsky-Dill
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_c_macleod_a986ca40
+  name: C. Macleod
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_l_sato_cf3d84ea
+  name: L. Sato
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_aryaman_arora_3f8014c2
+  name: Aryaman Arora
+  position: 4
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2304.05969
+  en: Localizing behaviors of neural networks to a subset of the network's components
+    or a subset of interactions between components is a natural first step towards
+    analyzing network mechanisms and possible failure modes. Existing work is often
+    qualitative and ad-hoc, and there is no consensus on the appropriate way to evaluate
+    localization claims. We introduce path patching, a technique for expressing and
+    quantitatively testing a natural class of hypotheses expressing that behaviors
+    are localized to a set of paths. We refine an explanation of induction heads,
+    characterize a behavior of GPT-2, and open source a framework for efficiently
+    running similar experiments.
+  zh: >-
+    把神经网络行为定位到网络组件的一个子集，或组件交互的一个子集，是分析网络机制和潜在失效模式的自然起点。现有工作往往是定性的、临时设计的，而且对于如何恰当地评估定位主张尚无共识。我们提出路径修补，这是一种用于表达并定量检验一类自然假说的技术；这类假说认为，某些行为被定位于一组路径。我们改进了对归纳注意力头的解释，刻画了 GPT-2 的一种行为，并开源了一个高效开展类似实验的框架。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_goldowsky_dill_localizing_model_behavior
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 91
+  abstract_verification: docling_token_coverage_at_least_0.95

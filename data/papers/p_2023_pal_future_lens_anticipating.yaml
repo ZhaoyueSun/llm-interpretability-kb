@@ -1,0 +1,83 @@
+---
+schema_version: 1
+paper_id: p_2023_pal_future_lens_anticipating
+title: 'Future Lens: Anticipating Subsequent Tokens from a Single Hidden State'
+year: 2023
+earliest_public_date: '2023-11-08'
+earliest_public_date_precision: day
+venue: Conference on Computational Natural Language Learning
+publication_type: preprint
+identifiers:
+  doi: 10.18653/v1/2023.conll-1.37
+  arxiv_id: '2311.04897'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2311.04897
+  pdf: https://arxiv.org/pdf/2311.04897
+  code: 
+authors:
+- author_id: a_koyena_pal_1cf8b37b
+  name: Koyena Pal
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_jiuding_sun_877535c0
+  name: Jiuding Sun
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_andrew_yuan_1c702653
+  name: Andrew Yuan
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_byron_c_wallace_e744361f
+  name: Byron C. Wallace
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_david_bau_778385a5
+  name: David Bau
+  position: 5
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2311.04897
+  en: 'We conjecture that hidden state vectors corresponding to individual input tokens
+    encode information sufficient to accurately predict several tokens ahead. More
+    concretely, in this paper we ask: Given a hidden (internal) representation of
+    a single token at position t in an input, can we reliably anticipate the tokens
+    that will appear at positions ≥ t + 2? To test this, we measure linear approximation
+    and causal intervention methods in GPT-J-6B to evaluate the degree to which individual
+    hidden states in the network contain signal rich enough to predict future hidden
+    states and, ultimately, token outputs. We find that, at some layers, we can approximate
+    a model’s output with more than 48% accuracy with respect to its prediction of
+    subsequent tokens through a single hidden state. Finally we present a “Future
+    Lens” visualization that uses these methods to create a new view of transformer
+    states.'
+  zh: >-
+    我们猜想，与单个输入 token 对应的隐藏状态向量编码了足够的信息，能够准确预测其后若干 token。更具体地说，本文提出如下问题：给定输入中位置
+    $t$ 上单个 token 的隐藏内部表征，我们能否可靠地预见位置 $\ge t+2$ 上将出现的 token？为了检验这一点，我们在 GPT-J-6B
+    上评估线性近似和因果干预方法，衡量网络中的单个隐藏状态是否包含足够丰富的信号，从而预测未来隐藏状态，并最终预测输出 token。我们发现，在某些层中，仅通过一个隐藏状态，就能以超过
+    48% 的准确率近似模型对后续 token 的预测。最后，我们提出“Future Lens”可视化，利用这些方法提供一种观察 Transformer
+    状态的新视角。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_pal_future_lens_anticipating
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 14
+  abstract_verification: docling_token_coverage_at_least_0.95

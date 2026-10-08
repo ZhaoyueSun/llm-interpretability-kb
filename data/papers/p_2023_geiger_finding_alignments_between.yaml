@@ -1,0 +1,84 @@
+---
+schema_version: 1
+paper_id: p_2023_geiger_finding_alignments_between
+title: Finding Alignments Between Interpretable Causal Variables and Distributed Neural
+  Representations
+year: 2023
+earliest_public_date: '2023-03-05'
+earliest_public_date_precision: day
+venue: CLEaR
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2303.02536
+  arxiv_id: '2303.02536'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2303.02536
+  pdf: https://arxiv.org/pdf/2303.02536
+  code: 
+authors:
+- author_id: a_atticus_geiger_e76a395b
+  name: Atticus Geiger
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_zhengxuan_wu_9418211c
+  name: Zhengxuan Wu
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_christopher_potts_f9424ce1
+  name: Christopher Potts
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_thomas_f_icard_e9a57f00
+  name: Thomas F. Icard
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_noah_d_goodman_f6414a7b
+  name: Noah D. Goodman
+  position: 5
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2303.02536
+  en: 'Causal abstraction is a promising theoretical framework for explainable artificial
+    intelligence that defines when an interpretable high-level causal model is a faithful
+    simplification of a low-level deep learning system. However, existing causal abstraction
+    methods have two major limitations: they require a brute-force search over alignments
+    between the high-level model and the low-level one, and they presuppose that variables
+    in the high-level model will align with disjoint sets of neurons in the low-level
+    one. In this paper, we present distributed alignment search (DAS), which overcomes
+    these limitations. In DAS, we find the alignment between high-level and low-level
+    models using gradient descent rather than conducting a brute-force search, and
+    we allow individual neurons to play multiple distinct roles by analyzing representations
+    in non-standard bases-distributed representations. Our experiments show that DAS
+    can discover internal structure that prior approaches miss. Overall, DAS removes
+    previous obstacles to conducting causal abstraction analyses and allows us to
+    find conceptual structure in trained neural nets.'
+  zh: >-
+    因果抽象是可解释人工智能中一个很有前景的理论框架，它定义了何时一个可解释的高层因果模型能够构成对低层深度学习系统的忠实简化。然而，现有因果抽象方法存在两个主要局限：它们需要暴力搜索高层模型与低层模型之间的对齐关系，并且预设高层模型中的变量会与低层模型中彼此不相交的神经元集合对齐。本文提出分布式对齐搜索（DAS），以克服这些限制。在
+    DAS 中，我们使用梯度下降而非暴力搜索来寻找高层与低层模型之间的对齐；同时，通过在非标准基中分析表征，即分析分布式表征，我们允许单个神经元承担多个不同角色。实验表明，DAS
+    能够发现以往方法遗漏的内部结构。总体而言，DAS 消除了此前开展因果抽象分析时的障碍，使我们能够在训练好的神经网络中发现概念结构。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_geiger_finding_alignments_between
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 5
+  abstract_verification: docling_token_coverage_at_least_0.95

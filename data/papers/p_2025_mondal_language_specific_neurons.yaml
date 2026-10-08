@@ -1,0 +1,73 @@
+---
+schema_version: 1
+paper_id: p_2025_mondal_language_specific_neurons
+title: Language-specific Neurons Do Not Facilitate Cross-Lingual Transfer
+year: 2025
+earliest_public_date: '2025-03-21'
+earliest_public_date_precision: day
+venue: The Sixth Workshop on Insights from Negative Results in NLP
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2503.17456
+  arxiv_id: '2503.17456'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2503.17456
+  pdf: https://arxiv.org/pdf/2503.17456
+  code: 
+authors:
+- author_id: a_s_mondal_aca3d4d6
+  name: S. Mondal
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_sayambhu_sen_46d0f368
+  name: Sayambhu Sen
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_abhishek_singhania_5abd9345
+  name: Abhishek Singhania
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_p_jyothi_119ee646
+  name: P. Jyothi
+  position: 4
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2503.17456
+  en: Multilingual large language models (LLMs) aim towards robust natural language
+    understanding across diverse languages, yet their performance significantly degrades
+    on low-resource languages. This work explores whether existing techniques to identify
+    language-specific neurons can be leveraged to enhance cross-lingual task performance
+    of lowresource languages. We conduct detailed experiments covering existing language-specific
+    neuron identification techniques (such as Language Activation Probability Entropy
+    and activation probability-based thresholding) and neuron-specific LoRA fine-tuning
+    with models like Llama 3.1 and Mistral Nemo. We find that such neuron-specific
+    interventions are insufficient to yield cross-lingual improvements on downstream
+    tasks (XNLI, XQuAD) in lowresource languages. This study highlights the challenges
+    in achieving cross-lingual generalization and provides critical insights for multilingual
+    LLMs.
+  zh: >-
+    多语言大语言模型（LLM）旨在实现跨多种语言的稳健自然语言理解，但其在低资源语言上的性能会显著下降。本研究探讨能否利用现有的语言特定神经元识别技术，提升低资源语言的跨语言任务表现。我们开展了细致实验，涵盖现有语言特定神经元识别技术（例如语言激活概率熵和基于激活概率的阈值法），以及在 Llama 3.1、Mistral Nemo 等模型上进行的神经元特定 LoRA 微调。结果发现，这类针对特定神经元的干预不足以提升低资源语言在下游任务（XNLI、XQuAD）上的跨语言表现。本研究凸显了实现跨语言泛化所面临的挑战，并为多语言大语言模型提供了重要认识。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2025_mondal_language_specific_neurons
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 53
+  abstract_verification: docling_token_coverage_at_least_0.95

@@ -1,0 +1,69 @@
+---
+schema_version: 1
+paper_id: p_2023_hanna_how_does_gpt
+title: 'How does GPT-2 compute greater-than?: Interpreting mathematical abilities
+  in a pre-trained language model'
+year: 2023
+earliest_public_date: '2023-04-30'
+earliest_public_date_precision: day
+venue: Neural Information Processing Systems
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2305.00586
+  arxiv_id: '2305.00586'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2305.00586
+  pdf: https://arxiv.org/pdf/2305.00586
+  code: 
+authors:
+- author_id: a_michael_hanna_b5115363
+  name: Michael Hanna
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_ollie_liu_a55d2d8a
+  name: Ollie Liu
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_alexandre_variengien_34d668db
+  name: Alexandre Variengien
+  position: 3
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2305.00586
+  en: Pre-trained language models can be surprisingly adept at tasks they were not
+    explicitly trained on, but how they implement these capabilities is poorly understood.
+    In this paper, we investigate the basic mathematical abilities often acquired
+    by pre-trained language models. Concretely, we use mechanistic interpretability
+    techniques to explain the (limited) mathematical abilities of GPT-2 small. As
+    a case study, we examine its ability to take in sentences such as"The war lasted
+    from the year 1732 to the year 17", and predict valid two-digit end years (years>32).
+    We first identify a circuit, a small subset of GPT-2 small's computational graph
+    that computes this task's output. Then, we explain the role of each circuit component,
+    showing that GPT-2 small's final multi-layer perceptrons boost the probability
+    of end years greater than the start year. Finally, we find related tasks that
+    activate our circuit. Our results suggest that GPT-2 small computes greater-than
+    using a complex but general mechanism that activates across diverse contexts.
+  zh: >-
+    预训练语言模型可能非常擅长完成并未明确接受训练的任务，但人们对其如何实现这些能力缺乏理解。本文研究预训练语言模型经常获得的基础数学能力。具体而言，我们使用机制可解释性技术解释 GPT-2 small 有限的数学能力。作为案例，我们考察它处理如下句子的能力：“战争从 1732 年持续到 17__ 年”，并预测有效的两位数结束年份（年份大于 32）。首先，我们识别出一个回路，即 GPT-2 small 计算图中负责算出该任务输出的一小部分。随后，我们解释每个回路组件的作用，表明 GPT-2 small 最后的多层感知机提高了结束年份大于开始年份的概率。最后，我们找到了能够激活该回路的相关任务。结果表明，GPT-2 small 使用一种复杂但具有一般性的机制计算“大于”关系，并且该机制会在多样的上下文中激活。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_hanna_how_does_gpt
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 96
+  abstract_verification: docling_token_coverage_at_least_0.95

@@ -1,0 +1,79 @@
+---
+schema_version: 1
+paper_id: p_2023_geva_dissecting_recall_of
+title: Dissecting Recall of Factual Associations in Auto-Regressive Language Models
+year: 2023
+earliest_public_date: '2023-04-28'
+earliest_public_date_precision: day
+venue: Conference on Empirical Methods in Natural Language Processing
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2304.14767
+  arxiv_id: '2304.14767'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2304.14767
+  pdf: https://arxiv.org/pdf/2304.14767
+  code: 
+authors:
+- author_id: a_mor_geva_2422827f
+  name: Mor Geva
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_jasmijn_bastings_b0b2b736
+  name: Jasmijn Bastings
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_katja_filippova_97c5019e
+  name: Katja Filippova
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_a_globerson_21f40668
+  name: A. Globerson
+  position: 4
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2304.14767
+  en: 'Transformer-based language models (LMs) are known to capture factual knowledge
+    in their parameters. While previous work looked into where factual associations
+    are stored, only little is known about how they are retrieved internally during
+    inference. We investigate this question through the lens of information flow.
+    Given a subject-relation query, we study how the model aggregates information
+    about the subject and relation to predict the correct attribute. With interventions
+    on attention edges, we first identify two critical points where information propagates
+    to the prediction: one from the relation positions followed by another from the
+    subject positions. Next, by analyzing the information at these points, we unveil
+    a three-step internal mechanism for attribute extraction. First, the representation
+    at the last-subject position goes through an enrichment process, driven by the
+    early MLP sublayers, to encode many subject-related attributes. Second, information
+    from the relation propagates to the prediction. Third, the prediction representation"queries"the
+    enriched subject to extract the attribute. Perhaps surprisingly, this extraction
+    is typically done via attention heads, which often encode subject-attribute mappings
+    in their parameters. Overall, our findings introduce a comprehensive view of how
+    factual associations are stored and extracted internally in LMs, facilitating
+    future research on knowledge localization and editing.'
+  zh: >-
+    已知基于 Transformer 的语言模型（LM）会在参数中捕捉事实知识。以往工作研究了事实关联存储在何处，但对于推理期间如何在模型内部检索这些关联，我们仍知之甚少。我们从信息流角度研究这一问题。给定一个主语—关系查询，我们考察模型如何汇总有关主语和关系的信息，以预测正确属性。首先，通过干预注意力边，我们识别出信息向预测位置传播的两个关键节点：先从关系位置传播，随后从主语位置传播。接着，通过分析这些节点的信息，我们揭示出一种提取属性的三步内部机制。第一，最后一个主语位置的表征在早期 MLP 子层驱动下经历增强过程，从而编码许多与主语有关的属性。第二，来自关系的信息传播到预测位置。第三，预测位置的表征“查询”增强后的主语表征，以提取相应属性。或许出人意料的是，这一提取通常由注意力头完成，而这些注意力头往往在参数中编码主语—属性映射。总体而言，我们的发现全面展示了语言模型如何在内部存储和提取事实关联，为未来的知识定位与编辑研究提供基础。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_geva_dissecting_recall_of
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 51
+  abstract_verification: docling_token_coverage_at_least_0.95

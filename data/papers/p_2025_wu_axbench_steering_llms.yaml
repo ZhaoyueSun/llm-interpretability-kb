@@ -1,0 +1,100 @@
+---
+schema_version: 1
+paper_id: p_2025_wu_axbench_steering_llms
+title: 'AxBench: Steering LLMs? Even Simple Baselines Outperform Sparse Autoencoders'
+year: 2025
+earliest_public_date: '2025-01-28'
+earliest_public_date_precision: day
+venue: International Conference on Machine Learning
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2501.17148
+  arxiv_id: '2501.17148'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2501.17148
+  pdf: https://arxiv.org/pdf/2501.17148
+  code: 
+authors:
+- author_id: a_zhengxuan_wu_9418211c
+  name: Zhengxuan Wu
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_aryaman_arora_3f8014c2
+  name: Aryaman Arora
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_atticus_geiger_e76a395b
+  name: Atticus Geiger
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_zheng_wang_c4cb165c
+  name: Zheng Wang
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_jing_huang_190343e2
+  name: Jing Huang
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_daniel_jurafsky_b9cae688
+  name: Daniel Jurafsky
+  position: 6
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_christopher_d_manning_677d0d43
+  name: Christopher D. Manning
+  position: 7
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_christopher_potts_f9424ce1
+  name: Christopher Potts
+  position: 8
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2501.17148
+  en: Fine-grained steering of language model outputs is essential for safety and
+    reliability. Prompting and finetuning are widely used to achieve these goals,
+    but interpretability researchers have proposed a variety of representation-based
+    techniques as well, including sparse autoencoders (SAEs), linear artificial tomography,
+    supervised steering vectors, linear probes, and representation finetuning. At
+    present, there is no benchmark for making direct comparisons between these proposals.
+    Therefore, we introduce AxBench, a large-scale benchmark for steering and concept
+    detection, and report experiments on Gemma-2-2B and 9B. For steering, we find
+    that prompting outperforms all existing methods, followed by finetuning. For concept
+    detection, representation-based methods such as difference-in-means, perform the
+    best. On both evaluations, SAEs are not competitive. We introduce a novel weakly-supervised
+    representational method (Rank-1 Representation Finetuning; ReFT-r1), which is
+    competitive on both tasks while providing the interpretability advantages that
+    prompting lacks. Along with AxBench, we train and publicly release SAE-scale feature
+    dictionaries for ReFT-r1 and DiffMean.
+  zh: >-
+    对语言模型输出进行细粒度引导对于安全性和可靠性至关重要。提示和微调被广泛用于实现这些目标，可解释性研究者也提出了多种基于表征的技术，包括稀疏自编码器（SAE）、线性人工层析、监督引导向量、线性探针和表征微调。目前尚无能够直接比较这些方案的基准。因此，我们推出 AxBench——一个用于引导和概念检测的大规模基准，并报告在 Gemma-2-2B 和 Gemma-2-9B 上的实验。就引导而言，提示优于所有现有方法，微调位居其次；就概念检测而言，均值差等基于表征的方法表现最佳。在两项评估中，SAE 都缺乏竞争力。我们提出一种新的弱监督表征方法——秩一表征微调（Rank-1 Representation Finetuning，ReFT-r1）。该方法在两项任务上均具有竞争力，同时具备提示方法所缺少的可解释性优势。除 AxBench 外，我们还训练并公开发布了达到 SAE 规模的 ReFT-r1 和 DiffMean 特征字典。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2025_wu_axbench_steering_llms
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 41
+  abstract_verification: docling_token_coverage_at_least_0.95

@@ -1,0 +1,72 @@
+---
+schema_version: 1
+paper_id: p_2023_voita_neurons_in_large
+title: 'Neurons in Large Language Models: Dead, N-gram, Positional'
+year: 2023
+earliest_public_date: '2023-09-09'
+earliest_public_date_precision: day
+venue: Annual Meeting of the Association for Computational Linguistics
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2309.04827
+  arxiv_id: '2309.04827'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2309.04827
+  pdf: https://arxiv.org/pdf/2309.04827
+  code: 
+authors:
+- author_id: a_elena_voita_b2fc3f93
+  name: Elena Voita
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_javier_ferrando_abb97346
+  name: Javier Ferrando
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_christoforos_nalmpantis_df1c15a3
+  name: Christoforos Nalmpantis
+  position: 3
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2309.04827
+  en: 'We analyze a family of large language models in such a lightweight manner that
+    can be done on a single GPU. Specifically, we focus on the OPT family of models
+    ranging from 125m to 66b parameters and rely only on whether an FFN neuron is
+    activated or not. First, we find that the early part of the network is sparse
+    and represents many discrete features. Here, many neurons (more than 70% in some
+    layers of the 66b model) are"dead", i.e. they never activate on a large collection
+    of diverse data. At the same time, many of the alive neurons are reserved for
+    discrete features and act as token and n-gram detectors. Interestingly, their
+    corresponding FFN updates not only promote next token candidates as could be expected,
+    but also explicitly focus on removing the information about triggering them tokens,
+    i.e., current input. To the best of our knowledge, this is the first example of
+    mechanisms specialized at removing (rather than adding) information from the residual
+    stream. With scale, models become more sparse in a sense that they have more dead
+    neurons and token detectors. Finally, some neurons are positional: them being
+    activated or not depends largely (or solely) on position and less so (or not at
+    all) on textual data. We find that smaller models have sets of neurons acting
+    as position range indicators while larger models operate in a less explicit manner.'
+  zh: >-
+    我们以一种可在单块 GPU 上完成的轻量方式，分析一系列大语言模型。具体而言，我们聚焦参数量从 1.25 亿到 660 亿的 OPT 模型家族，并且只考察 FFN 神经元是否激活。首先，我们发现网络的早期部分较为稀疏，并表征许多离散特征。这里有大量神经元处于“死亡”状态——例如 660 亿参数模型的某些层中超过 70%——即它们在大量多样数据上从不激活。与此同时，许多活跃神经元专门负责离散特征，充当 token 和 n-gram 检测器。有趣的是，它们对应的 FFN 更新不仅会像预期那样提升下一 token 候选项，还会明确地移除有关触发这些神经元之 token、也就是当前输入的信息。据我们所知，这是首个专门从残差流中移除信息而非添加信息的机制实例。随着规模增大，模型会变得更稀疏，即拥有更多死亡神经元和 token 检测器。最后，一些神经元具有位置性：它们是否激活主要或完全取决于位置，而较少或完全不取决于文本数据。我们发现，小模型具有充当位置范围指示器的神经元集合，而大模型则以不那么显式的方式运作。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_voita_neurons_in_large
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 99
+  abstract_verification: docling_token_coverage_at_least_0.95

@@ -1,0 +1,70 @@
+---
+schema_version: 1
+paper_id: p_2023_park_the_linear_representation
+title: The Linear Representation Hypothesis and the Geometry of Large Language Models
+year: 2023
+earliest_public_date: '2023-11-07'
+earliest_public_date_precision: day
+venue: International Conference on Machine Learning
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2311.03658
+  arxiv_id: '2311.03658'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2311.03658
+  pdf: https://arxiv.org/pdf/2311.03658
+  code: 
+authors:
+- author_id: a_kiho_park_efdfcd4c
+  name: Kiho Park
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_yo_joong_choe_c93fca56
+  name: Yo Joong Choe
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_victor_veitch_33c2c5da
+  name: Victor Veitch
+  position: 3
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2311.03658
+  en: 'Informally, the''linear representation hypothesis''is the idea that high-level
+    concepts are represented linearly as directions in some representation space.
+    In this paper, we address two closely related questions: What does"linear representation"actually
+    mean? And, how do we make sense of geometric notions (e.g., cosine similarity
+    or projection) in the representation space? To answer these, we use the language
+    of counterfactuals to give two formalizations of"linear representation", one in
+    the output (word) representation space, and one in the input (sentence) space.
+    We then prove these connect to linear probing and model steering, respectively.
+    To make sense of geometric notions, we use the formalization to identify a particular
+    (non-Euclidean) inner product that respects language structure in a sense we make
+    precise. Using this causal inner product, we show how to unify all notions of
+    linear representation. In particular, this allows the construction of probes and
+    steering vectors using counterfactual pairs. Experiments with LLaMA-2 demonstrate
+    the existence of linear representations of concepts, the connection to interpretation
+    and control, and the fundamental role of the choice of inner product.'
+  zh: >-
+    非正式地说，“线性表征假说”认为，高层概念以某个表征空间中的方向这种线性形式得到表征。本文讨论两个密切相关的问题：“线性表征”究竟是什么意思？我们又该如何理解表征空间中的几何概念（例如余弦相似度或投影）？为回答这些问题，我们使用反事实语言，分别在输出（词）表征空间和输入（句子）空间中给出“线性表征”的两种形式化定义。随后，我们证明它们分别与线性探测和模型引导相联系。为了赋予几何概念明确含义，我们利用上述形式化定义识别出一种特定的非欧几里得内积；在我们严格界定的意义下，该内积尊重语言结构。借助这一因果内积，我们说明了如何统一线性表征的各种概念。特别是，它使我们能够使用反事实样本对构造探针和引导向量。LLaMA-2 实验展示了概念线性表征的存在、它与解释和控制的联系，以及内积选择所起的根本作用。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_park_the_linear_representation
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 35
+  abstract_verification: docling_token_coverage_at_least_0.95

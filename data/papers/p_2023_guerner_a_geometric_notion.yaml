@@ -1,0 +1,85 @@
+---
+schema_version: 1
+paper_id: p_2023_guerner_a_geometric_notion
+title: A Geometric Notion of Causal Probing
+year: 2023
+earliest_public_date: '2023-07-27'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2307.15054
+  arxiv_id: '2307.15054'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2307.15054
+  pdf: https://arxiv.org/pdf/2307.15054
+  code: 
+authors:
+- author_id: a_cl_ement_guerner_de874602
+  name: Cl'ement Guerner
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_anej_svete_d10304e3
+  name: Anej Svete
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_tianyu_liu_9a79dc44
+  name: Tianyu Liu
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_alex_warstadt_1720ec24
+  name: Alex Warstadt
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_ryan_cotterell_af694e29
+  name: Ryan Cotterell
+  position: 5
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2307.15054
+  en: The linear subspace hypothesis (Bolukbasi et al., 2016) states that, in a language
+    model's representation space, all information about a concept such as verbal number
+    is encoded in a linear subspace. Prior work has relied on auxiliary classification
+    tasks to identify and evaluate candidate subspaces that might give support for
+    this hypothesis. We instead give a set of intrinsic criteria which characterize
+    an ideal linear concept subspace and enable us to identify the subspace using
+    only the language model distribution. Our information-theoretic framework accounts
+    for spuriously correlated features in the representation space (Kumar et al.,
+    2022) by reconciling the statistical notion of concept information and the geometric
+    notion of how concepts are encoded in the representation space. As a byproduct
+    of this analysis, we hypothesize a causal process for how a language model might
+    leverage concepts during generation. Empirically, we find that linear concept
+    erasure is successful in erasing most concept information under our framework
+    for verbal number as well as some complex aspect-level sentiment concepts from
+    a restaurant review dataset. Our causal intervention for controlled generation
+    shows that, for at least one concept across two languages models, the concept
+    subspace can be used to manipulate the concept value of the generated word with
+    precision.
+  zh: >-
+    线性子空间假说（Bolukbasi 等，2016）认为，在语言模型的表征空间中，与某一概念（例如语法数）有关的全部信息都编码在线性子空间内。以往工作依赖辅助分类任务来识别和评估可能支持该假说的候选子空间。与此不同，我们给出一组刻画理想线性概念子空间的内在判据，使我们仅利用语言模型分布便可识别该子空间。我们的信息论框架通过协调“概念信息”的统计含义与“概念如何编码于表征空间”的几何含义，将表征空间中存在虚假相关的特征纳入考虑（Kumar 等，2022）。作为这项分析的副产物，我们提出一个关于语言模型在生成过程中如何利用概念的因果过程假说。经验结果显示，在我们的框架下，线性概念擦除能够成功去除语法数的大部分概念信息，也能去除餐厅评论数据集中一些复杂的方面级情感概念。用于可控生成的因果干预还表明，至少对两个语言模型中的一个概念而言，可以利用其概念子空间精确操控生成词的概念取值。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_guerner_a_geometric_notion
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 29
+  abstract_verification: docling_token_coverage_at_least_0.95

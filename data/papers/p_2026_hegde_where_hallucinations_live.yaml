@@ -1,0 +1,80 @@
+---
+schema_version: 1
+paper_id: p_2026_hegde_where_hallucinations_live
+title: 'Where Hallucinations Live: A Cross-Architecture Circuit in VQ-Tokenized Vision-Language
+  Models'
+year: 2026
+earliest_public_date: '2026-09-24'
+earliest_public_date_precision: day
+venue: arXiv (Cornell University)
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2609.29048
+  arxiv_id: '2609.29048'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2609.29048
+  pdf: https://arxiv.org/pdf/2609.29048
+  code: 
+authors:
+- author_id: a_shamanthak_hegde_673ba984
+  name: Shamanthak Hegde
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_xiang_rui_liu_af9f8ec4
+  name: Xiang-Rui Liu
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_maitreya_patel_bc400523
+  name: Maitreya Patel
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_ye_zhou_yang_c7cff2fa
+  name: Ye-Zhou Yang
+  position: 4
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2609.29048
+  en: Unified vision-language models (VLMs) that tokenize images through a vector-quantized
+    (VQ) codebook routinely hallucinate objects on grounded yes/no benchmarks, yet
+    existing decoding-time fixes treat this as generic miscalibration without an architectural
+    account. Using activation patching across twenty-five models spanning eight LLM
+    families, we identify an early-layer ($L_0$) attention routing circuit shared
+    across VQ-tokenized VLMs and propose a three-gate diagnostic that distinguishes
+    the models carrying it from those that do not. The diagnostic isolates ten positive
+    models (five natural unified-VQ VLMs across three LLM families and five induced
+    variants) and rejects the remaining fifteen. A single-variable architectural swap
+    (LLaVA-1.6 CLIP+MLP $\rightarrow$ VQ+Linear) installs the circuit, while a matched-compute
+    MLP control on identical data does not, isolating vector quantization as the source
+    of the pathological signal; the routing pathway that carries it is one that the
+    backbone already provides. Against tuned VCD and DoLA baselines, tuned DoLA wins
+    on binary calibration, but \textbf{only $L_0$ ablation reduces object hallucination
+    in open-ended generation} (CHAIR$_i$ reduces by $31\,\%$ relatively, whereas tuned
+    DoLA and VCD leave it unchanged or worsen it). These results recast object hallucination
+    in unified VQ VLMs as a property of architecture and pretraining, and yield a
+    targeted intervention that mechanism-agnostic decoding cannot replicate.
+  zh: >-
+    通过向量量化（VQ）码本对图像进行 token 化的统一视觉语言模型（VLM），在有明确图像依据的是/否基准上经常产生物体幻觉；然而，现有的解码时修正方法把这一问题视作一般性的校准失误，并未从架构层面作出解释。我们在横跨八个 LLM 家族的 25 个模型上使用激活修补，识别出一个由 VQ-token 化 VLM 共享的早期层（$L_0$）注意力路由回路，并提出一种三门诊断，用于区分携带该回路与不携带该回路的模型。该诊断识别出 10 个阳性模型（来自三个 LLM 家族的五个自然统一 VQ VLM，以及五个诱导得到的变体），并排除了其余 15 个模型。一次单变量架构替换（LLaVA-1.6 CLIP+MLP $\rightarrow$ VQ+Linear）即可装入该回路；而在相同数据上、计算量匹配的 MLP 对照却不能，由此将病理信号的来源锁定为向量量化，而承载该信号的路由路径则是骨干模型原本就具备的。与调优后的 VCD 和 DoLA 基线相比，调优后的 DoLA 在二元校准上获胜，但只有消融 $L_0$ 能减少开放式生成中的物体幻觉（CHAIR$_i$ 相对降低 $31\,\%$，而调优后的 DoLA 和 VCD 要么没有改善，要么使之恶化）。这些结果将统一 VQ VLM 中的物体幻觉重新界定为架构与预训练的属性，并给出一种机制无关的解码方法无法复现的定向干预。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2026_hegde_where_hallucinations_live
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 25
+  abstract_verification: docling_token_coverage_at_least_0.95

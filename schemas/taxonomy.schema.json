@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "taxonomy.schema.json",
+  "title": "Taxonomy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "taxonomy_id", "version", "status", "title", "nodes"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "taxonomy_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "version": {"type": "integer", "minimum": 0},
+    "status": {"enum": ["draft", "active", "deprecated"]},
+    "title": {"type": "string", "minLength": 1},
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["node_id", "parent_id", "title", "status", "introduction"],
+        "properties": {
+          "node_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+          "parent_id": {"type": ["string", "null"]},
+          "title": {"type": "string", "minLength": 1},
+          "status": {"enum": ["active", "deprecated"]},
+          "replaced_by": {"type": ["string", "null"]},
+          "proposal_id": {"type": ["string", "null"]},
+          "introduction": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["en", "zh"],
+            "properties": {
+              "en": {"type": "string"},
+              "zh": {"type": "string"}
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,78 @@
+---
+schema_version: 1
+paper_id: p_2022_burns_discovering_latent_knowledge
+title: Discovering Latent Knowledge in Language Models Without Supervision
+year: 2022
+earliest_public_date: '2022-12-07'
+earliest_public_date_precision: day
+venue: International Conference on Learning Representations
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2212.03827
+  arxiv_id: '2212.03827'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2212.03827
+  pdf: https://arxiv.org/pdf/2212.03827
+  code: 
+authors:
+- author_id: a_collin_burns_cc99c268
+  name: Collin Burns
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_haotian_ye_00e1efc3
+  name: Haotian Ye
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_d_klein_f3a25a01
+  name: D. Klein
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_jacob_steinhardt_bd43f01f
+  name: Jacob Steinhardt
+  position: 4
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2212.03827
+  en: 'Existing techniques for training language models can be misaligned with the
+    truth: if we train models with imitation learning, they may reproduce errors that
+    humans make; if we train them to generate text that humans rate highly, they may
+    output errors that human evaluators can''t detect. We propose circumventing this
+    issue by directly finding latent knowledge inside the internal activations of
+    a language model in a purely unsupervised way. Specifically, we introduce a method
+    for accurately answering yes-no questions given only unlabeled model activations.
+    It works by finding a direction in activation space that satisfies logical consistency
+    properties, such as that a statement and its negation have opposite truth values.
+    We show that despite using no supervision and no model outputs, our method can
+    recover diverse knowledge represented in large language models: across 6 models
+    and 10 question-answering datasets, it outperforms zero-shot accuracy by 4\% on
+    average. We also find that it cuts prompt sensitivity in half and continues to
+    maintain high accuracy even when models are prompted to generate incorrect answers.
+    Our results provide an initial step toward discovering what language models know,
+    distinct from what they say, even when we don''t have access to explicit ground
+    truth labels.'
+  zh: >-
+    现有语言模型训练技术可能与真相错位：如果使用模仿学习训练模型，它们可能复现人类会犯的错误；如果训练模型生成能获得人类高分评价的文本，它们可能输出人类评估者无法发现的错误。我们提出绕开这一问题，以完全无监督的方式直接从语言模型内部激活中寻找潜在知识。具体而言，我们提出一种方法，只利用未标注的模型激活准确回答是非问题。该方法寻找激活空间中满足逻辑一致性性质的方向，例如一个陈述与其否定应具有相反真值。我们表明，即使不使用监督信号和模型输出，该方法仍能恢复大语言模型所表征的多种知识：在 6 个模型和 10 个问答数据集上，它的准确率平均比零样本方法高 4%。我们还发现，它能把提示敏感性降低一半；即使模型被提示生成错误答案，也仍可保持较高准确率。我们的结果是迈向发现“语言模型知道什么”而非“语言模型说什么”的第一步，即便我们无法获得明确的真值标签也是如此。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2022_burns_discovering_latent_knowledge
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 79
+  abstract_verification: docling_token_coverage_at_least_0.95

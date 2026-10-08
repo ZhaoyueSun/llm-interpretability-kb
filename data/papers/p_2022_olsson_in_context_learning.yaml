@@ -1,0 +1,204 @@
+---
+schema_version: 1
+paper_id: p_2022_olsson_in_context_learning
+title: In-context Learning and Induction Heads
+year: 2022
+earliest_public_date: '2022-09-24'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2209.11895
+  arxiv_id: '2209.11895'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2209.11895
+  pdf: https://arxiv.org/pdf/2209.11895
+  code: 
+authors:
+- author_id: a_catherine_olsson_ede5db09
+  name: Catherine Olsson
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_nelson_elhage_f370d8f0
+  name: Nelson Elhage
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_neel_nanda_ddf6abf4
+  name: Neel Nanda
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_nicholas_joseph_48034f49
+  name: Nicholas Joseph
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_nova_dassarma_3016e451
+  name: Nova Dassarma
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_t_henighan_26ac86d7
+  name: T. Henighan
+  position: 6
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_benjamin_mann_4a46580d
+  name: Benjamin Mann
+  position: 7
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_amanda_askell_cad53764
+  name: Amanda Askell
+  position: 8
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_yuntao_bai_a367a367
+  name: Yuntao Bai
+  position: 9
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_anna_chen_20adbd25
+  name: Anna Chen
+  position: 10
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_tom_conerly_64dfb3bf
+  name: Tom Conerly
+  position: 11
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_dawn_drain_6cf4cbd3
+  name: Dawn Drain
+  position: 12
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_deep_ganguli_1dca9c75
+  name: Deep Ganguli
+  position: 13
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_zac_hatfield_dodds_202f8201
+  name: Zac Hatfield-Dodds
+  position: 14
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_danny_hernandez_11888843
+  name: Danny Hernandez
+  position: 15
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_scott_johnston_93ddf68d
+  name: Scott Johnston
+  position: 16
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_andy_jones_385ea528
+  name: Andy Jones
+  position: 17
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_john_kernion_7fa78f89
+  name: John Kernion
+  position: 18
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_liane_lovitt_7ba094be
+  name: Liane Lovitt
+  position: 19
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_kamal_ndousse_6c6c9794
+  name: Kamal Ndousse
+  position: 20
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_dario_amodei_a59b02ef
+  name: Dario Amodei
+  position: 21
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_tom_b_brown_1edfb120
+  name: Tom B. Brown
+  position: 22
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_jack_clark_410a2081
+  name: Jack Clark
+  position: 23
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_j_kaplan_a49533e8
+  name: J. Kaplan
+  position: 24
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_sam_mccandlish_df257ad4
+  name: Sam McCandlish
+  position: 25
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_chris_olah_158a0d46
+  name: Chris Olah
+  position: 26
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2209.11895
+  en: '"Induction heads"are attention heads that implement a simple algorithm to complete
+    token sequences like [A][B] ... [A] ->[B]. In this work, we present preliminary
+    and indirect evidence for a hypothesis that induction heads might constitute the
+    mechanism for the majority of all"in-context learning"in large transformer models
+    (i.e. decreasing loss at increasing token indices). We find that induction heads
+    develop at precisely the same point as a sudden sharp increase in in-context learning
+    ability, visible as a bump in the training loss. We present six complementary
+    lines of evidence, arguing that induction heads may be the mechanistic source
+    of general in-context learning in transformer models of any size. For small attention-only
+    models, we present strong, causal evidence; for larger models with MLPs, we present
+    correlational evidence.'
+  zh: >-
+    “归纳注意力头”是实现一种简单算法的注意力头，可补全形如 [A][B] … [A] → [B] 的 token 序列。本文给出初步的间接证据，支持这样一种假说：在大型 Transformer 模型中，归纳注意力头可能构成绝大多数“上下文学习”的机制；这里的上下文学习指损失随 token 索引增加而下降。我们发现，归纳注意力头形成的时间点与上下文学习能力突然大幅提高的时间点完全一致，后者在训练损失中表现为一个凸起。我们从六个互为补充的方面提供证据，论证归纳注意力头可能是任意规模 Transformer 模型中一般上下文学习的机制来源。对于仅含注意力层的小模型，我们给出强有力的因果证据；对于包含 MLP 的较大模型，我们给出相关性证据。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2022_olsson_in_context_learning
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 62
+  abstract_verification: docling_token_coverage_at_least_0.95

@@ -1,0 +1,81 @@
+---
+schema_version: 1
+paper_id: p_2023_schwettmann_multimodal_neurons_in
+title: Multimodal Neurons in Pretrained Text-Only Transformers
+year: 2023
+earliest_public_date: '2023-08-03'
+earliest_public_date_precision: day
+venue: 2023 IEEE/CVF International Conference on Computer Vision Workshops (ICCVW)
+publication_type: preprint
+identifiers:
+  doi: 10.1109/iccvw60793.2023.00308
+  arxiv_id: '2308.01544'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2308.01544
+  pdf: https://arxiv.org/pdf/2308.01544
+  code: 
+authors:
+- author_id: a_sarah_schwettmann_75d9e5ed
+  name: Sarah Schwettmann
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_neil_chowdhury_5617dea7
+  name: Neil Chowdhury
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_samuel_klein_af54b131
+  name: Samuel Klein
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_david_bau_778385a5
+  name: David Bau
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_a_torralba_bcf39151
+  name: A. Torralba
+  position: 5
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2308.01544
+  en: 'Language models demonstrate remarkable capacity to generalize representations
+    learned in one modality to downstream tasks in other modalities. Can we trace
+    this ability to individual neurons? We study the case where a frozen text transformer
+    is augmented with vision using a self-supervised visual encoder and a single linear
+    projection learned on an image-to-text task. Outputs of the projection layer are
+    not immediately decodable into language describing image content; instead, we
+    find that translation between modalities occurs deeper within the transformer.
+    We introduce a procedure for identifying "multimodal neurons" that convert visual
+    representations into corresponding text, and decoding the concepts they inject
+    into the model’s residual stream. In a series of experiments, we show that multimodal
+    neurons operate on specific visual concepts across inputs, and have a systematic
+    causal effect on image captioning. Project page: mmns.csail.mit.edu'
+  zh: >-
+    语言模型展现出显著能力，可以把在一种模态上学习到的表征泛化到其他模态的下游任务。我们能否把这种能力追踪到单个神经元？本文研究这样一种情形：使用自监督视觉编码器和一个在图像到文本任务上学习的线性投影，为冻结的文本
+    Transformer 增加视觉能力。投影层的输出无法立即被解码成描述图像内容的语言；相反，我们发现模态之间的转换发生在 Transformer
+    内部更深的位置。我们提出一种方法，用于识别把视觉表征转换成对应文本的“多模态神经元”，并解码它们注入模型残差流的概念。通过一系列实验，我们表明，多模态神经元能够跨输入处理特定视觉概念，并对图像描述任务产生系统性的因果影响。项目页面：mmns.csail.mit.edu。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_schwettmann_multimodal_neurons_in
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 18
+  abstract_verification: docling_token_coverage_at_least_0.95

@@ -1,0 +1,96 @@
+---
+schema_version: 1
+paper_id: p_2023_belrose_eliciting_latent_predictions
+title: Eliciting Latent Predictions from Transformers with the Tuned Lens
+year: 2023
+earliest_public_date: '2023-03-14'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2303.08112
+  arxiv_id: '2303.08112'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2303.08112
+  pdf: https://arxiv.org/pdf/2303.08112
+  code: 
+authors:
+- author_id: a_nora_belrose_37966bfd
+  name: Nora Belrose
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_zach_furman_31f11b1f
+  name: Zach Furman
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_logan_smith_429a662b
+  name: Logan Smith
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_danny_halawi_22f14e52
+  name: Danny Halawi
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_igor_ostrovsky_04c0978e
+  name: Igor Ostrovsky
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_lev_mckinney_85be0e72
+  name: Lev McKinney
+  position: 6
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_stella_biderman_f984cb04
+  name: Stella Biderman
+  position: 7
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_jacob_steinhardt_bd43f01f
+  name: Jacob Steinhardt
+  position: 8
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2303.08112
+  en: We analyze transformers from the perspective of iterative inference, seeking
+    to understand how model predictions are refined layer by layer. To do so, we train
+    an affine probe for each block in a frozen pretrained model, making it possible
+    to decode every hidden state into a distribution over the vocabulary. Our method,
+    the tuned lens, is a refinement of the earlier"logit lens"technique, which yielded
+    useful insights but is often brittle. We test our method on various autoregressive
+    language models with up to 20B parameters, showing it to be more predictive, reliable
+    and unbiased than the logit lens. With causal experiments, we show the tuned lens
+    uses similar features to the model itself. We also find the trajectory of latent
+    predictions can be used to detect malicious inputs with high accuracy. All code
+    needed to reproduce our results can be found at https://github.com/AlignmentResearch/tuned-lens.
+  zh: >-
+    我们从迭代推理的角度分析 Transformer，试图理解模型预测如何逐层细化。为此，我们为一个冻结的预训练模型中的每个模块训练仿射探针，从而可以把每个隐藏状态解码为词汇表上的概率分布。我们的方法称为调优透镜（tuned lens），是早期“logit lens”技术的改进；后者虽然带来有益认识，却往往十分脆弱。我们在参数量最大达到 200 亿的多种自回归语言模型上测试该方法，发现它比 logit lens 的预测能力更强，也更可靠、更少偏差。因果实验表明，调优透镜使用的特征与模型自身相似。我们还发现，潜在预测的轨迹可用于高精度检测恶意输入。复现结果所需的全部代码见 https://github.com/AlignmentResearch/tuned-lens。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_belrose_eliciting_latent_predictions
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 85
+  abstract_verification: docling_token_coverage_at_least_0.95

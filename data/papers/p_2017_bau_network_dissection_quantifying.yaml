@@ -1,0 +1,82 @@
+---
+schema_version: 1
+paper_id: p_2017_bau_network_dissection_quantifying
+title: 'Network Dissection: Quantifying Interpretability of Deep Visual Representations'
+year: 2017
+earliest_public_date: '2017-04-19'
+earliest_public_date_precision: day
+venue: Computer Vision and Pattern Recognition
+publication_type: preprint
+identifiers:
+  doi: 10.1109/cvpr.2017.354
+  arxiv_id: '1704.05796'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/1704.05796
+  pdf: https://arxiv.org/pdf/1704.05796
+  code: 
+authors:
+- author_id: a_david_bau_778385a5
+  name: David Bau
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_bolei_zhou_02e84ed1
+  name: Bolei Zhou
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_a_khosla_c7e84176
+  name: A. Khosla
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_a_oliva_53825efb
+  name: A. Oliva
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_a_torralba_bcf39151
+  name: A. Torralba
+  position: 5
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/1704.05796
+  en: We propose a general framework called Network Dissection for quantifying the
+    interpretability of latent representations of CNNs by evaluating the alignment
+    between individual hidden units and a set of semantic concepts. Given any CNN
+    model, the proposed method draws on a data set of concepts to score the semantics
+    of hidden units at each intermediate convolutional layer. The units with semantics
+    are labeled across a broad range of visual concepts including objects, parts,
+    scenes, textures, materials, and colors. We use the proposed method to test the
+    hypothesis that interpretability is an axis-independent property of the representation
+    space, then we apply the method to compare the latent representations of various
+    networks when trained to solve different classification problems. We further analyze
+    the effect of training iterations, compare networks trained with different initializations,
+    and measure the effect of dropout and batch normalization on the interpretability
+    of deep visual representations. We demonstrate that the proposed method can shed
+    light on characteristics of CNN models and training methods that go beyond measurements
+    of their discriminative power.
+  zh: >-
+    我们提出一个名为网络剖析（Network Dissection）的通用框架，通过评估单个隐藏单元与一组语义概念之间的对齐，定量衡量卷积神经网络（CNN）潜在表征的可解释性。给定任意 CNN 模型，该方法利用一个概念数据集，对各中间卷积层隐藏单元的语义进行评分。具有语义的单元会被赋予涵盖广泛视觉概念的标签，包括物体、部件、场景、纹理、材质和颜色。我们使用该方法检验“可解释性是表征空间中与坐标轴选择无关的属性”这一假说，随后应用它比较不同网络在接受不同分类问题训练时形成的潜在表征。我们还分析训练迭代的影响，比较采用不同初始化训练的网络，并衡量 dropout 和批归一化对深层视觉表征可解释性的影响。我们证明，该方法能够揭示 CNN 模型和训练方法超出判别能力指标之外的特征。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2017_bau_network_dissection_quantifying
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 108
+  abstract_verification: docling_token_coverage_at_least_0.95

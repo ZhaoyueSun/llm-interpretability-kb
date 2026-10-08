@@ -1,0 +1,81 @@
+---
+schema_version: 1
+paper_id: p_2023_hase_does_localization_inform
+title: Does Localization Inform Editing? Surprising Differences in Causality-Based
+  Localization vs. Knowledge Editing in Language Models
+year: 2023
+earliest_public_date: '2023-01-10'
+earliest_public_date_precision: day
+venue: Neural Information Processing Systems
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2301.04213
+  arxiv_id: '2301.04213'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2301.04213
+  pdf: https://arxiv.org/pdf/2301.04213
+  code: 
+authors:
+- author_id: a_peter_hase_d937a33d
+  name: Peter Hase
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_mohit_bansal_8e754387
+  name: Mohit Bansal
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_been_kim_85ac56ca
+  name: Been Kim
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_asma_ghandeharioun_32ccce58
+  name: Asma Ghandeharioun
+  position: 4
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2301.04213
+  en: Language models learn a great quantity of factual information during pretraining,
+    and recent work localizes this information to specific model weights like mid-layer
+    MLP weights. In this paper, we find that we can change how a fact is stored in
+    a model by editing weights that are in a different location than where existing
+    methods suggest that the fact is stored. This is surprising because we would expect
+    that localizing facts to specific model parameters would tell us where to manipulate
+    knowledge in models, and this assumption has motivated past work on model editing
+    methods. Specifically, we show that localization conclusions from representation
+    denoising (also known as Causal Tracing) do not provide any insight into which
+    model MLP layer would be best to edit in order to override an existing stored
+    fact with a new one. This finding raises questions about how past work relies
+    on Causal Tracing to select which model layers to edit. Next, we consider several
+    variants of the editing problem, including erasing and amplifying facts. For one
+    of our editing problems, editing performance does relate to localization results
+    from representation denoising, but we find that which layer we edit is a far better
+    predictor of performance. Our results suggest, counterintuitively, that better
+    mechanistic understanding of how pretrained language models work may not always
+    translate to insights about how to best change their behavior. Our code is available
+    at https://github.com/google/belief-localization
+  zh: >-
+    语言模型在预训练期间学到大量事实信息，近期研究把这些信息定位到特定模型权重，例如中间层 MLP 权重。本文发现，通过编辑与现有方法所指出的事实存储位置不同的权重，也可以改变事实在模型中的存储方式。这一点令人意外，因为我们通常预期，把事实定位到特定模型参数会告诉我们应在何处操纵模型知识，而以往模型编辑研究也受这一假设推动。具体而言，我们表明，表征去噪（又称因果追踪）所得定位结论，完全无法说明应编辑哪个 MLP 层，才能用新事实覆盖模型已有事实。这一发现使人们需要重新审视以往研究依赖因果追踪选择模型编辑层的做法。随后，我们考虑了事实擦除和增强等多个编辑问题变体。对其中一个编辑问题，编辑性能确实与表征去噪的定位结果有关，但我们发现，所编辑的具体层是远强于定位结果的性能预测因素。我们的结果反直觉地表明，对预训练语言模型工作机制取得更好的理解，并不总能转化为如何最有效改变其行为的认识。代码见 https://github.com/google/belief-localization。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_hase_does_localization_inform
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 90
+  abstract_verification: docling_token_coverage_at_least_0.95

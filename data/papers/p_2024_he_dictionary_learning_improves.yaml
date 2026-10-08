@@ -1,0 +1,88 @@
+---
+schema_version: 1
+paper_id: p_2024_he_dictionary_learning_improves
+title: 'Dictionary Learning Improves Patch-Free Circuit Discovery in Mechanistic Interpretability:
+  A Case Study on Othello-GPT'
+year: 2024
+earliest_public_date: '2024-02-19'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2402.12201
+  arxiv_id: '2402.12201'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2402.12201
+  pdf: https://arxiv.org/pdf/2402.12201
+  code: 
+authors:
+- author_id: a_zheng_fu_he_bf772b19
+  name: Zheng-Fu He
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_xuyang_ge_e2f55999
+  name: Xuyang Ge
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_qiong_tang_09e8aa3d
+  name: Qiong Tang
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_tianxiang_sun_06607c7c
+  name: Tianxiang Sun
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_qinyuan_cheng_085b1b41
+  name: Qinyuan Cheng
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_xi_peng_qiu_c59a62d0
+  name: Xi-Peng Qiu
+  position: 6
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2402.12201
+  en: 'Sparse dictionary learning has been a rapidly growing technique in mechanistic
+    interpretability to attack superposition and extract more human-understandable
+    features from model activations. We ask a further question based on the extracted
+    more monosemantic features: How do we recognize circuits connecting the enormous
+    amount of dictionary features? We propose a circuit discovery framework alternative
+    to activation patching. Our framework suffers less from out-of-distribution and
+    proves to be more efficient in terms of asymptotic complexity. The basic unit
+    in our framework is dictionary features decomposed from all modules writing to
+    the residual stream, including embedding, attention output and MLP output. Starting
+    from any logit, dictionary feature or attention score, we manage to trace down
+    to lower-level dictionary features of all tokens and compute their contribution
+    to these more interpretable and local model behaviors. We dig in a small transformer
+    trained on a synthetic task named Othello and find a number of human-understandable
+    fine-grained circuits inside of it.'
+  zh: >-
+    稀疏字典学习正在迅速成为机制可解释性中的重要技术，用于处理叠加现象并从模型激活中提取更易于人类理解的特征。基于所提取的、单义性更强的特征，我们进一步提出一个问题：如何识别连接海量字典特征的回路？我们提出一个可替代激活修补的回路发现框架。该框架较少受到分布外问题的影响，并且在渐近复杂度方面更为高效。框架的基本单元是从所有向残差流写入信息的模块中分解出的字典特征，这些模块包括嵌入、注意力输出和 MLP 输出。从任意 logit、字典特征或注意力分数出发，我们都能向下追踪到所有 token 的底层字典特征，并计算它们对这些更具可解释性、更局部的模型行为所作的贡献。我们深入研究了一个在名为 Othello 的合成任务上训练的小型 Transformer，并在其中发现了多个可由人类理解的细粒度回路。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2024_he_dictionary_learning_improves
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 28
+  abstract_verification: docling_token_coverage_at_least_0.95

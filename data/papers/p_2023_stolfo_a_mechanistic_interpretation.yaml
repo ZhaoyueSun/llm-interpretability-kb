@@ -1,0 +1,73 @@
+---
+schema_version: 1
+paper_id: p_2023_stolfo_a_mechanistic_interpretation
+title: A Mechanistic Interpretation of Arithmetic Reasoning in Language Models using
+  Causal Mediation Analysis
+year: 2023
+earliest_public_date: '2023-05-24'
+earliest_public_date_precision: day
+venue: Conference on Empirical Methods in Natural Language Processing
+publication_type: preprint
+identifiers:
+  doi: 10.18653/v1/2023.emnlp-main.435
+  arxiv_id: '2305.15054'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2305.15054
+  pdf: https://arxiv.org/pdf/2305.15054
+  code: 
+authors:
+- author_id: a_alessandro_stolfo_195681bf
+  name: Alessandro Stolfo
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_yonatan_belinkov_efb645ca
+  name: Yonatan Belinkov
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_mrinmaya_sachan_05339d14
+  name: Mrinmaya Sachan
+  position: 3
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2305.15054
+  en: Mathematical reasoning in large language models (LMs) has garnered significant
+    attention in recent work, but there is a limited understanding of how these models
+    process and store information related to arithmetic tasks within their architecture.
+    In order to improve our understanding of this aspect of language models, we present
+    a mechanistic interpretation of Transformer-based LMs on arithmetic questions
+    using a causal mediation analysis framework. By intervening on the activations
+    of specific model components and measuring the resulting changes in predicted
+    probabilities, we identify the subset of parameters responsible for specific predictions.
+    This provides insights into how information related to arithmetic is processed
+    by LMs. Our experimental results indicate that LMs process the input by transmitting
+    the information relevant to the query from mid-sequence early layers to the final
+    token using the attention mechanism. Then, this information is processed by a
+    set of MLP modules, which generate result-related information that is incorporated
+    into the residual stream. To assess the specificity of the observed activation
+    dynamics, we compare the effects of different model components on arithmetic queries
+    with other tasks, including number retrieval from prompts and factual knowledge
+    questions.
+  zh: >-
+    大语言模型（LM）的数学推理近来受到广泛关注，但人们对这些模型如何在其架构内部处理和存储与算术任务有关的信息仍了解有限。为加深对此问题的理解，我们使用因果中介分析框架，对基于 Transformer 的语言模型回答算术问题的过程给出机制解释。通过干预特定模型组件的激活并测量预测概率随之发生的变化，我们识别出负责特定预测的参数子集，从而揭示语言模型如何处理与算术有关的信息。实验结果表明，语言模型首先利用注意力机制，把与问题相关的信息从序列中部的早期层传送至最后一个 token；随后，一组 MLP 模块对这些信息进行处理，生成与结果有关的信息并将其写入残差流。为评估所观察到的激活动力学是否具有任务特异性，我们比较了不同模型组件对算术问题和其他任务的影响，后者包括从提示中检索数字以及回答事实知识问题。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_stolfo_a_mechanistic_interpretation
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 20
+  abstract_verification: docling_token_coverage_at_least_0.95

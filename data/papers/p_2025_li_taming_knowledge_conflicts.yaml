@@ -1,0 +1,73 @@
+---
+schema_version: 1
+paper_id: p_2025_li_taming_knowledge_conflicts
+title: Taming Knowledge Conflicts in Language Models
+year: 2025
+earliest_public_date: '2025-03-14'
+earliest_public_date_precision: day
+venue: International Conference on Machine Learning
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2503.10996
+  arxiv_id: '2503.10996'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2503.10996
+  pdf: https://arxiv.org/pdf/2503.10996
+  code: 
+authors:
+- author_id: a_gaotang_li_e46229c2
+  name: Gaotang Li
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_yuzhong_chen_e911d226
+  name: Yuzhong Chen
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_hanghang_tong_3bd766a0
+  name: Hanghang Tong
+  position: 3
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2503.10996
+  en: Language Models (LMs) often encounter knowledge conflicts when parametric memory
+    contradicts contextual knowledge. Previous works attribute this conflict to the
+    interplay between"memory heads"and"context heads", attention heads assumed to
+    promote either memory or context exclusively. In this study, we go beyond this
+    fundamental assumption by uncovering a critical phenomenon we term the superposition
+    of contextual information and parametric memory, where highly influential attention
+    heads simultaneously contribute to both memory and context. Building upon this
+    insight, we propose Just Run Twice (JuICE), a test-time attention intervention
+    method that steers LMs toward either parametric beliefs or contextual knowledge
+    without requiring fine-tuning. JuICE identifies a set of reliable attention heads
+    and leverages a dual-run approach to mitigate the superposition effects. Extensive
+    experiments across 11 datasets and 6 model architectures demonstrate that JuICE
+    sets the new state-of-the-art performance and robust generalization, achieving
+    significant and consistent improvement across different domains under various
+    conflict types. Finally, we theoretically analyze knowledge conflict and the superposition
+    of contextual information and parametric memory in attention heads, which further
+    elucidates the effectiveness of JuICE in these settings. Our code is available
+    at https://github.com/GaotangLi/JUICE.
+  zh: >-
+    当参数记忆与上下文知识相矛盾时，语言模型（LM）经常面临知识冲突。以往工作把这种冲突归因于“记忆头”与“上下文头”的相互作用，并假设两类注意力头分别只促进记忆或上下文。本文超越这一基本假设，揭示出一种关键现象，称为上下文信息与参数记忆的叠加：影响力很高的注意力头会同时为记忆和上下文作出贡献。基于这一认识，我们提出 Just Run Twice（JuICE），一种测试时注意力干预方法，无需微调即可引导语言模型偏向参数信念或上下文知识。JuICE 识别一组可靠的注意力头，并通过双次运行的方法缓解叠加效应。在 11 个数据集和 6 种模型架构上的广泛实验表明，JuICE 取得新的最先进性能和稳健的泛化能力，在不同领域和多种冲突类型下都带来显著且一致的提升。最后，我们从理论上分析知识冲突以及注意力头中上下文信息与参数记忆的叠加，进一步阐明 JuICE 在这些设置中的有效性。代码见 https://github.com/GaotangLi/JUICE。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2025_li_taming_knowledge_conflicts
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 72
+  abstract_verification: docling_token_coverage_at_least_0.95

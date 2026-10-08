@@ -1,0 +1,80 @@
+---
+schema_version: 1
+paper_id: p_2026_dalili_subspace_aware_sparse
+title: Subspace-Aware Sparse Autoencoders for Effective Mechanistic Interpretability
+year: 2026
+earliest_public_date: '2026-06-04'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2606.06333
+  arxiv_id: '2606.06333'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2606.06333
+  pdf: https://arxiv.org/pdf/2606.06333
+  code: 
+authors:
+- author_id: a_seyed_arshan_dalili_1194f0c0
+  name: Seyed Arshan Dalili
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_mehrdad_mahdavi_074902c8
+  name: Mehrdad Mahdavi
+  position: 2
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2606.06333
+  en: Sparse Autoencoders (SAEs) are widely used for mechanistic interpretability
+    in large language models, yet their formulation assigns each latent feature a
+    single decoder direction, implicitly assuming features to be one-dimensional.
+    We show that this assumption mismatches with the multi-dimensional structure of
+    model features, provably inducing feature splitting through two distinct mechanisms.
+    Geometrically, reconstructing a feature of intrinsic dimension $d_i \ge 2$ to
+    error $\varepsilon$ with single-direction decoders forces a number of atoms that
+    is exponential in $d_i$. From an end-to-end optimization perspective, this splitting
+    is not merely possible but actively preferred. We prove that there exists a continuous
+    path from the true $d_i$-dimensional basis to a strictly lower risk of the $\ell_1$-regularized
+    SAE objective, whose descent directions drive any trained dictionary into that
+    exponential regime. A single coherent feature is therefore fragmented across many
+    near-collinear latents, producing spurious multiplicity and obscuring the intrinsic
+    geometry. Motivated by this, we introduce Subspace-Aware Sparse Autoencoders (SASA),
+    which replace single-vector decoders with learned decoder subspaces, enforce block
+    sparsity via Top-$s$ group gating, and adapt each group's effective rank with
+    a nuclear-norm regularizer. We then show that once the block size satisfies $r
+    \ge d_i$, a single group not only can represent the entire feature slice but is
+    the global minimizer of the SASA objective. This consolidation yields a sample
+    complexity polynomial in $d_i$ rather than exponential -- a decisive advantage
+    given that every training activation costs an LLM forward pass. Empirically, on
+    GPT-2 and Mistral-7B, SASA reduces feature splitting and absorption, improves
+    monosemanticity and interpretability, and matches or exceeds standard SAEs while
+    training on roughly half the token budget.
+  zh: >-
+    稀疏自编码器（SAE）被广泛用于大型语言模型的机制可解释性研究，但其标准形式为每个潜在特征只分配一个解码方向，因而隐含地假设特征是一维的。我们表明，这一假设与模型特征的多维结构不匹配，并且可以证明它会通过两种不同机制导致特征分裂。从几何角度看，若使用单方向解码器把内在维数为
+    $d_i \ge 2$ 的特征重构到误差 $\varepsilon$，所需原子的数量会随 $d_i$
+    指数增长。从端到端优化的角度看，这种分裂不仅可能发生，而且会受到目标函数主动偏好。我们证明，从真实的 $d_i$ 维基到
+    $\ell_1$ 正则化 SAE 目标的严格更低风险解之间存在一条连续路径，其下降方向会把任何训练得到的字典推向上述指数规模。因此，一个完整连贯的特征会被分散到许多近共线的潜变量中，产生虚假的多重性并掩盖其内在几何。受此启发，我们提出子空间感知稀疏自编码器（SASA）：用学习得到的解码子空间替代单向量解码器，通过
+    Top-$s$ 分组门控施加块稀疏性，并使用核范数正则化器自适应调整每个分组的有效秩。随后我们证明，一旦块大小满足
+    $r \ge d_i$，单个分组不仅可以表示整个特征切片，而且还是 SASA 目标的全局最优解。这种整合使样本复杂度从关于
+    $d_i$ 的指数级降为多项式级；鉴于每个训练激活都需要一次 LLM 前向传播，这是决定性的优势。在 GPT-2 和 Mistral-7B
+    上，SASA 减少了特征分裂和特征吸收，提高了单义性与可解释性，并在只使用约一半 token 预算训练的情况下达到或超过标准 SAE。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2026_dalili_subspace_aware_sparse
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 2
+  abstract_verification: docling_token_coverage_at_least_0.95

@@ -1,0 +1,75 @@
+---
+schema_version: 1
+paper_id: p_2021_geiger_causal_abstractions_of
+title: Causal Abstractions of Neural Networks
+year: 2021
+earliest_public_date: '2021-06-06'
+earliest_public_date_precision: day
+venue: Neural Information Processing Systems
+publication_type: preprint
+identifiers:
+  doi: ''
+  arxiv_id: '2106.02997'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2106.02997
+  pdf: https://arxiv.org/pdf/2106.02997
+  code: 
+authors:
+- author_id: a_atticus_geiger_e76a395b
+  name: Atticus Geiger
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_hanson_lu_537e2a9f
+  name: Hanson Lu
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_thomas_f_icard_e9a57f00
+  name: Thomas F. Icard
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_christopher_potts_f9424ce1
+  name: Christopher Potts
+  position: 4
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2106.02997
+  en: Structural analysis methods (e.g., probing and feature attribution) are increasingly
+    important tools for neural network analysis. We propose a new structural analysis
+    method grounded in a formal theory of causal abstraction that provides rich characterizations
+    of model-internal representations and their roles in input/output behavior. In
+    this method, neural representations are aligned with variables in interpretable
+    causal models, and then interchange interventions are used to experimentally verify
+    that the neural representations have the causal properties of their aligned variables.
+    We apply this method in a case study to analyze neural models trained on Multiply
+    Quantified Natural Language Inference (MQNLI) corpus, a highly complex NLI dataset
+    that was constructed with a tree-structured natural logic causal model. We discover
+    that a BERT-based model with state-of-the-art performance successfully realizes
+    parts of the natural logic model's causal structure, whereas a simpler baseline
+    model fails to show any such structure, demonstrating that BERT representations
+    encode the compositional structure of MQNLI.
+  zh: >-
+    结构分析方法（例如探测和特征归因）正成为分析神经网络日益重要的工具。我们提出一种以形式化因果抽象理论为基础的新结构分析方法，对模型内部表征及其在输入—输出行为中的作用作出丰富刻画。在该方法中，神经表征首先与可解释因果模型中的变量对齐，随后使用互换干预，通过实验验证神经表征是否具有其对齐变量的因果性质。作为案例研究，我们运用该方法分析在多重量化自然语言推理（MQNLI）语料库上训练的神经模型；这是一个高度复杂的 NLI 数据集，使用树结构的自然逻辑因果模型构建。我们发现，一个达到最先进性能的 BERT 模型成功实现了自然逻辑模型因果结构的部分内容，而一个较简单的基线模型未表现出任何此类结构。这说明 BERT 表征编码了 MQNLI 的组合结构。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2021_geiger_causal_abstractions_of
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 102
+  abstract_verification: docling_token_coverage_at_least_0.95

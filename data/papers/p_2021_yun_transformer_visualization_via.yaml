@@ -1,0 +1,76 @@
+---
+schema_version: 1
+paper_id: p_2021_yun_transformer_visualization_via
+title: 'Transformer visualization via dictionary learning: contextualized embedding
+  as a linear superposition of transformer factors'
+year: 2021
+earliest_public_date: '2021-03-29'
+earliest_public_date_precision: day
+venue: Workshop on Knowledge Extraction and Integration for Deep Learning Architectures;
+  Deep Learning Inside Out
+publication_type: preprint
+identifiers:
+  doi: 10.18653/v1/2021.deelio-1.1
+  arxiv_id: '2103.15949'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2103.15949
+  pdf: https://aclanthology.org/2021.deelio-1.1.pdf
+  code: 
+authors:
+- author_id: a_zeyu_yun_0cd17e1b
+  name: Zeyu Yun
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_yu_bei_chen_5a4a768c
+  name: Yu-Bei Chen
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_b_olshausen_5153359f
+  name: B. Olshausen
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_yann_lecun_de2ad426
+  name: Yann LeCun
+  position: 4
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2103.15949
+  en: 'Transformer networks have revolutionized NLP representation learning since
+    they were introduced. Though a great effort has been made to explain the representation
+    in transformers, it is widely recognized that our understanding is not sufficient.
+    One important reason is that there lack enough visualization tools for detailed
+    analysis. In this paper, we propose to use dictionary learning to open up these
+    ‘black boxes’ as linear superpositions of transformer factors. Through visualization,
+    we demonstrate the hierarchical semantic structures captured by the transformer
+    factors, e.g., word-level polysemy disambiguation, sentence-level pattern formation,
+    and long-range dependency. While some of these patterns confirm the conventional
+    prior linguistic knowledge, the rest are relatively unexpected, which may provide
+    new insights. We hope this visualization tool can bring further knowledge and
+    a better understanding of how transformer networks work. The code is available
+    at: https://github.com/zeyuyun1/TransformerVis.'
+  zh: >-
+    Transformer 网络自问世以来彻底改变了 NLP 表征学习。尽管人们已付出大量努力解释 Transformer 中的表征，当前理解仍被广泛认为并不充分。一个重要原因，是缺少足够的可视化工具来开展细致分析。本文提出使用字典学习，把这些“黑箱”打开为 Transformer 因子的线性叠加。通过可视化，我们展示 Transformer 因子捕捉到的层级语义结构，例如词级多义消歧、句级模式形成和长距离依赖。其中一些模式印证了传统语言学先验知识，另一些则相对出人意料，可能带来新的认识。我们希望这一可视化工具能帮助人们进一步认识并更好地理解 Transformer 网络如何工作。代码见 https://github.com/zeyuyun1/TransformerVis。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2021_yun_transformer_visualization_via
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 100
+  abstract_verification: docling_token_coverage_at_least_0.95

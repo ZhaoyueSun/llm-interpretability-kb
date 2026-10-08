@@ -1,0 +1,120 @@
+---
+schema_version: 1
+paper_id: p_2026_che_counting_circuits_mechanistic
+title: 'Counting Circuits: Mechanistic Interpretability of Visual Reasoning in Large
+  Vision-Language Models'
+year: 2026
+earliest_public_date: '2026-03-19'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2603.18523
+  arxiv_id: '2603.18523'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2603.18523
+  pdf: https://arxiv.org/pdf/2603.18523
+  code: 
+authors:
+- author_id: a_li_wei_che_f0cbc638
+  name: Li-Wei Che
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_zhiyu_xue_382bef58
+  name: Zhiyu Xue
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_yi_hao_quan_d1c1d3c0
+  name: Yi-Hao Quan
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_benlin_liu_15099312
+  name: Benlin Liu
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_zeru_shi_fb2c626a
+  name: Zeru Shi
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_m_hurst_9d94cc1c
+  name: M. Hurst
+  position: 6
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_jacob_feldman_85e34ee4
+  name: Jacob Feldman
+  position: 7
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_rui_xiang_tang_f59385e8
+  name: Rui-Xiang Tang
+  position: 8
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_ranjay_krishna_ece11d3d
+  name: Ranjay Krishna
+  position: 9
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_vladimir_pavlovic_0e95a443
+  name: Vladimir Pavlovic
+  position: 10
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2603.18523
+  en: Counting serves as a simple but powerful test of a Large Vision-Language Model's
+    (LVLM's) reasoning; it forces the model to identify each individual object and
+    then add them all up. In this study, we investigate how LVLMs implement counting
+    using controlled synthetic and real-world benchmarks, combined with mechanistic
+    analyses. Our results show that LVLMs display a human-like counting behavior,
+    with precise performance on small numerosities and noisy estimation for larger
+    quantities. We introduce two novel interpretability methods, Visual Activation
+    Patching and HeadLens, and use them to uncover a structured "counting circuit"
+    that is largely shared across a variety of visual reasoning tasks. Building on
+    these insights, we propose a lightweight intervention strategy that exploits simple
+    and abundantly available synthetic images to fine-tune arbitrary pretrained LVLMs
+    exclusively on counting. Despite the narrow scope of this fine-tuning, the intervention
+    not only enhances counting accuracy on in-distribution synthetic data, but also
+    yields an average improvement of +8.36% on out-of-distribution counting benchmarks
+    and an average gain of +1.54% on complex, general visual reasoning tasks for Qwen2.5-VL.
+    These findings highlight the central, influential role of counting in visual reasoning
+    and suggest a potential pathway for improving overall visual reasoning capabilities
+    through targeted enhancement of counting mechanisms.
+  zh: >-
+    计数是检验大型视觉语言模型（LVLM）推理能力的一项简单而有力的任务：模型必须识别每个对象，再将它们全部相加。本文结合受控合成基准、真实世界基准和机制分析，研究
+    LVLM 如何实现计数。结果表明，LVLM 呈现类似人类的计数行为：对较小数量可以精确处理，对较大数量则进行带噪估计。我们提出两种新的可解释性方法——Visual
+    Activation Patching 和 HeadLens——并利用它们揭示一个结构化的“计数回路”；该回路在多种视觉推理任务之间大体共享。在这些认识的基础上，我们提出一种轻量干预策略：利用简单且易于大量获取的合成图像，只针对计数任务对任意预训练
+    LVLM 进行微调。尽管微调范围很窄，该干预不仅提高了分布内合成数据上的计数准确率，还使 Qwen2.5-VL
+    在分布外计数基准上平均提升 8.36%，在复杂、通用的视觉推理任务上平均提升 1.54%。这些发现凸显了计数在视觉推理中的核心影响，并表明通过有针对性地增强计数机制，可能进一步改善模型的整体视觉推理能力。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2026_che_counting_circuits_mechanistic
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 15
+  abstract_verification: docling_token_coverage_at_least_0.95

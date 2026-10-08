@@ -1,0 +1,86 @@
+---
+schema_version: 1
+paper_id: p_2024_singh_what_needs_to
+title: What needs to go right for an induction head? A mechanistic study of in-context
+  learning circuits and their formation
+year: 2024
+earliest_public_date: '2024-04-10'
+earliest_public_date_precision: day
+venue: International Conference on Machine Learning
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2404.07129
+  arxiv_id: '2404.07129'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2404.07129
+  pdf: https://arxiv.org/pdf/2404.07129
+  code: 
+authors:
+- author_id: a_aaditya_k_singh_09be1a75
+  name: Aaditya K. Singh
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_ted_moskovitz_01183908
+  name: Ted Moskovitz
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_felix_hill_637ef09e
+  name: Felix Hill
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_stephanie_c_y_chan_c1df6339
+  name: Stephanie C. Y. Chan
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_andrew_m_saxe_3a3c9317
+  name: Andrew M. Saxe
+  position: 5
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2404.07129
+  en: In-context learning is a powerful emergent ability in transformer models. Prior
+    work in mechanistic interpretability has identified a circuit element that may
+    be critical for in-context learning -- the induction head (IH), which performs
+    a match-and-copy operation. During training of large transformers on natural language
+    data, IHs emerge around the same time as a notable phase change in the loss. Despite
+    the robust evidence for IHs and this interesting coincidence with the phase change,
+    relatively little is known about the diversity and emergence dynamics of IHs.
+    Why is there more than one IH, and how are they dependent on each other? Why do
+    IHs appear all of a sudden, and what are the subcircuits that enable them to emerge?
+    We answer these questions by studying IH emergence dynamics in a controlled setting
+    by training on synthetic data. In doing so, we develop and share a novel optogenetics-inspired
+    causal framework for modifying activations throughout training. Using this framework,
+    we delineate the diverse and additive nature of IHs. By clamping subsets of activations
+    throughout training, we then identify three underlying subcircuits that interact
+    to drive IH formation, yielding the phase change. Furthermore, these subcircuits
+    shed light on data-dependent properties of formation, such as phase change timing,
+    already showing the promise of this more in-depth understanding of subcircuits
+    that need to"go right"for an induction head.
+  zh: >-
+    上下文学习是 Transformer 模型一种强大的涌现能力。以往机制可解释性研究识别出一个可能对上下文学习至关重要的回路元素——执行匹配与复制操作的归纳注意力头（IH）。大型 Transformer 在自然语言数据上的训练过程中，归纳注意力头会在损失出现显著相变的大致同时涌现。尽管已有充分证据支持归纳注意力头的存在，而且它与相变的同步现象也很有意思，我们对归纳注意力头的多样性和涌现动力学仍知之甚少：为什么会存在不止一个归纳注意力头，它们如何相互依赖？为什么它们会突然出现，又有哪些子回路使它们得以形成？我们在合成数据上训练模型，以受控方式研究归纳注意力头的涌现动力学，从而回答这些问题。在此过程中，我们开发并公开一种受光遗传学启发的新型因果框架，用于在整个训练过程中修改激活。借助该框架，我们阐明归纳注意力头的多样性与可加性。随后，通过在整个训练期间钳制激活子集，我们识别出三个相互作用、共同驱动归纳注意力头形成并产生相变的底层子回路。此外，这些子回路还揭示了形成过程中依赖数据的属性，例如相变发生的时机，初步体现了深入理解一个归纳注意力头得以形成所需子回路的价值。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2024_singh_what_needs_to
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 93
+  abstract_verification: docling_token_coverage_at_least_0.95

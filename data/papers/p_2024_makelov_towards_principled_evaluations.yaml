@@ -1,0 +1,75 @@
+---
+schema_version: 1
+paper_id: p_2024_makelov_towards_principled_evaluations
+title: Towards Principled Evaluations of Sparse Autoencoders for Interpretability
+  and Control
+year: 2024
+earliest_public_date: '2024-05-14'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2405.08366
+  arxiv_id: '2405.08366'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2405.08366
+  pdf: https://arxiv.org/pdf/2405.08366
+  code: 
+authors:
+- author_id: a_aleksandar_makelov_cff58185
+  name: Aleksandar Makelov
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_georg_lange_26f69e9e
+  name: Georg Lange
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_neel_nanda_ddf6abf4
+  name: Neel Nanda
+  position: 3
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2405.08366
+  en: 'Disentangling model activations into meaningful features is a central problem
+    in interpretability. However, the absence of ground-truth for these features in
+    realistic scenarios makes validating recent approaches, such as sparse dictionary
+    learning, elusive. To address this challenge, we propose a framework for evaluating
+    feature dictionaries in the context of specific tasks, by comparing them against
+    \emph{supervised} feature dictionaries. First, we demonstrate that supervised
+    dictionaries achieve excellent approximation, control, and interpretability of
+    model computations on the task. Second, we use the supervised dictionaries to
+    develop and contextualize evaluations of unsupervised dictionaries along the same
+    three axes. We apply this framework to the indirect object identification (IOI)
+    task using GPT-2 Small, with sparse autoencoders (SAEs) trained on either the
+    IOI or OpenWebText datasets. We find that these SAEs capture interpretable features
+    for the IOI task, but they are less successful than supervised features in controlling
+    the model. Finally, we observe two qualitative phenomena in SAE training: feature
+    occlusion (where a causally relevant concept is robustly overshadowed by even
+    slightly higher-magnitude ones in the learned features), and feature over-splitting
+    (where binary features split into many smaller, less interpretable features).
+    We hope that our framework will provide a useful step towards more objective and
+    grounded evaluations of sparse dictionary learning methods.'
+  zh: >-
+    把模型激活解耦为有意义的特征，是可解释性研究的核心问题。然而，在真实场景中缺少这些特征的真值，使稀疏字典学习等近期方法难以得到验证。为应对这一挑战，我们提出一个在具体任务语境下评估特征字典的框架，方法是将其与监督式特征字典进行比较。首先，我们证明监督式字典能够出色地近似、控制和解释模型在任务上的计算。其次，我们使用监督式字典，围绕同样三个维度开发无监督字典的评估方法并为其提供参照语境。我们把该框架应用于 GPT-2 Small 上的间接宾语识别（IOI）任务，所用稀疏自编码器（SAE）分别在 IOI 或 OpenWebText 数据集上训练。我们发现，这些 SAE 能捕捉 IOI 任务的可解释特征，但在控制模型方面不如监督式特征。最后，我们观察到 SAE 训练中的两种定性现象：特征遮蔽，即具有因果相关性的概念会被幅度只略高的其他概念稳定地掩盖；特征过度拆分，即二元特征被拆成许多更小、可解释性更差的特征。我们希望该框架能推动稀疏字典学习方法获得更加客观且有依据的评估。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2024_makelov_towards_principled_evaluations
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 81
+  abstract_verification: docling_token_coverage_at_least_0.95

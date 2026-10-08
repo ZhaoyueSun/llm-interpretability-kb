@@ -1,0 +1,95 @@
+---
+schema_version: 1
+paper_id: p_2024_rajamanoharan_jumping_ahead_improving
+title: 'Jumping Ahead: Improving Reconstruction Fidelity with JumpReLU Sparse Autoencoders'
+year: 2024
+earliest_public_date: '2024-07-19'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2407.14435
+  arxiv_id: '2407.14435'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2407.14435
+  pdf: https://arxiv.org/pdf/2407.14435
+  code: 
+authors:
+- author_id: a_senthooran_rajamanoharan_77c86f94
+  name: Senthooran Rajamanoharan
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_tom_lieberum_e979b353
+  name: Tom Lieberum
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_nicolas_sonnerat_5fc37f7c
+  name: Nicolas Sonnerat
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_arthur_conmy_1734e7d3
+  name: Arthur Conmy
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_vikrant_varma_fcdf9a6c
+  name: Vikrant Varma
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_janos_kramar_6ba94ff0
+  name: János Kramár
+  position: 6
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_neel_nanda_ddf6abf4
+  name: Neel Nanda
+  position: 7
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2407.14435
+  en: Sparse autoencoders (SAEs) are a promising unsupervised approach for identifying
+    causally relevant and interpretable linear features in a language model's (LM)
+    activations. To be useful for downstream tasks, SAEs need to decompose LM activations
+    faithfully; yet to be interpretable the decomposition must be sparse -- two objectives
+    that are in tension. In this paper, we introduce JumpReLU SAEs, which achieve
+    state-of-the-art reconstruction fidelity at a given sparsity level on Gemma 2
+    9B activations, compared to other recent advances such as Gated and TopK SAEs.
+    We also show that this improvement does not come at the cost of interpretability
+    through manual and automated interpretability studies. JumpReLU SAEs are a simple
+    modification of vanilla (ReLU) SAEs -- where we replace the ReLU with a discontinuous
+    JumpReLU activation function -- and are similarly efficient to train and run.
+    By utilising straight-through-estimators (STEs) in a principled manner, we show
+    how it is possible to train JumpReLU SAEs effectively despite the discontinuous
+    JumpReLU function introduced in the SAE's forward pass. Similarly, we use STEs
+    to directly train L0 to be sparse, instead of training on proxies such as L1,
+    avoiding problems like shrinkage.
+  zh: >-
+    稀疏自编码器（SAE）是一种很有前景的无监督方法，可用于识别语言模型（LM）激活中具有因果相关性且可解释的线性特征。为了用于下游任务，SAE 必须忠实分解语言模型激活；但为了具有可解释性，这种分解又必须稀疏——两个目标彼此存在张力。本文提出 JumpReLU SAE。与 Gated SAE 和 TopK SAE 等近期方法相比，它在给定稀疏度下对 Gemma 2 9B 激活实现了最先进的重构忠实度。通过人工和自动化可解释性研究，我们还表明，这项改进并未以牺牲可解释性为代价。JumpReLU SAE 是对普通 ReLU SAE 的简单修改：把 ReLU 替换为不连续的 JumpReLU 激活函数；它的训练和运行效率也与普通 SAE 相近。通过以有原则的方式使用直通估计器（STE），我们说明了即使 SAE 的前向传播中引入了不连续的 JumpReLU 函数，仍可有效训练 JumpReLU SAE。类似地，我们使用 STE 直接训练 L0 稀疏性，而不是在 L1 等代理目标上训练，从而避免收缩等问题。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2024_rajamanoharan_jumping_ahead_improving
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 63
+  abstract_verification: docling_token_coverage_at_least_0.95

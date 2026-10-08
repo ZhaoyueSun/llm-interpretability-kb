@@ -1,0 +1,100 @@
+---
+schema_version: 1
+paper_id: p_2021_geiger_inducing_causal_structure
+title: Inducing Causal Structure for Interpretable Neural Networks
+year: 2021
+earliest_public_date: '2021-12-01'
+earliest_public_date_precision: day
+venue: International Conference on Machine Learning
+publication_type: preprint
+identifiers:
+  doi: ''
+  arxiv_id: '2112.00826'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2112.00826
+  pdf: https://arxiv.org/pdf/2112.00826
+  code: 
+authors:
+- author_id: a_atticus_geiger_e76a395b
+  name: Atticus Geiger
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_zhengxuan_wu_9418211c
+  name: Zhengxuan Wu
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_hanson_lu_537e2a9f
+  name: Hanson Lu
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_josh_rozner_64320a73
+  name: Josh Rozner
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_elisa_kreiss_451af920
+  name: Elisa Kreiss
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_thomas_f_icard_e9a57f00
+  name: Thomas F. Icard
+  position: 6
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_noah_d_goodman_f6414a7b
+  name: Noah D. Goodman
+  position: 7
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_christopher_potts_f9424ce1
+  name: Christopher Potts
+  position: 8
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2112.00826
+  en: In many areas, we have well-founded insights about causal structure that would
+    be useful to bring into our trained models while still allowing them to learn
+    in a data-driven fashion. To achieve this, we present the new method of interchange
+    intervention training (IIT). In IIT, we (1) align variables in a causal model
+    (e.g., a deterministic program or Bayesian network) with representations in a
+    neural model and (2) train the neural model to match the counterfactual behavior
+    of the causal model on a base input when aligned representations in both models
+    are set to be the value they would be for a source input. IIT is fully differentiable,
+    flexibly combines with other objectives, and guarantees that the target causal
+    model is a causal abstraction of the neural model when its loss is zero. We evaluate
+    IIT on a structural vision task (MNIST-PVR), a navigational language task (ReaSCAN),
+    and a natural language inference task (MQNLI). We compare IIT against multi-task
+    training objectives and data augmentation. In all our experiments, IIT achieves
+    the best results and produces neural models that are more interpretable in the
+    sense that they more successfully realize the target causal model.
+  zh: >-
+    在许多领域，我们对因果结构已有可靠认识；如果能把这些认识引入训练模型，同时仍允许模型以数据驱动方式学习，将十分有益。为此，我们提出互换干预训练（IIT）这一新方法。在 IIT 中，我们会：（1）把因果模型（例如确定性程序或贝叶斯网络）中的变量与神经模型中的表征对齐；（2）对于一个基础输入，把两个模型中对齐表征设为它们在某个源输入下会取得的值，并训练神经模型去匹配因果模型由此产生的反事实行为。IIT 完全可微，可以灵活地与其他目标结合；当其损失为零时，它能保证目标因果模型是神经模型的因果抽象。我们在结构化视觉任务 MNIST-PVR、导航语言任务 ReaSCAN 和自然语言推理任务 MQNLI 上评估 IIT，并将其与多任务训练目标和数据增强进行比较。在所有实验中，IIT 都取得最佳结果，并产生可解释性更强的神经模型——其含义是这些模型能更成功地实现目标因果模型。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2021_geiger_inducing_causal_structure
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 88
+  abstract_verification: docling_token_coverage_at_least_0.95

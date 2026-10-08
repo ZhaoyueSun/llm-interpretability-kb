@@ -1,0 +1,78 @@
+---
+schema_version: 1
+paper_id: p_2022_meng_locating_and_editing
+title: Locating and Editing Factual Associations in GPT
+year: 2022
+earliest_public_date: '2022-02-10'
+earliest_public_date_precision: day
+venue: Neural Information Processing Systems
+publication_type: preprint
+identifiers:
+  doi: 10.52202/068431-1262
+  arxiv_id: '2202.05262'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2202.05262
+  pdf: https://arxiv.org/pdf/2202.05262
+  code: 
+authors:
+- author_id: a_kevin_meng_c4aa755a
+  name: Kevin Meng
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_david_bau_778385a5
+  name: David Bau
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_a_andonian_a6a1ce7a
+  name: A. Andonian
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_yonatan_belinkov_efb645ca
+  name: Yonatan Belinkov
+  position: 4
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2202.05262
+  en: We analyze the storage and recall of factual associations in autoregressive
+    transformer language models, finding evidence that these associations correspond
+    to localized, directly-editable computations. We first develop a causal intervention
+    for identifying neuron activations that are decisive in a model's factual predictions.
+    This reveals a distinct set of steps in middle-layer feed-forward modules that
+    mediate factual predictions while processing subject tokens. To test our hypothesis
+    that these computations correspond to factual association recall, we modify feed-forward
+    weights to update specific factual associations using Rank-One Model Editing (ROME).
+    We find that ROME is effective on a standard zero-shot relation extraction (zsRE)
+    model-editing task, comparable to existing methods. To perform a more sensitive
+    evaluation, we also evaluate ROME on a new dataset of counterfactual assertions,
+    on which it simultaneously maintains both specificity and generalization, whereas
+    other methods sacrifice one or another. Our results confirm an important role
+    for mid-layer feed-forward modules in storing factual associations and suggest
+    that direct manipulation of computational mechanisms may be a feasible approach
+    for model editing. The code, dataset, visualizations, and an interactive demo
+    notebook are available at https://rome.baulab.info/
+  zh: >-
+    我们分析自回归 Transformer 语言模型中事实关联的存储与召回，并发现证据表明，这些关联对应于局部化且可直接编辑的计算。首先，我们开发了一种因果干预，用于识别对模型事实预测起决定作用的神经元激活。结果揭示出中间层前馈模块中的一组明确步骤：在处理主语 token 时，它们对事实预测发挥中介作用。为检验这些计算对应于事实关联召回这一假说，我们使用秩一模型编辑（ROME）修改前馈权重，以更新特定事实关联。我们发现，在标准零样本关系抽取（zsRE）模型编辑任务上，ROME 效果良好，与现有方法相当。为开展更灵敏的评估，我们还在一个新的反事实断言数据集上评估 ROME；它能够同时保持特异性和泛化能力，而其他方法会牺牲其中之一。结果确认了中间层前馈模块在存储事实关联中的重要作用，并表明直接操纵计算机制可能是一条可行的模型编辑路径。代码、数据集、可视化和交互式演示 notebook 见 https://rome.baulab.info/。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2022_meng_locating_and_editing
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 48
+  abstract_verification: docling_token_coverage_at_least_0.95

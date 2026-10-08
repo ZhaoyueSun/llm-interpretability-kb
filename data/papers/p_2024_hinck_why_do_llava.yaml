@@ -1,0 +1,106 @@
+---
+schema_version: 1
+paper_id: p_2024_hinck_why_do_llava
+title: Why do LLaVA Vision-Language Models Reply to Images in English?
+year: 2024
+earliest_public_date: '2024-07-02'
+earliest_public_date_precision: day
+venue: Conference on Empirical Methods in Natural Language Processing
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2407.02333
+  arxiv_id: '2407.02333'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2407.02333
+  pdf: https://arxiv.org/pdf/2407.02333
+  code: 
+authors:
+- author_id: a_m_hinck_2da6e209
+  name: M. Hinck
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_carolin_holtermann_61d168fb
+  name: Carolin Holtermann
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_m_l_olson_391235a9
+  name: M. L. Olson
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_florian_schneider_412738a2
+  name: Florian Schneider
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_sungduk_yu_7ba6c498
+  name: Sungduk Yu
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_anahita_bhiwandiwalla_7f7b99d5
+  name: Anahita Bhiwandiwalla
+  position: 6
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_anne_lauscher_3fe43c04
+  name: Anne Lauscher
+  position: 7
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_shao_yen_tseng_f7c49fe3
+  name: Shao-Yen Tseng
+  position: 8
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_vasudev_lal_d72bef4a
+  name: Vasudev Lal
+  position: 9
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2407.02333
+  en: We uncover a surprising multilingual bias occurring in a popular class of multimodal
+    vision-language models (VLMs). Including an image in the query to a LLaVA-style
+    VLM significantly increases the likelihood of the model returning an English response,
+    regardless of the language of the query. This paper investigates the causes of
+    this loss with a two-pronged approach that combines extensive ablation of the
+    design space with a mechanistic analysis of the models' internal representations
+    of image and text inputs. Both approaches indicate that the issue stems in the
+    language modelling component of the LLaVA model. Statistically, we find that switching
+    the language backbone for a bilingual language model has the strongest effect
+    on reducing this error. Mechanistically, we provide compelling evidence that visual
+    inputs are not mapped to a similar space as text ones, and that intervening on
+    intermediary attention layers can reduce this bias. Our findings provide important
+    insights to researchers and engineers seeking to understand the crossover between
+    multimodal and multilingual spaces, and contribute to the goal of developing capable
+    and inclusive VLMs for non-English contexts.
+  zh: >-
+    我们揭示了一个出现在常见多模态视觉语言模型（VLM）类别中的意外多语言偏差：向 LLaVA 风格视觉语言模型的查询中加入图像，会显著提高模型用英语回答的概率，而无论查询使用什么语言。本文采用双管齐下的方法调查这种能力损失的原因：一方面对设计空间开展大规模消融，另一方面从机制层面分析模型对图像和文本输入的内部表征。两种方法都表明，问题源自 LLaVA 模型的语言建模组件。从统计结果看，把语言骨干替换为双语语言模型，对减少这一错误的作用最强。从机制角度看，我们提供了有力证据，说明视觉输入并未映射到与文本输入相似的空间，而对中间注意力层进行干预可以减少这种偏差。我们的发现为希望理解多模态空间与多语言空间交叉关系的研究者和工程师提供了重要认识，也有助于面向非英语环境开发能力强且具有包容性的视觉语言模型。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2024_hinck_why_do_llava
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 73
+  abstract_verification: docling_token_coverage_at_least_0.95

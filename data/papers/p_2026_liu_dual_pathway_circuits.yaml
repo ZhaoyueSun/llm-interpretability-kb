@@ -1,0 +1,111 @@
+---
+schema_version: 1
+paper_id: p_2026_liu_dual_pathway_circuits
+title: Dual-Pathway Circuits of Object Hallucination in Vision-Language Models
+year: 2026
+earliest_public_date: '2026-05-13'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2605.13156
+  arxiv_id: '2605.13156'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2605.13156
+  pdf: https://arxiv.org/pdf/2605.13156
+  code: 
+authors:
+- author_id: a_jiaxin_liu_c0e0fc6c
+  name: Jiaxin Liu
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_ding_zhong_2546abf1
+  name: Ding Zhong
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_yue_wang_74b26b05
+  name: Yue Wang
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_zhidong_yang_5917ead5
+  name: Zhidong Yang
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_zhao_lu_kang_8a29ec73
+  name: Zhao-Lu Kang
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_guangyu_dong_5d81eb52
+  name: Guangyu Dong
+  position: 6
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_qi_zhan_3850a487
+  name: Qi Zhan
+  position: 7
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_peng_cheng_fang_420719f1
+  name: Peng-Cheng Fang
+  position: 8
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_aofan_liu_acc7e6a5
+  name: Aofan Liu
+  position: 9
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2605.13156
+  en: Vision-language models (VLMs) have demonstrated remarkable capabilities in bridging
+    visual perception and natural language understanding, enabling a wide range of
+    multimodal reasoning tasks. However, they often produce object hallucinations,
+    describing content absent from the input image, which limits their reliability
+    and interpretability. To address this limitation, we propose Dual-Pathway Circuit
+    Analysis, a framework that identifies and characterizes hallucination-related
+    circuits in VLMs for mechanistic understanding and causal probing. We first apply
+    activation patching across five architecturally diverse VLMs to identify a visual
+    grounding pathway that supports correct predictions and a hallucination pathway
+    that drives erroneous outputs. We then introduce Conditional Pathway Analysis
+    (CPA) to characterize pathway-level interactions, revealing that grounding components
+    remain strongly redundant in both correct and hallucinating samples but undergo
+    a consistent polarity flip, shifting from supporting the ground truth on correct
+    samples to aligning with the hallucinated answer on erroneous ones. We further
+    perform targeted suppression of hallucination-pathway components, showing that
+    scaling these components reduces object hallucination by up to 76% with minimal
+    accuracy cost, and validate that the same circuit selectively transfers to relational
+    but not attribute hallucination. Evaluations on POPE-adversarial and AMBER show
+    that the identified circuits are consistent across architectures, support causal
+    intervention, and transfer selectively across hallucination types.
+  zh: >-
+    视觉语言模型（VLM）在连接视觉感知与自然语言理解方面展现出显著能力，支持了广泛的多模态推理任务。然而，它们经常产生物体幻觉，即描述输入图像中不存在的内容，这限制了模型的可靠性和可解释性。为解决这一问题，我们提出双路径回路分析（Dual-Pathway Circuit Analysis），该框架识别并刻画 VLM 中与幻觉有关的回路，以支持机制理解和因果探测。首先，我们在五种架构各异的 VLM 上应用激活修补，识别出一条支持正确预测的视觉锚定路径，以及一条驱动错误输出的幻觉路径。随后，我们提出条件路径分析（CPA）来刻画路径层面的交互。结果显示，无论样本预测正确还是发生幻觉，锚定组件都保持很强的冗余性，但会持续发生极性翻转：在正确样本中支持真实答案，在错误样本中则转而与幻觉答案一致。我们还对幻觉路径组件进行定向抑制，结果表明，缩放这些组件最多可使物体幻觉减少 76%，同时只付出很小的准确率代价；我们并验证了同一回路可选择性迁移到关系幻觉，但不能迁移到属性幻觉。在 POPE-adversarial 和 AMBER 上的评估表明，所识别的回路跨架构保持一致，支持因果干预，并能在不同幻觉类型之间实现选择性迁移。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2026_liu_dual_pathway_circuits
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 24
+  abstract_verification: docling_token_coverage_at_least_0.95

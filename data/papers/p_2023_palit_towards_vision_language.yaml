@@ -1,0 +1,74 @@
+---
+schema_version: 1
+paper_id: p_2023_palit_towards_vision_language
+title: 'Towards Vision-Language Mechanistic Interpretability: A Causal Tracing Tool
+  for BLIP'
+year: 2023
+earliest_public_date: '2023-08-27'
+earliest_public_date_precision: day
+venue: 2023 IEEE/CVF International Conference on Computer Vision Workshops (ICCVW)
+publication_type: preprint
+identifiers:
+  doi: 10.1109/iccvw60793.2023.00307
+  arxiv_id: '2308.14179'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2308.14179
+  pdf: https://arxiv.org/pdf/2308.14179
+  code: 
+authors:
+- author_id: a_v_palit_a2a992a1
+  name: V. Palit
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_rohan_pandey_af9f0f45
+  name: Rohan Pandey
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_aryaman_arora_3f8014c2
+  name: Aryaman Arora
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_p_liang_afb804cb
+  name: P. Liang
+  position: 4
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2308.14179
+  en: Mechanistic interpretability seeks to understand the neural mechanisms that
+    enable specific behaviors in Large Language Models (LLMs) by leveraging causality-based
+    methods. While these approaches have identified neural circuits that copy spans
+    of text, capture factual knowledge, and more, they remain unusable for multimodal
+    models since adapting these tools to the vision-language domain requires considerable
+    architectural changes. In this work, we adapt a unimodal causal tracing tool to
+    BLIP to enable the study of the neural mechanisms underlying image-conditioned
+    text generation. We demonstrate our approach on a visual question answering dataset,
+    highlighting the causal relevance of later layer representations for all tokens.
+    Furthermore, we release our BLIP causal tracing tool as open source to enable
+    further experimentation in vision-language mechanistic interpretability by the
+    community. Our code is available at this URL.
+  zh: >-
+    机制可解释性借助基于因果关系的方法，试图理解使大语言模型（LLM）产生特定行为的神经机制。尽管这些方法已经识别出复制文本片段、捕捉事实知识等功能的神经回路，但它们仍无法用于多模态模型，因为把相关工具迁移到视觉—语言领域需要进行大量架构改造。在本研究中，我们把一种单模态因果追踪工具适配到 BLIP，使研究图像条件文本生成背后的神经机制成为可能。我们在一个视觉问答数据集上展示该方法，并强调较后层表征对所有 token 都具有因果相关性。此外，我们将 BLIP 因果追踪工具开源，以便研究社区进一步开展视觉—语言机制可解释性实验。代码可通过原文所给网址获取。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_palit_towards_vision_language
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 52
+  abstract_verification: docling_token_coverage_at_least_0.95

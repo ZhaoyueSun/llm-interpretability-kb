@@ -1,0 +1,80 @@
+---
+schema_version: 1
+paper_id: p_2023_varma_explaining_grokking_through
+title: Explaining grokking through circuit efficiency
+year: 2023
+earliest_public_date: '2023-09-05'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2309.02390
+  arxiv_id: '2309.02390'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2309.02390
+  pdf: https://arxiv.org/pdf/2309.02390
+  code: 
+authors:
+- author_id: a_vikrant_varma_fcdf9a6c
+  name: Vikrant Varma
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_rohin_shah_1b05662e
+  name: Rohin Shah
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_zachary_kenton_75d0bdc7
+  name: Zachary Kenton
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_j_anos_kram_ar_813930c3
+  name: J'anos Kram'ar
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_ramana_kumar_368805a9
+  name: Ramana Kumar
+  position: 5
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2309.02390
+  en: 'One of the most surprising puzzles in neural network generalisation is grokking:
+    a network with perfect training accuracy but poor generalisation will, upon further
+    training, transition to perfect generalisation. We propose that grokking occurs
+    when the task admits a generalising solution and a memorising solution, where
+    the generalising solution is slower to learn but more efficient, producing larger
+    logits with the same parameter norm. We hypothesise that memorising circuits become
+    more inefficient with larger training datasets while generalising circuits do
+    not, suggesting there is a critical dataset size at which memorisation and generalisation
+    are equally efficient. We make and confirm four novel predictions about grokking,
+    providing significant evidence in favour of our explanation. Most strikingly,
+    we demonstrate two novel and surprising behaviours: ungrokking, in which a network
+    regresses from perfect to low test accuracy, and semi-grokking, in which a network
+    shows delayed generalisation to partial rather than perfect test accuracy.'
+  zh: >-
+    神经网络泛化中最令人惊讶的谜题之一是“顿悟”（grokking）：一个训练准确率完美但泛化能力很差的网络，在继续训练后会转变为完美泛化。我们提出，当一项任务同时存在泛化解和记忆解，而泛化解虽然学习较慢、效率却更高——即在相同参数范数下产生更大的 logits——时，顿悟就会发生。我们假设，随着训练数据集增大，记忆回路的效率会降低，而泛化回路不会，因此存在一个临界数据集规模，使记忆与泛化具有相同效率。我们针对顿悟提出并证实了四项新预测，为上述解释提供了有力证据。最引人注目的是，我们展示了两种新颖且出人意料的行为：反顿悟，即网络从完美测试准确率退化为较低准确率；以及半顿悟，即网络延迟泛化后只达到部分而非完美的测试准确率。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_varma_explaining_grokking_through
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 67
+  abstract_verification: docling_token_coverage_at_least_0.95

@@ -1,0 +1,110 @@
+---
+schema_version: 1
+paper_id: p_2024_jin_cutting_off_the
+title: 'Cutting Off the Head Ends the Conflict: A Mechanism for Interpreting and Mitigating
+  Knowledge Conflicts in Language Models'
+year: 2024
+earliest_public_date: '2024-02-28'
+earliest_public_date_precision: day
+venue: Annual Meeting of the Association for Computational Linguistics
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2402.18154
+  arxiv_id: '2402.18154'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2402.18154
+  pdf: https://arxiv.org/pdf/2402.18154
+  code: 
+authors:
+- author_id: a_zhuo_ran_jin_17fdbfc6
+  name: Zhuo-Ran Jin
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_pengfei_cao_85978617
+  name: Pengfei Cao
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_hongbang_yuan_e563c303
+  name: Hongbang Yuan
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_yubo_chen_35f00bb9
+  name: Yubo Chen
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_jie_xin_xu_5f4905d8
+  name: Jie-Xin Xu
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_huai_jun_li_5027bd42
+  name: Huai-Jun Li
+  position: 6
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_xiao_jian_jiang_c849e3d6
+  name: Xiao-Jian Jiang
+  position: 7
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_kang_liu_4119eecb
+  name: Kang Liu
+  position: 8
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_jun_zhao_239ccfe6
+  name: Jun Zhao
+  position: 9
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2402.18154
+  en: Recently, retrieval augmentation and tool augmentation have demonstrated a remarkable
+    capability to expand the internal memory boundaries of language models (LMs) by
+    providing external context. However, internal memory and external context inevitably
+    clash, leading to knowledge conflicts within LMs. In this paper, we aim to interpret
+    the mechanism of knowledge conflicts through the lens of information flow, and
+    then mitigate conflicts by precise interventions at the pivotal point. We find
+    there are some attention heads with opposite effects in the later layers, where
+    memory heads can recall knowledge from internal memory, and context heads can
+    retrieve knowledge from external context. Moreover, we reveal that the pivotal
+    point at which knowledge conflicts emerge in LMs is the integration of inconsistent
+    information flows by memory heads and context heads. Inspired by the insights,
+    we propose a novel method called Pruning Head via PatH PatcHing (PH3), which can
+    efficiently mitigate knowledge conflicts by pruning conflicting attention heads
+    without updating model parameters. PH3 can flexibly control eight LMs to use internal
+    memory ($\uparrow$ 44.0%) or external context ($\uparrow$ 38.5%). Moreover, PH3
+    can also improve the performance of LMs on open-domain QA tasks. We also conduct
+    extensive experiments to demonstrate the cross-model, cross-relation, and cross-format
+    generalization of our method.
+  zh: >-
+    近年来，检索增强和工具增强通过提供外部上下文，展现出扩展语言模型（LM）内部记忆边界的显著能力。然而，内部记忆与外部上下文不可避免地会发生冲突，从而在语言模型内部引发知识冲突。本文旨在从信息流的角度解释知识冲突的机制，并通过在关键位置进行精确干预来缓解冲突。我们发现，后部层中存在一些作用相反的注意力头：记忆头可以从内部记忆中召回知识，而上下文头可以从外部上下文中检索知识。我们进一步揭示，语言模型中知识冲突出现的关键点，是记忆头与上下文头对不一致信息流的整合。受这些认识启发，我们提出一种名为“通过路径修补剪枝注意力头”（Pruning Head via PatH PatcHing，PH3）的新方法；它无需更新模型参数，只需剪除发生冲突的注意力头，便能高效缓解知识冲突。PH3 可以灵活控制八种语言模型使用内部记忆（$\uparrow$ 44.0%）或外部上下文（$\uparrow$ 38.5%）。此外，PH3 还能提升语言模型在开放域问答任务上的表现。我们还进行了广泛实验，证明该方法能够跨模型、跨关系和跨格式泛化。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2024_jin_cutting_off_the
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 26
+  abstract_verification: docling_token_coverage_at_least_0.95

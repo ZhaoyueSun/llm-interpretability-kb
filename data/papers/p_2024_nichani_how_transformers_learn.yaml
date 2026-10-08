@@ -1,0 +1,71 @@
+---
+schema_version: 1
+paper_id: p_2024_nichani_how_transformers_learn
+title: How Transformers Learn Causal Structure with Gradient Descent
+year: 2024
+earliest_public_date: '2024-02-22'
+earliest_public_date_precision: day
+venue: International Conference on Machine Learning
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2402.14735
+  arxiv_id: '2402.14735'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2402.14735
+  pdf: https://arxiv.org/pdf/2402.14735
+  code: 
+authors:
+- author_id: a_eshaan_nichani_e1b42097
+  name: Eshaan Nichani
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_alex_damian_d9aea80e
+  name: Alex Damian
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_jason_d_lee_962bcae5
+  name: Jason D. Lee
+  position: 3
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2402.14735
+  en: The incredible success of transformers on sequence modeling tasks can be largely
+    attributed to the self-attention mechanism, which allows information to be transferred
+    between different parts of a sequence. Self-attention allows transformers to encode
+    causal structure which makes them particularly suitable for sequence modeling.
+    However, the process by which transformers learn such causal structure via gradient-based
+    training algorithms remains poorly understood. To better understand this process,
+    we introduce an in-context learning task that requires learning latent causal
+    structure. We prove that gradient descent on a simplified two-layer transformer
+    learns to solve this task by encoding the latent causal graph in the first attention
+    layer. The key insight of our proof is that the gradient of the attention matrix
+    encodes the mutual information between tokens. As a consequence of the data processing
+    inequality, the largest entries of this gradient correspond to edges in the latent
+    causal graph. As a special case, when the sequences are generated from in-context
+    Markov chains, we prove that transformers learn an induction head (Olsson et al.,
+    2022). We confirm our theoretical findings by showing that transformers trained
+    on our in-context learning task are able to recover a wide variety of causal structures.
+  zh: >-
+    Transformer 在序列建模任务上的巨大成功，很大程度上归功于自注意力机制；该机制使信息能够在序列的不同部分之间传递。自注意力使 Transformer 可以编码因果结构，因此尤其适合序列建模。然而，Transformer 如何通过基于梯度的训练算法学到这类因果结构，目前仍未得到充分理解。为更好地理解这一过程，我们引入一个需要学习潜在因果结构的上下文学习任务。我们证明，在一个简化的两层 Transformer 上，梯度下降会通过在第一注意力层中编码潜在因果图来学会解决该任务。证明的关键认识是，注意力矩阵的梯度编码 token 之间的互信息。根据数据处理不等式，该梯度中最大的条目对应潜在因果图中的边。作为一个特例，当序列由上下文中的马尔可夫链生成时，我们证明 Transformer 会学到归纳注意力头（Olsson 等，2022）。我们还发现，在该上下文学习任务上训练的 Transformer 能恢复多种因果结构，从而验证了理论结果。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2024_nichani_how_transformers_learn
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 78
+  abstract_verification: docling_token_coverage_at_least_0.95

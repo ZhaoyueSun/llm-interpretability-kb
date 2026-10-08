@@ -1,0 +1,84 @@
+---
+schema_version: 1
+paper_id: p_2022_li_emergent_world_representations
+title: 'Emergent World Representations: Exploring a Sequence Model Trained on a Synthetic
+  Task'
+year: 2022
+earliest_public_date: '2022-10-24'
+earliest_public_date_precision: day
+venue: International Conference on Learning Representations
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2210.13382
+  arxiv_id: '2210.13382'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2210.13382
+  pdf: https://arxiv.org/pdf/2210.13382
+  code: 
+authors:
+- author_id: a_kenneth_li_f8f4d007
+  name: Kenneth Li
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_aspen_k_hopkins_b6b0e603
+  name: Aspen K. Hopkins
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_david_bau_778385a5
+  name: David Bau
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_fernanda_vi_egas_6671ee34
+  name: Fernanda Vi'egas
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_h_pfister_9ee7769a
+  name: H. Pfister
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_m_wattenberg_127591b0
+  name: M. Wattenberg
+  position: 6
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2210.13382
+  en: Language models show a surprising range of capabilities, but the source of their
+    apparent competence is unclear. Do these networks just memorize a collection of
+    surface statistics, or do they rely on internal representations of the process
+    that generates the sequences they see? We investigate this question by applying
+    a variant of the GPT model to the task of predicting legal moves in a simple board
+    game, Othello. Although the network has no a priori knowledge of the game or its
+    rules, we uncover evidence of an emergent nonlinear internal representation of
+    the board state. Interventional experiments indicate this representation can be
+    used to control the output of the network and create"latent saliency maps"that
+    can help explain predictions in human terms.
+  zh: >-
+    语言模型展现出令人惊讶的广泛能力，但其表面能力的来源尚不清楚。这些网络是否只是记忆了一组表层统计规律，还是依赖对所见序列生成过程的内部表征？我们把 GPT 模型的一种变体应用于预测简单棋盘游戏 Othello 中合法落子的位置，以研究这一问题。尽管该网络事先并不了解这款游戏及其规则，我们仍发现了棋盘状态在模型内部自发形成的非线性表征。干预实验表明，可以利用这一表征控制网络输出，并构造有助于用人类可理解的方式解释预测的“潜在显著性图”。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2022_li_emergent_world_representations
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 33
+  abstract_verification: docling_token_coverage_at_least_0.95

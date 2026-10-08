@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "corpus.schema.json",
+  "title": "Corpus",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "corpus_id", "version", "status", "source", "scope", "papers"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "corpus_id": {"type": "string", "minLength": 1},
+    "version": {"type": "integer", "minimum": 0},
+    "status": {"enum": ["awaiting_papermanage_handoff", "draft", "final"]},
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["core", "classic"],
+      "properties": {
+        "core": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["upstream_membership", "start", "end", "count"],
+          "properties": {
+            "upstream_membership": {"const": "main-window"},
+            "start": {"type": "string", "format": "date"},
+            "end": {"type": "string", "format": "date"},
+            "count": {"const": 100}
+          }
+        },
+        "classic": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["upstream_membership", "count"],
+          "properties": {
+            "upstream_membership": {"const": "foundation-candidate"},
+            "count": {"const": 10}
+          }
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["project", "handoff_id", "generated_on"],
+      "properties": {
+        "project": {"const": "PaperManage"},
+        "handoff_id": {"type": "string", "minLength": 1},
+        "generated_on": {"type": "string", "format": "date"}
+      }
+    },
+    "papers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "paper_id",
+          "group",
+          "display_order",
+          "selection_rank_within_candidate_pool",
+          "inclusion_reason",
+          "selection_source_index"
+        ],
+        "properties": {
+          "paper_id": {"type": "string", "pattern": "^p_[a-z0-9_]+$"},
+          "group": {"enum": ["core", "classic"]},
+          "display_order": {"type": "integer", "minimum": 1},
+          "selection_rank_within_candidate_pool": {"type": "integer", "minimum": 1},
+          "inclusion_reason": {"type": "string", "minLength": 1},
+          "selection_source_index": {"type": "integer", "minimum": 0}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,83 @@
+---
+schema_version: 1
+paper_id: p_2023_nanda_progress_measures_for
+title: Progress measures for grokking via mechanistic interpretability
+year: 2023
+earliest_public_date: '2023-01-12'
+earliest_public_date_precision: day
+venue: International Conference on Learning Representations
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2301.05217
+  arxiv_id: '2301.05217'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2301.05217
+  pdf: https://arxiv.org/pdf/2301.05217
+  code: 
+authors:
+- author_id: a_neel_nanda_ddf6abf4
+  name: Neel Nanda
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_lawrence_chan_40cfd6a1
+  name: Lawrence Chan
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_tom_lieberum_e979b353
+  name: Tom Lieberum
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_jessie_j_smith_7b047e5f
+  name: Jessie J. Smith
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_jacob_steinhardt_bd43f01f
+  name: Jacob Steinhardt
+  position: 5
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2301.05217
+  en: 'Neural networks often exhibit emergent behavior, where qualitatively new capabilities
+    arise from scaling up the amount of parameters, training data, or training steps.
+    One approach to understanding emergence is to find continuous \textit{progress
+    measures} that underlie the seemingly discontinuous qualitative changes. We argue
+    that progress measures can be found via mechanistic interpretability: reverse-engineering
+    learned behaviors into their individual components. As a case study, we investigate
+    the recently-discovered phenomenon of ``grokking'''' exhibited by small transformers
+    trained on modular addition tasks. We fully reverse engineer the algorithm learned
+    by these networks, which uses discrete Fourier transforms and trigonometric identities
+    to convert addition to rotation about a circle. We confirm the algorithm by analyzing
+    the activations and weights and by performing ablations in Fourier space. Based
+    on this understanding, we define progress measures that allow us to study the
+    dynamics of training and split training into three continuous phases: memorization,
+    circuit formation, and cleanup. Our results show that grokking, rather than being
+    a sudden shift, arises from the gradual amplification of structured mechanisms
+    encoded in the weights, followed by the later removal of memorizing components.'
+  zh: >-
+    神经网络经常表现出涌现行为，即随着参数量、训练数据量或训练步数的增加，出现性质上全新的能力。理解涌现的一种方法，是寻找位于这些表面不连续的质变背后的连续进展度量。我们主张，可以通过机制可解释性——把学到的行为逆向工程为各个组成部分——找到这类进展度量。作为案例研究，我们考察在模加法任务上训练的小型 Transformer 最近表现出的“顿悟”（grokking）现象。我们完整逆向工程了这些网络学到的算法：它使用离散傅里叶变换和三角恒等式，把加法转换为绕圆旋转。我们通过分析激活和权重以及在傅里叶空间中实施消融来验证这一算法。基于这种理解，我们定义了用于研究训练动力学的进展度量，并把训练划分为三个连续阶段：记忆、回路形成和清理。结果表明，顿悟并非突然发生的转变，而是源于权重所编码的结构化机制逐步增强，随后记忆型组件又在较晚阶段被移除。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_nanda_progress_measures_for
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 49
+  abstract_verification: docling_token_coverage_at_least_0.95

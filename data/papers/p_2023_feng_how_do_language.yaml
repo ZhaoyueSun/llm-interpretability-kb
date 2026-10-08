@@ -1,0 +1,61 @@
+---
+schema_version: 1
+paper_id: p_2023_feng_how_do_language
+title: How do Language Models Bind Entities in Context?
+year: 2023
+earliest_public_date: '2023-10-26'
+earliest_public_date_precision: day
+venue: International Conference on Learning Representations
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2310.17191
+  arxiv_id: '2310.17191'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2310.17191
+  pdf: https://arxiv.org/pdf/2310.17191
+  code: 
+authors:
+- author_id: a_jiahai_feng_80f08186
+  name: Jiahai Feng
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_jacob_steinhardt_bd43f01f
+  name: Jacob Steinhardt
+  position: 2
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2310.17191
+  en: 'To correctly use in-context information, language models (LMs) must bind entities
+    to their attributes. For example, given a context describing a"green square"and
+    a"blue circle", LMs must bind the shapes to their respective colors. We analyze
+    LM representations and identify the binding ID mechanism: a general mechanism
+    for solving the binding problem, which we observe in every sufficiently large
+    model from the Pythia and LLaMA families. Using causal interventions, we show
+    that LMs'' internal activations represent binding information by attaching binding
+    ID vectors to corresponding entities and attributes. We further show that binding
+    ID vectors form a continuous subspace, in which distances between binding ID vectors
+    reflect their discernability. Overall, our results uncover interpretable strategies
+    in LMs for representing symbolic knowledge in-context, providing a step towards
+    understanding general in-context reasoning in large-scale LMs.'
+  zh: >-
+    为了正确使用上下文信息，语言模型（LM）必须把实体与其属性绑定。例如，给定一段描述“绿色方块”和“蓝色圆形”的上下文，语言模型必须把各个形状分别与对应颜色绑定。我们分析语言模型表征，并识别出绑定 ID 机制：这是一种解决绑定问题的通用机制，在 Pythia 和 LLaMA 家族中所有规模足够大的模型里都能观察到。通过因果干预，我们表明，语言模型的内部激活会把绑定 ID 向量附加到相应实体和属性上，以此表征绑定信息。我们进一步发现，绑定 ID 向量构成一个连续子空间，其中向量之间的距离反映它们的可辨别程度。总体而言，我们的结果揭示了语言模型在上下文中表征符号知识的可解释策略，为理解大规模语言模型的一般上下文推理迈出一步。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_feng_how_do_language
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 56
+  abstract_verification: docling_token_coverage_at_least_0.95

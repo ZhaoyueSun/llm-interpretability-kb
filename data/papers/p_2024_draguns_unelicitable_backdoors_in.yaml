@@ -1,0 +1,91 @@
+---
+schema_version: 1
+paper_id: p_2024_draguns_unelicitable_backdoors_in
+title: Unelicitable Backdoors in Language Models via Cryptographic Transformer Circuits
+year: 2024
+earliest_public_date: '2024-06-03'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2406.02619
+  arxiv_id: '2406.02619'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2406.02619
+  pdf: https://arxiv.org/pdf/2406.02619
+  code: 
+authors:
+- author_id: a_andis_draguns_4b1a6c7d
+  name: Andis Draguns
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_andrew_gritsevskiy_af4c9308
+  name: Andrew Gritsevskiy
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_s_motwani_b2831851
+  name: S. Motwani
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_charlie_rogers_smith_e687c8f0
+  name: Charlie Rogers-Smith
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_jeffrey_ladish_cc201481
+  name: Jeffrey Ladish
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_c_s_de_witt_0896a1f0
+  name: C. S. de Witt
+  position: 6
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2406.02619
+  en: The rapid proliferation of open-source language models significantly increases
+    the risks of downstream backdoor attacks. These backdoors can introduce dangerous
+    behaviours during model deployment and can evade detection by conventional cybersecurity
+    monitoring systems. In this paper, we introduce a novel class of backdoors in
+    transformer models, that, in contrast to prior art, are unelicitable in nature.
+    Unelicitability prevents the defender from triggering the backdoor, making it
+    impossible to properly evaluate ahead of deployment even if given full white-box
+    access and using automated techniques, such as red-teaming or certain formal verification
+    methods. We show that our novel construction is not only unelicitable thanks to
+    using cryptographic techniques, but also has favourable robustness properties.
+    We confirm these properties in empirical investigations, and provide evidence
+    that our backdoors can withstand state-of-the-art mitigation strategies. Additionally,
+    we expand on previous work by showing that our universal backdoors, while not
+    completely undetectable in white-box settings, can be harder to detect than some
+    existing designs. By demonstrating the feasibility of seamlessly integrating backdoors
+    into transformer models, this paper fundamentally questions the efficacy of pre-deployment
+    detection strategies. This offers new insights into the offence-defence balance
+    in AI safety and security.
+  zh: >-
+    开源语言模型的迅速普及显著增加了下游后门攻击的风险。这些后门可能在模型部署期间引入危险行为，并逃过常规网络安全监控系统的检测。本文提出 Transformer 模型中的一类新型后门；不同于以往设计，这类后门在本质上无法被诱发。不可诱发性使防御者无法触发后门，因此即使拥有完整白盒访问权限并使用红队测试或某些形式化验证方法等自动化技术，也无法在部署前对其进行适当评估。我们表明，借助密码学技术，我们的新构造不仅不可诱发，而且具有良好的鲁棒性。我们通过经验研究确认这些性质，并给出证据说明该后门能够抵御最先进的缓解策略。此外，我们扩展了此前工作，表明这种通用后门在白盒设置下虽非完全不可检测，却可能比某些现有设计更难发现。本文证明了把后门无缝集成进 Transformer 模型的可行性，从根本上质疑了部署前检测策略的有效性，并为 AI 安全与安保中的攻防平衡提供了新认识。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2024_draguns_unelicitable_backdoors_in
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 44
+  abstract_verification: docling_token_coverage_at_least_0.95

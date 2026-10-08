@@ -1,0 +1,71 @@
+---
+schema_version: 1
+paper_id: p_2024_muhamed_decoding_dark_matter
+title: 'Decoding Dark Matter: Specialized Sparse Autoencoders for Interpreting Rare
+  Concepts in Foundation Models'
+year: 2024
+earliest_public_date: '2024-11-01'
+earliest_public_date_precision: day
+venue: North American Chapter of the Association for Computational Linguistics
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2411.00743
+  arxiv_id: '2411.00743'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2411.00743
+  pdf: https://arxiv.org/pdf/2411.00743
+  code: 
+authors:
+- author_id: a_aashiq_muhamed_ae8eb0e5
+  name: Aashiq Muhamed
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_mona_t_diab_4811d8d6
+  name: Mona T. Diab
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_virginia_smith_c526985b
+  name: Virginia Smith
+  position: 3
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2411.00743
+  en: Understanding and mitigating the potential risks associated with foundation
+    models (FMs) hinges on developing effective interpretability methods. Sparse Autoencoders
+    (SAEs) have emerged as a promising tool for disentangling FM representations,
+    but they struggle to capture rare, yet crucial concepts in the data. We introduce
+    Specialized Sparse Autoencoders (SSAEs), designed to illuminate these elusive
+    dark matter features by focusing on specific subdomains. We present a practical
+    recipe for training SSAEs, demonstrating the efficacy of dense retrieval for data
+    selection and the benefits of Tilted Empirical Risk Minimization as a training
+    objective to improve concept recall. Our evaluation of SSAEs on standard metrics,
+    such as downstream perplexity and $L_0$ sparsity, show that they effectively capture
+    subdomain tail concepts, exceeding the capabilities of general-purpose SAEs. We
+    showcase the practical utility of SSAEs in a case study on the Bias in Bios dataset,
+    where SSAEs achieve a 12.5\% increase in worst-group classification accuracy when
+    applied to remove spurious gender information. SSAEs provide a powerful new lens
+    for peering into the inner workings of FMs in subdomains.
+  zh: >-
+    理解并缓解基础模型（FM）的潜在风险，有赖于开发有效的可解释性方法。稀疏自编码器（SAE）已成为解耦基础模型表征的一种有前景的工具，但它们难以捕捉数据中罕见却至关重要的概念。我们提出专用稀疏自编码器（SSAE），通过聚焦特定子领域来揭示这些难以捕捉的“暗物质”特征。我们给出训练 SSAE 的实用方案，展示使用稠密检索选择数据的有效性，以及把倾斜经验风险最小化作为训练目标以提高概念召回率的益处。使用下游困惑度和 $L_0$ 稀疏性等标准指标进行的评估表明，SSAE 能有效捕捉子领域的长尾概念，其能力超过通用 SAE。我们还在 Bias in Bios 数据集的案例研究中展示 SSAE 的实际用途：使用 SSAE 去除虚假的性别信息后，最差群体分类准确率提高了 12.5%。SSAE 为深入观察基础模型在子领域中的内部运作提供了一种强有力的新视角。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2024_muhamed_decoding_dark_matter
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 70
+  abstract_verification: docling_token_coverage_at_least_0.95

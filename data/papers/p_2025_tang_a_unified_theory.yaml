@@ -1,0 +1,117 @@
+---
+schema_version: 1
+paper_id: p_2025_tang_a_unified_theory
+title: 'A Unified Theory of Sparse Dictionary Learning in Mechanistic Interpretability:
+  Piecewise Biconvexity and Spurious Minima'
+year: 2025
+earliest_public_date: '2025-12-05'
+earliest_public_date_precision: day
+venue: arXiv (Cornell University)
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2512.05534
+  arxiv_id: '2512.05534'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2512.05534
+  pdf: https://arxiv.org/pdf/2512.05534
+  code: 
+authors:
+- author_id: a_yi_ming_tang_dcf70fe8
+  name: Yi-Ming Tang
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_harshvardhan_saini_461eff90
+  name: Harshvardhan Saini
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_zhaoqian_yao_c6b063bc
+  name: Zhaoqian Yao
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_zheng_lin_4156a90f
+  name: Zheng Lin
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_yi_zhen_liao_5775e8a8
+  name: Yi-Zhen Liao
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_jing_yi_cui_feee9d66
+  name: Jing-Yi Cui
+  position: 6
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_yi_sen_wang_12473f1f
+  name: Yi-Sen Wang
+  position: 7
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_mengnan_du_8d752274
+  name: Mengnan Du
+  position: 8
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_dian_bo_liu_60d4cb1c
+  name: Dian-Bo Liu
+  position: 9
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2512.05534
+  en: As AI models achieve remarkable capabilities across diverse domains, understanding
+    what representations they learn and how they encode concepts has become increasingly
+    important for both scientific progress and trustworthy deployment. Recent works
+    in mechanistic interpretability have widely reported that neural networks represent
+    meaningful concepts as linear directions in their representation spaces and often
+    encode diverse concepts in superposition. Various sparse dictionary learning (SDL)
+    methods, including sparse autoencoders, transcoders, and crosscoders, are utilized
+    to address this by training auxiliary models with sparsity constraints to disentangle
+    these superposed concepts into monosemantic features. These methods are the backbone
+    of modern mechanistic interpretability, yet in practice they consistently produce
+    polysemantic features, feature absorption, and dead neurons, with very limited
+    theoretical understanding of why these phenomena occur. Existing theoretical work
+    is limited to tied-weight sparse autoencoders, leaving the broader family of SDL
+    methods without formal grounding. We develop the first unified theoretical framework
+    that casts all major SDL variants as a single piecewise biconvex optimization
+    problem, and characterize its global solution set, non-identifiability, and spurious
+    optima. This analysis yields principled explanations for feature absorption and
+    dead neurons. To expose these pathologies under full ground-truth access, we introduce
+    the Linear Representation Bench. Guided by our theory, we propose feature anchoring,
+    a novel technique that restores SDL identifiability, substantially improving feature
+    recovery across synthetic benchmarks and real neural representations.
+  zh: >-
+    随着人工智能模型在不同领域展现出卓越能力，理解它们学习了哪些表征、又如何编码概念，对于科学进展和可信部署都变得日益重要。近期机制可解释性研究广泛报告，神经网络会将有意义的概念表示为表征空间中的线性方向，并常以叠加形式编码多个概念。为解耦这些叠加概念，人们采用了多种稀疏字典学习（SDL）方法，包括稀疏自编码器、转码器和交叉编码器；这些方法通过训练带稀疏约束的辅助模型，将概念分解成单义特征。它们已成为现代机制可解释性的基础，但实践中始终会产生多义特征、特征吸收和死亡神经元，而这些现象的成因缺乏充分理论解释。现有理论研究仅覆盖权重绑定的稀疏自编码器，更广泛的
+    SDL 方法家族仍缺乏形式化基础。我们建立了首个统一理论框架，把所有主要 SDL
+    变体都表述成同一个分片双凸优化问题，并刻画其全局解集、不可辨识性和虚假最优解。该分析为特征吸收和死亡神经元提供了基于原理的解释。为在能够完全访问真值的条件下揭示这些病态现象，我们引入
+    Linear Representation Bench。受理论指导，我们进一步提出“特征锚定”技术，以恢复 SDL
+    的可辨识性，并在合成基准和真实神经表征上显著改善特征恢复效果。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2025_tang_a_unified_theory
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 10
+  abstract_verification: docling_token_coverage_at_least_0.95

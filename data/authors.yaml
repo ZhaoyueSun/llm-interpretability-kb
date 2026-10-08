@@ -1,0 +1,3771 @@
+---
+schema_version: 1
+authors:
+  a_a_ajith_b469532a:
+    canonical_name: A. Ajith
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_a_andonian_a6a1ce7a:
+    canonical_name: A. Andonian
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_a_bauer_deffbecf:
+    canonical_name: A. Bauer
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_a_globerson_21f40668:
+    canonical_name: A. Globerson
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_a_jermyn_0e113070:
+    canonical_name: A. Jermyn
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_a_khan_95b9f727:
+    canonical_name: A. Khan
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_a_khosla_c7e84176:
+    canonical_name: A. Khosla
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_a_laroza_7d30c95c:
+    canonical_name: A. Laroza
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_a_odisho_8becfb0f:
+    canonical_name: A. Odisho
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_a_oliva_53825efb:
+    canonical_name: A. Oliva
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_a_shai_41350be4:
+    canonical_name: A. Shai
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_a_tamkin_221405f7:
+    canonical_name: A. Tamkin
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_a_torralba_bcf39151:
+    canonical_name: A. Torralba
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_aaditya_k_singh_09be1a75:
+    canonical_name: Aaditya K. Singh
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_aaquib_syed_93c5f3df:
+    canonical_name: Aaquib Syed
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_aaron_mueller_4e73fa7c:
+    canonical_name: Aaron Mueller
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_aashiq_muhamed_ae8eb0e5:
+    canonical_name: Aashiq Muhamed
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_abhilasha_ravichander_a8bf5eb1:
+    canonical_name: Abhilasha Ravichander
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_abhishek_singhania_5abd9345:
+    canonical_name: Abhishek Singhania
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_adam_pearce_076738aa:
+    canonical_name: Adam Pearce
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_adam_s_jermyn_98698cc1:
+    canonical_name: Adam S. Jermyn
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_adam_scherlis_6f60c160:
+    canonical_name: Adam Scherlis
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_adly_templeton_404dabf8:
+    canonical_name: Adly Templeton
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_adria_garriga_alonso_87077a5e:
+    canonical_name: Adrià Garriga-Alonso
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_aengus_lynch_155f3ad7:
+    canonical_name: Aengus Lynch
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_aidan_ewart_c264d62b:
+    canonical_name: Aidan Ewart
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_alan_chen_78b581b8:
+    canonical_name: Alan Chen
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_alasdair_paren_71d22c45:
+    canonical_name: Alasdair Paren
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_alberto_cazzaniga_f52a98dc:
+    canonical_name: Alberto Cazzaniga
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_aleksandar_makelov_cff58185:
+    canonical_name: Aleksandar Makelov
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_alessandro_stolfo_195681bf:
+    canonical_name: Alessandro Stolfo
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_alex_damian_d9aea80e:
+    canonical_name: Alex Damian
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_alex_troy_mallen_02342310:
+    canonical_name: Alex Troy Mallen
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_alex_warstadt_1720ec24:
+    canonical_name: Alex Warstadt
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_alexander_gietelink_oldenziel_526ef46d:
+    canonical_name: Alexander Gietelink Oldenziel
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_alexander_pan_97aed211:
+    canonical_name: Alexander Pan
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_alexandre_variengien_34d668db:
+    canonical_name: Alexandre Variengien
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_alexey_dontsov_f4f8bb38:
+    canonical_name: Alexey Dontsov
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_aliyah_r_hsu_e898c465:
+    canonical_name: Aliyah R. Hsu
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_amanda_askell_cad53764:
+    canonical_name: Amanda Askell
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_amir_zur_18981670:
+    canonical_name: Amir Zur
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_anahita_bhiwandiwalla_7f7b99d5:
+    canonical_name: Anahita Bhiwandiwalla
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_anca_d_dragan_d927dc8c:
+    canonical_name: Anca D. Dragan
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_andis_draguns_4b1a6c7d:
+    canonical_name: Andis Draguns
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_andrew_gritsevskiy_af4c9308:
+    canonical_name: Andrew Gritsevskiy
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_andrew_lee_b340490f:
+    canonical_name: Andrew Lee
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_andrew_m_saxe_3a3c9317:
+    canonical_name: Andrew M. Saxe
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_andrew_nam_90b81835:
+    canonical_name: Andrew Nam
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_andrew_yuan_1c702653:
+    canonical_name: Andrew Yuan
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_andrey_v_galichin_e422bb64:
+    canonical_name: Andrey V. Galichin
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_andre_freitas_46b3660d:
+    canonical_name: André Freitas
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_andy_arditi_b66f1d0b:
+    canonical_name: Andy Arditi
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_andy_jones_385ea528:
+    canonical_name: Andy Jones
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_andy_zou_127d7958:
+    canonical_name: Andy Zou
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_anej_svete_d10304e3:
+    canonical_name: Anej Svete
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_ang_li_1e7c730c:
+    canonical_name: Ang Li
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_anka_reuel_8b134874:
+    canonical_name: Anka Reuel
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_ann_kathrin_dombrowski_26763107:
+    canonical_name: Ann-Kathrin Dombrowski
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_anna_chen_20adbd25:
+    canonical_name: Anna Chen
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_anne_lauscher_3fe43c04:
+    canonical_name: Anne Lauscher
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_anton_razzhigaev_0a3ea746:
+    canonical_name: Anton Razzhigaev
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_aofan_liu_acc7e6a5:
+    canonical_name: Aofan Liu
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_arjun_pillai_f9c94103:
+    canonical_name: Arjun Pillai
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_arnab_sen_sharma_f2643c4c:
+    canonical_name: Arnab Sen Sharma
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_arthur_conmy_1734e7d3:
+    canonical_name: Arthur Conmy
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_arya_bhardia_79b24f7c:
+    canonical_name: Arya Bhardia
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_aryaman_arora_3f8014c2:
+    canonical_name: Aryaman Arora
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_asma_ghandeharioun_32ccce58:
+    canonical_name: Asma Ghandeharioun
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_aspen_k_hopkins_b6b0e603:
+    canonical_name: Aspen K. Hopkins
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_atticus_geiger_e76a395b:
+    canonical_name: Atticus Geiger
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_augustine_n_mavor_parker_e6eae204:
+    canonical_name: Augustine N. Mavor-Parker
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_avi_caciularu_5806c1cd:
+    canonical_name: Avi Caciularu
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_b_olshausen_5153359f:
+    canonical_name: B. Olshausen
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_bao_bao_chang_e1d85e7d:
+    canonical_name: Bao-Bao Chang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_been_kim_85ac56ca:
+    canonical_name: Been Kim
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_benjamin_mann_4a46580d:
+    canonical_name: Benjamin Mann
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_benlin_liu_15099312:
+    canonical_name: Benlin Liu
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_bilal_chughtai_cd399826:
+    canonical_name: Bilal Chughtai
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_bin_yu_34f3b0ee:
+    canonical_name: Bin Yu
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_bolei_zhou_02e84ed1:
+    canonical_name: Bolei Zhou
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_bowei_tian_c3ff3faf:
+    canonical_name: Bowei Tian
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_brian_k_chen_8f622eb3:
+    canonical_name: Brian K. Chen
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_buck_shlegeris_a997ed75:
+    canonical_name: Buck Shlegeris
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_byron_c_wallace_e744361f:
+    canonical_name: Byron C. Wallace
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_c_d_freeman_a9a8b69b:
+    canonical_name: C. D. Freeman
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_c_macleod_a986ca40:
+    canonical_name: C. Macleod
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_c_munigety_3e599fdd:
+    canonical_name: C. Munigety
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_c_rager_1cba574a:
+    canonical_name: C. Rager
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_c_s_de_witt_0896a1f0:
+    canonical_name: C. S. de Witt
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_c_h_luke_ong_cd935940:
+    canonical_name: C.-H. Luke Ong
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_callum_mcdougall_531e3f97:
+    canonical_name: Callum McDougall
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_carol_chen_9d37f5f4:
+    canonical_name: Carol Chen
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_carolin_holtermann_61d168fb:
+    canonical_name: Carolin Holtermann
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_carsten_eickhoff_547f524f:
+    canonical_name: Carsten Eickhoff
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_catherine_olsson_ede5db09:
+    canonical_name: Catherine Olsson
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_charles_o_neill_76509ce5:
+    canonical_name: Charles O'Neill
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_charlie_rogers_smith_e687c8f0:
+    canonical_name: Charlie Rogers-Smith
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_chris_olah_158a0d46:
+    canonical_name: Chris Olah
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_christian_hoang_cb09a914:
+    canonical_name: Christian Hoang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_christoforos_nalmpantis_df1c15a3:
+    canonical_name: Christoforos Nalmpantis
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_christopher_d_manning_677d0d43:
+    canonical_name: Christopher D. Manning
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_christopher_potts_f9424ce1:
+    canonical_name: Christopher Potts
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_cl_ement_guerner_de874602:
+    canonical_name: Cl'ement Guerner
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_clement_neo_95c73283:
+    canonical_name: Clement Neo
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_cody_rushing_2dbfe93a:
+    canonical_name: Cody Rushing
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_collin_burns_cc99c268:
+    canonical_name: Collin Burns
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_craig_citro_6d6be88a:
+    canonical_name: Craig Citro
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_curt_tigges_55c44e00:
+    canonical_name: Curt Tigges
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_d_bertsimas_48aa1955:
+    canonical_name: D. Bertsimas
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_d_ibeling_f7015ca4:
+    canonical_name: D. Ibeling
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_d_klein_f3a25a01:
+    canonical_name: D. Klein
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_damai_dai_6c4720d3:
+    canonical_name: Damai Dai
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_dan_braun_17338db4:
+    canonical_name: Dan Braun
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_dan_hendrycks_077a839f:
+    canonical_name: Dan Hendrycks
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_dana_arad_efdae6bd:
+    canonical_name: Dana Arad
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_daniel_grzenda_e10a55e2:
+    canonical_name: Daniel Grzenda
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_daniel_jurafsky_b9cae688:
+    canonical_name: Daniel Jurafsky
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_daniel_paleka_f9e58afa:
+    canonical_name: Daniel Paleka
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_danny_halawi_22f14e52:
+    canonical_name: Danny Halawi
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_danny_hernandez_11888843:
+    canonical_name: Danny Hernandez
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_dario_amodei_a59b02ef:
+    canonical_name: Dario Amodei
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_david_bau_778385a5:
+    canonical_name: David Bau
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_david_chanin_b0a706fc:
+    canonical_name: David Chanin
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_david_krueger_3ec99431:
+    canonical_name: David Krueger
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_dawn_drain_6cf4cbd3:
+    canonical_name: Dawn Drain
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_dawn_song_c3a62c62:
+    canonical_name: Dawn Song
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_deep_ganguli_1dca9c75:
+    canonical_name: Deep Ganguli
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_dian_bo_liu_60d4cb1c:
+    canonical_name: Dian-Bo Liu
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_ding_zhong_2546abf1:
+    canonical_name: Ding Zhong
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_dmitrii_troitskii_73a138fe:
+    canonical_name: Dmitrii Troitskii
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_dong_dong_zhang_80566f36:
+    canonical_name: Dong-Dong Zhang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_e_ameisen_4dced91f:
+    canonical_name: E. Ameisen
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_e_hovy_0212eba7:
+    canonical_name: E. Hovy
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_e_rees_298144ce:
+    canonical_name: E. Rees
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_elena_tutubalina_49653fd3:
+    canonical_name: Elena Tutubalina
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_elena_voita_b2fc3f93:
+    canonical_name: Elena Voita
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_elisa_kreiss_451af920:
+    canonical_name: Elisa Kreiss
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_ellie_pavlick_8e923d51:
+    canonical_name: Ellie Pavlick
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_eric_j_michaud_8d85c5ce:
+    canonical_name: Eric J. Michaud
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_eric_todd_db640f72:
+    canonical_name: Eric Todd
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_eshaan_nichani_e1b42097:
+    canonical_name: Eshaan Nichani
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_esin_durmus_78dade0b:
+    canonical_name: Esin Durmus
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_euan_ong_8c4bbe01:
+    canonical_name: Euan Ong
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_f_wei_7272583e:
+    canonical_name: F. Wei
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_fazl_barez_a240fb67:
+    canonical_name: Fazl Barez
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_fei_huang_213daa78:
+    canonical_name: Fei Huang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_felix_hill_637ef09e:
+    canonical_name: Felix Hill
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_fernanda_vi_egas_6671ee34:
+    canonical_name: Fernanda Vi'egas
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_fernanda_viegas_6ca3081a:
+    canonical_name: Fernanda Viégas
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_florian_schneider_412738a2:
+    canonical_name: Florian Schneider
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_frances_liu_ecae0b18:
+    canonical_name: Frances Liu
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_francesco_mosconi_feb1f005:
+    canonical_name: Francesco Mosconi
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_fred_zhang_9541a545:
+    canonical_name: Fred Zhang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_furu_wei_3dab2ed7:
+    canonical_name: Furu Wei
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_gaotang_li_e46229c2:
+    canonical_name: Gaotang Li
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_geoffrey_irving_df30cdd8:
+    canonical_name: Geoffrey Irving
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_geonhee_kim_242be451:
+    canonical_name: Geonhee Kim
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_georg_lange_26f69e9e:
+    canonical_name: Georg Lange
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_george_ogden_531652ef:
+    canonical_name: George Ogden
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_georgia_zhou_22432e3e:
+    canonical_name: Georgia Zhou
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_giada_panerai_2b166e99:
+    canonical_name: Giada Panerai
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_guangyu_dong_5d81eb52:
+    canonical_name: Guangyu Dong
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_guillaume_alain_5962564e:
+    canonical_name: Guillaume Alain
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_h_pfister_9ee7769a:
+    canonical_name: H. Pfister
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_hai_mo_81143d6d:
+    canonical_name: Hai Mo
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_hai_feng_li_2d957150:
+    canonical_name: Hai-Feng Li
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_haiyang_yu_6a438b8f:
+    canonical_name: Haiyang Yu
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_hanghang_tong_3bd766a0:
+    canonical_name: Hanghang Tong
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_hanson_lu_537e2a9f:
+    canonical_name: Hanson Lu
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_haotian_ye_00e1efc3:
+    canonical_name: Haotian Ye
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_haoyang_huang_0b01cd47:
+    canonical_name: Haoyang Huang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_hardik_bhatnagar_b2779e50:
+    canonical_name: Hardik Bhatnagar
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_harshvardhan_saini_461eff90:
+    canonical_name: Harshvardhan Saini
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_henry_conklin_78b4e8e9:
+    canonical_name: Henry Conklin
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_hoagy_cunningham_ee87bd1f:
+    canonical_name: Hoagy Cunningham
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_hongbang_yuan_e563c303:
+    canonical_name: Hongbang Yuan
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_hongyi_wang_f34d549a:
+    canonical_name: Hongyi Wang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_hua_jun_chen_2e1ceeb6:
+    canonical_name: Hua-Jun Chen
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_huai_jun_li_5027bd42:
+    canonical_name: Huai-Jun Li
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_i_foster_dc2caa37:
+    canonical_name: I. Foster
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_i_goodfellow_06a1466d:
+    canonical_name: I. Goodfellow
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_i_oseledets_0ac70951:
+    canonical_name: I. Oseledets
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_igor_ostrovsky_04c0978e:
+    canonical_name: Igor Ostrovsky
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_j_anos_kram_ar_813930c3:
+    canonical_name: J'anos Kram'ar
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_j_bloom_aff35e1c:
+    canonical_name: J. Bloom
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_j_gilmer_373b1c41:
+    canonical_name: J. Gilmer
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_j_kaplan_a49533e8:
+    canonical_name: J. Kaplan
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_j_kolter_6e9d8747:
+    canonical_name: J. Kolter
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_jack_clark_410a2081:
+    canonical_name: Jack Clark
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_jack_lindsey_620b74ab:
+    canonical_name: Jack Lindsey
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_jack_merullo_5e5b2b61:
+    canonical_name: Jack Merullo
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_jacob_feldman_85e34ee4:
+    canonical_name: Jacob Feldman
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_jacob_steinhardt_bd43f01f:
+    canonical_name: Jacob Steinhardt
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_james_campbell_f28d7845:
+    canonical_name: James Campbell
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_james_wilken_smith_31065f5e:
+    canonical_name: James Wilken-Smith
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_jasmijn_bastings_b0b2b736:
+    canonical_name: Jasmijn Bastings
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_jason_d_lee_962bcae5:
+    canonical_name: Jason D. Lee
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_javier_ferrando_abb97346:
+    canonical_name: Javier Ferrando
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_jeffrey_ladish_cc201481:
+    canonical_name: Jeffrey Ladish
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_jessie_j_smith_7b047e5f:
+    canonical_name: Jessie J. Smith
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_ji_jun_park_28d50c7d:
+    canonical_name: Ji-jun Park
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_ji_rong_wen_c5fe13c0:
+    canonical_name: Ji-Rong Wen
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_jiahai_feng_80f08186:
+    canonical_name: Jiahai Feng
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_jiaxin_liu_c0e0fc6c:
+    canonical_name: Jiaxin Liu
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_jie_xin_xu_5f4905d8:
+    canonical_name: Jie-Xin Xu
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_jing_huang_190343e2:
+    canonical_name: Jing Huang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_jing_yi_cui_feee9d66:
+    canonical_name: Jing-Yi Cui
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_jinyeong_kim_62fa119a:
+    canonical_name: Jinyeong Kim
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_jiuding_sun_877535c0:
+    canonical_name: Jiuding Sun
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_jiwon_jeong_2b9de8f1:
+    canonical_name: Jiwon Jeong
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_jiwoo_park_fc90820f:
+    canonical_name: Jiwoo Park
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_joe_benton_64d959c3:
+    canonical_name: Joe Benton
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_john_hewitt_ba8b9cac:
+    canonical_name: John Hewitt
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_john_kernion_7fa78f89:
+    canonical_name: John Kernion
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_jonathan_berant_0235ba73:
+    canonical_name: Jonathan Berant
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_jonathan_d_cohen_85493e7a:
+    canonical_name: Jonathan D. Cohen
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_jonathan_marcus_db1bf3b4:
+    canonical_name: Jonathan Marcus
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_jordan_k_taylor_b89b8e32:
+    canonical_name: Jordan K. Taylor
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_josh_rozner_64320a73:
+    canonical_name: Josh Rozner
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_joshua_batson_35871779:
+    canonical_name: Joshua Batson
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_joshua_engels_79ae899e:
+    canonical_name: Joshua Engels
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_ju_wan_lee_2903241d:
+    canonical_name: Ju-Wan Lee
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_julian_ramirez_52917c3d:
+    canonical_name: Julian Ramirez
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_julius_adebayo_b4bb381a:
+    canonical_name: Julius Adebayo
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_jun_zhao_239ccfe6:
+    canonical_name: Jun Zhao
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_junfeng_fang_66e43a47:
+    canonical_name: Junfeng Fang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_junhyeok_kim_1724b295:
+    canonical_name: Junhyeok Kim
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_junxuan_wang_ea59ef69:
+    canonical_name: Junxuan Wang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_janos_kramar_6ba94ff0:
+    canonical_name: János Kramár
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_k_chard_c4df3980:
+    canonical_name: K. Chard
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_kamal_ndousse_6c6c9794:
+    canonical_name: Kamal Ndousse
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_kang_liu_4119eecb:
+    canonical_name: Kang Liu
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_karen_mkrtchyan_864eb4bb:
+    canonical_name: Karen Mkrtchyan
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_karthik_viswanathan_14bda860:
+    canonical_name: Karthik Viswanathan
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_kartikeya_vats_9e2cbb17:
+    canonical_name: Kartikeya Vats
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_katarzyna_filus_2d61bb37:
+    canonical_name: Katarzyna Filus
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_katherine_harvey_09a7e908:
+    canonical_name: Katherine Harvey
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_katja_filippova_97c5019e:
+    canonical_name: Katja Filippova
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_kenneth_li_f8f4d007:
+    canonical_name: Kenneth Li
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_kevin_meng_c4aa755a:
+    canonical_name: Kevin Meng
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_kevin_wang_7496448f:
+    canonical_name: Kevin Wang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_kiho_park_efdfcd4c:
+    canonical_name: Kiho Park
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_koyena_pal_1cf8b37b:
+    canonical_name: Koyena Pal
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_kshitij_sachan_a2dedc93:
+    canonical_name: Kshitij Sachan
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_kun_wang_7de706ae:
+    canonical_name: Kun Wang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_l_sato_cf3d84ea:
+    canonical_name: L. Sato
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_l_smith_98858bc2:
+    canonical_name: L. Smith
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_lawrence_chan_40cfd6a1:
+    canonical_name: Lawrence Chan
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_lee_sharkey_9047958a:
+    canonical_name: Lee Sharkey
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_lev_mckinney_85be0e72:
+    canonical_name: Lev McKinney
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_lewis_smith_12edb6ca:
+    canonical_name: Lewis Smith
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_li_dong_340be8b4:
+    canonical_name: Li Dong
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_li_wei_che_f0cbc638:
+    canonical_name: Li-Wei Che
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_liane_lovitt_7ba094be:
+    canonical_name: Liane Lovitt
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_lingjie_chen_8b98c89a:
+    canonical_name: Lingjie Chen
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_logan_smith_429a662b:
+    canonical_name: Logan Smith
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_long_phan_8e207798:
+    canonical_name: Long Phan
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_lucas_dixon_65adb621:
+    canonical_name: Lucas Dixon
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_lucas_teixeira_46a7c405:
+    canonical_name: Lucas Teixeira
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_luke_marks_7f72fc9c:
+    canonical_name: Luke Marks
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_m_hinck_2da6e209:
+    canonical_name: M. Hinck
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_m_hurst_9d94cc1c:
+    canonical_name: M. Hurst
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_m_l_olson_391235a9:
+    canonical_name: M. L. Olson
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_m_macdiarmid_19e68c71:
+    canonical_name: M. MacDiarmid
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_m_muelly_db20aee2:
+    canonical_name: M. Muelly
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_m_wattenberg_127591b0:
+    canonical_name: M. Wattenberg
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_maheep_chaudhary_23782a4e:
+    canonical_name: Maheep Chaudhary
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_maitreya_patel_bc400523:
+    canonical_name: Maitreya Patel
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_mansi_sakarvadia_db1b6ecc:
+    canonical_name: Mansi Sakarvadia
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_mantas_mazeika_dae05144:
+    canonical_name: Mantas Mazeika
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_marco_valentino_8330465e:
+    canonical_name: Marco Valentino
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_martin_wattenberg_6df204a2:
+    canonical_name: Martin Wattenberg
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_matt_fredrikson_861ee185:
+    canonical_name: Matt Fredrikson
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_matteo_biagetti_ad748870:
+    canonical_name: Matteo Biagetti
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_matthew_pauly_48b45e7c:
+    canonical_name: Matthew Pauly
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_matthew_rahtz_e2753fc2:
+    canonical_name: Matthew Rahtz
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_max_lamparth_90e0b0c0:
+    canonical_name: Max Lamparth
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_max_nadeau_948c5d33:
+    canonical_name: Max Nadeau
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_max_tegmark_f62d8819:
+    canonical_name: Max Tegmark
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_mehrdad_mahdavi_074902c8:
+    canonical_name: Mehrdad Mahdavi
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_meng_liu_08dcc88a:
+    canonical_name: Meng Liu
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_mengnan_du_8d752274:
+    canonical_name: Mengnan Du
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_mengru_wang_0954eb35:
+    canonical_name: Mengru Wang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_michael_a_lepori_3aab0baf:
+    canonical_name: Michael A. Lepori
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_michael_hanna_b5115363:
+    canonical_name: Michael Hanna
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_michael_j_byun_d3cc28ec:
+    canonical_name: Michael J. Byun
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_millicent_li_61872fc1:
+    canonical_name: Millicent Li
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_mohit_bansal_8e754387:
+    canonical_name: Mohit Bansal
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_mona_t_diab_4811d8d6:
+    canonical_name: Mona T. Diab
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_mor_geva_2422827f:
+    canonical_name: Mor Geva
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_moritz_hardt_0fc50162:
+    canonical_name: Moritz Hardt
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_mrinmaya_sachan_05339d14:
+    canonical_name: Mrinmaya Sachan
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_murat_dura_040ae819:
+    canonical_name: Murat Dura
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_n_turner_81650705:
+    canonical_name: N. Turner
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_nathaniel_hudson_ebae2792:
+    canonical_name: Nathaniel Hudson
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_nathaniel_li_92316543:
+    canonical_name: Nathaniel Li
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_neel_nanda_ddf6abf4:
+    canonical_name: Neel Nanda
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_neel_somani_53450aa7:
+    canonical_name: Neel Somani
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_neil_chowdhury_5617dea7:
+    canonical_name: Neil Chowdhury
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_nelson_elhage_f370d8f0:
+    canonical_name: Nelson Elhage
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_nicholas_goldowsky_dill_de056011:
+    canonical_name: Nicholas Goldowsky-Dill
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_nicholas_joseph_48034f49:
+    canonical_name: Nicholas Joseph
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_nicholas_schiefer_eb033529:
+    canonical_name: Nicholas Schiefer
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_nicolas_sonnerat_5fc37f7c:
+    canonical_name: Nicolas Sonnerat
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_nikhil_prakash_382dd3da:
+    canonical_name: Nikhil Prakash
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_nina_panickssery_fd324940:
+    canonical_name: Nina Panickssery
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_ningyu_zhang_c4f6f8a9:
+    canonical_name: Ningyu Zhang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_noah_d_goodman_f6414a7b:
+    canonical_name: Noah D. Goodman
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_nora_belrose_37966bfd:
+    canonical_name: Nora Belrose
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_nova_dassarma_3016e451:
+    canonical_name: Nova Dassarma
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_o_hollinsworth_58930727:
+    canonical_name: O. Hollinsworth
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_o_koyejo_0c145534:
+    canonical_name: O. Koyejo
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_oam_patel_71ec6bb3:
+    canonical_name: Oam Patel
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_oleg_y_rogov_fb9a9274:
+    canonical_name: Oleg Y. Rogov
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_ollie_liu_a55d2d8a:
+    canonical_name: Ollie Liu
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_omer_levy_5684adb1:
+    canonical_name: Omer Levy
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_oscar_obeso_a4f6365d:
+    canonical_name: Oscar Obeso
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_p_jyothi_119ee646:
+    canonical_name: P. Jyothi
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_p_liang_afb804cb:
+    canonical_name: P. Liang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_p_riechers_010780da:
+    canonical_name: P. Riechers
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_p_torr_837de481:
+    canonical_name: P. Torr
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_peng_cheng_fang_420719f1:
+    canonical_name: Peng-Cheng Fang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_pengfei_cao_85978617:
+    canonical_name: Pengfei Cao
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_percy_liang_0a0e479c:
+    canonical_name: Percy Liang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_peter_hase_d937a33d:
+    canonical_name: Peter Hase
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_peter_r_carroll_82a865d2:
+    canonical_name: Peter R Carroll
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_phillip_guo_34577d11:
+    canonical_name: Phillip Guo
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_polina_druzhinina_53782d2f:
+    canonical_name: Polina Druzhinina
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_qi_zhan_3850a487:
+    canonical_name: Qi Zhan
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_qinyuan_cheng_085b1b41:
+    canonical_name: Qinyuan Cheng
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_qiong_tang_09e8aa3d:
+    canonical_name: Qiong Tang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_qipeng_guo_5af97afe:
+    canonical_name: Qipeng Guo
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_r_grosse_699c25ea:
+    canonical_name: R. Grosse
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_r_huben_11153a0d:
+    canonical_name: R. Huben
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_r_lasenby_a1bd9c0b:
+    canonical_name: R. Lasenby
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_r_schuster_83e6aee7:
+    canonical_name: R. Schuster
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_ramana_kumar_368805a9:
+    canonical_name: Ramana Kumar
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_ranjay_krishna_ece11d3d:
+    canonical_name: Ranjay Krishna
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_rhys_gould_4af48e42:
+    canonical_name: Rhys Gould
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_richard_ren_844950e1:
+    canonical_name: Richard Ren
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_rohan_pandey_af9f0f45:
+    canonical_name: Rohan Pandey
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_rohin_shah_1b05662e:
+    canonical_name: Rohin Shah
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_rongwu_xu_f53597b4:
+    canonical_name: Rongwu Xu
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_rui_xiang_tang_f59385e8:
+    canonical_name: Rui-Xiang Tang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_ryan_cotterell_af694e29:
+    canonical_name: Ryan Cotterell
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_s_heimersheim_908f562f:
+    canonical_name: S. Heimersheim
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_s_hwang_3524df48:
+    canonical_name: S. Hwang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_s_kravec_31ea2f61:
+    canonical_name: S. Kravec
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_s_mondal_aca3d4d6:
+    canonical_name: S. Mondal
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_s_motwani_b2831851:
+    canonical_name: S. Motwani
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_sam_mccandlish_df257ad4:
+    canonical_name: Sam McCandlish
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_samuel_klein_af54b131:
+    canonical_name: Samuel Klein
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_samuel_marks_46475651:
+    canonical_name: Samuel Marks
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_sandro_pezzelle_973613c0:
+    canonical_name: Sandro Pezzelle
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_sarah_chen_69b97660:
+    canonical_name: Sarah Chen
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_sarah_e_marzen_8a7216ec:
+    canonical_name: Sarah E. Marzen
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_sarah_schwettmann_75d9e5ed:
+    canonical_name: Sarah Schwettmann
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_sarah_wiegreffe_397c9702:
+    canonical_name: Sarah Wiegreffe
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_sarah_jane_leslie_942a6757:
+    canonical_name: Sarah-Jane Leslie
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_satvik_golechha_d495e9d2:
+    canonical_name: Satvik Golechha
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_sayambhu_sen_46d0f368:
+    canonical_name: Sayambhu Sen
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_scott_johnston_93ddf68d:
+    canonical_name: Scott Johnston
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_sebastian_pokucinski_dcf5b7f8:
+    canonical_name: Sebastian Pokuciński
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_seil_kang_cf69ab44:
+    canonical_name: Seil Kang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_selma_tekir_aa9693aa:
+    canonical_name: Selma Tekir
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_senthooran_rajamanoharan_77c86f94:
+    canonical_name: Senthooran Rajamanoharan
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_serkan_ozturk_9af21649:
+    canonical_name: Serkan Öztürk
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_seyed_arshan_dalili_1194f0c0:
+    canonical_name: Seyed Arshan Dalili
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_shamanthak_hegde_673ba984:
+    canonical_name: Shamanthak Hegde
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_shan_carter_47b36185:
+    canonical_name: Shan Carter
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_shao_yen_tseng_f7c49fe3:
+    canonical_name: Shao-Yen Tseng
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_shashwat_goel_d53e39ef:
+    canonical_name: Shashwat Goel
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_shivam_ratnakar_3e8ef1ba:
+    canonical_name: Shivam Ratnakar
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_shumin_deng_277bc305:
+    canonical_name: Shumin Deng
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_siddhanta_verma_d1038c6a:
+    canonical_name: Siddhanta Verma
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_sonakshi_chauhan_29395dff:
+    canonical_name: Sonakshi Chauhan
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_soo_joon_choi_0158d0fc:
+    canonical_name: Soo-joon Choi
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_stella_biderman_f984cb04:
+    canonical_name: Stella Biderman
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_stephanie_c_y_chan_c1df6339:
+    canonical_name: Stephanie C. Y. Chan
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_steven_basart_3a70074c:
+    canonical_name: Steven Basart
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_subhash_kantamneni_3ee23c1b:
+    canonical_name: Subhash Kantamneni
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_sungduk_yu_7ba6c498:
+    canonical_name: Sungduk Yu
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_t_henighan_26ac86d7:
+    canonical_name: T. Henighan
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_t_sumers_c50649bc:
+    canonical_name: T. Sumers
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_t_yoon_fa8170f2:
+    canonical_name: T. Yoon
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_tal_haklay_abf5cbf1:
+    canonical_name: Tal Haklay
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_tamar_rott_shaham_618c685a:
+    canonical_name: Tamar Rott Shaham
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_ted_moskovitz_01183908:
+    canonical_name: Ted Moskovitz
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_thang_bui_f266eb37:
+    canonical_name: Thang Bui
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_thomas_f_icard_e9a57f00:
+    canonical_name: Thomas F. Icard
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_thomas_l_griffiths_a2ccbfea:
+    canonical_name: Thomas L. Griffiths
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_thomas_mcgrath_897fad4f:
+    canonical_name: Thomas McGrath
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_thomas_serre_22ab70a8:
+    canonical_name: Thomas Serre
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_tianxiang_sun_06607c7c:
+    canonical_name: Tianxiang Sun
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_tianyi_tang_1b7cf85f:
+    canonical_name: Tianyi Tang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_tianyu_liu_9a79dc44:
+    canonical_name: Tianyu Liu
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_tom_b_brown_1edfb120:
+    canonical_name: Tom B. Brown
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_tom_conerly_64dfb3bf:
+    canonical_name: Tom Conerly
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_tom_lieberum_e979b353:
+    canonical_name: Tom Lieberum
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_tomas_dulka_e7805604:
+    canonical_name: Tomás Dulka
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_trenton_bricken_ec9b2f6d:
+    canonical_name: Trenton Bricken
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_tristan_hume_4126a600:
+    canonical_name: Tristan Hume
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_v_palit_a2a992a1:
+    canonical_name: V. Palit
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_vasudev_lal_d72bef4a:
+    canonical_name: Vasudev Lal
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_victor_veitch_33c2c5da:
+    canonical_name: Victor Veitch
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_vikrant_varma_fcdf9a6c:
+    canonical_name: Vikrant Varma
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_virginia_smith_c526985b:
+    canonical_name: Virginia Smith
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_vladimir_mikulik_712667db:
+    canonical_name: Vladimir Mikulik
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_vladimir_pavlovic_0e95a443:
+    canonical_name: Vladimir Pavlovic
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_wentao_shu_1aa70dbf:
+    canonical_name: Wentao Shu
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_wenyang_luo_b84c55a6:
+    canonical_name: Wenyang Luo
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_wes_gurnee_bef85191:
+    canonical_name: Wes Gurnee
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_xander_davies_61f2a7b7:
+    canonical_name: Xander Davies
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_xi_peng_qiu_c59a62d0:
+    canonical_name: Xi-Peng Qiu
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_xiang_rui_liu_af9f8ec4:
+    canonical_name: Xiang-Rui Liu
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_xiao_jian_jiang_c849e3d6:
+    canonical_name: Xiao-Jian Jiang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_xiaolei_wang_f0f42ffe:
+    canonical_name: Xiaolei Wang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_xin_zhao_d11930dd:
+    canonical_name: Xin Zhao
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_xinghua_zhang_9cf2a20c:
+    canonical_name: Xinghua Zhang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_xuan_jing_huang_ff405e35:
+    canonical_name: Xuan-Jing Huang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_xuntao_lyu_81154a16:
+    canonical_name: Xuntao Lyu
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_xuwang_yin_3f5d2fe4:
+    canonical_name: Xuwang Yin
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_xuyang_ge_e2f55999:
+    canonical_name: Xuyang Ge
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_y_hao_3f84b397:
+    canonical_name: Y. Hao
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yang_liu_09642dbd:
+    canonical_name: Yang Liu
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yaniv_nikankin_c7bc4cb0:
+    canonical_name: Yaniv Nikankin
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yann_lecun_de2ad426:
+    canonical_name: Yann LeCun
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yaxuan_huang_2d3fc6fa:
+    canonical_name: Yaxuan Huang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_ye_zhou_yang_c7cff2fa:
+    canonical_name: Ye-Zhou Yang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yeshwanth_cherapanamjeri_acd7ef45:
+    canonical_name: Yeshwanth Cherapanamjeri
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yi_hao_quan_d1c1d3c0:
+    canonical_name: Yi-Hao Quan
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yi_ming_tang_dcf70fe8:
+    canonical_name: Yi-Ming Tang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yi_sen_wang_12473f1f:
+    canonical_name: Yi-Sen Wang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yi_zhen_liao_5775e8a8:
+    canonical_name: Yi-Zhen Liao
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yo_joong_choe_c93fca56:
+    canonical_name: Yo Joong Choe
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yonatan_belinkov_efb645ca:
+    canonical_name: Yonatan Belinkov
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yong_bin_li_7189b74c:
+    canonical_name: Yong-Bin Li
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yoshua_bengio_eae9f33b:
+    canonical_name: Yoshua Bengio
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yossi_gandelsman_47c50c74:
+    canonical_name: Yossi Gandelsman
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yu_bei_chen_5a4a768c:
+    canonical_name: Yu-Bei Chen
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yu_gang_jiang_6791d61c:
+    canonical_name: Yu-Gang Jiang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yu_kang_yang_eaf961c8:
+    canonical_name: Yu-Kang Yang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yubo_chen_35f00bb9:
+    canonical_name: Yubo Chen
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yue_wang_74b26b05:
+    canonical_name: Yue Wang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yun_xiang_zhou_ec5d217a:
+    canonical_name: Yun-Xiang Zhou
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yunhua_zhou_00629ca1:
+    canonical_name: Yunhua Zhou
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yuntao_bai_a367a367:
+    canonical_name: Yuntao Bai
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yunzhi_yao_3c743bfa:
+    canonical_name: Yunzhi Yao
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yuri_gardinazzi_05c2cb37:
+    canonical_name: Yuri Gardinazzi
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yuval_pinter_5fb367a7:
+    canonical_name: Yuval Pinter
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_yuzhong_chen_e911d226:
+    canonical_name: Yuzhong Chen
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_zac_hatfield_dodds_202f8201:
+    canonical_name: Zac Hatfield-Dodds
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_zach_furman_31f11b1f:
+    canonical_name: Zach Furman
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_zachary_kenton_75d0bdc7:
+    canonical_name: Zachary Kenton
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_ze_kun_xi_17d3238f:
+    canonical_name: Ze-Kun Xi
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_zeru_shi_fb2c626a:
+    canonical_name: Zeru Shi
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_zeyu_yun_0cd17e1b:
+    canonical_name: Zeyu Yun
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_zhao_lu_kang_8a29ec73:
+    canonical_name: Zhao-Lu Kang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_zhaoqian_yao_c6b063bc:
+    canonical_name: Zhaoqian Yao
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_zheng_lin_4156a90f:
+    canonical_name: Zheng Lin
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_zheng_wang_c4cb165c:
+    canonical_name: Zheng Wang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_zheng_fu_he_bf772b19:
+    canonical_name: Zheng-Fu He
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_zhengxuan_wu_9418211c:
+    canonical_name: Zhengxuan Wu
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_zhenhong_zhou_731b6cbe:
+    canonical_name: Zhenhong Zhou
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_zhi_fang_sui_5011c8e7:
+    canonical_name: Zhi-Fang Sui
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_zhidong_yang_5917ead5:
+    canonical_name: Zhidong Yang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_zhiyu_xue_382bef58:
+    canonical_name: Zhiyu Xue
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_zhuo_ran_jin_17fdbfc6:
+    canonical_name: Zhuo-Ran Jin
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_zifan_wang_43f67d5e:
+    canonical_name: Zifan Wang
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_ziwen_xu_0f8ca470:
+    canonical_name: Ziwen Xu
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed
+  a_zu_xuan_wu_e3c20a88:
+    canonical_name: Zu-Xuan Wu
+    aliases: []
+    external_ids:
+      orcid: 
+      openalex: 
+      semantic_scholar: 
+    disambiguation_status: unreviewed

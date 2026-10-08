@@ -1,0 +1,77 @@
+---
+schema_version: 1
+paper_id: p_2023_davies_discovering_variable_binding
+title: Discovering Variable Binding Circuitry with Desiderata
+year: 2023
+earliest_public_date: '2023-07-07'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2307.03637
+  arxiv_id: '2307.03637'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2307.03637
+  pdf: https://arxiv.org/pdf/2307.03637
+  code: 
+authors:
+- author_id: a_xander_davies_61f2a7b7
+  name: Xander Davies
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_max_nadeau_948c5d33
+  name: Max Nadeau
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_nikhil_prakash_382dd3da
+  name: Nikhil Prakash
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_tamar_rott_shaham_618c685a
+  name: Tamar Rott Shaham
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_david_bau_778385a5
+  name: David Bau
+  position: 5
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2307.03637
+  en: Recent work has shown that computation in language models may be human-understandable,
+    with successful efforts to localize and intervene on both single-unit features
+    and input-output circuits. Here, we introduce an approach which extends causal
+    mediation experiments to automatically identify model components responsible for
+    performing a specific subtask by solely specifying a set of \textit{desiderata},
+    or causal attributes of the model components executing that subtask. As a proof
+    of concept, we apply our method to automatically discover shared \textit{variable
+    binding circuitry} in LLaMA-13B, which retrieves variable values for multiple
+    arithmetic tasks. Our method successfully localizes variable binding to only 9
+    attention heads (of the 1.6k) and one MLP in the final token's residual stream.
+  zh: >-
+    近期研究表明，语言模型中的计算可能是人类可理解的：研究者已经成功定位并干预了单元级特征和输入—输出回路。本文提出一种方法，把因果中介实验扩展为自动识别负责特定子任务的模型组件；使用者只需指定一组期望条件（desiderata），即执行该子任务的模型组件应具备的因果属性。作为概念验证，我们应用该方法，在 LLaMA-13B 中自动发现被多个算术任务共同使用、用于检索变量取值的变量绑定回路。该方法成功将变量绑定定位到仅 9 个注意力头（总计 1,600 个）以及最后一个 token 残差流中的一个 MLP。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_davies_discovering_variable_binding
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 38
+  abstract_verification: docling_token_coverage_at_least_0.95

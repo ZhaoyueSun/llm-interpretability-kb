@@ -1,0 +1,175 @@
+---
+schema_version: 1
+paper_id: p_2023_zou_representation_engineering_a
+title: 'Representation Engineering: A Top-Down Approach to AI Transparency'
+year: 2023
+earliest_public_date: '2023-10-02'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2310.01405
+  arxiv_id: '2310.01405'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2310.01405
+  pdf: https://arxiv.org/pdf/2310.01405
+  code: 
+authors:
+- author_id: a_andy_zou_127d7958
+  name: Andy Zou
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_long_phan_8e207798
+  name: Long Phan
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_sarah_chen_69b97660
+  name: Sarah Chen
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_james_campbell_f28d7845
+  name: James Campbell
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_phillip_guo_34577d11
+  name: Phillip Guo
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_richard_ren_844950e1
+  name: Richard Ren
+  position: 6
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_alexander_pan_97aed211
+  name: Alexander Pan
+  position: 7
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_xuwang_yin_3f5d2fe4
+  name: Xuwang Yin
+  position: 8
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_mantas_mazeika_dae05144
+  name: Mantas Mazeika
+  position: 9
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_ann_kathrin_dombrowski_26763107
+  name: Ann-Kathrin Dombrowski
+  position: 10
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_shashwat_goel_d53e39ef
+  name: Shashwat Goel
+  position: 11
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_nathaniel_li_92316543
+  name: Nathaniel Li
+  position: 12
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_michael_j_byun_d3cc28ec
+  name: Michael J. Byun
+  position: 13
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_zifan_wang_43f67d5e
+  name: Zifan Wang
+  position: 14
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_alex_troy_mallen_02342310
+  name: Alex Troy Mallen
+  position: 15
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_steven_basart_3a70074c
+  name: Steven Basart
+  position: 16
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_o_koyejo_0c145534
+  name: O. Koyejo
+  position: 17
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_dawn_song_c3a62c62
+  name: Dawn Song
+  position: 18
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_matt_fredrikson_861ee185
+  name: Matt Fredrikson
+  position: 19
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_j_kolter_6e9d8747
+  name: J. Kolter
+  position: 20
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_dan_hendrycks_077a839f
+  name: Dan Hendrycks
+  position: 21
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2310.01405
+  en: In this paper, we identify and characterize the emerging area of representation
+    engineering (RepE), an approach to enhancing the transparency of AI systems that
+    draws on insights from cognitive neuroscience. RepE places population-level representations,
+    rather than neurons or circuits, at the center of analysis, equipping us with
+    novel methods for monitoring and manipulating high-level cognitive phenomena in
+    deep neural networks (DNNs). We provide baselines and an initial analysis of RepE
+    techniques, showing that they offer simple yet effective solutions for improving
+    our understanding and control of large language models. We showcase how these
+    methods can provide traction on a wide range of safety-relevant problems, including
+    honesty, harmlessness, power-seeking, and more, demonstrating the promise of top-down
+    transparency research. We hope that this work catalyzes further exploration of
+    RepE and fosters advancements in the transparency and safety of AI systems.
+  zh: >-
+    本文识别并刻画了新兴的表征工程（Representation Engineering，RepE）领域。这种增强 AI 系统透明度的方法借鉴了认知神经科学的认识。RepE 将群体层面的表征置于分析中心，而不是聚焦神经元或回路，从而为监测和操纵深度神经网络（DNN）中的高层认知现象提供新方法。我们给出 RepE 技术的基线和初步分析，表明它们能够以简单而有效的方式改善我们对大语言模型的理解和控制。我们展示了这些方法如何推动一系列与安全相关的问题，包括诚实性、无害性、权力寻求等，由此体现自上而下透明度研究的潜力。我们希望本工作能够促进对 RepE 的进一步探索，并推动 AI 系统透明度与安全性的进步。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_zou_representation_engineering_a
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 39
+  abstract_verification: docling_token_coverage_at_least_0.95

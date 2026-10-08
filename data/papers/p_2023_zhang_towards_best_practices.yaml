@@ -1,0 +1,63 @@
+---
+schema_version: 1
+paper_id: p_2023_zhang_towards_best_practices
+title: 'Towards Best Practices of Activation Patching in Language Models: Metrics
+  and Methods'
+year: 2023
+earliest_public_date: '2023-09-27'
+earliest_public_date_precision: day
+venue: International Conference on Learning Representations
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2309.16042
+  arxiv_id: '2309.16042'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2309.16042
+  pdf: https://arxiv.org/pdf/2309.16042
+  code: 
+authors:
+- author_id: a_fred_zhang_9541a545
+  name: Fred Zhang
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_neel_nanda_ddf6abf4
+  name: Neel Nanda
+  position: 2
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2309.16042
+  en: Mechanistic interpretability seeks to understand the internal mechanisms of
+    machine learning models, where localization -- identifying the important model
+    components -- is a key step. Activation patching, also known as causal tracing
+    or interchange intervention, is a standard technique for this task (Vig et al.,
+    2020), but the literature contains many variants with little consensus on the
+    choice of hyperparameters or methodology. In this work, we systematically examine
+    the impact of methodological details in activation patching, including evaluation
+    metrics and corruption methods. In several settings of localization and circuit
+    discovery in language models, we find that varying these hyperparameters could
+    lead to disparate interpretability results. Backed by empirical observations,
+    we give conceptual arguments for why certain metrics or methods may be preferred.
+    Finally, we provide recommendations for the best practices of activation patching
+    going forwards.
+  zh: >-
+    机制可解释性旨在理解机器学习模型的内部机制，其中，定位——即识别重要的模型组件——是关键步骤。激活修补又称因果追踪或互换干预，是完成这一任务的标准技术（Vig 等，2020）；但现有文献包含许多变体，对于超参数或方法论的选择几乎没有共识。在本研究中，我们系统考察激活修补中各项方法细节的影响，包括评估指标和扰动方法。在语言模型的多种定位与回路发现设置中，我们发现改变这些超参数可能产生截然不同的可解释性结果。基于经验观察，我们从概念层面论证为何某些指标或方法可能更值得采用。最后，我们为今后实施激活修补提出最佳实践建议。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_zhang_towards_best_practices
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 36
+  abstract_verification: docling_token_coverage_at_least_0.95

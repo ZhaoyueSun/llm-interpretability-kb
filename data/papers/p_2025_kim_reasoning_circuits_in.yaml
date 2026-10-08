@@ -1,0 +1,76 @@
+---
+schema_version: 1
+paper_id: p_2025_kim_reasoning_circuits_in
+title: 'Reasoning Circuits in Language Models: A Mechanistic Interpretation of Syllogistic
+  Inference'
+year: 2024
+earliest_public_date: '2025-01-01'
+earliest_public_date_precision: day
+venue: Annual Meeting of the Association for Computational Linguistics
+publication_type: preprint
+identifiers:
+  doi: 10.18653/v1/2025.findings-acl.525
+  arxiv_id: '2408.08590'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2408.08590
+  pdf: https://arxiv.org/pdf/2408.08590
+  code: 
+authors:
+- author_id: a_geonhee_kim_242be451
+  name: Geonhee Kim
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_marco_valentino_8330465e
+  name: Marco Valentino
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_andre_freitas_46b3660d
+  name: André Freitas
+  position: 3
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2408.08590
+  en: Recent studies on reasoning in language models (LMs) have sparked a debate on
+    whether they can learn systematic inferential principles or merely exploit superficial
+    patterns in the training data.To understand and uncover the mechanisms adopted
+    for formal reasoning in LMs, this paper presents a mechanistic interpretation
+    of syllogistic inference.Specifically, we present a methodology for circuit discovery
+    aimed at interpreting content-independent and formal reasoning mechanisms.Through
+    two distinct intervention methods, we uncover a sufficient and necessary circuit
+    involving middle-term suppression that elucidates how LMs transfer information
+    to derive valid conclusions from premises.Furthermore, we investigate how belief
+    biases manifest in syllogistic inference, finding evidence of partial contamination
+    from additional attention heads responsible for encoding commonsense and contextualized
+    knowledge.Finally, we explore the generalization of the discovered mechanisms
+    across various syllogistic schemes, model sizes and architectures.The identified
+    circuit is sufficient and necessary for syllogistic schemes on which the models
+    achieve high accuracy (≥ 60%), with compatible activation patterns across models
+    of different families.Overall, our findings suggest that LMs learn transferable
+    contentindependent reasoning mechanisms, but that, at the same time, such mechanisms
+    do not involve generalizable and abstract logical primitives, being susceptible
+    to contamination by the same world knowledge acquired during pre-training.
+  zh: >-
+    最近关于语言模型推理能力的研究引发了一场争论：语言模型究竟能够学习系统性的推理原则，还是仅仅利用训练数据中的表面模式？为了理解并揭示语言模型进行形式推理时采用的机制，本文对三段论推理进行了机制性解释。具体而言，我们提出一种回路发现方法，用于解释与具体内容无关的形式推理机制。借助两种不同的干预方法，我们发现了一个涉及中项抑制的充分且必要回路，它说明语言模型如何传递信息，从前提推导出有效结论。我们还研究了信念偏差如何在三段论推理中体现，并发现该机制会受到额外注意力头的部分污染；这些注意力头负责编码常识与情境化知识。最后，我们考察了所发现机制在不同三段论模式、模型规模和模型架构之间的泛化能力。对于模型准确率较高（≥
+    60%）的三段论模式，该回路既充分又必要，并且不同模型家族呈现兼容的激活模式。总体而言，结果表明语言模型能够学到可迁移、与具体内容无关的推理机制；但这些机制并不包含可泛化的抽象逻辑基元，并且容易受到预训练阶段获得的世界知识污染。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2025_kim_reasoning_circuits_in
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 6
+  abstract_verification: docling_token_coverage_at_least_0.95

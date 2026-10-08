@@ -1,0 +1,80 @@
+---
+schema_version: 1
+paper_id: p_2022_scherlis_polysemanticity_and_capacity
+title: Polysemanticity and Capacity in Neural Networks
+year: 2022
+earliest_public_date: '2022-10-04'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2210.01892
+  arxiv_id: '2210.01892'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2210.01892
+  pdf: https://arxiv.org/pdf/2210.01892
+  code: 
+authors:
+- author_id: a_adam_scherlis_6f60c160
+  name: Adam Scherlis
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_kshitij_sachan_a2dedc93
+  name: Kshitij Sachan
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_a_jermyn_0e113070
+  name: A. Jermyn
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_joe_benton_64d959c3
+  name: Joe Benton
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_buck_shlegeris_a997ed75
+  name: Buck Shlegeris
+  position: 5
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2210.01892
+  en: Individual neurons in neural networks often represent a mixture of unrelated
+    features. This phenomenon, called polysemanticity, can make interpreting neural
+    networks more difficult and so we aim to understand its causes. We propose doing
+    so through the lens of feature \emph{capacity}, which is the fractional dimension
+    each feature consumes in the embedding space. We show that in a toy model the
+    optimal capacity allocation tends to monosemantically represent the most important
+    features, polysemantically represent less important features (in proportion to
+    their impact on the loss), and entirely ignore the least important features. Polysemanticity
+    is more prevalent when the inputs have higher kurtosis or sparsity and more prevalent
+    in some architectures than others. Given an optimal allocation of capacity, we
+    go on to study the geometry of the embedding space. We find a block-semi-orthogonal
+    structure, with differing block sizes in different models, highlighting the impact
+    of model architecture on the interpretability of its neurons.
+  zh: >-
+    神经网络中的单个神经元经常表征多个彼此无关的特征。这种称为“多义性”的现象会增加解释神经网络的难度，因此我们希望理解它的成因。我们提出从特征容量的角度加以研究；特征容量是每个特征在嵌入空间中占用的分数维度。我们在一个玩具模型中表明，最优容量分配倾向于用单义方式表征最重要的特征，按特征对损失的影响程度用多义方式表征较不重要的特征，并完全忽略最不重要的特征。当输入具有更高的峰度或稀疏度时，多义性更加普遍；它在某些架构中也比其他架构中更常见。在给定最优容量分配后，我们进一步研究嵌入空间的几何结构，发现了一种分块半正交结构；不同模型的块大小有所不同，突出了模型架构对神经元可解释性的影响。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2022_scherlis_polysemanticity_and_capacity
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 60
+  abstract_verification: docling_token_coverage_at_least_0.95

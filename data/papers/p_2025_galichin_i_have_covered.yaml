@@ -1,0 +1,97 @@
+---
+schema_version: 1
+paper_id: p_2025_galichin_i_have_covered
+title: 'I Have Covered All the Bases Here: Interpreting Reasoning Features in Large
+  Language Models via Sparse Autoencoders'
+year: 2025
+earliest_public_date: '2025-03-24'
+earliest_public_date_precision: day
+venue: AAAI Conference on Artificial Intelligence
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2503.18878
+  arxiv_id: '2503.18878'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2503.18878
+  pdf: https://arxiv.org/pdf/2503.18878
+  code: 
+authors:
+- author_id: a_andrey_v_galichin_e422bb64
+  name: Andrey V. Galichin
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_alexey_dontsov_f4f8bb38
+  name: Alexey Dontsov
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_polina_druzhinina_53782d2f
+  name: Polina Druzhinina
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_anton_razzhigaev_0a3ea746
+  name: Anton Razzhigaev
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_oleg_y_rogov_fb9a9274
+  name: Oleg Y. Rogov
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_elena_tutubalina_49653fd3
+  name: Elena Tutubalina
+  position: 6
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_i_oseledets_0ac70951
+  name: I. Oseledets
+  position: 7
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2503.18878
+  en: Recent LLMs like DeepSeek-R1 have demonstrated state-of-the-art performance
+    by integrating deep thinking and complex reasoning during generation. However,
+    the internal mechanisms behind these reasoning processes remain unexplored. We
+    observe reasoning LLMs consistently use vocabulary associated with human reasoning
+    processes. We hypothesize these words correspond to specific reasoning moments
+    within the models' internal mechanisms. To test this hypothesis, we employ Sparse
+    Autoencoders (SAEs), a technique for sparse decomposition of neural network activations
+    into human-interpretable features. We introduce ReasonScore, an automatic metric
+    to identify active SAE features during these reasoning moments. We perform manual
+    and automatic interpretation of the features detected by our metric, and find
+    those with activation patterns matching uncertainty, exploratory thinking, and
+    reflection. Through steering experiments, we demonstrate that amplifying these
+    features increases performance on reasoning-intensive benchmarks (+2.2%) while
+    producing longer reasoning traces (+20.5%). Using the model diffing technique,
+    we provide evidence that these features are present only in models with reasoning
+    capabilities. Our work provides the first step towards a mechanistic understanding
+    of reasoning in LLMs.
+  zh: >-
+    DeepSeek-R1 等近期大语言模型通过在生成过程中融入深度思考和复杂推理，取得了最先进的性能。然而，这些推理过程背后的内部机制尚未得到探索。我们观察到，推理型语言模型会持续使用与人类推理过程有关的词汇。我们假设，这些词对应于模型内部机制中的特定推理时刻。为检验该假说，我们采用稀疏自编码器（SAE），把神经网络激活稀疏分解为人类可解释的特征。我们提出 ReasonScore，一种用于识别这些推理时刻中活跃 SAE 特征的自动指标。我们对该指标检测出的特征进行人工和自动解释，并发现一些特征的激活模式分别对应不确定性、探索性思考和反思。引导实验表明，放大这些特征可以提升模型在推理密集型基准上的表现（+2.2%），同时产生更长的推理轨迹（+20.5%）。借助模型差分技术，我们给出证据表明，这些特征只存在于具备推理能力的模型中。本工作是迈向机制层面理解语言模型推理的第一步。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2025_galichin_i_have_covered
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 68
+  abstract_verification: docling_token_coverage_at_least_0.95

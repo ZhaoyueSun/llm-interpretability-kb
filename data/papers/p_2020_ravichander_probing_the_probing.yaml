@@ -1,0 +1,70 @@
+---
+schema_version: 1
+paper_id: p_2020_ravichander_probing_the_probing
+title: 'Probing the Probing Paradigm: Does Probing Accuracy Entail Task Relevance?'
+year: 2020
+earliest_public_date: '2020-05-02'
+earliest_public_date_precision: day
+venue: Conference of the European Chapter of the Association for Computational Linguistics
+publication_type: preprint
+identifiers:
+  doi: 10.18653/v1/2021.eacl-main.295
+  arxiv_id: '2005.00719'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2005.00719
+  pdf: https://aclanthology.org/2021.eacl-main.295.pdf
+  code: 
+authors:
+- author_id: a_abhilasha_ravichander_a8bf5eb1
+  name: Abhilasha Ravichander
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_yonatan_belinkov_efb645ca
+  name: Yonatan Belinkov
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_e_hovy_0212eba7
+  name: E. Hovy
+  position: 3
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2005.00719
+  en: Although neural models have achieved impressive results on several NLP benchmarks,
+    little is understood about the mechanisms they use to perform language tasks.
+    Thus, much recent attention has been devoted to analyzing the sentence representations
+    learned by neural encoders, through the lens of ‘probing’ tasks. However, to what
+    extent was the information encoded in sentence representations, as discovered
+    through a probe, actually used by the model to perform its task? In this work,
+    we examine this probing paradigm through a case study in Natural Language Inference,
+    showing that models can learn to encode linguistic properties even if they are
+    not needed for the task on which the model was trained. We further identify that
+    pretrained word embeddings play a considerable role in encoding these properties
+    rather than the training task itself, highlighting the importance of careful controls
+    when designing probing experiments. Finally, through a set of controlled synthetic
+    tasks, we demonstrate models can encode these properties considerably above chance-level,
+    even when distributed in the data as random noise, calling into question the interpretation
+    of absolute claims on probing tasks.
+  zh: >-
+    尽管神经模型在多项 NLP 基准上取得了出色结果，人们对它们执行语言任务所使用的机制仍了解很少。因此，近期大量研究通过“探测”任务分析神经编码器学到的句子表征。然而，探针所发现的句子表征信息，在多大程度上真正被模型用于完成任务？本文以自然语言推理为案例考察这一探测范式，并表明，即使某些语言属性对于模型训练所针对的任务并非必要，模型仍可能学会编码它们。我们进一步发现，编码这些属性的主要贡献者可能是预训练词嵌入，而非训练任务本身，这凸显了设计探测实验时设置严谨对照的重要性。最后，通过一组受控合成任务，我们证明，即使这些属性以随机噪声的形式分布于数据中，模型对它们的编码也能显著高于随机水平。这使人们需要质疑针对探测任务所得绝对结论的解释。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2020_ravichander_probing_the_probing
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 106
+  abstract_verification: docling_token_coverage_at_least_0.95

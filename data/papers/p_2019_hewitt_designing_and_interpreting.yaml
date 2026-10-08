@@ -1,0 +1,66 @@
+---
+schema_version: 1
+paper_id: p_2019_hewitt_designing_and_interpreting
+title: Designing and Interpreting Probes with Control Tasks
+year: 2019
+earliest_public_date: '2019-09-08'
+earliest_public_date_precision: day
+venue: Conference on Empirical Methods in Natural Language Processing
+publication_type: preprint
+identifiers:
+  doi: 10.18653/v1/d19-1275
+  arxiv_id: '1909.03368'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/1909.03368
+  pdf: https://www.aclweb.org/anthology/D19-1275.pdf
+  code: 
+authors:
+- author_id: a_john_hewitt_ba8b9cac
+  name: John Hewitt
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_percy_liang_0a0e479c
+  name: Percy Liang
+  position: 2
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/1909.03368
+  en: Probes, supervised models trained to predict properties (like parts-of-speech)
+    from representations (like ELMo), have achieved high accuracy on a range of linguistic
+    tasks. But does this mean that the representations encode linguistic structure
+    or just that the probe has learned the linguistic task? In this paper, we propose
+    control tasks, which associate word types with random outputs, to complement linguistic
+    tasks. By construction, these tasks can only be learned by the probe itself. So
+    a good probe, (one that reflects the representation), should be selective, achieving
+    high linguistic task accuracy and low control task accuracy. The selectivity of
+    a probe puts linguistic task accuracy in context with the probe’s capacity to
+    memorize from word types. We construct control tasks for English part-of-speech
+    tagging and dependency edge prediction, and show that popular probes on ELMo representations
+    are not selective. We also find that dropout, commonly used to control probe complexity,
+    is ineffective for improving selectivity of MLPs, but that other forms of regularization
+    are effective. Finally, we find that while probes on the first layer of ELMo yield
+    slightly better part-of-speech tagging accuracy than the second, probes on the
+    second layer are substantially more selective, which raises the question of which
+    layer better represents parts-of-speech.
+  zh: >-
+    探针是从表征（例如 ELMo）预测属性（例如词性）的监督模型，它们已在多种语言学任务上取得很高准确率。但这究竟意味着表征编码了语言结构，还是仅仅说明探针学会了语言任务？本文提出控制任务作为语言学任务的补充；控制任务把词类型与随机输出关联起来。根据构造，这些任务只能由探针本身学会。因此，一个能够忠实反映表征的好探针应具有选择性：在语言学任务上准确率高，在控制任务上准确率低。探针的选择性把语言学任务准确率置于探针根据词类型进行记忆的能力背景下。我们为英语词性标注和依存边预测构造控制任务，并发现用于 ELMo 表征的常用探针并不具有选择性。我们还发现，通常用于控制探针复杂度的 dropout 无法提高 MLP 的选择性，而其他正则化形式则有效。最后，我们发现，虽然 ELMo 第一层上的探针在词性标注准确率上略高于第二层，但第二层上的探针选择性显著更高，这引出了哪一层能更好表征词性的问题。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2019_hewitt_designing_and_interpreting
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 109
+  abstract_verification: docling_token_coverage_at_least_0.95

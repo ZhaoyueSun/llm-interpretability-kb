@@ -1,0 +1,88 @@
+---
+schema_version: 1
+paper_id: p_2025_tian_why_representation_engineering
+title: 'Why Representation Engineering Works: A Theoretical and Empirical Study in
+  Vision-Language Models'
+year: 2025
+earliest_public_date: '2025-03-25'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2503.22720
+  arxiv_id: '2503.22720'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2503.22720
+  pdf: https://arxiv.org/pdf/2503.22720
+  code: 
+authors:
+- author_id: a_bowei_tian_c3ff3faf
+  name: Bowei Tian
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_xuntao_lyu_81154a16
+  name: Xuntao Lyu
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_meng_liu_08dcc88a
+  name: Meng Liu
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_hongyi_wang_f34d549a
+  name: Hongyi Wang
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_ang_li_1e7c730c
+  name: Ang Li
+  position: 5
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2503.22720
+  en: Representation Engineering (RepE) has emerged as a powerful paradigm for enhancing
+    AI transparency by focusing on high-level representations rather than individual
+    neurons or circuits. It has proven effective in improving interpretability and
+    control, showing that representations can emerge, propagate, and shape final model
+    outputs in large language models (LLMs). However, in Vision-Language Models (VLMs),
+    visual input can override factual linguistic knowledge, leading to hallucinated
+    responses that contradict reality. To address this challenge, we make the first
+    attempt to extend RepE to VLMs, analyzing how multimodal representations are preserved
+    and transformed. Building on our findings and drawing inspiration from successful
+    RepE applications, we develop a theoretical framework that explains the stability
+    of neural activity across layers using the principal eigenvector, uncovering the
+    underlying mechanism of RepE. We empirically validate these instrinsic properties,
+    demonstrating their broad applicability and significance. By bridging theoretical
+    insights with empirical validation, this work transforms RepE from a descriptive
+    tool into a structured theoretical framework, opening new directions for improving
+    AI robustness, fairness, and transparency.
+  zh: >-
+    表征工程（Representation Engineering，RepE）已经成为提升人工智能透明度的一种有力范式。它关注高层表征，而非单个神经元或回路。RepE
+    已被证明能够有效改善可解释性与控制能力，并表明在大型语言模型中，表征可以涌现、传播并塑造模型的最终输出。然而，在视觉语言模型（VLM）中，视觉输入可能压过语言中的事实知识，使模型产生与现实矛盾的幻觉回答。为应对这一问题，我们首次尝试将
+    RepE 扩展到 VLM，并分析多模态表征如何得到保留与变换。基于这些发现，并借鉴 RepE 的成功应用，我们建立了一个理论框架，利用主特征向量解释跨层神经活动的稳定性，从而揭示
+    RepE 的底层机制。我们通过实验验证了这些内在性质，证明其具有广泛的适用性和重要意义。通过结合理论洞见与经验验证，本工作将 RepE
+    从描述性工具转化为结构化理论框架，为提高人工智能的稳健性、公平性与透明度开辟了新的方向。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2025_tian_why_representation_engineering
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 1
+  abstract_verification: docling_token_coverage_at_least_0.95

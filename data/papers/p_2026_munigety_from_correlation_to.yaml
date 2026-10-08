@@ -1,0 +1,63 @@
+---
+schema_version: 1
+paper_id: p_2026_munigety_from_correlation_to
+title: 'From Correlation to Cause: A Five-Stage Methodology for Feature Analysis in
+  Transformer Language Models'
+year: 2026
+earliest_public_date: '2026-05-21'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2605.22462
+  arxiv_id: '2605.22462'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2605.22462
+  pdf: https://arxiv.org/pdf/2605.22462
+  code: 
+authors:
+- author_id: a_c_munigety_3e599fdd
+  name: C. Munigety
+  position: 1
+  roles:
+  - first
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2605.22462
+  en: 'We propose a five-stage methodology for causal feature analysis in transformer
+    language models (probe design, feature extraction, causal validation, robustness
+    testing, and deployment integration) and demonstrate it end-to-end on GPT-2 small
+    performing the Indirect Object Identification (IOI) task. Activation patching
+    recovers the canonical IOI circuit (layer-9 head 9 alone gives recovery +1.02).
+    A sparse autoencoder recovers per-name selective features with effect sizes of
+    30 to 50 activation units. Causal validation finds these features specifically
+    but only partially causal: ablating fifteen of them leaves the model accurate
+    on 98% of prompts. Two NLA-inspired evaluations strengthen this picture: the fifteen
+    selective features explain only 31% of activation variance versus the SAE''s 99.7%,
+    and selectivity ratio anticorrelates with causal force (r = -0.56). Robustness
+    testing under three distribution shifts finds that the circuit transfers cleanly
+    but feature ablation effects degrade substantially, exposing a gap between detection
+    robustness and causal robustness. A cost-based deployment evaluation (assumed
+    $50/FN, $0.42/FP, 2% error rate) finds an optimal monitor configuration yielding
+    $8.96 per 1000 queries against a $1000 baseline, a 99.1% saving. Optimal composition
+    strategy varies with cost ratio and base rate. The conjunction of stages produces
+    findings no single stage would.'
+  zh: >-
+    我们提出一种用于 Transformer 语言模型因果特征分析的五阶段方法论，包括探针设计、特征提取、因果验证、鲁棒性测试和部署集成，并在执行间接宾语识别（IOI）任务的 GPT-2 small 上进行了端到端演示。激活修补恢复了经典 IOI 回路（仅第 9 层第 9 个注意力头就带来 +1.02 的恢复量）。稀疏自编码器恢复出针对单个人名具有选择性的特征，其效应量为 30 至 50 个激活单位。因果验证发现，这些特征具有特异性因果作用，但作用仅是部分的：消融其中 15 个特征后，模型仍能在 98% 的提示上给出正确结果。两项受 NLA 启发的评估进一步强化了这一结论：这 15 个选择性特征只能解释 31% 的激活方差，而 SAE 可解释 99.7%；选择性比率与因果作用强度呈负相关（r = -0.56）。在三种分布偏移下进行的鲁棒性测试发现，回路能够顺利迁移，但特征消融的效应会显著减弱，这暴露出检测鲁棒性与因果鲁棒性之间的差距。基于成本的部署评估（假设每个假阴性的成本为 50 美元、每个假阳性为 0.42 美元、错误率为 2%）发现，最优监控器配置在每 1000 次查询上的成本为 8.96 美元，相比 1000 美元的基线节省 99.1%。最优组合策略会随成本比和基础发生率而变化。只有将这五个阶段结合起来，才能得到任何单一阶段都无法产生的发现。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2026_munigety_from_correlation_to
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 32
+  abstract_verification: docling_token_coverage_at_least_0.95

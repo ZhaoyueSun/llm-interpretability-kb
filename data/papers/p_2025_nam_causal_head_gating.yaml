@@ -1,0 +1,93 @@
+---
+schema_version: 1
+paper_id: p_2025_nam_causal_head_gating
+title: 'Causal Head Gating: A Framework for Interpreting Roles of Attention Heads
+  in Transformers'
+year: 2025
+earliest_public_date: '2025-01-01'
+earliest_public_date_precision: day
+venue: Neural Information Processing Systems
+publication_type: preprint
+identifiers:
+  doi: 10.52202/085713-3856
+  arxiv_id: '2505.13737'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2505.13737
+  pdf: https://arxiv.org/pdf/2505.13737
+  code: 
+authors:
+- author_id: a_andrew_nam_90b81835
+  name: Andrew Nam
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_henry_conklin_78b4e8e9
+  name: Henry Conklin
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_yu_kang_yang_eaf961c8
+  name: Yu-Kang Yang
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_thomas_l_griffiths_a2ccbfea
+  name: Thomas L. Griffiths
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_jonathan_d_cohen_85493e7a
+  name: Jonathan D. Cohen
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_sarah_jane_leslie_942a6757
+  name: Sarah-Jane Leslie
+  position: 6
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2505.13737
+  en: We present causal head gating (CHG), a scalable method for interpreting the
+    functional roles of attention heads in transformer models. CHG learns soft gates
+    over heads and assigns them a causal taxonomy - facilitating, interfering, or
+    irrelevant - based on their impact on task performance. Unlike prior approaches
+    in mechanistic interpretability, which are hypothesis-driven and require prompt
+    templates or target labels, CHG applies directly to any dataset using standard
+    next-token prediction. We evaluate CHG across multiple large language models (LLMs)
+    in the Llama 3 model family and diverse tasks, including syntax, commonsense,
+    and mathematical reasoning, and show that CHG scores yield causal, not merely
+    correlational, insight validated via ablation and causal mediation analyses. We
+    also introduce contrastive CHG, a variant that isolates sub-circuits for specific
+    task components. Our findings reveal that LLMs contain multiple sparse task-sufficient
+    sub-circuits, that individual head roles depend on interactions with others (low
+    modularity), and that instruction following and in-context learning rely on separable
+    mechanisms.
+  zh: >-
+    我们提出因果注意力头门控（Causal Head Gating，CHG），这是一种可扩展的方法，用于解释 Transformer
+    模型中注意力头的功能角色。CHG 学习作用于各注意力头的软门控，并根据它们对任务性能的影响，将其划分到促进、干扰或无关这三个因果类别中。不同于以往由假设驱动、需要提示模板或目标标签的机制可解释性方法，CHG
+    可以使用标准的下一 token 预测，直接应用于任意数据集。我们在 Llama 3 模型家族的多个大型语言模型上评估 CHG，并覆盖句法、常识和数学推理等多种任务。结果表明，CHG
+    分数提供的是因果而非仅仅相关性的认识，这一点通过消融和因果中介分析得到验证。我们还提出对比式 CHG 变体，用于分离负责特定任务组成部分的子回路。研究发现，LLM
+    中存在多个稀疏且足以完成任务的子回路；单个注意力头的角色取决于它与其他注意力头的交互，因而模块化程度较低；指令遵循和上下文学习则依赖彼此可分离的机制。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2025_nam_causal_head_gating
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 8
+  abstract_verification: docling_token_coverage_at_least_0.95

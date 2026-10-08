@@ -1,0 +1,96 @@
+---
+schema_version: 1
+paper_id: p_2024_yao_knowledge_circuits_in
+title: Knowledge Circuits in Pretrained Transformers
+year: 2024
+earliest_public_date: '2024-05-28'
+earliest_public_date_precision: day
+venue: Neural Information Processing Systems
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2405.17969
+  arxiv_id: '2405.17969'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2405.17969
+  pdf: https://arxiv.org/pdf/2405.17969
+  code: 
+authors:
+- author_id: a_yunzhi_yao_3c743bfa
+  name: Yunzhi Yao
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_ningyu_zhang_c4f6f8a9
+  name: Ningyu Zhang
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_ze_kun_xi_17d3238f
+  name: Ze-Kun Xi
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_mengru_wang_0954eb35
+  name: Mengru Wang
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_ziwen_xu_0f8ca470
+  name: Ziwen Xu
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_shumin_deng_277bc305
+  name: Shumin Deng
+  position: 6
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_hua_jun_chen_2e1ceeb6
+  name: Hua-Jun Chen
+  position: 7
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2405.17969
+  en: The remarkable capabilities of modern large language models are rooted in their
+    vast repositories of knowledge encoded within their parameters, enabling them
+    to perceive the world and engage in reasoning. The inner workings of how these
+    models store knowledge have long been a subject of intense interest and investigation
+    among researchers. To date, most studies have concentrated on isolated components
+    within these models, such as the Multilayer Perceptrons and attention head. In
+    this paper, we delve into the computation graph of the language model to uncover
+    the knowledge circuits that are instrumental in articulating specific knowledge.
+    The experiments, conducted with GPT2 and TinyLLAMA, have allowed us to observe
+    how certain information heads, relation heads, and Multilayer Perceptrons collaboratively
+    encode knowledge within the model. Moreover, we evaluate the impact of current
+    knowledge editing techniques on these knowledge circuits, providing deeper insights
+    into the functioning and constraints of these editing methodologies. Finally,
+    we utilize knowledge circuits to analyze and interpret language model behaviors
+    such as hallucinations and in-context learning. We believe the knowledge circuits
+    hold potential for advancing our understanding of Transformers and guiding the
+    improved design of knowledge editing. Code and data are available in https://github.com/zjunlp/KnowledgeCircuits.
+  zh: >-
+    现代大语言模型的卓越能力，根植于编码在其参数中的庞大知识库；这些知识使模型能够感知世界并进行推理。模型究竟如何存储知识，长期以来一直是研究者高度关注和深入探索的问题。迄今，大多数研究聚焦于模型内部的孤立组件，例如多层感知机和注意力头。本文深入语言模型的计算图，发现对表达特定知识起关键作用的知识回路。通过在 GPT2 和 TinyLLAMA 上进行实验，我们观察到某些信息头、关系头和多层感知机如何协同在模型内部编码知识。此外，我们评估了当前知识编辑技术对这些知识回路的影响，从而更深入地理解这些编辑方法的工作方式和约束。最后，我们使用知识回路分析并解释幻觉和上下文学习等语言模型行为。我们认为，知识回路有望推动对 Transformer 的理解，并指导知识编辑的改进设计。代码和数据见 https://github.com/zjunlp/KnowledgeCircuits。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2024_yao_knowledge_circuits_in
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 98
+  abstract_verification: docling_token_coverage_at_least_0.95

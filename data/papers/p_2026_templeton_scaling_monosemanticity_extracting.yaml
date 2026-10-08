@@ -1,0 +1,209 @@
+---
+schema_version: 1
+paper_id: p_2026_templeton_scaling_monosemanticity_extracting
+title: 'Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet'
+year: 2026
+earliest_public_date: '2026-05-28'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2605.29358
+  arxiv_id: '2605.29358'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2605.29358
+  pdf: https://arxiv.org/pdf/2605.29358
+  code: 
+authors:
+- author_id: a_adly_templeton_404dabf8
+  name: Adly Templeton
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_tom_conerly_64dfb3bf
+  name: Tom Conerly
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_jonathan_marcus_db1bf3b4
+  name: Jonathan Marcus
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_jack_lindsey_620b74ab
+  name: Jack Lindsey
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_trenton_bricken_ec9b2f6d
+  name: Trenton Bricken
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_brian_k_chen_8f622eb3
+  name: Brian K. Chen
+  position: 6
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_adam_pearce_076738aa
+  name: Adam Pearce
+  position: 7
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_craig_citro_6d6be88a
+  name: Craig Citro
+  position: 8
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_e_ameisen_4dced91f
+  name: E. Ameisen
+  position: 9
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_andy_jones_385ea528
+  name: Andy Jones
+  position: 10
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_hoagy_cunningham_ee87bd1f
+  name: Hoagy Cunningham
+  position: 11
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_n_turner_81650705
+  name: N. Turner
+  position: 12
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_callum_mcdougall_531e3f97
+  name: Callum McDougall
+  position: 13
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_m_macdiarmid_19e68c71
+  name: M. MacDiarmid
+  position: 14
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_a_tamkin_221405f7
+  name: A. Tamkin
+  position: 15
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_esin_durmus_78dade0b
+  name: Esin Durmus
+  position: 16
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_tristan_hume_4126a600
+  name: Tristan Hume
+  position: 17
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_francesco_mosconi_feb1f005
+  name: Francesco Mosconi
+  position: 18
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_c_d_freeman_a9a8b69b
+  name: C. D. Freeman
+  position: 19
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_t_sumers_c50649bc
+  name: T. Sumers
+  position: 20
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_e_rees_298144ce
+  name: E. Rees
+  position: 21
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_joshua_batson_35871779
+  name: Joshua Batson
+  position: 22
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_adam_s_jermyn_98698cc1
+  name: Adam S. Jermyn
+  position: 23
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_shan_carter_47b36185
+  name: Shan Carter
+  position: 24
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_chris_olah_158a0d46
+  name: Chris Olah
+  position: 25
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_t_henighan_26ac86d7
+  name: T. Henighan
+  position: 26
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2605.29358
+  en: 'We demonstrate that sparse autoencoders can extract interpretable features
+    from Claude 3 Sonnet, a production-scale language model, addressing the open question
+    of whether dictionary learning methods scale beyond small transformers. We trained
+    sparse autoencoders with up to 34 million features on the model''s middle layer
+    residual stream, using scaling laws to guide hyperparameter selection. The resulting
+    features are multilingual and multimodal (generalizing to images despite text-only
+    training), respond to both concrete instances and abstract discussions of concepts,
+    and can be used to steer model behavior in ways consistent with their interpretations.
+    We find features corresponding to famous entities and locations, as well as more
+    abstract concepts like sarcasm or errors in code. We also identify features relevant
+    to ways in which language models might cause harm--including features representing
+    deception, power-seeking, sycophancy, and bias--and show that these causally influence
+    model outputs when manipulated. Additionally, we conduct analyses of feature interpretability,
+    geometry, and computational function. However, significant limitations remain:
+    our suite of features is incomplete, and we lack rigorous methods for evaluating
+    whether our features faithfully capture model computations.'
+  zh: >-
+    我们证明，稀疏自编码器可以从生产规模的语言模型 Claude 3 Sonnet 中提取可解释特征，从而回答字典学习方法能否扩展到小型 Transformer 之外这一开放问题。我们在模型中间层的残差流上训练了最多包含 3,400 万个特征的稀疏自编码器，并利用缩放定律指导超参数选择。所得特征具有多语言和多模态性质——尽管只用文本训练，却能泛化到图像；它们既响应概念的具体实例，也响应对概念的抽象讨论；还可用于以符合其解释的方式引导模型行为。我们发现了对应著名实体和地点的特征，也发现了讽刺或代码错误等更抽象概念的特征。我们还识别出与语言模型潜在危害方式有关的特征，包括表征欺骗、权力寻求、谄媚和偏见的特征，并表明操纵这些特征会对模型输出产生因果影响。此外，我们分析了特征的可解释性、几何结构和计算功能。不过，仍存在显著局限：现有特征集合并不完整，而且我们缺少严格的方法来评估这些特征是否忠实捕捉了模型计算。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2026_templeton_scaling_monosemanticity_extracting
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 84
+  abstract_verification: docling_token_coverage_at_least_0.95

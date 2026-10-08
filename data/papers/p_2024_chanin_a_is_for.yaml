@@ -1,0 +1,88 @@
+---
+schema_version: 1
+paper_id: p_2024_chanin_a_is_for
+title: 'A is for Absorption: Studying Feature Splitting and Absorption in Sparse Autoencoders'
+year: 2024
+earliest_public_date: '2024-09-22'
+earliest_public_date_precision: day
+venue: Neural Information Processing Systems
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2409.14507
+  arxiv_id: '2409.14507'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2409.14507
+  pdf: https://arxiv.org/pdf/2409.14507
+  code: 
+authors:
+- author_id: a_david_chanin_b0a706fc
+  name: David Chanin
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_james_wilken_smith_31065f5e
+  name: James Wilken-Smith
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_tomas_dulka_e7805604
+  name: Tomás Dulka
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_hardik_bhatnagar_b2779e50
+  name: Hardik Bhatnagar
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_satvik_golechha_d495e9d2
+  name: Satvik Golechha
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_j_bloom_aff35e1c
+  name: J. Bloom
+  position: 6
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2409.14507
+  en: Sparse Autoencoders (SAEs) aim to decompose the activation space of large language
+    models (LLMs) into human-interpretable latent directions or features. As we increase
+    the number of features in the SAE, hierarchical features tend to split into finer
+    features ("math"may split into"algebra","geometry", etc.), a phenomenon referred
+    to as feature splitting. However, we show that sparse decomposition and splitting
+    of hierarchical features is not robust. Specifically, we show that seemingly monosemantic
+    features fail to fire where they should, and instead get"absorbed"into their children
+    features. We coin this phenomenon feature absorption, and show that it is caused
+    by optimizing for sparsity in SAEs whenever the underlying features form a hierarchy.
+    We introduce a metric to detect absorption in SAEs, and validate our findings
+    empirically on hundreds of LLM SAEs. Our investigation suggests that varying SAE
+    sizes or sparsity is insufficient to solve this issue. We discuss the implications
+    of feature absorption in SAEs and some potential approaches to solve the fundamental
+    theoretical issues before SAEs can be used for interpreting LLMs robustly and
+    at scale.
+  zh: >-
+    稀疏自编码器（SAE）旨在把大语言模型（LLM）的激活空间分解为人类可解释的潜在方向或特征。随着 SAE 中特征数量增加，层级特征往往会拆分为更细的特征（例如“数学”可能拆分成“代数”“几何”等），这种现象称为特征拆分。然而，我们表明，稀疏分解和层级特征拆分并不稳健。具体而言，看似单义的特征会在本应激活的位置失去响应，反而被其子特征“吸收”。我们把这种现象称为特征吸收，并表明，只要底层特征构成层级结构，SAE 对稀疏性的优化就会导致特征吸收。我们提出一个检测 SAE 特征吸收的指标，并在数百个语言模型 SAE 上经验验证了相关发现。研究结果表明，仅改变 SAE 规模或稀疏度不足以解决该问题。我们讨论了 SAE 特征吸收的影响，以及在 SAE 能够稳健且大规模地用于解释语言模型之前，解决这些基础理论问题的一些潜在方法。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2024_chanin_a_is_for
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 65
+  abstract_verification: docling_token_coverage_at_least_0.95

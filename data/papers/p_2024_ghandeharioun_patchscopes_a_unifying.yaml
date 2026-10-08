@@ -1,0 +1,81 @@
+---
+schema_version: 1
+paper_id: p_2024_ghandeharioun_patchscopes_a_unifying
+title: 'Patchscopes: A Unifying Framework for Inspecting Hidden Representations of
+  Language Models'
+year: 2024
+earliest_public_date: '2024-01-11'
+earliest_public_date_precision: day
+venue: International Conference on Machine Learning
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2401.06102
+  arxiv_id: '2401.06102'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2401.06102
+  pdf: https://arxiv.org/pdf/2401.06102
+  code: 
+authors:
+- author_id: a_asma_ghandeharioun_32ccce58
+  name: Asma Ghandeharioun
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_avi_caciularu_5806c1cd
+  name: Avi Caciularu
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_adam_pearce_076738aa
+  name: Adam Pearce
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_lucas_dixon_65adb621
+  name: Lucas Dixon
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_mor_geva_2422827f
+  name: Mor Geva
+  position: 5
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2401.06102
+  en: Understanding the internal representations of large language models (LLMs) can
+    help explain models' behavior and verify their alignment with human values. Given
+    the capabilities of LLMs in generating human-understandable text, we propose leveraging
+    the model itself to explain its internal representations in natural language.
+    We introduce a framework called Patchscopes and show how it can be used to answer
+    a wide range of questions about an LLM's computation. We show that many prior
+    interpretability methods based on projecting representations into the vocabulary
+    space and intervening on the LLM computation can be viewed as instances of this
+    framework. Moreover, several of their shortcomings such as failure in inspecting
+    early layers or lack of expressivity can be mitigated by Patchscopes. Beyond unifying
+    prior inspection techniques, Patchscopes also opens up new possibilities such
+    as using a more capable model to explain the representations of a smaller model,
+    and multihop reasoning error correction.
+  zh: >-
+    理解大语言模型（LLM）的内部表征，有助于解释模型行为并验证其是否与人类价值观一致。鉴于语言模型能够生成人类可理解的文本，我们提出利用模型自身，以自然语言解释其内部表征。我们引入名为 Patchscopes 的框架，并展示如何用它回答有关语言模型计算的广泛问题。我们说明，许多把表征投影到词汇空间并干预语言模型计算的既有可解释性方法，都可以视为这一框架的实例。此外，Patchscopes 可以缓解这些方法的若干缺陷，例如无法检查早期层或表达能力不足。Patchscopes 不仅统一了以往的检查技术，还带来新的可能性，例如使用能力更强的模型解释较小模型的表征，以及纠正多跳推理错误。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2024_ghandeharioun_patchscopes_a_unifying
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 75
+  abstract_verification: docling_token_coverage_at_least_0.95

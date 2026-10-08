@@ -1,0 +1,77 @@
+---
+schema_version: 1
+paper_id: p_2023_merullo_circuit_component_reuse
+title: Circuit Component Reuse Across Tasks in Transformer Language Models
+year: 2023
+earliest_public_date: '2023-10-12'
+earliest_public_date_precision: day
+venue: International Conference on Learning Representations
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2310.08744
+  arxiv_id: '2310.08744'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2310.08744
+  pdf: https://arxiv.org/pdf/2310.08744
+  code: 
+authors:
+- author_id: a_jack_merullo_5e5b2b61
+  name: Jack Merullo
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_carsten_eickhoff_547f524f
+  name: Carsten Eickhoff
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_ellie_pavlick_8e923d51
+  name: Ellie Pavlick
+  position: 3
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2310.08744
+  en: 'Recent work in mechanistic interpretability has shown that behaviors in language
+    models can be successfully reverse-engineered through circuit analysis. A common
+    criticism, however, is that each circuit is task-specific, and thus such analysis
+    cannot contribute to understanding the models at a higher level. In this work,
+    we present evidence that insights (both low-level findings about specific heads
+    and higher-level findings about general algorithms) can indeed generalize across
+    tasks. Specifically, we study the circuit discovered in Wang et al. (2022) for
+    the Indirect Object Identification (IOI) task and 1.) show that it reproduces
+    on a larger GPT2 model, and 2.) that it is mostly reused to solve a seemingly
+    different task: Colored Objects (Ippolito & Callison-Burch, 2023). We provide
+    evidence that the process underlying both tasks is functionally very similar,
+    and contains about a 78% overlap in in-circuit attention heads. We further present
+    a proof-of-concept intervention experiment, in which we adjust four attention
+    heads in middle layers in order to ''repair'' the Colored Objects circuit and
+    make it behave like the IOI circuit. In doing so, we boost accuracy from 49.6%
+    to 93.7% on the Colored Objects task and explain most sources of error. The intervention
+    affects downstream attention heads in specific ways predicted by their interactions
+    in the IOI circuit, indicating that this subcircuit behavior is invariant to the
+    different task inputs. Overall, our results provide evidence that it may yet be
+    possible to explain large language models'' behavior in terms of a relatively
+    small number of interpretable task-general algorithmic building blocks and computational
+    components.'
+  zh: >-
+    近期机制可解释性研究表明，通过回路分析可以成功逆向工程语言模型的行为。然而，一种常见批评认为，每个回路都只适用于特定任务，因此这类分析无法帮助我们在更高层面理解模型。在本研究中，我们给出证据，说明相关认识——既包括关于特定注意力头的底层发现，也包括关于一般算法的高层发现——确实能够跨任务泛化。具体而言，我们研究 Wang 等（2022）为间接宾语识别（IOI）任务发现的回路，并证明：（1）该回路能在更大的 GPT2 模型上复现；（2）它在很大程度上被复用于解决一个表面上不同的任务：彩色物体（Colored Objects；Ippolito 与 Callison-Burch，2023）。我们提供证据表明，这两个任务背后的过程在功能上非常相似，其回路内注意力头约有 78% 重叠。我们还给出一个概念验证式干预实验：调整中间层的四个注意力头，以“修复”彩色物体回路，使其像 IOI 回路一样工作。由此，我们将彩色物体任务的准确率从 49.6% 提升至 93.7%，并解释了大多数错误来源。该干预以 IOI 回路中组件交互所预测的特定方式影响下游注意力头，说明这一子回路的行为对不同任务输入保持不变。总体而言，我们的结果表明，或许可以用相对少量、可解释且跨任务通用的算法构件与计算组件来解释大语言模型的行为。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_merullo_circuit_component_reuse
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 30
+  abstract_verification: docling_token_coverage_at_least_0.95

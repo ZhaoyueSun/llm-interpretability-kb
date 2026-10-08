@@ -1,0 +1,89 @@
+---
+schema_version: 1
+paper_id: p_2023_todd_function_vectors_in
+title: Function Vectors in Large Language Models
+year: 2023
+earliest_public_date: '2023-10-23'
+earliest_public_date_precision: day
+venue: International Conference on Learning Representations
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2310.15213
+  arxiv_id: '2310.15213'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2310.15213
+  pdf: https://arxiv.org/pdf/2310.15213
+  code: 
+authors:
+- author_id: a_eric_todd_db640f72
+  name: Eric Todd
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_millicent_li_61872fc1
+  name: Millicent Li
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_arnab_sen_sharma_f2643c4c
+  name: Arnab Sen Sharma
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_aaron_mueller_4e73fa7c
+  name: Aaron Mueller
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_byron_c_wallace_e744361f
+  name: Byron C. Wallace
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_david_bau_778385a5
+  name: David Bau
+  position: 6
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2310.15213
+  en: We report the presence of a simple neural mechanism that represents an input-output
+    function as a vector within autoregressive transformer language models (LMs).
+    Using causal mediation analysis on a diverse range of in-context-learning (ICL)
+    tasks, we find that a small number attention heads transport a compact representation
+    of the demonstrated task, which we call a function vector (FV). FVs are robust
+    to changes in context, i.e., they trigger execution of the task on inputs such
+    as zero-shot and natural text settings that do not resemble the ICL contexts from
+    which they are collected. We test FVs across a range of tasks, models, and layers
+    and find strong causal effects across settings in middle layers. We investigate
+    the internal structure of FVs and find while that they often contain information
+    that encodes the output space of the function, this information alone is not sufficient
+    to reconstruct an FV. Finally, we test semantic vector composition in FVs, and
+    find that to some extent they can be summed to create vectors that trigger new
+    complex tasks. Our findings show that compact, causal internal vector representations
+    of function abstractions can be explicitly extracted from LLMs. Our code and data
+    are available at https://functions.baulab.info.
+  zh: >-
+    我们报告了一种简单神经机制的存在：它在自回归 Transformer 语言模型（LM）内部用一个向量表示输入—输出函数。通过对多种上下文学习（ICL）任务进行因果中介分析，我们发现，少量注意力头会传递所示范任务的紧凑表征，我们称之为函数向量（FV）。函数向量对上下文变化具有鲁棒性：在零样本设置和自然文本等与其提取来源 ICL 上下文并不相似的输入中，它们仍能触发任务执行。我们跨多种任务、模型和层测试函数向量，并在不同设置的中间层发现了很强的因果效应。我们进一步考察函数向量的内部结构，发现它们虽经常包含编码函数输出空间的信息，但仅凭这些信息不足以重建函数向量。最后，我们测试函数向量的语义向量组合，发现它们在一定程度上可以相加，形成能够触发新复杂任务的向量。我们的发现表明，可以从大语言模型中显式提取对函数抽象的紧凑、具有因果作用的内部向量表征。代码和数据见 https://functions.baulab.info。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_todd_function_vectors_in
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 40
+  abstract_verification: docling_token_coverage_at_least_0.95

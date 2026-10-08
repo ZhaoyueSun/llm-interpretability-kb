@@ -1,0 +1,65 @@
+---
+schema_version: 1
+paper_id: p_2026_zhou_sparse_visual_thought
+title: Sparse Visual Thought Circuits in Vision-Language Models
+year: 2026
+earliest_public_date: '2026-03-26'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2603.25075
+  arxiv_id: '2603.25075'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2603.25075
+  pdf: https://arxiv.org/pdf/2603.25075
+  code: 
+authors:
+- author_id: a_yun_xiang_zhou_ec5d217a
+  name: Yun-Xiang Zhou
+  position: 1
+  roles:
+  - first
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2603.25075
+  en: 'Sparse autoencoders (SAEs) improve interpretability in multimodal models, but
+    it remains unclear whether SAE features form modular, composable units for reasoning-an
+    assumption underlying many intervention-based steering methods. We test this modularity
+    hypothesis and find it often fails: intervening on a task-selective feature set
+    can modestly improve reasoning accuracy, while intervening on the union of two
+    such sets reliably induces output drift (large unintended changes in predictions)
+    and degrades accuracy, even under norm-matched perturbations. This non modular
+    circuit interference is consistent with shared internal pathways where feature
+    unions amplify activation shifts. We develop a reproducible causal pipeline to
+    localize and test these sparse visual thought circuits in Qwen3-VL-8B. On a controlled
+    synthetic benchmark with seven task types and three difficulty levels, linear
+    probes identify a mid decoder locus for task type information. We train SAEs at
+    this layer, construct task-selective sets via an explicit rule, and perform inference
+    time scaling and ablation while quantifying accuracy and drift. Our findings-validated
+    with bootstrapped subsamples and permutation controls, and replicated across multiple
+    VLM families and five diverse datasets clarify the boundaries of SAE feature composability
+    and provide a rigorous diagnostic framework for more reliable VLM control.'
+  zh: >-
+    稀疏自编码器（SAE）提升了多模态模型的可解释性，但 SAE
+    特征是否能构成用于推理的模块化、可组合单元仍不明确，而许多基于干预的引导方法都依赖这一假设。我们检验了该模块化假设，并发现它经常失效：干预一个任务选择性特征集合可以小幅提高推理准确率，但干预两个此类集合的并集会稳定地引起输出漂移，即预测发生大量非预期变化，并降低准确率；即使扰动经过范数匹配，这一现象依然存在。这种非模块化的回路干扰与共享内部路径相一致，因为特征并集会放大激活偏移。我们建立了一套可复现的因果流程，用于在
+    Qwen3-VL-8B 中定位并检验这些稀疏视觉思维回路。在一个包含七种任务类型和三个难度等级的受控合成基准上，线性探针识别出解码器中层的任务类型信息位置。我们在该层训练
+    SAE，依据明确规则构造任务选择性集合，并在量化准确率和漂移的同时进行推理时缩放与消融。研究结果通过 bootstrap
+    子样本和置换对照得到验证，并在多个视觉语言模型家族和五个不同数据集上复现。这些结果厘清了 SAE 特征可组合性的边界，并为更可靠地控制视觉语言模型提供了严格的诊断框架。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2026_zhou_sparse_visual_thought
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 13
+  abstract_verification: docling_token_coverage_at_least_0.95

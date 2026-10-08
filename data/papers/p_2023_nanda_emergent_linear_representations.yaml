@@ -1,0 +1,65 @@
+---
+schema_version: 1
+paper_id: p_2023_nanda_emergent_linear_representations
+title: Emergent Linear Representations in World Models of Self-Supervised Sequence
+  Models
+year: 2023
+earliest_public_date: '2023-09-02'
+earliest_public_date_precision: day
+venue: BlackboxNLP Workshop on Analyzing and Interpreting Neural Networks for NLP
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2309.00941
+  arxiv_id: '2309.00941'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2309.00941
+  pdf: https://arxiv.org/pdf/2309.00941
+  code: 
+authors:
+- author_id: a_neel_nanda_ddf6abf4
+  name: Neel Nanda
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_andrew_lee_b340490f
+  name: Andrew Lee
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_martin_wattenberg_6df204a2
+  name: Martin Wattenberg
+  position: 3
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2309.00941
+  en: How do sequence models represent their decision-making process? Prior work suggests
+    that Othello-playing neural network learned nonlinear models of the board state
+    (Li et al., 2023a). In this work, we provide evidence of a closely related linear
+    representation of the board. In particular, we show that probing for “my colour”
+    vs. “opponent’s colour” may be a simple yet powerful way to interpret the model’s
+    internal state. This precise understanding of the internal representations allows
+    us to control the model’s behaviour with simple vector arithmetic. Linear representations
+    enable significant interpretability progress, which we demonstrate with further
+    exploration of how the world model is computed.
+  zh: >-
+    序列模型如何表征自身的决策过程？以往研究认为，会下 Othello 棋的神经网络学到了棋盘状态的非线性模型（Li 等，2023a）。在本研究中，我们给出证据，证明存在一种密切相关的棋盘线性表征。具体而言，我们表明，探测“我的颜色”与“对手的颜色”可能是一种简单却有力的模型内部状态解释方法。对内部表征的这种精确认识，使我们可以用简单的向量运算控制模型行为。线性表征推动了可解释性的显著进展；我们通过进一步探索世界模型如何计算来展示这一点。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_nanda_emergent_linear_representations
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 77
+  abstract_verification: docling_token_coverage_at_least_0.95

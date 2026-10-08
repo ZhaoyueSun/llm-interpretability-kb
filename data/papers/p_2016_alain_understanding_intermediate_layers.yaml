@@ -1,0 +1,58 @@
+---
+schema_version: 1
+paper_id: p_2016_alain_understanding_intermediate_layers
+title: Understanding intermediate layers using linear classifier probes
+year: 2016
+earliest_public_date: '2016-10-05'
+earliest_public_date_precision: day
+venue: International Conference on Learning Representations
+publication_type: preprint
+identifiers:
+  doi: ''
+  arxiv_id: '1610.01644'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/1610.01644
+  pdf: https://arxiv.org/pdf/1610.01644
+  code: 
+authors:
+- author_id: a_guillaume_alain_5962564e
+  name: Guillaume Alain
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_yoshua_bengio_eae9f33b
+  name: Yoshua Bengio
+  position: 2
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/1610.01644
+  en: "Neural network models have a reputation for being black boxes. We propose to
+    monitor the features at every layer of a model and measure how suitable they are
+    for classification. We use linear classifiers, which we refer to as \"probes\",
+    trained entirely independently of the model itself. \nThis helps us better understand
+    the roles and dynamics of the intermediate layers. We demonstrate how this can
+    be used to develop a better intuition about models and to diagnose potential problems.
+    \nWe apply this technique to the popular models Inception v3 and Resnet-50. Among
+    other things, we observe experimentally that the linear separability of features
+    increase monotonically along the depth of the model."
+  zh: >-
+    神经网络模型素有“黑箱”之名。我们提出监测模型每一层的特征，并衡量它们对分类任务的适用程度。我们使用完全独立于模型本身训练的线性分类器，并称之为“探针”。这有助于我们更好地理解中间层的作用和动力学。我们展示了如何使用该方法建立对模型更好的直觉，并诊断潜在问题。我们把这一技术应用于常用模型 Inception v3 和 ResNet-50。实验观察之一是，特征的线性可分性会沿模型深度单调增加。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2016_alain_understanding_intermediate_layers
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 104
+  abstract_verification: docling_token_coverage_at_least_0.95

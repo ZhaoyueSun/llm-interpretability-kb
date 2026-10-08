@@ -1,0 +1,80 @@
+---
+schema_version: 1
+paper_id: p_2024_shai_transformers_represent_belief
+title: Transformers represent belief state geometry in their residual stream
+year: 2024
+earliest_public_date: '2024-05-24'
+earliest_public_date_precision: day
+venue: Neural Information Processing Systems
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2405.15943
+  arxiv_id: '2405.15943'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2405.15943
+  pdf: https://arxiv.org/pdf/2405.15943
+  code: 
+authors:
+- author_id: a_a_shai_41350be4
+  name: A. Shai
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_sarah_e_marzen_8a7216ec
+  name: Sarah E. Marzen
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_lucas_teixeira_46a7c405
+  name: Lucas Teixeira
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_alexander_gietelink_oldenziel_526ef46d
+  name: Alexander Gietelink Oldenziel
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_p_riechers_010780da
+  name: P. Riechers
+  position: 5
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2405.15943
+  en: What computational structure are we building into large language models when
+    we train them on next-token prediction? Here, we present evidence that this structure
+    is given by the meta-dynamics of belief updating over hidden states of the data-generating
+    process. Leveraging the theory of optimal prediction, we anticipate and then find
+    that belief states are linearly represented in the residual stream of transformers,
+    even in cases where the predicted belief state geometry has highly nontrivial
+    fractal structure. We investigate cases where the belief state geometry is represented
+    in the final residual stream or distributed across the residual streams of multiple
+    layers, providing a framework to explain these observations. Furthermore we demonstrate
+    that the inferred belief states contain information about the entire future, beyond
+    the local next-token prediction that the transformers are explicitly trained on.
+    Our work provides a general framework connecting the structure of training data
+    to the geometric structure of activations inside transformers.
+  zh: >-
+    当我们使用下一 token 预测训练大语言模型时，究竟在模型中构建了什么样的计算结构？本文给出证据，表明这种结构由数据生成过程中针对隐藏状态进行信念更新的元动力学所决定。借助最优预测理论，我们预先推导并随后发现：信念状态在线性意义上表征于 Transformer 的残差流中，即使预测出的信念状态几何具有高度非平凡的分形结构也是如此。我们研究了信念状态几何表征在最终残差流中的情况，也研究了它分布于多个层的残差流中的情况，并提供一个解释这些现象的框架。此外，我们证明，推断出的信念状态包含有关整个未来的信息，超出了 Transformer 明确接受训练的局部下一 token 预测。我们的工作提供了一个通用框架，将训练数据的结构与 Transformer 内部激活的几何结构联系起来。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2024_shai_transformers_represent_belief
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 59
+  abstract_verification: docling_token_coverage_at_least_0.95

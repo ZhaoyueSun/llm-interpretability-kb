@@ -1,0 +1,77 @@
+---
+schema_version: 1
+paper_id: p_2024_marks_enhancing_neural_network
+title: Enhancing Neural Network Interpretability with Feature-Aligned Sparse Autoencoders
+year: 2024
+earliest_public_date: '2024-11-02'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2411.01220
+  arxiv_id: '2411.01220'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2411.01220
+  pdf: https://arxiv.org/pdf/2411.01220
+  code: 
+authors:
+- author_id: a_luke_marks_7f72fc9c
+  name: Luke Marks
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_alasdair_paren_71d22c45
+  name: Alasdair Paren
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_david_krueger_3ec99431
+  name: David Krueger
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_fazl_barez_a240fb67
+  name: Fazl Barez
+  position: 4
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2411.01220
+  en: Sparse Autoencoders (SAEs) have shown promise in improving the interpretability
+    of neural network activations, but can learn features that are not features of
+    the input, limiting their effectiveness. We propose \textsc{Mutual Feature Regularization}
+    \textbf{(MFR)}, a regularization technique for improving feature learning by encouraging
+    SAEs trained in parallel to learn similar features. We motivate \textsc{MFR} by
+    showing that features learned by multiple SAEs are more likely to correlate with
+    features of the input. By training on synthetic data with known features of the
+    input, we show that \textsc{MFR} can help SAEs learn those features, as we can
+    directly compare the features learned by the SAE with the input features for the
+    synthetic data. We then scale \textsc{MFR} to SAEs that are trained to denoise
+    electroencephalography (EEG) data and SAEs that are trained to reconstruct GPT-2
+    Small activations. We show that \textsc{MFR} can improve the reconstruction loss
+    of SAEs by up to 21.21\% on GPT-2 Small, and 6.67\% on EEG data. Our results suggest
+    that the similarity between features learned by different SAEs can be leveraged
+    to improve SAE training, thereby enhancing performance and the usefulness of SAEs
+    for model interpretability.
+  zh: >-
+    稀疏自编码器（SAE）在提高神经网络激活的可解释性方面展现出潜力，但也可能学到并非输入本身特征的特征，从而限制其有效性。我们提出互特征正则化（Mutual Feature Regularization，MFR），这是一种通过鼓励并行训练的 SAE 学习相似特征来改进特征学习的正则化技术。我们发现，由多个 SAE 共同学到的特征更可能与输入特征相关，这为 MFR 提供了动机。通过在输入特征已知的合成数据上训练，我们可以直接比较 SAE 所学特征与合成数据的输入特征，并由此证明 MFR 能帮助 SAE 学到这些特征。随后，我们把 MFR 扩展到用于脑电图（EEG）数据去噪的 SAE，以及用于重构 GPT-2 Small 激活的 SAE。结果表明，MFR 可使 SAE 在 GPT-2 Small 上的重构损失最多改善 21.21%，在 EEG 数据上最多改善 6.67%。研究结果说明，可以利用不同 SAE 所学特征之间的相似性改进 SAE 训练，从而提升其性能以及在模型可解释性中的实用价值。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2024_marks_enhancing_neural_network
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 69
+  abstract_verification: docling_token_coverage_at_least_0.95

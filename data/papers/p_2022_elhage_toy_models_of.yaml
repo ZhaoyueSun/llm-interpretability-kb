@@ -1,0 +1,140 @@
+---
+schema_version: 1
+paper_id: p_2022_elhage_toy_models_of
+title: Toy Models of Superposition
+year: 2022
+earliest_public_date: '2022-09-21'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2209.10652
+  arxiv_id: '2209.10652'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2209.10652
+  pdf: https://arxiv.org/pdf/2209.10652
+  code: 
+authors:
+- author_id: a_nelson_elhage_f370d8f0
+  name: Nelson Elhage
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_tristan_hume_4126a600
+  name: Tristan Hume
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_catherine_olsson_ede5db09
+  name: Catherine Olsson
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_nicholas_schiefer_eb033529
+  name: Nicholas Schiefer
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_t_henighan_26ac86d7
+  name: T. Henighan
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_s_kravec_31ea2f61
+  name: S. Kravec
+  position: 6
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_zac_hatfield_dodds_202f8201
+  name: Zac Hatfield-Dodds
+  position: 7
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_r_lasenby_a1bd9c0b
+  name: R. Lasenby
+  position: 8
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_dawn_drain_6cf4cbd3
+  name: Dawn Drain
+  position: 9
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_carol_chen_9d37f5f4
+  name: Carol Chen
+  position: 10
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_r_grosse_699c25ea
+  name: R. Grosse
+  position: 11
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_sam_mccandlish_df257ad4
+  name: Sam McCandlish
+  position: 12
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_j_kaplan_a49533e8
+  name: J. Kaplan
+  position: 13
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_dario_amodei_a59b02ef
+  name: Dario Amodei
+  position: 14
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_m_wattenberg_127591b0
+  name: M. Wattenberg
+  position: 15
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_chris_olah_158a0d46
+  name: Chris Olah
+  position: 16
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2209.10652
+  en: Neural networks often pack many unrelated concepts into a single neuron - a
+    puzzling phenomenon known as 'polysemanticity' which makes interpretability much
+    more challenging. This paper provides a toy model where polysemanticity can be
+    fully understood, arising as a result of models storing additional sparse features
+    in"superposition."We demonstrate the existence of a phase change, a surprising
+    connection to the geometry of uniform polytopes, and evidence of a link to adversarial
+    examples. We also discuss potential implications for mechanistic interpretability.
+  zh: >-
+    神经网络经常把许多互不相关的概念装入同一个神经元。这种令人困惑的现象称为“多义性”，会使可解释性研究困难得多。本文给出一个可以完整理解多义性的玩具模型；在该模型中，多义性源于模型以“叠加”方式存储额外的稀疏特征。我们展示了相变的存在、它与均匀多面体几何之间令人意外的联系，以及它与对抗样本相关的证据。我们还讨论了这些发现对机制可解释性的潜在影响。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2022_elhage_toy_models_of
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 76
+  abstract_verification: docling_token_coverage_at_least_0.95

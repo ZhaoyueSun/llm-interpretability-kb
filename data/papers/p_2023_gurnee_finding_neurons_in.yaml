@@ -1,0 +1,88 @@
+---
+schema_version: 1
+paper_id: p_2023_gurnee_finding_neurons_in
+title: 'Finding Neurons in a Haystack: Case Studies with Sparse Probing'
+year: 2023
+earliest_public_date: '2023-05-02'
+earliest_public_date_precision: day
+venue: Trans. Mach. Learn. Res.
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2305.01610
+  arxiv_id: '2305.01610'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2305.01610
+  pdf: https://arxiv.org/pdf/2305.01610
+  code: 
+authors:
+- author_id: a_wes_gurnee_bef85191
+  name: Wes Gurnee
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_neel_nanda_ddf6abf4
+  name: Neel Nanda
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_matthew_pauly_48b45e7c
+  name: Matthew Pauly
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_katherine_harvey_09a7e908
+  name: Katherine Harvey
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_dmitrii_troitskii_73a138fe
+  name: Dmitrii Troitskii
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_d_bertsimas_48aa1955
+  name: D. Bertsimas
+  position: 6
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2305.01610
+  en: Despite rapid adoption and deployment of large language models (LLMs), the internal
+    computations of these models remain opaque and poorly understood. In this work,
+    we seek to understand how high-level human-interpretable features are represented
+    within the internal neuron activations of LLMs. We train $k$-sparse linear classifiers
+    (probes) on these internal activations to predict the presence of features in
+    the input; by varying the value of $k$ we study the sparsity of learned representations
+    and how this varies with model scale. With $k=1$, we localize individual neurons
+    which are highly relevant for a particular feature, and perform a number of case
+    studies to illustrate general properties of LLMs. In particular, we show that
+    early layers make use of sparse combinations of neurons to represent many features
+    in superposition, that middle layers have seemingly dedicated neurons to represent
+    higher-level contextual features, and that increasing scale causes representational
+    sparsity to increase on average, but there are multiple types of scaling dynamics.
+    In all, we probe for over 100 unique features comprising 10 different categories
+    in 7 different models spanning 70 million to 6.9 billion parameters.
+  zh: >-
+    尽管大语言模型（LLM）得到快速采用和部署，其内部计算仍然不透明且缺乏充分理解。在本研究中，我们试图理解人类可解释的高层特征如何表征于语言模型内部神经元激活中。我们在这些内部激活上训练 $k$-稀疏线性分类器（探针），以预测输入中是否存在某项特征；通过改变 $k$ 的取值，我们研究所学表征的稀疏性，以及这种稀疏性如何随模型规模变化。当 $k=1$ 时，我们定位到与特定特征高度相关的单个神经元，并通过多个案例研究说明语言模型的一般性质。具体而言，我们表明：早期层使用稀疏神经元组合，以叠加方式表征许多特征；中间层似乎有专门表征高层上下文特征的神经元；模型规模增加会使表征稀疏性平均上升，但其中存在多种缩放动力学。总体上，我们在 7 个参数量从 7,000 万到 69 亿不等的模型中，探测了属于 10 个不同类别的 100 多项独特特征。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_gurnee_finding_neurons_in
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 86
+  abstract_verification: docling_token_coverage_at_least_0.95

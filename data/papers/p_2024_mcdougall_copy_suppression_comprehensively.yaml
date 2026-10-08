@@ -1,0 +1,88 @@
+---
+schema_version: 1
+paper_id: p_2024_mcdougall_copy_suppression_comprehensively
+title: 'Copy Suppression: Comprehensively Understanding a Motif in Language Model
+  Attention Heads'
+year: 2024
+earliest_public_date: '2024'
+earliest_public_date_precision: year
+venue: BlackboxNLP Workshop on Analyzing and Interpreting Neural Networks for NLP
+publication_type: ''
+identifiers:
+  doi: 10.18653/v1/2024.blackboxnlp-1.22
+  arxiv_id: ''
+  openreview_id: 
+links:
+  primary: https://www.semanticscholar.org/paper/5e878b65e772e759e6f06d63408f6956b474cdda
+  pdf: https://aclanthology.org/2024.blackboxnlp-1.22.pdf
+  code: 
+authors:
+- author_id: a_callum_mcdougall_531e3f97
+  name: Callum McDougall
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_arthur_conmy_1734e7d3
+  name: Arthur Conmy
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_cody_rushing_2dbfe93a
+  name: Cody Rushing
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_thomas_mcgrath_897fad4f
+  name: Thomas McGrath
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_neel_nanda_ddf6abf4
+  name: Neel Nanda
+  position: 5
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://www.semanticscholar.org/paper/5e878b65e772e759e6f06d63408f6956b474cdda
+  en: 'We present the copy suppression motif: an algorithm implemented by attention
+    heads in large language models that reduces loss.If i) language model components
+    in earlier layers predict a certain token, ii) this token appears earlier in the
+    context and iii) later attention heads in the model suppress prediction of the
+    token, then this is copy suppression. To show the importance of copy suppression,
+    we focus on reverse-engineering attention head 10.7 (L10H7) in GPT-2 Small. This
+    head suppresses naive copying behavior which improves overall model calibration,
+    which explains why multiple prior works studying certain narrow tasks found negative
+    heads that systematically favored the wrong answer. We uncover the mechanism that
+    the negative heads use for copy suppression with weights-based evidence and are
+    able to explain 76.9% of the impact of L10H7 in GPT-2 Small, by this motif alone.To
+    the best of our knowledge, this is the most comprehensive description of the complete
+    role of a component in a language model to date. One major effect of copy suppression
+    is its role in self-repair. Self-repair refers to how ablating crucial model components
+    results in downstream neural network parts compensating for this ablation. Copy
+    suppression leads to self-repair: if an initial overconfident copier is ablated,
+    then there is nothing to suppress. We show that self-repair is implemented by
+    several mechanisms, one of which is copy suppression, which explains 39% of the
+    behavior in a narrow task. Interactive visualizations of the copy suppression
+    phenomena may be seen at our web app https://copy-suppression.streamlit.app/.'
+  zh: >-
+    我们提出“复制抑制”模体：这是大语言模型中的注意力头为降低损失而实现的一种算法。如果（i）较早层中的语言模型组件预测某个 token，（ii）该 token 先前已在上下文中出现，并且（iii）模型中较后的注意力头抑制对该 token 的预测，那么这一过程就是复制抑制。为说明复制抑制的重要性，我们重点对 GPT-2 Small 的注意力头 10.7（L10H7）进行逆向工程。该注意力头通过抑制朴素复制行为来改善模型整体校准，这也解释了为何此前多项研究在某些狭窄任务中发现了系统性偏向错误答案的负向注意力头。我们利用基于权重的证据揭示负向注意力头实施复制抑制的机制，并且仅凭这一模体便能解释 L10H7 在 GPT-2 Small 中 76.9% 的影响。据我们所知，这是迄今对语言模型中单个组件完整作用最全面的描述。复制抑制的一项重要影响体现在自修复中。自修复是指：消融关键模型组件后，下游神经网络部分会对该消融进行补偿。复制抑制会导致自修复——如果最初那个过度自信的复制组件被消融，便不再有需要抑制的对象。我们表明，自修复由多种机制实现，其中之一就是复制抑制；在一个狭窄任务中，它可以解释 39% 的行为。复制抑制现象的交互式可视化可见于我们的 Web 应用：https://copy-suppression.streamlit.app/。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2024_mcdougall_copy_suppression_comprehensively
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 21
+  abstract_verification: docling_token_coverage_at_least_0.95

@@ -1,0 +1,96 @@
+---
+schema_version: 1
+paper_id: p_2023_sakarvadia_attention_lens_a
+title: 'Attention Lens: A Tool for Mechanistically Interpreting the Attention Head
+  Information Retrieval Mechanism'
+year: 2023
+earliest_public_date: '2023-10-25'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2310.16270
+  arxiv_id: '2310.16270'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2310.16270
+  pdf: https://arxiv.org/pdf/2310.16270
+  code: 
+authors:
+- author_id: a_mansi_sakarvadia_db1b6ecc
+  name: Mansi Sakarvadia
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_a_khan_95b9f727
+  name: A. Khan
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_a_ajith_b469532a
+  name: A. Ajith
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_daniel_grzenda_e10a55e2
+  name: Daniel Grzenda
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_nathaniel_hudson_ebae2792
+  name: Nathaniel Hudson
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_a_bauer_deffbecf
+  name: A. Bauer
+  position: 6
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_k_chard_c4df3980
+  name: K. Chard
+  position: 7
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_i_foster_dc2caa37
+  name: I. Foster
+  position: 8
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2310.16270
+  en: Transformer-based Large Language Models (LLMs) are the state-of-the-art for
+    natural language tasks. Recent work has attempted to decode, by reverse engineering
+    the role of linear layers, the internal mechanisms by which LLMs arrive at their
+    final predictions for text completion tasks. Yet little is known about the specific
+    role of attention heads in producing the final token prediction. We propose Attention
+    Lens, a tool that enables researchers to translate the outputs of attention heads
+    into vocabulary tokens via learned attention-head-specific transformations called
+    lenses. Preliminary findings from our trained lenses indicate that attention heads
+    play highly specialized roles in language models. The code for Attention Lens
+    is available at github.com/msakarvadia/AttentionLens.
+  zh: >-
+    基于 Transformer 的大语言模型（LLM）代表了自然语言任务的先进水平。近期研究试图通过逆向工程线性层的作用，解码语言模型得出文本补全任务最终预测的内部机制。然而，对于注意力头在生成最终 token 预测中发挥的具体作用，我们仍知之甚少。我们提出 Attention Lens 工具；它使用学习得到的、针对各个注意力头的变换——称为“透镜”——把注意力头输出转换为词汇 token。训练所得透镜的初步结果表明，注意力头在语言模型中承担高度专门化的作用。Attention Lens 代码见 github.com/msakarvadia/AttentionLens。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_sakarvadia_attention_lens_a
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 95
+  abstract_verification: docling_token_coverage_at_least_0.95

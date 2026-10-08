@@ -1,0 +1,104 @@
+---
+schema_version: 1
+paper_id: p_2023_lieberum_does_circuit_analysis
+title: Does Circuit Analysis Interpretability Scale? Evidence from Multiple Choice
+  Capabilities in Chinchilla
+year: 2023
+earliest_public_date: '2023-07-18'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2307.09458
+  arxiv_id: '2307.09458'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2307.09458
+  pdf: https://arxiv.org/pdf/2307.09458
+  code: 
+authors:
+- author_id: a_tom_lieberum_e979b353
+  name: Tom Lieberum
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_matthew_rahtz_e2753fc2
+  name: Matthew Rahtz
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_j_anos_kram_ar_813930c3
+  name: J'anos Kram'ar
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_neel_nanda_ddf6abf4
+  name: Neel Nanda
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_geoffrey_irving_df30cdd8
+  name: Geoffrey Irving
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_rohin_shah_1b05662e
+  name: Rohin Shah
+  position: 6
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_vladimir_mikulik_712667db
+  name: Vladimir Mikulik
+  position: 7
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2307.09458
+  en: "\\emph{Circuit analysis} is a promising technique for understanding the internal
+    mechanisms of language models. However, existing analyses are done in small models
+    far from the state of the art. To address this, we present a case study of circuit
+    analysis in the 70B Chinchilla model, aiming to test the scalability of circuit
+    analysis. In particular, we study multiple-choice question answering, and investigate
+    Chinchilla's capability to identify the correct answer \\emph{label} given knowledge
+    of the correct answer \\emph{text}. We find that the existing techniques of logit
+    attribution, attention pattern visualization, and activation patching naturally
+    scale to Chinchilla, allowing us to identify and categorize a small set of `output
+    nodes' (attention heads and MLPs). We further study the `correct letter' category
+    of attention heads aiming to understand the semantics of their features, with
+    mixed results. For normal multiple-choice question answers, we significantly compress
+    the query, key and value subspaces of the head without loss of performance when
+    operating on the answer labels for multiple-choice questions, and we show that
+    the query and key subspaces represent an `Nth item in an enumeration' feature
+    to at least some extent. However, when we attempt to use this explanation to understand
+    the heads' behaviour on a more general distribution including randomized answer
+    labels, we find that it is only a partial explanation, suggesting there is more
+    to learn about the operation of `correct letter' heads on multiple choice question
+    answering."
+  zh: >-
+    回路分析是一种很有前景的语言模型内部机制理解技术。然而，现有分析通常只在远离当前先进水平的小型模型上进行。为此，我们以 700 亿参数的 Chinchilla
+    模型为案例开展回路分析，以检验该方法的可扩展性。具体而言，我们研究多项选择问答，并考察在已经知道正确答案文本的情况下，Chinchilla
+    如何识别正确的答案标签。我们发现，logit 归因、注意力模式可视化和激活修补等现有技术能够自然扩展到 Chinchilla，使我们可以识别并分类一小组“输出节点”（注意力头和
+    MLP）。我们进一步研究其中的“正确字母”类注意力头，试图理解其特征语义，但结果好坏参半。对于普通多项选择题，在操作答案标签时，我们可以显著压缩这些注意力头的查询、键和值子空间而不损失性能；并且我们证明，查询和键子空间至少在一定程度上表示了“枚举中的第
+    N 项”这一特征。然而，当我们尝试用这种解释理解这些注意力头在包含随机答案标签的更一般分布上的行为时，发现它只能提供部分解释。这说明，对于“正确字母”注意力头在多项选择问答中的工作方式，仍有更多内容需要理解。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_lieberum_does_circuit_analysis
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 11
+  abstract_verification: docling_token_coverage_at_least_0.95

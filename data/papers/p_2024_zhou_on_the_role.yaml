@@ -1,0 +1,113 @@
+---
+schema_version: 1
+paper_id: p_2024_zhou_on_the_role
+title: On the Role of Attention Heads in Large Language Model Safety
+year: 2024
+earliest_public_date: '2024-10-17'
+earliest_public_date_precision: day
+venue: International Conference on Learning Representations
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2410.13708
+  arxiv_id: '2410.13708'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2410.13708
+  pdf: https://arxiv.org/pdf/2410.13708
+  code: 
+authors:
+- author_id: a_zhenhong_zhou_731b6cbe
+  name: Zhenhong Zhou
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_haiyang_yu_6a438b8f
+  name: Haiyang Yu
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_xinghua_zhang_9cf2a20c
+  name: Xinghua Zhang
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_rongwu_xu_f53597b4
+  name: Rongwu Xu
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_fei_huang_213daa78
+  name: Fei Huang
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_kun_wang_7de706ae
+  name: Kun Wang
+  position: 6
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_yang_liu_09642dbd
+  name: Yang Liu
+  position: 7
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_junfeng_fang_66e43a47
+  name: Junfeng Fang
+  position: 8
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_yong_bin_li_7189b74c
+  name: Yong-Bin Li
+  position: 9
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2410.13708
+  en: Large language models (LLMs) achieve state-of-the-art performance on multiple
+    language tasks, yet their safety guardrails can be circumvented, leading to harmful
+    generations. In light of this, recent research on safety mechanisms has emerged,
+    revealing that when safety representations or component are suppressed, the safety
+    capability of LLMs are compromised. However, existing research tends to overlook
+    the safety impact of multi-head attention mechanisms, despite their crucial role
+    in various model functionalities. Hence, in this paper, we aim to explore the
+    connection between standard attention mechanisms and safety capability to fill
+    this gap in the safety-related mechanistic interpretability. We propose a novel
+    metric which tailored for multi-head attention, the Safety Head ImPortant Score
+    (Ships), to assess the individual heads' contributions to model safety. Based
+    on this, we generalize Ships to the dataset level and further introduce the Safety
+    Attention Head AttRibution Algorithm (Sahara) to attribute the critical safety
+    attention heads inside the model. Our findings show that the special attention
+    head has a significant impact on safety. Ablating a single safety head allows
+    aligned model (e.g., Llama-2-7b-chat) to respond to 16 times more harmful queries,
+    while only modifying 0.006% of the parameters, in contrast to the ~ 5% modification
+    required in previous studies. More importantly, we demonstrate that attention
+    heads primarily function as feature extractors for safety and models fine-tuned
+    from the same base model exhibit overlapping safety heads through comprehensive
+    experiments. Together, our attribution approach and findings provide a novel perspective
+    for unpacking the black box of safety mechanisms within large models.
+  zh: >-
+    大语言模型（LLM）在多项语言任务上取得了最先进的性能，但其安全护栏可能被绕过，从而生成有害内容。鉴于此，近期关于安全机制的研究发现，当安全表征或安全组件受到抑制时，语言模型的安全能力会受损。然而，尽管多头注意力机制对多种模型功能至关重要，现有研究往往忽略它对安全性的影响。为填补安全相关机制可解释性中的这一空白，本文探索标准注意力机制与安全能力之间的联系。我们提出一个为多头注意力定制的新指标——安全注意力头重要性分数（Safety Head ImPortant Score，Ships），用于评估各个注意力头对模型安全性的贡献。在此基础上，我们把 Ships 推广到数据集层面，并进一步提出安全注意力头归因算法（Safety Attention Head AttRibution Algorithm，Sahara），以归因模型内部关键的安全注意力头。研究发现，特定注意力头会显著影响安全性。只消融一个安全注意力头，就会使经过对齐的模型（如 Llama-2-7b-chat）回答的有害问题增至原来的 16 倍，而修改的参数仅占 0.006%；相比之下，既有研究需要修改约 5% 的参数。更重要的是，广泛实验表明，注意力头在安全机制中主要充当特征提取器，并且从同一基础模型微调得到的模型具有相互重叠的安全注意力头。我们的归因方法和研究发现为剖析大模型安全机制这一黑箱提供了新视角。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2024_zhou_on_the_role
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 58
+  abstract_verification: docling_token_coverage_at_least_0.95

@@ -1,0 +1,85 @@
+---
+schema_version: 1
+paper_id: p_2023_cunningham_sparse_autoencoders_find
+title: Sparse Autoencoders Find Highly Interpretable Features in Language Models
+year: 2023
+earliest_public_date: '2023-09-15'
+earliest_public_date_precision: day
+venue: International Conference on Learning Representations
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2309.08600
+  arxiv_id: '2309.08600'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2309.08600
+  pdf: https://arxiv.org/pdf/2309.08600
+  code: 
+authors:
+- author_id: a_hoagy_cunningham_ee87bd1f
+  name: Hoagy Cunningham
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_aidan_ewart_c264d62b
+  name: Aidan Ewart
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_l_smith_98858bc2
+  name: L. Smith
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_r_huben_11153a0d
+  name: R. Huben
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_lee_sharkey_9047958a
+  name: Lee Sharkey
+  position: 5
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2309.08600
+  en: One of the roadblocks to a better understanding of neural networks' internals
+    is \textit{polysemanticity}, where neurons appear to activate in multiple, semantically
+    distinct contexts. Polysemanticity prevents us from identifying concise, human-understandable
+    explanations for what neural networks are doing internally. One hypothesised cause
+    of polysemanticity is \textit{superposition}, where neural networks represent
+    more features than they have neurons by assigning features to an overcomplete
+    set of directions in activation space, rather than to individual neurons. Here,
+    we attempt to identify those directions, using sparse autoencoders to reconstruct
+    the internal activations of a language model. These autoencoders learn sets of
+    sparsely activating features that are more interpretable and monosemantic than
+    directions identified by alternative approaches, where interpretability is measured
+    by automated methods. Moreover, we show that with our learned set of features,
+    we can pinpoint the features that are causally responsible for counterfactual
+    behaviour on the indirect object identification task \citep{wang2022interpretability}
+    to a finer degree than previous decompositions. This work indicates that it is
+    possible to resolve superposition in language models using a scalable, unsupervised
+    method. Our method may serve as a foundation for future mechanistic interpretability
+    work, which we hope will enable greater model transparency and steerability.
+  zh: >-
+    更好地理解神经网络内部机制的一项障碍是多义性：神经元似乎会在多个语义各异的上下文中激活。多义性使我们无法为神经网络内部正在进行的计算找出简洁且人类可理解的解释。关于多义性成因的一种假说是叠加：神经网络并非把特征分配给单个神经元，而是分配到激活空间中的一组过完备方向，从而表征比神经元数量更多的特征。本文尝试使用稀疏自编码器重构语言模型的内部激活，以识别这些方向。这些自编码器学习到一组稀疏激活的特征；根据自动化方法衡量的可解释性，它们比替代方法识别出的方向更易解释且单义性更强。此外，利用所学到的这组特征，我们能够比以往分解更精细地定位在间接宾语识别任务（Wang 等，2022）中对反事实行为负有因果责任的特征。这项工作表明，可以使用可扩展的无监督方法消解语言模型中的叠加。我们的方法可以成为未来机制可解释性研究的基础，并有望带来更高的模型透明度和可引导性。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_cunningham_sparse_autoencoders_find
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 45
+  abstract_verification: docling_token_coverage_at_least_0.95

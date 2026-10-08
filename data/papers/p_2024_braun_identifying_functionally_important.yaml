@@ -1,0 +1,79 @@
+---
+schema_version: 1
+paper_id: p_2024_braun_identifying_functionally_important
+title: Identifying Functionally Important Features with End-to-End Sparse Dictionary
+  Learning
+year: 2024
+earliest_public_date: '2024-05-17'
+earliest_public_date_precision: day
+venue: Neural Information Processing Systems
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2405.12241
+  arxiv_id: '2405.12241'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2405.12241
+  pdf: https://arxiv.org/pdf/2405.12241
+  code: 
+authors:
+- author_id: a_dan_braun_17338db4
+  name: Dan Braun
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_jordan_k_taylor_b89b8e32
+  name: Jordan K. Taylor
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_nicholas_goldowsky_dill_de056011
+  name: Nicholas Goldowsky-Dill
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_lee_sharkey_9047958a
+  name: Lee Sharkey
+  position: 4
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2405.12241
+  en: 'Identifying the features learned by neural networks is a core challenge in
+    mechanistic interpretability. Sparse autoencoders (SAEs), which learn a sparse,
+    overcomplete dictionary that reconstructs a network''s internal activations, have
+    been used to identify these features. However, SAEs may learn more about the structure
+    of the datatset than the computational structure of the network. There is therefore
+    only indirect reason to believe that the directions found in these dictionaries
+    are functionally important to the network. We propose end-to-end (e2e) sparse
+    dictionary learning, a method for training SAEs that ensures the features learned
+    are functionally important by minimizing the KL divergence between the output
+    distributions of the original model and the model with SAE activations inserted.
+    Compared to standard SAEs, e2e SAEs offer a Pareto improvement: They explain more
+    network performance, require fewer total features, and require fewer simultaneously
+    active features per datapoint, all with no cost to interpretability. We explore
+    geometric and qualitative differences between e2e SAE features and standard SAE
+    features. E2e dictionary learning brings us closer to methods that can explain
+    network behavior concisely and accurately. We release our library for training
+    e2e SAEs and reproducing our analysis at https://github.com/ApolloResearch/e2e_sae'
+  zh: >-
+    识别神经网络学到的特征，是机制可解释性中的核心挑战。稀疏自编码器（SAE）会学习一个用于重构网络内部激活的稀疏过完备字典，并已被用于识别这类特征。然而，SAE 学到的内容可能更多反映数据集结构，而非网络的计算结构。因此，人们只有间接理由相信这些字典中发现的方向对网络具有功能重要性。我们提出端到端（e2e）稀疏字典学习：通过最小化原始模型与插入 SAE 激活后模型的输出分布之间的 KL 散度，训练 SAE 并确保所学特征具有功能重要性。与标准 SAE 相比，e2e SAE 实现了帕累托改进：它们能解释更多网络性能，需要的特征总数更少，每个数据点同时激活的特征也更少，同时不损害可解释性。我们还探索了 e2e SAE 特征与标准 SAE 特征之间的几何和定性差异。端到端字典学习使我们更接近能够简洁、准确解释网络行为的方法。用于训练 e2e SAE 和复现分析的代码库见 https://github.com/ApolloResearch/e2e_sae。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2024_braun_identifying_functionally_important
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 94
+  abstract_verification: docling_token_coverage_at_least_0.95

@@ -1,0 +1,87 @@
+---
+schema_version: 1
+paper_id: p_2024_prakash_fine_tuning_enhances
+title: 'Fine-Tuning Enhances Existing Mechanisms: A Case Study on Entity Tracking'
+year: 2024
+earliest_public_date: '2024-02-22'
+earliest_public_date_precision: day
+venue: International Conference on Learning Representations
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2402.14811
+  arxiv_id: '2402.14811'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2402.14811
+  pdf: https://arxiv.org/pdf/2402.14811
+  code: 
+authors:
+- author_id: a_nikhil_prakash_382dd3da
+  name: Nikhil Prakash
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_tamar_rott_shaham_618c685a
+  name: Tamar Rott Shaham
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_tal_haklay_abf5cbf1
+  name: Tal Haklay
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_yonatan_belinkov_efb645ca
+  name: Yonatan Belinkov
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_david_bau_778385a5
+  name: David Bau
+  position: 5
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2402.14811
+  en: 'Fine-tuning on generalized tasks such as instruction following, code generation,
+    and mathematics has been shown to enhance language models'' performance on a range
+    of tasks. Nevertheless, explanations of how such fine-tuning influences the internal
+    computations in these models remain elusive. We study how fine-tuning affects
+    the internal mechanisms implemented in language models. As a case study, we explore
+    the property of entity tracking, a crucial facet of language comprehension, where
+    models fine-tuned on mathematics have substantial performance gains. We identify
+    the mechanism that enables entity tracking and show that (i) in both the original
+    model and its fine-tuned versions primarily the same circuit implements entity
+    tracking. In fact, the entity tracking circuit of the original model on the fine-tuned
+    versions performs better than the full original model. (ii) The circuits of all
+    the models implement roughly the same functionality: Entity tracking is performed
+    by tracking the position of the correct entity in both the original model and
+    its fine-tuned versions. (iii) Performance boost in the fine-tuned models is primarily
+    attributed to its improved ability to handle the augmented positional information.
+    To uncover these findings, we employ: Patch Patching, DCM, which automatically
+    detects model components responsible for specific semantics, and CMAP, a new approach
+    for patching activations across models to reveal improved mechanisms. Our findings
+    suggest that fine-tuning enhances, rather than fundamentally alters, the mechanistic
+    operation of the model.'
+  zh: >-
+    已有研究表明，在指令遵循、代码生成和数学等通用任务上微调，可以提高语言模型在一系列任务上的表现。然而，这类微调如何影响模型内部计算，仍缺乏明确解释。我们研究微调对语言模型所实现内部机制的影响，并以实体追踪作为案例。实体追踪是语言理解的一个关键方面，而在数学任务上微调的模型会在该能力上取得显著提升。我们识别出支持实体追踪的机制，并表明：（i）原始模型与其微调版本主要由同一个回路实现实体追踪；事实上，把原始模型的实体追踪回路置于微调版本中运行，其表现优于完整的原始模型。（ii）所有模型的回路实现大致相同的功能：原始模型及其微调版本都通过追踪正确实体的位置完成实体追踪。（iii）微调模型的性能提升主要来自其处理增强位置信息的能力得到改善。为揭示这些发现，我们使用路径修补、自动检测负责特定语义之模型组件的 DCM，以及一种跨模型修补激活以揭示机制改进的新方法 CMAP。结果表明，微调会增强模型已有机制，而不是从根本上改变其机制运作。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2024_prakash_fine_tuning_enhances
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 87
+  abstract_verification: docling_token_coverage_at_least_0.95

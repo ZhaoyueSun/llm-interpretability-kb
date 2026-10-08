@@ -1,0 +1,81 @@
+---
+schema_version: 1
+paper_id: p_2026_bhardia_mechanistic_analysis_of
+title: 'Mechanistic Analysis Of Universality: Numerical Comparison Circuits Across
+  Transformer Architectures'
+year: 2026
+earliest_public_date: '2026-01-01'
+earliest_public_date_precision: day
+venue: Annual Meeting of the Association for Computational Linguistics
+publication_type: ''
+identifiers:
+  doi: 10.18653/v1/2026.acl-srw.84
+  arxiv_id: ''
+  openreview_id: 
+links:
+  primary: https://www.semanticscholar.org/paper/d37ee1f4aa3cdd18805a04c29aa4c2b1e404c684
+  pdf: https://aclanthology.org/2026.acl-srw.84.pdf
+  code: 
+authors:
+- author_id: a_arya_bhardia_79b24f7c
+  name: Arya Bhardia
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_julian_ramirez_52917c3d
+  name: Julian Ramirez
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_siddhanta_verma_d1038c6a
+  name: Siddhanta Verma
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_karen_mkrtchyan_864eb4bb
+  name: Karen Mkrtchyan
+  position: 4
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://www.semanticscholar.org/paper/d37ee1f4aa3cdd18805a04c29aa4c2b1e404c684
+  en: Transformer language models reliably achieve high accuracy on many reasoning
+    tasks; however, their internal mechanisms are not fully understood.Mechanistic
+    interpretability seeks to remedy this gap by identifying task circuits within
+    individual models, but it is unclear whether such circuits generalize across model
+    families and scales.In this work, we study the universality of circuits through
+    the lens of numerical comparisons, a simple and controlled task that enables clean
+    and causal interventions.We conduct experiments on a set of transformer models
+    spanning different families and sizes from 1.7b to 9b parameters.We find that
+    models within the Qwen family exhibit a highly consistent circuit structure across
+    architecture and scale, featuring localized attention heads that write a task
+    relevant signal.In contrast, models from other families show qualitatively different
+    implementations, where task relevant information emerges much earlier and is distributed
+    across components as opposed to being concentrated within a small set of attention
+    heads.These results serve as evidence that task behavior similarities do not imply
+    mechanistic universality and highlight the necessity for cross model comparisons
+    to claim generalization of internal circuits.1
+  zh: >-
+    Transformer
+    语言模型在许多推理任务上都能可靠地达到较高准确率，但其内部机制仍未被充分理解。机制可解释性试图通过识别单个模型中的任务回路来弥补这一缺口，但这些回路能否跨模型家族和规模泛化尚不明确。本文以数值比较这一简单、受控且便于进行清晰因果干预的任务为切入点，研究回路的普适性。我们在一组来自不同家族、参数规模从
+    17 亿到 90 亿不等的 Transformer 模型上开展实验。结果发现，Qwen
+    家族在不同架构和规模之间呈现高度一致的回路结构，其特点是局部化注意力头会写入与任务相关的信号。相比之下，其他模型家族采用了性质不同的实现：任务相关信息出现得更早，并分布在多个组件中，而不是集中在少量注意力头上。这些结果表明，任务行为相似并不意味着机制具有普适性；若要声称内部回路可以泛化，就必须进行跨模型比较。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2026_bhardia_mechanistic_analysis_of
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 16
+  abstract_verification: docling_token_coverage_at_least_0.95

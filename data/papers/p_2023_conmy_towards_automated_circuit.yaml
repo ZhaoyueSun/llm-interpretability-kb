@@ -1,0 +1,80 @@
+---
+schema_version: 1
+paper_id: p_2023_conmy_towards_automated_circuit
+title: Towards Automated Circuit Discovery for Mechanistic Interpretability
+year: 2023
+earliest_public_date: '2023-04-28'
+earliest_public_date_precision: day
+venue: Neural Information Processing Systems
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2304.14997
+  arxiv_id: '2304.14997'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2304.14997
+  pdf: https://arxiv.org/pdf/2304.14997
+  code: 
+authors:
+- author_id: a_arthur_conmy_1734e7d3
+  name: Arthur Conmy
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_augustine_n_mavor_parker_e6eae204
+  name: Augustine N. Mavor-Parker
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_aengus_lynch_155f3ad7
+  name: Aengus Lynch
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_s_heimersheim_908f562f
+  name: S. Heimersheim
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_adria_garriga_alonso_87077a5e
+  name: Adrià Garriga-Alonso
+  position: 5
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2304.14997
+  en: 'Through considerable effort and intuition, several recent works have reverse-engineered
+    nontrivial behaviors of transformer models. This paper systematizes the mechanistic
+    interpretability process they followed. First, researchers choose a metric and
+    dataset that elicit the desired model behavior. Then, they apply activation patching
+    to find which abstract neural network units are involved in the behavior. By varying
+    the dataset, metric, and units under investigation, researchers can understand
+    the functionality of each component. We automate one of the process'' steps: to
+    identify the circuit that implements the specified behavior in the model''s computational
+    graph. We propose several algorithms and reproduce previous interpretability results
+    to validate them. For example, the ACDC algorithm rediscovered 5/5 of the component
+    types in a circuit in GPT-2 Small that computes the Greater-Than operation. ACDC
+    selected 68 of the 32,000 edges in GPT-2 Small, all of which were manually found
+    by previous work. Our code is available at https://github.com/ArthurConmy/Automatic-Circuit-Discovery.'
+  zh: >-
+    近期多项工作凭借大量努力与直觉，逆向工程了 Transformer 模型中一些并非平凡的行为。本文将这些工作所遵循的机制可解释性流程系统化。首先，研究者选择能够诱发目标模型行为的指标和数据集；随后应用激活修补，找出哪些抽象神经网络单元参与该行为；通过改变所研究的数据集、指标和单元，研究者可以理解各组件的功能。我们自动化了这一流程中的一个步骤：识别模型计算图中实现指定行为的回路。我们提出多种算法，并通过复现此前的可解释性结果加以验证。例如，ACDC 算法重新发现了 GPT-2 Small 中计算“大于”操作的一个回路里全部五类组件。ACDC 从 GPT-2 Small 的 32,000 条边中选择了 68 条，而这些边此前都已由人工研究发现。代码见 https://github.com/ArthurConmy/Automatic-Circuit-Discovery。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_conmy_towards_automated_circuit
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 50
+  abstract_verification: docling_token_coverage_at_least_0.95

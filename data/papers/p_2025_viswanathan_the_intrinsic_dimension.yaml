@@ -1,0 +1,86 @@
+---
+schema_version: 1
+paper_id: p_2025_viswanathan_the_intrinsic_dimension
+title: The Intrinsic Dimension of Prompts in Internal Representations of Large Language
+  Models
+year: 2025
+earliest_public_date: '2025-01-17'
+earliest_public_date_precision: day
+venue: Trans. Mach. Learn. Res.
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2501.10573
+  arxiv_id: '2501.10573'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2501.10573
+  pdf: https://arxiv.org/pdf/2501.10573
+  code: 
+authors:
+- author_id: a_karthik_viswanathan_14bda860
+  name: Karthik Viswanathan
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_yuri_gardinazzi_05c2cb37
+  name: Yuri Gardinazzi
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_giada_panerai_2b166e99
+  name: Giada Panerai
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_alberto_cazzaniga_f52a98dc
+  name: Alberto Cazzaniga
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_matteo_biagetti_ad748870
+  name: Matteo Biagetti
+  position: 5
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2501.10573
+  en: We study the geometry of token representations at the prompt level in large
+    language models through the lens of intrinsic dimension. Viewing transformers
+    as mean-field particle systems, we estimate the intrinsic dimension of the empirical
+    measure at each layer and demonstrate that it correlates with next-token uncertainty.
+    Across models and intrinsic dimension estimators, we find that intrinsic dimension
+    peaks in early to middle layers and increases under syntactic and semantic disruption
+    (by shuffling tokens), and that it is strongly correlated with average surprisal,
+    with a simple analysis linking logits geometry to entropy via softmax. As a case
+    study in practical interpretability and safety, we train a linear probe on the
+    per-layer intrinsic dimension profile to distinguish malicious from benign prompts
+    before generation. This probe achieves accuracy of 90 to 95\% in different datasets,
+    outperforming widely used guardrails such as Llama Guard and Shield Gemma. We
+    further compare against linear probes built from layerwise entropy derived via
+    the Tuned Lens and find that the intrinsic dimension-based probe is competitive
+    and complementary, offering a compact, interpretable signal distributed across
+    layers. Our findings suggest that prompt-level geometry provides actionable signals
+    for monitoring and controlling LLM behavior, and offers a bridge between mechanistic
+    insights and practical safety tools.
+  zh: >-
+    我们从内在维度的角度研究大语言模型中提示层面的 token 表征几何。把 Transformer 看作平均场粒子系统，我们估计每一层经验测度的内在维度，并证明它与下一 token 的不确定性相关。在不同模型和内在维度估计器中，我们发现：内在维度在早期至中间层达到峰值；当通过打乱 token 破坏句法和语义时，内在维度会增加；它还与平均惊异度高度相关，而一个简单分析通过 softmax 把 logits 几何与熵联系起来。作为实际可解释性和安全性的案例研究，我们在逐层内在维度轮廓上训练线性探针，以便在生成前区分恶意提示和无害提示。该探针在不同数据集上达到 90% 至 95% 的准确率，超过 Llama Guard 和 Shield Gemma 等广泛使用的护栏。我们还将其与基于 Tuned Lens 所得逐层熵构建的线性探针比较，发现基于内在维度的探针既有竞争力又具互补性，提供了一个分布于各层的紧凑、可解释信号。我们的发现表明，提示层面的几何为监测和控制语言模型行为提供了可操作信号，并在机制认识与实用安全工具之间架起桥梁。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2025_viswanathan_the_intrinsic_dimension
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 74
+  abstract_verification: docling_token_coverage_at_least_0.95

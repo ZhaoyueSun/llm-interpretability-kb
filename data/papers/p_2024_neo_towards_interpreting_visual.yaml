@@ -1,0 +1,88 @@
+---
+schema_version: 1
+paper_id: p_2024_neo_towards_interpreting_visual
+title: Towards Interpreting Visual Information Processing in Vision-Language Models
+year: 2024
+earliest_public_date: '2024-10-09'
+earliest_public_date_precision: day
+venue: International Conference on Learning Representations
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2410.07149
+  arxiv_id: '2410.07149'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2410.07149
+  pdf: https://arxiv.org/pdf/2410.07149
+  code: 
+authors:
+- author_id: a_clement_neo_95c73283
+  name: Clement Neo
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_c_h_luke_ong_cd935940
+  name: C.-H. Luke Ong
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_p_torr_837de481
+  name: P. Torr
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_mor_geva_2422827f
+  name: Mor Geva
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_david_krueger_3ec99431
+  name: David Krueger
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_fazl_barez_a240fb67
+  name: Fazl Barez
+  position: 6
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2410.07149
+  en: Vision-Language Models (VLMs) are powerful tools for processing and understanding
+    text and images. We study the processing of visual tokens in the language model
+    component of LLaVA, a prominent VLM. Our approach focuses on analyzing the localization
+    of object information, the evolution of visual token representations across layers,
+    and the mechanism of integrating visual information for predictions. Through ablation
+    studies, we demonstrated that object identification accuracy drops by over 70\%
+    when object-specific tokens are removed. We observed that visual token representations
+    become increasingly interpretable in the vocabulary space across layers, suggesting
+    an alignment with textual tokens corresponding to image content. Finally, we found
+    that the model extracts object information from these refined representations
+    at the last token position for prediction, mirroring the process in text-only
+    language models for factual association tasks. These findings provide crucial
+    insights into how VLMs process and integrate visual information, bridging the
+    gap between our understanding of language and vision models, and paving the way
+    for more interpretable and controllable multimodal systems.
+  zh: >-
+    视觉语言模型（VLM）是处理和理解文本与图像的强大工具。我们研究代表性视觉语言模型 LLaVA 的语言模型组件如何处理视觉 token。研究方法聚焦于分析物体信息的定位、视觉 token 表征跨层的演变，以及整合视觉信息用于预测的机制。消融研究显示，移除物体特定 token 后，物体识别准确率下降超过 70%。我们观察到，视觉 token 表征在跨层传播时，在词汇空间中变得越来越可解释，这表明它们逐渐与对应图像内容的文本 token 对齐。最后，我们发现，模型会在最后一个 token 位置从这些经过细化的表征中提取物体信息用于预测，这与纯文本语言模型处理事实关联任务的过程相似。这些发现为视觉语言模型如何处理和整合视觉信息提供了关键认识，弥合了语言模型与视觉模型之间的理解差距，并为构建更具可解释性和可控性的多模态系统铺平道路。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2024_neo_towards_interpreting_visual
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 83
+  abstract_verification: docling_token_coverage_at_least_0.95

@@ -1,0 +1,84 @@
+---
+schema_version: 1
+paper_id: p_2021_dai_knowledge_neurons_in
+title: Knowledge Neurons in Pretrained Transformers
+year: 2021
+earliest_public_date: '2021-04-18'
+earliest_public_date_precision: day
+venue: Annual Meeting of the Association for Computational Linguistics
+publication_type: preprint
+identifiers:
+  doi: 10.18653/v1/2022.acl-long.581
+  arxiv_id: '2104.08696'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2104.08696
+  pdf: https://aclanthology.org/2022.acl-long.581.pdf
+  code: 
+authors:
+- author_id: a_damai_dai_6c4720d3
+  name: Damai Dai
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_li_dong_340be8b4
+  name: Li Dong
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_y_hao_3f84b397
+  name: Y. Hao
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_zhi_fang_sui_5011c8e7
+  name: Zhi-Fang Sui
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_bao_bao_chang_e1d85e7d
+  name: Bao-Bao Chang
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_furu_wei_3dab2ed7
+  name: Furu Wei
+  position: 6
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2104.08696
+  en: Large-scale pretrained language models are surprisingly good at recalling factual
+    knowledge presented in the training corpus. In this paper, we present preliminary
+    studies on how factual knowledge is stored in pretrained Transformers by introducing
+    the concept of knowledge neurons. Specifically, we examine the fill-in-the-blank
+    cloze task for BERT. Given a relational fact, we propose a knowledge attribution
+    method to identify the neurons that express the fact. We find that the activation
+    of such knowledge neurons is positively correlated to the expression of their
+    corresponding facts. In our case studies, we attempt to leverage knowledge neurons
+    to edit (such as update, and erase) specific factual knowledge without fine-tuning.
+    Our results shed light on understanding the storage of knowledge within pretrained
+    Transformers.
+  zh: >-
+    大规模预训练语言模型在回忆训练语料中出现的事实知识方面表现出乎意料地出色。本文通过引入“知识神经元”概念，对事实知识如何存储在预训练 Transformer 中开展初步研究。具体而言，我们考察 BERT 的填空完形任务。给定一个关系事实，我们提出知识归因方法，用于识别表达该事实的神经元。我们发现，这类知识神经元的激活与其对应事实的表达呈正相关。在案例研究中，我们尝试利用知识神经元，在无需微调的情况下编辑——例如更新或擦除——特定事实知识。结果有助于理解预训练 Transformer 内部的知识存储。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2021_dai_knowledge_neurons_in
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 101
+  abstract_verification: docling_token_coverage_at_least_0.95

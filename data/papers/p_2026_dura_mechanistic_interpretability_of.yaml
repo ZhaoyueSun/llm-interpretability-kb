@@ -1,0 +1,74 @@
+---
+schema_version: 1
+paper_id: p_2026_dura_mechanistic_interpretability_of
+title: Mechanistic Interpretability of Chain-of-Thought Reasoning via Sequential Activation
+  Patching
+year: 2026
+earliest_public_date: '2026-08-23'
+earliest_public_date_precision: day
+venue: arXiv (Cornell University)
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2608.22332
+  arxiv_id: '2608.22332'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2608.22332
+  pdf: https://arxiv.org/pdf/2608.22332
+  code: 
+authors:
+- author_id: a_murat_dura_040ae819
+  name: Murat Dura
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_serkan_ozturk_9af21649
+  name: Serkan Öztürk
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_selma_tekir_aa9693aa
+  name: Selma Tekir
+  position: 3
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2608.22332
+  en: Large Language Models (LLMs) demonstrate remarkable problem-solving capabilities
+    when guided by Chain-of-Thought (CoT) prompting, yet the internal mechanisms underlying
+    these improvements remain poorly understood. In this work, we investigate where
+    CoT-related causal effects emerge across the generated reasoning trajectory and
+    which attention heads carry signals that contribute to final-answer computation.
+    Because CoT reasoning unfolds over multiple generated tokens, standard activation
+    patching at a single static token position is insufficient to characterize these
+    temporally distributed effects. To address this limitation, we introduce a sequential
+    activation patching framework that traces CoT-conditioned attention-head activations
+    across token positions and aggregates their effects using Part-of-Speech-guided
+    analysis. We further introduce Sequential Multi-Head Patching to evaluate the
+    joint contribution of distributed head sets, together with cross-question and
+    random activation controls. Targeted zero-ablation experiments show that the identified
+    heads are functionally important for successful answer generation and affect several
+    overlapping mechanisms, including reasoning-trajectory maintenance, answer anchoring,
+    exemplar-target separation, and numerical generation. Overall, our results provide
+    evidence for distributed reasoning-support sub-circuits associated with CoT-conditioned
+    computation.
+  zh: >-
+    大语言模型（LLM）在思维链（CoT）提示的引导下表现出卓越的问题解决能力，但这种提升背后的内部机制仍未得到充分理解。在本研究中，我们考察与 CoT 有关的因果效应在生成推理轨迹的哪些位置出现，以及哪些注意力头承载了有助于计算最终答案的信号。由于 CoT 推理跨多个生成 token 展开，只在单个静态 token 位置进行标准激活修补，不足以刻画这些在时间上分布的效应。为解决这一局限，我们提出序列激活修补框架：跨 token 位置追踪以 CoT 为条件的注意力头激活，并借助词性引导的分析汇总其效应。我们还提出序列多头修补，用于评估分布式注意力头集合的联合贡献，并设置跨问题激活对照和随机激活对照。定向置零消融实验表明，所识别的注意力头对成功生成答案具有功能重要性，并影响多个相互重叠的机制，包括推理轨迹维持、答案锚定、示例与目标分离以及数值生成。总体而言，我们的结果为与 CoT 条件计算相关的分布式推理支持子回路提供了证据。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2026_dura_mechanistic_interpretability_of
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 34
+  abstract_verification: docling_token_coverage_at_least_0.95

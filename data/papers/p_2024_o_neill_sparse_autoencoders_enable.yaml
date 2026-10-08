@@ -1,0 +1,70 @@
+---
+schema_version: 1
+paper_id: p_2024_o_neill_sparse_autoencoders_enable
+title: Sparse Autoencoders Enable Scalable and Reliable Circuit Identification in
+  Language Models
+year: 2024
+earliest_public_date: '2024-05-21'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2405.12522
+  arxiv_id: '2405.12522'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2405.12522
+  pdf: https://arxiv.org/pdf/2405.12522
+  code: 
+authors:
+- author_id: a_charles_o_neill_76509ce5
+  name: Charles O'Neill
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_thang_bui_f266eb37
+  name: Thang Bui
+  position: 2
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2405.12522
+  en: This paper introduces an efficient and robust method for discovering interpretable
+    circuits in large language models using discrete sparse autoencoders. Our approach
+    addresses key limitations of existing techniques, namely computational complexity
+    and sensitivity to hyperparameters. We propose training sparse autoencoders on
+    carefully designed positive and negative examples, where the model can only correctly
+    predict the next token for the positive examples. We hypothesise that learned
+    representations of attention head outputs will signal when a head is engaged in
+    specific computations. By discretising the learned representations into integer
+    codes and measuring the overlap between codes unique to positive examples for
+    each head, we enable direct identification of attention heads involved in circuits
+    without the need for expensive ablations or architectural modifications. On three
+    well-studied tasks - indirect object identification, greater-than comparisons,
+    and docstring completion - the proposed method achieves higher precision and recall
+    in recovering ground-truth circuits compared to state-of-the-art baselines, while
+    reducing runtime from hours to seconds. Notably, we require only 5-10 text examples
+    for each task to learn robust representations. Our findings highlight the promise
+    of discrete sparse autoencoders for scalable and efficient mechanistic interpretability,
+    offering a new direction for analysing the inner workings of large language models.
+  zh: >-
+    本文提出一种利用离散稀疏自编码器在大型语言模型中发现可解释回路的高效、稳健方法。该方法针对现有技术的两个主要局限：计算复杂度高，以及对超参数敏感。我们提出在精心设计的正例和负例上训练稀疏自编码器，其中模型只能对正例正确预测下一个
+    token。我们假设，注意力头输出的学习表征能够指示某个注意力头何时参与特定计算。通过将学习到的表征离散化为整数编码，并衡量每个注意力头在正例中特有编码的重叠程度，我们无需昂贵的消融实验或架构修改，就能直接识别参与回路的注意力头。在间接宾语识别、大于比较和文档字符串补全三个经过充分研究的任务上，与当前最佳基线相比，该方法在恢复真值回路时取得了更高的精确率和召回率，同时把运行时间从数小时缩短到数秒。值得注意的是，每个任务只需
+    5–10 个文本样例，就可以学习到稳健的表征。结果表明，离散稀疏自编码器有望支持可扩展、高效的机制可解释性研究，并为分析大型语言模型的内部工作机制提供新的方向。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2024_o_neill_sparse_autoencoders_enable
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 4
+  abstract_verification: docling_token_coverage_at_least_0.95

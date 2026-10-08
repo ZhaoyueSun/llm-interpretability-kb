@@ -1,0 +1,98 @@
+---
+schema_version: 1
+paper_id: p_2024_rajamanoharan_improving_dictionary_learning
+title: Improving Dictionary Learning with Gated Sparse Autoencoders
+year: 2024
+earliest_public_date: '2024-04-24'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2404.16014
+  arxiv_id: '2404.16014'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2404.16014
+  pdf: https://arxiv.org/pdf/2404.16014
+  code: 
+authors:
+- author_id: a_senthooran_rajamanoharan_77c86f94
+  name: Senthooran Rajamanoharan
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_arthur_conmy_1734e7d3
+  name: Arthur Conmy
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_lewis_smith_12edb6ca
+  name: Lewis Smith
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_tom_lieberum_e979b353
+  name: Tom Lieberum
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_vikrant_varma_fcdf9a6c
+  name: Vikrant Varma
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_j_anos_kram_ar_813930c3
+  name: J'anos Kram'ar
+  position: 6
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_rohin_shah_1b05662e
+  name: Rohin Shah
+  position: 7
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_neel_nanda_ddf6abf4
+  name: Neel Nanda
+  position: 8
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2404.16014
+  en: 'Recent work has found that sparse autoencoders (SAEs) are an effective technique
+    for unsupervised discovery of interpretable features in language models'' (LMs)
+    activations, by finding sparse, linear reconstructions of LM activations. We introduce
+    the Gated Sparse Autoencoder (Gated SAE), which achieves a Pareto improvement
+    over training with prevailing methods. In SAEs, the L1 penalty used to encourage
+    sparsity introduces many undesirable biases, such as shrinkage -- systematic underestimation
+    of feature activations. The key insight of Gated SAEs is to separate the functionality
+    of (a) determining which directions to use and (b) estimating the magnitudes of
+    those directions: this enables us to apply the L1 penalty only to the former,
+    limiting the scope of undesirable side effects. Through training SAEs on LMs of
+    up to 7B parameters we find that, in typical hyper-parameter ranges, Gated SAEs
+    solve shrinkage, are similarly interpretable, and require half as many firing
+    features to achieve comparable reconstruction fidelity.'
+  zh: >-
+    近期研究发现，稀疏自编码器（SAE）可以通过寻找语言模型（LM）激活的稀疏线性重构，以无监督方式有效发现可解释特征。我们提出门控稀疏自编码器（Gated SAE），相比当前主流训练方法实现了帕累托改进。在 SAE 中，用于促进稀疏性的 L1 惩罚会引入许多不良偏差，例如收缩——系统性低估特征激活。Gated SAE 的核心思想，是把（a）决定使用哪些方向与（b）估计这些方向的幅度两项功能分离。这样便可只对前者施加 L1 惩罚，限制其不良副作用的范围。我们在参数量最大达到 70 亿的语言模型上训练 SAE，结果发现，在典型超参数范围内，Gated SAE 能够解决收缩问题，保持相近的可解释性，并且只需一半数量的激活特征即可达到相当的重构忠实度。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2024_rajamanoharan_improving_dictionary_learning
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 64
+  abstract_verification: docling_token_coverage_at_least_0.95

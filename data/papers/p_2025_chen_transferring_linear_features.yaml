@@ -1,0 +1,76 @@
+---
+schema_version: 1
+paper_id: p_2025_chen_transferring_linear_features
+title: Transferring Linear Features Across Language Models With Model Stitching
+year: 2025
+earliest_public_date: '2025-06-07'
+earliest_public_date_precision: day
+venue: Neural Information Processing Systems
+publication_type: preprint
+identifiers:
+  doi: 10.52202/085713-1621
+  arxiv_id: '2506.06609'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2506.06609
+  pdf: https://arxiv.org/pdf/2506.06609
+  code: 
+authors:
+- author_id: a_alan_chen_78b581b8
+  name: Alan Chen
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_jack_merullo_5e5b2b61
+  name: Jack Merullo
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_alessandro_stolfo_195681bf
+  name: Alessandro Stolfo
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_ellie_pavlick_8e923d51
+  name: Ellie Pavlick
+  position: 4
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2506.06609
+  en: In this work, we demonstrate that affine mappings between residual streams of
+    language models is a cheap way to effectively transfer represented features between
+    models. We apply this technique to transfer the weights of Sparse Autoencoders
+    (SAEs) between models of different sizes to compare their representations. We
+    find that small and large models learn similar representation spaces, which motivates
+    training expensive components like SAEs on a smaller model and transferring to
+    a larger model at a FLOPs savings. In particular, using a small-to-large transferred
+    SAE as initialization can lead to 50% cheaper training runs when training SAEs
+    on larger models. Next, we show that transferred probes and steering vectors can
+    effectively recover ground truth performance. Finally, we dive deeper into feature-level
+    transferability, finding that semantic and structural features transfer noticeably
+    differently while specific classes of functional features have their roles faithfully
+    mapped. Overall, our findings illustrate similarities and differences in the linear
+    representation spaces of small and large models and demonstrate a method for improving
+    the training efficiency of SAEs.
+  zh: >-
+    本文证明，利用语言模型残差流之间的仿射映射，可以低成本而有效地在模型间迁移已表征的特征。我们运用该技术，在不同规模的模型之间迁移稀疏自编码器（SAE）权重，以比较它们的表征。结果发现，小模型与大模型会学到相似的表征空间；这促使我们在较小模型上训练 SAE 等昂贵组件，再把它们迁移到较大模型，从而节省浮点运算量。特别是，在较大模型上训练 SAE 时，使用从小模型迁移到大模型的 SAE 作为初始化，可使训练成本降低 50%。随后，我们表明，迁移后的探针和引导向量能够有效恢复真值性能。最后，我们深入研究特征层面的可迁移性，发现语义特征与结构特征的迁移方式明显不同，而某些特定类别的功能特征则能忠实映射其作用。总体而言，我们的发现揭示了小模型与大模型线性表征空间的相似性和差异，并展示了一种提高 SAE 训练效率的方法。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2025_chen_transferring_linear_features
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 82
+  abstract_verification: docling_token_coverage_at_least_0.95

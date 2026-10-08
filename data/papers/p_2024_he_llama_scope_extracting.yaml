@@ -1,0 +1,124 @@
+---
+schema_version: 1
+paper_id: p_2024_he_llama_scope_extracting
+title: 'Llama Scope: Extracting Millions of Features from Llama-3.1-8B with Sparse
+  Autoencoders'
+year: 2024
+earliest_public_date: '2024-10-27'
+earliest_public_date_precision: day
+venue: arXiv.org
+publication_type: preprint
+identifiers:
+  doi: 10.48550/arxiv.2410.20526
+  arxiv_id: '2410.20526'
+  openreview_id: 
+links:
+  primary: https://arxiv.org/abs/2410.20526
+  pdf: https://arxiv.org/pdf/2410.20526
+  code: 
+authors:
+- author_id: a_zheng_fu_he_bf772b19
+  name: Zheng-Fu He
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_wentao_shu_1aa70dbf
+  name: Wentao Shu
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_xuyang_ge_e2f55999
+  name: Xuyang Ge
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_lingjie_chen_8b98c89a
+  name: Lingjie Chen
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_junxuan_wang_ea59ef69
+  name: Junxuan Wang
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_yunhua_zhou_00629ca1
+  name: Yunhua Zhou
+  position: 6
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_frances_liu_ecae0b18
+  name: Frances Liu
+  position: 7
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_qipeng_guo_5af97afe
+  name: Qipeng Guo
+  position: 8
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_xuan_jing_huang_ff405e35
+  name: Xuan-Jing Huang
+  position: 9
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_zu_xuan_wu_e3c20a88
+  name: Zu-Xuan Wu
+  position: 10
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_yu_gang_jiang_6791d61c
+  name: Yu-Gang Jiang
+  position: 11
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_xi_peng_qiu_c59a62d0
+  name: Xi-Peng Qiu
+  position: 12
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2410.20526
+  en: Sparse Autoencoders (SAEs) have emerged as a powerful unsupervised method for
+    extracting sparse representations from language models, yet scalable training
+    remains a significant challenge. We introduce a suite of 256 SAEs, trained on
+    each layer and sublayer of the Llama-3.1-8B-Base model, with 32K and 128K features.
+    Modifications to a state-of-the-art SAE variant, Top-K SAEs, are evaluated across
+    multiple dimensions. In particular, we assess the generalizability of SAEs trained
+    on base models to longer contexts and fine-tuned models. Additionally, we analyze
+    the geometry of learned SAE latents, confirming that \emph{feature splitting}
+    enables the discovery of new features. The Llama Scope SAE checkpoints are publicly
+    available at~\url{https://huggingface.co/fnlp/Llama-Scope}, alongside our scalable
+    training, interpretation, and visualization tools at \url{https://github.com/OpenMOSS/Language-Model-SAEs}.
+    These contributions aim to advance the open-source Sparse Autoencoder ecosystem
+    and support mechanistic interpretability research by reducing the need for redundant
+    SAE training.
+  zh: >-
+    稀疏自编码器（SAE）已成为从语言模型中提取稀疏表征的强大无监督方法，但可扩展训练仍是一项重大挑战。我们推出一套包含 256 个 SAE 的资源，它们分别在 Llama-3.1-8B-Base 模型的每一层和子层上训练，特征数量为 32K 或 128K。我们从多个维度评估了对先进 SAE 变体 Top-K SAE 的修改。特别是，我们评估在基础模型上训练的 SAE 对更长上下文和微调模型的泛化能力。此外，我们分析所学 SAE 潜变量的几何结构，确认特征拆分能够发现新特征。Llama Scope 的 SAE 检查点公开于 https://huggingface.co/fnlp/Llama-Scope；可扩展训练、解释和可视化工具见 https://github.com/OpenMOSS/Language-Model-SAEs。这些贡献旨在推动开源稀疏自编码器生态发展，并通过减少重复训练 SAE 的需要来支持机制可解释性研究。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2024_he_llama_scope_extracting
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at: 
+  handoff_id: 2026-10-08__llm-interpretability-final-corpus
+  selection_source_index: 92
+  abstract_verification: docling_token_coverage_at_least_0.95
