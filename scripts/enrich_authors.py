@@ -49,9 +49,144 @@ WIKIDATA_PROPERTY_BY_EXTERNAL_ID = {
 # Confirmed by identical publication-linked OpenAlex identities. Paper records
 # use the canonical target IDs; legacy names are retained as aliases.
 AUTHOR_MERGES = {
+    "a_bilal_chugtai_2a76fdc6": "a_bilal_chughtai_cd399826",
     "a_f_wei_7272583e": "a_furu_wei_3dab2ed7",
     "a_janos_kramar_6ba94ff0": "a_j_anos_kram_ar_813930c3",
     "a_m_wattenberg_127591b0": "a_martin_wattenberg_6df204a2",
+}
+
+# Publication authors that could not be resolved to one stable aggregator ID,
+# but whose identities were confirmed against an official paper page, an
+# author-owned publication list, or an institutional profile. Keeping these
+# decisions here makes enrichment reproducible without inventing external IDs.
+MANUAL_DISAMBIGUATION_REVIEWS = {
+    "a_adam_pearce_076738aa": {
+        "evidence_paper_ids": [
+            "p_2024_ghandeharioun_patchscopes_a_unifying",
+            "p_2026_templeton_scaling_monosemanticity_extracting",
+        ],
+        "homepage": "https://roadtolarissa.com/",
+        "source_url": "https://roadtolarissa.com/",
+        "external_ids": {"openalex": None, "semantic_scholar": None},
+        "note": "The author's personal site lists both Patchscopes and Scaling Monosemanticity; aggregator split records were intentionally left unset.",
+    },
+    "a_amir_zur_18981670": {
+        "evidence_paper_ids": ["p_2023_geiger_causal_abstraction_a"],
+        "homepage": "https://amirzur.github.io/",
+        "source_url": "https://amirzur.github.io/",
+        "note": "Reviewed against the author's publication list and the official paper author list.",
+    },
+    "a_d_ibeling_f7015ca4": {
+        "canonical_name": "Duligur Ibeling",
+        "aliases": ["D. Ibeling"],
+        "evidence_paper_ids": ["p_2023_geiger_causal_abstraction_a"],
+        "homepage": "https://web.stanford.edu/~duligur/",
+        "source_url": "https://philosophy.stanford.edu/people/duligur-ibeling",
+        "affiliations": ["Stanford University"],
+        "note": "Expanded the abbreviated paper name using the official Stanford profile and confirmed the publication author list.",
+    },
+    "a_georgia_zhou_22432e3e": {
+        "evidence_paper_ids": ["p_2024_hsu_efficient_automated_circuit"],
+        "source_url": "https://openreview.net/forum?id=41HlN8XYM5",
+        "note": "Reviewed against the official OpenReview paper and its affiliation block.",
+    },
+    "a_hai_mo_81143d6d": {
+        "canonical_name": "Mo Hai",
+        "aliases": ["Hai Mo"],
+        "evidence_paper_ids": ["p_2026_hai_when_and_why"],
+        "source_url": "https://arxiv.org/abs/2609.22337",
+        "note": "Corrected the name order to match the official arXiv author list and related publications with Haifeng Li.",
+    },
+    "a_harshvardhan_saini_461eff90": {
+        "evidence_paper_ids": ["p_2025_tang_a_unified_theory"],
+        "source_url": "https://arxiv.org/abs/2512.05534",
+        "note": "Reviewed against the current official arXiv author list and the lead author's publication page.",
+    },
+    "a_jing_yi_cui_feee9d66": {
+        "aliases": ["Jingyi Cui"],
+        "evidence_paper_ids": ["p_2025_tang_a_unified_theory"],
+        "source_url": "https://arxiv.org/abs/2512.05534",
+        "note": "Reviewed against the current official arXiv author list.",
+    },
+    "a_maheep_chaudhary_23782a4e": {
+        "evidence_paper_ids": ["p_2023_geiger_causal_abstraction_a"],
+        "homepage": "https://maheepchaudhary.github.io/",
+        "source_url": "https://maheepchaudhary.github.io/",
+        "note": "Reviewed against the author's publication list and the official paper author list.",
+    },
+    "a_peter_r_carroll_82a865d2": {
+        "canonical_name": "Peter R. Carroll",
+        "aliases": ["Peter R Carroll"],
+        "evidence_paper_ids": ["p_2024_hsu_efficient_automated_circuit"],
+        "source_url": "https://openreview.net/forum?id=41HlN8XYM5",
+        "note": "Reviewed against the official OpenReview paper and its affiliation block.",
+    },
+    "a_satvik_golechha_d495e9d2": {
+        "evidence_paper_ids": ["p_2024_chanin_a_is_for"],
+        "homepage": "https://7vik.io/",
+        "source_url": "https://7vik.io/",
+        "affiliations": ["UK AI Security Institute"],
+        "note": "The author's personal site lists A is for Absorption and a current UK AI Security Institute affiliation.",
+    },
+    "a_selma_tekir_aa9693aa": {
+        "evidence_paper_ids": ["p_2026_dura_mechanistic_interpretability_of"],
+        "homepage": "https://ceng.iyte.edu.tr/people/selma-tekir/",
+        "source_url": "https://ceng.iyte.edu.tr/people/selma-tekir/",
+        "affiliations": ["İzmir Institute of Technology"],
+        "note": "Reviewed against the official institutional profile and the official arXiv author list.",
+    },
+    "a_sonakshi_chauhan_29395dff": {
+        "evidence_paper_ids": ["p_2023_geiger_causal_abstraction_a"],
+        "source_url": "https://arxiv.org/abs/2301.04709",
+        "note": "Reviewed against the official arXiv author list; no stable public profile was added.",
+    },
+    "a_yaxuan_huang_2d3fc6fa": {
+        "evidence_paper_ids": ["p_2024_hsu_efficient_automated_circuit"],
+        "source_url": "https://openreview.net/forum?id=41HlN8XYM5",
+        "note": "Reviewed against the official OpenReview paper and the UC Berkeley research-group roster.",
+    },
+    "a_yi_sen_wang_12473f1f": {
+        "aliases": ["Yisen Wang"],
+        "evidence_paper_ids": ["p_2025_tang_a_unified_theory"],
+        "source_url": "https://arxiv.org/abs/2512.05534",
+        "note": "Reviewed against the current official arXiv author list.",
+    },
+    "a_yi_zhen_liao_5775e8a8": {
+        "aliases": ["Yizhen Liao"],
+        "evidence_paper_ids": ["p_2025_tang_a_unified_theory"],
+        "source_url": "https://arxiv.org/abs/2512.05534",
+        "note": "Reviewed against the official arXiv author list across paper versions.",
+    },
+    "a_yu_kang_yang_eaf961c8": {
+        "canonical_name": "Yukang Yang",
+        "aliases": ["Yu-Kang Yang"],
+        "evidence_paper_ids": ["p_2025_nam_causal_head_gating"],
+        "source_url": "https://proceedings.neurips.cc/paper_files/paper/2025/hash/a7f530e11fa19e9551b7a51dbd0f336f-Abstract-Conference.html",
+        "note": "Normalized the name to match the official NeurIPS proceedings author list.",
+    },
+    "a_zhaoqian_yao_c6b063bc": {
+        "evidence_paper_ids": ["p_2025_tang_a_unified_theory"],
+        "source_url": "https://arxiv.org/abs/2512.05534",
+        "note": "Reviewed against the current official arXiv author list and the lead author's research page.",
+    },
+    "a_zheng_lin_4156a90f": {
+        "evidence_paper_ids": ["p_2025_tang_a_unified_theory"],
+        "source_url": "https://arxiv.org/abs/2512.05534",
+        "note": "Reviewed against the current official arXiv author list and the lead author's research page.",
+    },
+    "a_bin_yu_34f3b0ee": {
+        "evidence_paper_ids": ["p_2024_hsu_efficient_automated_circuit"],
+        "homepage": "https://binyu.stat.berkeley.edu/",
+        "google_scholar": "https://scholar.google.com/citations?user=xT19Jc0AAAAJ&hl=en",
+        "source_url": "https://vcresearch.berkeley.edu/faculty/bin-yu",
+        "affiliations": ["University of California, Berkeley"],
+        "external_ids": {
+            "orcid": "0000-0002-8888-4060",
+            "openalex": None,
+            "semantic_scholar": None,
+        },
+        "note": "Corrected a same-name aggregator mismatch using the official UC Berkeley profile; ambiguous aggregator IDs were cleared.",
+    },
 }
 
 MANUAL_AUTHOR_OVERRIDES = {
@@ -837,6 +972,53 @@ def make_profile(url: str, source_url: str, retrieved_on: str) -> dict[str, str]
     return {"url": url, "source_url": source_url, "retrieved_on": retrieved_on}
 
 
+def apply_manual_disambiguation_review(
+    record: dict[str, Any],
+    audit: dict[str, Any],
+    override: dict[str, Any],
+    retrieved_on: str,
+) -> None:
+    source_url = override["source_url"]
+    canonical_name = override.get("canonical_name")
+    if canonical_name and canonical_name != record["canonical_name"]:
+        record["aliases"].append(record["canonical_name"])
+        record["canonical_name"] = canonical_name
+    record["aliases"].extend(override.get("aliases", []))
+    for namespace, external_id in override.get("external_ids", {}).items():
+        record["external_ids"][namespace] = external_id
+    if override.get("affiliations") is not None:
+        record["current_affiliations"] = [
+            {
+                "name": name,
+                "ror_id": None,
+                "country_code": None,
+                "evidence_year": int(retrieved_on[:4]),
+                "source_url": source_url,
+                "retrieved_on": retrieved_on,
+            }
+            for name in override["affiliations"]
+        ]
+    if override.get("homepage"):
+        record["profiles"]["homepage"] = make_profile(
+            override["homepage"], source_url, retrieved_on
+        )
+    if override.get("google_scholar"):
+        record["profiles"]["google_scholar"] = make_profile(
+            override["google_scholar"], source_url, retrieved_on
+        )
+    record["aliases"] = sorted(
+        set(record["aliases"]) - {record["canonical_name"]}, key=str.casefold
+    )
+    record["disambiguation_status"] = "reviewed"
+    record["disambiguation"]["evidence_paper_ids"] = sorted(
+        set(record["disambiguation"]["evidence_paper_ids"])
+        | set(override["evidence_paper_ids"])
+    )
+    record["disambiguation"]["matched_on"] = retrieved_on
+    record["disambiguation"]["note"] = override["note"]
+    audit["manual_review_source"] = source_url
+
+
 def enrich_author(
     local_id: str,
     current: dict[str, Any],
@@ -850,6 +1032,7 @@ def enrich_author(
     oa_id = next(iter(oa_candidates)) if len(oa_candidates) == 1 else None
     s2_id = next(iter(s2_candidates)) if len(s2_candidates) == 1 else None
     manual_override = MANUAL_AUTHOR_OVERRIDES.get(local_id)
+    manual_review = MANUAL_DISAMBIGUATION_REVIEWS.get(local_id)
     if manual_override:
         oa_id = manual_override["openalex"]
         s2_id = manual_override["semantic_scholar"]
@@ -865,8 +1048,14 @@ def enrich_author(
             "openalex": oa_id,
             "semantic_scholar": s2_id,
         },
-        "current_affiliations": [],
-        "profiles": {"homepage": None, "google_scholar": None},
+        # Keep previously verified profile facts when an optional upstream
+        # service is unavailable during a refresh. Successful lookups below
+        # can still replace them with newer evidence.
+        "current_affiliations": list(current.get("current_affiliations", [])),
+        "profiles": {
+            "homepage": current.get("profiles", {}).get("homepage"),
+            "google_scholar": current.get("profiles", {}).get("google_scholar"),
+        },
         "disambiguation_status": "unmatched",
         "disambiguation": {
             "evidence_paper_ids": evidence,
@@ -892,6 +1081,8 @@ def enrich_author(
             record["disambiguation"]["note"] = (
                 "Conflicting publication-linked records in " + " and ".join(split_sources) + "."
             )
+        if manual_review:
+            apply_manual_disambiguation_review(record, audit, manual_review, retrieved_on)
         return record, audit
 
     record["disambiguation_status"] = "matched_by_publication"
@@ -1029,6 +1220,8 @@ def enrich_author(
         record["disambiguation_status"] = "reviewed"
         record["disambiguation"]["matched_on"] = retrieved_on
         record["disambiguation"]["note"] = override["note"]
+    if manual_review:
+        apply_manual_disambiguation_review(record, audit, manual_review, retrieved_on)
     return record, audit
 
 

@@ -333,7 +333,7 @@ authors:
     aliases: []
     external_ids:
       orcid: null
-      openalex: null
+      openalex: A5108853245
       semantic_scholar: '2201328926'
     current_affiliations: []
     profiles:
@@ -342,6 +342,7 @@ authors:
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
+      - p_2023_syed_attribution_patching_outperforms
       - p_2024_arditi_refusal_in_language
       matched_on: '2026-10-09'
       note: null
@@ -450,15 +451,18 @@ authors:
       semantic_scholar: null
     current_affiliations: []
     profiles:
-      homepage: null
+      homepage:
+        url: https://roadtolarissa.com/
+        source_url: https://roadtolarissa.com/
+        retrieved_on: '2026-10-09'
       google_scholar: null
-    disambiguation_status: needs_review
+    disambiguation_status: reviewed
     disambiguation:
       evidence_paper_ids:
       - p_2024_ghandeharioun_patchscopes_a_unifying
       - p_2026_templeton_scaling_monosemanticity_extracting
-      matched_on: null
-      note: Conflicting publication-linked records in OpenAlex and Semantic Scholar.
+      matched_on: '2026-10-09'
+      note: The author's personal site lists both Patchscopes and Scaling Monosemanticity; aggregator split records were intentionally left unset.
   a_adam_s_jermyn_98698cc1:
     canonical_name: Adam S. Jermyn
     aliases:
@@ -802,7 +806,13 @@ authors:
       orcid: null
       openalex: A5017761207
       semantic_scholar: '2030991782'
-    current_affiliations: []
+    current_affiliations:
+    - name: ENS de Lyon & EPFL
+      ror_id: null
+      country_code: null
+      evidence_year: null
+      source_url: https://scholar.google.com/citations?user=BQOwWG8AAAAJ&hl=en
+      retrieved_on: '2026-10-09'
     profiles:
       homepage:
         url: https://alexandrevariengien.com/
@@ -879,13 +889,17 @@ authors:
       semantic_scholar: null
     current_affiliations: []
     profiles:
-      homepage: null
+      homepage:
+        url: https://amirzur.github.io/
+        source_url: https://amirzur.github.io/
+        retrieved_on: '2026-10-09'
       google_scholar: null
-    disambiguation_status: unmatched
+    disambiguation_status: reviewed
     disambiguation:
-      evidence_paper_ids: []
-      matched_on: null
-      note: null
+      evidence_paper_ids:
+      - p_2023_geiger_causal_abstraction_a
+      matched_on: '2026-10-09'
+      note: Reviewed against the author's publication list and the official paper author list.
   a_anahita_bhiwandiwalla_7f7b99d5:
     canonical_name: Anahita Bhiwandiwalla
     aliases: []
@@ -1412,6 +1426,7 @@ authors:
       - p_2022_wang_interpretability_in_the
       - p_2023_conmy_towards_automated_circuit
       - p_2023_gould_successor_heads_recurring
+      - p_2023_syed_attribution_patching_outperforms
       - p_2024_lieberum_gemma_scope_open
       - p_2024_mcdougall_copy_suppression_comprehensively
       - p_2024_rajamanoharan_improving_dictionary_learning
@@ -1713,6 +1728,7 @@ authors:
   a_bilal_chughtai_cd399826:
     canonical_name: Bilal Chughtai
     aliases:
+    - Bilal Chugtai
     - Bilal I. Chughtai
     external_ids:
       orcid: 0000-0002-0515-2578
@@ -1726,21 +1742,22 @@ authors:
     disambiguation:
       evidence_paper_ids:
       - p_2023_chughtai_a_toy_model
+      - p_2025_minder_overcoming_sparsity_artifacts
       matched_on: '2026-10-09'
       note: null
   a_bin_yu_34f3b0ee:
     canonical_name: Bin Yu
     aliases: []
     external_ids:
-      orcid: 0000-0002-2453-7852
-      openalex: A5100646131
+      orcid: 0000-0002-8888-4060
+      openalex: null
       semantic_scholar: null
     current_affiliations:
-    - name: Qingdao University of Science and Technology
-      ror_id: 041j8js14
-      country_code: CN
-      evidence_year: null
-      source_url: https://orcid.org/0000-0002-2453-7852
+    - name: University of California, Berkeley
+      ror_id: null
+      country_code: null
+      evidence_year: 2026
+      source_url: https://vcresearch.berkeley.edu/faculty/bin-yu
       retrieved_on: '2026-10-09'
     profiles:
       homepage:
@@ -1751,12 +1768,12 @@ authors:
         url: https://scholar.google.com/citations?user=xT19Jc0AAAAJ&hl=en
         source_url: https://vcresearch.berkeley.edu/faculty/bin-yu
         retrieved_on: '2026-10-09'
-    disambiguation_status: matched_by_publication
+    disambiguation_status: reviewed
     disambiguation:
       evidence_paper_ids:
       - p_2024_hsu_efficient_automated_circuit
       matched_on: '2026-10-09'
-      note: null
+      note: Corrected a same-name aggregator mismatch using the official UC Berkeley profile; ambiguous aggregator IDs were cleared.
   a_bolei_zhou_02e84ed1:
     canonical_name: Bolei Zhou
     aliases: []
@@ -1953,6 +1970,7 @@ authors:
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
+      - p_2023_syed_attribution_patching_outperforms
       - p_2024_marks_sparse_feature_circuits
       matched_on: '2026-10-09'
       note: null
@@ -2421,21 +2439,32 @@ authors:
       matched_on: '2026-10-09'
       note: null
   a_d_ibeling_f7015ca4:
-    canonical_name: D. Ibeling
-    aliases: []
+    canonical_name: Duligur Ibeling
+    aliases:
+    - D. Ibeling
     external_ids:
       orcid: null
       openalex: null
       semantic_scholar: null
-    current_affiliations: []
+    current_affiliations:
+    - name: Stanford University
+      ror_id: null
+      country_code: null
+      evidence_year: 2026
+      source_url: https://philosophy.stanford.edu/people/duligur-ibeling
+      retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
+      homepage:
+        url: https://web.stanford.edu/~duligur/
+        source_url: https://philosophy.stanford.edu/people/duligur-ibeling
+        retrieved_on: '2026-10-09'
       google_scholar: null
-    disambiguation_status: unmatched
+    disambiguation_status: reviewed
     disambiguation:
-      evidence_paper_ids: []
-      matched_on: null
-      note: null
+      evidence_paper_ids:
+      - p_2023_geiger_causal_abstraction_a
+      matched_on: '2026-10-09'
+      note: Expanded the abbreviated paper name using the official Stanford profile and confirmed the publication author list.
   a_d_klein_f3a25a01:
     canonical_name: D. Klein
     aliases:
@@ -3478,11 +3507,12 @@ authors:
     profiles:
       homepage: null
       google_scholar: null
-    disambiguation_status: unmatched
+    disambiguation_status: reviewed
     disambiguation:
-      evidence_paper_ids: []
-      matched_on: null
-      note: null
+      evidence_paper_ids:
+      - p_2024_hsu_efficient_automated_circuit
+      matched_on: '2026-10-09'
+      note: Reviewed against the official OpenReview paper and its affiliation block.
   a_giada_panerai_2b166e99:
     canonical_name: Giada Panerai
     aliases: []
@@ -3567,21 +3597,23 @@ authors:
       matched_on: '2026-10-09'
       note: Identity matched through the non-conflicting source; Semantic Scholar contains split author records.
   a_hai_mo_81143d6d:
-    canonical_name: Hai Mo
-    aliases: []
+    canonical_name: Mo Hai
+    aliases:
+    - Hai Mo
     external_ids:
       orcid: null
-      openalex: null
+      openalex: A5141104442
       semantic_scholar: null
     current_affiliations: []
     profiles:
       homepage: null
       google_scholar: null
-    disambiguation_status: unmatched
+    disambiguation_status: reviewed
     disambiguation:
-      evidence_paper_ids: []
-      matched_on: null
-      note: null
+      evidence_paper_ids:
+      - p_2026_hai_when_and_why
+      matched_on: '2026-10-09'
+      note: Corrected the name order to match the official arXiv author list and related publications with Haifeng Li.
   a_hai_feng_li_2d957150:
     canonical_name: Hai-Feng Li
     aliases: []
@@ -3725,11 +3757,12 @@ authors:
     profiles:
       homepage: null
       google_scholar: null
-    disambiguation_status: unmatched
+    disambiguation_status: reviewed
     disambiguation:
-      evidence_paper_ids: []
-      matched_on: null
-      note: null
+      evidence_paper_ids:
+      - p_2025_tang_a_unified_theory
+      matched_on: '2026-10-09'
+      note: Reviewed against the current official arXiv author list and the lead author's publication page.
   a_henry_conklin_78b4e8e9:
     canonical_name: Henry Conklin
     aliases: []
@@ -3922,18 +3955,33 @@ authors:
       openalex: null
       semantic_scholar: '2257279038'
     current_affiliations:
+    - name: AIRI
+      ror_id: 014a87f14
+      country_code: RU
+      evidence_year: 2021
+      source_url: https://orcid.org/0000-0003-2071-2163
+      retrieved_on: '2026-10-09'
     - name: Skolkovo Institute of Science and Technology
       ror_id: null
-      country_code: null
-      evidence_year: 2026
-      source_url: https://dblp.org/pid/56/7175.html
+      country_code: RU
+      evidence_year: 2013
+      source_url: https://orcid.org/0000-0003-2071-2163
+      retrieved_on: '2026-10-09'
+    - name: Institute of Numerical Mathematics of Russian Academy of Sciences
+      ror_id: null
+      country_code: RU
+      evidence_year: 2006
+      source_url: https://orcid.org/0000-0003-2071-2163
       retrieved_on: '2026-10-09'
     profiles:
       homepage:
         url: https://oseledets.github.io/people/oseledets/
         source_url: https://dblp.org/pid/56/7175.html
         retrieved_on: '2026-10-09'
-      google_scholar: null
+      google_scholar:
+        url: https://scholar.google.com/citations?user=5kMqBQEAAAAJ&hl=en
+        source_url: https://www.wikidata.org/entity/Q62635250
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -4450,7 +4498,8 @@ authors:
       note: null
   a_jing_yi_cui_feee9d66:
     canonical_name: Jing-Yi Cui
-    aliases: []
+    aliases:
+    - Jingyi Cui
     external_ids:
       orcid: null
       openalex: null
@@ -4459,11 +4508,12 @@ authors:
     profiles:
       homepage: null
       google_scholar: null
-    disambiguation_status: unmatched
+    disambiguation_status: reviewed
     disambiguation:
-      evidence_paper_ids: []
-      matched_on: null
-      note: null
+      evidence_paper_ids:
+      - p_2025_tang_a_unified_theory
+      matched_on: '2026-10-09'
+      note: Reviewed against the current official arXiv author list.
   a_jinyeong_kim_62fa119a:
     canonical_name: Jinyeong Kim
     aliases: []
@@ -5633,13 +5683,17 @@ authors:
       semantic_scholar: null
     current_affiliations: []
     profiles:
-      homepage: null
+      homepage:
+        url: https://maheepchaudhary.github.io/
+        source_url: https://maheepchaudhary.github.io/
+        retrieved_on: '2026-10-09'
       google_scholar: null
-    disambiguation_status: unmatched
+    disambiguation_status: reviewed
     disambiguation:
-      evidence_paper_ids: []
-      matched_on: null
-      note: null
+      evidence_paper_ids:
+      - p_2023_geiger_causal_abstraction_a
+      matched_on: '2026-10-09'
+      note: Reviewed against the author's publication list and the official paper author list.
   a_maitreya_patel_bc400523:
     canonical_name: Maitreya Patel
     aliases: []
@@ -5989,17 +6043,18 @@ authors:
     canonical_name: Mengnan Du
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
+      orcid: 0000-0002-1614-6069
+      openalex: A5072191151
+      semantic_scholar: '2237804196'
     current_affiliations: []
     profiles:
       homepage: null
       google_scholar: null
-    disambiguation_status: unmatched
+    disambiguation_status: matched_by_publication
     disambiguation:
-      evidence_paper_ids: []
-      matched_on: null
+      evidence_paper_ids:
+      - p_2025_jin_massive_values_in
+      matched_on: '2026-10-09'
       note: null
   a_mengru_wang_0954eb35:
     canonical_name: Mengru Wang
@@ -6360,12 +6415,14 @@ authors:
       - p_2023_tigges_linear_representations_of
       - p_2023_zhang_towards_best_practices
       - p_2024_arditi_refusal_in_language
+      - p_2024_dunefsky_transcoders_find_interpretable
       - p_2024_lieberum_gemma_scope_open
       - p_2024_makelov_towards_principled_evaluations
       - p_2024_mcdougall_copy_suppression_comprehensively
       - p_2024_rajamanoharan_improving_dictionary_learning
       - p_2024_rajamanoharan_jumping_ahead_improving
       - p_2025_kantamneni_are_sparse_autoencoders
+      - p_2025_minder_overcoming_sparsity_artifacts
       matched_on: '2026-10-09'
       note: null
   a_neel_somani_53450aa7:
@@ -6988,8 +7045,9 @@ authors:
       matched_on: '2026-10-09'
       note: null
   a_peter_r_carroll_82a865d2:
-    canonical_name: Peter R Carroll
-    aliases: []
+    canonical_name: Peter R. Carroll
+    aliases:
+    - Peter R Carroll
     external_ids:
       orcid: null
       openalex: null
@@ -6998,11 +7056,12 @@ authors:
     profiles:
       homepage: null
       google_scholar: null
-    disambiguation_status: unmatched
+    disambiguation_status: reviewed
     disambiguation:
-      evidence_paper_ids: []
-      matched_on: null
-      note: null
+      evidence_paper_ids:
+      - p_2024_hsu_efficient_automated_circuit
+      matched_on: '2026-10-09'
+      note: Reviewed against the official OpenReview paper and its affiliation block.
   a_phillip_guo_34577d11:
     canonical_name: Phillip Guo
     aliases: []
@@ -7686,15 +7745,25 @@ authors:
       orcid: null
       openalex: null
       semantic_scholar: null
-    current_affiliations: []
+    current_affiliations:
+    - name: UK AI Security Institute
+      ror_id: null
+      country_code: null
+      evidence_year: 2026
+      source_url: https://7vik.io/
+      retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
+      homepage:
+        url: https://7vik.io/
+        source_url: https://7vik.io/
+        retrieved_on: '2026-10-09'
       google_scholar: null
-    disambiguation_status: unmatched
+    disambiguation_status: reviewed
     disambiguation:
-      evidence_paper_ids: []
-      matched_on: null
-      note: null
+      evidence_paper_ids:
+      - p_2024_chanin_a_is_for
+      matched_on: '2026-10-09'
+      note: The author's personal site lists A is for Absorption and a current UK AI Security Institute affiliation.
   a_sayambhu_sen_46d0f368:
     canonical_name: Sayambhu Sen
     aliases: []
@@ -7770,15 +7839,25 @@ authors:
       orcid: null
       openalex: null
       semantic_scholar: null
-    current_affiliations: []
+    current_affiliations:
+    - name: İzmir Institute of Technology
+      ror_id: null
+      country_code: null
+      evidence_year: 2026
+      source_url: https://ceng.iyte.edu.tr/people/selma-tekir/
+      retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
+      homepage:
+        url: https://ceng.iyte.edu.tr/people/selma-tekir/
+        source_url: https://ceng.iyte.edu.tr/people/selma-tekir/
+        retrieved_on: '2026-10-09'
       google_scholar: null
-    disambiguation_status: unmatched
+    disambiguation_status: reviewed
     disambiguation:
-      evidence_paper_ids: []
-      matched_on: null
-      note: null
+      evidence_paper_ids:
+      - p_2026_dura_mechanistic_interpretability_of
+      matched_on: '2026-10-09'
+      note: Reviewed against the official institutional profile and the official arXiv author list.
   a_senthooran_rajamanoharan_77c86f94:
     canonical_name: Senthooran Rajamanoharan
     aliases: []
@@ -7978,11 +8057,12 @@ authors:
     profiles:
       homepage: null
       google_scholar: null
-    disambiguation_status: unmatched
+    disambiguation_status: reviewed
     disambiguation:
-      evidence_paper_ids: []
-      matched_on: null
-      note: null
+      evidence_paper_ids:
+      - p_2023_geiger_causal_abstraction_a
+      matched_on: '2026-10-09'
+      note: Reviewed against the official arXiv author list; no stable public profile was added.
   a_soo_joon_choi_0158d0fc:
     canonical_name: Soo-joon Choi
     aliases: []
@@ -8757,11 +8837,11 @@ authors:
       openalex: A5135921544
       semantic_scholar: '2311509250'
     current_affiliations:
-    - name: Rutgers University
-      ror_id: null
-      country_code: null
-      evidence_year: 2026
-      source_url: https://www.cs.rutgers.edu/people/professors/details/vladimir-pavlovic
+    - name: Rutgers, The State University of New Jersey
+      ror_id: 05vt9qd57
+      country_code: US
+      evidence_year: null
+      source_url: https://orcid.org/0000-0003-3979-1236
       retrieved_on: '2026-10-09'
     profiles:
       homepage:
@@ -9172,11 +9252,12 @@ authors:
     profiles:
       homepage: null
       google_scholar: null
-    disambiguation_status: unmatched
+    disambiguation_status: reviewed
     disambiguation:
-      evidence_paper_ids: []
-      matched_on: null
-      note: null
+      evidence_paper_ids:
+      - p_2024_hsu_efficient_automated_circuit
+      matched_on: '2026-10-09'
+      note: Reviewed against the official OpenReview paper and the UC Berkeley research-group roster.
   a_ye_zhou_yang_c7cff2fa:
     canonical_name: Ye-Zhou Yang
     aliases: []
@@ -9271,7 +9352,8 @@ authors:
       note: null
   a_yi_sen_wang_12473f1f:
     canonical_name: Yi-Sen Wang
-    aliases: []
+    aliases:
+    - Yisen Wang
     external_ids:
       orcid: null
       openalex: null
@@ -9280,14 +9362,16 @@ authors:
     profiles:
       homepage: null
       google_scholar: null
-    disambiguation_status: unmatched
+    disambiguation_status: reviewed
     disambiguation:
-      evidence_paper_ids: []
-      matched_on: null
-      note: null
+      evidence_paper_ids:
+      - p_2025_tang_a_unified_theory
+      matched_on: '2026-10-09'
+      note: Reviewed against the current official arXiv author list.
   a_yi_zhen_liao_5775e8a8:
     canonical_name: Yi-Zhen Liao
-    aliases: []
+    aliases:
+    - Yizhen Liao
     external_ids:
       orcid: null
       openalex: null
@@ -9296,11 +9380,12 @@ authors:
     profiles:
       homepage: null
       google_scholar: null
-    disambiguation_status: unmatched
+    disambiguation_status: reviewed
     disambiguation:
-      evidence_paper_ids: []
-      matched_on: null
-      note: null
+      evidence_paper_ids:
+      - p_2025_tang_a_unified_theory
+      matched_on: '2026-10-09'
+      note: Reviewed against the official arXiv author list across paper versions.
   a_yo_joong_choe_c93fca56:
     canonical_name: Yo Joong Choe
     aliases: []
@@ -9478,8 +9563,9 @@ authors:
       matched_on: '2026-10-09'
       note: null
   a_yu_kang_yang_eaf961c8:
-    canonical_name: Yu-Kang Yang
-    aliases: []
+    canonical_name: Yukang Yang
+    aliases:
+    - Yu-Kang Yang
     external_ids:
       orcid: null
       openalex: null
@@ -9488,11 +9574,12 @@ authors:
     profiles:
       homepage: null
       google_scholar: null
-    disambiguation_status: unmatched
+    disambiguation_status: reviewed
     disambiguation:
-      evidence_paper_ids: []
-      matched_on: null
-      note: null
+      evidence_paper_ids:
+      - p_2025_nam_causal_head_gating
+      matched_on: '2026-10-09'
+      note: Normalized the name to match the official NeurIPS proceedings author list.
   a_yubo_chen_35f00bb9:
     canonical_name: Yubo Chen
     aliases: []
@@ -9811,11 +9898,12 @@ authors:
     profiles:
       homepage: null
       google_scholar: null
-    disambiguation_status: unmatched
+    disambiguation_status: reviewed
     disambiguation:
-      evidence_paper_ids: []
-      matched_on: null
-      note: null
+      evidence_paper_ids:
+      - p_2025_tang_a_unified_theory
+      matched_on: '2026-10-09'
+      note: Reviewed against the current official arXiv author list and the lead author's research page.
   a_zheng_lin_4156a90f:
     canonical_name: Zheng Lin
     aliases: []
@@ -9827,11 +9915,12 @@ authors:
     profiles:
       homepage: null
       google_scholar: null
-    disambiguation_status: unmatched
+    disambiguation_status: reviewed
     disambiguation:
-      evidence_paper_ids: []
-      matched_on: null
-      note: null
+      evidence_paper_ids:
+      - p_2025_tang_a_unified_theory
+      matched_on: '2026-10-09'
+      note: Reviewed against the current official arXiv author list and the lead author's research page.
   a_zheng_wang_c4cb165c:
     canonical_name: Zheng Wang
     aliases: []
@@ -10058,343 +10147,827 @@ authors:
     canonical_name: Adityanarayanan Radhakrishnan
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      orcid: 0000-0002-0878-815X
+      openalex: A5051451341
+      semantic_scholar: '12228138'
+    current_affiliations:
+    - name: Massachusetts Institute of Technology
+      ror_id: 042nb2s44
+      country_code: US
+      evidence_year: 2025
+      source_url: https://orcid.org/0000-0002-0878-815X
+      retrieved_on: '2026-10-09'
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2022_radhakrishnan_mechanism_of_feature
+      - p_2023_beaglehole_mechanism_of_feature
+      matched_on: '2026-10-09'
+      note: null
   a_ali_farhadi_2d75d7b5:
     canonical_name: Ali Farhadi
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
-  a_bilal_chugtai_2a76fdc6:
-    canonical_name: Bilal Chugtai
-    aliases: []
-    external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      orcid: 0000-0001-7249-2380
+      openalex: A5101576595
+      semantic_scholar: '143787583'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2022_ilharco_editing_models_with
+      matched_on: '2026-10-09'
+      note: null
   a_caden_juang_3e9d8955:
     canonical_name: Caden Juang
     aliases: []
     external_ids:
       orcid: null
       openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      semantic_scholar: '2300368861'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2025_minder_overcoming_sparsity_artifacts
+      matched_on: '2026-10-09'
+      note: null
   a_clement_dumas_9f2792aa:
     canonical_name: Clément Dumas
     aliases: []
     external_ids:
       orcid: null
       openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      semantic_scholar: '2330398835'
+    current_affiliations:
+    - name: ENS Paris-Saclay
+      ror_id: null
+      country_code: null
+      evidence_year: null
+      source_url: https://scholar.google.com/citations?user=X3IvIvMAAAAJ&hl=en
+      retrieved_on: '2026-10-09'
+    profiles:
+      homepage:
+        url: https://butanium.github.io
+        source_url: https://www.semanticscholar.org/author/2330398835
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=X3IvIvMAAAAJ&hl=en
+        source_url: https://butanium.github.io
+        retrieved_on: '2026-10-09'
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2025_minder_overcoming_sparsity_artifacts
+      matched_on: '2026-10-09'
+      note: null
   a_daniel_beaglehole_b549ddea:
     canonical_name: Daniel Beaglehole
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      orcid: 0000-0002-9665-3473
+      openalex: A5024431018
+      semantic_scholar: '2123039306'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2022_radhakrishnan_mechanism_of_feature
+      - p_2023_beaglehole_mechanism_of_feature
+      matched_on: '2026-10-09'
+      note: null
   a_edward_j_hu_4a2cda7e:
     canonical_name: Edward J. Hu
-    aliases: []
+    aliases:
+    - J. Edward Hu
     external_ids:
       orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      openalex: A5102431452
+      semantic_scholar: '2157840220'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2020_yang_feature_learning_in
+      matched_on: '2026-10-09'
+      note: null
   a_feijiang_han_fce60f8c:
     canonical_name: Feijiang Han
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      orcid: 0009-0001-7880-5349
+      openalex: A5016430981
+      semantic_scholar: '2202174378'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2026_liu_ica_lens_interpreting
+      matched_on: '2026-10-09'
+      note: null
   a_gabriel_ilharco_9157a236:
     canonical_name: Gabriel Ilharco
     aliases: []
     external_ids:
       orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      openalex: A5068360032
+      semantic_scholar: '1387994137'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2022_ilharco_editing_models_with
+      matched_on: '2026-10-09'
+      note: null
   a_greg_yang_88fe8808:
     canonical_name: Greg Yang
     aliases: []
     external_ids:
       orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      openalex: A5061115157
+      semantic_scholar: '35064203'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2020_yang_feature_learning_in
+      matched_on: '2026-10-09'
+      note: null
   a_hannaneh_hajishirzi_a63d2f53:
     canonical_name: Hannaneh Hajishirzi
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      orcid: 0000-0002-1055-6657
+      openalex: A5082305994
+      semantic_scholar: '2548384'
+    current_affiliations:
+    - name: University of Washington
+      ror_id: 00cvxb145
+      country_code: US
+      evidence_year: 2025
+      source_url: https://orcid.org/0000-0002-1055-6657
+      retrieved_on: '2026-10-09'
+    profiles:
+      homepage:
+        url: https://homes.cs.washington.edu/~hannaneh/
+        source_url: https://orcid.org/0000-0002-1055-6657
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=LOV6_WIAAAAJ&hl=en
+        source_url: https://homes.cs.washington.edu/~hannaneh/
+        retrieved_on: '2026-10-09'
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2022_ilharco_editing_models_with
+      matched_on: '2026-10-09'
+      note: null
   a_ian_covert_02ffabb0:
     canonical_name: Ian Covert
     aliases: []
     external_ids:
       orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      openalex: A5049580723
+      semantic_scholar: '115697510'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2021_jethani_fastshap_real_time_shapley
+      matched_on: '2026-10-09'
+      note: null
   a_ilona_eisenbraun_045b9cdd:
     canonical_name: Ilona Eisenbraun
     aliases: []
     external_ids:
       orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      openalex: A5052913171
+      semantic_scholar: '2168462352'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2022_achtibat_from_attribution_maps
+      matched_on: '2026-10-09'
+      note: null
   a_jacob_dunefsky_665ef21a:
     canonical_name: Jacob Dunefsky
     aliases: []
     external_ids:
       orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      openalex: A5054542193
+      semantic_scholar: '2276606256'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2024_dunefsky_transcoders_find_interpretable
+      matched_on: '2026-10-09'
+      note: null
   a_julian_minder_b0f767eb:
     canonical_name: Julian Minder
     aliases: []
     external_ids:
       orcid: null
       openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      semantic_scholar: '2305481379'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2025_minder_overcoming_sparsity_artifacts
+      matched_on: '2026-10-09'
+      note: null
   a_kai_mei_2026a739:
     canonical_name: Kai Mei
     aliases: []
     external_ids:
       orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      openalex: A5100929110
+      semantic_scholar: '2261740874'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2025_jin_massive_values_in
+      matched_on: '2026-10-09'
+      note: null
   a_ludwig_schmidt_04f2677f:
     canonical_name: Ludwig Schmidt
     aliases: []
     external_ids:
       orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      openalex: A5111490184
+      semantic_scholar: '152772922'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2022_ilharco_editing_models_with
+      matched_on: '2026-10-09'
+      note: null
   a_marco_tulio_ribeiro_ce4fc343:
     canonical_name: Marco Tulio Ribeiro
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      orcid: 0000-0002-3301-1297
+      openalex: A5019726734
+      semantic_scholar: '78846919'
+    current_affiliations: []
+    profiles:
+      homepage:
+        url: https://homes.cs.washington.edu/~marcotcr/
+        source_url: https://www.semanticscholar.org/author/78846919
+        retrieved_on: '2026-10-09'
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2022_ilharco_editing_models_with
+      matched_on: '2026-10-09'
+      note: null
   a_maximilian_dreyer_dca7aab3:
     canonical_name: Maximilian Dreyer
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      orcid: 0009-0007-9069-6265
+      openalex: A5085326398
+      semantic_scholar: '2126051719'
+    current_affiliations:
+    - name: Fraunhofer Institute for Telecommunications, Heinrich Hertz Institute
+      ror_id: 02tbr6331
+      country_code: DE
+      evidence_year: null
+      source_url: https://orcid.org/0009-0007-9069-6265
+      retrieved_on: '2026-10-09'
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2022_achtibat_from_attribution_maps
+      matched_on: '2026-10-09'
+      note: null
   a_mikhail_belkin_1bd515af:
     canonical_name: Mikhail Belkin
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
+      orcid: 0009-0005-8633-3926
+      openalex: A5102796459
       semantic_scholar: null
-    disambiguation_status: unreviewed
+    current_affiliations:
+    - name: University of California, San Diego
+      ror_id: 0168r3w48
+      country_code: US
+      evidence_year: null
+      source_url: https://orcid.org/0009-0005-8633-3926
+      retrieved_on: '2026-10-09'
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2022_radhakrishnan_mechanism_of_feature
+      - p_2023_beaglehole_mechanism_of_feature
+      matched_on: '2026-10-09'
+      note: Identity matched through the non-conflicting source; Semantic Scholar contains split author records.
   a_mingjie_sun_7b586d2c:
     canonical_name: Mingjie Sun
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      orcid: 0000-0001-9122-3987
+      openalex: A5015293656
+      semantic_scholar: '2289489477'
+    current_affiliations:
+    - name: Experimental Research Center, China Academy of Chinese Medical Sciences
+      ror_id: null
+      country_code: CN
+      evidence_year: null
+      source_url: https://orcid.org/0000-0001-9122-3987
+      retrieved_on: '2026-10-09'
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2025_jin_massive_values_in
+      matched_on: '2026-10-09'
+      note: null
   a_mingyu_jin_3ffce4e9:
     canonical_name: Mingyu Jin
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      orcid: 0009-0007-6990-7355
+      openalex: A5075202019
+      semantic_scholar: '2267333980'
+    current_affiliations:
+    - name: Rutgers, The State University of New Jersey
+      ror_id: 05vt9qd57
+      country_code: US
+      evidence_year: null
+      source_url: https://orcid.org/0009-0007-6990-7355
+      retrieved_on: '2026-10-09'
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2025_jin_massive_values_in
+      matched_on: '2026-10-09'
+      note: null
   a_mitchell_wortsman_610574e8:
     canonical_name: Mitchell Wortsman
     aliases: []
     external_ids:
       orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      openalex: A5001590363
+      semantic_scholar: '52193502'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2022_ilharco_editing_models_with
+      matched_on: '2026-10-09'
+      note: null
   a_mukund_sudarshan_8f6cf009:
     canonical_name: Mukund Sudarshan
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      orcid: 0000-0001-6374-753X
+      openalex: A5013816045
+      semantic_scholar: '8775053'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2021_jethani_fastshap_real_time_shapley
+      matched_on: '2026-10-09'
+      note: null
   a_neil_jethani_472f7639:
     canonical_name: Neil Jethani
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      orcid: 0000-0002-1364-7984
+      openalex: A5007411646
+      semantic_scholar: '1582189432'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2021_jethani_fastshap_real_time_shapley
+      matched_on: '2026-10-09'
+      note: null
   a_parthe_pandit_1a41d70e:
     canonical_name: Parthe Pandit
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      orcid: 0000-0002-2524-8817
+      openalex: A5083224560
+      semantic_scholar: '40182565'
+    current_affiliations:
+    - name: University of California, San Diego
+      ror_id: null
+      country_code: US
+      evidence_year: 2022
+      source_url: https://orcid.org/0000-0002-2524-8817
+      retrieved_on: '2026-10-09'
+    profiles:
+      homepage:
+        url: https://parthe.github.io
+        source_url: https://orcid.org/0000-0002-2524-8817
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=gp_Gdr8AAAAJ&hl=en
+        source_url: https://orcid.org/0000-0002-2524-8817
+        retrieved_on: '2026-10-09'
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2022_radhakrishnan_mechanism_of_feature
+      - p_2023_beaglehole_mechanism_of_feature
+      matched_on: '2026-10-09'
+      note: null
   a_philippe_chlenski_a063c9a1:
     canonical_name: Philippe Chlenski
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      orcid: 0000-0002-2951-4385
+      openalex: A5069825511
+      semantic_scholar: '1390188099'
+    current_affiliations:
+    - name: Columbia University
+      ror_id: null
+      country_code: US
+      evidence_year: 2020
+      source_url: https://orcid.org/0000-0002-2951-4385
+      retrieved_on: '2026-10-09'
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2024_dunefsky_transcoders_find_interpretable
+      matched_on: '2026-10-09'
+      note: null
   a_rajesh_ranganath_e297addd:
     canonical_name: Rajesh Ranganath
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      orcid: 0000-0003-2854-3376
+      openalex: A5022202456
+      semantic_scholar: '2615814'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2021_jethani_fastshap_real_time_shapley
+      matched_on: '2026-10-09'
+      note: null
   a_reduan_achtibat_0873507e:
     canonical_name: Reduan Achtibat
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      orcid: 0009-0008-0052-3836
+      openalex: A5019269807
+      semantic_scholar: '2168455698'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2022_achtibat_from_attribution_maps
+      matched_on: '2026-10-09'
+      note: null
   a_ruixiang_tang_95be62ba:
     canonical_name: Ruixiang Tang
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      orcid: 0000-0002-5112-8771
+      openalex: A5101660252
+      semantic_scholar: '2324600995'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2025_jin_massive_values_in
+      matched_on: '2026-10-09'
+      note: null
   a_scott_lundberg_89da9112:
     canonical_name: Scott Lundberg
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      orcid: 0000-0001-6280-0941
+      openalex: A5024995037
+      semantic_scholar: '23451726'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2017_lundberg_a_unified_approach
+      matched_on: '2026-10-09'
+      note: null
   a_sebastian_bosse_b0d31bbb:
     canonical_name: Sebastian Bosse
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      orcid: 0000-0002-8104-3904
+      openalex: A5020506776
+      semantic_scholar: '1774736'
+    current_affiliations:
+    - name: Fraunhofer HHI
+      ror_id: 02tbr6331
+      country_code: DE
+      evidence_year: null
+      source_url: https://orcid.org/0000-0002-8104-3904
+      retrieved_on: '2026-10-09'
+    profiles:
+      homepage:
+        url: https://www.hhi.fraunhofer.de/en/departments/vit/research-groups/interactive-cognitive-systems/team/bosse.html
+        source_url: https://orcid.org/0000-0002-8104-3904
+        retrieved_on: '2026-10-09'
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2022_achtibat_from_attribution_maps
+      matched_on: '2026-10-09'
+      note: null
   a_sebastian_lapuschkin_9b4c3d29:
     canonical_name: Sebastian Lapuschkin
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      orcid: 0000-0002-0762-7258
+      openalex: A5017608155
+      semantic_scholar: '3633358'
+    current_affiliations:
+    - name: Fraunhofer-Institut für Nachrichtentechnik Heinrich-Hertz-Institut HHI
+      ror_id: null
+      country_code: DE
+      evidence_year: 2021
+      source_url: https://orcid.org/0000-0002-0762-7258
+      retrieved_on: '2026-10-09'
+    profiles:
+      homepage:
+        url: http://heatmapping.org/
+        source_url: https://orcid.org/0000-0002-0762-7258
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=wpLQuroAAAAJ&hl=en
+        source_url: https://orcid.org/0000-0002-0762-7258
+        retrieved_on: '2026-10-09'
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2022_achtibat_from_attribution_maps
+      matched_on: '2026-10-09'
+      note: null
   a_sida_liu_00c84480:
     canonical_name: Sida Liu
     aliases: []
     external_ids:
       orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      openalex: A5138474855
+      semantic_scholar: '2373989821'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2026_liu_ica_lens_interpreting
+      matched_on: '2026-10-09'
+      note: null
   a_su_in_lee_38cc6a5f:
     canonical_name: Su-In Lee
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      orcid: 0000-0001-5833-5215
+      openalex: A5028723221
+      semantic_scholar: '2180463'
+    current_affiliations:
+    - name: University of Washington
+      ror_id: 00cvxb145
+      country_code: US
+      evidence_year: null
+      source_url: https://orcid.org/0000-0001-5833-5215
+      retrieved_on: '2026-10-09'
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2017_lundberg_a_unified_approach
+      - p_2021_jethani_fastshap_real_time_shapley
+      matched_on: '2026-10-09'
+      note: null
   a_suchin_gururangan_640198ee:
     canonical_name: Suchin Gururangan
     aliases: []
     external_ids:
       orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      openalex: A5075783850
+      semantic_scholar: '40895369'
+    current_affiliations: []
+    profiles:
+      homepage:
+        url: http://suchin.io
+        source_url: https://www.semanticscholar.org/author/40895369
+        retrieved_on: '2026-10-09'
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2022_ilharco_editing_models_with
+      matched_on: '2026-10-09'
+      note: null
   a_thomas_wiegand_2a47cc83:
     canonical_name: Thomas Wiegand
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      orcid: 0000-0002-1121-2581
+      openalex: A5034084717
+      semantic_scholar: '48531638'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2022_achtibat_from_attribution_maps
+      matched_on: '2026-10-09'
+      note: null
   a_tsui_wei_weng_187b3cdd:
     canonical_name: Tsui-Wei Weng
     aliases: []
     external_ids:
       orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      openalex: A5114139431
+      semantic_scholar: '27836724'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2022_oikarinen_clip_dissect_automatic_description
+      matched_on: '2026-10-09'
+      note: null
   a_tuomas_oikarinen_16fea315:
     canonical_name: Tuomas Oikarinen
     aliases: []
     external_ids:
       orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      openalex: A5047688533
+      semantic_scholar: '80143423'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2022_oikarinen_clip_dissect_automatic_description
+      matched_on: '2026-10-09'
+      note: null
   a_wojciech_samek_5b82602b:
     canonical_name: Wojciech Samek
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      orcid: 0000-0002-6283-3265
+      openalex: A5026451495
+      semantic_scholar: '1699054'
+    current_affiliations: []
+    profiles:
+      homepage:
+        url: http://iphome.hhi.de/samek
+        source_url: https://orcid.org/0000-0002-6283-3265
+        retrieved_on: '2026-10-09'
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2022_achtibat_from_attribution_maps
+      matched_on: '2026-10-09'
+      note: null
   a_wujiang_xu_f0a76103:
     canonical_name: Wujiang Xu
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      orcid: 0000-0002-3500-1068
+      openalex: A5081309714
+      semantic_scholar: '2042705246'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2025_jin_massive_values_in
+      matched_on: '2026-10-09'
+      note: null
   a_yongfeng_zhang_cc5204b8:
     canonical_name: Yongfeng Zhang
     aliases: []
     external_ids:
       orcid: null
       openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      semantic_scholar: '2331463632'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2025_jin_massive_values_in
+      matched_on: '2026-10-09'
+      note: null
   a_zirui_liu_c1d75965:
     canonical_name: Zirui Liu
     aliases: []
     external_ids:
-      orcid: null
-      openalex: null
-      semantic_scholar: null
-    disambiguation_status: unreviewed
+      orcid: 0000-0002-1939-9715
+      openalex: A5075644135
+      semantic_scholar: '47781070'
+    current_affiliations: []
+    profiles:
+      homepage: null
+      google_scholar: null
+    disambiguation_status: matched_by_publication
+    disambiguation:
+      evidence_paper_ids:
+      - p_2025_jin_massive_values_in
+      matched_on: '2026-10-09'
+      note: null
