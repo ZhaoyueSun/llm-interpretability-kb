@@ -882,8 +882,7 @@ nodes:
   introduction:
     en: >-
       Activation-space methods intervene on values produced during a forward pass rather
-      than changing the model's stored parameters. These activations are broader than
-      hidden states: they can include residual-stream states, attention-head or MLP
+      than changing the model's stored parameters. These activations can include residual-stream states, attention-head or MLP
       outputs, individual neuron activations, and learned features. This makes the methods
       useful both for testing whether an internal representation has a functional effect
       and for reversible inference-time control. Common operations amplify or suppress
@@ -893,7 +892,7 @@ nodes:
       representation is unique or disentangled.
     zh: >-
       Activation-Space Intervention 修改的是模型一次前向传播中产生的中间激活，而不是长期保存的参数。
-      这里的激活比“隐藏状态”范围更广：它既可以是 residual stream 等整体状态，也可以是 attention head 或
+      这里的激活既可以是 residual stream 等整体状态，也可以是 attention head 或
       MLP 的输出、单个神经元的激活以及学习得到的特征。因而，这类方法既能检验某种内部表征是否对行为具有
       功能作用，也能用于可逆的推理时控制。常见操作包括增强或压制已有活动、加入 steering direction，
       以及投影掉某个方向或子空间携带的信息。由于干预也可能扰动相关联的信息，控制成功本身并不能证明
