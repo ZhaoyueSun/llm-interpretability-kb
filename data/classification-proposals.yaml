@@ -1169,6 +1169,292 @@ proposals:
   - Supplement papers require new leaves within existing branches, but no new top-level branch.
   - Secondary assignments are conservative; baselines mentioned only for comparison are omitted.
   - The approved assignments are written to the append-only event stream; later corrections must use revoke, replace, assign, or confirm events rather than rewriting history.
+- proposal_id: tp_20261009_application_scenarios_v1
+  kind: taxonomy_and_classification
+  status: rejected
+  resolved_at: '2026-10-09'
+  superseded_by: tp_20261009_application_scenarios_v2
+  resolution_reason: >-
+    Superseded after review because the draft relied too heavily on titles, abstracts,
+    contribution types, and existing object/technique labels. In particular, General
+    Interpretability, Interpretability Evaluation, and Learning and Representation
+    Dynamics are not application scenarios. The replacement is grounded in the
+    datasets and tasks actually used in each paper's experiments.
+  created_at: '2026-10-09'
+  title: Application and Scenarios taxonomy for the 123-paper corpus
+  taxonomy_id: application-scenarios
+  corpus_id: llm-interpretability-kb
+  corpus_version: 2
+  corpus_size: 123
+  reference_basis: >-
+    The user-provided reference figure organizes interpretability work by application
+    scenarios, including social computation and communication, factual knowledge,
+    sycophancy, persona, science, safety, bias, code, and mathematics. This proposal
+    preserves those concerns while adding corpus-driven branches for general methods,
+    language and context use, formal reasoning, trustworthiness, and multimodality.
+  evidence_basis: >-
+    Titles, abstracts, paper-level modality and contribution attributes, and the
+    approved Research Objects and Techniques classifications for all 123 corpus papers.
+  classification_model:
+    primary: >-
+      The application domain or behavior that supplies the paper's central empirical
+      target. General or cross-domain leaves are used when no single substantive
+      scenario dominates a method, theory, or evaluation paper.
+    secondary: >-
+      Other application domains or behaviors that are materially analyzed, intervened
+      on, or evaluated in the main experiments; motivation-only mentions and incidental
+      examples are excluded.
+    multiplicity: Each paper has exactly one primary relation and zero or more secondary relations.
+    leaf_only_assignments: true
+  structural_decisions:
+  - Application Scenarios is orthogonal to Research Objects, Techniques, Model Families, and paper contribution attributes.
+  - General and Cross-Domain is an explicit branch so method papers are not forced into a narrow downstream application.
+  - Truthfulness and Latent Knowledge is separated from Hallucination and Grounding: the former concerns mismatch between internal knowledge and expressed answers, while the latter concerns unsupported content relative to an input or evidence source.
+  - Safety and Refusal, Bias and Fairness, Sycophancy and Social Alignment, and Backdoors and Model Security remain separate because they denote different failure modes and intervention goals.
+  - Vision-Language Interaction is a scenario, not a model-family label; it is assigned only when cross-modal transfer or behavior is itself central to the study.
+  - Code and Scientific Applications are retained as explicit coverage targets from the reference taxonomy even though the current corpus has no primary paper in either leaf.
+  proposed_nodes:
+  - node_id: application-scenarios
+    parent_id: null
+    title: Application and Scenarios
+    description_en: Domains, behaviors, and deployment-relevant settings in which interpretability questions are studied.
+    description_zh: 可解释性问题所处的应用领域、模型行为与部署相关场景。
+  - node_id: general-cross-domain
+    parent_id: application-scenarios
+    title: General and Cross-Domain
+    description_en: Work whose central claim spans domains or concerns interpretability itself.
+    description_zh: 核心结论跨越多个领域，或直接研究可解释性方法本身的工作。
+  - node_id: general-interpretability
+    parent_id: general-cross-domain
+    title: General Interpretability and Explanation
+    description_en: General-purpose explanation, representation analysis, localization, circuit discovery, and model-control settings.
+    description_zh: 通用解释、表征分析、定位、circuit 发现与模型控制场景。
+  - node_id: interpretability-evaluation
+    parent_id: general-cross-domain
+    title: Interpretability Evaluation and Auditing
+    description_en: Reliability, faithfulness, robustness, usefulness, or verification of interpretability methods and artifacts.
+    description_zh: 评估可解释方法与产物的可靠性、忠实性、稳健性、实用性或可验证性。
+  - node_id: learning-representation-dynamics
+    parent_id: general-cross-domain
+    title: Learning and Representation Dynamics
+    description_en: How representations, features, circuits, and capabilities form or change through optimization and fine-tuning.
+    description_zh: 表征、特征、circuit 与能力如何在优化和微调过程中形成或变化。
+  - node_id: language-knowledge-interaction
+    parent_id: application-scenarios
+    title: Language, Knowledge, and Interaction
+    description_en: Language-model behaviors involving stored knowledge, context use, linguistic organization, and interaction style.
+    description_zh: 涉及知识存储、上下文利用、语言组织和交互风格的语言模型行为。
+  - node_id: factual-knowledge-memory
+    parent_id: language-knowledge-interaction
+    title: Factual Knowledge and Memory
+    description_en: Storage, recall, localization, and editing of factual or entity-level knowledge.
+    description_zh: 事实或实体知识的存储、回忆、定位与编辑。
+  - node_id: context-use-in-context-learning
+    parent_id: language-knowledge-interaction
+    title: Context Use and In-Context Learning
+    description_en: Mechanisms that bind, retrieve, copy, or execute information and tasks supplied in context.
+    description_zh: 绑定、检索、复制或执行上下文所提供信息与任务的机制。
+  - node_id: linguistic-structure-multilinguality
+    parent_id: language-knowledge-interaction
+    title: Linguistic Structure and Multilinguality
+    description_en: Syntax, token and positional structure, language identity, and cross-lingual behavior.
+    description_zh: 句法、token 与位置结构、语言身份以及跨语言行为。
+  - node_id: social-computation-communication
+    parent_id: language-knowledge-interaction
+    title: Social Computation and Communication
+    description_en: Social inference, pragmatic communication, and interaction between language models and people or agents.
+    description_zh: 社会推断、语用交流以及语言模型与人或其他 agent 的互动。
+  - node_id: persona-sentiment-behavioral-style
+    parent_id: language-knowledge-interaction
+    title: Persona, Sentiment, and Behavioral Style
+    description_en: Internal representations and control of persona, affect, stance, tone, and conversational style.
+    description_zh: 人格、情感、立场、语气与对话风格的内部表征及控制。
+  - node_id: reasoning-formal-tasks
+    parent_id: application-scenarios
+    title: Reasoning and Formal Tasks
+    description_en: Tasks with explicit compositional, algorithmic, mathematical, logical, or symbolic structure.
+    description_zh: 具有明确组合、算法、数学、逻辑或符号结构的任务。
+  - node_id: mathematics-arithmetic
+    parent_id: reasoning-formal-tasks
+    title: Mathematics and Arithmetic
+    description_en: Numerical comparison, arithmetic, algebraic structure, and mathematical generalization.
+    description_zh: 数值比较、算术、代数结构与数学泛化。
+  - node_id: logic-symbolic-reasoning
+    parent_id: reasoning-formal-tasks
+    title: Logic and Symbolic Reasoning
+    description_en: Variable binding, formal inference, chain-of-thought, and symbolic algorithm execution.
+    description_zh: 变量绑定、形式推理、思维链与符号算法执行。
+  - node_id: games-synthetic-worlds
+    parent_id: reasoning-formal-tasks
+    title: Games and Synthetic Worlds
+    description_en: Controlled environments whose latent state and rules permit mechanistic study of learned world models.
+    description_zh: 潜在状态和规则可控、适合研究学习所得世界模型的游戏与合成环境。
+  - node_id: code
+    parent_id: reasoning-formal-tasks
+    title: Code
+    description_en: Program understanding, code generation, debugging, and software-related model behavior.
+    description_zh: 程序理解、代码生成、调试与软件相关模型行为。
+  - node_id: trustworthiness-alignment
+    parent_id: application-scenarios
+    title: Trustworthiness and Alignment
+    description_en: Model behaviors and interventions that bear directly on reliability, safety, and alignment.
+    description_zh: 与可靠性、安全性和对齐直接相关的模型行为及干预。
+  - node_id: safety-refusal
+    parent_id: trustworthiness-alignment
+    title: Safety and Refusal
+    description_en: Harmful-request detection, refusal mechanisms, jailbreaks, and safety-oriented control.
+    description_zh: 有害请求识别、拒绝机制、越狱与面向安全的模型控制。
+  - node_id: truthfulness-latent-knowledge
+    parent_id: trustworthiness-alignment
+    title: Truthfulness and Latent Knowledge
+    description_en: Whether a model internally represents correct information that is not faithfully expressed in its output.
+    description_zh: 模型是否在内部表示正确知识，却未在输出中忠实表达。
+  - node_id: hallucination-grounding
+    parent_id: trustworthiness-alignment
+    title: Hallucination and Grounding
+    description_en: Unsupported generation and the mechanisms that connect outputs to perceptual or contextual evidence.
+    description_zh: 缺乏依据的生成，以及输出与感知或上下文证据建立联系的机制。
+  - node_id: bias-fairness
+    parent_id: trustworthiness-alignment
+    title: Bias and Fairness
+    description_en: Detection, explanation, and mitigation of demographic or socially consequential bias.
+    description_zh: 人口属性或社会后果相关偏见的检测、解释与缓解。
+  - node_id: sycophancy-social-alignment
+    parent_id: trustworthiness-alignment
+    title: Sycophancy and Social Alignment
+    description_en: Agreement-seeking, user-pleasing, and other socially conditioned alignment behaviors.
+    description_zh: 迎合、讨好用户以及其他受社会情境影响的对齐行为。
+  - node_id: backdoors-model-security
+    parent_id: trustworthiness-alignment
+    title: Backdoors and Model Security
+    description_en: Triggered malicious behavior, hidden policies, poisoning, and security analysis of model internals.
+    description_zh: 触发式恶意行为、隐藏策略、投毒与模型内部安全分析。
+  - node_id: knowledge-conflict-reliability
+    parent_id: trustworthiness-alignment
+    title: Knowledge Conflict and Reliability
+    description_en: Competition between parametric memory and supplied evidence, plus mechanisms for resolving the conflict reliably.
+    description_zh: 参数记忆与外部证据之间的竞争，以及可靠解决冲突的机制。
+  - node_id: vision-multimodal
+    parent_id: application-scenarios
+    title: Vision and Multimodal Interaction
+    description_en: Visual recognition, grounding, and behavior that crosses visual and linguistic representations.
+    description_zh: 视觉识别、视觉落地以及跨视觉与语言表征的行为。
+  - node_id: visual-recognition-grounding
+    parent_id: vision-multimodal
+    title: Visual Recognition and Grounding
+    description_en: Visual concepts, image classification, saliency, and grounding of internal units in image content.
+    description_zh: 视觉概念、图像分类、显著性以及内部单元与图像内容的对应。
+  - node_id: vision-language-interaction
+    parent_id: vision-multimodal
+    title: Vision-Language Interaction
+    description_en: Cross-modal transfer, image-to-text information flow, multimodal reasoning, and modality-specific mechanisms.
+    description_zh: 跨模态迁移、图像到文本的信息流、多模态推理与模态特有机制。
+  - node_id: scientific-applications
+    parent_id: application-scenarios
+    title: Scientific Applications
+    description_en: Interpretability applied to scientific models, data, and domain discovery.
+    description_zh: 面向科学模型、科学数据与领域发现的可解释性研究。
+  - node_id: science-domain-discovery
+    parent_id: scientific-applications
+    title: Science and Domain Discovery
+    description_en: Mechanistic understanding or explanation in natural-science and scientific-discovery settings.
+    description_zh: 自然科学与科学发现情境中的机制理解与解释。
+  primary_assignments:
+  - node_id: general-interpretability
+    paper_ids: [p_2017_lundberg_a_unified_approach, p_2019_wiegreffe_attention_is_not, p_2021_geiger_causal_abstractions_of, p_2021_geiger_inducing_causal_structure, p_2021_jethani_fastshap_real_time_shapley, p_2021_yun_transformer_visualization_via, p_2022_ilharco_editing_models_with, p_2023_belrose_eliciting_latent_predictions, p_2023_conmy_towards_automated_circuit, p_2023_cunningham_sparse_autoencoders_find, p_2023_geiger_causal_abstraction_a, p_2023_geiger_finding_alignments_between, p_2023_goldowsky_dill_localizing_model_behavior, p_2023_guerner_a_geometric_notion, p_2023_gurnee_finding_neurons_in, p_2023_lieberum_does_circuit_analysis, p_2023_merullo_circuit_component_reuse, p_2023_park_the_linear_representation, p_2023_sakarvadia_attention_lens_a, p_2023_syed_attribution_patching_outperforms, p_2023_zou_representation_engineering_a, p_2024_braun_identifying_functionally_important, p_2024_dunefsky_transcoders_find_interpretable, p_2024_ferrando_information_flow_routes, p_2024_ghandeharioun_patchscopes_a_unifying, p_2024_he_llama_scope_extracting, p_2024_hsu_efficient_automated_circuit, p_2024_lieberum_gemma_scope_open, p_2024_marks_enhancing_neural_network, p_2024_marks_sparse_feature_circuits, p_2024_muhamed_decoding_dark_matter, p_2024_o_neill_sparse_autoencoders_enable, p_2024_rajamanoharan_improving_dictionary_learning, p_2024_rajamanoharan_jumping_ahead_improving, p_2025_chen_transferring_linear_features, p_2025_nam_causal_head_gating, p_2025_viswanathan_the_intrinsic_dimension, p_2026_dalili_subspace_aware_sparse, p_2026_liu_ica_lens_interpreting, p_2026_munigety_from_correlation_to, p_2026_somani_towards_verifiable_transformers, p_2026_templeton_scaling_monosemanticity_extracting]
+  - node_id: interpretability-evaluation
+    paper_ids: [p_2023_zhang_towards_best_practices, p_2024_chanin_a_is_for, p_2024_hanna_have_faith_in, p_2024_huang_ravel_evaluating_interpretability, p_2024_makelov_towards_principled_evaluations, p_2025_kantamneni_are_sparse_autoencoders, p_2025_wu_axbench_steering_llms, p_2026_filus_measuring_monosemanticity_in, p_2026_zhou_sparse_visual_thought]
+  - node_id: learning-representation-dynamics
+    paper_ids: [p_2020_yang_feature_learning_in, p_2022_elhage_toy_models_of, p_2022_radhakrishnan_mechanism_of_feature, p_2022_scherlis_polysemanticity_and_capacity, p_2023_beaglehole_mechanism_of_feature, p_2024_nichani_how_transformers_learn, p_2025_tang_a_unified_theory]
+  - node_id: factual-knowledge-memory
+    paper_ids: [p_2020_geva_transformer_feed_forward, p_2021_dai_knowledge_neurons_in, p_2022_meng_locating_and_editing, p_2023_geva_dissecting_recall_of, p_2023_hase_does_localization_inform, p_2024_yao_knowledge_circuits_in]
+  - node_id: context-use-in-context-learning
+    paper_ids: [p_2022_olsson_in_context_learning, p_2023_feng_how_do_language, p_2023_pal_future_lens_anticipating, p_2023_todd_function_vectors_in, p_2024_mcdougall_copy_suppression_comprehensively, p_2024_prakash_fine_tuning_enhances, p_2024_singh_what_needs_to, p_2025_jin_massive_values_in]
+  - node_id: linguistic-structure-multilinguality
+    paper_ids: [p_2019_hewitt_designing_and_interpreting, p_2020_ravichander_probing_the_probing, p_2022_wang_interpretability_in_the, p_2023_voita_neurons_in_large, p_2024_tang_language_specific_neurons, p_2025_mondal_language_specific_neurons, p_2026_pillai_ftb_graph_determining]
+  - node_id: persona-sentiment-behavioral-style
+    paper_ids: [p_2023_tigges_linear_representations_of]
+  - node_id: mathematics-arithmetic
+    paper_ids: [p_2023_chughtai_a_toy_model, p_2023_gould_successor_heads_recurring, p_2023_hanna_how_does_gpt, p_2023_nanda_progress_measures_for, p_2023_stolfo_a_mechanistic_interpretation, p_2023_varma_explaining_grokking_through, p_2026_bhardia_mechanistic_analysis_of]
+  - node_id: logic-symbolic-reasoning
+    paper_ids: [p_2023_davies_discovering_variable_binding, p_2023_lepori_uncovering_intermediate_variables, p_2025_galichin_i_have_covered, p_2025_kim_reasoning_circuits_in, p_2026_dura_mechanistic_interpretability_of]
+  - node_id: games-synthetic-worlds
+    paper_ids: [p_2022_li_emergent_world_representations, p_2023_nanda_emergent_linear_representations, p_2024_he_dictionary_learning_improves, p_2024_shai_transformers_represent_belief]
+  - node_id: safety-refusal
+    paper_ids: [p_2024_arditi_refusal_in_language, p_2024_zhou_on_the_role, p_2025_minder_overcoming_sparsity_artifacts, p_2026_ratnakar_the_geometry_of]
+  - node_id: truthfulness-latent-knowledge
+    paper_ids: [p_2022_burns_discovering_latent_knowledge, p_2023_li_inference_time_intervention, p_2026_park_mechelk_a_mechanistic]
+  - node_id: hallucination-grounding
+    paper_ids: [p_2026_hegde_where_hallucinations_live, p_2026_liu_dual_pathway_circuits]
+  - node_id: bias-fairness
+    paper_ids: [p_2026_hai_when_and_why]
+  - node_id: backdoors-model-security
+    paper_ids: [p_2023_lamparth_analyzing_and_editing, p_2024_draguns_unelicitable_backdoors_in]
+  - node_id: knowledge-conflict-reliability
+    paper_ids: [p_2024_jin_cutting_off_the, p_2025_li_taming_knowledge_conflicts]
+  - node_id: visual-recognition-grounding
+    paper_ids: [p_2016_alain_understanding_intermediate_layers, p_2017_bau_network_dissection_quantifying, p_2018_adebayo_sanity_checks_for, p_2022_achtibat_from_attribution_maps, p_2022_oikarinen_clip_dissect_automatic_description]
+  - node_id: vision-language-interaction
+    paper_ids: [p_2023_palit_towards_vision_language, p_2023_schwettmann_multimodal_neurons_in, p_2024_hinck_why_do_llava, p_2024_neo_towards_interpreting_visual, p_2025_kim_interpreting_attention_heads, p_2025_nikankin_same_task_different, p_2025_tian_why_representation_engineering, p_2026_che_counting_circuits_mechanistic]
+  secondary_assignments:
+  - node_id: interpretability-evaluation
+    paper_ids: [p_2018_adebayo_sanity_checks_for, p_2019_wiegreffe_attention_is_not, p_2020_ravichander_probing_the_probing, p_2023_hase_does_localization_inform, p_2023_syed_attribution_patching_outperforms, p_2024_o_neill_sparse_autoencoders_enable, p_2026_somani_towards_verifiable_transformers]
+  - node_id: learning-representation-dynamics
+    paper_ids: [p_2022_olsson_in_context_learning, p_2023_nanda_progress_measures_for, p_2023_varma_explaining_grokking_through, p_2024_prakash_fine_tuning_enhances, p_2024_singh_what_needs_to, p_2025_minder_overcoming_sparsity_artifacts, p_2026_filus_measuring_monosemanticity_in]
+  - node_id: factual-knowledge-memory
+    paper_ids: [p_2023_gould_successor_heads_recurring, p_2024_jin_cutting_off_the, p_2025_jin_massive_values_in, p_2025_li_taming_knowledge_conflicts, p_2025_minder_overcoming_sparsity_artifacts, p_2026_park_mechelk_a_mechanistic, p_2026_templeton_scaling_monosemanticity_extracting]
+  - node_id: context-use-in-context-learning
+    paper_ids: [p_2020_geva_transformer_feed_forward, p_2022_wang_interpretability_in_the, p_2023_davies_discovering_variable_binding, p_2023_geva_dissecting_recall_of, p_2023_gould_successor_heads_recurring, p_2023_lepori_uncovering_intermediate_variables, p_2024_jin_cutting_off_the, p_2025_li_taming_knowledge_conflicts]
+  - node_id: linguistic-structure-multilinguality
+    paper_ids: [p_2019_wiegreffe_attention_is_not, p_2023_feng_how_do_language, p_2023_tigges_linear_representations_of, p_2024_hinck_why_do_llava, p_2024_prakash_fine_tuning_enhances, p_2026_munigety_from_correlation_to]
+  - node_id: social-computation-communication
+    paper_ids: [p_2023_tigges_linear_representations_of, p_2025_minder_overcoming_sparsity_artifacts, p_2026_templeton_scaling_monosemanticity_extracting]
+  - node_id: persona-sentiment-behavioral-style
+    paper_ids: [p_2023_zou_representation_engineering_a, p_2025_minder_overcoming_sparsity_artifacts, p_2026_templeton_scaling_monosemanticity_extracting]
+  - node_id: mathematics-arithmetic
+    paper_ids: [p_2025_galichin_i_have_covered, p_2025_nikankin_same_task_different, p_2026_che_counting_circuits_mechanistic, p_2026_dura_mechanistic_interpretability_of, p_2026_zhou_sparse_visual_thought]
+  - node_id: logic-symbolic-reasoning
+    paper_ids: [p_2022_li_emergent_world_representations, p_2023_chughtai_a_toy_model, p_2023_nanda_emergent_linear_representations, p_2024_nichani_how_transformers_learn, p_2024_shai_transformers_represent_belief, p_2025_nikankin_same_task_different, p_2026_bhardia_mechanistic_analysis_of, p_2026_che_counting_circuits_mechanistic, p_2026_somani_towards_verifiable_transformers, p_2026_zhou_sparse_visual_thought]
+  - node_id: games-synthetic-worlds
+    paper_ids: [p_2023_lepori_uncovering_intermediate_variables, p_2023_nanda_progress_measures_for, p_2023_varma_explaining_grokking_through]
+  - node_id: code
+    paper_ids: [p_2026_templeton_scaling_monosemanticity_extracting]
+  - node_id: safety-refusal
+    paper_ids: [p_2023_zou_representation_engineering_a, p_2024_muhamed_decoding_dark_matter, p_2025_wu_axbench_steering_llms, p_2026_templeton_scaling_monosemanticity_extracting]
+  - node_id: truthfulness-latent-knowledge
+    paper_ids: [p_2023_zou_representation_engineering_a, p_2025_minder_overcoming_sparsity_artifacts, p_2026_templeton_scaling_monosemanticity_extracting]
+  - node_id: hallucination-grounding
+    paper_ids: [p_2025_kim_interpreting_attention_heads, p_2025_nikankin_same_task_different, p_2026_zhou_sparse_visual_thought]
+  - node_id: bias-fairness
+    paper_ids: [p_2022_ilharco_editing_models_with, p_2024_muhamed_decoding_dark_matter, p_2026_templeton_scaling_monosemanticity_extracting]
+  - node_id: sycophancy-social-alignment
+    paper_ids: [p_2026_templeton_scaling_monosemanticity_extracting]
+  - node_id: backdoors-model-security
+    paper_ids: [p_2024_arditi_refusal_in_language]
+  - node_id: knowledge-conflict-reliability
+    paper_ids: [p_2022_meng_locating_and_editing, p_2023_hase_does_localization_inform, p_2023_li_inference_time_intervention]
+  - node_id: visual-recognition-grounding
+    paper_ids: [p_2022_ilharco_editing_models_with, p_2023_beaglehole_mechanism_of_feature, p_2023_palit_towards_vision_language, p_2023_schwettmann_multimodal_neurons_in, p_2024_neo_towards_interpreting_visual, p_2025_kim_interpreting_attention_heads, p_2025_nikankin_same_task_different, p_2025_tian_why_representation_engineering, p_2026_che_counting_circuits_mechanistic, p_2026_hegde_where_hallucinations_live, p_2026_liu_dual_pathway_circuits, p_2026_zhou_sparse_visual_thought]
+  - node_id: vision-language-interaction
+    paper_ids: [p_2026_hegde_where_hallucinations_live, p_2026_liu_dual_pathway_circuits, p_2026_templeton_scaling_monosemanticity_extracting, p_2026_zhou_sparse_visual_thought]
+  coverage_gaps:
+  - node_id: social-computation-communication
+    primary_papers: 0
+    note: Only secondary evidence is present; no corpus paper centrally studies social reasoning or communication.
+  - node_id: code
+    primary_papers: 0
+    note: Code appears only as an interpreted feature example, not as the central application of a corpus paper.
+  - node_id: sycophancy-social-alignment
+    primary_papers: 0
+    note: Sycophancy is causally demonstrated as one feature family in a broad dictionary-learning study, but is not the primary target of a corpus paper.
+  - node_id: science-domain-discovery
+    primary_papers: 0
+    note: The current corpus contains no paper whose central empirical setting is a natural-science or scientific-discovery task.
+  review_notes:
+  - Assignments describe application scenarios, not the object being inspected, the technique used, the model architecture, or the paper's contribution type.
+  - Generic method papers remain in General and Cross-Domain even when their motivating examples mention safety, bias, or knowledge.
+  - Secondary labels are deliberately conservative and should be expanded only with evidence from a paper's main experiments.
+  - This is a pending proposal; no taxonomy file has been created and no classification event has been appended.
 - proposal_id: tp_20261009_techniques_v3_activation_wording
   kind: taxonomy_content
   status: approved
@@ -1189,3 +1475,303 @@ proposals:
     accurate concept of intervening on intermediate activations. Clarify that hidden
     states are one activation type, list other covered activation targets, and state the
     principal evidential limitation. The tree structure and paper assignments are unchanged.
+- proposal_id: tp_20261009_application_scenarios_v2
+  replaces_draft: tp_20261009_application_scenarios_v1
+  kind: taxonomy_and_classification
+  status: approved
+  created_at: '2026-10-09'
+  approved_at: '2026-10-09'
+  approval_basis: >-
+    After reviewing the expanded tree and the experiment-grounded assignments, the user
+    approved materializing the taxonomy and classifications in the formal data model.
+    The user also requested reader-oriented bilingual node introductions, strict
+    separation from the Techniques and Research Objects tabs, and removal of internal
+    coverage-gap commentary from node overviews.
+  title: Experiment-grounded Application and Scenarios taxonomy for the 123-paper corpus
+  taxonomy_id: application-scenarios
+  resulting_taxonomy_version: 1
+  taxonomy_file: data/taxonomies/application-scenarios.yaml
+  corpus_id: llm-interpretability-kb
+  corpus_version: 2
+  corpus_size: 123
+  node_count: 30
+  event_write:
+    primary_events: 123
+    secondary_events: 128
+    first_event_id: ce_20261009_application_scenarios_0001
+    last_event_id: ce_20261009_application_scenarios_0251
+  revision_reason: >-
+    Rebuild the taxonomy from the datasets and tasks used in each paper's experiments.
+    Remove contribution types, techniques, and research objects from the scenario tree.
+  evidence_basis: >-
+    Full-text review of the experiment setup, datasets, tasks, benchmarks, case studies,
+    and relevant appendices for all 123 papers. Titles and abstracts are used only as
+    navigation aids and never override experimental evidence.
+  classification_model:
+    primary: >-
+      The task family that best represents the paper's central empirical claim. When the
+      paper deliberately evaluates unrelated task families, the primary is Cross-Domain
+      Task Suites; when it uses only ordinary next-token data without a downstream task,
+      the primary is General Language Modeling; and when the task is deliberately
+      generated to isolate a mechanism, the primary is Synthetic Controlled Tasks.
+    secondary: >-
+      Other task families materially used in experiments or causal validation. A dataset
+      used only to train an interpretability artifact, a motivating example, or a passing
+      feature illustration is not sufficient by itself.
+    multiplicity: Each paper has exactly one primary relation and zero or more secondary relations.
+    leaf_only_assignments: true
+  exclusion_rules:
+  - SAE, probing, patching, attribution, circuit discovery, and steering are techniques, not scenarios.
+  - Attention heads, neurons, residual streams, sparse features, and representations are research objects, not scenarios.
+  - Method evaluation, faithfulness, learning dynamics, and representation geometry are contribution or analysis types, not scenarios.
+  - Model architecture and modality do not determine the scenario; the dataset task does.
+  proposed_nodes:
+  - node_id: application-scenarios
+    parent_id: null
+    title: Application and Experimental Scenarios
+    description_en: Task families and empirical settings in which interpretability claims are tested.
+    description_zh: 可解释性主张实际接受检验的任务类型与实验场景。
+  - node_id: general-experimental-settings
+    parent_id: application-scenarios
+    title: General Experimental Settings
+    description_en: Empirical settings without one dominant downstream application domain.
+    description_zh: 不由单一具体下游应用主导的实验设置。
+  - node_id: general-language-modeling
+    parent_id: general-experimental-settings
+    title: General Language Modeling
+    description_en: Next-token prediction or feature analysis on general text corpora without a narrower task.
+    description_zh: 在通用文本语料上进行下一 token 预测或特征分析，且没有更具体的下游任务。
+  - node_id: cross-domain-multi-task
+    parent_id: general-experimental-settings
+    title: Cross-Domain Task Suites
+    description_en: Experiments intentionally spanning several unrelated task or data families.
+    description_zh: 有意覆盖多个彼此不同任务或数据类型的实验组合。
+  - node_id: synthetic-controlled-tasks
+    parent_id: general-experimental-settings
+    title: Synthetic Controlled Tasks
+    description_en: Generated or toy tasks designed to isolate a mechanism under controlled ground truth.
+    description_zh: 为隔离机制并提供可控真值而构造的合成或玩具任务。
+  - node_id: language-knowledge-interaction
+    parent_id: application-scenarios
+    title: Language, Knowledge, and Interaction
+    description_en: Language tasks involving stored knowledge, supplied context, linguistic form, and interaction behavior.
+    description_zh: 涉及存储知识、输入上下文、语言形式与交互行为的语言任务。
+  - node_id: factual-recall-editing
+    parent_id: language-knowledge-interaction
+    title: Factual Recall and Editing
+    description_en: Factual completion, entity-attribute retrieval, knowledge localization, and factual editing tasks.
+    description_zh: 事实补全、实体属性检索、知识定位与事实编辑任务。
+  - node_id: context-use-in-context-learning
+    parent_id: language-knowledge-interaction
+    title: Context Use and In-Context Learning
+    description_en: Copying, binding, retrieval, entity tracking, induction, and task execution from supplied context.
+    description_zh: 根据输入上下文进行复制、绑定、检索、实体跟踪、归纳与任务执行。
+  - node_id: knowledge-conflict-contextual-qa
+    parent_id: language-knowledge-interaction
+    title: Knowledge Conflict and Contextual QA
+    description_en: Tasks where parametric memory competes with contextual evidence, including conflict-aware QA.
+    description_zh: 参数记忆与上下文证据发生竞争的任务，包括知识冲突问答。
+  - node_id: language-understanding-linguistic-tasks
+    parent_id: language-knowledge-interaction
+    title: Language Understanding and Linguistic Tasks
+    description_en: Tasks that test syntax, agreement, coreference, entailment, lexical relations, and related language understanding abilities.
+    description_zh: 测试句法、一致关系、共指、蕴含、词汇关系及相关语言理解能力的任务。
+  - node_id: multilingual-language-control
+    parent_id: language-knowledge-interaction
+    title: Multilinguality and Language Control
+    description_en: Language identity, cross-lingual transfer, translation, and output-language control.
+    description_zh: 语言身份、跨语言迁移、翻译与输出语言控制。
+  - node_id: sentiment-persona-social-behavior
+    parent_id: language-knowledge-interaction
+    title: Sentiment, Persona, and Social Behavior
+    description_en: Sentiment classification or control, persona, stance, and socially conditioned interaction behavior.
+    description_zh: 情感分类或控制、人格、立场及社会情境影响下的交互行为。
+  - node_id: reasoning-formal-tasks
+    parent_id: application-scenarios
+    title: Reasoning and Formal Tasks
+    description_en: Tasks governed by mathematical, logical, symbolic, algorithmic, or game rules.
+    description_zh: 由数学、逻辑、符号、算法或游戏规则约束的任务。
+  - node_id: mathematics-arithmetic
+    parent_id: reasoning-formal-tasks
+    title: Mathematics and Arithmetic
+    description_en: Arithmetic, numerical comparison, algebraic composition, and mathematical word problems.
+    description_zh: 算术、数值比较、代数组合与数学文字题。
+  - node_id: logic-symbolic-reasoning
+    parent_id: reasoning-formal-tasks
+    title: Logic and Symbolic Reasoning
+    description_en: Formal inference, natural-logic reasoning, variable binding, and symbolic sequence manipulation.
+    description_zh: 形式推理、自然逻辑、变量绑定与符号序列操作。
+  - node_id: games-world-models
+    parent_id: reasoning-formal-tasks
+    title: Games and Rule-Based Worlds
+    description_en: Board games and controlled rule-based environments with an explicit latent state.
+    description_zh: 具有明确潜在状态的棋类游戏与规则可控环境。
+  - node_id: code
+    parent_id: reasoning-formal-tasks
+    title: Code
+    description_en: Code completion, program understanding, debugging, and software-related tasks.
+    description_zh: 代码补全、程序理解、调试与软件相关任务。
+  - node_id: trustworthiness-alignment
+    parent_id: application-scenarios
+    title: Trustworthiness and Alignment
+    description_en: Behavioral evaluations directly targeting safety, truthfulness, fairness, security, or social alignment.
+    description_zh: 直接针对安全、真实性、公平、安全攻击或社会对齐的行为评测。
+  - node_id: safety-refusal-jailbreak
+    parent_id: trustworthiness-alignment
+    title: Safety, Refusal, and Jailbreaks
+    description_en: Harmful-request detection, refusal behavior, jailbreak robustness, and safety control.
+    description_zh: 有害请求识别、拒绝行为、越狱稳健性与安全控制。
+  - node_id: truthfulness-deception
+    parent_id: trustworthiness-alignment
+    title: Truthfulness and Deception
+    description_en: Truthful answering, latent correctness, deception detection, and elicitation of hidden knowledge.
+    description_zh: 真实作答、潜在正确性、欺骗检测与隐藏知识提取。
+  - node_id: bias-fairness
+    parent_id: trustworthiness-alignment
+    title: Bias and Fairness
+    description_en: Demographic bias measurement, explanation, and mitigation tasks.
+    description_zh: 人口属性偏见的测量、解释与缓解任务。
+  - node_id: backdoors-model-security
+    parent_id: trustworthiness-alignment
+    title: Backdoors and Model Security
+    description_en: Triggered malicious policies, sleeper behavior, and backdoor detection or removal.
+    description_zh: 触发式恶意策略、潜伏行为及后门检测或移除。
+  - node_id: sycophancy-social-alignment
+    parent_id: trustworthiness-alignment
+    title: Sycophancy and Social Alignment
+    description_en: Agreement-seeking and user-pleasing behavior tested under social or preference cues.
+    description_zh: 在社会或偏好线索下测试迎合与讨好用户的行为。
+  - node_id: vision-multimodal
+    parent_id: application-scenarios
+    title: Vision and Multimodal Tasks
+    description_en: Visual and vision-language tasks used as the empirical target of interpretability analysis.
+    description_zh: 作为可解释性分析实证目标的视觉与视觉语言任务。
+  - node_id: visual-recognition-grounding
+    parent_id: vision-multimodal
+    title: Visual Recognition and Grounding
+    description_en: Image classification, object recognition, concept localization, and visual saliency tasks.
+    description_zh: 图像分类、对象识别、概念定位与视觉显著性任务。
+  - node_id: vision-language-question-answering
+    parent_id: vision-multimodal
+    title: Vision-Language Question Answering
+    description_en: Image captioning, visual question answering, and image-to-text information transfer.
+    description_zh: 图像描述、视觉问答与图像到文本的信息传递。
+  - node_id: visual-reasoning-counting
+    parent_id: vision-multimodal
+    title: Visual Reasoning and Counting
+    description_en: Counting, spatial relations, compositional visual reasoning, and paired visual-text reasoning tasks.
+    description_zh: 计数、空间关系、组合视觉推理与成对视觉文本推理任务。
+  - node_id: multimodal-hallucination-grounding
+    parent_id: vision-multimodal
+    title: Multimodal Hallucination and Grounding
+    description_en: Object, attribute, or relation hallucination measured against visual evidence.
+    description_zh: 相对于视觉证据测量对象、属性或关系幻觉。
+  - node_id: scientific-applications
+    parent_id: application-scenarios
+    title: Scientific Applications
+    description_en: Tasks on scientific or biomedical data and scientific question answering.
+    description_zh: 面向科学或生物医学数据及科学问答的任务。
+  - node_id: science-domain-tasks
+    parent_id: scientific-applications
+    title: Science and Domain Tasks
+    description_en: Domain-specific experiments such as biosignal interpretation and science QA.
+    description_zh: 生物信号解释、科学问答等领域专门实验。
+  primary_assignments:
+  - node_id: cross-domain-multi-task
+    paper_ids: [p_2017_lundberg_a_unified_approach, p_2020_yang_feature_learning_in, p_2021_geiger_inducing_causal_structure, p_2021_jethani_fastshap_real_time_shapley, p_2022_ilharco_editing_models_with, p_2022_radhakrishnan_mechanism_of_feature, p_2023_conmy_towards_automated_circuit, p_2023_lieberum_does_circuit_analysis, p_2023_syed_attribution_patching_outperforms, p_2023_zhang_towards_best_practices, p_2023_zou_representation_engineering_a, p_2024_ferrando_information_flow_routes, p_2024_hanna_have_faith_in, p_2024_hsu_efficient_automated_circuit, p_2024_marks_enhancing_neural_network, p_2024_o_neill_sparse_autoencoders_enable, p_2025_chen_transferring_linear_features, p_2025_kantamneni_are_sparse_autoencoders, p_2025_nam_causal_head_gating, p_2025_tang_a_unified_theory]
+  - node_id: general-language-modeling
+    paper_ids: [p_2020_geva_transformer_feed_forward, p_2023_belrose_eliciting_latent_predictions, p_2023_cunningham_sparse_autoencoders_find, p_2023_gurnee_finding_neurons_in, p_2023_pal_future_lens_anticipating, p_2023_sakarvadia_attention_lens_a, p_2023_voita_neurons_in_large, p_2024_braun_identifying_functionally_important, p_2024_dunefsky_transcoders_find_interpretable, p_2024_he_llama_scope_extracting, p_2024_lieberum_gemma_scope_open, p_2024_rajamanoharan_improving_dictionary_learning, p_2024_rajamanoharan_jumping_ahead_improving, p_2025_minder_overcoming_sparsity_artifacts, p_2025_viswanathan_the_intrinsic_dimension, p_2026_dalili_subspace_aware_sparse, p_2026_liu_ica_lens_interpreting, p_2026_templeton_scaling_monosemanticity_extracting]
+  - node_id: synthetic-controlled-tasks
+    paper_ids: [p_2022_elhage_toy_models_of, p_2022_scherlis_polysemanticity_and_capacity, p_2023_geiger_causal_abstraction_a, p_2024_chanin_a_is_for, p_2024_nichani_how_transformers_learn, p_2024_shai_transformers_represent_belief, p_2025_wu_axbench_steering_llms]
+  - node_id: factual-recall-editing
+    paper_ids: [p_2021_dai_knowledge_neurons_in, p_2022_meng_locating_and_editing, p_2023_geva_dissecting_recall_of, p_2023_hase_does_localization_inform, p_2024_ghandeharioun_patchscopes_a_unifying, p_2024_huang_ravel_evaluating_interpretability, p_2024_yao_knowledge_circuits_in]
+  - node_id: context-use-in-context-learning
+    paper_ids: [p_2022_olsson_in_context_learning, p_2023_feng_how_do_language, p_2023_goldowsky_dill_localizing_model_behavior, p_2023_merullo_circuit_component_reuse, p_2023_todd_function_vectors_in, p_2024_makelov_towards_principled_evaluations, p_2024_mcdougall_copy_suppression_comprehensively, p_2024_prakash_fine_tuning_enhances, p_2024_singh_what_needs_to, p_2025_jin_massive_values_in, p_2026_munigety_from_correlation_to]
+  - node_id: knowledge-conflict-contextual-qa
+    paper_ids: [p_2024_jin_cutting_off_the, p_2025_li_taming_knowledge_conflicts]
+  - node_id: language-understanding-linguistic-tasks
+    paper_ids: [p_2019_hewitt_designing_and_interpreting, p_2020_ravichander_probing_the_probing, p_2021_yun_transformer_visualization_via, p_2022_wang_interpretability_in_the, p_2023_guerner_a_geometric_notion, p_2023_park_the_linear_representation, p_2024_marks_sparse_feature_circuits]
+  - node_id: multilingual-language-control
+    paper_ids: [p_2024_tang_language_specific_neurons, p_2025_mondal_language_specific_neurons, p_2026_pillai_ftb_graph_determining]
+  - node_id: sentiment-persona-social-behavior
+    paper_ids: [p_2019_wiegreffe_attention_is_not, p_2023_tigges_linear_representations_of]
+  - node_id: mathematics-arithmetic
+    paper_ids: [p_2023_chughtai_a_toy_model, p_2023_davies_discovering_variable_binding, p_2023_gould_successor_heads_recurring, p_2023_hanna_how_does_gpt, p_2023_lepori_uncovering_intermediate_variables, p_2023_nanda_progress_measures_for, p_2023_stolfo_a_mechanistic_interpretation, p_2023_varma_explaining_grokking_through, p_2025_galichin_i_have_covered, p_2026_bhardia_mechanistic_analysis_of, p_2026_dura_mechanistic_interpretability_of]
+  - node_id: logic-symbolic-reasoning
+    paper_ids: [p_2021_geiger_causal_abstractions_of, p_2023_geiger_finding_alignments_between, p_2025_kim_reasoning_circuits_in, p_2026_somani_towards_verifiable_transformers]
+  - node_id: games-world-models
+    paper_ids: [p_2022_li_emergent_world_representations, p_2023_nanda_emergent_linear_representations, p_2024_he_dictionary_learning_improves]
+  - node_id: safety-refusal-jailbreak
+    paper_ids: [p_2024_arditi_refusal_in_language, p_2024_zhou_on_the_role, p_2026_ratnakar_the_geometry_of]
+  - node_id: truthfulness-deception
+    paper_ids: [p_2022_burns_discovering_latent_knowledge, p_2023_li_inference_time_intervention, p_2026_park_mechelk_a_mechanistic]
+  - node_id: bias-fairness
+    paper_ids: [p_2024_muhamed_decoding_dark_matter, p_2026_hai_when_and_why]
+  - node_id: backdoors-model-security
+    paper_ids: [p_2023_lamparth_analyzing_and_editing, p_2024_draguns_unelicitable_backdoors_in]
+  - node_id: visual-recognition-grounding
+    paper_ids: [p_2016_alain_understanding_intermediate_layers, p_2017_bau_network_dissection_quantifying, p_2018_adebayo_sanity_checks_for, p_2022_achtibat_from_attribution_maps, p_2022_oikarinen_clip_dissect_automatic_description, p_2023_beaglehole_mechanism_of_feature, p_2026_filus_measuring_monosemanticity_in]
+  - node_id: vision-language-question-answering
+    paper_ids: [p_2023_palit_towards_vision_language, p_2023_schwettmann_multimodal_neurons_in, p_2024_hinck_why_do_llava, p_2024_neo_towards_interpreting_visual, p_2025_kim_interpreting_attention_heads, p_2025_tian_why_representation_engineering]
+  - node_id: visual-reasoning-counting
+    paper_ids: [p_2025_nikankin_same_task_different, p_2026_che_counting_circuits_mechanistic, p_2026_zhou_sparse_visual_thought]
+  - node_id: multimodal-hallucination-grounding
+    paper_ids: [p_2026_hegde_where_hallucinations_live, p_2026_liu_dual_pathway_circuits]
+  secondary_assignments:
+  - node_id: general-language-modeling
+    paper_ids: [p_2022_olsson_in_context_learning, p_2024_ferrando_information_flow_routes, p_2024_ghandeharioun_patchscopes_a_unifying, p_2025_chen_transferring_linear_features, p_2025_tang_a_unified_theory, p_2026_somani_towards_verifiable_transformers]
+  - node_id: cross-domain-multi-task
+    paper_ids: [p_2022_burns_discovering_latent_knowledge, p_2025_jin_massive_values_in, p_2026_templeton_scaling_monosemanticity_extracting]
+  - node_id: synthetic-controlled-tasks
+    paper_ids: [p_2020_ravichander_probing_the_probing, p_2023_chughtai_a_toy_model, p_2023_goldowsky_dill_localizing_model_behavior, p_2023_nanda_progress_measures_for, p_2023_varma_explaining_grokking_through]
+  - node_id: factual-recall-editing
+    paper_ids: [p_2023_feng_how_do_language, p_2023_gould_successor_heads_recurring, p_2023_zhang_towards_best_practices, p_2024_hanna_have_faith_in, p_2025_jin_massive_values_in, p_2025_li_taming_knowledge_conflicts, p_2026_park_mechelk_a_mechanistic]
+  - node_id: context-use-in-context-learning
+    paper_ids: [p_2021_geiger_inducing_causal_structure, p_2023_conmy_towards_automated_circuit, p_2023_syed_attribution_patching_outperforms, p_2023_zhang_towards_best_practices, p_2024_ghandeharioun_patchscopes_a_unifying, p_2024_hanna_have_faith_in, p_2024_hsu_efficient_automated_circuit, p_2024_nichani_how_transformers_learn, p_2024_o_neill_sparse_autoencoders_enable, p_2025_nam_causal_head_gating]
+  - node_id: knowledge-conflict-contextual-qa
+    paper_ids: [p_2022_meng_locating_and_editing, p_2023_hase_does_localization_inform]
+  - node_id: language-understanding-linguistic-tasks
+    paper_ids: [p_2019_wiegreffe_attention_is_not, p_2021_geiger_causal_abstractions_of, p_2021_geiger_inducing_causal_structure, p_2022_burns_discovering_latent_knowledge, p_2023_merullo_circuit_component_reuse, p_2023_tigges_linear_representations_of, p_2024_chanin_a_is_for, p_2024_hanna_have_faith_in, p_2025_kantamneni_are_sparse_autoencoders, p_2025_mondal_language_specific_neurons, p_2025_viswanathan_the_intrinsic_dimension, p_2026_dalili_subspace_aware_sparse]
+  - node_id: multilingual-language-control
+    paper_ids: [p_2023_park_the_linear_representation, p_2023_voita_neurons_in_large, p_2024_ferrando_information_flow_routes, p_2024_hinck_why_do_llava, p_2025_chen_transferring_linear_features, p_2026_templeton_scaling_monosemanticity_extracting]
+  - node_id: sentiment-persona-social-behavior
+    paper_ids: [p_2022_burns_discovering_latent_knowledge, p_2022_ilharco_editing_models_with, p_2023_zou_representation_engineering_a, p_2024_muhamed_decoding_dark_matter, p_2025_jin_massive_values_in, p_2025_minder_overcoming_sparsity_artifacts, p_2026_templeton_scaling_monosemanticity_extracting]
+  - node_id: mathematics-arithmetic
+    paper_ids: [p_2023_conmy_towards_automated_circuit, p_2023_goldowsky_dill_localizing_model_behavior, p_2023_syed_attribution_patching_outperforms, p_2024_ferrando_information_flow_routes, p_2024_hanna_have_faith_in, p_2024_hsu_efficient_automated_circuit, p_2024_o_neill_sparse_autoencoders_enable, p_2025_jin_massive_values_in, p_2025_nam_causal_head_gating, p_2025_nikankin_same_task_different, p_2026_che_counting_circuits_mechanistic, p_2026_zhou_sparse_visual_thought]
+  - node_id: logic-symbolic-reasoning
+    paper_ids: [p_2021_geiger_inducing_causal_structure, p_2023_conmy_towards_automated_circuit, p_2024_draguns_unelicitable_backdoors_in, p_2025_galichin_i_have_covered, p_2025_nam_causal_head_gating, p_2025_nikankin_same_task_different, p_2026_bhardia_mechanistic_analysis_of, p_2026_che_counting_circuits_mechanistic, p_2026_zhou_sparse_visual_thought]
+  - node_id: games-world-models
+    paper_ids: [p_2023_lepori_uncovering_intermediate_variables]
+  - node_id: code
+    paper_ids: [p_2023_conmy_towards_automated_circuit, p_2023_syed_attribution_patching_outperforms, p_2023_voita_neurons_in_large, p_2024_ferrando_information_flow_routes, p_2024_hsu_efficient_automated_circuit, p_2024_o_neill_sparse_autoencoders_enable, p_2025_galichin_i_have_covered, p_2026_templeton_scaling_monosemanticity_extracting]
+  - node_id: safety-refusal-jailbreak
+    paper_ids: [p_2023_belrose_eliciting_latent_predictions, p_2023_zou_representation_engineering_a, p_2025_chen_transferring_linear_features, p_2025_minder_overcoming_sparsity_artifacts, p_2025_viswanathan_the_intrinsic_dimension, p_2025_wu_axbench_steering_llms, p_2026_templeton_scaling_monosemanticity_extracting]
+  - node_id: truthfulness-deception
+    paper_ids: [p_2023_zou_representation_engineering_a, p_2025_minder_overcoming_sparsity_artifacts, p_2025_tian_why_representation_engineering, p_2026_templeton_scaling_monosemanticity_extracting]
+  - node_id: bias-fairness
+    paper_ids: [p_2022_achtibat_from_attribution_maps, p_2022_ilharco_editing_models_with, p_2024_hanna_have_faith_in, p_2024_yao_knowledge_circuits_in, p_2025_tian_why_representation_engineering, p_2026_templeton_scaling_monosemanticity_extracting]
+  - node_id: sycophancy-social-alignment
+    paper_ids: [p_2026_templeton_scaling_monosemanticity_extracting]
+  - node_id: visual-recognition-grounding
+    paper_ids: [p_2021_geiger_inducing_causal_structure, p_2021_jethani_fastshap_real_time_shapley, p_2022_ilharco_editing_models_with, p_2022_radhakrishnan_mechanism_of_feature, p_2024_neo_towards_interpreting_visual, p_2025_nikankin_same_task_different, p_2025_tang_a_unified_theory, p_2025_tian_why_representation_engineering, p_2026_che_counting_circuits_mechanistic, p_2026_zhou_sparse_visual_thought]
+  - node_id: vision-language-question-answering
+    paper_ids: [p_2025_nikankin_same_task_different, p_2026_che_counting_circuits_mechanistic, p_2026_hegde_where_hallucinations_live, p_2026_liu_dual_pathway_circuits, p_2026_zhou_sparse_visual_thought]
+  - node_id: visual-reasoning-counting
+    paper_ids: [p_2021_geiger_inducing_causal_structure, p_2025_kim_interpreting_attention_heads]
+  - node_id: science-domain-tasks
+    paper_ids: [p_2017_lundberg_a_unified_approach, p_2022_achtibat_from_attribution_maps, p_2024_marks_enhancing_neural_network, p_2025_galichin_i_have_covered, p_2025_kantamneni_are_sparse_autoencoders]
+  coverage_gaps:
+  - node_id: code
+    primary_papers: 0
+    note: Code completion is used in multi-task circuit benchmarks, but no paper has code as its central empirical task.
+  - node_id: sycophancy-social-alignment
+    primary_papers: 0
+    note: Sycophancy is experimentally intervened on only as one behavior in a broad feature study.
+  - node_id: science-domain-tasks
+    primary_papers: 0
+    note: Science QA, ECG, EEG, and medical-risk data occur only within broader multi-domain studies.
+  review_notes:
+  - The proposal records the task performed on the data, not the name of the interpretability method or the internal object analyzed.
+  - Multi-purpose benchmark papers use Cross-Domain Task Suites as primary and retain concrete task families as secondary labels.
+  - Papers evaluated only on generic pretraining text use General Language Modeling rather than an invented downstream scenario.
+  - The approved taxonomy and relations are written to the formal taxonomy file and append-only event stream.

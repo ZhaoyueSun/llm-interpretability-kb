@@ -1,0 +1,422 @@
+schema_version: 1
+taxonomy_id: application-scenarios
+version: 1
+status: active
+title: Application and Experimental Scenarios
+nodes:
+- node_id: application-scenarios
+  parent_id: null
+  title: Application and Experimental Scenarios
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      This taxonomy shows where interpretability research is put to work: the tasks,
+      behaviors, and empirical settings on which a paper tests its claims. It follows
+      what the model is asked to do in the experiments, independently of the technique
+      used and the internal object being studied.
+    zh: >-
+      这棵树展示可解释性研究被用于哪些任务、行为和实验场景。分类依据是论文实验中模型实际被要求完成什么，
+      与研究者使用哪种技术、观察模型内部哪类对象相互独立。
+- node_id: general-experimental-settings
+  parent_id: application-scenarios
+  title: General Experimental Settings
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      Some studies are designed to reveal mechanisms that are not tied to one downstream
+      domain. Their evidence may come from ordinary language modeling, broad suites of
+      unrelated tasks, or deliberately controlled synthetic data; these settings are
+      separated here so that a method is not mistaken for an application.
+    zh: >-
+      有些研究希望揭示不依赖单一下游领域的机制。它们可能在通用语言建模、跨领域任务组合或专门构造的合成数据上建立证据。
+      这里按照实际实验设置区分这些论文，避免把一种研究方法误当作应用场景。
+- node_id: general-language-modeling
+  parent_id: general-experimental-settings
+  title: General Language Modeling
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      These experiments work directly with general text corpora and the model's basic
+      next-token behavior, without centering on a narrower task such as factual QA or
+      sentiment classification. They are commonly used to study features, predictions,
+      or information flow as they arise during ordinary language modeling.
+    zh: >-
+      这类实验直接使用通用文本语料和模型的下一 token 预测行为，并不以事实问答、情感分类等更具体的任务为中心。
+      研究者通常借此观察特征、预测或信息流怎样在日常语言建模过程中出现。
+- node_id: cross-domain-multi-task
+  parent_id: general-experimental-settings
+  title: Cross-Domain Task Suites
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      A cross-domain study deliberately tests its claim on several substantially
+      different task families—for example language, vision, mathematics, and code—so
+      that no single application captures the experiment as a whole. The concrete task
+      families remain useful as secondary labels.
+    zh: >-
+      跨领域研究会有意在多个明显不同的任务族上检验同一结论，例如同时覆盖语言、视觉、数学与代码。
+      因此没有某一个具体应用能够概括整篇论文，但各项实际任务仍会作为 secondary 分类保留下来。
+- node_id: synthetic-controlled-tasks
+  parent_id: general-experimental-settings
+  title: Synthetic Controlled Tasks
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      Synthetic tasks are constructed so that the relevant rule, feature, or latent
+      state is known by design. This controlled ground truth makes it possible to test a
+      mechanistic claim cleanly, although success on the toy setting may not by itself
+      establish that the same mechanism governs natural data.
+    zh: >-
+      合成任务在设计时就明确规定了相关规则、特征或潜在状态，因此可以用可控真值更干净地检验机制主张。
+      不过，在玩具环境中成立，并不能单独证明同一机制也支配自然数据中的行为。
+- node_id: language-knowledge-interaction
+  parent_id: application-scenarios
+  title: Language, Knowledge, and Interaction
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      This branch covers language tasks in which a model must recover stored knowledge,
+      use information supplied in context, understand linguistic relations, or adapt its
+      response to language and social cues. The leaves distinguish where the information
+      comes from and what kind of language behavior is being evaluated.
+    zh: >-
+      这一分支涵盖模型调用已有知识、利用当前上下文、理解语言关系，或根据语言与社会线索调整回答的任务。
+      各叶节点进一步区分信息来自哪里，以及实验实际评估的是哪一种语言行为。
+- node_id: factual-recall-editing
+  parent_id: language-knowledge-interaction
+  title: Factual Recall and Editing
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      These tasks ask a model to retrieve, complete, localize, or deliberately change a
+      fact about an entity, relation, or attribute. Typical experiments use factual
+      prompts such as country-capital pairs or counterfactual records and measure whether
+      the intended answer can be recalled or edited without damaging unrelated knowledge.
+    zh: >-
+      这类任务要求模型检索、补全、定位或有目的地修改实体、关系与属性事实。实验常使用国家—首都、实体属性或反事实记录，
+      并检查目标答案能否被正确回忆或修改，以及无关知识是否得到保留。
+- node_id: context-use-in-context-learning
+  parent_id: language-knowledge-interaction
+  title: Context Use and In-Context Learning
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      Here the information needed to act is supplied inside the current prompt. The model
+      may need to copy or bind tokens, track an entity, retrieve a passkey, infer a pattern,
+      or learn a task from demonstrations; the central question is how context is turned
+      into the required prediction.
+    zh: >-
+      在这类任务中，完成任务所需的信息由当前 prompt 提供。模型可能需要复制或绑定 token、跟踪实体、检索 passkey、
+      归纳规律，或从示例中临时学会任务；核心问题是上下文如何转化为所需预测。
+- node_id: knowledge-conflict-contextual-qa
+  parent_id: language-knowledge-interaction
+  title: Knowledge Conflict and Contextual QA
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      Knowledge-conflict tasks place information in the prompt that competes with what
+      the model learned during training. They reveal when a model follows contextual
+      evidence, falls back on parametric memory, or can be guided to resolve the conflict
+      reliably in question answering and completion.
+    zh: >-
+      知识冲突任务会在 prompt 中提供与模型训练所得记忆相竞争的信息。它们用于观察模型何时依据上下文证据、何时退回参数记忆，
+      以及能否在问答或补全中被引导着可靠地解决这种冲突。
+- node_id: language-understanding-linguistic-tasks
+  parent_id: language-knowledge-interaction
+  title: Language Understanding and Linguistic Tasks
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      These experiments test language understanding through observable tasks rather than
+      treating syntax or semantics as an internal object. They include part-of-speech and
+      dependency prediction, grammatical agreement, coreference, natural-language
+      inference, and lexical or semantic relation judgments.
+    zh: >-
+      这类实验通过可观察的任务检验语言理解能力，而不是把句法或语义本身当作模型内部对象。
+      常见任务包括词性与依存关系预测、语法一致、共指、自然语言推理，以及词汇或语义关系判断。
+- node_id: multilingual-language-control
+  parent_id: language-knowledge-interaction
+  title: Multilinguality and Language Control
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      Multilingual experiments ask how models identify, connect, and control languages.
+      They may test cross-lingual transfer, translation-related representations, response
+      language, or whether the same task is handled consistently across languages.
+    zh: >-
+      多语言实验关注模型如何识别、关联和控制不同语言。它们可能测试跨语言迁移、翻译相关表征、回答所用语言，
+      或同一个任务能否在多种语言中得到一致处理。
+- node_id: sentiment-persona-social-behavior
+  parent_id: language-knowledge-interaction
+  title: Sentiment, Persona, and Social Behavior
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      This branch concerns language behavior shaped by affect, stance, persona, or a
+      social cue. Experiments may classify sentiment, steer tone or mood, elicit a
+      conversational identity, or test how an interaction partner changes the model's
+      expressed behavior.
+    zh: >-
+      这一分支关注受情感、立场、人格或社会线索影响的语言行为。实验可能进行情感分类、改变语气或情绪、诱导对话身份，
+      或测试互动对象怎样改变模型表现出来的行为。
+- node_id: reasoning-formal-tasks
+  parent_id: application-scenarios
+  title: Reasoning and Formal Tasks
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      Formal tasks have explicit rules or compositional structure that make intermediate
+      computations easier to specify and test. This branch separates numerical reasoning,
+      logical or symbolic manipulation, rule-based worlds, and programming tasks because
+      they demand different kinds of model behavior.
+    zh: >-
+      形式任务具有明确规则或组合结构，因此比较容易描述并检验中间计算过程。这里进一步区分数值推理、逻辑与符号操作、
+      规则世界和编程任务，因为它们要求模型完成的行为并不相同。
+- node_id: mathematics-arithmetic
+  parent_id: reasoning-formal-tasks
+  title: Mathematics and Arithmetic
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      These tasks require numerical comparison, arithmetic, algebraic composition, or
+      mathematical problem solving. They range from controlled operations such as modular
+      addition and year comparison to natural-language word problems and competition-style
+      reasoning benchmarks.
+    zh: >-
+      这类任务要求模型进行数值比较、算术、代数组合或数学问题求解，既包括模加法、年份比较等可控运算，
+      也包括自然语言数学文字题和竞赛式推理 benchmark。
+- node_id: logic-symbolic-reasoning
+  parent_id: reasoning-formal-tasks
+  title: Logic and Symbolic Reasoning
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      Logic and symbolic tasks ask a model to follow relations and rules rather than
+      primarily calculate a number. Examples include natural-logic inference, syllogisms,
+      variable binding, bracket or quotation tracking, and transformations over formal
+      symbol sequences.
+    zh: >-
+      逻辑与符号任务主要要求模型遵循关系和规则，而不是计算一个数值。典型例子包括自然逻辑推理、三段论、变量绑定、
+      括号或引号跟踪，以及对形式符号序列进行变换。
+- node_id: games-world-models
+  parent_id: reasoning-formal-tasks
+  title: Games and Rule-Based Worlds
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      Games and small rule-based worlds provide an environment with a known state and
+      legal transitions. Interpretability studies use them to ask whether a model has
+      learned the board, entities, or rules needed to predict a valid next action, rather
+      than merely matching surface patterns.
+    zh: >-
+      游戏和小型规则世界具有明确状态与合法转移。可解释性研究借此判断模型是否真正学会了棋盘、实体或规则，
+      并利用这些信息预测下一步行动，而不只是匹配表面模式。
+- node_id: code
+  parent_id: reasoning-formal-tasks
+  title: Code
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      Code tasks ask models to complete, understand, transform, or debug programs and
+      software documentation. Their formal syntax and executable semantics make it
+      possible to connect internal mechanisms with concrete programming behavior.
+    zh: >-
+      代码任务要求模型补全、理解、转换或调试程序与软件文档。代码具有形式化语法和可执行语义，
+      因而可以把模型内部机制与具体编程行为联系起来。
+- node_id: trustworthiness-alignment
+  parent_id: application-scenarios
+  title: Trustworthiness and Alignment
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      This branch studies behaviors that determine whether a model can be relied on in
+      consequential use. The experiments directly test safety boundaries, truthful
+      expression, social bias, hidden malicious behavior, or pressure to agree with a
+      user, rather than merely mentioning these concerns as motivation.
+    zh: >-
+      这一分支研究决定模型在重要使用情境中是否值得信赖的行为。相关实验会直接测试安全边界、真实表达、社会偏见、
+      隐藏恶意行为或迎合用户的倾向，而不是只在研究动机中提到这些问题。
+- node_id: safety-refusal-jailbreak
+  parent_id: trustworthiness-alignment
+  title: Safety, Refusal, and Jailbreaks
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      These tasks present harmful, disallowed, or adversarially phrased requests and
+      measure whether the model refuses appropriately. Mechanistic experiments may then
+      localize or alter the internal computations that separate compliant assistance
+      from unsafe completion.
+    zh: >-
+      这类任务向模型提供有害、受限或经过对抗改写的请求，并测量模型能否恰当地拒绝。机制实验还会进一步定位或改变
+      区分正常协助与不安全回答的内部计算。
+- node_id: truthfulness-deception
+  parent_id: trustworthiness-alignment
+  title: Truthfulness and Deception
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      Truthfulness tasks distinguish what a model internally knows from what it chooses
+      or is prompted to say. They test truthful answering, recovery of latent correct
+      information, and the detection or causal control of deceptive behavior.
+    zh: >-
+      真实性任务区分模型内部知道什么，以及它最终选择或被诱导表达什么。实验会测试真实作答、潜在正确信息的恢复，
+      以及对欺骗行为的检测或因果控制。
+- node_id: bias-fairness
+  parent_id: trustworthiness-alignment
+  title: Bias and Fairness
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      Bias and fairness experiments examine whether demographic or socially meaningful
+      attributes systematically influence a model's predictions. They may measure a
+      disparity, trace the mechanism that produces it, or test whether an intervention
+      reduces the bias while preserving useful behavior.
+    zh: >-
+      偏见与公平实验检查人口属性或具有社会意义的特征是否系统性影响模型预测。研究可能测量差异、追踪产生差异的机制，
+      或检验某种干预能否在保留正常能力的同时减少偏见。
+- node_id: backdoors-model-security
+  parent_id: trustworthiness-alignment
+  title: Backdoors and Model Security
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      Backdoor tasks give a model a hidden trigger or policy that activates malicious
+      behavior only under special conditions. Interpretability is used to detect the
+      dormant mechanism, elicit it safely, or remove it without relying on the trigger
+      being obvious in ordinary evaluation data.
+    zh: >-
+      后门任务让模型在特定触发条件下才启动隐藏的恶意策略。可解释性方法用于发现休眠机制、安全地诱导其显现，
+      或在常规评测数据看不出明显异常时将其移除。
+- node_id: sycophancy-social-alignment
+  parent_id: trustworthiness-alignment
+  title: Sycophancy and Social Alignment
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      Sycophancy tasks test whether a model changes an answer to match a user's stated
+      belief, preference, or social pressure. The goal is to separate helpful adaptation
+      from agreement-seeking behavior that sacrifices accuracy or independent judgment.
+    zh: >-
+      谄媚任务测试模型是否会因为用户表达的信念、偏好或社会压力而改变答案。它试图区分有益的适应性回应，
+      与为了迎合用户而牺牲准确性或独立判断的行为。
+- node_id: vision-multimodal
+  parent_id: application-scenarios
+  title: Vision and Multimodal Tasks
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      This branch covers experiments in which images or image-language interaction are
+      central to the behavior being explained. It distinguishes recognizing visual
+      content, answering through language, performing compositional visual reasoning,
+      and avoiding claims that are unsupported by the image.
+    zh: >-
+      这一分支涵盖以图像或图文交互为核心行为的实验，并进一步区分识别视觉内容、用语言回答图像问题、
+      完成组合视觉推理，以及避免生成缺乏图像依据的内容。
+- node_id: visual-recognition-grounding
+  parent_id: vision-multimodal
+  title: Visual Recognition and Grounding
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      These tasks ask a model to recognize or classify what is present in an image and
+      connect a prediction or internal response to the relevant visual evidence. Common
+      settings include object and scene classification, concept localization, saliency,
+      and unit-to-concept grounding.
+    zh: >-
+      这类任务要求模型识别或分类图像中的内容，并把预测或内部响应与相应视觉证据联系起来。
+      常见设置包括对象与场景分类、概念定位、显著性分析，以及内部单元与视觉概念的对应。
+- node_id: vision-language-question-answering
+  parent_id: vision-multimodal
+  title: Vision-Language Question Answering
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      Vision-language tasks require information from an image to be carried into a
+      linguistic response. They include visual question answering, image captioning,
+      object-identification prompts, and experiments that trace how image evidence reaches
+      the generated text.
+    zh: >-
+      视觉语言任务要求模型把图像信息带入语言回答，包括视觉问答、图像描述、对象识别提示，
+      以及追踪图像证据如何进入生成文本的实验。
+- node_id: visual-reasoning-counting
+  parent_id: vision-multimodal
+  title: Visual Reasoning and Counting
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      These tasks require more than recognizing isolated objects: the model must count,
+      compare, follow spatial relations, or compose several pieces of visual evidence.
+      Controlled scenes and paired visual-text problems make the intermediate reasoning
+      steps easier to probe and intervene on.
+    zh: >-
+      这类任务不只要求识别单个对象，还需要计数、比较、理解空间关系，或组合多项视觉证据。
+      可控场景和成对图文问题使中间推理步骤更容易被探查和干预。
+- node_id: multimodal-hallucination-grounding
+  parent_id: vision-multimodal
+  title: Multimodal Hallucination and Grounding
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      Multimodal hallucination benchmarks test whether a model mentions objects,
+      attributes, or relations that are absent from the image. Mechanistic studies use
+      the contrast between grounded and unsupported answers to locate where visual
+      evidence is preserved, overridden, or ignored.
+    zh: >-
+      多模态幻觉 benchmark 检查模型是否提到图像中不存在的对象、属性或关系。机制研究通过对比有视觉依据与缺乏依据的回答，
+      定位图像证据在哪些环节得到保留、被语言先验覆盖或被忽略。
+- node_id: scientific-applications
+  parent_id: application-scenarios
+  title: Scientific Applications
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      Scientific applications use interpretability to understand predictions about
+      specialized natural, biomedical, or technical data. The aim is not only to explain
+      a model in general, but to connect its reasoning with evidence and concepts that
+      matter within a scientific domain.
+    zh: >-
+      科学应用使用可解释性方法理解模型对自然科学、生物医学或专业技术数据作出的预测。目标不只是一般性地解释模型，
+      而是把模型推理与具体科学领域中有意义的证据和概念联系起来。
+- node_id: science-domain-tasks
+  parent_id: scientific-applications
+  title: Science and Domain Tasks
+  status: active
+  proposal_id: tp_20261009_application_scenarios_v2
+  introduction:
+    en: >-
+      These tasks draw on domain-specific data or knowledge, such as physiological
+      signals, medical-risk records, or scientific question answering. Interpretability
+      can reveal which measurements or concepts support a prediction and whether the
+      learned mechanism agrees with established domain understanding.
+    zh: >-
+      这类任务依赖专业领域的数据或知识，例如生理信号、医疗风险记录或科学问答。可解释性分析可以揭示哪些测量与概念支撑了预测，
+      并检查模型学到的机制是否与已有领域知识一致。

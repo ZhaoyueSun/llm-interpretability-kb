@@ -69,7 +69,15 @@ Corpus 不复制标题、作者、facet、tag、绝对路径或全文抽取状�
 
 介绍文本采用 Markdown，并允许 LaTeX。介绍面向尚不熟悉该技术的研究者，而不是充当字段说明或术语定义：通常应先说明它要解决的问题，再用直观语言解释核心做法，并指出结果可以支持什么判断、不能单独证明什么。中英文应分别符合各自语言的自然表达，不要求逐句直译。网页语言开关只切换节点介绍和论文 abstract；标题统一保持英文。
 
-Research Objects 与 Techniques 必须保持正交：前者回答“研究什么”，后者回答“如何研究”。例如 probe 是 technique，其读取的 residual-stream state 或 component output 才是 research object；SAE 是 technique，学习得到的 sparse dictionary feature 才是 research object。一个对象在不同研究中可以承担不同角色，因此不能为了 input、internal 或 output 三种使用位置而复制同一个节点。
+当前正式 taxonomy 包括 Research Objects、Techniques 和 Application and Experimental Scenarios，三者必须保持正交：
+
+- Research Objects 回答“研究模型内部的什么”；
+- Techniques 回答“如何观察、验证或改变它”；
+- Application and Experimental Scenarios 回答“论文在哪类任务或行为场景中检验结论”。
+
+例如 probe 是 technique，其读取的 residual-stream state 或 component output 才是 research object；如果 probe 在 subject–verb agreement 数据上接受检验，则 application scenario 是 Language Understanding and Linguistic Tasks。SAE 同样属于 technique，学习得到的 sparse dictionary feature 是 research object，而使用 IOI、Greater-Than 或 Docstring 数据进行评测时，场景应分别由上下文使用、数学或代码任务表达。Application 分类必须以实验数据实际承载的任务为依据，不得从技术名称、研究对象、模型架构或论文贡献类型推断。
+
+一个对象在不同研究中可以承担不同角色，因此不能为了 input、internal 或 output 三种使用位置而复制同一个节点。Applications 中的 `primary` 表示支撑论文核心实证结论的主要任务族；`secondary` 只记录主实验或因果验证中实质使用的其他任务族。只在动机、背景或零散 feature 示例中出现的主题不构成分类证据。
 
 ## Model Family
 
@@ -83,7 +91,7 @@ Research Objects 与 Techniques 必须保持正交：前者回答“研究什么
 
 ## Classification Event
 
-论文和节点的关系可以随 taxonomy、论文分析和人工判断变化。Research Objects 与 Techniques 都使用相同的主次关系约束。正式关系使用追加事件表示：
+论文和节点的关系可以随 taxonomy、论文分析和人工判断变化。Research Objects、Techniques 与 Application and Experimental Scenarios 都使用相同的主次关系约束。正式关系使用追加事件表示：
 
 - `relation_role: primary` 表示论文在该 taxonomy 中最具区分度或最核心的关系；同一论文在同一 taxonomy 的当前状态中恰好保留一个 primary 关系；
 - `relation_role: secondary` 表示论文主要分析或验证管线中实质涉及的其他节点；一篇论文可以有多个 secondary 关系；
