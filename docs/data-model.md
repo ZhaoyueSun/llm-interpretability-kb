@@ -42,7 +42,7 @@ Corpus 不复制标题、作者、facet、tag、绝对路径或全文抽取状�
 
 ## Author
 
-`data/authors.yaml` 为跨论文作者提供稳定 ID、规范姓名、别名、外部 ID、自报当前机构、作者主页、Google Scholar 主页和消歧状态。当前机构优先来自公开 ORCID employment 或已确认 Google Scholar 主页；机构与主页必须保存来源和核验日期。OpenAlex 等聚合服务的 last-known institution 只用于发现和审计，不直接写成当前机构。无法通过已知论文、可信主页或稳定外部标识确认的候选不得写成已核实事实。引用数、h-index 等易变且平台口径不同的指标不进入作者正式数据。
+`data/authors.yaml` 为跨论文作者提供稳定 ID、规范姓名、别名、外部 ID、自报当前机构、作者主页、Google Scholar 主页和消歧状态。当前机构优先来自公开 ORCID employment、已确认 Google Scholar 主页或作者及机构的官方页面；机构与主页必须保存来源和核验日期。Wikidata 只在其记录与已确认的 ORCID、OpenAlex 或 Semantic Scholar ID 一致时用于发现主页和 Google Scholar ID。OpenAlex 等聚合服务的 last-known institution 只用于发现和审计，不直接写成当前机构。无法通过已知论文、可信主页或稳定外部标识确认的候选不得写成已核实事实。引用数、h-index 等易变且平台口径不同的指标不进入作者正式数据。
 
 论文文件仍保存该论文发表时的作者顺序和机构，因为作者可能更换机构。作者表中的当前机构不能反向覆盖论文发表时的机构。
 

@@ -33,7 +33,7 @@ data/corpus.yaml
 
 ```text
 conda run -n interpret-vis python scripts/enrich_authors.py
-conda run -n interpret-vis python scripts/enrich_authors.py --include-semantic-scholar --apply
+conda run -n interpret-vis python scripts/enrich_authors.py --include-semantic-scholar --include-wikidata --apply
 ```
 
-默认使用 OpenAlex 以及其中已确认 ORCID 的公开自报主页。若 Semantic Scholar 的公共接口可用，可追加 `--include-semantic-scholar` 补充其作者主页数据；接口限流不会阻塞默认流程。
+默认使用 OpenAlex 以及其中已确认 ORCID 的公开自报主页。若 Semantic Scholar 的公共接口可用，可追加 `--include-semantic-scholar` 补充其作者主页数据；`--include-wikidata` 会使用已经确认的 ORCID、OpenAlex 或 Semantic Scholar ID 反查官方主页和 Google Scholar ID。接口限流不会阻塞默认流程。

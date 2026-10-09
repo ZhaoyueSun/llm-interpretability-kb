@@ -40,6 +40,11 @@ AUTHORS_PATH = ROOT / "data" / "authors.yaml"
 CACHE_DIR = ROOT / "imports" / "author-enrichment-cache"
 REPORT_PATH = ROOT / "imports" / "author-enrichment-report.json"
 USER_AGENT = "LLM-Interpretability-KB/1.0 (author metadata audit)"
+WIKIDATA_PROPERTY_BY_EXTERNAL_ID = {
+    "orcid": "P496",
+    "openalex": "P10283",
+    "semantic_scholar": "P4012",
+}
 
 # Confirmed by identical publication-linked OpenAlex identities. Paper records
 # use the canonical target IDs; legacy names are retained as aliases.
@@ -67,6 +72,79 @@ MANUAL_AUTHOR_OVERRIDES = {
         "homepage": "https://belinkov.com/",
         "google_scholar": "https://scholar.google.com/citations?user=K-6ujU4AAAAJ&hl=en",
         "note": "Reviewed against the author's current homepage and publication list.",
+    },
+}
+
+# High-confidence profile links found by targeted web search. Each entry was
+# checked against a known corpus publication and the author's own or official
+# institutional page. These are kept in the script so a later refresh does not
+# erase manually verified links.
+MANUAL_PROFILE_OVERRIDES = {
+    "a_aaron_mueller_4e73fa7c": {
+        "homepage": "https://aaronmueller.github.io/",
+        "source_url": "https://aaronmueller.github.io/",
+        "affiliations": ["Boston University"],
+    },
+    "a_atticus_geiger_e76a395b": {
+        "homepage": "https://atticusg.github.io/",
+        "google_scholar": "https://scholar.google.com/citations?user=w2Qzno8AAAAJ&hl=en",
+        "source_url": "https://atticusg.github.io/",
+        "affiliations": ["Goodfire"],
+    },
+    "a_chris_olah_158a0d46": {
+        "homepage": "https://colah.github.io/",
+        "source_url": "https://colah.github.io/",
+    },
+    "a_christopher_potts_f9424ce1": {
+        "homepage": "https://stanford.edu/~cgpotts/",
+        "google_scholar": "https://scholar.google.com/citations?user=3j08YoAAAAAJ&hl=en",
+        "source_url": "https://stanford.edu/~cgpotts/",
+    },
+    "a_jacob_steinhardt_bd43f01f": {
+        "homepage": "https://jsteinhardt.stat.berkeley.edu/",
+        "source_url": "https://jsteinhardt.stat.berkeley.edu/",
+        "affiliations": ["University of California, Berkeley", "Transluce"],
+    },
+    "a_javier_ferrando_abb97346": {
+        "homepage": "https://javiferran.github.io/",
+        "google_scholar": "https://scholar.google.com/citations?user=ZNsw8ZUAAAAJ&hl=en",
+        "source_url": "https://javiferran.github.io/",
+        "affiliations": ["Amazon"],
+    },
+    "a_martin_wattenberg_6df204a2": {
+        "homepage": "https://www.bewitched.com/",
+        "google_scholar": "https://scholar.google.com/citations?user=pv54dqMAAAAJ&hl=en",
+        "source_url": "https://www.bewitched.com/",
+    },
+    "a_neel_nanda_ddf6abf4": {
+        "homepage": "https://www.neelnanda.io/",
+        "google_scholar": "https://scholar.google.com/citations?user=GLnX3MkAAAAJ&hl=en",
+        "source_url": "https://www.neelnanda.io/about",
+        "affiliations": ["Google DeepMind"],
+    },
+    "a_rohin_shah_1b05662e": {
+        "homepage": "https://rohinshah.com/",
+        "source_url": "https://rohinshah.com/",
+        "affiliations": ["Google DeepMind"],
+    },
+    "a_thomas_f_icard_e9a57f00": {
+        "homepage": "https://stanford.edu/~icard/",
+        "source_url": "https://stanford.edu/~icard/",
+        "affiliations": ["Stanford University", "Goodfire"],
+    },
+    "a_tom_lieberum_e979b353": {
+        "homepage": "https://tomfrederik.github.io/",
+        "source_url": "https://tomfrederik.github.io/",
+    },
+    "a_wes_gurnee_bef85191": {
+        "homepage": "https://wesg.me/",
+        "source_url": "https://wesg.me/",
+    },
+    "a_zhengxuan_wu_9418211c": {
+        "homepage": "https://cs.stanford.edu/~wuzhengx/",
+        "google_scholar": "https://scholar.google.com/citations?user=ta7rCJAAAAAJ&hl=en",
+        "source_url": "https://cs.stanford.edu/~wuzhengx/",
+        "affiliations": ["Google DeepMind"],
     },
 }
 
@@ -103,7 +181,9 @@ def cache_path(namespace: str, key: str) -> Path:
     return CACHE_DIR / namespace / f"{digest}.json"
 
 
-def fetch_json(namespace: str, url: str, *, retries: int = 5) -> dict[str, Any] | None:
+def fetch_json(
+    namespace: str, url: str, *, retries: int = 5, timeout: int = 30
+) -> dict[str, Any] | None:
     target = cache_path(namespace, url)
     if target.exists():
         return json.loads(target.read_text(encoding="utf-8"))
@@ -114,7 +194,7 @@ def fetch_json(namespace: str, url: str, *, retries: int = 5) -> dict[str, Any] 
     )
     for attempt in range(retries):
         try:
-            with urllib.request.urlopen(request, timeout=30) as response:
+            with urllib.request.urlopen(request, timeout=timeout) as response:
                 payload = json.load(response)
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
@@ -346,6 +426,98 @@ def authors_s2_batch(author_ids: list[str]) -> dict[str, dict[str, Any]]:
     return records
 
 
+def wikidata_rows(property_id: str, values: list[str]) -> dict[str, list[dict[str, str]]]:
+    """Resolve stable external IDs to Wikidata profile links in small batches."""
+    records: dict[str, list[dict[str, str]]] = defaultdict(list)
+    for offset in range(0, len(values), 500):
+        chunk = values[offset : offset + 500]
+        literals = " ".join(json.dumps(value) for value in chunk)
+        query = f"""
+SELECT ?person ?lookup ?website ?scholar WHERE {{
+  VALUES ?lookup {{ {literals} }}
+  ?person wdt:{property_id} ?lookup .
+  OPTIONAL {{ ?person wdt:P856 ?website . }}
+  OPTIONAL {{ ?person wdt:P1960 ?scholar . }}
+}}
+""".strip()
+        url = "https://query.wikidata.org/sparql?" + urllib.parse.urlencode(
+            {"query": query, "format": "json"}
+        )
+        payload = fetch_json("wikidata-sparql", url, retries=3, timeout=90) or {}
+        for binding in payload.get("results", {}).get("bindings", []):
+            lookup = binding.get("lookup", {}).get("value")
+            person = binding.get("person", {}).get("value")
+            if not lookup or not person:
+                continue
+            row = {"person": person}
+            website = binding.get("website", {}).get("value")
+            scholar = binding.get("scholar", {}).get("value")
+            if website:
+                row["website"] = website
+            if scholar:
+                row["scholar"] = scholar
+            records[lookup].append(row)
+    return records
+
+
+def collect_wikidata_profiles(
+    authors: dict[str, dict[str, Any]], matches: dict[str, Any]
+) -> dict[str, dict[str, Any]]:
+    """Find profile links only when Wikidata agrees with a known stable author ID."""
+    lookups_by_author: dict[str, dict[str, str]] = {}
+    values_by_namespace: dict[str, set[str]] = defaultdict(set)
+    for local_id, current in authors.items():
+        external_ids = dict(current.get("external_ids", {}))
+        for namespace in ("openalex", "semantic_scholar"):
+            candidates = matches[namespace].get(local_id, {})
+            if len(candidates) == 1:
+                external_ids[namespace] = next(iter(candidates))
+        override = MANUAL_AUTHOR_OVERRIDES.get(local_id)
+        if override:
+            external_ids["openalex"] = override["openalex"]
+            external_ids["semantic_scholar"] = override["semantic_scholar"]
+        selected = {
+            namespace: str(external_ids[namespace])
+            for namespace in WIKIDATA_PROPERTY_BY_EXTERNAL_ID
+            if external_ids.get(namespace)
+        }
+        lookups_by_author[local_id] = selected
+        for namespace, value in selected.items():
+            values_by_namespace[namespace].add(value)
+
+    rows_by_namespace = {
+        namespace: wikidata_rows(
+            WIKIDATA_PROPERTY_BY_EXTERNAL_ID[namespace], sorted(values)
+        )
+        for namespace, values in values_by_namespace.items()
+    }
+    profiles: dict[str, dict[str, Any]] = {}
+    for local_id, lookups in lookups_by_author.items():
+        rows = [
+            row
+            for namespace, value in lookups.items()
+            for row in rows_by_namespace[namespace].get(value, [])
+        ]
+        people = {row["person"] for row in rows}
+        if len(people) != 1:
+            continue
+        person = next(iter(people))
+        websites = sorted(
+            {
+                row["website"]
+                for row in rows
+                if row.get("website", "").startswith(("http://", "https://"))
+            }
+        )
+        scholars = sorted({row["scholar"] for row in rows if row.get("scholar")})
+        profiles[local_id] = {
+            "source_url": person.replace("http://", "https://"),
+            "websites": websites,
+            "scholars": scholars,
+        }
+    return profiles
+
+
 def author_orcid_person(orcid: str) -> dict[str, Any] | None:
     return fetch_json("orcid-person", f"https://pub.orcid.org/v3.0/{orcid}/person")
 
@@ -467,6 +639,7 @@ def enrich_author(
     matches: dict[str, Any],
     retrieved_on: str,
     s2_records: dict[str, dict[str, Any]],
+    wikidata_profiles: dict[str, dict[str, Any]],
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     oa_candidates = matches["openalex"].get(local_id, {})
     s2_candidates = matches["semantic_scholar"].get(local_id, {})
@@ -569,6 +742,51 @@ def enrich_author(
                 record["profiles"]["homepage"] = make_profile(homepage, source_url, retrieved_on)
             audit["semantic_scholar_name"] = s2_record.get("name")
 
+    wikidata = wikidata_profiles.get(local_id)
+    if wikidata:
+        source_url = wikidata["source_url"]
+        if not record["profiles"]["homepage"] and wikidata["websites"]:
+            record["profiles"]["homepage"] = make_profile(
+                wikidata["websites"][0], source_url, retrieved_on
+            )
+        if not record["profiles"]["google_scholar"] and len(wikidata["scholars"]) == 1:
+            profile_url = scholar_url(
+                "https://scholar.google.com/citations?user="
+                + urllib.parse.quote(wikidata["scholars"][0])
+            )
+            if profile_url:
+                record["profiles"]["google_scholar"] = make_profile(
+                    profile_url, source_url, retrieved_on
+                )
+        audit["wikidata"] = wikidata
+
+    profile_override = MANUAL_PROFILE_OVERRIDES.get(local_id)
+    if profile_override:
+        source_url = profile_override["source_url"]
+        homepage = profile_override.get("homepage")
+        google_scholar = profile_override.get("google_scholar")
+        if homepage:
+            record["profiles"]["homepage"] = make_profile(
+                homepage, source_url, retrieved_on
+            )
+        if google_scholar:
+            record["profiles"]["google_scholar"] = make_profile(
+                google_scholar, source_url, retrieved_on
+            )
+        if profile_override.get("affiliations") and not record["current_affiliations"]:
+            record["current_affiliations"] = [
+                {
+                    "name": name,
+                    "ror_id": None,
+                    "country_code": None,
+                    "evidence_year": int(retrieved_on[:4]),
+                    "source_url": source_url,
+                    "retrieved_on": retrieved_on,
+                }
+                for name in profile_override["affiliations"]
+            ]
+        audit["manual_profile_source"] = source_url
+
     homepage_profile = record["profiles"]["homepage"]
     if homepage_profile and not record["profiles"]["google_scholar"]:
         gs = scholar_from_homepage(homepage_profile["url"])
@@ -627,6 +845,11 @@ def main() -> int:
         action="store_true",
         help="also query Semantic Scholar; unauthenticated access may be heavily rate-limited",
     )
+    parser.add_argument(
+        "--include-wikidata",
+        action="store_true",
+        help="look up homepages and Google Scholar IDs through stable IDs in Wikidata",
+    )
     args = parser.parse_args()
 
     papers = load_papers()
@@ -643,12 +866,17 @@ def main() -> int:
         for candidates_key in candidates
     )
     s2_records = authors_s2_batch(s2_ids) if args.include_semantic_scholar else {}
+    wikidata_profiles = (
+        collect_wikidata_profiles(authors, matches) if args.include_wikidata else {}
+    )
 
     enriched: dict[str, Any] = {}
     audit_rows: list[dict[str, Any]] = []
     def resolve_author(item: tuple[str, dict[str, Any]]) -> tuple[str, dict[str, Any], dict[str, Any]]:
         local_id, current = item
-        record, audit = enrich_author(local_id, current, matches, retrieved_on, s2_records)
+        record, audit = enrich_author(
+            local_id, current, matches, retrieved_on, s2_records, wikidata_profiles
+        )
         return local_id, record, audit
 
     resolved_authors: dict[str, tuple[dict[str, Any], dict[str, Any]]] = {}
