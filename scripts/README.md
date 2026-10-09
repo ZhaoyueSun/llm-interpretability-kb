@@ -24,3 +24,16 @@ data/corpus.yaml
 根据 PaperManage manifest 与只读 metadata 创建缺失的 `data/papers/<paper_id>.yaml`，并建立初始 `data/authors.yaml`。脚本不会覆盖已经存在的论文文件，以免破坏中文翻译或人工补充信息。
 
 初始作者 ID 根据交付中的作者姓名确定，`disambiguation_status` 为 `unreviewed`；作者别名合并和机构补充需后续单独审核。
+
+## `enrich_authors.py`
+
+从 corpus 中已经确认的论文出发，在 OpenAlex 和 Semantic Scholar 的对应论文记录中匹配作者，补充外部作者 ID、自报的当前机构、作者主页和可明确确认的 Google Scholar 主页。脚本不按姓名单独猜测作者身份，也不抓取或保存引用数、h-index 等易变指标。
+
+原始响应和审计报告保存在 Git 忽略的 `imports/` 中。默认只生成报告；确认结果后使用 `--apply` 更新 `data/authors.yaml`：
+
+```text
+conda run -n interpret-vis python scripts/enrich_authors.py
+conda run -n interpret-vis python scripts/enrich_authors.py --include-semantic-scholar --apply
+```
+
+默认使用 OpenAlex 以及其中已确认 ORCID 的公开自报主页。若 Semantic Scholar 的公共接口可用，可追加 `--include-semantic-scholar` 补充其作者主页数据；接口限流不会阻塞默认流程。

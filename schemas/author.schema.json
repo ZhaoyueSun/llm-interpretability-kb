@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "author.schema.json",
+  "title": "Author Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "authors"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "authors": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "canonical_name",
+          "aliases",
+          "external_ids",
+          "current_affiliations",
+          "profiles",
+          "disambiguation_status",
+          "disambiguation"
+        ],
+        "properties": {
+          "canonical_name": {"type": "string", "minLength": 1},
+          "aliases": {
+            "type": "array",
+            "items": {"type": "string", "minLength": 1},
+            "uniqueItems": true
+          },
+          "external_ids": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["orcid", "openalex", "semantic_scholar"],
+            "properties": {
+              "orcid": {"type": ["string", "null"]},
+              "openalex": {"type": ["string", "null"]},
+              "semantic_scholar": {"type": ["string", "null"]}
+            }
+          },
+          "current_affiliations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "name",
+                "ror_id",
+                "country_code",
+                "evidence_year",
+                "source_url",
+                "retrieved_on"
+              ],
+              "properties": {
+                "name": {"type": "string", "minLength": 1},
+                "ror_id": {"type": ["string", "null"]},
+                "country_code": {"type": ["string", "null"]},
+                "evidence_year": {"type": ["integer", "null"]},
+                "source_url": {"type": "string", "format": "uri"},
+                "retrieved_on": {"type": "string", "format": "date"}
+              }
+            }
+          },
+          "profiles": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["homepage", "google_scholar"],
+            "properties": {
+              "homepage": {"$ref": "#/$defs/profile"},
+              "google_scholar": {"$ref": "#/$defs/profile"}
+            }
+          },
+          "disambiguation_status": {
+            "enum": ["unreviewed", "unmatched", "matched_by_publication", "needs_review", "reviewed"]
+          },
+          "disambiguation": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["evidence_paper_ids", "matched_on", "note"],
+            "properties": {
+              "evidence_paper_ids": {
+                "type": "array",
+                "items": {"type": "string", "pattern": "^p_[a-z0-9_]+$"},
+                "uniqueItems": true
+              },
+              "matched_on": {"type": ["string", "null"], "format": "date"},
+              "note": {"type": ["string", "null"]}
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "profile": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["url", "source_url", "retrieved_on"],
+          "properties": {
+            "url": {"type": "string", "format": "uri"},
+            "source_url": {"type": "string", "format": "uri"},
+            "retrieved_on": {"type": "string", "format": "date"}
+          }
+        }
+      ]
+    }
+  }
+}

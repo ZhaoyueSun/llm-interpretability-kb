@@ -1,0 +1,9 @@
+name: interpret-vis
+channels:
+  - defaults
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      - PyYAML==6.0.3
+      - jsonschema==4.26.0
