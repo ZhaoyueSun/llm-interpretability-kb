@@ -24,13 +24,25 @@
           "status": {"enum": ["active", "deprecated"]},
           "replaced_by": {"type": ["string", "null"]},
           "proposal_id": {"type": ["string", "null"]},
+          "applicable_model_families": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {"type": "string", "pattern": "^[a-z0-9-]+$"}
+          },
+          "applicable_object_roles": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "enum": ["input", "internal", "output", "structural", "process"]
+            }
+          },
           "introduction": {
             "type": "object",
             "additionalProperties": false,
             "required": ["en", "zh"],
             "properties": {
-              "en": {"type": "string"},
-              "zh": {"type": "string"}
+              "en": {"type": "string", "minLength": 1},
+              "zh": {"type": "string", "minLength": 1}
             }
           }
         }

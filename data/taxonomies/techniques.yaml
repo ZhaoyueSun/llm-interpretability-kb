@@ -1,0 +1,1295 @@
+schema_version: 1
+taxonomy_id: techniques
+version: 2
+status: active
+title: Techniques
+nodes:
+- node_id: technique
+  parent_id: null
+  title: Technique Primitives
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      This taxonomy is a guide to the practical tools researchers use to open up a
+      neural network: observing its internal activity, turning that activity into
+      human-readable evidence, testing causal hypotheses, tracing circuits, and
+      deliberately changing behavior. It is organized around the operation being
+      performed, while the object being studied and the strength of the resulting
+      evidence are recorded separately.
+    zh: >-
+      这棵树是一份理解机制可解释性工具箱的导读：研究者怎样观察模型内部活动，怎样把内部信号转化为人能理解的证据，
+      怎样检验因果假设、追踪 circuit，以及怎样有目的地改变模型行为。分类依据是研究者实际执行的操作；
+      被研究的对象以及证据有多强，则在其他属性中单独记录。
+- node_id: readout-measurement
+  parent_id: technique
+  title: Readout and Measurement
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Before reconstructing a mechanism, researchers usually need to find out what is
+      present inside the model and where it becomes visible. Readout and measurement
+      methods turn activations, weights, or outputs into quantities that can be
+      inspected—such as decoded concepts, geometric directions, importance scores, or
+      attribution maps. They are often the first stage of an investigation rather than
+      its final causal proof.
+    zh: >-
+      在重建完整机制之前，研究者通常先要知道：模型内部存在什么信息，它在什么位置变得可见。
+      Readout and Measurement 方法把激活、权重或输出转换成可检查的量，例如可解码概念、几何方向、重要性分数或归因图。
+      它们往往是机制研究的起点，而不是最终的因果证明。
+- node_id: activation-statistics
+  parent_id: readout-measurement
+  title: Activation Statistics
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Activation statistics ask a simple exploratory question: which internal units
+      respond, how often do they respond, and how strongly or selectively? Researchers
+      summarize activations across tokens or datasets using quantities such as
+      frequency, sparsity, variance, entropy, and norm. The resulting patterns are
+      useful for finding candidates worth studying, although a conspicuous activation
+      is not necessarily one the model relies on.
+    zh: >-
+      Activation Statistics 回答的是一个直观的探索性问题：哪些内部单元会响应、响应得多频繁、强度和选择性如何。
+      研究者会在 token 或数据集上汇总激活频率、稀疏性、方差、熵和范数等指标。
+      这些规律可以帮助筛选值得深入研究的候选对象，但“激活很显眼”并不等于“模型必须依赖它”。
+- node_id: attention-pattern-analysis
+  parent_id: readout-measurement
+  title: Attention Pattern and OV/QK Analysis
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Attention analysis separates two questions that are easy to conflate: where a
+      head reads information from, and what information it writes back. Attention
+      patterns and the QK circuit describe routing, whereas the OV circuit helps explain
+      the resulting update to the residual stream. Looking at both gives a richer picture
+      than an attention heatmap alone, which may show correlation without revealing the
+      head's actual effect on the prediction.
+    zh: >-
+      注意力分析需要区分两个很容易混在一起的问题：一个 head 从哪里读取信息，以及它把什么信息写回模型。
+      Attention pattern 和 QK circuit 描述路由选择，OV circuit 则帮助解释它对 residual stream 造成的更新。
+      两者结合比单看热力图更完整；热力图可能显示相关性，却不一定说明该 head 对最终预测产生了什么作用。
+- node_id: vocabulary-projection
+  parent_id: readout-measurement
+  title: Native Vocabulary Projection
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Vocabulary projection asks, “If this internal vector were interpreted through the
+      model's output vocabulary, which tokens would it favor?” The vector may come from
+      the residual stream, an attention head, an MLP value vector, or a learned feature;
+      multiplying it by the unembedding produces a familiar list of token logits. This
+      is a quick way to form semantic hypotheses, but it only reveals information that
+      is aligned with the model's output space.
+    zh: >-
+      Vocabulary Projection 试图回答：“如果用模型自己的输出词表来解释这个内部向量，它会偏向哪些 token？”
+      这个向量可以来自 residual stream、attention head、MLP value vector 或学习特征；将其乘以 unembedding，
+      就能得到熟悉的 token logits。这种方法适合快速形成语义假设，但只能看到与输出空间线性对齐的信息。
+- node_id: learned-lenses
+  parent_id: readout-measurement
+  title: Learned and Model-Internal Lenses
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Intermediate representations are not always written in the same coordinate
+      system as the final output, so directly applying the unembedding can be
+      misleading. A lens supplies a decoder that translates an intermediate state into
+      a prediction or semantic readout that is easier to interpret. Different lenses
+      make different assumptions about this translation—for example, whether it should
+      be learned from data, borrowed from later layers, or implemented by the model itself.
+    zh: >-
+      中间表征未必与最终输出处在同一个坐标系中，因此直接套用 unembedding 可能产生误导。
+      Lens 会提供一个额外的解码器，把中间状态翻译成更容易理解的预测或语义读出。
+      Tuned Lens、Future Lens、Attention Lens 等方法的差别，主要在于这种“翻译”是从数据中学习、借助后续层，
+      还是由模型自身的结构完成。
+- node_id: probing
+  parent_id: readout-measurement
+  title: Probing
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Probing treats a model representation as data and asks whether a separate,
+      usually simple predictor can recover a property of interest from it. A successful
+      probe tells us that the information is accessible in the representation, which is
+      often an important first finding. It does not yet tell us that the original model
+      reads or uses that information when producing its behavior.
+    zh: >-
+      Probing 把模型表征当作一份数据，询问一个额外的、通常较简单的预测器能否从中恢复目标属性。
+      探针成功说明这种信息在表征中是可访问的，这往往是重要的第一步发现。
+      但它还不能说明原模型在产生行为时真的读取或使用了这部分信息。
+- node_id: supervised-probing
+  parent_id: probing
+  title: Supervised and Sparse Probing
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      In supervised probing, labeled examples teach an auxiliary classifier or
+      regressor to read a property from model states. Linear and sparse probes are
+      popular because their limited capacity makes the resulting direction or feature
+      set easier to inspect. Even then, researchers compare against control tasks and
+      capacity-matched baselines, because a powerful probe can learn patterns that were
+      not readily represented by the model.
+    zh: >-
+      Supervised Probing 使用带标签的样本，训练辅助分类器或回归器从模型状态中读出某种属性。
+      线性探针和稀疏探针很常见，因为它们容量有限，得到的方向或特征集合也更容易检查。
+      即便如此，仍需与控制任务和容量匹配的基线比较，因为过强的探针可能自行学到模型原本并未清晰表示的模式。
+- node_id: unsupervised-contrastive-probing
+  parent_id: probing
+  title: Unsupervised Contrastive Probing
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Sometimes reliable labels are unavailable or would bake the desired answer into
+      the analysis. Unsupervised contrastive probes instead look for a direction that
+      consistently separates paired or contrasting examples, using agreement and
+      symmetry constraints rather than explicit class labels. The central challenge is
+      to design contrasts that isolate the intended concept instead of an accidental
+      difference between the example groups.
+    zh: >-
+      有时可靠标签难以获得，或者标签本身会把研究者希望看到的答案预先写进分析。
+      Unsupervised Contrastive Probing 不使用显式类别标签，而是从成对或对比样本中寻找稳定的分离方向，
+      借助一致性与对称性约束恢复潜在概念。关键难点是设计真正隔离目标概念的对比，而不是捕捉两组样本间的偶然差异。
+- node_id: representation-geometry
+  parent_id: readout-measurement
+  title: Representation Geometry and Subspace Analysis
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Geometric analysis steps back from individual neurons and asks how many directions
+      a concept occupies, how examples are arranged, and which relations are preserved
+      in activation space. Researchers may identify a line, a multidimensional subspace,
+      a manifold, or an estimate of intrinsic dimension. Such structure can reveal how
+      the model organizes information, but additional tests are needed to show that the
+      organization matters for computation or behavior.
+    zh: >-
+      Representation Geometry 不再把注意力局限在单个神经元上，而是考察概念占据多少个方向、样本如何排列，
+      以及哪些关系在激活空间中得到保持。研究者可能找到一条线、一个多维子空间、一张流形，或估计表征的内在维度。
+      这些结构揭示模型如何组织信息，但还需要额外检验来说明这种组织确实参与了计算或行为。
+- node_id: attribution-sensitivity
+  parent_id: readout-measurement
+  title: Attribution and Sensitivity
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Attribution methods try to divide a prediction among the inputs or internal
+      elements that may have contributed to it. Sensitivity methods ask the closely
+      related question of how much the prediction would change under a small local
+      perturbation. These scores are useful for narrowing a large search space, but
+      their meaning depends on the chosen baseline, approximation, and definition of a
+      “missing” feature; high attribution should therefore not be read as causal proof.
+    zh: >-
+      Attribution 试图把一次预测的“功劳”分配给可能参与其中的输入或内部元素；Sensitivity 则询问，
+      对某个局部因素做小幅改变时，预测会变化多少。这些分数很适合缩小庞大的搜索空间，
+      但其含义依赖基线、近似方式以及“特征缺失”的定义，因此高归因分数不应直接读成因果证明。
+- node_id: gradient-sensitivity
+  parent_id: attribution-sensitivity
+  title: Gradient Sensitivity
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      A gradient tells us which infinitesimal change to an input, activation, or
+      parameter would most rapidly change a selected output. Variants such as
+      gradient-times-input and integrated gradients make the score easier to attribute
+      to the current example or accumulate it along a path from a baseline. Gradients
+      are fast and widely applicable, but a local derivative can miss saturation,
+      interactions, and other effects that appear only under larger interventions.
+    zh: >-
+      梯度告诉我们：若对输入、激活或参数做一个无限小的改变，沿哪个方向最能迅速改变指定输出。
+      Gradient-times-input 把敏感性与当前取值结合，Integrated Gradients 则从基线沿路径累积这种变化。
+      梯度计算高效、适用范围广，但局部导数可能看不到饱和、变量交互以及只有较大干预才会出现的非线性效应。
+- node_id: decomposition-attribution
+  parent_id: attribution-sensitivity
+  title: Decomposition and Component Attribution
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Decomposition methods start from a quantity such as a logit and rewrite it as a
+      sum of contributions from tokens, heads, MLPs, or information-flow paths. The
+      decomposition can follow the model's algebra, a contextual-decomposition rule, or
+      another bookkeeping scheme. This often yields a readable account of how signals
+      combine, although the chosen decomposition is an explanatory convention rather
+      than an exhaustive causal experiment.
+    zh: >-
+      Decomposition 方法从 logit 等量出发，把它改写成 token、attention head、MLP 或信息流路径贡献之和。
+      分解可以遵循模型自身的代数结构，也可以采用 contextual decomposition 等记账规则。
+      它常能给出信号如何组合的清晰叙述，但所选分解仍是一种解释约定，而不是穷尽式因果实验。
+- node_id: relevance-propagation
+  parent_id: attribution-sensitivity
+  title: Layer-Wise and Concept Relevance Propagation
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Relevance propagation begins with a model output and sends its “relevance” backward
+      through the layers, redistributing the score according to each operation's local
+      contribution. Ordinary layer-wise relevance propagation highlights where the
+      supporting evidence lies. Concept Relevance Propagation additionally conditions
+      the backward flow on interpretable concepts, helping connect the location of
+      evidence with the kind of evidence the model appears to use.
+    zh: >-
+      Relevance Propagation 从模型输出开始，把“相关性”分数逐层向后传递，并依据每个局部运算对分数进行重新分配。
+      普通的 Layer-Wise Relevance Propagation 主要显示支持预测的证据在哪里；Concept Relevance Propagation
+      进一步让反向传播以可理解概念为条件，从而同时回答模型使用了哪一类证据。
+- node_id: shapley-attribution
+  parent_id: attribution-sensitivity
+  title: Shapley-Value Attribution
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      SHAP borrows an idea from cooperative game theory: imagine that input features
+      form coalitions to produce a prediction, and ask how much each feature contributes
+      on average when it joins different coalitions. The resulting Shapley values obey
+      appealing fairness and consistency properties. In model interpretation, however,
+      the answer also depends on how a feature is removed or replaced, so the game being
+      analyzed must be chosen with care.
+    zh: >-
+      SHAP 借用了合作博弈论的直觉：设想输入特征组成不同联盟共同产生预测，然后计算某个特征加入不同联盟时平均增加了多少贡献。
+      由此得到的 Shapley 值满足一组很有吸引力的公平性和一致性性质。
+      但在模型解释中，答案还取决于如何“移除”或替换一个特征，因此必须谨慎定义所分析的博弈。
+- node_id: kernel-sampling-shap
+  parent_id: shapley-attribution
+  title: Kernel and Sampling SHAP
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Exact Shapley values require considering exponentially many feature coalitions,
+      which is rarely practical. KernelSHAP and related estimators sample coalitions and
+      fit a specially weighted local linear model whose coefficients approximate the
+      desired values. The method can be applied to almost any prediction model, but the
+      number of evaluations can still become large when there are many features.
+    zh: >-
+      精确 Shapley 值需要考察指数数量的特征联盟，实际中通常无法承受。
+      KernelSHAP 等估计方法会抽样部分联盟，再拟合一个特殊加权的局部线性模型，用其系数近似目标 Shapley 值。
+      它几乎可用于任何预测模型，但当特征很多时，所需模型调用仍可能非常庞大。
+- node_id: amortized-shap
+  parent_id: shapley-attribution
+  title: Amortized SHAP
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Amortized SHAP moves the expensive work from explanation time to training time.
+      A separate explainer, such as FastSHAP, learns to predict the Shapley values for a
+      new example in one forward pass instead of solving a fresh estimation problem each
+      time. This is attractive when many examples must be explained, although the result
+      is now an approximation produced by another learned model.
+    zh: >-
+      Amortized SHAP 把昂贵计算从“每次解释时”转移到“预先训练时”。
+      FastSHAP 等独立解释器学会对新样本一次前向传播就预测 Shapley 值，而无需每次重新求解估计问题。
+      当需要解释大量样本时这很有吸引力，但结果也变成了由另一个学习模型给出的近似。
+- node_id: magnitude-based-scoring
+  parent_id: readout-measurement
+  title: Magnitude-Based Scoring
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Magnitude-based methods follow a useful exploratory intuition: unusually large
+      weights, activations, or representational changes may point to places where
+      something important is happening. Researchers therefore rank candidates using
+      norms, absolute values, or distances before applying more expensive analyses.
+      Large magnitude is a clue rather than an explanation—it may reflect scale or
+      normalization effects without being necessary for the behavior.
+    zh: >-
+      Magnitude-Based Scoring 遵循一个实用的探索直觉：异常大的权重、激活或表征变化，可能提示“这里正在发生重要事情”。
+      因此研究者常先用范数、绝对值或距离给候选对象排序，再进行成本更高的分析。
+      但大幅值只是线索而非解释；它也可能只是尺度或归一化造成的，并不一定是行为所必需的。
+- node_id: static-parameter-magnitude
+  parent_id: magnitude-based-scoring
+  title: Static Parameter Magnitude
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Static magnitude analysis examines quantities that are already present in the
+      trained weights, such as unusually large matrix entries, row or column norms, and
+      concentrated values in QK projections. Because it does not require running a
+      dataset through the model, it is a fast way to discover structural outliers. The
+      next question is whether those outliers actually affect computation on real inputs.
+    zh: >-
+      Static Parameter Magnitude 直接检查训练完成后已经存在于权重中的量，例如异常大的矩阵元素、行列范数，
+      或集中在 QK projection 中的巨大数值。由于不需要让数据经过模型，它能快速发现结构异常点。
+      随后的关键问题是，这些异常点在真实输入上是否真的影响了计算。
+- node_id: dynamic-component-magnitude
+  parent_id: magnitude-based-scoring
+  title: Dynamic Activation and Component Magnitude
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Dynamic magnitude analysis observes the model while it processes data and ranks
+      neurons, heads, or learned features by how strongly, frequently, or selectively
+      they activate. Conditioning the statistics on a behavior—such as a language or a
+      refusal response—can reveal components associated with that behavior. Because the
+      ranking changes with the input distribution, it should be treated as a candidate
+      map rather than a statement of causal necessity.
+    zh: >-
+      Dynamic Magnitude Analysis 在模型处理数据时观察它，并按照激活强度、频率或选择性给神经元、attention head
+      或学习特征排序。若按语言、拒绝响应等行为对统计量进行条件化，还可以发现与特定行为相关的组件。
+      由于排名会随输入分布改变，它更适合作为候选地图，而不是因果必要性的结论。
+- node_id: layerwise-representation-distance
+  parent_id: magnitude-based-scoring
+  title: Layer-Wise Representation Distance
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Instead of inspecting one layer in isolation, this method follows how a
+      representation changes as it moves through the network. Distances between vectors,
+      subspaces, or distributions can reveal a layer where two classes separate, a
+      concept rotates, or a new structure emerges. The result localizes a transition in
+      representation space, but does not by itself identify the computation that caused it.
+    zh: >-
+      这种方法不是孤立地看某一层，而是追踪表征在网络中逐层流动时如何改变。
+      向量、子空间或分布之间的距离，可以揭示两个类别从哪一层开始分离、某个概念在哪里旋转，或新结构在哪里出现。
+      它能定位表征转变，却不能单独说明究竟是哪一种计算造成了转变。
+- node_id: feature-discovery-decomposition
+  parent_id: technique
+  title: Feature Discovery and Decomposition
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Models represent far more concepts than can be read from individual neurons, so
+      researchers need ways to discover a more useful vocabulary for internal activity.
+      Some methods attach meanings to the model's native units; others learn a new basis
+      that separates superposed signals into features. This branch brings those approaches
+      together while keeping clear whether the discovered features come from native
+      components, a learned dictionary, or a statistical decomposition.
+    zh: >-
+      模型表示的概念远多于单个神经元能够直接呈现的内容，因此研究者需要一套更合适的“内部词汇表”。
+      有些方法尝试给模型原生单元赋予含义，另一些方法则学习新的基底，把叠加在一起的信号拆成特征。
+      本分支把这些路线放在一起，同时区分特征究竟来自原生组件、学习字典，还是统计分解。
+- node_id: concept-unit-alignment
+  parent_id: feature-discovery-decomposition
+  title: Concept–Unit Alignment
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Concept–unit alignment asks whether a unit already present in the model can be
+      given a stable human-interpretable description. A unit's activation pattern is
+      compared with labeled examples, a concept vocabulary, or embeddings from another
+      model. When the match is reliable, the method offers a direct semantic handle on
+      a neuron or channel; when concepts are distributed across many units, however, a
+      one-unit–one-concept description may be too simple.
+    zh: >-
+      Concept–Unit Alignment 询问：模型中已经存在的某个单元，能否获得一个稳定、可由人理解的描述。
+      研究者会把它的激活模式与标注样本、概念词表或其他模型的嵌入进行比较。
+      匹配可靠时，我们就得到一个直接理解神经元或通道的语义抓手；但若概念分布在许多单元上，
+      “一个单元对应一个概念”的叙述可能过于简单。
+- node_id: network-dissection
+  parent_id: concept-unit-alignment
+  title: Network Dissection
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Network Dissection turns unit interpretation into a matching problem. For each
+      convolutional unit, it compares the unit's spatial activation map with pixel-level
+      annotations for objects, parts, textures, colors, and other concepts. A high overlap
+      suggests a possible semantic label and makes interpretability measurable across
+      networks, but the method can only recognize concepts represented in its annotation set.
+    zh: >-
+      Network Dissection 把单元解释变成一个匹配问题：对每个卷积单元，将其空间激活图与对象、部件、纹理、颜色等概念的
+      像素级标注进行比较。高度重合意味着这个概念可能是该单元的语义标签，也使不同网络的“可解释单元数量”可以被量化比较。
+      但它只能识别标注词表中已经存在的概念。
+- node_id: clip-unit-labeling
+  parent_id: concept-unit-alignment
+  title: CLIP-Based Unit Labeling
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      CLIP-based labeling replaces a fixed, densely annotated concept dataset with the
+      shared image–text space of a vision-language model. A unit's preferred images are
+      compared with candidate text descriptions, allowing CLIP-Dissect to produce more
+      open-ended labels with much less annotation effort. This flexibility is valuable,
+      but the resulting explanation reflects what CLIP can distinguish and how the
+      candidate descriptions were chosen.
+    zh: >-
+      CLIP-Based Unit Labeling 用视觉—语言模型共享的图文空间，替代固定且需要密集标注的概念数据集。
+      研究者把某个单元偏好的图像与候选文本描述进行比较，因此 CLIP-Dissect 能以更少标注成本产生更开放的标签。
+      这种灵活性很有价值，但解释结果也受 CLIP 能区分什么以及候选描述如何选择的影响。
+- node_id: feature-dictionary-learning
+  parent_id: feature-discovery-decomposition
+  title: Feature Dictionary Learning
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Feature dictionary learning assumes that a dense activation can be expressed using
+      a relatively small number of latent features selected from a much larger dictionary.
+      Learning this dictionary gives researchers a new coordinate system in which model
+      activity may be easier to name, compare, and intervene on. SAEs reconstruct a state,
+      transcoders reconstruct a transformation, and crosscoders learn a shared vocabulary
+      across states or models—related ideas, but not the same method.
+    zh: >-
+      Feature Dictionary Learning 假设，一个稠密激活可以由大型字典中少数被选中的潜在特征来表达。
+      学到这本字典后，研究者就获得了新的坐标系，模型活动可能因此更容易命名、比较和干预。
+      SAE 重构一个状态，Transcoder 重构一种变换，Crosscoder 则在不同状态或模型之间学习共享词汇；它们思路相关，但不是同一种方法。
+- node_id: sparse-autoencoders
+  parent_id: feature-dictionary-learning
+  title: Sparse Autoencoders
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Sparse autoencoders are motivated by superposition: a model may pack many concepts
+      into the same activation dimensions, making neurons difficult to interpret one by
+      one. An SAE expands the activation into many latent coordinates, encourages only a
+      few to be active for each example, and then reconstructs the original activation.
+      Researchers inspect these sparse latents as candidate features, while checking how
+      much information and model behavior the reconstruction preserves.
+    zh: >-
+      Sparse Autoencoder 的出发点是 superposition：模型可能把许多概念压进同一组激活维度，因此逐个神经元很难解释。
+      SAE 把激活展开到数量更多的潜在坐标中，让每个样本只激活少数坐标，再重构原始激活。
+      研究者把这些稀疏潜变量当作候选特征，同时检查重构保留了多少信息和模型行为。
+- node_id: vanilla-topk-sae
+  parent_id: sparse-autoencoders
+  title: Vanilla and Top-K Sparse Autoencoders
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      The basic SAE uses a wide hidden layer together with an \(L_1\)-style penalty so
+      that most latent features remain inactive. Top-\(k\) variants instead keep only
+      the \(k\) strongest latents for each example, making the desired sparsity explicit.
+      These simple designs are the main reference point for evaluating whether a more
+      elaborate dictionary method improves reconstruction, sparsity, or interpretability.
+    zh: >-
+      基础 SAE 使用较宽的隐藏层，并通过 \(L_1\) 类惩罚让大多数潜在特征保持关闭。
+      Top-\(k\) 变体则直接为每个样本只保留最强的 \(k\) 个潜变量，使目标稀疏度更加明确。
+      这些简单设计是重要基线，用来判断更复杂的字典方法是否真的改善了重构、稀疏性或可解释性。
+- node_id: gated-jumprelu-sae
+  parent_id: sparse-autoencoders
+  title: Gated and JumpReLU Sparse Autoencoders
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      With an \(L_1\) penalty, a feature may be pushed toward zero even after the model
+      has decided that it is present, producing a systematic shrinkage in its magnitude.
+      Gated SAEs separate the decision to activate a feature from the amount to activate
+      it, while JumpReLU SAEs learn a threshold below which the feature is exactly off.
+      Both designs aim to obtain clean sparsity without paying as much reconstruction error.
+    zh: >-
+      在 \(L_1\) 惩罚下，即使模型已经判断某个特征存在，它的幅值仍可能被系统性地压向零，这就是 shrinkage bias。
+      Gated SAE 把“是否激活”与“激活多少”分开；JumpReLU SAE 则学习一个阈值，低于阈值时特征完全关闭。
+      两者都希望在获得清晰稀疏性的同时，减少重构质量的损失。
+- node_id: specialized-feature-aligned-sae
+  parent_id: sparse-autoencoders
+  title: Specialized and Feature-Aligned Sparse Autoencoders
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      A general-purpose SAE tends to spend most of its capacity on patterns common in
+      the training distribution, which can leave rare but important concepts poorly
+      represented. Specialized or feature-aligned SAEs change the sampling, loss, or
+      alignment objective so that selected domains and concepts receive more capacity.
+      The benefit is better coverage of the target phenomenon; the trade-off is that the
+      resulting dictionary may be less neutral or less useful elsewhere.
+    zh: >-
+      通用 SAE 往往把大部分容量花在训练分布中常见的模式上，稀有但重要的概念可能因此表示不足。
+      Specialized 或 Feature-Aligned SAE 会调整采样、损失或对齐目标，让指定领域和概念获得更多容量。
+      好处是目标现象覆盖更好，代价是字典可能不再中立，或在其他领域不够通用。
+- node_id: end-to-end-functional-dictionary
+  parent_id: sparse-autoencoders
+  title: End-to-End Functional Dictionary Learning
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      A low reconstruction error does not guarantee that a dictionary preserves the
+      parts of an activation that matter to the rest of the network. End-to-end
+      functional dictionary learning therefore evaluates the reconstructed state through
+      downstream layers or directly against the model's behavior. Its features are
+      encouraged to preserve function, not merely to reproduce a vector at one location.
+    zh: >-
+      局部重构误差很低，并不保证字典保留了后续网络真正需要的那部分信息。
+      End-to-End Functional Dictionary Learning 会让重构状态继续经过后续层，或直接按照模型行为来评价字典。
+      因此它鼓励特征保留功能，而不仅是在某个位置复现一个向量。
+- node_id: subspace-aware-dictionary
+  parent_id: sparse-autoencoders
+  title: Subspace-Aware Dictionary Learning
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Standard dictionary learning usually represents each feature by one decoder
+      direction. Subspace-aware methods relax this assumption and allow one feature to
+      occupy several coordinated directions, which is useful when a concept varies with
+      context, position, or another attribute. The method trades a simpler one-vector
+      interpretation for a richer account of feature geometry.
+    zh: >-
+      标准字典学习通常用一个 decoder direction 表示一个特征。
+      Subspace-Aware 方法放宽这一假设，允许一个特征占据多个相互协调的方向，适合处理会随上下文、位置或其他属性变化的概念。
+      它用更丰富的特征几何，换取了不再那么简单的“一个向量一个概念”解释。
+- node_id: transcoders
+  parent_id: feature-dictionary-learning
+  title: Transcoders
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      An SAE explains what is present at one activation site, but circuit analysis also
+      needs to know how one set of features is transformed into the next. A transcoder
+      learns a sparse, interpretable replacement for a dense operation such as an MLP,
+      mapping its input activation to its output activation. This makes it possible to
+      trace feature-to-feature influence through a layer instead of stopping at a static
+      feature description.
+    zh: >-
+      SAE 可以解释某个位置“存在什么”，但 circuit analysis 还需要知道一组特征如何变成下一组特征。
+      Transcoder 学习一个稀疏、可解释的替代模型，用来近似 MLP 等稠密运算从输入激活到输出激活的映射。
+      这样，研究者就能追踪特征如何穿过一层影响其他特征，而不只停留在静态特征描述上。
+- node_id: crosscoders
+  parent_id: feature-dictionary-learning
+  title: Crosscoders
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      To understand what fine-tuning or scaling changed, it is not enough to train two
+      unrelated dictionaries and compare their feature names afterward. A crosscoder
+      learns a shared latent vocabulary whose decoder directions can differ across two
+      models, layers, or checkpoints. Shared and model-specific latents then provide a
+      direct language for model diffing, although training artifacts can make an ordinary
+      shared concept look spuriously unique to one model.
+    zh: >-
+      若想理解微调或扩展规模改变了什么，分别训练两本互不关联的字典再比较特征名称通常不够可靠。
+      Crosscoder 会学习一套共享潜在词汇，同时允许其 decoder direction 在两个模型、层或 checkpoint 中不同。
+      共同潜变量和模型特有潜变量由此成为 model diffing 的直接语言，但训练伪影也可能把普通共享概念误判为某个模型独有。
+- node_id: ica-based-decomposition
+  parent_id: feature-discovery-decomposition
+  title: ICA-Based Decomposition and ICA Lens
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      ICA offers a classical alternative to training a neural feature dictionary. It
+      searches for directions whose activations are as statistically independent and
+      non-Gaussian as possible, based on the intuition that selective semantic features
+      may stand out from a Gaussian background. ICA Lens adapts this idea to large model
+      activations with stability checks and efficient fitting, making it useful as a
+      lightweight first view of representation structure.
+    zh: >-
+      ICA 是训练神经特征字典之外的一条经典路线。它寻找激活在统计上尽可能独立且非高斯的方向，
+      背后的直觉是：具有选择性的语义特征可能会从近似高斯的背景中凸显出来。
+      ICA Lens 为大模型激活加入稳定性检查和高效拟合，使 ICA 成为观察表征结构的一种轻量级第一视角。
+- node_id: cross-model-feature-alignment
+  parent_id: feature-discovery-decomposition
+  title: Cross-Model Feature Alignment and Stitching
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Two models may encode a similar concept in differently rotated, scaled, or
+      distributed coordinates. Cross-model alignment learns a correspondence or
+      transformation that places their representations in a shared frame, enabling
+      feature comparison, transfer, and stitching. A good numerical match is not always
+      unique, however, so researchers must check whether the inferred correspondence is
+      stable and functionally meaningful.
+    zh: >-
+      两个模型可能编码了相似概念，却使用了旋转、缩放或分布方式不同的坐标。
+      Cross-Model Alignment 学习一种对应或变换，把它们放进共享参照系，从而支持特征比较、迁移和 stitching。
+      但数值上拟合良好的映射未必唯一，因此还要检验对应关系是否稳定，并且在功能上确有意义。
+- node_id: causal-intervention-attribution
+  parent_id: technique
+  title: Causal Intervention and Attribution
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Observational patterns tell us where a mechanism might be, but causal analysis asks
+      what happens when we actually change the suspected component. These methods remove,
+      replace, restore, or exchange internal states—or approximate the effect of doing so—
+      and measure the resulting behavior. The intervention must be interpreted carefully:
+      an unnatural replacement can create a failure that the unmodified model would never encounter.
+    zh: >-
+      观察性模式只能告诉我们机制“可能在哪里”，因果分析则进一步询问：真正改变这个组件时会发生什么。
+      这些方法会移除、替换、恢复或交换内部状态，或者近似这种操作的效果，再观察行为如何变化。
+      干预必须谨慎解释，因为不自然的替换可能制造出原模型在正常运行中从不会遇到的故障。
+- node_id: activation-ablation-replacement
+  parent_id: causal-intervention-attribution
+  title: Activation Ablation and Replacement
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Ablation asks whether a component is needed by suppressing it and observing what
+      breaks. The suppression may set an activation to zero, replace it with a mean or a
+      resampled value, or scale it toward inactivity. Each choice corresponds to a
+      different counterfactual—“absent,” “typical,” or “taken from another case”—so the
+      baseline is part of the scientific question rather than a harmless implementation detail.
+    zh: >-
+      Ablation 通过压制一个组件并观察哪里出错，来检验它是否为行为所需要。
+      压制方式可以是置零、均值替换、重采样，或逐渐缩小激活。每种选择对应不同的反事实：
+      “完全不存在”“处于典型状态”或“取自另一个案例”。因此基线是科学问题的一部分，而不是无关紧要的实现细节。
+- node_id: activation-patching
+  parent_id: causal-intervention-attribution
+  title: Activation Patching and Causal Tracing
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Activation patching compares a clean run with a carefully corrupted one. The
+      researcher restores one internal activation from the clean run and asks whether the
+      correct behavior returns; causal tracing applies this logic systematically across
+      locations. A successful patch suggests that the restored state carries information
+      needed downstream, but the conclusion depends on what was corrupted and on how
+      narrowly the activation was patched.
+    zh: >-
+      Activation Patching 会比较一次干净运行和一次经过精心污染的运行。
+      研究者把某个内部激活从干净运行恢复到污染运行中，观察正确行为是否回来；Causal Tracing 则系统地在不同位置重复这一过程。
+      成功 patch 表明该状态携带了后续计算所需的信息，但结论依赖污染了什么，以及 patch 的粒度有多细。
+- node_id: path-patching
+  parent_id: causal-intervention-attribution
+  title: Path Patching
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Ordinary patching can show that a component matters without revealing which later
+      component receives its useful signal. Path patching keeps a selected sender-to-
+      receiver route active while controlling competing routes, allowing researchers to
+      test a directed communication hypothesis. This provides a more circuit-like account
+      of information flow, but requires many carefully coordinated interventions.
+    zh: >-
+      普通 patching 可以说明某个组件重要，却未必告诉我们它把有用信号传给了哪个后续组件。
+      Path Patching 在控制竞争路径的同时保留选定的发送者—接收者路线，从而检验一个有向通信假设。
+      它能给出更接近 circuit 的信息流解释，但需要大量彼此协调的干预。
+- node_id: attribution-patching
+  parent_id: causal-intervention-attribution
+  title: Attribution Patching
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Exhaustively patching every activation or edge is expensive. Attribution patching
+      estimates the effect of those interventions with a first-order Taylor expansion,
+      using the difference between clean and corrupted activations together with a
+      gradient. The approximation can screen an enormous number of candidates with only
+      a few passes, after which the most important findings should be checked with exact
+      interventions—especially when nonlinear effects may be large.
+    zh: >-
+      对每个激活或每条边逐一做精确 patching，计算成本很高。
+      Attribution Patching 使用一阶 Taylor 展开，把干净与污染激活的差值和梯度结合起来，估计这些干预的效果。
+      它能用很少的前后向传播筛选海量候选；随后仍应对最重要的结果做精确干预验证，尤其是在非线性作用可能很强时。
+- node_id: learned-gates-masks
+  parent_id: causal-intervention-attribution
+  title: Learned Masks and Gates
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Rather than testing components one at a time, learned-mask methods place a soft
+      gate on many components or edges and optimize all gates together. A sparsity penalty
+      encourages the procedure to keep only a small subset that preserves—or disrupts—
+      the target behavior. The selected subset is therefore a product of both the model
+      and the optimization setup, including the regularizer, initialization, and meaning
+      assigned to a closed gate.
+    zh: >-
+      Learned Masks and Gates 不再逐个测试组件，而是在许多组件或边上放置软门，并同时优化这些门。
+      稀疏惩罚促使方法只保留一小部分足以维持或破坏目标行为的元素。
+      因而最终子集既来自模型，也来自优化设置，包括正则强度、初始化以及“关门”在干预中究竟意味着什么。
+- node_id: causal-mediation
+  parent_id: causal-intervention-attribution
+  title: Causal Mediation Analysis
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Causal mediation analysis asks how much of an input's effect on the output travels
+      through a chosen internal variable. It compares counterfactual worlds in which the
+      input and mediator are changed in controlled combinations, separating a mediated
+      effect from effects that travel elsewhere. This gives a quantitative account of a
+      component's causal role, provided the mediator and counterfactual interventions are
+      well defined.
+    zh: >-
+      Causal Mediation Analysis 询问：输入对输出的影响中，有多少是通过选定内部变量传递的。
+      它比较多个反事实世界，在其中以受控组合改变输入和 mediator，从而把经该变量传递的效应与其他路径上的效应分开。
+      这种方法能定量描述组件的因果角色，前提是 mediator 和反事实干预都有清楚的定义。
+- node_id: interchange-intervention
+  parent_id: causal-intervention-attribution
+  title: Interchange Interventions and Distributed Alignment Search
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Interchange intervention connects a neural representation to a proposed high-level
+      variable. The internal state associated with that variable is swapped between two
+      examples, and the model is expected to behave like the high-level causal model under
+      the corresponding counterfactual swap. When the relevant neural subspace is unknown,
+      Distributed Alignment Search learns the alignment that makes these counterfactual
+      tests succeed.
+    zh: >-
+      Interchange Intervention 用来把神经表征与一个假设的高层变量联系起来。
+      研究者在两个样本间交换与该变量对应的内部状态，并检验模型是否像高层因果模型在相同反事实交换下那样行动。
+      若相关神经子空间未知，Distributed Alignment Search 会学习能让这些反事实检验成立的对齐关系。
+- node_id: circuit-discovery
+  parent_id: technique
+  title: Circuit Discovery
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Circuit discovery moves from isolated important components to an account of how
+      several components work together. A circuit is usually a sparse subgraph of heads,
+      MLPs, features, and directed edges that reproduces or explains a behavior. The
+      techniques here concern how that subgraph is proposed, searched, and validated;
+      the algorithm implemented by the circuit is the scientific result, not another
+      discovery technique.
+    zh: >-
+      Circuit Discovery 把研究从“哪些孤立组件重要”推进到“多个组件怎样协同工作”。
+      Circuit 通常是由 attention head、MLP、学习特征和有向边组成的稀疏子图，能够复现或解释某种行为。
+      这里分类的是如何提出、搜索和验证这个子图；子图实现的算法则是科学发现，而不是另一种发现技术。
+- node_id: manual-circuit-analysis
+  parent_id: circuit-discovery
+  title: Hypothesis-Driven Circuit Analysis
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      In hypothesis-driven analysis, researchers begin with a tentative story about the
+      computation—for example, one head finds a token and another copies its value. They
+      inspect activations and weights, intervene on predicted components, and repeatedly
+      revise the graph until it accounts for the observed behavior. This close reading
+      can produce unusually rich explanations, but it is time-consuming and may overlook
+      mechanisms outside the researcher's initial hypotheses.
+    zh: >-
+      Hypothesis-Driven Circuit Analysis 从一个暂定的计算故事开始，例如某个 head 负责找到 token，另一个 head 负责复制其 value。
+      研究者检查激活和权重，对预测中的组件做干预，再反复修正计算图，直到它能够解释观察到的行为。
+      这种“精读模型”的方式可以产生非常丰富的解释，但成本高，也可能遗漏最初假设之外的机制。
+- node_id: automated-intervention-search
+  parent_id: circuit-discovery
+  title: Automated Intervention-Based Circuit Search
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Automated circuit search treats the model's computational graph as a large set of
+      candidate nodes and edges. Procedures such as ACDC repeatedly remove or patch
+      candidates, retaining those whose absence would damage the target behavior. The
+      automation makes larger searches possible, but the recovered circuit reflects the
+      search order, graph granularity, and metric used to decide what counts as damage.
+    zh: >-
+      Automated Circuit Search 把模型计算图看成大量候选节点与边组成的搜索空间。
+      ACDC 等方法反复移除或 patch 候选元素，保留那些一旦缺失就会损害目标行为的部分。
+      自动化使更大规模的搜索成为可能，但恢复出的 circuit 会受到搜索顺序、图粒度和“损害”评价指标的影响。
+- node_id: attribution-edge-search
+  parent_id: circuit-discovery
+  title: Attribution-Based Edge Search
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Edge-attribution methods avoid intervening on every candidate edge. They estimate
+      how strongly each connection contributes to the target output—using EAP, EAP-IG,
+      contextual decomposition, or a related score—and then keep the highest-scoring
+      subgraph. This is much faster than exhaustive causal search, but the resulting
+      circuit must be checked because local scores and pruning thresholds can miss
+      interactions between individually weak edges.
+    zh: >-
+      Edge Attribution 方法避免对每条候选边逐一做干预。
+      它使用 EAP、EAP-IG、contextual decomposition 等方法估计每条连接对目标输出的贡献，再保留高分子图。
+      这比穷尽因果搜索快得多，但仍需验证所得 circuit，因为局部分数和剪枝阈值可能漏掉多条弱边之间的交互。
+- node_id: feature-circuit-discovery
+  parent_id: circuit-discovery
+  title: Sparse Feature Circuit Discovery
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Native neurons are often polysemantic, so a circuit written only in terms of heads
+      and neurons may still be difficult to understand. Feature-circuit methods replace
+      some native nodes with SAE or transcoder features and trace how those features
+      influence one another. The resulting graph can be semantically clearer, but every
+      claim now depends on whether the learned feature dictionary faithfully represents
+      the original computation.
+    zh: >-
+      原生神经元往往具有 polysemanticity，因此只用 head 和 neuron 描述的 circuit 仍可能很难理解。
+      Feature Circuit 方法用 SAE 或 Transcoder 特征替换部分原生节点，并追踪这些特征如何相互影响。
+      得到的图在语义上可能更清楚，但每个主张也开始依赖学习字典是否忠实地表示了原始计算。
+- node_id: circuit-comparison-universality
+  parent_id: circuit-discovery
+  title: Circuit Comparison and Universality Testing
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      A circuit found in one model or prompt may be a local accident rather than a general
+      mechanism. Comparison studies align components or functional roles across tasks,
+      prompts, random seeds, architectures, modalities, or model scales and ask which
+      parts recur. Repeated structure provides evidence for reuse or universality, while
+      systematic differences show where a mechanistic explanation stops generalizing.
+    zh: >-
+      在一个模型或 prompt 中发现的 circuit，可能只是局部偶然现象，而不是一般机制。
+      比较研究会在任务、prompt、随机种子、架构、模态或模型规模之间对齐组件和功能角色，考察哪些结构反复出现。
+      重复结构支持复用或普适性；系统差异则告诉我们某个机制解释在何处不再成立。
+- node_id: solver-checkable-verification
+  parent_id: circuit-discovery
+  title: Solver-Checkable Circuit Verification
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Empirical circuit tests cover only the examples that were run. Solver-checkable
+      verification translates a circuit claim—such as equivalence, invariance, or
+      robustness within a bounded input set—into constraints that an automated solver
+      can prove or refute. A successful proof is stronger than another test set, although
+      its guarantee extends only as far as the encoded assumptions and bounds.
+    zh: >-
+      经验性 circuit 检验只能覆盖实际运行过的样本。
+      Solver-Checkable Verification 把“等价”“不变”或“在有界输入集合内稳健”等 circuit 主张转换为自动求解器可证明或反驳的约束。
+      成功证明比再增加一个测试集更强，但保证只能覆盖被编码进去的假设与边界。
+- node_id: steering-model-change
+  parent_id: technique
+  title: Steering and Model Change
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Steering turns an interpretability hypothesis into a controlled change: if a
+      direction, feature, or parameter set represents the proposed mechanism, modifying
+      it should predictably modify behavior. Interventions can be temporary, acting on
+      activations or logits during inference, or persistent, editing model weights.
+      Successful control is evidence that the manipulated object is sufficient to affect
+      behavior, but it does not guarantee specificity or absence of side effects.
+    zh: >-
+      Steering 把可解释性假设变成一次受控改变：如果某个方向、特征或参数集合确实表示了所提出机制，修改它就应可预测地改变行为。
+      干预可以是临时的，在推理时作用于激活或 logits；也可以是持久的，直接编辑模型权重。
+      控制成功说明被操控对象足以影响行为，但不保证作用足够专一，也不保证没有副作用。
+- node_id: activation-space-intervention
+  parent_id: steering-model-change
+  title: Activation-Space Intervention
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Activation-space methods edit the model's hidden state while a particular input is
+      being processed, leaving the stored weights unchanged. This makes them convenient
+      for testing a representation and for reversible inference-time control. The main
+      choices are whether to amplify or suppress existing activity, add a new direction,
+      or remove information associated with a direction or subspace.
+    zh: >-
+      Activation-Space Intervention 在模型处理某个输入时修改其隐藏状态，但不改变长期保存的权重。
+      因此它既适合检验一种表征，也适合做可逆的推理时控制。
+      主要路线包括增强或压制已有活动、加入新的方向，或移除某个方向或子空间携带的信息。
+- node_id: activation-scaling-suppression
+  parent_id: activation-space-intervention
+  title: Activation Scaling, Suppression, and Runtime Gating
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      These methods change how strongly a selected component participates in the current
+      forward pass. A neuron, head, or feature can be multiplied by a factor, clamped,
+      suppressed, or opened and closed by a runtime gate. The operation resembles an
+      ablation, but here the emphasis is on controlling behavior rather than merely
+      diagnosing which component matters.
+    zh: >-
+      这类方法改变某个组件在当前前向传播中参与计算的强度。
+      神经元、attention head 或特征可以乘以系数、被截断、被压制，或由运行时门控打开与关闭。
+      操作形式与 ablation 相似，但这里更关注如何控制行为，而不只是诊断哪个组件重要。
+- node_id: activation-vector-addition
+  parent_id: activation-space-intervention
+  title: Activation Vector Addition and Representation Engineering
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      If two groups of examples differ along a meaningful activation direction, adding
+      that direction to a new example may push the model toward the corresponding
+      behavior. Steering vectors can come from contrastive means, probes, function
+      vectors, representation engineering, or learned SAE features. Their appeal is that
+      they offer immediate control without retraining, while their quality depends on
+      whether the direction captures the intended concept rather than correlated changes.
+    zh: >-
+      如果两组样本在某个有意义的激活方向上存在差异，那么把该方向加到新样本中，可能把模型推向相应行为。
+      Steering vector 可以来自对比均值、probe、function vector、representation engineering 或 SAE 特征。
+      它无需重新训练就能立即控制模型，但效果取决于方向是否真正捕捉了目标概念，而不是一组相关变化。
+- node_id: projection-erasure
+  parent_id: activation-space-intervention
+  title: Projection Erasure and Direction Removal
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Direction removal asks what the model can still do after information aligned with
+      a chosen direction or subspace has been projected out. If the target behavior
+      disappears, the removed representation may have been functionally important.
+      Because neural representations are entangled, however, the projection may also
+      erase neighboring information, so selectivity must be checked with control behaviors.
+    zh: >-
+      Direction Removal 询问：把与某个方向或子空间对齐的信息投影掉之后，模型还能够做什么。
+      若目标行为消失，被移除的表征可能具有功能重要性。
+      但神经表征常彼此纠缠，投影也可能一并擦除邻近信息，因此需要用控制行为检验作用是否专一。
+- node_id: logit-steering
+  parent_id: steering-model-change
+  title: Logit-Space Steering
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Logit steering modifies the model at its output interface, directly increasing or
+      decreasing the scores of tokens or output classes. This gives transparent and
+      often reliable control over the final distribution, making it useful when the goal
+      is behavior rather than internal diagnosis. Because the intervention occurs after
+      most computation is complete, it offers limited evidence about how the model
+      originally arrived at those logits.
+    zh: >-
+      Logit Steering 在模型输出接口直接修改 token 或类别的分数，提高或降低其生成概率。
+      这种方式对最终分布的控制直观而可靠，适合以行为控制为目标的场景。
+      但干预发生在大部分内部计算完成之后，因此很难说明模型原本是怎样得到这些 logits 的。
+- node_id: parameter-space-editing
+  parent_id: steering-model-change
+  title: Parameter-Space Editing
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Parameter-space methods make a lasting change to the model by editing its weights.
+      Some treat the difference between whole models as a meaningful vector that can be
+      combined algebraically; others localize a fact or behavior and update only a small
+      parameter subset. Because the change persists across inputs, evaluation must cover
+      both the desired effect and unintended changes elsewhere in the model.
+    zh: >-
+      Parameter-Space Editing 直接修改模型权重，因此产生持久变化。
+      有些方法把两个完整模型之间的差分视为可做代数运算的有意义向量；另一些方法先定位事实或行为，再只更新少量参数。
+      由于改变会持续作用于各种输入，评估不仅要检查目标效果，也要检查模型其他能力是否受到意外影响。
+- node_id: task-vector-arithmetic
+  parent_id: parameter-space-editing
+  title: Parameter-Space Task Vectors and Task Arithmetic
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      A task vector is obtained by subtracting a pretrained model's weights from the
+      weights of the same model after task-specific fine-tuning. If this difference
+      captures the learned capability, adding it to another model may transfer the task,
+      while negating it may suppress the task and adding several vectors may combine
+      capabilities. Task arithmetic therefore probes an unexpectedly simple hypothesis:
+      some learned behaviors may be approximately linear and composable in weight space.
+    zh: >-
+      Task Vector 由任务微调后的模型权重减去同一模型的预训练权重得到。
+      如果这个差分确实捕捉了学到的能力，把它加到另一模型上可能转移任务，取负可能压制任务，多个向量相加则可能组合能力。
+      Task Arithmetic 因而检验一个看似简单却很强的假设：某些学习行为在权重空间中近似线性且可组合。
+- node_id: targeted-parameter-editing
+  parent_id: parameter-space-editing
+  title: Targeted Parameter Editing and Local Fine-Tuning
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Targeted editing aims to change one fact, association, or behavior without retraining
+      the whole model. After locating a relevant layer or parameter set, it applies a
+      rank-one, low-rank, masked, or otherwise localized update. A convincing edit should
+      work on paraphrases and related contexts while leaving unrelated knowledge and
+      capabilities intact, which is much harder than changing one test prompt.
+    zh: >-
+      Targeted Parameter Editing 希望在不重新训练整个模型的情况下，改变一个事实、关联或行为。
+      方法先定位相关层或参数集合，再施加 rank-one、低秩、掩码或其他局部更新。
+      有说服力的编辑不仅要改变一个测试 prompt，还应泛化到改写和相关语境，同时保留无关知识与能力。
+- node_id: mechanism-induction-construction
+  parent_id: steering-model-change
+  title: Mechanism Induction and Circuit Construction
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Most interpretability methods analyze a mechanism after it has emerged. Mechanism
+      induction reverses the direction: training objectives, architectural constraints,
+      or targeted edits are used to make the network implement a chosen causal structure
+      or algorithm. Because the intended mechanism is known in advance, the result can be
+      tested against a clear high-level specification rather than inferred only from behavior.
+    zh: >-
+      大多数可解释性方法是在机制已经涌现之后再分析它；Mechanism Induction 则反过来进行。
+      研究者利用训练目标、架构约束或定向编辑，让网络实现预先选定的因果结构或算法。
+      因为预期机制事先已知，结果可以直接与清楚的高层规范比较，而不必只从行为中反推。
+- node_id: formal-temporal-analysis
+  parent_id: technique
+  title: Formal and Temporal Mechanism Analysis
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      A snapshot of a trained model cannot tell us how its mechanism emerged, whether it
+      had to emerge that way, or what exactly would count as the same mechanism. Formal
+      and temporal methods address these questions by following training over time,
+      constructing simplified systems that can be solved, or expressing mechanistic
+      claims mathematically. They complement empirical inspection with explanations of
+      origin, possibility, and identifiability.
+    zh: >-
+      一张训练后模型的静态快照无法告诉我们：机制怎样出现、它是否必然以这种方式出现，以及什么才算“同一个机制”。
+      Formal and Temporal 方法通过追踪训练过程、构造可以求解的简化系统，或用数学形式表达机制主张来回答这些问题。
+      它们为经验观察补上机制的来源、可能性和可辨识性解释。
+- node_id: toy-model-construction
+  parent_id: formal-temporal-analysis
+  title: Controlled Toy-Model Construction
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      A toy model deliberately removes the complexity of a production-scale network so
+      that one phenomenon—such as superposition, grokking, or an induction circuit—can be
+      observed in full. Researchers can control the data, architecture, and objective,
+      then inspect every relevant weight and activation or derive the solution
+      analytically. The clarity is valuable, but one must still show which conclusions
+      survive when returning to large, naturally trained models.
+    zh: >-
+      Toy Model 有意移除生产级网络的复杂性，让 superposition、grokking 或 induction circuit 等单一现象能够被完整观察。
+      研究者可以控制数据、架构和训练目标，检查所有相关权重与激活，甚至解析推导出解。
+      这种清晰性非常宝贵，但仍需说明哪些结论在回到大型、自然训练的模型后依然成立。
+- node_id: checkpoint-trajectory-analysis
+  parent_id: formal-temporal-analysis
+  title: Checkpoint and Training-Trajectory Analysis
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Checkpoint analysis turns training into a time series. By applying the same probes,
+      circuit tests, or representation measurements at many saved checkpoints,
+      researchers can see when a capability appears, whether its mechanism changes, and
+      which internal developments precede a behavioral transition. Temporal precedence
+      narrows the causal story, although it does not by itself explain why optimization
+      produced the observed sequence.
+    zh: >-
+      Checkpoint Analysis 把训练过程变成一条时间序列。
+      在多个保存点重复相同的 probe、circuit 检验或表征测量，可以看到能力何时出现、机制是否改变，
+      以及哪些内部发展先于行为转变。时间先后能缩小因果故事的范围，却不能单独解释优化为何产生这种顺序。
+- node_id: analytic-training-dynamics
+  parent_id: formal-temporal-analysis
+  title: Analytic Optimization and Training Dynamics
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Analytic training-dynamics work replaces a purely empirical learning curve with a
+      mathematical account of how gradient descent moves the parameters. Under a
+      simplified data distribution or architecture, researchers derive when a feature,
+      circuit, or phase transition should appear and what controls its timescale. The
+      derivation can make precise predictions, but those predictions inherit every
+      simplifying assumption of the analyzed regime.
+    zh: >-
+      Analytic Training Dynamics 不只绘制经验学习曲线，而是从数学上解释梯度下降如何移动参数。
+      在简化的数据分布或架构下，研究者推导特征、circuit 或相变应在何时出现，以及什么决定其时间尺度。
+      这种推导能产生精确预测，但预测也会继承分析区间中的每一项简化假设。
+- node_id: neural-feature-learning-analysis
+  parent_id: formal-temporal-analysis
+  title: Neural Feature-Learning Analysis
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Neural feature-learning analysis asks a different question from dictionary learning:
+      not “Can we fit an interpretable basis afterward?” but “Which directions did the
+      original network itself learn to emphasize, and why?” It compares geometry derived
+      from weights, gradients, and kernels to characterize how training reshapes the
+      input space. The goal is a mechanism of feature learning inside the trained model,
+      rather than another explanatory model placed on top of it.
+    zh: >-
+      Neural Feature-Learning Analysis 与字典学习询问的是不同问题：不是“事后能否拟合一个可解释基底”，
+      而是“原网络自身学会强调了哪些方向，以及为什么”。它比较由权重、梯度和 kernel 导出的几何，刻画训练如何重塑输入空间。
+      目标是解释原模型内部的特征学习机制，而不是在模型之上再放一个解释模型。
+- node_id: nfm-agop-egop
+  parent_id: neural-feature-learning-analysis
+  title: NFM–AGOP/EGOP Alignment and Recursive Feature Machines
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      The Neural Feature Ansatz observes that a layer's weight geometry often aligns with
+      the average or expected outer product of input gradients. Intuitively, directions
+      along which the output is sensitive receive greater emphasis in the learned
+      representation. Recursive Feature Machines turn this observation into an algorithm:
+      gradient-derived geometry repeatedly updates a kernel so that it can learn features
+      without conventional backpropagation through a deep neural network.
+    zh: >-
+      Neural Feature Ansatz 发现，一层权重的几何往往与输入梯度的平均或期望外积对齐。
+      直观上，输出最敏感的方向会在学到的表征中获得更大权重。
+      Recursive Feature Machine 进一步把这一观察变成算法：反复用梯度导出的几何更新 kernel，
+      使传统 kernel model 也能学习特征，而无需通过深层神经网络做常规反向传播。
+- node_id: kernel-ntk-feature-regimes
+  parent_id: neural-feature-learning-analysis
+  title: Kernel and NTK Feature Regimes
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Infinite-width theory can make neural-network training mathematically tractable,
+      but the standard NTK limit often behaves like a fixed kernel: predictions change
+      while learned features barely move. Kernel/NTK regime analysis identifies which
+      parameterizations lead to this “lazy” behavior and which allow genuine feature
+      learning even at infinite width. This clarifies when a kernel description is an
+      adequate model of training and when it erases the phenomenon we want to explain.
+    zh: >-
+      无限宽理论可以让神经网络训练变得易于数学分析，但标准 NTK 极限往往像固定 kernel：预测在变，学习特征却几乎不动。
+      Kernel/NTK Regime Analysis 区分哪些参数化会产生这种 lazy training，哪些参数化即使在无限宽下仍能真正学习特征。
+      它说明何时 kernel 描述足够准确，何时这种描述反而抹掉了我们想解释的现象。
+- node_id: convolutional-nfm
+  parent_id: neural-feature-learning-analysis
+  title: Convolutional NFM and Network-as-Filter Analysis
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Convolutional NFM adapts the feature-ansatz idea to spatially shared filters. It
+      compares the covariance of learned filters with gradient outer products computed
+      on local image patches, asking whether the network amplifies patch directions that
+      matter for the task. The same geometry can be used to build convolutional recursive
+      feature machines, offering a “network as learned filter” account of features such
+      as edge detectors.
+    zh: >-
+      Convolutional NFM 把 Neural Feature Ansatz 扩展到空间共享的卷积滤波器。
+      它比较学习滤波器的协方差与局部图像 patch 上的梯度外积，检验网络是否放大了对任务重要的 patch 方向。
+      同样的几何还可构造卷积 Recursive Feature Machine，从“网络在学习任务适配滤波器”的角度解释边缘检测器等特征。
+- node_id: causal-abstraction-formalism
+  parent_id: formal-temporal-analysis
+  title: Causal-Abstraction and Counterfactual Formalism
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      A mechanistic explanation often claims that a collection of neural states
+      implements a higher-level variable or algorithm. Causal abstraction makes this
+      claim precise by specifying a mapping between the neural causal model and a simpler
+      high-level model. If interventions correspond and the two models agree on the
+      resulting counterfactuals, the high-level description earns a formal sense of
+      implementation rather than being merely an analogy.
+    zh: >-
+      机制解释常声称，一组神经状态实现了某个高层变量或算法。
+      Causal Abstraction 通过明确底层神经因果模型与简化高层模型之间的映射，把这种主张形式化。
+      如果两边的干预能够对应，并且在反事实结果上保持一致，高层描述就获得了“被模型实现”的正式含义，而不只是一个类比。
+- node_id: optimization-landscape-analysis
+  parent_id: formal-temporal-analysis
+  title: Optimization-Landscape Analysis
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Many interpretability methods solve an optimization problem, but a good loss value
+      need not imply a uniquely correct explanation. Landscape analysis studies whether
+      the target decomposition is identifiable, which equivalent solutions exist, and
+      whether optimization contains spurious minima or unstable critical points. It
+      helps distinguish limitations of the optimizer from limitations built into the
+      explanatory objective itself.
+    zh: >-
+      许多可解释性方法都在求解优化问题，但较低的 loss 并不意味着找到了唯一正确的解释。
+      Optimization-Landscape Analysis 研究目标分解是否可辨识、存在哪些等价解，以及优化中是否存在伪极小值或不稳定临界点。
+      它帮助区分：问题来自优化器没有找到答案，还是解释目标本身就无法唯一决定答案。
+- node_id: evaluation-protocols
+  parent_id: technique
+  title: Evaluation and Falsification Protocols
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      An explanation can look persuasive while depending on an arbitrary baseline,
+      leaking information through a probe, or failing to predict what happens under
+      intervention. Evaluation and falsification protocols are designed to expose these
+      failures. They do not usually discover a mechanism themselves; instead, they ask
+      whether another interpretability method is sensitive to the trained model, faithful
+      to behavior, robust to reasonable choices, and useful compared with alternatives.
+    zh: >-
+      一个解释可能看起来很有说服力，却依赖任意基线、被 probe 的信息泄漏误导，或无法预测真实干预的结果。
+      Evaluation and Falsification Protocols 就是为了暴露这些失败。
+      它们通常不直接发现机制，而是检验其他方法是否真正依赖训练后的模型、是否忠实于行为、
+      是否对合理选择保持稳健，以及相较替代方案是否有用。
+- node_id: randomized-sanity-controls
+  parent_id: evaluation-protocols
+  title: Randomization and Sanity Controls
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      A basic sanity check asks whether an explanation changes when the structure it is
+      supposed to explain is destroyed. Researchers randomize model layers, labels, or
+      other learned dependencies and rerun the explanation method. If nearly the same
+      saliency map or ranking survives, the method may be responding to the input or its
+      own design rather than to what the trained network learned.
+    zh: >-
+      一个最基本的 sanity check 是：当被解释的学习结构遭到破坏时，解释是否随之改变。
+      研究者会随机化模型层、标签或其他学习依赖，再重新运行解释方法。
+      如果几乎相同的 saliency map 或排序仍然存在，方法可能主要响应输入或自身设计，而不是训练网络真正学到的内容。
+- node_id: probe-controls
+  parent_id: evaluation-protocols
+  title: Probe Controls and Detectability Analysis
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Probe evaluation must guard against two opposite mistakes: a powerful probe may
+      manufacture a pattern from weak signals, while a poorly chosen probe may miss
+      information that is genuinely present. Control tasks, matched-capacity baselines,
+      description-length measures, and detectability analyses help separate these cases.
+      The goal is to learn what the representation supports, not merely how accurate one
+      particular classifier happened to be.
+    zh: >-
+      Probe 评估要防止两种相反错误：容量过强的 probe 可能从微弱信号中“制造”模式，选择不当的 probe 又可能漏掉真实存在的信息。
+      控制任务、容量匹配基线、描述长度和 detectability analysis 用来区分这些情况。
+      目标是理解表征究竟支持什么，而不只是报告某个分类器恰好取得了多高准确率。
+- node_id: intervention-faithfulness
+  parent_id: evaluation-protocols
+  title: Intervention Faithfulness and Robustness Tests
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      Intervention-based explanations contain many choices: what value replaces an
+      activation, how the input is corrupted, which behavior is scored, and where a
+      circuit is thresholded. Robustness testing repeats the analysis across plausible
+      choices and checks whether the selected mechanism continues to predict exact
+      interventions and held-out behavior. A conclusion that disappears under a small
+      methodological change is not yet a stable mechanistic finding.
+    zh: >-
+      干预式解释包含许多选择：用什么值替换激活、怎样污染输入、用哪个行为指标评分，以及在何处截断 circuit。
+      Robustness Test 会在多种合理选择下重复分析，并检查所得机制能否继续预测精确干预和留出行为。
+      若结论随着很小的方法变化就消失，它还不能算稳定的机制发现。
+- node_id: dictionary-quality-metrics
+  parent_id: evaluation-protocols
+  title: Dictionary Quality and Monosemanticity Metrics
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      A feature dictionary can reconstruct activations well while producing features
+      that are redundant, fragmented, or behaviorally irrelevant. Dictionary evaluation
+      therefore examines several dimensions: sparsity, reconstruction, downstream
+      fidelity, semantic coherence, feature splitting, absorption, and usefulness for
+      intervention. These goals can conflict, so there is no single number that certifies
+      a dictionary as “interpretable.”
+    zh: >-
+      一本特征字典即使重构激活很好，也可能产生冗余、碎片化或与行为无关的特征。
+      因此字典评估会同时考察稀疏性、重构、下游忠实度、语义一致性、feature splitting、absorption 和干预用途。
+      这些目标之间可能冲突，所以不存在一个数字可以单独认证字典“具有可解释性”。
+- node_id: benchmark-comparison
+  parent_id: evaluation-protocols
+  title: Controlled Benchmarking and Method Comparison
+  status: active
+  proposal_id: tp_20261009_techniques_v2_reader_intros
+  introduction:
+    en: >-
+      A benchmark places competing methods under the same tasks, datasets, metrics, and
+      computational constraints. This reveals trade-offs that isolated case studies can
+      hide—for example, a method may localize well but steer poorly, or produce readable
+      features at the cost of faithfulness. Good benchmarking does more than rank methods:
+      it clarifies which scientific question and operating regime each method is suited for.
+    zh: >-
+      Benchmark 把竞争方法放到相同任务、数据集、指标和计算约束下比较。
+      它能揭示孤立案例容易隐藏的权衡，例如某方法定位准确却不善于 steering，或特征容易阅读但功能忠实度较差。
+      好的 benchmark 不只是排出名次，还应说明每种方法适合回答什么科学问题、适合在哪种工作区间使用。
