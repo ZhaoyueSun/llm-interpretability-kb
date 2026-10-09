@@ -1,6 +1,6 @@
 schema_version: 1
 taxonomy_id: techniques
-version: 2
+version: 3
 status: active
 title: Techniques
 nodes:
@@ -878,18 +878,26 @@ nodes:
   parent_id: steering-model-change
   title: Activation-Space Intervention
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261009_techniques_v3_activation_wording
   introduction:
     en: >-
-      Activation-space methods edit the model's hidden state while a particular input is
-      being processed, leaving the stored weights unchanged. This makes them convenient
-      for testing a representation and for reversible inference-time control. The main
-      choices are whether to amplify or suppress existing activity, add a new direction,
-      or remove information associated with a direction or subspace.
+      Activation-space methods intervene on values produced during a forward pass rather
+      than changing the model's stored parameters. These activations are broader than
+      hidden states: they can include residual-stream states, attention-head or MLP
+      outputs, individual neuron activations, and learned features. This makes the methods
+      useful both for testing whether an internal representation has a functional effect
+      and for reversible inference-time control. Common operations amplify or suppress
+      existing activity, add a steering direction, or project out information carried by
+      a direction or subspace. Because an intervention may also disturb correlated
+      information, successful control does not by itself show that the targeted
+      representation is unique or disentangled.
     zh: >-
-      Activation-Space Intervention 在模型处理某个输入时修改其隐藏状态，但不改变长期保存的权重。
-      因此它既适合检验一种表征，也适合做可逆的推理时控制。
-      主要路线包括增强或压制已有活动、加入新的方向，或移除某个方向或子空间携带的信息。
+      Activation-Space Intervention 修改的是模型一次前向传播中产生的中间激活，而不是长期保存的参数。
+      这里的激活比“隐藏状态”范围更广：它既可以是 residual stream 等整体状态，也可以是 attention head 或
+      MLP 的输出、单个神经元的激活以及学习得到的特征。因而，这类方法既能检验某种内部表征是否对行为具有
+      功能作用，也能用于可逆的推理时控制。常见操作包括增强或压制已有活动、加入 steering direction，
+      以及投影掉某个方向或子空间携带的信息。由于干预也可能扰动相关联的信息，控制成功本身并不能证明
+      被操控的表征是唯一的或已经与其他因素解耦。
 - node_id: activation-scaling-suppression
   parent_id: activation-space-intervention
   title: Activation Scaling, Suppression, and Runtime Gating

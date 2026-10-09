@@ -1169,3 +1169,23 @@ proposals:
   - Supplement papers require new leaves within existing branches, but no new top-level branch.
   - Secondary assignments are conservative; baselines mentioned only for comparison are omitted.
   - The approved assignments are written to the append-only event stream; later corrections must use revoke, replace, assign, or confirm events rather than rewriting history.
+- proposal_id: tp_20261009_techniques_v3_activation_wording
+  kind: taxonomy_content
+  status: approved
+  created_at: '2026-10-09'
+  approved_at: '2026-10-09'
+  approval_basis: >-
+    The user identified that hidden state was too narrow for a branch whose children
+    also intervene on attention-head outputs, MLP or neuron activity, and learned features,
+    and explicitly requested a more accurate formulation.
+  title: Clarify the scope of Activation-Space Intervention
+  taxonomy_id: techniques
+  from_taxonomy_version: 2
+  resulting_taxonomy_version: 3
+  taxonomy_file: data/taxonomies/techniques.yaml
+  affected_node_ids: [activation-space-intervention]
+  revision_reason: >-
+    Replace the narrow description of editing hidden states with the broader and more
+    accurate concept of intervening on intermediate activations. Clarify that hidden
+    states are one activation type, list other covered activation targets, and state the
+    principal evidential limitation. The tree structure and paper assignments are unchanged.
