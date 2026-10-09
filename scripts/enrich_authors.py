@@ -85,11 +85,70 @@ MANUAL_PROFILE_OVERRIDES = {
         "source_url": "https://aaronmueller.github.io/",
         "affiliations": ["Boston University"],
     },
+    "a_a_globerson_21f40668": {
+        "google_scholar": "https://scholar.google.com/citations?user=5JserkUAAAAJ&hl=en",
+        "source_url": "https://research.google/people/amirgloberson/",
+    },
+    "a_aaditya_k_singh_09be1a75": {
+        "homepage": "https://aadityasingh.github.io/",
+        "google_scholar": "https://scholar.google.com/citations?user=9OPKqmMAAAAJ&hl=en",
+        "source_url": "https://www.saxelab.org/people",
+    },
+    "a_adam_scherlis_6f60c160": {
+        "google_scholar": "https://scholar.google.com/citations?user=3i50nQ0AAAAJ&hl=en",
+        "source_url": "https://www.newx.sg/scholar/3i50nQ0AAAAJ",
+    },
+    "a_adria_garriga_alonso_87077a5e": {
+        "homepage": "https://adriaga.com/",
+        "google_scholar": "https://scholar.google.com/citations?user=OtnThiMAAAAJ&hl=en",
+        "source_url": "https://adriaga.com/",
+    },
+    "a_aleksandar_makelov_cff58185": {
+        "homepage": "https://amakelov.github.io/",
+        "source_url": "https://toc.csail.mit.edu/user/273",
+    },
+    "a_alessandro_stolfo_195681bf": {
+        "homepage": "https://alestolfo.github.io/",
+        "google_scholar": "https://scholar.google.com/citations?user=Fx50TZQAAAAJ&hl=en",
+        "source_url": "https://alestolfo.github.io/",
+    },
+    "a_alexandre_variengien_34d668db": {
+        "homepage": "https://alexandrevariengien.com/",
+        "google_scholar": "https://scholar.google.com/citations?user=BQOwWG8AAAAJ&hl=en",
+        "source_url": "https://alexandrevariengien.com/",
+    },
+    "a_anka_reuel_8b134874": {
+        "google_scholar": "https://scholar.google.com/citations?user=ysb8XywAAAAJ&hl=en",
+        "source_url": "https://newx.sg/scholar/ysb8XywAAAAJ",
+    },
+    "a_arthur_conmy_1734e7d3": {
+        "homepage": "https://arthurconmy.github.io/",
+        "google_scholar": "https://scholar.google.com/citations?user=n4HIyXQAAAAJ&hl=en",
+        "source_url": "https://arthurconmy.github.io/",
+        "affiliations": ["Anthropic"],
+    },
+    "a_asma_ghandeharioun_32ccce58": {
+        "homepage": "https://asmadotgh.github.io/",
+        "google_scholar": "https://scholar.google.com/citations?user=CkfQy2gAAAAJ&hl=en",
+        "source_url": "https://asmadotgh.github.io/",
+        "affiliations": ["Google DeepMind"],
+    },
     "a_atticus_geiger_e76a395b": {
         "homepage": "https://atticusg.github.io/",
         "google_scholar": "https://scholar.google.com/citations?user=w2Qzno8AAAAJ&hl=en",
         "source_url": "https://atticusg.github.io/",
         "affiliations": ["Goodfire"],
+    },
+    "a_bin_yu_34f3b0ee": {
+        "homepage": "https://binyu.stat.berkeley.edu/",
+        "google_scholar": "https://scholar.google.com/citations?user=xT19Jc0AAAAJ&hl=en",
+        "source_url": "https://vcresearch.berkeley.edu/faculty/bin-yu",
+        "affiliations": ["University of California, Berkeley"],
+    },
+    "a_buck_shlegeris_a997ed75": {
+        "homepage": "https://www.shlegeris.com/",
+        "source_url": "https://www.shlegeris.com/",
+        "affiliations": ["Redwood Research"],
     },
     "a_chris_olah_158a0d46": {
         "homepage": "https://colah.github.io/",
@@ -99,6 +158,33 @@ MANUAL_PROFILE_OVERRIDES = {
         "homepage": "https://stanford.edu/~cgpotts/",
         "google_scholar": "https://scholar.google.com/citations?user=3j08YoAAAAAJ&hl=en",
         "source_url": "https://stanford.edu/~cgpotts/",
+    },
+    "a_c_s_de_witt_0896a1f0": {
+        "homepage": "https://wittlab.ai/people/christian-schroeder-de-witt/",
+        "google_scholar": "https://scholar.google.com/citations?user=DE60h_0AAAAJ&hl=en",
+        "source_url": "https://wittlab.ai/people/christian-schroeder-de-witt/",
+    },
+    "a_curt_tigges_55c44e00": {
+        "homepage": "https://www.curttigges.com/",
+        "source_url": "https://www.curttigges.com/",
+        "affiliations": ["Goodfire"],
+    },
+    "a_dan_hendrycks_077a839f": {
+        "homepage": "https://danhendrycks.com/",
+        "google_scholar": "https://scholar.google.com/citations?user=czyretsAAAAJ&hl=en",
+        "source_url": "https://danhendrycks.com/",
+        "affiliations": ["Center for AI Safety"],
+    },
+    "a_fazl_barez_a240fb67": {
+        "homepage": "https://fazlbarez.com/",
+        "google_scholar": "https://scholar.google.com/citations?user=EAjpNIMAAAAJ&hl=en",
+        "source_url": "https://fazlbarez.com/",
+    },
+    "a_i_oseledets_0ac70951": {
+        "homepage": "https://oseledets.github.io/people/oseledets/",
+        "source_url": "https://dblp.org/pid/56/7175.html",
+        "external_ids": {"orcid": "0000-0003-2071-2163"},
+        "affiliations": ["Skolkovo Institute of Science and Technology"],
     },
     "a_jacob_steinhardt_bd43f01f": {
         "homepage": "https://jsteinhardt.stat.berkeley.edu/",
@@ -111,10 +197,53 @@ MANUAL_PROFILE_OVERRIDES = {
         "source_url": "https://javiferran.github.io/",
         "affiliations": ["Amazon"],
     },
+    "a_jack_merullo_5e5b2b61": {
+        "homepage": "https://jmerullo.github.io/",
+        "source_url": "https://jmerullo.github.io/",
+        "affiliations": ["Goodfire"],
+    },
+    "a_ji_rong_wen_c5fe13c0": {
+        "homepage": "https://gsai.ruc.edu.cn/addons/teacher/index/info.html?ln=en&user_id=30",
+        "google_scholar": "https://scholar.google.com/citations?user=tbxCHJgAAAAJ&hl=en",
+        "source_url": "https://gsai.ruc.edu.cn/addons/teacher/index/info.html?ln=en&user_id=30",
+        "affiliations": ["Renmin University of China"],
+    },
+    "a_jing_huang_190343e2": {
+        "homepage": "https://explanare.github.io/",
+        "google_scholar": "https://scholar.google.com/citations?user=zM_wp_MAAAAJ&hl=en",
+        "source_url": "https://explanare.github.io/",
+    },
+    "a_j_bloom_aff35e1c": {
+        "homepage": "https://www.jbloomaus.com/about/",
+        "source_url": "https://www.aisi.gov.uk/research/loss-of-oversight-how-ai-systems-may-become-harder-to-audit-monitor-and-investigate",
+        "affiliations": ["UK AI Security Institute"],
+    },
+    "a_jason_d_lee_962bcae5": {
+        "homepage": "https://jasondlee88.github.io/",
+        "google_scholar": "https://scholar.google.com/citations?user=GR_DsT0AAAAJ&hl=en",
+        "source_url": "https://jasondlee88.github.io/",
+        "affiliations": ["University of California, Berkeley"],
+    },
+    "a_lee_sharkey_9047958a": {
+        "homepage": "https://leesharkey.github.io/",
+        "google_scholar": "https://scholar.google.com/citations?user=ZzXikBsAAAAJ&hl=en",
+        "source_url": "https://www.hmc.ox.ac.uk/people/lee-sharkey",
+    },
     "a_martin_wattenberg_6df204a2": {
         "homepage": "https://www.bewitched.com/",
         "google_scholar": "https://scholar.google.com/citations?user=pv54dqMAAAAJ&hl=en",
         "source_url": "https://www.bewitched.com/",
+    },
+    "a_max_lamparth_90e0b0c0": {
+        "homepage": "https://www.maxlamparth.com/",
+        "google_scholar": "https://scholar.google.com/citations?user=snC9WF4AAAAJ&hl=en",
+        "source_url": "https://cap.stanford.edu/profiles/frdActionServlet?choiceId=printerprofile&profileId=326201&profileversion=full",
+        "affiliations": ["Stanford University"],
+    },
+    "a_mrinmaya_sachan_05339d14": {
+        "homepage": "https://www.mrinmaya.io/",
+        "source_url": "https://ellis.eu/person/mrinmaya-sachan",
+        "affiliations": ["ETH Zurich"],
     },
     "a_neel_nanda_ddf6abf4": {
         "homepage": "https://www.neelnanda.io/",
@@ -122,19 +251,94 @@ MANUAL_PROFILE_OVERRIDES = {
         "source_url": "https://www.neelnanda.io/about",
         "affiliations": ["Google DeepMind"],
     },
+    "a_nelson_elhage_f370d8f0": {
+        "homepage": "https://nelhage.com/",
+        "source_url": "https://nelhage.com/",
+    },
+    "a_p_liang_afb804cb": {
+        "homepage": "https://pliang279.github.io/",
+        "google_scholar": "https://scholar.google.com/citations?user=pKf5LtQAAAAJ&hl=en",
+        "source_url": "https://pliang279.github.io/",
+        "affiliations": ["Massachusetts Institute of Technology"],
+    },
+    "a_p_jyothi_119ee646": {
+        "homepage": "https://www.cse.iitb.ac.in/~pjyothi/",
+        "source_url": "https://www.cse.iitb.ac.in/~pjyothi/",
+        "affiliations": ["Indian Institute of Technology Bombay"],
+    },
+    "a_peter_hase_d937a33d": {
+        "homepage": "https://peterbhase.github.io/",
+        "google_scholar": "https://scholar.google.com/citations?user=FO90FgMAAAAJ&hl=en",
+        "source_url": "https://peterbhase.github.io/",
+        "affiliations": ["Stanford University", "Schmidt Sciences"],
+    },
     "a_rohin_shah_1b05662e": {
         "homepage": "https://rohinshah.com/",
         "source_url": "https://rohinshah.com/",
         "affiliations": ["Google DeepMind"],
+    },
+    "a_samuel_marks_46475651": {
+        "homepage": "https://people.math.harvard.edu/~smarks/",
+        "source_url": "https://people.math.harvard.edu/~smarks/",
+    },
+    "a_sarah_schwettmann_75d9e5ed": {
+        "homepage": "https://www.cogconfluence.com/",
+        "source_url": "https://cbmm.mit.edu/about/people/schwettmann",
+    },
+    "a_senthooran_rajamanoharan_77c86f94": {
+        "google_scholar": "https://scholar.google.com/citations?user=W4JthzgAAAAJ&hl=en",
+        "source_url": "https://www.newx.sg/scholar/W4JthzgAAAAJ",
+    },
+    "a_thang_bui_f266eb37": {
+        "homepage": "https://thangbui.github.io/",
+        "google_scholar": "https://scholar.google.com/citations?user=SVq3y1sAAAAJ&hl=en",
+        "source_url": "https://comp.anu.edu.au/people/thang-bui/",
+        "external_ids": {"orcid": "0000-0002-7878-9748"},
+        "affiliations": ["Australian National University"],
     },
     "a_thomas_f_icard_e9a57f00": {
         "homepage": "https://stanford.edu/~icard/",
         "source_url": "https://stanford.edu/~icard/",
         "affiliations": ["Stanford University", "Goodfire"],
     },
+    "a_t_henighan_26ac86d7": {
+        "homepage": "https://www.tomhenighan.com/",
+        "google_scholar": "https://scholar.google.com/citations?user=8h3AFugAAAAJ&hl=en",
+        "source_url": "https://scholar.google.com/citations?user=8h3AFugAAAAJ&hl=en",
+        "affiliations": ["Anthropic"],
+    },
     "a_tom_lieberum_e979b353": {
         "homepage": "https://tomfrederik.github.io/",
         "source_url": "https://tomfrederik.github.io/",
+    },
+    "a_vasudev_lal_d72bef4a": {
+        "homepage": "http://www-personal.umich.edu/~vasudev/projectHub/",
+        "source_url": "https://www.linkedin.com/in/vasudev-lal-79bb336",
+        "affiliations": ["Oracle"],
+    },
+    "a_victor_veitch_33c2c5da": {
+        "homepage": "https://www.victorveitch.com/",
+        "google_scholar": "https://scholar.google.com/citations?user=xkn_XZgAAAAJ&hl=en",
+        "source_url": "https://www.victorveitch.com/",
+        "affiliations": ["University of Chicago", "Google DeepMind"],
+    },
+    "a_vikrant_varma_fcdf9a6c": {
+        "homepage": "https://cse.iitkgp.ac.in/~vvarma/",
+        "source_url": "https://cse.iitkgp.ac.in/~vvarma/",
+        "affiliations": ["Google DeepMind"],
+    },
+    "a_vladimir_pavlovic_0e95a443": {
+        "homepage": "https://seqamlab.com/",
+        "google_scholar": "https://scholar.google.com/citations?user=8MQT8skAAAAJ&hl=en",
+        "source_url": "https://www.cs.rutgers.edu/people/professors/details/vladimir-pavlovic",
+        "external_ids": {"orcid": "0000-0003-3979-1236"},
+        "affiliations": ["Rutgers University"],
+    },
+    "a_virginia_smith_c526985b": {
+        "homepage": "https://www.cs.cmu.edu/~smithv/",
+        "google_scholar": "https://scholar.google.com/citations?user=bldHpWIAAAAJ&hl=en",
+        "source_url": "https://engineering.cmu.edu/directory/bios/smith-virginia.html",
+        "affiliations": ["Carnegie Mellon University"],
     },
     "a_wes_gurnee_bef85191": {
         "homepage": "https://wesg.me/",
@@ -763,6 +967,8 @@ def enrich_author(
     profile_override = MANUAL_PROFILE_OVERRIDES.get(local_id)
     if profile_override:
         source_url = profile_override["source_url"]
+        for namespace, external_id in profile_override.get("external_ids", {}).items():
+            record["external_ids"][namespace] = external_id
         homepage = profile_override.get("homepage")
         google_scholar = profile_override.get("google_scholar")
         if homepage:

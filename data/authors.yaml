@@ -75,10 +75,19 @@ authors:
       orcid: null
       openalex: A5047817959
       semantic_scholar: '1786843'
-    current_affiliations: []
+    current_affiliations:
+    - name: Tel Aviv University
+      ror_id: null
+      country_code: null
+      evidence_year: null
+      source_url: https://scholar.google.com/citations?user=5JserkUAAAAJ&hl=en
+      retrieved_on: '2026-10-09'
     profiles:
       homepage: null
-      google_scholar: null
+      google_scholar:
+        url: https://scholar.google.com/citations?user=5JserkUAAAAJ&hl=en
+        source_url: https://research.google/people/amirgloberson/
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -305,8 +314,14 @@ authors:
       semantic_scholar: '2257127712'
     current_affiliations: []
     profiles:
-      homepage: null
-      google_scholar: null
+      homepage:
+        url: https://aadityasingh.github.io/
+        source_url: https://www.saxelab.org/people
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=9OPKqmMAAAAJ&hl=en
+        source_url: https://www.saxelab.org/people
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -469,10 +484,19 @@ authors:
       orcid: null
       openalex: A5050585164
       semantic_scholar: '51051911'
-    current_affiliations: []
+    current_affiliations:
+    - name: Senior Research Scientist, d_model
+      ror_id: null
+      country_code: null
+      evidence_year: null
+      source_url: https://scholar.google.com/citations?user=3i50nQ0AAAAJ&hl=en
+      retrieved_on: '2026-10-09'
     profiles:
       homepage: null
-      google_scholar: null
+      google_scholar:
+        url: https://scholar.google.com/citations?user=3i50nQ0AAAAJ&hl=en
+        source_url: https://www.newx.sg/scholar/3i50nQ0AAAAJ
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -503,10 +527,22 @@ authors:
       orcid: null
       openalex: A5044945258
       semantic_scholar: '1388513000'
-    current_affiliations: []
+    current_affiliations:
+    - name: Research Scientist, FAR AI
+      ror_id: null
+      country_code: null
+      evidence_year: null
+      source_url: https://scholar.google.com/citations?user=OtnThiMAAAAJ&hl=en
+      retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
-      google_scholar: null
+      homepage:
+        url: https://adriaga.com/
+        source_url: https://adriaga.com/
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=OtnThiMAAAAJ&hl=en
+        source_url: https://adriaga.com/
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -626,10 +662,22 @@ authors:
       orcid: null
       openalex: A5004850872
       semantic_scholar: '17775913'
-    current_affiliations: []
+    current_affiliations:
+    - name: Unknown affiliation
+      ror_id: null
+      country_code: null
+      evidence_year: null
+      source_url: https://scholar.google.com/citations?user=haO4sKoAAAAJ&hl=en
+      retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
-      google_scholar: null
+      homepage:
+        url: https://amakelov.github.io/
+        source_url: https://toc.csail.mit.edu/user/273
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=haO4sKoAAAAJ&hl=en
+        source_url: https://amakelov.github.io/
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -645,8 +693,14 @@ authors:
       semantic_scholar: '2175480389'
     current_affiliations: []
     profiles:
-      homepage: null
-      google_scholar: null
+      homepage:
+        url: https://alestolfo.github.io/
+        source_url: https://alestolfo.github.io/
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=Fx50TZQAAAAJ&hl=en
+        source_url: https://alestolfo.github.io/
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -750,8 +804,14 @@ authors:
       semantic_scholar: '2030991782'
     current_affiliations: []
     profiles:
-      homepage: null
-      google_scholar: null
+      homepage:
+        url: https://alexandrevariengien.com/
+        source_url: https://alexandrevariengien.com/
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=BQOwWG8AAAAJ&hl=en
+        source_url: https://alexandrevariengien.com/
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -1161,7 +1221,10 @@ authors:
       retrieved_on: '2026-10-09'
     profiles:
       homepage: null
-      google_scholar: null
+      google_scholar:
+        url: https://scholar.google.com/citations?user=ysb8XywAAAAJ&hl=en
+        source_url: https://newx.sg/scholar/ysb8XywAAAAJ
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -1327,10 +1390,22 @@ authors:
       orcid: null
       openalex: A5071070679
       semantic_scholar: '2131632310'
-    current_affiliations: []
+    current_affiliations:
+    - name: Anthropic
+      ror_id: null
+      country_code: null
+      evidence_year: 2026
+      source_url: https://arthurconmy.github.io/
+      retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
-      google_scholar: null
+      homepage:
+        url: https://arthurconmy.github.io/
+        source_url: https://arthurconmy.github.io/
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=n4HIyXQAAAAJ&hl=en
+        source_url: https://arthurconmy.github.io/
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -1398,10 +1473,22 @@ authors:
       orcid: null
       openalex: A5022368228
       semantic_scholar: null
-    current_affiliations: []
+    current_affiliations:
+    - name: Google DeepMind
+      ror_id: null
+      country_code: null
+      evidence_year: 2026
+      source_url: https://asmadotgh.github.io/
+      retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
-      google_scholar: null
+      homepage:
+        url: https://asmadotgh.github.io/
+        source_url: https://asmadotgh.github.io/
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=CkfQy2gAAAAJ&hl=en
+        source_url: https://asmadotgh.github.io/
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -1656,8 +1743,14 @@ authors:
       source_url: https://orcid.org/0000-0002-2453-7852
       retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
-      google_scholar: null
+      homepage:
+        url: https://binyu.stat.berkeley.edu/
+        source_url: https://vcresearch.berkeley.edu/faculty/bin-yu
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=xT19Jc0AAAAJ&hl=en
+        source_url: https://vcresearch.berkeley.edu/faculty/bin-yu
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -1741,9 +1834,18 @@ authors:
       orcid: null
       openalex: A5050408969
       semantic_scholar: '79384063'
-    current_affiliations: []
+    current_affiliations:
+    - name: Redwood Research
+      ror_id: null
+      country_code: null
+      evidence_year: 2026
+      source_url: https://www.shlegeris.com/
+      retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
+      homepage:
+        url: https://www.shlegeris.com/
+        source_url: https://www.shlegeris.com/
+        retrieved_on: '2026-10-09'
       google_scholar: null
     disambiguation_status: matched_by_publication
     disambiguation:
@@ -1870,8 +1972,14 @@ authors:
       source_url: https://orcid.org/0000-0003-4245-1179
       retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
-      google_scholar: null
+      homepage:
+        url: https://wittlab.ai/people/christian-schroeder-de-witt/
+        source_url: https://wittlab.ai/people/christian-schroeder-de-witt/
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=DE60h_0AAAAJ&hl=en
+        source_url: https://wittlab.ai/people/christian-schroeder-de-witt/
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -2257,9 +2365,18 @@ authors:
       orcid: null
       openalex: A5092031084
       semantic_scholar: '2218145401'
-    current_affiliations: []
+    current_affiliations:
+    - name: Goodfire
+      ror_id: null
+      country_code: null
+      evidence_year: 2026
+      source_url: https://www.curttigges.com/
+      retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
+      homepage:
+        url: https://www.curttigges.com/
+        source_url: https://www.curttigges.com/
+        retrieved_on: '2026-10-09'
       google_scholar: null
     disambiguation_status: matched_by_publication
     disambiguation:
@@ -2387,10 +2504,22 @@ authors:
       orcid: null
       openalex: A5020400986
       semantic_scholar: '3422872'
-    current_affiliations: []
+    current_affiliations:
+    - name: Center for AI Safety
+      ror_id: null
+      country_code: null
+      evidence_year: 2026
+      source_url: https://danhendrycks.com/
+      retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
-      google_scholar: null
+      homepage:
+        url: https://danhendrycks.com/
+        source_url: https://danhendrycks.com/
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=czyretsAAAAJ&hl=en
+        source_url: https://danhendrycks.com/
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -3051,8 +3180,14 @@ authors:
       source_url: https://orcid.org/0009-0008-1889-6577
       retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
-      google_scholar: null
+      homepage:
+        url: https://fazlbarez.com/
+        source_url: https://fazlbarez.com/
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=EAjpNIMAAAAJ&hl=en
+        source_url: https://fazlbarez.com/
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -3783,12 +3918,21 @@ authors:
     canonical_name: I. Oseledets
     aliases: []
     external_ids:
-      orcid: null
+      orcid: 0000-0003-2071-2163
       openalex: null
       semantic_scholar: '2257279038'
-    current_affiliations: []
+    current_affiliations:
+    - name: Skolkovo Institute of Science and Technology
+      ror_id: null
+      country_code: null
+      evidence_year: 2026
+      source_url: https://dblp.org/pid/56/7175.html
+      retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
+      homepage:
+        url: https://oseledets.github.io/people/oseledets/
+        source_url: https://dblp.org/pid/56/7175.html
+        retrieved_on: '2026-10-09'
       google_scholar: null
     disambiguation_status: matched_by_publication
     disambiguation:
@@ -3842,9 +3986,18 @@ authors:
       orcid: null
       openalex: null
       semantic_scholar: '2308099558'
-    current_affiliations: []
+    current_affiliations:
+    - name: UK AI Security Institute
+      ror_id: null
+      country_code: null
+      evidence_year: 2026
+      source_url: https://www.aisi.gov.uk/research/loss-of-oversight-how-ai-systems-may-become-harder-to-audit-monitor-and-investigate
+      retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
+      homepage:
+        url: https://www.jbloomaus.com/about/
+        source_url: https://www.aisi.gov.uk/research/loss-of-oversight-how-ai-systems-may-become-harder-to-audit-monitor-and-investigate
+        retrieved_on: '2026-10-09'
       google_scholar: null
     disambiguation_status: matched_by_publication
     disambiguation:
@@ -3948,9 +4101,18 @@ authors:
       orcid: 0009-0005-9673-6809
       openalex: A5062612448
       semantic_scholar: '1405408066'
-    current_affiliations: []
+    current_affiliations:
+    - name: Goodfire
+      ror_id: null
+      country_code: null
+      evidence_year: 2026
+      source_url: https://jmerullo.github.io/
+      retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
+      homepage:
+        url: https://jmerullo.github.io/
+        source_url: https://jmerullo.github.io/
+        retrieved_on: '2026-10-09'
       google_scholar: null
     disambiguation_status: matched_by_publication
     disambiguation:
@@ -4081,8 +4243,14 @@ authors:
       source_url: https://orcid.org/0000-0003-0064-7800
       retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
-      google_scholar: null
+      homepage:
+        url: https://jasondlee88.github.io/
+        source_url: https://jasondlee88.github.io/
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=GR_DsT0AAAAJ&hl=en
+        source_url: https://jasondlee88.github.io/
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -4185,8 +4353,14 @@ authors:
       source_url: https://orcid.org/0000-0002-9777-9676
       retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
-      google_scholar: null
+      homepage:
+        url: https://gsai.ruc.edu.cn/addons/teacher/index/info.html?ln=en&user_id=30
+        source_url: https://gsai.ruc.edu.cn/addons/teacher/index/info.html?ln=en&user_id=30
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=tbxCHJgAAAAJ&hl=en
+        source_url: https://gsai.ruc.edu.cn/addons/teacher/index/info.html?ln=en&user_id=30
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -4251,10 +4425,22 @@ authors:
       orcid: 0000-0002-9640-6157
       openalex: A5101616794
       semantic_scholar: '2145739230'
-    current_affiliations: []
+    current_affiliations:
+    - name: Stanford University
+      ror_id: null
+      country_code: null
+      evidence_year: null
+      source_url: https://scholar.google.com/citations?user=zM_wp_MAAAAJ&hl=en
+      retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
-      google_scholar: null
+      homepage:
+        url: https://explanare.github.io/
+        source_url: https://explanare.github.io/
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=zM_wp_MAAAAJ&hl=en
+        source_url: https://explanare.github.io/
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -5077,10 +5263,22 @@ authors:
       orcid: 0009-0009-2137-6027
       openalex: A5002207803
       semantic_scholar: null
-    current_affiliations: []
+    current_affiliations:
+    - name: Goodfire
+      ror_id: null
+      country_code: null
+      evidence_year: null
+      source_url: https://scholar.google.com/citations?user=ZzXikBsAAAAJ&hl=en
+      retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
-      google_scholar: null
+      homepage:
+        url: https://leesharkey.github.io/
+        source_url: https://www.hmc.ox.ac.uk/people/lee-sharkey
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=ZzXikBsAAAAJ&hl=en
+        source_url: https://www.hmc.ox.ac.uk/people/lee-sharkey
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -5675,8 +5873,14 @@ authors:
       source_url: https://orcid.org/0000-0001-6405-513X
       retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
-      google_scholar: null
+      homepage:
+        url: https://www.maxlamparth.com/
+        source_url: https://cap.stanford.edu/profiles/frdActionServlet?choiceId=printerprofile&profileId=326201&profileversion=full
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=snC9WF4AAAAJ&hl=en
+        source_url: https://cap.stanford.edu/profiles/frdActionServlet?choiceId=printerprofile&profileId=326201&profileversion=full
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -6023,7 +6227,10 @@ authors:
       source_url: https://orcid.org/0000-0001-8787-8681
       retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
+      homepage:
+        url: https://www.mrinmaya.io/
+        source_url: https://ellis.eu/person/mrinmaya-sachan
+        retrieved_on: '2026-10-09'
       google_scholar: null
     disambiguation_status: matched_by_publication
     disambiguation:
@@ -6204,7 +6411,10 @@ authors:
       semantic_scholar: '2866708'
     current_affiliations: []
     profiles:
-      homepage: null
+      homepage:
+        url: https://nelhage.com/
+        source_url: https://nelhage.com/
+        retrieved_on: '2026-10-09'
       google_scholar: null
     disambiguation_status: matched_by_publication
     disambiguation:
@@ -6588,9 +6798,18 @@ authors:
       orcid: null
       openalex: null
       semantic_scholar: '144859542'
-    current_affiliations: []
+    current_affiliations:
+    - name: Indian Institute of Technology Bombay
+      ror_id: null
+      country_code: null
+      evidence_year: 2026
+      source_url: https://www.cse.iitb.ac.in/~pjyothi/
+      retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
+      homepage:
+        url: https://www.cse.iitb.ac.in/~pjyothi/
+        source_url: https://www.cse.iitb.ac.in/~pjyothi/
+        retrieved_on: '2026-10-09'
       google_scholar: null
     disambiguation_status: matched_by_publication
     disambiguation:
@@ -6606,10 +6825,22 @@ authors:
       orcid: 0000-0001-7768-3610
       openalex: A5086233510
       semantic_scholar: '28130078'
-    current_affiliations: []
+    current_affiliations:
+    - name: Massachusetts Institute of Technology
+      ror_id: null
+      country_code: null
+      evidence_year: 2026
+      source_url: https://pliang279.github.io/
+      retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
-      google_scholar: null
+      homepage:
+        url: https://pliang279.github.io/
+        source_url: https://pliang279.github.io/
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=pKf5LtQAAAAJ&hl=en
+        source_url: https://pliang279.github.io/
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -6728,10 +6959,28 @@ authors:
       orcid: null
       openalex: A5013096489
       semantic_scholar: '144625004'
-    current_affiliations: []
+    current_affiliations:
+    - name: Stanford University
+      ror_id: null
+      country_code: null
+      evidence_year: 2026
+      source_url: https://peterbhase.github.io/
+      retrieved_on: '2026-10-09'
+    - name: Schmidt Sciences
+      ror_id: null
+      country_code: null
+      evidence_year: 2026
+      source_url: https://peterbhase.github.io/
+      retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
-      google_scholar: null
+      homepage:
+        url: https://peterbhase.github.io/
+        source_url: https://peterbhase.github.io/
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=FO90FgMAAAAJ&hl=en
+        source_url: https://peterbhase.github.io/
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -7289,7 +7538,10 @@ authors:
       semantic_scholar: '2225941937'
     current_affiliations: []
     profiles:
-      homepage: null
+      homepage:
+        url: https://people.math.harvard.edu/~smarks/
+        source_url: https://people.math.harvard.edu/~smarks/
+        retrieved_on: '2026-10-09'
       google_scholar: null
     disambiguation_status: matched_by_publication
     disambiguation:
@@ -7367,7 +7619,10 @@ authors:
       semantic_scholar: '5478802'
     current_affiliations: []
     profiles:
-      homepage: null
+      homepage:
+        url: https://www.cogconfluence.com/
+        source_url: https://cbmm.mit.edu/about/people/schwettmann
+        retrieved_on: '2026-10-09'
       google_scholar: null
     disambiguation_status: matched_by_publication
     disambiguation:
@@ -7531,10 +7786,19 @@ authors:
       orcid: null
       openalex: A5095900488
       semantic_scholar: '35185194'
-    current_affiliations: []
+    current_affiliations:
+    - name: Google DeepMind
+      ror_id: null
+      country_code: null
+      evidence_year: null
+      source_url: https://scholar.google.com/citations?user=W4JthzgAAAAJ&hl=en
+      retrieved_on: '2026-10-09'
     profiles:
       homepage: null
-      google_scholar: null
+      google_scholar:
+        url: https://scholar.google.com/citations?user=W4JthzgAAAAJ&hl=en
+        source_url: https://www.newx.sg/scholar/W4JthzgAAAAJ
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -7850,10 +8114,22 @@ authors:
       orcid: null
       openalex: A5049786610
       semantic_scholar: '103143311'
-    current_affiliations: []
+    current_affiliations:
+    - name: Anthropic
+      ror_id: null
+      country_code: null
+      evidence_year: 2026
+      source_url: https://scholar.google.com/citations?user=8h3AFugAAAAJ&hl=en
+      retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
-      google_scholar: null
+      homepage:
+        url: https://www.tomhenighan.com/
+        source_url: https://scholar.google.com/citations?user=8h3AFugAAAAJ&hl=en
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=8h3AFugAAAAJ&hl=en
+        source_url: https://scholar.google.com/citations?user=8h3AFugAAAAJ&hl=en
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -7981,7 +8257,7 @@ authors:
     canonical_name: Thang Bui
     aliases: []
     external_ids:
-      orcid: 0000-0001-5021-0549
+      orcid: 0000-0002-7878-9748
       openalex: A5102706042
       semantic_scholar: '2229238231'
     current_affiliations:
@@ -7992,8 +8268,14 @@ authors:
       source_url: https://orcid.org/0000-0001-5021-0549
       retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
-      google_scholar: null
+      homepage:
+        url: https://thangbui.github.io/
+        source_url: https://comp.anu.edu.au/people/thang-bui/
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=SVq3y1sAAAAJ&hl=en
+        source_url: https://comp.anu.edu.au/people/thang-bui/
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -8346,7 +8628,10 @@ authors:
       source_url: https://orcid.org/0000-0002-5907-9898
       retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
+      homepage:
+        url: http://www-personal.umich.edu/~vasudev/projectHub/
+        source_url: https://www.linkedin.com/in/vasudev-lal-79bb336
+        retrieved_on: '2026-10-09'
       google_scholar: null
     disambiguation_status: matched_by_publication
     disambiguation:
@@ -8361,10 +8646,28 @@ authors:
       orcid: null
       openalex: A5077406767
       semantic_scholar: '2264238366'
-    current_affiliations: []
+    current_affiliations:
+    - name: University of Chicago
+      ror_id: null
+      country_code: null
+      evidence_year: 2026
+      source_url: https://www.victorveitch.com/
+      retrieved_on: '2026-10-09'
+    - name: Google DeepMind
+      ror_id: null
+      country_code: null
+      evidence_year: 2026
+      source_url: https://www.victorveitch.com/
+      retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
-      google_scholar: null
+      homepage:
+        url: https://www.victorveitch.com/
+        source_url: https://www.victorveitch.com/
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=xkn_XZgAAAAJ&hl=en
+        source_url: https://www.victorveitch.com/
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -8378,9 +8681,18 @@ authors:
       orcid: null
       openalex: A5052084048
       semantic_scholar: '144711236'
-    current_affiliations: []
+    current_affiliations:
+    - name: Google DeepMind
+      ror_id: null
+      country_code: null
+      evidence_year: 2026
+      source_url: https://cse.iitkgp.ac.in/~vvarma/
+      retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
+      homepage:
+        url: https://cse.iitkgp.ac.in/~vvarma/
+        source_url: https://cse.iitkgp.ac.in/~vvarma/
+        retrieved_on: '2026-10-09'
       google_scholar: null
     disambiguation_status: matched_by_publication
     disambiguation:
@@ -8398,10 +8710,22 @@ authors:
       orcid: 0000-0002-6404-2395
       openalex: A5112800069
       semantic_scholar: '2308098896'
-    current_affiliations: []
+    current_affiliations:
+    - name: Carnegie Mellon University
+      ror_id: null
+      country_code: null
+      evidence_year: 2026
+      source_url: https://engineering.cmu.edu/directory/bios/smith-virginia.html
+      retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
-      google_scholar: null
+      homepage:
+        url: https://www.cs.cmu.edu/~smithv/
+        source_url: https://engineering.cmu.edu/directory/bios/smith-virginia.html
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=bldHpWIAAAAJ&hl=en
+        source_url: https://engineering.cmu.edu/directory/bios/smith-virginia.html
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
@@ -8429,13 +8753,25 @@ authors:
     canonical_name: Vladimir Pavlovic
     aliases: []
     external_ids:
-      orcid: null
+      orcid: 0000-0003-3979-1236
       openalex: A5135921544
       semantic_scholar: '2311509250'
-    current_affiliations: []
+    current_affiliations:
+    - name: Rutgers University
+      ror_id: null
+      country_code: null
+      evidence_year: 2026
+      source_url: https://www.cs.rutgers.edu/people/professors/details/vladimir-pavlovic
+      retrieved_on: '2026-10-09'
     profiles:
-      homepage: null
-      google_scholar: null
+      homepage:
+        url: https://seqamlab.com/
+        source_url: https://www.cs.rutgers.edu/people/professors/details/vladimir-pavlovic
+        retrieved_on: '2026-10-09'
+      google_scholar:
+        url: https://scholar.google.com/citations?user=8MQT8skAAAAJ&hl=en
+        source_url: https://www.cs.rutgers.edu/people/professors/details/vladimir-pavlovic
+        retrieved_on: '2026-10-09'
     disambiguation_status: matched_by_publication
     disambiguation:
       evidence_paper_ids:
