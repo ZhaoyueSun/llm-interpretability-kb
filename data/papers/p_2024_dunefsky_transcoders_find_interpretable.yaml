@@ -1,0 +1,74 @@
+---
+schema_version: 1
+paper_id: p_2024_dunefsky_transcoders_find_interpretable
+title: Transcoders Find Interpretable LLM Feature Circuits
+year: 2024
+earliest_public_date: '2024-06-17'
+earliest_public_date_precision: day
+venue: Advances in Neural Information Processing Systems (NeurIPS 2024)
+publication_type: conference
+identifiers:
+  doi: ''
+  arxiv_id: '2406.11944'
+  openreview_id:
+links:
+  primary: https://arxiv.org/abs/2406.11944
+  pdf: https://arxiv.org/pdf/2406.11944
+  code:
+authors:
+- author_id: a_jacob_dunefsky_665ef21a
+  name: Jacob Dunefsky
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_philippe_chlenski_a063c9a1
+  name: Philippe Chlenski
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_neel_nanda_ddf6abf4
+  name: Neel Nanda
+  position: 3
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2406.11944
+  en: 'A key goal in mechanistic interpretability is circuit analysis: finding sparse
+    subgraphs of models corresponding to specific behaviors or capabilities. However,
+    MLP sublayers make fine-grained circuit analysis on transformer-based language
+    models difficult. In particular, interpretable features -- such as those found
+    by sparse autoencoders (SAEs) -- are typically linear combinations of extremely
+    many neurons, each with its own nonlinearity to account for. Circuit analysis
+    in this setting thus either yields intractably large circuits or fails to disentangle
+    local and global behavior. To address this we explore transcoders, which seek
+    to faithfully approximate a densely activating MLP layer with a wider, sparsely-activating
+    MLP layer. We introduce a novel method for using transcoders to perform weights-based
+    circuit analysis through MLP sublayers. The resulting circuits neatly factorize
+    into input-dependent and input-invariant terms. We then successfully train transcoders
+    on language models with 120M, 410M, and 1.4B parameters, and find them to perform
+    at least on par with SAEs in terms of sparsity, faithfulness, and human-interpretability.
+    Finally, we apply transcoders to reverse-engineer unknown circuits in the model,
+    and we obtain novel insights regarding the "greater-than circuit" in GPT2-small.
+    Our results suggest that transcoders can prove effective in decomposing model
+    computations involving MLPs into interpretable circuits. Code is available at
+    https://github.com/jacobdunefsky/transcoder_circuits/.'
+  zh: >-
+    机制可解释性的一个关键目标是回路分析，即寻找与特定行为或能力对应的模型稀疏子图。然而，MLP 子层使基于 Transformer 的语言模型难以进行细粒度回路分析。特别是，稀疏自编码器（SAE）发现的可解释特征通常是数量极多的神经元的线性组合，而每个神经元还各自具有需要考虑的非线性。因此，这种设置下的回路分析要么产生大到难以处理的回路，要么无法解耦局部行为与全局行为。为解决该问题，我们研究 transcoder；它试图使用更宽、稀疏激活的 MLP 层忠实近似一个稠密激活的 MLP 层。我们提出一种使用 transcoder 对穿过 MLP 子层的计算进行基于权重的回路分析的新方法，所得回路可以整齐地分解为依赖输入和不随输入变化的两类项。随后，我们在参数量为 1.2 亿、4.1 亿和 14 亿的语言模型上成功训练 transcoder，并发现其稀疏性、忠实性和人类可解释性至少与 SAE 相当。最后，我们应用 transcoder 对模型中的未知回路进行逆向工程，并获得了有关 GPT2-small“大于”回路的新认识。结果表明，transcoder 可以有效地把涉及 MLP 的模型计算分解为可解释回路。代码见 https://github.com/jacobdunefsky/transcoder_circuits/。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2024_dunefsky_transcoders_find_interpretable
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at:
+  handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
+  selection_source_index: 0
+  abstract_verification: docling_token_coverage_at_least_0.95

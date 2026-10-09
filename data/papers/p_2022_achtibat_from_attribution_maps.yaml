@@ -1,0 +1,94 @@
+---
+schema_version: 1
+paper_id: p_2022_achtibat_from_attribution_maps
+title: From Attribution Maps to Human-Understandable Explanations through Concept
+  Relevance Propagation
+year: 2022
+earliest_public_date: '2022-06-07'
+earliest_public_date_precision: day
+venue: Nature Machine Intelligence (2023)
+publication_type: journal
+identifiers:
+  doi: 10.1038/s42256-023-00711-8
+  arxiv_id: '2206.03208'
+  openreview_id:
+links:
+  primary: https://arxiv.org/abs/2206.03208
+  pdf: https://arxiv.org/pdf/2206.03208
+  code:
+authors:
+- author_id: a_reduan_achtibat_0873507e
+  name: Reduan Achtibat
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_maximilian_dreyer_dca7aab3
+  name: Maximilian Dreyer
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_ilona_eisenbraun_045b9cdd
+  name: Ilona Eisenbraun
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_sebastian_bosse_b0d31bbb
+  name: Sebastian Bosse
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_thomas_wiegand_2a47cc83
+  name: Thomas Wiegand
+  position: 5
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_wojciech_samek_5b82602b
+  name: Wojciech Samek
+  position: 6
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_sebastian_lapuschkin_9b4c3d29
+  name: Sebastian Lapuschkin
+  position: 7
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2206.03208
+  en: The field of eXplainable Artificial Intelligence (XAI) aims to bring transparency
+    to today's powerful but opaque deep learning models. While local XAI methods explain
+    individual predictions in form of attribution maps, thereby identifying where
+    important features occur (but not providing information about what they represent),
+    global explanation techniques visualize what concepts a model has generally learned
+    to encode. Both types of methods thus only provide partial insights and leave
+    the burden of interpreting the model's reasoning to the user. In this work we
+    introduce the Concept Relevance Propagation (CRP) approach, which combines the
+    local and global perspectives and thus allows answering both the "where" and "what"
+    questions for individual predictions. We demonstrate the capability of our method
+    in various settings, showcasing that CRP leads to more human interpretable explanations
+    and provides deep insights into the model's representation and reasoning through
+    concept atlases, concept composition analyses, and quantitative investigations
+    of concept subspaces and their role in fine-grained decision making.
+  zh: >-
+    可解释人工智能（XAI）旨在为当今能力强大但不透明的深度学习模型带来透明度。局部 XAI 方法以归因图形式解释单项预测，由此识别重要特征出现在哪里，但不说明这些特征代表什么；全局解释技术则把模型总体上学会编码的概念可视化。因此，两类方法都只能提供部分认识，并把解释模型推理过程的负担留给用户。本文提出概念相关性传播（Concept Relevance Propagation，CRP）方法，把局部与全局视角结合起来，从而可以同时回答单项预测中“在哪里”和“是什么”两个问题。我们在多种设置中展示该方法的能力，说明 CRP 能产生更易于人类理解的解释，并通过概念图谱、概念组合分析，以及对概念子空间及其在细粒度决策中作用的定量研究，深入揭示模型的表征和推理过程。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2022_achtibat_from_attribution_maps
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at:
+  handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
+  selection_source_index: 7
+  abstract_verification: docling_token_coverage_at_least_0.95

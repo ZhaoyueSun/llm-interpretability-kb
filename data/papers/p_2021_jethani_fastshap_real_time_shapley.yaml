@@ -1,0 +1,75 @@
+---
+schema_version: 1
+paper_id: p_2021_jethani_fastshap_real_time_shapley
+title: 'FastSHAP: Real-Time Shapley Value Estimation'
+year: 2021
+earliest_public_date: '2021-07-15'
+earliest_public_date_precision: day
+venue: International Conference on Learning Representations (ICLR 2022)
+publication_type: conference
+identifiers:
+  doi: ''
+  arxiv_id: '2107.07436'
+  openreview_id:
+links:
+  primary: https://arxiv.org/abs/2107.07436
+  pdf: https://arxiv.org/pdf/2107.07436
+  code:
+authors:
+- author_id: a_neil_jethani_472f7639
+  name: Neil Jethani
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_mukund_sudarshan_8f6cf009
+  name: Mukund Sudarshan
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_ian_covert_02ffabb0
+  name: Ian Covert
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_su_in_lee_38cc6a5f
+  name: Su-In Lee
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_rajesh_ranganath_e297addd
+  name: Rajesh Ranganath
+  position: 5
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2107.07436
+  en: Shapley values are widely used to explain black-box models, but they are costly
+    to calculate because they require many model evaluations. We introduce FastSHAP,
+    a method for estimating Shapley values in a single forward pass using a learned
+    explainer model. FastSHAP amortizes the cost of explaining many inputs via a learning
+    approach inspired by the Shapley value's weighted least squares characterization,
+    and it can be trained using standard stochastic gradient optimization. We compare
+    FastSHAP to existing estimation approaches, revealing that it generates high-quality
+    explanations with orders of magnitude speedup.
+  zh: >-
+    Shapley 值被广泛用于解释黑箱模型，但其计算成本很高，因为需要进行多次模型评估。我们提出 FastSHAP，一种使用学习得到的解释器模型、只经一次前向传播即可估计 Shapley 值的方法。FastSHAP 采用一种受 Shapley 值加权最小二乘表征启发的学习方法，把解释大量输入的成本摊销到训练过程，并且可以使用标准随机梯度优化进行训练。我们将 FastSHAP 与现有估计方法比较，结果显示，它能以数个数量级的速度提升生成高质量解释。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2021_jethani_fastshap_real_time_shapley
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at:
+  handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
+  selection_source_index: 8
+  abstract_verification: docling_token_coverage_at_least_0.95

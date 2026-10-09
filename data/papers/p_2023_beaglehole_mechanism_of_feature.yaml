@@ -1,0 +1,78 @@
+---
+schema_version: 1
+paper_id: p_2023_beaglehole_mechanism_of_feature
+title: Mechanism of feature learning in convolutional neural networks
+year: 2023
+earliest_public_date: '2023-09-01'
+earliest_public_date_precision: day
+venue: arXiv preprint
+publication_type: preprint
+identifiers:
+  doi: ''
+  arxiv_id: '2309.00570'
+  openreview_id:
+links:
+  primary: https://arxiv.org/abs/2309.00570
+  pdf: https://arxiv.org/pdf/2309.00570
+  code:
+authors:
+- author_id: a_daniel_beaglehole_b549ddea
+  name: Daniel Beaglehole
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_adityanarayanan_radhakrishnan_5f048821
+  name: Adityanarayanan Radhakrishnan
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_parthe_pandit_1a41d70e
+  name: Parthe Pandit
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_mikhail_belkin_1bd515af
+  name: Mikhail Belkin
+  position: 4
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2309.00570
+  en: Understanding the mechanism of how convolutional neural networks learn features
+    from image data is a fundamental problem in machine learning and computer vision.
+    In this work, we identify such a mechanism. We posit the Convolutional Neural
+    Feature Ansatz, which states that covariances of filters in any convolutional
+    layer are proportional to the average gradient outer product (AGOP) taken with
+    respect to patches of the input to that layer. We present extensive empirical
+    evidence for our ansatz, including identifying high correlation between covariances
+    of filters and patch-based AGOPs for convolutional layers in standard neural architectures,
+    such as AlexNet, VGG, and ResNets pre-trained on ImageNet. We also provide supporting
+    theoretical evidence. We then demonstrate the generality of our result by using
+    the patch-based AGOP to enable deep feature learning in convolutional kernel machines.
+    We refer to the resulting algorithm as (Deep) ConvRFM and show that our algorithm
+    recovers similar features to deep convolutional networks including the notable
+    emergence of edge detectors. Moreover, we find that Deep ConvRFM overcomes previously
+    identified limitations of convolutional kernels, such as their inability to adapt
+    to local signals in images and, as a result, leads to sizable performance improvement
+    over fixed convolutional kernels.
+  zh: >-
+    理解卷积神经网络如何从图像数据中学习特征的机制，是机器学习和计算机视觉中的基础问题。本文识别出这样一种机制。我们提出卷积神经特征假设（Convolutional Neural Feature Ansatz）：任意卷积层中滤波器的协方差，与相对于该层输入图像块计算的平均梯度外积（AGOP）成正比。我们为这一假设提供了广泛的经验证据，包括在 AlexNet、VGG 和基于 ImageNet 预训练的 ResNet 等标准神经架构的卷积层中，发现滤波器协方差与基于图像块的 AGOP 高度相关。我们还给出了支持性的理论证据。随后，我们使用基于图像块的 AGOP，使卷积核机器能够进行深度特征学习，由此展示该结果的一般性。我们把所得算法称为（深度）ConvRFM，并表明它能恢复与深度卷积网络相似的特征，包括引人注目的边缘检测器涌现。此外，我们发现，Deep ConvRFM 克服了此前识别出的卷积核局限，例如无法适应图像中的局部信号，因而相比固定卷积核带来显著性能提升。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_beaglehole_mechanism_of_feature
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at:
+  handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
+  selection_source_index: 10
+  abstract_verification: docling_token_coverage_at_least_0.95

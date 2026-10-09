@@ -1,0 +1,64 @@
+---
+schema_version: 1
+paper_id: p_2022_oikarinen_clip_dissect_automatic_description
+title: 'CLIP-Dissect: Automatic Description of Neuron Representations in Deep Vision
+  Networks'
+year: 2022
+earliest_public_date: '2022-04-23'
+earliest_public_date_precision: day
+venue: International Conference on Learning Representations (ICLR 2023)
+publication_type: conference
+identifiers:
+  doi: ''
+  arxiv_id: '2204.10965'
+  openreview_id:
+links:
+  primary: https://arxiv.org/abs/2204.10965
+  pdf: https://arxiv.org/pdf/2204.10965
+  code:
+authors:
+- author_id: a_tuomas_oikarinen_16fea315
+  name: Tuomas Oikarinen
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_tsui_wei_weng_187b3cdd
+  name: Tsui-Wei Weng
+  position: 2
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2204.10965
+  en: 'In this paper, we propose CLIP-Dissect, a new technique to automatically describe
+    the function of individual hidden neurons inside vision networks. CLIP-Dissect
+    leverages recent advances in multimodal vision/language models to label internal
+    neurons with open-ended concepts without the need for any labeled data or human
+    examples. We show that CLIP-Dissect provides more accurate descriptions than existing
+    methods for last layer neurons where the ground-truth is available as well as
+    qualitatively good descriptions for hidden layer neurons. In addition, our method
+    is very flexible: it is model agnostic, can easily handle new concepts and can
+    be extended to take advantage of better multimodal models in the future. Finally
+    CLIP-Dissect is computationally efficient and can label all neurons from five
+    layers of ResNet-50 in just 4 minutes, which is more than 10 times faster than
+    existing methods. Our code is available at https://github.com/Trustworthy-ML-Lab/CLIP-dissect.
+    Finally, crowdsourced user study results are available at Appendix B to further
+    support the effectiveness of our method.'
+  zh: >-
+    本文提出 CLIP-Dissect，一种自动描述视觉网络内部单个隐藏神经元功能的新技术。CLIP-Dissect 利用多模态视觉／语言模型的最新进展，在无需任何标注数据或人工示例的情况下，使用开放式概念标注内部神经元。我们表明，在存在真值的最后一层神经元上，CLIP-Dissect 给出的描述比现有方法更准确；对于隐藏层神经元，它也能给出定性上良好的描述。此外，该方法非常灵活：它不依赖特定模型，能够轻松处理新概念，并可在未来扩展以利用更先进的多模态模型。最后，CLIP-Dissect 的计算效率很高，只需 4 分钟即可标注 ResNet-50 五个层中的全部神经元，比现有方法快十倍以上。代码见 https://github.com/Trustworthy-ML-Lab/CLIP-dissect。附录 B 还提供了众包用户研究结果，进一步支持该方法的有效性。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2022_oikarinen_clip_dissect_automatic_description
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at:
+  handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
+  selection_source_index: 6
+  abstract_verification: docling_token_coverage_at_least_0.95

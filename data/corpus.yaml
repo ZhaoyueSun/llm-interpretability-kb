@@ -1,12 +1,17 @@
 ---
-schema_version: 1
+schema_version: 2
 corpus_id: llm-interpretability-kb
-version: 1
+version: 2
 status: final
-source:
-  project: PaperManage
+sources:
+- project: PaperManage
   handoff_id: 2026-10-08__llm-interpretability-final-corpus
   generated_on: '2026-10-08'
+  role: base
+- project: PaperManage
+  handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
+  generated_on: '2026-10-09'
+  role: supplement
 scope:
   core:
     upstream_membership: main-window
@@ -16,10 +21,14 @@ scope:
   classic:
     upstream_membership: foundation-candidate
     count: 10
+  supplement:
+    upstream_membership: taxonomy-supplement
+    count: 13
 papers:
 - paper_id: p_2026_hai_when_and_why
   group: core
   display_order: 1
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 1
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     theory) supported by causal_intervention, circuits_components, representational_structure,
@@ -28,6 +37,7 @@ papers:
 - paper_id: p_2025_tian_why_representation_engineering
   group: core
   display_order: 2
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 2
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery, theory) supported by circuits_components, representational_structure,
@@ -36,6 +46,7 @@ papers:
 - paper_id: p_2026_dalili_subspace_aware_sparse
   group: core
   display_order: 3
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 3
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery, theory) supported by causal_intervention, representational_structure,
@@ -44,6 +55,7 @@ papers:
 - paper_id: p_2024_hsu_efficient_automated_circuit
   group: core
   display_order: 4
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 5
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, representational_structure,
@@ -52,6 +64,7 @@ papers:
 - paper_id: p_2024_o_neill_sparse_autoencoders_enable
   group: core
   display_order: 5
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 6
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, representational_structure,
@@ -60,6 +73,7 @@ papers:
 - paper_id: p_2023_geiger_finding_alignments_between
   group: core
   display_order: 6
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 7
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery, theory) supported by causal_intervention, representational_structure,
@@ -68,6 +82,7 @@ papers:
 - paper_id: p_2025_kim_reasoning_circuits_in
   group: core
   display_order: 7
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 9
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, representational_structure,
@@ -76,6 +91,7 @@ papers:
 - paper_id: p_2026_somani_towards_verifiable_transformers
   group: core
   display_order: 8
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 10
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, representational_structure,
@@ -84,6 +100,7 @@ papers:
 - paper_id: p_2025_nam_causal_head_gating
   group: core
   display_order: 9
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 11
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery, evaluation) supported by causal_intervention, circuits_components,
@@ -92,6 +109,7 @@ papers:
 - paper_id: p_2026_ratnakar_the_geometry_of
   group: core
   display_order: 10
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 13
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, representational_structure,
@@ -100,6 +118,7 @@ papers:
 - paper_id: p_2025_tang_a_unified_theory
   group: core
   display_order: 11
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 16
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     theory) supported by circuits_components, representational_structure, sparse_features,
@@ -108,6 +127,7 @@ papers:
 - paper_id: p_2023_lieberum_does_circuit_analysis
   group: core
   display_order: 12
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 17
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, representational_structure,
@@ -116,6 +136,7 @@ papers:
 - paper_id: p_2026_pillai_ftb_graph_determining
   group: core
   display_order: 13
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 19
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, representational_structure,
@@ -124,6 +145,7 @@ papers:
 - paper_id: p_2026_zhou_sparse_visual_thought
   group: core
   display_order: 14
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 20
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, representational_structure,
@@ -132,6 +154,7 @@ papers:
 - paper_id: p_2023_pal_future_lens_anticipating
   group: core
   display_order: 15
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 21
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, representational_structure,
@@ -140,6 +163,7 @@ papers:
 - paper_id: p_2026_che_counting_circuits_mechanistic
   group: core
   display_order: 16
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 22
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, representational_structure,
@@ -148,6 +172,7 @@ papers:
 - paper_id: p_2026_bhardia_mechanistic_analysis_of
   group: core
   display_order: 17
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 23
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -156,6 +181,7 @@ papers:
 - paper_id: p_2023_chughtai_a_toy_model
   group: core
   display_order: 18
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 25
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, representational_structure,
@@ -164,6 +190,7 @@ papers:
 - paper_id: p_2023_schwettmann_multimodal_neurons_in
   group: core
   display_order: 19
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 28
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by circuits_components, validation.
@@ -171,6 +198,7 @@ papers:
 - paper_id: p_2023_lamparth_analyzing_and_editing
   group: core
   display_order: 20
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 29
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, representational_structure,
@@ -179,6 +207,7 @@ papers:
 - paper_id: p_2023_stolfo_a_mechanistic_interpretation
   group: core
   display_order: 21
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 30
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, representational_structure,
@@ -187,6 +216,7 @@ papers:
 - paper_id: p_2024_mcdougall_copy_suppression_comprehensively
   group: core
   display_order: 22
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 32
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, formal_theory,
@@ -195,6 +225,7 @@ papers:
 - paper_id: p_2023_lepori_uncovering_intermediate_variables
   group: core
   display_order: 23
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 34
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, representational_structure,
@@ -203,6 +234,7 @@ papers:
 - paper_id: p_2023_tigges_linear_representations_of
   group: core
   display_order: 24
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 37
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -211,6 +243,7 @@ papers:
 - paper_id: p_2026_liu_dual_pathway_circuits
   group: core
   display_order: 25
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 41
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -219,6 +252,7 @@ papers:
 - paper_id: p_2026_hegde_where_hallucinations_live
   group: core
   display_order: 26
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 42
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -227,6 +261,7 @@ papers:
 - paper_id: p_2024_jin_cutting_off_the
   group: core
   display_order: 27
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 43
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, formal_theory,
@@ -235,6 +270,7 @@ papers:
 - paper_id: p_2023_li_inference_time_intervention
   group: core
   display_order: 28
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 48
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, representational_structure,
@@ -243,6 +279,7 @@ papers:
 - paper_id: p_2024_he_dictionary_learning_improves
   group: core
   display_order: 29
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 51
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -251,6 +288,7 @@ papers:
 - paper_id: p_2023_guerner_a_geometric_notion
   group: core
   display_order: 30
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 53
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -259,6 +297,7 @@ papers:
 - paper_id: p_2023_merullo_circuit_component_reuse
   group: core
   display_order: 31
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 56
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -267,6 +306,7 @@ papers:
 - paper_id: p_2022_wang_interpretability_in_the
   group: core
   display_order: 32
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 58
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery,
     evaluation) supported by causal_intervention, circuits_components, representational_structure,
@@ -275,6 +315,7 @@ papers:
 - paper_id: p_2026_munigety_from_correlation_to
   group: core
   display_order: 33
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 60
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -283,6 +324,7 @@ papers:
 - paper_id: p_2022_li_emergent_world_representations
   group: core
   display_order: 34
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 61
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, representational_structure, validation.
@@ -290,6 +332,7 @@ papers:
 - paper_id: p_2026_dura_mechanistic_interpretability_of
   group: core
   display_order: 35
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 63
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -298,6 +341,7 @@ papers:
 - paper_id: p_2023_park_the_linear_representation
   group: core
   display_order: 36
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 64
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, representational_structure, formal_theory.
@@ -305,6 +349,7 @@ papers:
 - paper_id: p_2023_zhang_towards_best_practices
   group: core
   display_order: 37
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 65
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -313,6 +358,7 @@ papers:
 - paper_id: p_2025_nikankin_same_task_different
   group: core
   display_order: 38
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 66
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, circuits_components, formal_theory, validation.
@@ -320,6 +366,7 @@ papers:
 - paper_id: p_2023_davies_discovering_variable_binding
   group: core
   display_order: 39
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 67
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method)
     supported by causal_intervention, circuits_components, formal_theory.
@@ -327,6 +374,7 @@ papers:
 - paper_id: p_2023_zou_representation_engineering_a
   group: core
   display_order: 40
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 68
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, representational_structure,
@@ -335,6 +383,7 @@ papers:
 - paper_id: p_2023_todd_function_vectors_in
   group: core
   display_order: 41
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 69
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -343,6 +392,7 @@ papers:
 - paper_id: p_2025_wu_axbench_steering_llms
   group: core
   display_order: 42
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 70
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, representational_structure,
@@ -351,6 +401,7 @@ papers:
 - paper_id: p_2023_geiger_causal_abstraction_a
   group: core
   display_order: 43
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 71
   inclusion_reason: Full text confirms a core internal-mechanism contribution (full-text
     empirical evidence) supported by causal_intervention, circuits_components, representational_structure,
@@ -359,6 +410,7 @@ papers:
 - paper_id: p_2024_hanna_have_faith_in
   group: core
   display_order: 44
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 72
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method)
     supported by causal_intervention, circuits_components, formal_theory, validation.
@@ -366,6 +418,7 @@ papers:
 - paper_id: p_2024_draguns_unelicitable_backdoors_in
   group: core
   display_order: 45
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 76
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by circuits_components, representational_structure,
@@ -374,6 +427,7 @@ papers:
 - paper_id: p_2023_cunningham_sparse_autoencoders_find
   group: core
   display_order: 46
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 77
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -382,6 +436,7 @@ papers:
 - paper_id: p_2026_park_mechelk_a_mechanistic
   group: core
   display_order: 47
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 79
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -390,6 +445,7 @@ papers:
 - paper_id: p_2024_marks_sparse_feature_circuits
   group: core
   display_order: 48
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 80
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, formal_theory,
@@ -398,6 +454,7 @@ papers:
 - paper_id: p_2022_meng_locating_and_editing
   group: core
   display_order: 49
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 81
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -406,6 +463,7 @@ papers:
 - paper_id: p_2023_nanda_progress_measures_for
   group: core
   display_order: 50
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 82
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, circuits_components, representational_structure.
@@ -413,6 +471,7 @@ papers:
 - paper_id: p_2023_conmy_towards_automated_circuit
   group: core
   display_order: 51
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 83
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method)
     supported by causal_intervention, circuits_components, formal_theory, limitations.
@@ -420,6 +479,7 @@ papers:
 - paper_id: p_2023_geva_dissecting_recall_of
   group: core
   display_order: 52
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 84
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -428,6 +488,7 @@ papers:
 - paper_id: p_2023_palit_towards_vision_language
   group: core
   display_order: 53
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 85
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, formal_theory.
@@ -435,6 +496,7 @@ papers:
 - paper_id: p_2025_mondal_language_specific_neurons
   group: core
   display_order: 54
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 88
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, circuits_components, formal_theory.
@@ -442,6 +504,7 @@ papers:
 - paper_id: p_2026_filus_measuring_monosemanticity_in
   group: core
   display_order: 55
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 91
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery, evaluation) supported by circuits_components, representational_structure,
@@ -450,6 +513,7 @@ papers:
 - paper_id: p_2024_arditi_refusal_in_language
   group: core
   display_order: 56
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 92
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, representational_structure,
@@ -458,6 +522,7 @@ papers:
 - paper_id: p_2023_feng_how_do_language
   group: core
   display_order: 57
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 94
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, representational_structure, formal_theory, validation.
@@ -465,6 +530,7 @@ papers:
 - paper_id: p_2023_gould_successor_heads_recurring
   group: core
   display_order: 58
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 95
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, representational_structure,
@@ -473,6 +539,7 @@ papers:
 - paper_id: p_2024_zhou_on_the_role
   group: core
   display_order: 59
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 96
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, representational_structure,
@@ -481,6 +548,7 @@ papers:
 - paper_id: p_2024_shai_transformers_represent_belief
   group: core
   display_order: 60
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 97
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by circuits_components, representational_structure,
@@ -489,6 +557,7 @@ papers:
 - paper_id: p_2022_scherlis_polysemanticity_and_capacity
   group: core
   display_order: 61
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 98
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by circuits_components, representational_structure,
@@ -497,6 +566,7 @@ papers:
 - paper_id: p_2024_ferrando_information_flow_routes
   group: core
   display_order: 62
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 102
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -505,6 +575,7 @@ papers:
 - paper_id: p_2022_olsson_in_context_learning
   group: core
   display_order: 63
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 103
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, representational_structure,
@@ -513,6 +584,7 @@ papers:
 - paper_id: p_2024_rajamanoharan_jumping_ahead_improving
   group: core
   display_order: 64
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 104
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by representational_structure, validation, limitations.
@@ -520,6 +592,7 @@ papers:
 - paper_id: p_2024_rajamanoharan_improving_dictionary_learning
   group: core
   display_order: 65
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 105
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, representational_structure,
@@ -528,6 +601,7 @@ papers:
 - paper_id: p_2024_chanin_a_is_for
   group: core
   display_order: 66
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 106
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, representational_structure,
@@ -536,6 +610,7 @@ papers:
 - paper_id: p_2024_tang_language_specific_neurons
   group: core
   display_order: 67
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 107
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by circuits_components, formal_theory, validation.
@@ -543,6 +618,7 @@ papers:
 - paper_id: p_2023_varma_explaining_grokking_through
   group: core
   display_order: 68
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 108
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by circuits_components, representational_structure,
@@ -551,6 +627,7 @@ papers:
 - paper_id: p_2025_galichin_i_have_covered
   group: core
   display_order: 69
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 109
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, sparse_features, formal_theory,
@@ -559,6 +636,7 @@ papers:
 - paper_id: p_2024_marks_enhancing_neural_network
   group: core
   display_order: 70
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 110
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by representational_structure, sparse_features,
@@ -567,6 +645,7 @@ papers:
 - paper_id: p_2024_muhamed_decoding_dark_matter
   group: core
   display_order: 71
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 111
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, representational_structure,
@@ -575,6 +654,7 @@ papers:
 - paper_id: p_2025_kim_interpreting_attention_heads
   group: core
   display_order: 72
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 113
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, formal_theory,
@@ -583,6 +663,7 @@ papers:
 - paper_id: p_2025_li_taming_knowledge_conflicts
   group: core
   display_order: 73
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 116
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method)
     supported by causal_intervention, circuits_components, sparse_features, formal_theory,
@@ -591,6 +672,7 @@ papers:
 - paper_id: p_2024_hinck_why_do_llava
   group: core
   display_order: 74
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 117
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -599,6 +681,7 @@ papers:
 - paper_id: p_2025_viswanathan_the_intrinsic_dimension
   group: core
   display_order: 75
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 120
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery,
     evaluation) supported by representational_structure, formal_theory, validation.
@@ -606,6 +689,7 @@ papers:
 - paper_id: p_2024_ghandeharioun_patchscopes_a_unifying
   group: core
   display_order: 76
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 122
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, representational_structure,
@@ -614,6 +698,7 @@ papers:
 - paper_id: p_2022_elhage_toy_models_of
   group: core
   display_order: 77
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 125
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by circuits_components, representational_structure, sparse_features,
@@ -622,6 +707,7 @@ papers:
 - paper_id: p_2023_nanda_emergent_linear_representations
   group: core
   display_order: 78
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 126
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -630,6 +716,7 @@ papers:
 - paper_id: p_2024_nichani_how_transformers_learn
   group: core
   display_order: 79
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 127
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     theory) supported by causal_intervention, circuits_components, representational_structure,
@@ -638,6 +725,7 @@ papers:
 - paper_id: p_2022_burns_discovering_latent_knowledge
   group: core
   display_order: 80
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 128
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by circuits_components, representational_structure,
@@ -646,6 +734,7 @@ papers:
 - paper_id: p_2024_lieberum_gemma_scope_open
   group: core
   display_order: 81
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 129
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     evaluation) supported by circuits_components, sparse_features.
@@ -653,6 +742,7 @@ papers:
 - paper_id: p_2024_makelov_towards_principled_evaluations
   group: core
   display_order: 82
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 130
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     empirical-discovery) supported by causal_intervention, circuits_components, representational_structure,
@@ -661,6 +751,7 @@ papers:
 - paper_id: p_2025_chen_transferring_linear_features
   group: core
   display_order: 83
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 131
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -669,6 +760,7 @@ papers:
 - paper_id: p_2024_neo_towards_interpreting_visual
   group: core
   display_order: 84
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 133
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, representational_structure, formal_theory, validation.
@@ -676,6 +768,7 @@ papers:
 - paper_id: p_2026_templeton_scaling_monosemanticity_extracting
   group: core
   display_order: 85
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 134
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -684,6 +777,7 @@ papers:
 - paper_id: p_2023_belrose_eliciting_latent_predictions
   group: core
   display_order: 86
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 135
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, representational_structure, validation, limitations.
@@ -691,6 +785,7 @@ papers:
 - paper_id: p_2023_gurnee_finding_neurons_in
   group: core
   display_order: 87
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 136
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -699,6 +794,7 @@ papers:
 - paper_id: p_2024_prakash_fine_tuning_enhances
   group: core
   display_order: 88
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 137
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -707,6 +803,7 @@ papers:
 - paper_id: p_2021_geiger_inducing_causal_structure
   group: core
   display_order: 89
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 138
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method,
     evaluation) supported by causal_intervention, representational_structure, formal_theory,
@@ -715,6 +812,7 @@ papers:
 - paper_id: p_2024_huang_ravel_evaluating_interpretability
   group: core
   display_order: 90
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 139
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -723,6 +821,7 @@ papers:
 - paper_id: p_2023_hase_does_localization_inform
   group: core
   display_order: 91
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 141
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -731,6 +830,7 @@ papers:
 - paper_id: p_2023_goldowsky_dill_localizing_model_behavior
   group: core
   display_order: 92
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 142
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -739,6 +839,7 @@ papers:
 - paper_id: p_2024_he_llama_scope_extracting
   group: core
   display_order: 93
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 143
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -747,6 +848,7 @@ papers:
 - paper_id: p_2024_singh_what_needs_to
   group: core
   display_order: 94
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 144
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method)
     supported by causal_intervention, circuits_components, formal_theory, validation.
@@ -754,6 +856,7 @@ papers:
 - paper_id: p_2024_braun_identifying_functionally_important
   group: core
   display_order: 95
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 145
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method)
     supported by causal_intervention, circuits_components, representational_structure,
@@ -762,6 +865,7 @@ papers:
 - paper_id: p_2023_sakarvadia_attention_lens_a
   group: core
   display_order: 96
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 146
   inclusion_reason: Full text confirms a core internal-mechanism contribution (method)
     supported by causal_intervention, circuits_components.
@@ -769,6 +873,7 @@ papers:
 - paper_id: p_2023_hanna_how_does_gpt
   group: core
   display_order: 97
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 147
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by causal_intervention, circuits_components, formal_theory.
@@ -776,6 +881,7 @@ papers:
 - paper_id: p_2025_kantamneni_are_sparse_autoencoders
   group: core
   display_order: 98
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 148
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by formal_theory, validation, limitations.
@@ -783,6 +889,7 @@ papers:
 - paper_id: p_2024_yao_knowledge_circuits_in
   group: core
   display_order: 99
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 149
   inclusion_reason: Full text confirms a core internal-mechanism contribution (evaluation)
     supported by causal_intervention, circuits_components, formal_theory.
@@ -790,6 +897,7 @@ papers:
 - paper_id: p_2023_voita_neurons_in_large
   group: core
   display_order: 100
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 150
   inclusion_reason: Full text confirms a core internal-mechanism contribution (empirical-discovery)
     supported by circuits_components, representational_structure, formal_theory.
@@ -797,6 +905,7 @@ papers:
 - paper_id: p_2021_yun_transformer_visualization_via
   group: classic
   display_order: 1
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 1
   inclusion_reason: Foundational method or finding retained for its continuing role
     in mechanism analysis; evidence includes representational_structure, sparse_features,
@@ -805,6 +914,7 @@ papers:
 - paper_id: p_2021_dai_knowledge_neurons_in
   group: classic
   display_order: 2
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 2
   inclusion_reason: Foundational method or finding retained for its continuing role
     in mechanism analysis; evidence includes circuits_components, formal_theory, validation.
@@ -812,6 +922,7 @@ papers:
 - paper_id: p_2021_geiger_causal_abstractions_of
   group: classic
   display_order: 3
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 3
   inclusion_reason: Foundational method or finding retained for its continuing role
     in mechanism analysis; evidence includes causal_intervention, circuits_components,
@@ -820,6 +931,7 @@ papers:
 - paper_id: p_2020_geva_transformer_feed_forward
   group: classic
   display_order: 4
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 6
   inclusion_reason: Foundational method or finding retained for its continuing role
     in mechanism analysis; evidence includes circuits_components, formal_theory.
@@ -827,6 +939,7 @@ papers:
 - paper_id: p_2016_alain_understanding_intermediate_layers
   group: classic
   display_order: 5
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 9
   inclusion_reason: Foundational method or finding retained for its continuing role
     in mechanism analysis; evidence includes representational_structure, formal_theory.
@@ -834,6 +947,7 @@ papers:
 - paper_id: p_2019_wiegreffe_attention_is_not
   group: classic
   display_order: 6
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 11
   inclusion_reason: Foundational method or finding retained for its continuing role
     in mechanism analysis; evidence includes circuits_components, validation.
@@ -841,6 +955,7 @@ papers:
 - paper_id: p_2020_ravichander_probing_the_probing
   group: classic
   display_order: 7
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 15
   inclusion_reason: Foundational method or finding retained for its continuing role
     in mechanism analysis; evidence includes representational_structure, formal_theory,
@@ -849,6 +964,7 @@ papers:
 - paper_id: p_2018_adebayo_sanity_checks_for
   group: classic
   display_order: 8
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 19
   inclusion_reason: Foundational method or finding retained for its continuing role
     in mechanism analysis; evidence includes validation.
@@ -856,6 +972,7 @@ papers:
 - paper_id: p_2017_bau_network_dissection_quantifying
   group: classic
   display_order: 9
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 31
   inclusion_reason: Foundational method or finding retained for its continuing role
     in mechanism analysis; evidence includes representational_structure, validation.
@@ -863,8 +980,115 @@ papers:
 - paper_id: p_2019_hewitt_designing_and_interpreting
   group: classic
   display_order: 10
+  source_handoff_id: 2026-10-08__llm-interpretability-final-corpus
   selection_rank_within_candidate_pool: 33
   inclusion_reason: Foundational method or finding retained for its continuing role
     in mechanism analysis; evidence includes representational_structure, formal_theory,
     validation.
   selection_source_index: 109
+- paper_id: p_2024_dunefsky_transcoders_find_interpretable
+  group: supplement
+  display_order: 1
+  source_handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
+  selection_rank_within_candidate_pool: 1
+  inclusion_reason: 'User-selected representative paper for the uncovered technique
+    branch: Feature Discovery & Decomposition > Feature Dictionary Learning > Transcoders.'
+  selection_source_index: 0
+- paper_id: p_2025_minder_overcoming_sparsity_artifacts
+  group: supplement
+  display_order: 2
+  source_handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
+  selection_rank_within_candidate_pool: 2
+  inclusion_reason: 'User-selected representative paper for the uncovered technique
+    branch: Feature Discovery & Decomposition > Feature Dictionary Learning > Crosscoders.'
+  selection_source_index: 1
+- paper_id: p_2026_liu_ica_lens_interpreting
+  group: supplement
+  display_order: 3
+  source_handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
+  selection_rank_within_candidate_pool: 3
+  inclusion_reason: 'User-selected representative paper for the uncovered technique
+    branch: Feature Discovery & Decomposition > ICA-Based Decomposition > ICA Lens.'
+  selection_source_index: 2
+- paper_id: p_2022_ilharco_editing_models_with
+  group: supplement
+  display_order: 4
+  source_handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
+  selection_rank_within_candidate_pool: 4
+  inclusion_reason: 'User-selected representative paper for the uncovered technique
+    branch: Steering & Model Change > Parameter-Space Editing > Task Vectors.'
+  selection_source_index: 3
+- paper_id: p_2017_lundberg_a_unified_approach
+  group: supplement
+  display_order: 5
+  source_handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
+  selection_rank_within_candidate_pool: 5
+  inclusion_reason: 'User-selected representative paper for the uncovered technique
+    branch: Readout & Measurement > Attribution & Sensitivity > Shapley-Value Attribution.'
+  selection_source_index: 4
+- paper_id: p_2022_radhakrishnan_mechanism_of_feature
+  group: supplement
+  display_order: 6
+  source_handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
+  selection_rank_within_candidate_pool: 6
+  inclusion_reason: 'User-selected representative paper for the uncovered technique
+    branch: Formal & Temporal Mechanism Analysis > Neural Feature-Learning Analysis
+    > NFM-AGOP/EGOP.'
+  selection_source_index: 5
+- paper_id: p_2022_oikarinen_clip_dissect_automatic_description
+  group: supplement
+  display_order: 7
+  source_handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
+  selection_rank_within_candidate_pool: 7
+  inclusion_reason: 'User-selected representative paper for the uncovered technique
+    branch: Feature Discovery & Decomposition > Concept-Unit Alignment > CLIP-Dissect.'
+  selection_source_index: 6
+- paper_id: p_2022_achtibat_from_attribution_maps
+  group: supplement
+  display_order: 8
+  source_handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
+  selection_rank_within_candidate_pool: 8
+  inclusion_reason: 'User-selected representative paper for the uncovered technique
+    branch: Readout & Measurement > Attribution & Sensitivity > Relevance Propagation
+    > CRP.'
+  selection_source_index: 7
+- paper_id: p_2021_jethani_fastshap_real_time_shapley
+  group: supplement
+  display_order: 9
+  source_handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
+  selection_rank_within_candidate_pool: 9
+  inclusion_reason: 'User-selected representative paper for the uncovered technique
+    branch: Shapley-Value Attribution > Amortized SHAP.'
+  selection_source_index: 8
+- paper_id: p_2020_yang_feature_learning_in
+  group: supplement
+  display_order: 10
+  source_handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
+  selection_rank_within_candidate_pool: 10
+  inclusion_reason: 'User-selected representative paper for the uncovered technique
+    branch: Neural Feature-Learning > Kernel/NTK Feature Regimes.'
+  selection_source_index: 9
+- paper_id: p_2023_beaglehole_mechanism_of_feature
+  group: supplement
+  display_order: 11
+  source_handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
+  selection_rank_within_candidate_pool: 11
+  inclusion_reason: 'User-selected representative paper for the uncovered technique
+    branch: Neural Feature-Learning > Convolutional NFM.'
+  selection_source_index: 10
+- paper_id: p_2023_syed_attribution_patching_outperforms
+  group: supplement
+  display_order: 12
+  source_handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
+  selection_rank_within_candidate_pool: 12
+  inclusion_reason: 'User-selected representative paper for the uncovered technique
+    branch: Attribution & Sensitivity > Attribution Patching.'
+  selection_source_index: 11
+- paper_id: p_2025_jin_massive_values_in
+  group: supplement
+  display_order: 13
+  source_handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
+  selection_rank_within_candidate_pool: 13
+  inclusion_reason: 'User-selected representative paper for the uncovered technique
+    branch: Magnitude-Based Scoring > Static/Dynamic Magnitude.'
+  selection_source_index: 12

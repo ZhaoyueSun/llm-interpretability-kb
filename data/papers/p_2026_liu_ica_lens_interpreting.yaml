@@ -1,0 +1,73 @@
+---
+schema_version: 1
+paper_id: p_2026_liu_ica_lens_interpreting
+title: 'ICA Lens: Interpreting Language Models Without Training Another Dictionary'
+year: 2026
+earliest_public_date: '2026-06-10'
+earliest_public_date_precision: day
+venue: arXiv preprint
+publication_type: preprint
+identifiers:
+  doi: ''
+  arxiv_id: '2606.11722'
+  openreview_id:
+links:
+  primary: https://arxiv.org/abs/2606.11722
+  pdf: https://arxiv.org/pdf/2606.11722
+  code:
+authors:
+- author_id: a_sida_liu_00c84480
+  name: Sida Liu
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_feijiang_han_fce60f8c
+  name: Feijiang Han
+  position: 2
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2606.11722
+  en: 'Finding interpretable directions in language-model representations is critical
+    for understanding and controlling model behavior. Sparse autoencoders (SAEs) have
+    become the standard tool for this purpose, but using them as the default first
+    lens often requires training, storing, and evaluating large overcomplete dictionaries.
+    This bottleneck limits rapid exploration and raises a fundamental question: how
+    much interpretable structure is already visible from activation geometry before
+    training another neural dictionary? Our intuition is simple: many interpretable
+    directions are selective on tokens, and these directions should look less Gaussian
+    than random directions. We therefore revisit independent component analysis (ICA),
+    a classical method for finding non-Gaussian directions, as a compact lens for
+    language-model interpretability. We find that ICA has been underestimated for
+    LLM interpretability, because prior uses often relied on off-the-shelf ICA implementations
+    that are brittle on LLM activations and lacked systematic tools for inspecting
+    and evaluating the recovered directions. To bridge these gaps, we introduce ICALens,
+    the first practical workflow for stable, efficient, and auditable ICA analysis
+    of LLM representations. It combines an optimized GPU-parallel FastICA pipeline
+    with LLM-specific stability recipes and better fitting diagnostics, enabling efficient
+    and reliable layer-wise analysis. Across GPT-2 Small, Gemma 2 2B, and Qwen 3.5
+    2B Base, ICALens efficiently recovers compact, human-interpretable directions
+    without per-layer gradient-based dictionary training. On SAEBench, ICA is competitive
+    with public SAEs in sparse probing and outperforms them in targeted probe perturbation
+    under small-to-medium budgets. These results suggest that ICA should not be viewed
+    as a weak baseline, but as an efficient and complementary first lens for exploring
+    language-model representations.'
+  zh: >-
+    在语言模型表征中寻找可解释方向，对于理解和控制模型行为至关重要。稀疏自编码器（SAE）已成为完成这一任务的标准工具，但把它作为默认的第一观察工具，往往需要训练、存储和评估大型过完备字典。这一瓶颈限制了快速探索，也引出一个根本问题：在训练另一个神经字典之前，仅从激活几何中已经能看到多少可解释结构？我们的直觉很简单：许多可解释方向只对部分 token 具有选择性，因此它们应当比随机方向更不符合高斯分布。于是，我们重新考察独立成分分析（ICA）这一寻找非高斯方向的经典方法，把它用作语言模型可解释性的紧凑观察工具。我们发现，ICA 在语言模型可解释性中的价值一直被低估，因为以往应用往往依赖现成的 ICA 实现；这些实现在语言模型激活上很脆弱，同时也缺少系统检查和评估所得方向的工具。为弥补这些不足，我们提出 ICALens，这是首个针对语言模型表征进行稳定、高效且可审计 ICA 分析的实用工作流。它把经过优化的 GPU 并行 FastICA 流水线、面向语言模型的稳定性方案和更好的拟合诊断相结合，从而支持高效、可靠的逐层分析。在 GPT-2 Small、Gemma 2 2B 和 Qwen 3.5 2B Base 上，ICALens 无需逐层开展基于梯度的字典训练，就能高效恢复紧凑且人类可解释的方向。在 SAEBench 上，ICA 在稀疏探测方面可与公开 SAE 竞争，并在小到中等预算下的定向探针扰动中优于它们。这些结果说明，ICA 不应被视为较弱的基线，而应成为探索语言模型表征时高效且互补的第一观察工具。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2026_liu_ica_lens_interpreting
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at:
+  handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
+  selection_source_index: 2
+  abstract_verification: docling_token_coverage_at_least_0.95

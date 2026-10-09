@@ -1,0 +1,66 @@
+---
+schema_version: 1
+paper_id: p_2017_lundberg_a_unified_approach
+title: A Unified Approach to Interpreting Model Predictions
+year: 2017
+earliest_public_date: '2017-05-22'
+earliest_public_date_precision: day
+venue: Advances in Neural Information Processing Systems (NeurIPS 2017)
+publication_type: conference
+identifiers:
+  doi: ''
+  arxiv_id: '1705.07874'
+  openreview_id:
+links:
+  primary: https://arxiv.org/abs/1705.07874
+  pdf: https://arxiv.org/pdf/1705.07874
+  code:
+authors:
+- author_id: a_scott_lundberg_89da9112
+  name: Scott Lundberg
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_su_in_lee_38cc6a5f
+  name: Su-In Lee
+  position: 2
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/1705.07874
+  en: 'Understanding why a model makes a certain prediction can be as crucial as the
+    prediction''s accuracy in many applications. However, the highest accuracy for
+    large modern datasets is often achieved by complex models that even experts struggle
+    to interpret, such as ensemble or deep learning models, creating a tension between
+    accuracy and interpretability. In response, various methods have recently been
+    proposed to help users interpret the predictions of complex models, but it is
+    often unclear how these methods are related and when one method is preferable
+    over another. To address this problem, we present a unified framework for interpreting
+    predictions, SHAP (SHapley Additive exPlanations). SHAP assigns each feature an
+    importance value for a particular prediction. Its novel components include: (1)
+    the identification of a new class of additive feature importance measures, and
+    (2) theoretical results showing there is a unique solution in this class with
+    a set of desirable properties. The new class unifies six existing methods, notable
+    because several recent methods in the class lack the proposed desirable properties.
+    Based on insights from this unification, we present new methods that show improved
+    computational performance and/or better consistency with human intuition than
+    previous approaches.'
+  zh: >-
+    在许多应用中，理解模型为何作出某项预测，可能与预测准确性同样重要。然而，在大型现代数据集上取得最高准确率的，往往是连专家也难以解释的复杂模型，例如集成模型或深度学习模型，这在准确性与可解释性之间造成了张力。为此，近期出现了多种帮助用户解释复杂模型预测的方法，但这些方法之间有何联系、何时应优先采用哪一种方法，往往并不清楚。为解决这一问题，我们提出解释预测的统一框架 SHAP（SHapley Additive exPlanations）。SHAP 为某项具体预测中的每个特征分配一个重要性值。其创新包括：（1）识别出一类新的加性特征重要性度量；（2）从理论上证明，在满足一组理想性质的前提下，该类别中存在唯一解。这一新类别统一了六种现有方法；这一点尤其值得注意，因为该类别中的若干近期方法并不具备上述理想性质。基于统一框架带来的认识，我们提出了一些新方法，与以往方法相比，它们具有更好的计算性能和／或与人类直觉更一致的结果。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2017_lundberg_a_unified_approach
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at:
+  handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
+  selection_source_index: 4
+  abstract_verification: docling_token_coverage_at_least_0.95

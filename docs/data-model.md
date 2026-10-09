@@ -18,7 +18,7 @@ PaperManage 提供最终论文名单、筛选过程、论文信息、入选原�
 
 ## Corpus
 
-`data/corpus.yaml` 是最终 110 篇论文的成员清单。它保存 corpus 版本、PaperManage handoff ID、Core 时间窗口、每篇论文所属的 `core` 或 `classic` 分组、组内展示顺序、候选池排名、入选原因和原始交付条目序号。
+`data/corpus.yaml` 是论文集合的成员清单。基础集合由 100 篇 `core` 和 10 篇 `classic` 组成；后续为覆盖 taxonomy 缺口而加入的论文属于 `supplement`，不会改写原有身份。Corpus 保存版本、全部 PaperManage handoff 来源、各分组范围、组内展示顺序、候选池排名、入选原因和原始交付条目序号。
 
 成员身份不写入论文文件，因为它描述的是论文与本项目 corpus 的关系，而不是论文本身的事实。
 

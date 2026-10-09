@@ -4,7 +4,7 @@
 
 ## `build_corpus.rb`
 
-根据 PaperManage 的实际 JSON 交付生成 `data/corpus.yaml`。脚本只复制正式成员关系、组内展示顺序、候选池排名、入选理由、稳定 handoff ID 和原始条目序号，不复制标题、作者、taxonomy、import 路径、绝对路径或全文状态。
+根据 PaperManage 的基础 JSON 交付生成 `data/corpus.yaml`。脚本只复制正式成员关系、组内展示顺序、候选池排名、入选理由、稳定 handoff ID 和原始条目序号，不复制标题、作者、taxonomy、import 路径、绝对路径或全文状态。
 
 脚本使用 Ruby 标准库，不需要安装项目依赖。默认输入和输出分别是：
 
@@ -14,6 +14,16 @@ data/corpus.yaml
 ```
 
 也可以通过两个位置参数指定输入和输出路径。
+
+## `merge_corpus_supplement.rb`
+
+将 PaperManage 的 `taxonomy-supplement` 交付增量合并到现有 corpus。新增论文进入独立的 `supplement` 组，不改变原有 core 和 classic 身份；脚本同时记录新增 handoff 来源并递增 corpus 版本。重复执行同一份完整交付不会重复添加论文，部分重叠则停止并要求人工检查。
+
+脚本默认输入为：
+
+```text
+imports/2026-10-09__llm-interpretability-taxonomy-supplement.json
+```
 
 ## `audit_abstracts.rb`
 

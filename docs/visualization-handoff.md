@@ -15,8 +15,8 @@
 
 ## 当前状态
 
-- Corpus 已确定为 100 篇 core papers 和 10 篇 classic papers。
-- `data/papers/` 中已有 110 个论文对象，包含基础属性、英文 abstract 和中文翻译。
+- 基础 corpus 已确定为 100 篇 core papers 和 10 篇 classic papers；后续论文以 `supplement` 身份增量加入，不改写基础名单身份。
+- `data/papers/` 保存全部基础与增补论文对象，包含基础属性、英文 abstract 和中文翻译。
 - `data/taxonomies/research-object.yaml` 目前只是空的 draft，尚未形成正式节点结构。
 - `data/classification-events.jsonl` 尚无正式论文—节点关系。
 - `data/classification-proposals.yaml` 尚无待审提案。
@@ -32,7 +32,7 @@ Taxonomy 与可视化不是先后完成的两个阶段，而是在实际研究�
 继续使用平台 ← 批准变更并重新生成可视化
 ```
 
-网页首先应成为辅助研究 110 篇论文的工作台。用户需要借助平台查看论文、比较相关工作、检验分类是否合理，并在此过程中继续调整可视化设计。不要等待 taxonomy 完全定稿后才开始网页工作，也不要为了完成网页而过早冻结 taxonomy。
+网页首先应成为辅助研究当前 corpus 论文的工作台。用户需要借助平台查看论文、比较相关工作、检验分类是否合理，并在此过程中继续调整可视化设计。不要等待 taxonomy 完全定稿后才开始网页工作，也不要为了完成网页而过早冻结 taxonomy。
 
 ## 首个可用闭环
 

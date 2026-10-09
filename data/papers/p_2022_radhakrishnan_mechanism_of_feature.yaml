@@ -1,0 +1,79 @@
+---
+schema_version: 1
+paper_id: p_2022_radhakrishnan_mechanism_of_feature
+title: Mechanism of feature learning in deep fully connected networks and kernel machines
+  that recursively learn features
+year: 2022
+earliest_public_date: '2022-12-28'
+earliest_public_date_precision: day
+venue: Science (2024); arXiv preprint first released 2022
+publication_type: journal
+identifiers:
+  doi: ''
+  arxiv_id: '2212.13881'
+  openreview_id:
+links:
+  primary: https://arxiv.org/abs/2212.13881
+  pdf: https://arxiv.org/pdf/2212.13881
+  code:
+authors:
+- author_id: a_adityanarayanan_radhakrishnan_5f048821
+  name: Adityanarayanan Radhakrishnan
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_daniel_beaglehole_b549ddea
+  name: Daniel Beaglehole
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_parthe_pandit_1a41d70e
+  name: Parthe Pandit
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_mikhail_belkin_1bd515af
+  name: Mikhail Belkin
+  position: 4
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2212.13881
+  en: In recent years neural networks have achieved impressive results on many technological
+    and scientific tasks. Yet, the mechanism through which these models automatically
+    select features, or patterns in data, for prediction remains unclear. Identifying
+    such a mechanism is key to advancing performance and interpretability of neural
+    networks and promoting reliable adoption of these models in scientific applications.
+    In this paper, we identify and characterize the mechanism through which deep fully
+    connected neural networks learn features. We posit the Deep Neural Feature Ansatz,
+    which states that neural feature learning occurs by implementing the average gradient
+    outer product to up-weight features strongly related to model output. Our ansatz
+    sheds light on various deep learning phenomena including emergence of spurious
+    features and simplicity biases and how pruning networks can increase performance,
+    the "lottery ticket hypothesis." Moreover, the mechanism identified in our work
+    leads to a backpropagation-free method for feature learning with any machine learning
+    model. To demonstrate the effectiveness of this feature learning mechanism, we
+    use it to enable feature learning in classical, non-feature learning models known
+    as kernel machines and show that the resulting models, which we refer to as Recursive
+    Feature Machines, achieve state-of-the-art performance on tabular data.
+  zh: >-
+    近年来，神经网络在许多技术和科学任务上取得了令人瞩目的成果。然而，这些模型自动选择用于预测的数据特征或模式的机制仍不清楚。识别这一机制，是提升神经网络性能与可解释性、推动这些模型在科学应用中得到可靠采用的关键。本文识别并刻画了深度全连接神经网络学习特征的机制。我们提出深度神经特征假设（Deep Neural Feature Ansatz）：神经特征学习通过实现平均梯度外积，对与模型输出高度相关的特征增加权重。该假设有助于理解多种深度学习现象，包括虚假特征和简单性偏置如何涌现，以及网络剪枝为何可能提高性能，即“彩票假说”。此外，本工作识别的机制带来一种无需反向传播、可用于任意机器学习模型的特征学习方法。为展示这种特征学习机制的有效性，我们用它使传统上不能学习特征的核机器获得特征学习能力，并证明所得模型——我们称为递归特征机器——在表格数据上达到最先进性能。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2022_radhakrishnan_mechanism_of_feature
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at:
+  handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
+  selection_source_index: 5
+  abstract_verification: docling_token_coverage_at_least_0.95

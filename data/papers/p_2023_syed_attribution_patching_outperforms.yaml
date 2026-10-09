@@ -1,0 +1,66 @@
+---
+schema_version: 1
+paper_id: p_2023_syed_attribution_patching_outperforms
+title: Attribution Patching Outperforms Automated Circuit Discovery
+year: 2023
+earliest_public_date: '2023-10-16'
+earliest_public_date_precision: day
+venue: NeurIPS 2023 Workshop on Attributing Model Behavior at Scale
+publication_type: workshop
+identifiers:
+  doi: ''
+  arxiv_id: '2310.10348'
+  openreview_id:
+links:
+  primary: https://arxiv.org/abs/2310.10348
+  pdf: https://arxiv.org/pdf/2310.10348
+  code:
+authors:
+- author_id: a_aaquib_syed_93c5f3df
+  name: Aaquib Syed
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_c_rager_1cba574a
+  name: Can Rager
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_arthur_conmy_1734e7d3
+  name: Arthur Conmy
+  position: 3
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2310.10348
+  en: Automated interpretability research has recently attracted attention as a potential
+    research direction that could scale explanations of neural network behavior to
+    large models. Existing automated circuit discovery work applies activation patching
+    to identify subnetworks responsible for solving specific tasks (circuits). In
+    this work, we show that a simple method based on attribution patching outperforms
+    all existing methods while requiring just two forward passes and a backward pass.
+    We apply a linear approximation to activation patching to estimate the importance
+    of each edge in the computational subgraph. Using this approximation, we prune
+    the least important edges of the network. We survey the performance and limitations
+    of this method, finding that averaged over all tasks our method has greater AUC
+    from circuit recovery than other methods.
+  zh: >-
+    自动化可解释性研究近期受到关注，被视为一种可能把神经网络行为解释扩展到大模型的研究方向。现有自动回路发现工作应用激活修补，识别负责解决特定任务的子网络，即回路。本文表明，一种基于归因修补的简单方法优于所有现有方法，而且只需要两次前向传播和一次反向传播。我们对激活修补作线性近似，以估计计算子图中每条边的重要性，并利用该近似剪除网络中最不重要的边。我们系统考察该方法的性能和局限，发现对所有任务取平均后，该方法在回路恢复上的 AUC 高于其他方法。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2023_syed_attribution_patching_outperforms
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at:
+  handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
+  selection_source_index: 11
+  abstract_verification: docling_token_coverage_at_least_0.95

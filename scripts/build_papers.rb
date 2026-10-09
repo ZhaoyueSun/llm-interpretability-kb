@@ -46,6 +46,7 @@ papers = manifest.fetch("papers")
 PAPERS_DIR.mkpath
 existing_authors_document = AUTHORS_PATH.file? ? YAML.load_file(AUTHORS_PATH.to_s) : {}
 authors = existing_authors_document.fetch("authors", {})
+existing_author_ids = authors.keys
 created = 0
 skipped = 0
 
@@ -57,7 +58,10 @@ papers.each_with_index do |entry, source_index|
 
   names = require_field(metadata, "authors", paper_id)
   paper_authors = names.each_with_index.map do |name, index|
-    id = author_id(name)
+    existing_match = authors.find do |_candidate_id, author|
+      [author["canonical_name"], *Array(author["aliases"])].include?(name)
+    end
+    id = existing_match ? existing_match.first : author_id(name)
     authors[id] ||= {
       "canonical_name" => name,
       "aliases" => [],
@@ -128,14 +132,27 @@ papers.each_with_index do |entry, source_index|
     }
   }
 
-  output_path.write(YAML.dump(paper), encoding: "UTF-8")
+  output_path.write(YAML.dump(paper).gsub(/[ \t]+$/, ""), encoding: "UTF-8")
   created += 1
 end
 
-authors_document = {
-  "schema_version" => 1,
-  "authors" => authors.sort_by { |_id, author| author["canonical_name"].downcase }.to_h
-}
-AUTHORS_PATH.write(YAML.dump(authors_document), encoding: "UTF-8")
+new_authors = authors.reject { |id, _author| existing_author_ids.include?(id) }
+if AUTHORS_PATH.file?
+  unless new_authors.empty?
+    fragment = YAML.dump(new_authors.sort_by { |_id, author| author["canonical_name"].downcase }.to_h)
+                   .sub(/\A---\s*\n/, "")
+                   .lines
+                   .map { |line| "  #{line}" }
+                   .join
+                   .gsub(/: \n/, ": null\n")
+    AUTHORS_PATH.open("a", encoding: "UTF-8") { |file| file.write(fragment) }
+  end
+else
+  authors_document = {
+    "schema_version" => 1,
+    "authors" => authors.sort_by { |_id, author| author["canonical_name"].downcase }.to_h
+  }
+  AUTHORS_PATH.write(YAML.dump(authors_document), encoding: "UTF-8")
+end
 
-puts("Created #{created} paper files; skipped #{skipped} existing files; wrote #{authors.length} author entities")
+puts("Created #{created} paper files; skipped #{skipped} existing files; added #{new_authors.length} author entities")

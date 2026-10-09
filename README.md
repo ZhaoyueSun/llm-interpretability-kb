@@ -1,6 +1,6 @@
 # LLM Interpretability Knowledge Base
 
-本项目维护一个由 100 篇 core papers 和 10 篇 classic papers 组成的 LLM interpretability 论文语料库，并据此构建可持续更新的网页知识图谱。
+本项目维护一个以 100 篇 core papers 和 10 篇 classic papers 为基础、允许按 taxonomy 研究需要增补论文的 LLM interpretability 语料库，并据此构建可持续更新的网页知识图谱。
 
 当前处于数据结构搭建阶段。论文名单、筛选过程和入选理由由 PaperManage 提供；本项目负责规范化论文数据、整理英文 abstract、完成中文翻译、维护 taxonomy 与论文分类关系，以及生成网页所需的数据。
 

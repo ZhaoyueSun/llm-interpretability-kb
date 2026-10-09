@@ -1,0 +1,90 @@
+---
+schema_version: 1
+paper_id: p_2025_minder_overcoming_sparsity_artifacts
+title: Overcoming Sparsity Artifacts in Crosscoders to Interpret Chat-Tuning
+year: 2025
+earliest_public_date: '2025-04-03'
+earliest_public_date_precision: day
+venue: Advances in Neural Information Processing Systems (NeurIPS 2025)
+publication_type: conference
+identifiers:
+  doi: ''
+  arxiv_id: '2504.02922'
+  openreview_id:
+links:
+  primary: https://arxiv.org/abs/2504.02922
+  pdf: https://arxiv.org/pdf/2504.02922
+  code:
+authors:
+- author_id: a_julian_minder_b0f767eb
+  name: Julian Minder
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_clement_dumas_9f2792aa
+  name: Clément Dumas
+  position: 2
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_caden_juang_3e9d8955
+  name: Caden Juang
+  position: 3
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_bilal_chugtai_2a76fdc6
+  name: Bilal Chugtai
+  position: 4
+  roles:
+  - middle
+  affiliations: []
+- author_id: a_neel_nanda_ddf6abf4
+  name: Neel Nanda
+  position: 5
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2504.02922
+  en: Model diffing is the study of how fine-tuning changes a model's representations
+    and internal algorithms. Many behaviors of interest are introduced during fine-tuning,
+    and model diffing offers a promising lens to interpret such behaviors. Crosscoders
+    are a recent model diffing method that learns a shared dictionary of interpretable
+    concepts represented as latent directions in both the base and fine-tuned models,
+    allowing us to track how concepts shift or emerge during fine-tuning. Notably,
+    prior work has observed concepts with no direction in the base model, and it was
+    hypothesized that these model-specific latents were concepts introduced during
+    fine-tuning. However, we identify two issues which stem from the crosscoders L1
+    training loss that can misattribute concepts as unique to the fine-tuned model,
+    when they really exist in both models. We develop Latent Scaling to flag these
+    issues by more accurately measuring each latent's presence across models. In experiments
+    comparing Gemma 2 2B base and chat models, we observe that the standard crosscoder
+    suffers heavily from these issues. Building on these insights, we train a crosscoder
+    with BatchTopK loss and show that it substantially mitigates these issues, finding
+    more genuinely chat-specific and highly interpretable concepts. We recommend practitioners
+    adopt similar techniques. Using the BatchTopK crosscoder, we successfully identify
+    a set of chat-specific latents that are both interpretable and causally effective,
+    representing concepts such as $\textit{false information}$ and $\textit{personal
+    question}$, along with multiple refusal-related latents that show nuanced preferences
+    for different refusal triggers. Overall, our work advances best practices for
+    the crosscoder-based methodology for model diffing and demonstrates that it can
+    provide concrete insights into how chat-tuning modifies model behavior.
+  zh: >-
+    模型差分研究微调如何改变模型的表征和内部算法。许多值得关注的行为是在微调期间引入的，因此模型差分为解释这些行为提供了一个有前景的视角。Crosscoder 是近期提出的一种模型差分方法，它学习由基础模型和微调模型中的潜在方向共同表征的可解释概念字典，使我们能够追踪概念在微调期间如何变化或出现。值得注意的是，以往工作观察到一些在基础模型中没有对应方向的概念，并据此假设这些模型特有的潜变量是微调时引入的概念。然而，我们发现，crosscoder 的 L1 训练损失会引发两个问题，使本来同时存在于两个模型中的概念被错误归为微调模型所独有。我们提出潜变量缩放（Latent Scaling），通过更准确地衡量每个潜变量在不同模型中的存在程度来标记这些问题。在比较 Gemma 2 2B 基础模型与聊天模型的实验中，我们观察到标准 crosscoder 严重受到这些问题影响。基于上述认识，我们使用 BatchTopK 损失训练 crosscoder，并证明它能大幅缓解相关问题，发现更多真正为聊天模型所特有且高度可解释的概念。我们建议实践者采用类似技术。借助 BatchTopK crosscoder，我们成功识别出一组既可解释又具有因果效力的聊天模型特有潜变量，它们表征“虚假信息”“私人问题”等概念，以及多个与拒绝有关、对不同拒绝触发条件表现出细致偏好的潜变量。总体而言，本工作改进了使用 crosscoder 开展模型差分的方法实践，并证明它能够具体揭示聊天调优如何改变模型行为。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2025_minder_overcoming_sparsity_artifacts
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at:
+  handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
+  selection_source_index: 1
+  abstract_verification: docling_token_coverage_at_least_0.95

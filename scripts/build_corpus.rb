@@ -45,6 +45,7 @@ normalized_papers = papers.each_with_index.map do |paper, index|
     "paper_id" => paper["paper_id"],
     "group" => group,
     "display_order" => group_orders[group],
+    "source_handoff_id" => handoff_id,
     "selection_rank_within_candidate_pool" => require_field(
       paper,
       "selection_rank_within_candidate_pool",
@@ -64,15 +65,18 @@ abort("Expected #{expected_core} core papers, found #{actual_core}") unless actu
 abort("Expected #{expected_classic} classic papers, found #{actual_classic}") unless actual_classic == expected_classic
 
 corpus = {
-  "schema_version" => 1,
+  "schema_version" => 2,
   "corpus_id" => require_field(source, "corpus", "import root"),
   "version" => 1,
   "status" => "final",
-  "source" => {
-    "project" => "PaperManage",
-    "handoff_id" => handoff_id,
-    "generated_on" => require_field(source, "generated_on", "import root")
-  },
+  "sources" => [
+    {
+      "project" => "PaperManage",
+      "handoff_id" => handoff_id,
+      "generated_on" => require_field(source, "generated_on", "import root"),
+      "role" => "base"
+    }
+  ],
   "scope" => {
     "core" => {
       "upstream_membership" => "main-window",

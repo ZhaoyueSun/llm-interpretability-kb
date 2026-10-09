@@ -1,0 +1,67 @@
+---
+schema_version: 1
+paper_id: p_2020_yang_feature_learning_in
+title: Feature Learning in Infinite-Width Neural Networks
+year: 2020
+earliest_public_date: '2020-11-30'
+earliest_public_date_precision: day
+venue: International Conference on Machine Learning (ICML 2021)
+publication_type: conference
+identifiers:
+  doi: ''
+  arxiv_id: '2011.14522'
+  openreview_id:
+links:
+  primary: https://arxiv.org/abs/2011.14522
+  pdf: https://arxiv.org/pdf/2011.14522
+  code:
+authors:
+- author_id: a_greg_yang_88fe8808
+  name: Greg Yang
+  position: 1
+  roles:
+  - first
+  affiliations: []
+- author_id: a_edward_j_hu_4a2cda7e
+  name: Edward J. Hu
+  position: 2
+  roles:
+  - last
+  affiliations: []
+abstract:
+  source: PaperKnowledgeBase metadata, cross-checked against Docling full text
+  source_url: https://arxiv.org/abs/2011.14522
+  en: As its width tends to infinity, a deep neural network's behavior under gradient
+    descent can become simplified and predictable (e.g. given by the Neural Tangent
+    Kernel (NTK)), if it is parametrized appropriately (e.g. the NTK parametrization).
+    However, we show that the standard and NTK parametrizations of a neural network
+    do not admit infinite-width limits that can learn features, which is crucial for
+    pretraining and transfer learning such as with BERT. We propose simple modifications
+    to the standard parametrization to allow for feature learning in the limit. Using
+    the *Tensor Programs* technique, we derive explicit formulas for such limits.
+    On Word2Vec and few-shot learning on Omniglot via MAML, two canonical tasks that
+    rely crucially on feature learning, we compute these limits exactly. We find that
+    they outperform both NTK baselines and finite-width networks, with the latter
+    approaching the infinite-width feature learning performance as width increases.
+    More generally, we classify a natural space of neural network parametrizations
+    that generalizes standard, NTK, and Mean Field parametrizations. We show 1) any
+    parametrization in this space either admits feature learning or has an infinite-width
+    training dynamics given by kernel gradient descent, but not both; 2) any such
+    infinite-width limit can be computed using the Tensor Programs technique. Code
+    for our experiments can be found at github.com/edwardjhu/TP4.
+  zh: >-
+    如果采用恰当的参数化方式（例如神经切线核参数化），深度神经网络在梯度下降下的行为会随宽度趋于无穷而变得简化且可预测，例如由神经切线核（NTK）描述。然而，我们表明，神经网络的标准参数化和 NTK 参数化都不存在能够学习特征的无限宽极限，而特征学习对于 BERT 之类的预训练和迁移学习至关重要。我们对标准参数化提出简单修改，使无限宽极限能够进行特征学习，并使用张量程序（Tensor Programs）技术推导出这类极限的显式公式。对于 Word2Vec 和通过 MAML 在 Omniglot 上进行少样本学习这两项高度依赖特征学习的经典任务，我们精确计算了这些极限。结果发现，它们同时优于 NTK 基线和有限宽网络；随着宽度增加，有限宽网络的表现会逐渐接近无限宽特征学习。更一般地，我们对一个自然的神经网络参数化空间进行分类，该空间涵盖标准、NTK 和平均场参数化。我们证明：（1）该空间中的任意参数化要么允许特征学习，要么具有由核梯度下降给出的无限宽训练动力学，但不能同时具备二者；（2）任何此类无限宽极限都可使用张量程序技术计算。实验代码见 github.com/edwardjhu/TP4。
+  translation:
+    status: complete
+    translated_by: project_agent
+    third_party_api_used: false
+knowledge_base:
+  record_id: p_2020_yang_feature_learning_in
+  has_pdf: true
+  has_docling_fulltext: true
+provenance:
+  imported_from: PaperManage
+  imported_at:
+  handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
+  selection_source_index: 9
+  abstract_verification: docling_token_coverage_at_least_0.95
