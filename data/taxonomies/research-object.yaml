@@ -1,6 +1,1013 @@
 schema_version: 1
 taxonomy_id: research-object
-version: 0
-status: draft
+version: 1
+status: active
 title: Research Objects
-nodes: []
+nodes:
+- node_id: research-object
+  parent_id: null
+  title: Research Objects
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [input, internal, output, structural, process]
+  introduction:
+    en: >-
+      Research objects are the entities about which an interpretability study makes its
+      central claim: a state that carries information, a component that transforms it,
+      a parameter set, a composed mechanism, or a learning process. The tree classifies
+      what is being explained, independently of the technique used to inspect or alter it.
+    zh: >-
+      Research Objects 指可解释性研究实际要对其提出核心结论的对象：承载信息的状态、执行变换的组件、
+      参数集合、组合机制或学习过程。这棵树回答“研究的是什么”，与用于观察或改变它的技术相互独立。
+- node_id: data-state-representation
+  parent_id: research-object
+  title: Data, States, and Representations
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [input, internal]
+  introduction:
+    en: >-
+      This branch concerns the variables in which information is presented to, carried
+      through, or reorganized by a model. It distinguishes discrete data units from
+      continuous activation states and from higher-order structures such as directions,
+      subspaces, and learned features.
+    zh: >-
+      这一分支关注信息以何种变量进入模型、在模型中传递或被重新组织。它区分离散的数据单元、连续激活状态，
+      以及方向、子空间和学习特征等更高阶的表征结构。
+- node_id: data-unit
+  parent_id: data-state-representation
+  title: Data Units
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [input]
+  introduction:
+    en: >-
+      Data units are discrete or directly observed parts of an example before the model
+      turns them into hidden vectors. Studying them asks which words, patches, pixels, or
+      input channels are associated with a prediction; it does not yet identify the
+      internal representation or computation that uses them.
+    zh: >-
+      Data Units 是样本中尚未被模型转换为隐藏向量的离散或直接可观测部分。研究它们可以判断哪些词、图像块、
+      像素或输入通道与预测相关，但还不能说明模型内部用什么表征或计算处理这些信息。
+- node_id: token
+  parent_id: data-unit
+  title: Tokens
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [transformer-language-model, recurrent-neural-network, state-space-model, mixture-of-experts, vision-language-model]
+  applicable_object_roles: [input]
+  introduction:
+    en: >-
+      A token is a discrete vocabulary item or sequence position, not the vector used to
+      represent it. Token-level studies ask which symbolic units matter, how information
+      is routed among positions, or how changing a token changes model behavior.
+    zh: >-
+      Token 是离散词表项或序列位置，并不是表示它的连续向量。Token 层面的研究关注哪些符号单元重要、
+      信息怎样在位置之间流动，以及替换某个 token 会怎样改变模型行为。
+- node_id: input-feature
+  parent_id: data-unit
+  title: Input Features
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [input]
+  introduction:
+    en: >-
+      Input features are semantically defined coordinates of structured data, such as a
+      tabular variable, field, or measured attribute. Attribution methods may assign them
+      predictive credit, but that credit depends on the chosen baseline and treatment of
+      dependencies among features.
+    zh: >-
+      Input Features 是结构化数据中具有语义定义的坐标，例如表格变量、字段或测量属性。归因方法可以为它们
+      分配预测贡献，但该贡献依赖所选基线，以及如何处理特征之间的依赖关系。
+- node_id: image-patch
+  parent_id: data-unit
+  title: Image Patches
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [vision-transformer, vision-language-model, diffusion-model]
+  applicable_object_roles: [input]
+  introduction:
+    en: >-
+      Image patches are spatial regions treated as input units by a vision transformer or
+      related model. Patch-level analysis can localize visual evidence, while the patch
+      embedding produced from that region is a separate continuous representation.
+    zh: >-
+      Image Patches 是视觉 Transformer 或相关模型作为输入单元处理的空间区域。Patch 层面的分析可以定位
+      图像证据；由该区域投影得到的 patch embedding 则属于另一类连续表征。
+- node_id: pixel-input-channel
+  parent_id: data-unit
+  title: Pixels and Input Channels
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [convolutional-neural-network, diffusion-model]
+  applicable_object_roles: [input]
+  introduction:
+    en: >-
+      Pixels and input channels are the finest directly observed coordinates of an
+      image-like input. Attribution to them reveals local sensitivity of a prediction,
+      but robust mechanistic claims require tests beyond the appearance of a saliency map.
+    zh: >-
+      Pixels and Input Channels 是图像类输入中最细的直接观测坐标。对它们做归因可以揭示预测的局部敏感性，
+      但仅凭显著性图的外观不足以支持稳健的机制结论。
+- node_id: representation-state
+  parent_id: data-state-representation
+  title: Representation States
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [input, internal]
+  introduction:
+    en: >-
+      Representation states are activation vectors or tensors instantiated during a
+      forward pass. Unlike a component, which denotes a reusable computation, a state is
+      the value produced for a particular example, position, layer, or time step.
+    zh: >-
+      Representation States 是前向传播中实际产生的激活向量或张量。组件表示可重复使用的计算，而状态表示该计算
+      在某个样本、位置、层或时间步上得到的具体取值。
+- node_id: token-embedding
+  parent_id: representation-state
+  title: Token Embeddings
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [transformer-language-model, recurrent-neural-network, state-space-model, mixture-of-experts, vision-language-model]
+  applicable_object_roles: [input, internal]
+  introduction:
+    en: >-
+      A token embedding is a continuous vector assigned to a discrete token, commonly
+      written as \(e_t=E[t]\). Its geometry can encode similarity and contextual
+      distinctions; it should not be conflated with the token identity that indexes it.
+    zh: >-
+      Token Embedding 是赋给离散 token 的连续向量，通常写作 \(e_t=E[t]\)。它的几何结构可以编码相似性与
+      上下文差异，但不能与用来索引该向量的 token 身份混为一谈。
+- node_id: patch-embedding
+  parent_id: representation-state
+  title: Patch Embeddings
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [vision-transformer, vision-language-model, diffusion-model]
+  applicable_object_roles: [input, internal]
+  introduction:
+    en: >-
+      Patch embeddings are continuous vectors obtained after projecting image regions
+      into the model's hidden space. They are the vision-side analogue of token
+      embeddings, although positional encoding and modality projectors may reshape them.
+    zh: >-
+      Patch Embeddings 是图像区域投影到模型隐藏空间后得到的连续向量，可视为视觉侧的 token embedding。
+      不过，位置编码与模态投影器会进一步改变其中承载的信息。
+- node_id: visual-token
+  parent_id: representation-state
+  title: Visual Tokens
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [vision-language-model]
+  applicable_object_roles: [input, internal]
+  introduction:
+    en: >-
+      Visual tokens are image-derived vectors after a vision encoder or projector has
+      placed them in the sequence processed by a multimodal model. Their interpretation
+      concerns how visual evidence is represented and integrated with language.
+    zh: >-
+      Visual Tokens 是图像经过视觉编码器或投影器后，被放入多模态模型序列中的向量。研究它们关注视觉证据
+      如何被表示并与语言结合，而不只是原始图像区域本身。
+- node_id: residual-stream-state
+  parent_id: representation-state
+  title: Residual-Stream States
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [transformer-language-model, vision-transformer, vision-language-model, mixture-of-experts, diffusion-model]
+  applicable_object_roles: [internal]
+  introduction:
+    en: >-
+      A residual-stream state is the shared activation vector to which transformer
+      sublayers read and write. Directions found there may summarize information from
+      several components rather than identify one component's causal contribution.
+    zh: >-
+      Residual-Stream State 是 Transformer 各子层共同读取并写回的激活向量。其中发现的方向可能汇总多个组件的
+      信息，并不自动等同于某个组件的因果贡献。
+- node_id: component-output-state
+  parent_id: representation-state
+  title: Component Output States
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [internal]
+  introduction:
+    en: >-
+      Component output states are the activations produced by a particular head, layer,
+      module, or block on an example. They distinguish what a computation writes from the
+      reusable component that generated the value.
+    zh: >-
+      Component Output States 是某个 head、层、模块或 block 对具体样本产生的激活。它把“计算写出了什么”与
+      “产生该值的可复用组件”明确区分开来。
+- node_id: feature-map
+  parent_id: representation-state
+  title: Feature Maps
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [convolutional-neural-network, diffusion-model]
+  applicable_object_roles: [internal]
+  introduction:
+    en: >-
+      A feature map records the spatial activation of one or more channels after a
+      convolutional transformation. It preserves where a pattern occurs, whereas a
+      filter or channel denotes the reusable detector that produces the map.
+    zh: >-
+      Feature Map 记录卷积变换后一个或多个通道在空间上的激活分布。它保留视觉模式出现的位置；
+      filter 或 channel 则指产生这张激活图的可复用检测单元。
+- node_id: recurrent-state
+  parent_id: representation-state
+  title: Recurrent Hidden States
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [recurrent-neural-network]
+  applicable_object_roles: [internal]
+  introduction:
+    en: >-
+      Recurrent hidden states summarize a sequence prefix through repeated updates, for
+      example \(h_t=f(h_{t-1},x_t)\). Their analysis asks what persists, is overwritten,
+      or becomes decodable as time advances.
+    zh: >-
+      Recurrent Hidden States 通过反复更新状态来概括序列前缀，例如 \(h_t=f(h_{t-1},x_t)\)。研究它们追问
+      哪些信息会持续保留、被覆盖，或随着时间推进变得可读出。
+- node_id: state-space-state
+  parent_id: representation-state
+  title: State-Space States
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [state-space-model]
+  applicable_object_roles: [internal]
+  introduction:
+    en: >-
+      State-space states are latent sequence summaries propagated by a structured
+      transition, often \(s_{t+1}=A_ts_t+B_tx_t\). They are natural objects for studying
+      long-range memory and input-dependent dynamics.
+    zh: >-
+      State-Space states 是由结构化状态转移传播的潜在序列摘要，常写作 \(s_{t+1}=A_ts_t+B_tx_t\)。
+      它们适合用于研究长程记忆以及输入依赖动力学。
+- node_id: expert-output-state
+  parent_id: representation-state
+  title: Expert Output States
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [mixture-of-experts]
+  applicable_object_roles: [internal]
+  introduction:
+    en: >-
+      Expert output states are example-specific vectors written by selected experts.
+      Comparing them separates what the router chose from what each chosen expert
+      actually contributed to the shared representation.
+    zh: >-
+      Expert Output States 是被选中的 expert 针对具体样本写出的向量。比较这些状态，可以把“router 选择了谁”
+      与“被选 expert 实际写入了什么”区分开来。
+- node_id: denoising-latent
+  parent_id: representation-state
+  title: Denoising Latents
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [diffusion-model]
+  applicable_object_roles: [internal]
+  introduction:
+    en: >-
+      Denoising latents are evolving noisy representations along a diffusion trajectory.
+      Their interpretation concerns when semantic, spatial, or conditioning information
+      enters and how it changes across noise levels.
+    zh: >-
+      Denoising Latents 是扩散轨迹中随噪声水平演化的潜在表示。研究它们关注语义、空间结构或条件信息
+      在何时进入生成过程，以及怎样随去噪步骤变化。
+- node_id: linear-direction-vector
+  parent_id: data-state-representation
+  title: Linear Directions and Vectors
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [internal, structural]
+  introduction:
+    en: >-
+      A linear direction is a vector \(v\) for which \(v^Th\) tracks a concept, function,
+      or behavior, or intervention along \(v\) changes it. Causal use must be established
+      by intervention rather than decoding accuracy alone.
+    zh: >-
+      Linear Direction 是向量 \(v\)：投影 \(v^Th\) 能追踪某个概念、功能或行为，或沿 \(v\) 的干预能改变它。
+      是否被模型因果使用，仍需通过干预而非仅凭解码准确率来判断。
+- node_id: subspace-manifold-geometry
+  parent_id: data-state-representation
+  title: Subspaces, Manifolds, and Geometry
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [internal, structural]
+  introduction:
+    en: >-
+      This object is the multidimensional organization of representations: a subspace,
+      manifold, intrinsic dimension, basis relation, or relational geometry. It is useful
+      when a phenomenon cannot be reduced faithfully to one neuron or one direction.
+    zh: >-
+      这一对象是表征的多维组织方式，包括子空间、流形、内在维度、基之间的关系或关系几何。
+      当现象无法忠实地压缩为单个神经元或单一方向时，这一层级尤为重要。
+- node_id: learned-feature
+  parent_id: data-state-representation
+  title: Learned Features
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [internal, structural]
+  introduction:
+    en: >-
+      Learned features are coordinates introduced by an auxiliary decomposition to make
+      model activity easier to analyze. The resulting feature is the research object;
+      the SAE, transcoder, crosscoder, or ICA procedure belongs in Techniques.
+    zh: >-
+      Learned Features 是辅助分解方法引入的坐标，用来使模型活动更容易分析。这里的对象是分解得到的表征特征；
+      产生它的 SAE、transcoder、crosscoder 或 ICA 过程属于 Techniques 分类树。
+- node_id: sparse-dictionary-feature
+  parent_id: learned-feature
+  title: Sparse Dictionary Features
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [internal, structural]
+  introduction:
+    en: >-
+      Sparse dictionary features are learned atoms whose sparse activations reconstruct
+      model states. Their faithfulness depends on reconstruction error, feature splitting,
+      and whether downstream behavior responds to interventions on the feature.
+    zh: >-
+      Sparse Dictionary Features 是通过稀疏激活重构模型状态的学习型字典原子。其忠实性取决于重构误差、
+      feature splitting，以及下游行为是否响应对该特征的干预。
+- node_id: transcoder-feature
+  parent_id: learned-feature
+  title: Transcoder Features
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [transformer-language-model, vision-transformer, vision-language-model, mixture-of-experts]
+  applicable_object_roles: [internal, structural]
+  introduction:
+    en: >-
+      A transcoder feature is a sparse intermediate variable learned to predict a
+      component's output from its input. It approximates a transformation rather than
+      merely reconstructing one activation space.
+    zh: >-
+      Transcoder Feature 是为从组件输入预测组件输出而学习的稀疏中间变量。它近似的是一次变换，
+      而不仅是重构单个激活空间。
+- node_id: crosscoder-feature
+  parent_id: learned-feature
+  title: Crosscoder Features
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [internal, structural]
+  introduction:
+    en: >-
+      Crosscoder features are shared or model-specific latent variables learned across
+      layers, checkpoints, or related models. They expose which computations are
+      preserved, added, removed, or reorganized by training and fine-tuning.
+    zh: >-
+      Crosscoder Features 是跨层、跨 checkpoint 或跨相关模型学习到的共享或模型特有潜变量。它们用于研究训练与
+      微调保留、增加、删除或重组了哪些计算。
+- node_id: independent-component
+  parent_id: learned-feature
+  title: Independent Components
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [internal, structural]
+  introduction:
+    en: >-
+      Independent components are directions chosen to make recovered signals statistically
+      independent under an ICA objective. Independence can expose non-Gaussian structure,
+      but does not by itself guarantee semantic purity or causal relevance.
+    zh: >-
+      Independent Components 是在 ICA 目标下使恢复信号尽量统计独立的方向。独立性能够揭示非高斯结构，
+      但本身并不保证语义纯度或因果相关性。
+- node_id: concept-aligned-feature
+  parent_id: learned-feature
+  title: Concept-Aligned Features
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [internal, structural]
+  introduction:
+    en: >-
+      Concept-aligned features are internal coordinates associated with human-named
+      concepts through labels, multimodal similarity, or concept propagation. Alignment
+      makes a hypothesis legible; causal tests must still show that the model uses it.
+    zh: >-
+      Concept-Aligned Features 是借助标签、多模态相似度或概念传播，与人类命名概念建立对应的内部坐标。
+      这种对齐让假设更易理解，但仍需因果检验来证明模型确实使用该概念。
+- node_id: score-prediction
+  parent_id: research-object
+  title: Scores and Predictions
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [output]
+  introduction:
+    en: >-
+      Scores and predictions are model-level quantities at the decision boundary: logits,
+      probabilities, similarities, margins, regressions, or denoising estimates. They
+      become research objects when their geometry, decomposition, or evolution is studied directly.
+    zh: >-
+      Scores and Predictions 是模型决策边界上的量，如 logits、概率、相似度、margin、回归值或去噪估计。
+      当研究直接分析其几何、分解或演化时，它们才作为研究对象归入此处。
+- node_id: token-logit-distribution
+  parent_id: score-prediction
+  title: Token Logits and Distributions
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [transformer-language-model, recurrent-neural-network, state-space-model, mixture-of-experts, vision-language-model]
+  applicable_object_roles: [output]
+  introduction:
+    en: >-
+      Token logits and their normalized distributions describe a sequence model's
+      preference over its output vocabulary. Studies may examine their geometry or trace
+      how internal updates change particular logit differences before sampling.
+    zh: >-
+      Token Logits and Distributions 描述序列模型对输出词表中各 token 的偏好。研究可以分析其几何结构，
+      或追踪内部更新在采样前如何改变特定 token 之间的 logit 差。
+- node_id: class-score-margin
+  parent_id: score-prediction
+  title: Class Scores and Margins
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [convolutional-neural-network, vision-transformer, vision-language-model]
+  applicable_object_roles: [output]
+  introduction:
+    en: >-
+      Class scores and margins quantify preference among discrete labels. A margin such
+      as \(f_y(x)-f_{y'}(x)\) is often more informative for attribution than one
+      probability because it makes the competing decision explicit.
+    zh: >-
+      Class Scores and Margins 衡量模型对离散类别的偏好。相比单个概率，\(f_y(x)-f_{y'}(x)\) 这样的 margin
+      往往更适合归因分析，因为它明确指出正在比较的竞争决策。
+- node_id: similarity-retrieval-score
+  parent_id: score-prediction
+  title: Similarity and Retrieval Scores
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [vision-language-model]
+  applicable_object_roles: [output]
+  introduction:
+    en: >-
+      Similarity and retrieval scores compare embeddings across examples or modalities,
+      often by a dot product or cosine similarity. Their interpretation asks which
+      features create the alignment and whether it supports the intended semantic relation.
+    zh: >-
+      Similarity and Retrieval Scores 通常用点积或余弦相似度比较不同样本或模态的 embedding。研究它们会追问
+      哪些内部特征促成了对齐，以及这种对齐是否真正对应预期的语义关系。
+- node_id: regression-prediction
+  parent_id: score-prediction
+  title: Regression Predictions
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [output]
+  introduction:
+    en: >-
+      Regression predictions are continuous outputs rather than label or token
+      probabilities. Their interpretation must specify the scale, baseline, and loss,
+      because parameterization changes the meaning of an internal contribution.
+    zh: >-
+      Regression Predictions 是连续的模型输出，而不是类别或 token 概率。解释这类对象必须说明输出尺度、基线与
+      损失函数，因为不同参数化会改变内部贡献的含义。
+- node_id: denoising-prediction
+  parent_id: score-prediction
+  title: Denoising Predictions
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [diffusion-model]
+  applicable_object_roles: [output]
+  introduction:
+    en: >-
+      Denoising predictions estimate noise, velocity, score, or a clean sample at a
+      diffusion step. Their meaning depends on the sampler and parameterization, so a
+      study should identify which prediction target it actually analyzes.
+    zh: >-
+      Denoising Predictions 是扩散步骤中对噪声、velocity、score 或干净样本的估计。其含义依赖采样器与参数化，
+      因而研究需要明确实际分析的是哪一种预测目标。
+- node_id: native-component
+  parent_id: research-object
+  title: Native Model Components
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      Native components are reusable computations or storage mechanisms already present
+      in the target model. Routing, transformation, memory, normalization, and unit-level
+      objects are separated so architecture-specific names need not become tree roots.
+    zh: >-
+      Native Model Components 是目标模型中原生存在的可复用计算或存储机制。本分支区分路由、变换、记忆、
+      归一化与单元级对象，使架构特有名称不必成为整棵树的根分支。
+- node_id: routing-selection-component
+  parent_id: native-component
+  title: Routing and Selection Components
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      Routing components determine where information is read from or which computation
+      receives it. Selection patterns must be distinguished from the effect of the
+      selected content on later computation.
+    zh: >-
+      Routing and Selection Components 决定信息从哪里读取，或由哪段计算接收。选择模式必须与被选内容对后续计算
+      产生的作用分开分析。
+- node_id: attention-pattern-qk
+  parent_id: routing-selection-component
+  title: Attention Patterns and QK Routing
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [transformer-language-model, vision-transformer, vision-language-model, mixture-of-experts, diffusion-model]
+  applicable_object_roles: [internal, structural]
+  introduction:
+    en: >-
+      Attention patterns and QK scores describe which source positions a query selects.
+      They characterize routing, not the content written through value and output
+      matrices, so an attention map alone is not a complete account of a head's effect.
+    zh: >-
+      Attention Patterns and QK Routing 描述一个 query 选择哪些来源位置。它们刻画路由，而不是 value 与 output
+      矩阵写入的内容；因此只看 attention map 不能完整说明一个 head 的作用。
+- node_id: attention-head-ov
+  parent_id: routing-selection-component
+  title: Attention Heads and OV Computation
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [transformer-language-model, vision-transformer, vision-language-model, mixture-of-experts, diffusion-model]
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      An attention head combines routing with a value-output transformation that writes
+      information into a shared stream. The head or its OV map supports functional claims
+      about what it copies, suppresses, or composes.
+    zh: >-
+      Attention Head 把路由选择与 value-output 变换结合起来，并把信息写入共享状态。以完整 head 或其 OV 映射
+      为对象，可以讨论它复制、抑制或组合了什么功能性信息。
+- node_id: moe-router-gate
+  parent_id: routing-selection-component
+  title: MoE Routers and Gates
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [mixture-of-experts]
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      MoE routers assign tokens or states to a sparse subset of experts. Their
+      interpretation concerns specialization, load balancing, and whether routing
+      choices determine which capabilities or knowledge are expressed.
+    zh: >-
+      MoE Routers and Gates 把 token 或状态分配给稀疏选择的一组 expert。研究它们关注 expert 专门化、负载均衡，
+      以及路由决策是否因果地决定哪些能力或知识被表达。
+- node_id: selective-gate
+  parent_id: routing-selection-component
+  title: Selective State-Space Gates
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [state-space-model]
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      Selective gates make state-space transitions input dependent, controlling what is
+      retained, updated, or exposed. They help explain why an SSM preserves some sequence
+      information while discarding other information.
+    zh: >-
+      Selective State-Space Gates 让状态转移依赖当前输入，从而控制哪些信息被保留、更新或输出。它们用于解释 SSM
+      为什么保留某些序列信息、同时丢弃另一些信息。
+- node_id: cross-modal-attention
+  parent_id: routing-selection-component
+  title: Cross-Modal Attention
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [vision-language-model]
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      Cross-modal attention routes information between representations from different
+      modalities. Its study asks not only where modalities align, but which routed
+      content changes multimodal reasoning or generation.
+    zh: >-
+      Cross-Modal Attention 在不同模态的表征之间路由信息。研究它不仅要看模态在哪里对齐，还要检验被路由的内容
+      如何改变多模态推理或生成。
+- node_id: transformation-component
+  parent_id: native-component
+  title: Transformation Components
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      Transformation components map one representation into another within a forward
+      pass. Their interpretation focuses on the computation implemented by a module,
+      rather than on one activation it happens to produce.
+    zh: >-
+      Transformation Components 在一次前向传播中把一种表征映射为另一种表征。解释它们关注模块实现的计算，
+      而不是它在某个样本上偶然产生的一次激活。
+- node_id: mlp-ffn-module
+  parent_id: transformation-component
+  title: MLP and Feed-Forward Modules
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [transformer-language-model, vision-transformer, vision-language-model, mixture-of-experts, diffusion-model]
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      MLP or feed-forward modules apply position-wise nonlinear transformations, often
+      \(W_{out}\sigma(W_{in}h)\). They can act as distributed memories, feature detectors
+      and writers, or stages in a larger computation.
+    zh: >-
+      MLP 或 Feed-Forward Module 对每个位置执行非线性变换，常写作 \(W_{out}\sigma(W_{in}h)\)。研究者可把它们
+      视为分布式记忆、特征检测与写入器，或更大计算中的一个阶段。
+- node_id: convolutional-layer
+  parent_id: transformation-component
+  title: Convolutional Layers
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [convolutional-neural-network, diffusion-model]
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      Convolutional layers apply spatially shared kernels to local neighborhoods. Their
+      receptive fields and equivariances help explain how local visual patterns compose
+      into progressively more global features.
+    zh: >-
+      Convolutional Layers 使用空间共享的 kernel 处理局部邻域。其感受野与等变性有助于解释局部视觉模式如何
+      逐步组合为更全局的特征。
+- node_id: state-update-module
+  parent_id: transformation-component
+  title: Recurrent and State-Space Update Modules
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [recurrent-neural-network, state-space-model]
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      State-update modules implement the recurrence that carries information through a
+      sequence. Their transition dynamics determine how information is stored,
+      transformed, and forgotten.
+    zh: >-
+      Recurrent and State-Space Update Modules 实现沿序列传播信息的递推。其转移动力学决定信息怎样被存储、
+      变换与遗忘。
+- node_id: expert-network
+  parent_id: transformation-component
+  title: Expert Networks
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [mixture-of-experts]
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      Expert networks are alternative transformation modules selected sparsely by an MoE
+      router. Their interpretation asks whether specialization by domain, syntax,
+      concept, or computation is stable across inputs.
+    zh: >-
+      Expert Networks 是由 MoE router 稀疏选择的候选变换模块。研究它们会追问 expert 是否按领域、句法、概念
+      或计算类型发生专门化，以及这种专门化是否稳定。
+- node_id: modality-projector
+  parent_id: transformation-component
+  title: Modality Projectors
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [vision-language-model]
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      A modality projector maps representations from one encoder into the hidden space
+      consumed by another model. It reveals which distinctions survive alignment and
+      where modality-specific information is lost.
+    zh: >-
+      Modality Projector 把一个编码器产生的表征映射到另一模型使用的隐藏空间。它适合用于研究哪些差异在对齐后
+      仍被保留，以及模态特有信息在哪里丢失。
+- node_id: denoising-block
+  parent_id: transformation-component
+  title: Denoising Blocks
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [diffusion-model]
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      Denoising blocks transform a noisy latent under timestep and conditioning signals.
+      Their interpretation locates where composition, spatial structure, and prompt
+      information influence the evolving sample.
+    zh: >-
+      Denoising Blocks 在时间步与条件信号作用下变换带噪 latent。解释这些模块旨在定位构图、空间结构与 prompt
+      信息在生成轨迹的哪些阶段影响正在形成的样本。
+- node_id: memory-state-component
+  parent_id: native-component
+  title: Memory and State Components
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [internal, structural]
+  introduction:
+    en: >-
+      Memory components retain information beyond an immediately local transformation.
+      They support questions about what is stored, how long it persists, and which later
+      computations can retrieve it.
+    zh: >-
+      Memory and State Components 保存超出一次局部变换范围的信息。研究它们可以追问存储了什么、信息持续多久，
+      以及哪些后续计算能够将其取回。
+- node_id: kv-cache
+  parent_id: memory-state-component
+  title: Key–Value Caches
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [transformer-language-model, vision-language-model, mixture-of-experts]
+  applicable_object_roles: [internal, structural]
+  introduction:
+    en: >-
+      A key–value cache stores past attention keys and values for autoregressive reuse.
+      Editing cached states can reveal which past information supports a later token
+      prediction, making the cache more than a systems optimization.
+    zh: >-
+      Key–Value Cache 保存过去的 attention keys 与 values，供自回归生成重复使用。编辑缓存状态可以检验哪些
+      历史信息支撑之后的 token 预测，因此它不只是系统优化结构。
+- node_id: recurrent-memory
+  parent_id: memory-state-component
+  title: Recurrent Memory
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [recurrent-neural-network]
+  applicable_object_roles: [internal, structural]
+  introduction:
+    en: >-
+      Recurrent memory is the persistent state carried from one sequence step to the next.
+      Mechanistic analysis examines how information is encoded into, maintained within,
+      and read out from this bounded state.
+    zh: >-
+      Recurrent Memory 是从一个序列时间步持续传到下一个时间步的状态。机制分析关注信息怎样被写入、保持在
+      这一有限状态中，并在之后被读出。
+- node_id: state-space-memory
+  parent_id: memory-state-component
+  title: State-Space Memory
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [state-space-model]
+  applicable_object_roles: [internal, structural]
+  introduction:
+    en: >-
+      State-space memory is the structured latent state and transition through which an
+      SSM summarizes long sequences. Spectral modes, timescales, and selective updates
+      reveal what kinds of information can persist or be suppressed.
+    zh: >-
+      State-Space Memory 是 SSM 用来概括长序列的结构化潜在状态及其转移过程。其谱模态、时间尺度与选择性更新
+      可以揭示哪些信息能够持续存在或被抑制。
+- node_id: normalization-component
+  parent_id: native-component
+  title: Normalization Components
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      Normalization components rescale or recenter activations and alter the effective
+      geometry seen downstream. They merit explicit study when scale, outliers, or
+      cross-channel coupling is central to a mechanism.
+    zh: >-
+      Normalization Components 通过缩放或重新中心化激活，改变后续计算看到的有效几何。当机制依赖尺度、
+      异常大值或通道间耦合时，归一化组件本身值得被明确分析。
+- node_id: layer-rms-normalization
+  parent_id: normalization-component
+  title: Layer and RMS Normalization
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [transformer-language-model, vision-transformer, vision-language-model, state-space-model, mixture-of-experts, diffusion-model]
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      LayerNorm and RMSNorm set the scale of position-wise hidden states before later
+      transformations. They can rotate effective readouts or amplify outlier dimensions,
+      and may therefore be part of the mechanism rather than neutral preprocessing.
+    zh: >-
+      LayerNorm 与 RMSNorm 在后续变换前设定位置级隐藏状态的尺度。它们可能改变有效读出方向或放大异常维度，
+      因此未必只是中性的预处理步骤，也可能属于机制本身。
+- node_id: batch-group-normalization
+  parent_id: normalization-component
+  title: Batch and Group Normalization
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [convolutional-neural-network, diffusion-model]
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      BatchNorm and GroupNorm normalize convolutional activations over different axes and
+      populations. Their choice changes channel comparability, batch dependence, and the
+      propagation of feature magnitude through a vision model.
+    zh: >-
+      BatchNorm 与 GroupNorm 沿不同坐标轴和统计总体对卷积激活进行归一化。它们会改变通道可比性、对 batch 的
+      依赖，以及特征幅值在视觉模型中的传播方式。
+- node_id: native-unit
+  parent_id: native-component
+  title: Native Units
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      Native units are the smallest architecture-defined channels or computational units
+      treated individually. Unit selectivity can generate hypotheses, but distributed
+      representations mean one unit rarely provides a complete mechanism.
+    zh: >-
+      Native Units 是架构预先定义、并被研究单独考察的最小通道或计算单元。单元级选择性可以产生假设，
+      但由于表征通常是分布式的，单个单元很少能够构成完整机制。
+- node_id: mlp-neuron
+  parent_id: native-unit
+  title: MLP Neurons
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [transformer-language-model, vision-transformer, vision-language-model, mixture-of-experts]
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      An MLP neuron is one native hidden coordinate between the input and output matrices
+      of a feed-forward block. Its activation selectivity and output vector together show
+      when it fires and what update it writes.
+    zh: >-
+      MLP Neuron 是前馈 block 的输入矩阵与输出矩阵之间的一个原生隐藏坐标。把其激活选择性与输出向量结合分析，
+      可以同时追问它何时响应以及响应后写入什么更新。
+- node_id: channel-filter
+  parent_id: native-unit
+  title: Channels and Filters
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [convolutional-neural-network, diffusion-model]
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      A channel or filter is a convolutional unit shared across spatial locations.
+      Comparing its selectivity with the effect of suppressing it distinguishes a concept
+      that activates the unit from a concept the model actually uses.
+    zh: >-
+      Channel 或 Filter 是跨空间位置共享的卷积单元。把其选择性与抑制该通道后的影响进行比较，可以区分
+      “会激活该单元的概念”和“模型实际使用的概念”。
+- node_id: state-channel
+  parent_id: native-unit
+  title: State Channels
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [recurrent-neural-network, state-space-model]
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      State channels are individual coordinates or modes of a recurrent or state-space
+      state. Because their meaning depends on the basis, findings should be checked for
+      stability under equivalent reparameterizations.
+    zh: >-
+      State Channels 是循环状态或状态空间状态中的单个坐标或模态。由于其含义依赖所选基，坐标级发现需要检验
+      在等价重参数化下是否稳定。
+- node_id: expert-unit
+  parent_id: native-unit
+  title: Expert Units
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_model_families: [mixture-of-experts]
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      Expert units are neurons or features inside an MoE expert. They reveal whether an
+      expert's apparent specialization is concentrated in a few units or distributed
+      broadly across the expert network.
+    zh: >-
+      Expert Units 是 MoE expert 内部的神经元或特征。它们可用于判断一个 expert 看似专门化的功能是集中在
+      少数单元，还是广泛分布在整个 expert network 中。
+- node_id: model-parameter
+  parent_id: research-object
+  title: Model Parameters
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      Parameter objects live in weight space rather than in one example's activation
+      trace. They are appropriate when a study localizes behavior to weights, analyzes
+      matrix structure, or interprets differences between trained models.
+    zh: >-
+      Model Parameters 位于权重空间，而不是某个样本的一次激活轨迹中。当研究把行为定位到权重、分析矩阵结构，
+      或解释训练模型之间的差异时，应归入这一分支。
+- node_id: weight-matrix-kernel
+  parent_id: model-parameter
+  title: Weight Matrices and Kernels
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      Weight matrices and convolutional kernels define reusable linear maps. Singular
+      structure, sparsity, outlier entries, and alignment with activation directions can
+      reveal capabilities that activations alone obscure.
+    zh: >-
+      Weight Matrices and Kernels 定义可复用的线性映射。其奇异结构、稀疏性、异常大权重，以及与激活方向的对齐，
+      可以揭示仅从激活中不易观察到的能力与约束。
+- node_id: behavior-localized-parameter-subset
+  parent_id: model-parameter
+  title: Behavior-Localized Parameter Subsets
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      A behavior-localized parameter subset is a group of weights claimed to store or
+      control a behavior, fact, or capability. Localization is strongest when changing
+      it selectively changes the target while preserving unrelated behavior.
+    zh: >-
+      Behavior-Localized Parameter Subset 是被认为存储或控制某种行为、事实或能力的一组权重。最有说服力的定位
+      需要证明：改变这组参数能选择性改变目标，同时尽量保留无关行为。
+- node_id: parameter-delta-task-vector
+  parent_id: model-parameter
+  title: Parameter Deltas and Task Vectors
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [structural, process]
+  introduction:
+    en: >-
+      A parameter delta \(\Delta\theta=\theta_{after}-\theta_{before}\) represents change
+      induced by training or editing. As a task vector, it supports questions about
+      composition, interference, and transfer in weight space.
+    zh: >-
+      Parameter Delta \(\Delta\theta=\theta_{after}-\theta_{before}\) 表示训练或编辑带来的权重变化。当它被视为
+      task vector 时，可以研究学习到的行为在参数空间中能否组合、是否干扰，以及能否迁移。
+- node_id: composed-mechanism
+  parent_id: research-object
+  title: Composed Mechanisms
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      Composed mechanisms are explanatory structures assembled from several states,
+      components, parameters, or causal relations. They explain how a behavior is
+      implemented, not merely where a correlated signal is visible.
+    zh: >-
+      Composed Mechanisms 是由多个状态、组件、参数或因果关系组成的解释结构。它们试图说明行为如何被实现，
+      而不仅是相关信号可以在哪里被观察到。
+- node_id: path-edge-information-flow
+  parent_id: composed-mechanism
+  title: Paths, Edges, and Information Flow
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      Paths and edges represent directed influence between states or components. They are
+      finer than a whole circuit and show where information originates, which route
+      carries it, and where it is transformed or lost.
+    zh: >-
+      Paths, Edges, and Information Flow 表示状态或组件之间的有向影响。它们比完整 circuit 更细，适合追问信息
+      从哪里产生、经过哪条路线，以及在哪里被转换或丢失。
+- node_id: circuit-subgraph
+  parent_id: composed-mechanism
+  title: Circuits and Computational Subgraphs
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      A circuit is a subgraph of components and edges proposed to implement a behavior.
+      A persuasive account tests necessity, sufficiency, and faithfulness, and explains
+      how the participating parts jointly compute the result.
+    zh: >-
+      Circuit 是被认为实现某种行为的组件与边的子图。有说服力的解释需要检验必要性、充分性与忠实性，
+      并说明参与部分怎样共同完成计算。
+- node_id: causal-variable-algorithm
+  parent_id: composed-mechanism
+  title: Causal Variables and Algorithms
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [structural]
+  introduction:
+    en: >-
+      This object is a higher-level causal description—variables, states, rules, or an
+      algorithm—aligned with neural computation. The abstraction should predict the
+      model's causal behavior under corresponding interventions, not merely resemble it.
+    zh: >-
+      这一对象是与神经计算对齐的高层因果描述，包括变量、状态、规则或算法。抽象应能在对应干预下预测模型的
+      因果行为，而不只是与模型表现出描述上的相似。
+- node_id: learning-process
+  parent_id: research-object
+  title: Learning Processes
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [process]
+  introduction:
+    en: >-
+      Learning-process objects are defined by change across optimization rather than a
+      single trained forward pass. They explain when a representation or mechanism
+      emerges, why training selects it, and whether alternatives were available.
+    zh: >-
+      Learning Processes 由优化过程中的变化来定义，而不是由训练完成后的一次前向传播定义。它们用于解释某种
+      表征或机制何时出现、训练为何选择它，以及是否存在其他可行解。
+- node_id: checkpoint-training-trajectory
+  parent_id: learning-process
+  title: Checkpoints and Training Trajectories
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [process]
+  introduction:
+    en: >-
+      A checkpoint trajectory follows parameters, activations, or mechanisms through
+      training time. It can reveal developmental stages and phase changes that disappear
+      when only the final model is inspected.
+    zh: >-
+      Checkpoints and Training Trajectories 沿训练时间追踪参数、激活或机制。它可以揭示只观察最终模型时会被掩盖的
+      形成阶段、重组过程与相变。
+- node_id: optimization-dynamics-landscape
+  parent_id: learning-process
+  title: Optimization Dynamics and Landscapes
+  status: active
+  proposal_id: tp_20261009_research_objects_v2
+  applicable_object_roles: [process]
+  introduction:
+    en: >-
+      Optimization dynamics and landscapes concern gradients, critical points, implicit
+      bias, identifiability, and the geometry of loss or feature learning. They connect
+      an observed mechanism to the forces that make training discover it.
+    zh: >-
+      Optimization Dynamics and Landscapes 关注梯度、临界点、隐式偏置、可辨识性，以及损失或特征学习的几何。
+      它们把最终观察到的机制与训练为何会发现该机制联系起来。

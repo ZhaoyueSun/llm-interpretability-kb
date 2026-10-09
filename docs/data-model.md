@@ -11,6 +11,7 @@ PaperManage 提供最终论文名单、筛选过程、论文信息、入选原�
 - `data/corpus.yaml`：正式 corpus 的成员、Core 或 Classic 身份及入选原因。
 - `data/papers/<paper_id>.yaml`：单篇论文事实和双语 abstract。
 - `data/authors.yaml`：跨论文作者身份与别名。
+- `data/model-families.yaml`：模型族定义、选择器文案以及论文与模型族的主次关系。
 - `data/taxonomies/*.yaml`：树结构和各节点的双语综述式介绍。
 - `data/classification-events.jsonl`：论文与节点关系的已批准变更历史。
 - `data/classification-proposals.yaml`：等待审批或已处理的分类与 taxonomy 提案。
@@ -55,16 +56,30 @@ Corpus 不复制标题、作者、facet、tag、绝对路径或全文抽取状�
 - `parent_id`；
 - 英文和中文介绍；
 - 节点状态和替代关系；
-- 建立或修改该节点的批准提案引用。
+- 建立或修改该节点的批准提案引用；
+- 可选的 `applicable_model_families`，用于说明节点在哪些模型族视图中有意义；字段缺省表示跨架构适用；
+- 可选的 `applicable_object_roles`，取值为 `input`、`internal`、`output`、`structural` 或 `process`。
 
 介绍文本采用 Markdown，并允许 LaTeX。介绍面向尚不熟悉该技术的研究者，而不是充当字段说明或术语定义：通常应先说明它要解决的问题，再用直观语言解释核心做法，并指出结果可以支持什么判断、不能单独证明什么。中英文应分别符合各自语言的自然表达，不要求逐句直译。网页语言开关只切换节点介绍和论文 abstract；标题统一保持英文。
 
+Research Objects 与 Techniques 必须保持正交：前者回答“研究什么”，后者回答“如何研究”。例如 probe 是 technique，其读取的 residual-stream state 或 component output 才是 research object；SAE 是 technique，学习得到的 sparse dictionary feature 才是 research object。一个对象在不同研究中可以承担不同角色，因此不能为了 input、internal 或 output 三种使用位置而复制同一个节点。
+
+## Model Family
+
+模型族不是 Research Objects 树的父层，而是可视化的独立筛选与命名视图。`data/model-families.yaml` 定义稳定的 `model_family_id`、英文标题、选择器标签、双语研究者导读，以及每个模型族的 primary 和 secondary 论文集合。每篇论文恰好有一个 primary model family，也可以因混合架构或跨模型实验属于多个 secondary families。
+
+模型族不是 taxonomy node，因此不写入 `classification-events.jsonl`，也不伪装成第三棵 taxonomy。其定义与论文归属由 `data/model-families.yaml` 整体版本化，并保存批准提案、更新时间和变更理由；后续修改应先形成提案再递增该文件版本。
+
+当前视图包括 General / Cross-Architecture、Transformer LM、RNN、CNN、Vision Transformer、Vision–Language、State-Space / Mamba、Sparse MoE 和 Diffusion。后四类是相对原始示意图补充或拆分出的模型族；即使当前 corpus 暂无某模型族的主论文，也保留其视图定义，以便可视化正确显示架构特化对象并支持后续扩展。
+
+选择模型族时，前端依据 taxonomy 节点的 `applicable_model_families` 隐藏不适用的叶节点，并保留通用祖先节点。例如 Transformer LM 显示 Token Embeddings，Vision Transformer 显示 Patch Embeddings；Scores and Predictions 始终保留，但下属的 Token Logits、Class Scores、Similarity Scores 或 Denoising Predictions 会随模型族变化。筛选只改变视图，不改变稳定 `node_id`，也不派生新的 taxonomy。
+
 ## Classification Event
 
-论文和节点的关系可以随 taxonomy、论文分析和人工判断变化。正式关系使用追加事件表示：
+论文和节点的关系可以随 taxonomy、论文分析和人工判断变化。Research Objects 与 Techniques 都使用相同的主次关系约束。正式关系使用追加事件表示：
 
-- `relation_role: primary` 表示论文最具区分度或最核心的技术关系；同一论文在同一 taxonomy 的当前状态中恰好保留一个 primary 关系；
-- `relation_role: secondary` 表示论文主要分析或验证管线中实质使用的其他技术；一篇论文可以有多个 secondary 关系；
+- `relation_role: primary` 表示论文在该 taxonomy 中最具区分度或最核心的关系；同一论文在同一 taxonomy 的当前状态中恰好保留一个 primary 关系；
+- `relation_role: secondary` 表示论文主要分析或验证管线中实质涉及的其他节点；一篇论文可以有多个 secondary 关系；
 
 - `assign`：新增关系；
 - `revoke`：撤销已有关系；

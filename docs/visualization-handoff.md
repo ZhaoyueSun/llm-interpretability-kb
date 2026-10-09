@@ -1,133 +1,132 @@
 # 可视化与 Taxonomy 迭代交接
 
-本文档面向后续负责网页可视化、论文分析和 taxonomy 迭代的 agent。它说明工作方式和数据边界，不预先规定尚未讨论的页面布局、图形样式、前端框架或部署方案。
+本文档面向后续负责网页可视化、论文分析和 taxonomy 迭代的 agent。它记录已经确认的数据语义与交互约束，不预设尚未选择的前端框架、图布局算法或部署方式。
 
 ## 必读顺序
-
-开始工作前依次阅读：
 
 1. `AGENTS.md`：项目边界和强制维护规则；
 2. `PROJECT_CHARTER.md`：已确认需求和尚待讨论事项；
 3. `docs/data-model.md`：事实数据、高阶分析和派生数据的职责；
-4. `web/README.md`：目前已确认的网页要求；
-5. `schemas/`：正式数据格式；
-6. `data/corpus.yaml`、`data/papers/` 和 `data/taxonomies/`：当前正式数据。
+4. `data/model-families.yaml`：模型族选择器与论文归属；
+5. `data/taxonomies/techniques.yaml` 与 `data/taxonomies/research-object.yaml`：两棵正式分类树；
+6. `data/classification-events.jsonl` 与 `data/classification-proposals.yaml`：已批准关系和待审关系。
 
-## 当前状态
+## 当前正式状态
 
-- 基础 corpus 已确定为 100 篇 core papers 和 10 篇 classic papers；后续论文以 `supplement` 身份增量加入，不改写基础名单身份。
-- `data/papers/` 保存全部基础与增补论文对象，包含基础属性、英文 abstract 和中文翻译。
-- `data/taxonomies/research-object.yaml` 目前只是空的 draft，尚未形成正式节点结构。
-- `data/classification-events.jsonl` 尚无正式论文—节点关系。
-- `data/classification-proposals.yaml` 尚无待审提案。
-- 网页技术栈、具体布局和部署方式尚未确定。
+- Corpus 共 123 篇：100 core、10 classic、13 supplement。
+- Techniques taxonomy 为 active version 2，共 77 个节点；其 123 个 primary 和 124 个 secondary 关系已进入事件流。
+- Research Objects taxonomy 为 active version 1，共 69 个节点；其 123 个 primary 和 160 个 secondary 关系已由 `cp_20261009_research_objects_v1_123` 批准并进入事件流。
+- 模型族定义位于 `data/model-families.yaml`，共 9 个视图；每篇论文恰好有一个 primary model family，并可有 secondary families。
+- Research Objects 的旧 110 篇草案 `tp_20261009_research_objects_v1` 已被拒绝并由 v2 取代。旧草案中的 Interpretability Artifacts 分支不得用于正式视图。
 
-## 核心工作方式
+## 三个正交维度
 
-Taxonomy 与可视化不是先后完成的两个阶段，而是在实际研究中共同演化：
+可视化必须保持以下三个维度分离：
+
+| 维度 | 回答的问题 | 正式来源 |
+|---|---|---|
+| Research Objects | 研究的是什么？ | `data/taxonomies/research-object.yaml` |
+| Techniques | 如何观察、验证或改变它？ | `data/taxonomies/techniques.yaml` |
+| Model Family | 对哪类模型使用这些名称与对象？ | `data/model-families.yaml` |
+
+Probe、lens、SAE、transcoder、crosscoder 和 attribution method 是 Techniques，不是 Research Objects。以 probing 为例，probe 是读出方法，被研究对象可以是 residual-stream state、component output 或 recurrent state。类似地，SAE 是分解技术，sparse dictionary feature 才是它产生并研究的表征对象。
+
+## Research Objects 的稳定主树
 
 ```text
-浏览论文 → 观察聚类和缺口 → 提出 taxonomy 或归类调整
-   ↑                                  ↓
-继续使用平台 ← 批准变更并重新生成可视化
+Research Objects
+├── Data, States, and Representations
+│   ├── Data Units
+│   ├── Representation States
+│   ├── Linear Directions and Vectors
+│   ├── Subspaces, Manifolds, and Geometry
+│   └── Learned Features
+├── Scores and Predictions
+├── Native Model Components
+│   ├── Routing and Selection Components
+│   ├── Transformation Components
+│   ├── Memory and State Components
+│   ├── Normalization Components
+│   └── Native Units
+├── Model Parameters
+├── Composed Mechanisms
+└── Learning Processes
 ```
 
-网页首先应成为辅助研究当前 corpus 论文的工作台。用户需要借助平台查看论文、比较相关工作、检验分类是否合理，并在此过程中继续调整可视化设计。不要等待 taxonomy 完全定稿后才开始网页工作，也不要为了完成网页而过早冻结 taxonomy。
+这棵树不以 Transformer 为默认骨架。架构共有概念放在稳定的通用分支，架构特化名称作为叶节点，并由 `applicable_model_families` 控制显示。节点的 `applicable_object_roles` 说明它可作为 input、internal、output、structural 或 process 对象；角色是元数据，不应再生成一套重复节点。
 
-## 首个可用闭环
+必须保留下列语义区别：
 
-第一阶段应优先打通最小垂直切片，而不是一次性完成全部页面：
+- Token 是离散词表项或序列位置；Token Embedding 是由它索引或生成的连续向量。
+- Image Patch 是输入区域；Patch Embedding 是该区域投影到隐藏空间后的向量。
+- Feature Map 是具体样本上的空间激活；Channel / Filter 是产生这类激活的可复用原生单元。
+- Component Output State 是某次前向传播产生的值；Attention Head、MLP Module 等是产生值的可复用组件。
+- Localized Parameter Set 是被定位为控制某行为的一组模型权重，而不是 localization method 的输出名称。
 
-1. 从正式数据加载并浏览全部论文；
-2. 展示英文标题、论文属性和可切换的中英 abstract；
-3. 加载一个粗粒度、允许继续演化的 taxonomy；
-4. 展示节点介绍和节点当前关联的论文；
-5. 能识别未分类、重复归类或分类存疑的论文；
-6. 将结构与归类修改记录为提案；
-7. 用户批准后更新正式数据；
-8. 重新构建派生数据并刷新可视化。
+## 模型族选择器
 
-这里描述的是功能闭环，不是页面布局要求。论文列表、节点介绍和图形各自位于何处，需在实际使用中继续讨论。
+页面左上角设置单选模型族控制。默认值为 `All Models`，它不是数据中的额外 family，而是“不施加模型族过滤”的视图状态。选项从 `data/model-families.yaml` 读取：
 
-## Taxonomy 更新规则
+- General / Cross-Architecture
+- Transformer LM
+- RNN
+- CNN
+- Vision Transformer
+- Vision–Language
+- State-Space / Mamba
+- Sparse MoE
+- Diffusion
 
-- 一个可视化主题对应 `data/taxonomies/<taxonomy_id>.yaml`。
-- 节点使用稳定 `node_id`；英文标题保持唯一，标题不做中英双版本。
-- 节点介绍保存英文和中文版本，使用 Markdown，并允许 LaTeX。
-- 节点可以随着分析被新增、移动、合并、废弃或修改介绍。
-- 任何节点结构变化或正文实质性修改，必须先进入 `data/classification-proposals.yaml`。
-- 未批准的提案可以用于研究性预览，但不得伪装成正式 taxonomy。
-- 用户批准后，才修改正式 taxonomy，并递增 taxonomy 版本。
-- 已被引用的节点不要直接改换 `node_id`；合并或替代应保留废弃状态和替代关系。
+相对原始示意图，新补充或拆分出的 family 包括 General / Cross-Architecture、RNN、Vision Transformer 和 Vision–Language；Mamba 使用更一般的 State-Space family 名称。Sparse MoE、State-Space 与 Diffusion 当前没有 primary corpus paper，但仍保留视图定义，目的是正确表达分类结构并支持未来论文，而不是暗示当前已有覆盖。
 
-## 论文归类更新规则
+### 节点显示规则
 
-论文与 taxonomy 节点的关系属于可变分析判断，不是论文基础事实：
+1. `All Models` 显示所有 active 节点。
+2. 选中具体 family 时，显示没有 `applicable_model_families` 的通用节点，以及显式包含该 family 的节点。
+3. 只要某个后代可见，其祖先必须保留，以维持路径和布局稳定。
+4. 隐藏节点不得更换 `node_id`、复制节点或生成另一棵 taxonomy。
+5. 论文过滤使用 model-family primary 与 secondary 关系；默认突出 primary，用户可以切换为“包括 secondary”。
+6. 选择器只改变视图和论文集合，不改变正式数据。
 
-- 不得把 taxonomy 节点直接写入 `data/papers/<paper_id>.yaml`；
-- 正式关系通过 `data/classification-events.jsonl` 的追加事件形成；
-- 支持 `assign`、`revoke`、`replace` 和 `confirm`；
-- 已存在的事件不得删除或覆盖；
-- 当前有效关系由完整事件流计算；
-- 每项事件必须包含理由、证据、提案引用和对应 taxonomy 版本。
+### 架构特化示例
 
-分析论文时可以读取 PaperKnowledgeBase 中的 PDF 和 Docling 全文作为证据，但该知识库只读，材料不得复制到本仓库或提交 Git。
+| 通用位置 | Transformer LM | Vision Transformer | CNN | Vision–Language | State-Space | MoE | Diffusion |
+|---|---|---|---|---|---|---|---|
+| Input representation | Token Embeddings | Patch Embeddings | Pixels / Input Channels | Visual Tokens | Token Embeddings | Token Embeddings | Pixels / Patches |
+| Internal state | Residual-Stream States | Residual-Stream States | Feature Maps | Visual Tokens + Residual States | State-Space States | Expert Output States | Denoising Latents |
+| Routing / selection | QK Routing | QK Routing | — | Cross-Modal Attention | Selective Gates | MoE Routers | Attention where present |
+| Transformation | MLP/FFN | MLP/FFN | Convolutional Layers | Modality Projectors + Transformer blocks | State Update Modules | Expert Networks | Denoising Blocks |
+| Native unit | MLP Neurons | MLP Neurons | Channels / Filters | inherited units | State Channels | Expert Units | Channels / attention units |
+| Output score | Token Logits | Class Scores | Class Scores | Similarity or Token Scores | Token / task output | inherited output | Denoising Predictions |
 
-## 可视化的数据边界
+这张表是显示映射，不是新的分类事实。某些混合模型可能同时匹配多个 family，因此论文可以有 secondary family；节点本身仍只在 Research Objects 树中定义一次。
 
-以下内容是正式来源：
+`Scores and Predictions` 必须始终保留。引入模型族选择器并不会使 output score 无法分类：选择 Transformer LM 时显示 Token Logits，选择 CNN 或 Vision Transformer 时显示 Class Scores，选择 Vision–Language 时还可显示 Similarity Scores，选择 Diffusion 时显示 Denoising Predictions。通用的 Regression Predictions 不限定模型族。
 
-- Corpus 成员关系：`data/corpus.yaml`；
-- 论文事实与双语 abstract：`data/papers/`；
-- 作者身份：`data/authors.yaml`；
-- Taxonomy 结构和双语介绍：`data/taxonomies/`；
-- 已批准论文归类：`data/classification-events.jsonl`；
-- 待审或已处理提案：`data/classification-proposals.yaml`。
+## 论文—节点关系
 
-以下内容应由构建过程生成，不是事实来源：
+- 每篇论文在每棵 taxonomy 中恰好有一个 `primary` 关系。
+- 同一论文可以有零个或多个 `secondary` 关系。
+- 节点详情默认先列 primary papers，再列 secondary papers；不能把两者合并成无法辨认的计数。
+- 父节点论文数由后代当前有效关系聚合得到，不写回 taxonomy 文件。
+- 正式关系由 `data/classification-events.jsonl` 重建；pending proposal 只能在明确标记的预览模式中显示。
 
-- 作者合作图；
-- 节点对应的论文列表；
-- 当前有效分类关系；
-- 搜索索引；
-- 面向前端的 JSON 或其他缓存；
-- 图布局坐标和视觉剪枝结果。
+## 13 篇 supplement 的影响
 
-派生数据必须能够从正式来源重建，不得反向覆盖 `data/`。
+复核结果是不需要增加新的顶层分支，但需要扩充叶节点：
 
-## 已确认的产品要求
+- Transcoder Features 与 Crosscoder Features；
+- Independent Components；
+- Concept-Aligned Features；
+- Parameter Deltas and Task Vectors；
+- Feature Maps 与 Channels and Filters；
+- Weight Matrices and Kernels。
+- Input Features，用于 SHAP 与 FastSHAP 研究的结构化输入变量。
 
-- 网站包含多个主题页面或 tab，每个主题可对应一张图；
-- taxonomy 页面采用树状分支结构；
-- 点击任意节点可以查看相关论文；
-- 节点具有中英两版综述式介绍，并支持 LaTeX 渲染；
-- 论文详情页展示论文属性及中英 abstract；
-- 全站提供中英文切换，论文标题、taxonomy 标题和节点标题保持英文；
-- 作者连接图从 corpus 和作者数据自动生成；
-- 作者节点大小反映其在 corpus 中的出现频率；
-- 作者之间的边表示共同论文；
-- 作者图允许视觉剪枝，例如隐藏从未作为第一作者或最后作者出现的作者；
-- 点击作者可以查看其相关论文。
+这些论文与其余 110 篇一起进入同一份 123 篇 Research Objects 分类提案，不能维护成一套独立补丁列表。
 
-除 Research Objects 和作者连接图外，其他主题页面仍待研究。Research Methods、Mathematical Foundations 等只能作为候选方向，不能视为已确定页面。
+## 可视化数据边界
 
-## 实施原则
+正式来源包括 corpus、paper records、authors、model families、taxonomies、classification events 与 proposals。作者图、当前分类关系、节点论文列表、搜索索引、前端 JSON、图布局坐标和视觉剪枝结果全部是可重建派生数据，不得反向覆盖 `data/`。
 
-- 数据读取、派生数据生成和可视化渲染应相互分离。
-- Taxonomy 改动不应要求手工修改页面代码。
-- 新增论文后，作者图和其他纯派生视图应能自动更新。
-- 对 taxonomy 的未批准设想应与正式视图明确区分。
-- 不要在技术栈确定前加入不必要的框架和依赖。
-- 如需 Python，必须为本项目使用独立 Conda 环境，不得修改 `base`。
-- 每完成一个可验证阶段，先运行相关校验，再创建 Git commit 并推送到远程仓库。
-
-## 尚待用户共同决定
-
-- 第一版 taxonomy 的具体节点与粒度；
-- 新主题页面的数量和名称；
-- 图、论文列表、节点介绍及详情之间的具体布局；
-- Taxonomy 提案在网页中只读预览，还是需要交互式编辑能力；
-- 前端技术栈、构建方式和部署平台；
-- 大规模扩展论文后采用的图布局和剪枝策略。
-
-遇到这些问题时，应优先构建便于用户比较和判断的最小实现，再根据实际使用反馈提出选项；不要把尚未讨论的选择写成既定需求。
+Taxonomy 节点变更或介绍的实质修改必须先形成提案并获用户批准。论文分类同样先进入 proposal；批准后才能追加事件，不得修改已有事件。网页技术栈、最终布局、部署方式和 proposal 是否支持交互编辑仍待后续决定。

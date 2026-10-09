@@ -1,0 +1,227 @@
+schema_version: 1
+version: 1
+status: active
+updated_at: '2026-10-09'
+proposal_id: tp_20261009_research_objects_v2
+change_reason: >-
+  Separate model architecture from the Research Objects taxonomy while providing a
+  stable selector, architecture-specific terminology, and primary/secondary paper views.
+families:
+- model_family_id: generic-neural-network
+  title: General and Cross-Architecture Models
+  selector_label: General / Cross-Architecture
+  introduction:
+    en: >-
+      Use this view for work whose central claim is formulated across neural architectures,
+      in a theoretical model, or directly over data and predictions. It is not a residual
+      category for unknown models; papers belong here only when architecture independence
+      is part of the research design.
+    zh: >-
+      此视图用于核心结论跨越多种神经架构、建立在理论模型上，或直接针对数据与预测展开的研究。它不是“模型
+      未知”的兜底类别；只有当架构无关性属于研究设计的一部分时，论文才以此为主模型族。
+- model_family_id: transformer-language-model
+  title: Transformer Language Models
+  selector_label: Transformer LM
+  introduction:
+    en: >-
+      Transformer language models process token sequences through attention, residual
+      streams, and feed-forward blocks. The view exposes language-model terms such as
+      token embeddings, QK/OV computation, MLP neurons, and vocabulary logits.
+    zh: >-
+      Transformer Language Models 通过 attention、residual stream 与 feed-forward block 处理 token 序列。
+      选择此视图时，应展示 token embedding、QK/OV 计算、MLP neuron 与词表 logits 等语言模型术语。
+- model_family_id: recurrent-neural-network
+  title: Recurrent Neural Networks
+  selector_label: RNN
+  introduction:
+    en: >-
+      Recurrent networks update a bounded hidden state as a sequence advances. Their
+      characteristic objects are recurrent states, gates, update rules, and the temporal
+      persistence or loss of information.
+    zh: >-
+      Recurrent Neural Networks 随序列推进反复更新一个有限隐藏状态。其特征对象包括 recurrent state、gate、
+      状态更新规则，以及信息随时间的保持或遗失。
+- model_family_id: convolutional-neural-network
+  title: Convolutional Neural Networks
+  selector_label: CNN
+  introduction:
+    en: >-
+      Convolutional networks build spatial representations through shared kernels and
+      channels. This view uses feature maps, filters, receptive fields, and convolutional
+      normalization rather than forcing transformer terminology onto vision models.
+    zh: >-
+      Convolutional Neural Networks 通过共享 kernel 与 channel 构建空间表征。此视图使用 feature map、filter、
+      感受野与卷积归一化等术语，避免把 Transformer 术语强行套到视觉模型上。
+- model_family_id: vision-transformer
+  title: Vision Transformers
+  selector_label: Vision Transformer
+  introduction:
+    en: >-
+      Vision transformers turn image patches into a token-like sequence and process it
+      with transformer blocks. Their view replaces token embeddings with patch embeddings
+      where appropriate while retaining attention, residual, and MLP objects.
+    zh: >-
+      Vision Transformers 把图像 patch 转换成类似 token 的序列，再用 Transformer block 处理。此视图会在适当
+      位置显示 patch embedding，同时保留 attention、residual 与 MLP 等共享对象。
+- model_family_id: vision-language-model
+  title: Vision–Language Models
+  selector_label: Vision–Language
+  introduction:
+    en: >-
+      Vision–language models align or combine visual and linguistic representations.
+      Besides objects inherited from their encoders and language models, this view
+      highlights visual tokens, modality projectors, cross-modal attention, and similarity scores.
+    zh: >-
+      Vision–Language Models 对齐或组合视觉与语言表征。除继承视觉编码器和语言模型的对象外，此视图还突出
+      visual token、modality projector、cross-modal attention 与相似度分数。
+- model_family_id: state-space-model
+  title: State-Space Models
+  selector_label: State-Space / Mamba
+  introduction:
+    en: >-
+      State-space sequence models propagate a structured latent state, with modern
+      selective variants making transitions input dependent. Their vocabulary centers on
+      state-space states, selective gates, transition modes, and long-range memory.
+    zh: >-
+      State-Space Models 传播结构化潜在状态，现代 selective 变体还让状态转移依赖输入。此视图的核心对象是
+      state-space state、selective gate、转移模态与长程记忆。
+- model_family_id: mixture-of-experts
+  title: Mixture-of-Experts Models
+  selector_label: Sparse MoE
+  introduction:
+    en: >-
+      Mixture-of-experts models route each token or state through a sparse subset of
+      expert networks. This view adds routers, gates, expert networks, expert outputs,
+      and expert units to the shared transformer objects.
+    zh: >-
+      Mixture-of-Experts Models 把每个 token 或状态路由到稀疏选择的一组 expert network。此视图在共享的
+      Transformer 对象之外，增加 router、gate、expert network、expert output 与 expert unit。
+- model_family_id: diffusion-model
+  title: Diffusion Models
+  selector_label: Diffusion
+  introduction:
+    en: >-
+      Diffusion models generate or reconstruct data through a trajectory of noisy latent
+      states and denoising predictions. Their view exposes denoising latents, conditioned
+      blocks, timestep-dependent computation, and noise, velocity, or score predictions.
+    zh: >-
+      Diffusion Models 通过带噪潜在状态与去噪预测组成的轨迹生成或重建数据。此视图展示 denoising latent、
+      条件化 block、时间步依赖计算，以及 noise、velocity 或 score prediction。
+paper_assignments:
+- model_family_id: generic-neural-network
+  primary_paper_ids: [p_2017_lundberg_a_unified_approach, p_2021_jethani_fastshap_real_time_shapley, p_2020_yang_feature_learning_in, p_2022_radhakrishnan_mechanism_of_feature, p_2022_ilharco_editing_models_with, p_2021_geiger_causal_abstractions_of, p_2021_geiger_inducing_causal_structure, p_2023_geiger_causal_abstraction_a, p_2023_geiger_finding_alignments_between, p_2022_elhage_toy_models_of, p_2022_scherlis_polysemanticity_and_capacity, p_2023_chughtai_a_toy_model, p_2025_tang_a_unified_theory]
+  secondary_paper_ids: []
+- model_family_id: transformer-language-model
+  primary_paper_ids:
+  - p_2026_hai_when_and_why
+  - p_2026_dalili_subspace_aware_sparse
+  - p_2024_hsu_efficient_automated_circuit
+  - p_2024_o_neill_sparse_autoencoders_enable
+  - p_2025_kim_reasoning_circuits_in
+  - p_2026_somani_towards_verifiable_transformers
+  - p_2025_nam_causal_head_gating
+  - p_2026_ratnakar_the_geometry_of
+  - p_2023_lieberum_does_circuit_analysis
+  - p_2026_pillai_ftb_graph_determining
+  - p_2023_pal_future_lens_anticipating
+  - p_2026_bhardia_mechanistic_analysis_of
+  - p_2023_lamparth_analyzing_and_editing
+  - p_2023_stolfo_a_mechanistic_interpretation
+  - p_2024_mcdougall_copy_suppression_comprehensively
+  - p_2023_lepori_uncovering_intermediate_variables
+  - p_2023_tigges_linear_representations_of
+  - p_2024_jin_cutting_off_the
+  - p_2023_li_inference_time_intervention
+  - p_2024_he_dictionary_learning_improves
+  - p_2023_guerner_a_geometric_notion
+  - p_2023_merullo_circuit_component_reuse
+  - p_2022_wang_interpretability_in_the
+  - p_2026_munigety_from_correlation_to
+  - p_2022_li_emergent_world_representations
+  - p_2026_dura_mechanistic_interpretability_of
+  - p_2023_park_the_linear_representation
+  - p_2023_zhang_towards_best_practices
+  - p_2023_davies_discovering_variable_binding
+  - p_2023_zou_representation_engineering_a
+  - p_2023_todd_function_vectors_in
+  - p_2025_wu_axbench_steering_llms
+  - p_2024_hanna_have_faith_in
+  - p_2024_draguns_unelicitable_backdoors_in
+  - p_2023_cunningham_sparse_autoencoders_find
+  - p_2026_park_mechelk_a_mechanistic
+  - p_2024_marks_sparse_feature_circuits
+  - p_2022_meng_locating_and_editing
+  - p_2023_nanda_progress_measures_for
+  - p_2023_conmy_towards_automated_circuit
+  - p_2023_geva_dissecting_recall_of
+  - p_2025_mondal_language_specific_neurons
+  - p_2024_arditi_refusal_in_language
+  - p_2023_feng_how_do_language
+  - p_2023_gould_successor_heads_recurring
+  - p_2024_zhou_on_the_role
+  - p_2024_shai_transformers_represent_belief
+  - p_2024_ferrando_information_flow_routes
+  - p_2022_olsson_in_context_learning
+  - p_2024_rajamanoharan_jumping_ahead_improving
+  - p_2024_rajamanoharan_improving_dictionary_learning
+  - p_2024_chanin_a_is_for
+  - p_2024_tang_language_specific_neurons
+  - p_2023_varma_explaining_grokking_through
+  - p_2025_galichin_i_have_covered
+  - p_2024_marks_enhancing_neural_network
+  - p_2024_muhamed_decoding_dark_matter
+  - p_2025_li_taming_knowledge_conflicts
+  - p_2025_viswanathan_the_intrinsic_dimension
+  - p_2024_ghandeharioun_patchscopes_a_unifying
+  - p_2023_nanda_emergent_linear_representations
+  - p_2024_nichani_how_transformers_learn
+  - p_2022_burns_discovering_latent_knowledge
+  - p_2024_lieberum_gemma_scope_open
+  - p_2024_makelov_towards_principled_evaluations
+  - p_2025_chen_transferring_linear_features
+  - p_2026_templeton_scaling_monosemanticity_extracting
+  - p_2023_belrose_eliciting_latent_predictions
+  - p_2023_gurnee_finding_neurons_in
+  - p_2024_prakash_fine_tuning_enhances
+  - p_2024_huang_ravel_evaluating_interpretability
+  - p_2023_hase_does_localization_inform
+  - p_2023_goldowsky_dill_localizing_model_behavior
+  - p_2024_he_llama_scope_extracting
+  - p_2024_singh_what_needs_to
+  - p_2024_braun_identifying_functionally_important
+  - p_2023_sakarvadia_attention_lens_a
+  - p_2023_hanna_how_does_gpt
+  - p_2025_kantamneni_are_sparse_autoencoders
+  - p_2024_yao_knowledge_circuits_in
+  - p_2023_voita_neurons_in_large
+  - p_2021_yun_transformer_visualization_via
+  - p_2021_dai_knowledge_neurons_in
+  - p_2020_geva_transformer_feed_forward
+  - p_2020_ravichander_probing_the_probing
+  - p_2024_dunefsky_transcoders_find_interpretable
+  - p_2025_minder_overcoming_sparsity_artifacts
+  - p_2026_liu_ica_lens_interpreting
+  - p_2023_syed_attribution_patching_outperforms
+  - p_2025_jin_massive_values_in
+  secondary_paper_ids: [p_2025_tian_why_representation_engineering, p_2026_zhou_sparse_visual_thought, p_2026_che_counting_circuits_mechanistic, p_2026_liu_dual_pathway_circuits, p_2026_hegde_where_hallucinations_live, p_2025_nikankin_same_task_different, p_2023_palit_towards_vision_language, p_2025_kim_interpreting_attention_heads, p_2024_hinck_why_do_llava, p_2024_neo_towards_interpreting_visual, p_2023_schwettmann_multimodal_neurons_in, p_2026_filus_measuring_monosemanticity_in, p_2022_ilharco_editing_models_with]
+- model_family_id: recurrent-neural-network
+  primary_paper_ids: [p_2019_wiegreffe_attention_is_not, p_2019_hewitt_designing_and_interpreting]
+  secondary_paper_ids: []
+- model_family_id: convolutional-neural-network
+  primary_paper_ids: [p_2016_alain_understanding_intermediate_layers, p_2017_bau_network_dissection_quantifying, p_2018_adebayo_sanity_checks_for, p_2022_oikarinen_clip_dissect_automatic_description, p_2022_achtibat_from_attribution_maps, p_2023_beaglehole_mechanism_of_feature]
+  secondary_paper_ids: [p_2023_schwettmann_multimodal_neurons_in]
+- model_family_id: vision-transformer
+  primary_paper_ids: [p_2026_filus_measuring_monosemanticity_in]
+  secondary_paper_ids: [p_2022_ilharco_editing_models_with, p_2025_tian_why_representation_engineering]
+- model_family_id: vision-language-model
+  primary_paper_ids: [p_2025_tian_why_representation_engineering, p_2026_zhou_sparse_visual_thought, p_2026_che_counting_circuits_mechanistic, p_2026_liu_dual_pathway_circuits, p_2026_hegde_where_hallucinations_live, p_2025_nikankin_same_task_different, p_2023_palit_towards_vision_language, p_2025_kim_interpreting_attention_heads, p_2024_hinck_why_do_llava, p_2024_neo_towards_interpreting_visual, p_2023_schwettmann_multimodal_neurons_in]
+  secondary_paper_ids: [p_2026_filus_measuring_monosemanticity_in, p_2022_oikarinen_clip_dissect_automatic_description]
+- model_family_id: state-space-model
+  primary_paper_ids: []
+  secondary_paper_ids: []
+- model_family_id: mixture-of-experts
+  primary_paper_ids: []
+  secondary_paper_ids: []
+- model_family_id: diffusion-model
+  primary_paper_ids: []
+  secondary_paper_ids: []

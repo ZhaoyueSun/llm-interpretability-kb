@@ -733,7 +733,13 @@ proposals:
   - The approved assignments are written to the append-only event stream; later visualization-driven corrections must use revoke, replace, or assign events rather than rewriting history.
 - proposal_id: tp_20261009_research_objects_v1
   kind: taxonomy_and_classification
-  status: pending
+  status: rejected
+  resolved_at: '2026-10-09'
+  superseded_by: tp_20261009_research_objects_v2
+  resolution_reason: >-
+    Superseded after review: the draft mixed interpretability tools and their outputs
+    with target objects, coupled object names too tightly to Transformer terminology,
+    and covered only the original 110 papers.
   created_at: '2026-10-09'
   title: Research-object taxonomy v1 for the 110-paper corpus
   taxonomy_id: research-object
@@ -992,3 +998,174 @@ proposals:
   - The distinction between learned-sparse-feature and feature-dictionary should be checked carefully during approval.
   - Architecture-specific leaves such as CNN, CLIP, Mamba, diffusion, and MoE are omitted because they describe the target model family rather than the interpreted object.
   - Layer normalization and MoE experts have no primary paper in this corpus and should not be added as empty leaves unless the taxonomy is meant to cover the field beyond these 110 papers.
+- proposal_id: tp_20261009_research_objects_v2
+  replaces_draft: tp_20261009_research_objects_v1
+  kind: taxonomy
+  status: approved
+  created_at: '2026-10-09'
+  approved_at: '2026-10-09'
+  approval_basis: >-
+    After iterative review of the object-versus-technique distinction and the
+    architecture-general design, the user explicitly requested construction of this
+    data model, including the thirteen supplement papers and visualization handoff.
+  title: Architecture-general Research Objects taxonomy for the 123-paper corpus
+  taxonomy_id: research-object
+  resulting_taxonomy_version: 1
+  taxonomy_file: data/taxonomies/research-object.yaml
+  corpus_size: 123
+  node_count: 69
+  structural_decisions:
+  - Model family is an independent selector and view dimension, not a parent branch of the object tree.
+  - Discrete data units are separated from continuous representations; for example, token and token embedding are distinct objects.
+  - Object role is explicit as input, internal, output, structural, or process, so an embedding is not duplicated merely because it appears at an interface.
+  - Probes, lenses, SAEs, transcoders, crosscoders, and attribution procedures are techniques; only the states, features, parameters, or mechanisms they analyze belong here.
+  - Architecture-specific names are leaves under stable general branches and are exposed selectively through applicable_model_families.
+  - Scores and predictions remain a cross-architecture branch; the model-family selector changes its applicable children rather than removing the branch.
+  supplement_review:
+    result: no_new_top_level_branch_required
+    added_or_confirmed_leaves: [input-feature, transcoder-feature, crosscoder-feature, independent-component, concept-aligned-feature, parameter-delta-task-vector, feature-map, channel-filter, weight-matrix-kernel]
+    note: >-
+      The thirteen supplement papers broaden the leaf vocabulary but still fit the six
+      general branches: representations, scores, components, parameters, mechanisms,
+      and learning processes.
+  model_family_follow_up:
+    data_file: data/model-families.yaml
+    schema_file: schemas/model-families.schema.json
+    families: [generic-neural-network, transformer-language-model, recurrent-neural-network, convolutional-neural-network, vision-transformer, vision-language-model, state-space-model, mixture-of-experts, diffusion-model]
+  classification_follow_up:
+    status: approved_and_written
+    proposal_id: cp_20261009_research_objects_v1_123
+- proposal_id: cp_20261009_research_objects_v1_123
+  kind: classification
+  status: approved
+  created_at: '2026-10-09'
+  approved_at: '2026-10-09'
+  approval_basis: >-
+    The user explicitly approved writing all proposed Research Objects relations to the
+    formal event stream and synchronizing the resulting data through Git.
+  event_write:
+    primary_events: 123
+    secondary_events: 160
+    first_event_id: ce_20261009_research_objects_0001
+    last_event_id: ce_20261009_research_objects_0283
+  title: Primary and secondary Research Objects labels for the 123-paper corpus
+  taxonomy_id: research-object
+  taxonomy_version: 1
+  corpus_id: llm-interpretability-kb
+  corpus_version: 2
+  corpus_size: 123
+  taxonomy_proposal_id: tp_20261009_research_objects_v2
+  evidence_basis: >-
+    Paper records and abstracts for all 123 corpus papers, the two read-only survey
+    sources, and direct review of the thirteen supplement-paper records.
+  classification_model:
+    primary: The object about which the paper makes its most distinctive or central interpretability claim.
+    secondary: Other objects materially analyzed, localized, intervened on, or assembled in the main pipeline.
+    multiplicity: Each paper has exactly one primary relation and zero or more secondary relations.
+  primary_assignments:
+  - node_id: input-feature
+    paper_ids: [p_2017_lundberg_a_unified_approach, p_2021_jethani_fastshap_real_time_shapley]
+  - node_id: pixel-input-channel
+    paper_ids: [p_2018_adebayo_sanity_checks_for]
+  - node_id: visual-token
+    paper_ids: [p_2024_neo_towards_interpreting_visual]
+  - node_id: residual-stream-state
+    paper_ids: [p_2023_pal_future_lens_anticipating, p_2023_palit_towards_vision_language, p_2024_ghandeharioun_patchscopes_a_unifying, p_2024_hinck_why_do_llava, p_2023_belrose_eliciting_latent_predictions]
+  - node_id: component-output-state
+    paper_ids: [p_2020_ravichander_probing_the_probing, p_2023_zhang_towards_best_practices]
+  - node_id: feature-map
+    paper_ids: [p_2016_alain_understanding_intermediate_layers]
+  - node_id: recurrent-state
+    paper_ids: [p_2019_hewitt_designing_and_interpreting]
+  - node_id: linear-direction-vector
+    paper_ids: [p_2022_burns_discovering_latent_knowledge, p_2023_li_inference_time_intervention, p_2023_nanda_emergent_linear_representations, p_2023_tigges_linear_representations_of, p_2023_todd_function_vectors_in, p_2023_zou_representation_engineering_a, p_2024_arditi_refusal_in_language, p_2025_tian_why_representation_engineering, p_2025_wu_axbench_steering_llms]
+  - node_id: subspace-manifold-geometry
+    paper_ids: [p_2022_elhage_toy_models_of, p_2022_scherlis_polysemanticity_and_capacity, p_2023_feng_how_do_language, p_2023_guerner_a_geometric_notion, p_2023_park_the_linear_representation, p_2024_huang_ravel_evaluating_interpretability, p_2024_shai_transformers_represent_belief, p_2025_chen_transferring_linear_features, p_2025_viswanathan_the_intrinsic_dimension, p_2026_dalili_subspace_aware_sparse, p_2026_hai_when_and_why]
+  - node_id: sparse-dictionary-feature
+    paper_ids: [p_2021_yun_transformer_visualization_via, p_2023_cunningham_sparse_autoencoders_find, p_2024_braun_identifying_functionally_important, p_2024_chanin_a_is_for, p_2024_he_llama_scope_extracting, p_2024_lieberum_gemma_scope_open, p_2024_makelov_towards_principled_evaluations, p_2024_marks_enhancing_neural_network, p_2024_muhamed_decoding_dark_matter, p_2024_rajamanoharan_improving_dictionary_learning, p_2024_rajamanoharan_jumping_ahead_improving, p_2025_galichin_i_have_covered, p_2025_kantamneni_are_sparse_autoencoders, p_2026_filus_measuring_monosemanticity_in, p_2026_munigety_from_correlation_to, p_2026_park_mechelk_a_mechanistic, p_2026_templeton_scaling_monosemanticity_extracting]
+  - node_id: crosscoder-feature
+    paper_ids: [p_2025_minder_overcoming_sparsity_artifacts]
+  - node_id: independent-component
+    paper_ids: [p_2026_liu_ica_lens_interpreting]
+  - node_id: concept-aligned-feature
+    paper_ids: [p_2022_achtibat_from_attribution_maps]
+  - node_id: token-logit-distribution
+    paper_ids: [p_2026_ratnakar_the_geometry_of]
+  - node_id: attention-pattern-qk
+    paper_ids: [p_2019_wiegreffe_attention_is_not, p_2025_jin_massive_values_in]
+  - node_id: attention-head-ov
+    paper_ids: [p_2022_olsson_in_context_learning, p_2023_gould_successor_heads_recurring, p_2023_sakarvadia_attention_lens_a, p_2024_jin_cutting_off_the, p_2024_mcdougall_copy_suppression_comprehensively, p_2024_zhou_on_the_role, p_2025_kim_interpreting_attention_heads, p_2025_li_taming_knowledge_conflicts, p_2025_nam_causal_head_gating]
+  - node_id: mlp-ffn-module
+    paper_ids: [p_2020_geva_transformer_feed_forward, p_2023_lamparth_analyzing_and_editing]
+  - node_id: mlp-neuron
+    paper_ids: [p_2021_dai_knowledge_neurons_in, p_2023_gurnee_finding_neurons_in, p_2023_schwettmann_multimodal_neurons_in, p_2023_voita_neurons_in_large, p_2024_tang_language_specific_neurons, p_2025_mondal_language_specific_neurons]
+  - node_id: channel-filter
+    paper_ids: [p_2017_bau_network_dissection_quantifying, p_2022_oikarinen_clip_dissect_automatic_description, p_2023_beaglehole_mechanism_of_feature]
+  - node_id: behavior-localized-parameter-subset
+    paper_ids: [p_2022_meng_locating_and_editing, p_2023_hase_does_localization_inform]
+  - node_id: parameter-delta-task-vector
+    paper_ids: [p_2022_ilharco_editing_models_with]
+  - node_id: path-edge-information-flow
+    paper_ids: [p_2023_geva_dissecting_recall_of, p_2023_goldowsky_dill_localizing_model_behavior, p_2024_ferrando_information_flow_routes, p_2024_he_dictionary_learning_improves]
+  - node_id: circuit-subgraph
+    paper_ids: [p_2022_wang_interpretability_in_the, p_2023_conmy_towards_automated_circuit, p_2023_davies_discovering_variable_binding, p_2023_hanna_how_does_gpt, p_2023_lieberum_does_circuit_analysis, p_2023_merullo_circuit_component_reuse, p_2023_stolfo_a_mechanistic_interpretation, p_2023_syed_attribution_patching_outperforms, p_2024_draguns_unelicitable_backdoors_in, p_2024_dunefsky_transcoders_find_interpretable, p_2024_hanna_have_faith_in, p_2024_hsu_efficient_automated_circuit, p_2024_marks_sparse_feature_circuits, p_2024_o_neill_sparse_autoencoders_enable, p_2024_yao_knowledge_circuits_in, p_2025_kim_reasoning_circuits_in, p_2025_nikankin_same_task_different, p_2026_bhardia_mechanistic_analysis_of, p_2026_che_counting_circuits_mechanistic, p_2026_dura_mechanistic_interpretability_of, p_2026_hegde_where_hallucinations_live, p_2026_liu_dual_pathway_circuits, p_2026_pillai_ftb_graph_determining, p_2026_somani_towards_verifiable_transformers, p_2026_zhou_sparse_visual_thought]
+  - node_id: causal-variable-algorithm
+    paper_ids: [p_2021_geiger_causal_abstractions_of, p_2021_geiger_inducing_causal_structure, p_2022_li_emergent_world_representations, p_2023_chughtai_a_toy_model, p_2023_geiger_causal_abstraction_a, p_2023_geiger_finding_alignments_between, p_2023_lepori_uncovering_intermediate_variables]
+  - node_id: checkpoint-training-trajectory
+    paper_ids: [p_2023_nanda_progress_measures_for, p_2024_prakash_fine_tuning_enhances, p_2024_singh_what_needs_to]
+  - node_id: optimization-dynamics-landscape
+    paper_ids: [p_2020_yang_feature_learning_in, p_2022_radhakrishnan_mechanism_of_feature, p_2023_varma_explaining_grokking_through, p_2024_nichani_how_transformers_learn, p_2025_tang_a_unified_theory]
+  secondary_assignments:
+  - node_id: token-embedding
+    paper_ids: [p_2023_lamparth_analyzing_and_editing]
+  - node_id: visual-token
+    paper_ids: [p_2023_palit_towards_vision_language, p_2024_hinck_why_do_llava, p_2025_kim_interpreting_attention_heads, p_2025_nikankin_same_task_different, p_2026_che_counting_circuits_mechanistic, p_2026_hegde_where_hallucinations_live, p_2026_liu_dual_pathway_circuits, p_2026_zhou_sparse_visual_thought]
+  - node_id: residual-stream-state
+    paper_ids: [p_2021_yun_transformer_visualization_via, p_2022_burns_discovering_latent_knowledge, p_2022_li_emergent_world_representations, p_2023_feng_how_do_language, p_2023_guerner_a_geometric_notion, p_2023_li_inference_time_intervention, p_2023_nanda_emergent_linear_representations, p_2023_park_the_linear_representation, p_2023_tigges_linear_representations_of, p_2023_todd_function_vectors_in, p_2023_zou_representation_engineering_a, p_2024_arditi_refusal_in_language, p_2024_shai_transformers_represent_belief, p_2025_chen_transferring_linear_features, p_2025_tian_why_representation_engineering, p_2025_viswanathan_the_intrinsic_dimension, p_2026_hai_when_and_why, p_2026_park_mechelk_a_mechanistic]
+  - node_id: component-output-state
+    paper_ids: [p_2016_alain_understanding_intermediate_layers, p_2020_geva_transformer_feed_forward, p_2023_belrose_eliciting_latent_predictions, p_2023_pal_future_lens_anticipating, p_2023_sakarvadia_attention_lens_a, p_2024_ghandeharioun_patchscopes_a_unifying, p_2024_zhou_on_the_role]
+  - node_id: feature-map
+    paper_ids: [p_2017_bau_network_dissection_quantifying, p_2018_adebayo_sanity_checks_for, p_2022_achtibat_from_attribution_maps, p_2022_oikarinen_clip_dissect_automatic_description, p_2023_beaglehole_mechanism_of_feature]
+  - node_id: linear-direction-vector
+    paper_ids: [p_2025_minder_overcoming_sparsity_artifacts, p_2026_liu_ica_lens_interpreting, p_2026_ratnakar_the_geometry_of]
+  - node_id: subspace-manifold-geometry
+    paper_ids: [p_2023_nanda_emergent_linear_representations, p_2023_tigges_linear_representations_of, p_2023_zou_representation_engineering_a, p_2024_arditi_refusal_in_language, p_2025_minder_overcoming_sparsity_artifacts, p_2025_tian_why_representation_engineering, p_2026_filus_measuring_monosemanticity_in, p_2026_liu_ica_lens_interpreting]
+  - node_id: sparse-dictionary-feature
+    paper_ids: [p_2024_he_dictionary_learning_improves, p_2024_marks_sparse_feature_circuits, p_2024_o_neill_sparse_autoencoders_enable, p_2025_wu_axbench_steering_llms, p_2026_dalili_subspace_aware_sparse, p_2026_zhou_sparse_visual_thought]
+  - node_id: transcoder-feature
+    paper_ids: [p_2024_dunefsky_transcoders_find_interpretable]
+  - node_id: crosscoder-feature
+    paper_ids: [p_2025_tang_a_unified_theory]
+  - node_id: concept-aligned-feature
+    paper_ids: [p_2017_bau_network_dissection_quantifying, p_2022_oikarinen_clip_dissect_automatic_description]
+  - node_id: attention-pattern-qk
+    paper_ids: [p_2022_olsson_in_context_learning, p_2023_gould_successor_heads_recurring, p_2024_jin_cutting_off_the, p_2024_mcdougall_copy_suppression_comprehensively, p_2024_zhou_on_the_role, p_2025_kim_interpreting_attention_heads, p_2025_li_taming_knowledge_conflicts, p_2026_che_counting_circuits_mechanistic, p_2026_hegde_where_hallucinations_live]
+  - node_id: attention-head-ov
+    paper_ids: [p_2022_wang_interpretability_in_the, p_2023_davies_discovering_variable_binding, p_2023_geva_dissecting_recall_of, p_2023_hanna_how_does_gpt, p_2023_li_inference_time_intervention, p_2023_merullo_circuit_component_reuse, p_2023_stolfo_a_mechanistic_interpretation, p_2023_tigges_linear_representations_of, p_2023_todd_function_vectors_in, p_2024_hsu_efficient_automated_circuit, p_2025_kim_reasoning_circuits_in, p_2025_nikankin_same_task_different, p_2026_bhardia_mechanistic_analysis_of, p_2026_dura_mechanistic_interpretability_of, p_2026_hegde_where_hallucinations_live, p_2026_liu_dual_pathway_circuits, p_2026_pillai_ftb_graph_determining]
+  - node_id: mlp-ffn-module
+    paper_ids: [p_2022_meng_locating_and_editing, p_2023_davies_discovering_variable_binding, p_2023_geva_dissecting_recall_of, p_2023_hanna_how_does_gpt, p_2023_stolfo_a_mechanistic_interpretation, p_2024_yao_knowledge_circuits_in, p_2025_kim_reasoning_circuits_in]
+  - node_id: mlp-neuron
+    paper_ids: [p_2022_scherlis_polysemanticity_and_capacity, p_2023_tigges_linear_representations_of, p_2024_yao_knowledge_circuits_in]
+  - node_id: channel-filter
+    paper_ids: [p_2016_alain_understanding_intermediate_layers, p_2018_adebayo_sanity_checks_for, p_2022_achtibat_from_attribution_maps]
+  - node_id: weight-matrix-kernel
+    paper_ids: [p_2022_scherlis_polysemanticity_and_capacity, p_2023_beaglehole_mechanism_of_feature, p_2023_chughtai_a_toy_model, p_2023_nanda_progress_measures_for, p_2024_draguns_unelicitable_backdoors_in, p_2024_nichani_how_transformers_learn, p_2025_jin_massive_values_in]
+  - node_id: behavior-localized-parameter-subset
+    paper_ids: [p_2021_dai_knowledge_neurons_in, p_2023_lamparth_analyzing_and_editing]
+  - node_id: parameter-delta-task-vector
+    paper_ids: [p_2024_prakash_fine_tuning_enhances, p_2025_minder_overcoming_sparsity_artifacts]
+  - node_id: path-edge-information-flow
+    paper_ids: [p_2022_wang_interpretability_in_the, p_2023_conmy_towards_automated_circuit, p_2023_davies_discovering_variable_binding, p_2023_hanna_how_does_gpt, p_2023_lieberum_does_circuit_analysis, p_2023_merullo_circuit_component_reuse, p_2023_syed_attribution_patching_outperforms, p_2024_dunefsky_transcoders_find_interpretable, p_2024_hanna_have_faith_in, p_2024_hsu_efficient_automated_circuit, p_2024_marks_sparse_feature_circuits, p_2024_yao_knowledge_circuits_in, p_2025_kim_reasoning_circuits_in, p_2025_nikankin_same_task_different, p_2026_che_counting_circuits_mechanistic, p_2026_hegde_where_hallucinations_live, p_2026_liu_dual_pathway_circuits, p_2026_pillai_ftb_graph_determining, p_2026_somani_towards_verifiable_transformers]
+  - node_id: circuit-subgraph
+    paper_ids: [p_2022_olsson_in_context_learning, p_2023_chughtai_a_toy_model, p_2023_geva_dissecting_recall_of, p_2023_lepori_uncovering_intermediate_variables, p_2023_nanda_progress_measures_for, p_2023_varma_explaining_grokking_through, p_2024_ferrando_information_flow_routes, p_2024_he_dictionary_learning_improves, p_2024_singh_what_needs_to]
+  - node_id: causal-variable-algorithm
+    paper_ids: [p_2023_feng_how_do_language, p_2023_nanda_emergent_linear_representations, p_2023_park_the_linear_representation, p_2023_todd_function_vectors_in, p_2024_shai_transformers_represent_belief, p_2024_singh_what_needs_to, p_2024_yao_knowledge_circuits_in]
+  - node_id: checkpoint-training-trajectory
+    paper_ids: [p_2022_olsson_in_context_learning, p_2023_lepori_uncovering_intermediate_variables, p_2023_varma_explaining_grokking_through, p_2024_nichani_how_transformers_learn, p_2025_tang_a_unified_theory, p_2026_filus_measuring_monosemanticity_in]
+  - node_id: optimization-dynamics-landscape
+    paper_ids: [p_2022_elhage_toy_models_of, p_2022_scherlis_polysemanticity_and_capacity, p_2023_nanda_progress_measures_for, p_2024_braun_identifying_functionally_important, p_2024_chanin_a_is_for, p_2024_marks_enhancing_neural_network, p_2024_rajamanoharan_improving_dictionary_learning, p_2024_rajamanoharan_jumping_ahead_improving, p_2026_dalili_subspace_aware_sparse]
+  review_notes:
+  - The proposal records target objects, not the probes, lenses, decomposers, or interventions used to study them.
+  - Supplement papers require new leaves within existing branches, but no new top-level branch.
+  - Secondary assignments are conservative; baselines mentioned only for comparison are omitted.
+  - The approved assignments are written to the append-only event stream; later corrections must use revoke, replace, assign, or confirm events rather than rewriting history.

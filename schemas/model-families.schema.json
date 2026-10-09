@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "model-families.schema.json",
+  "title": "Model Families and Paper Assignments",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "version", "status", "updated_at", "proposal_id", "change_reason", "families", "paper_assignments"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "version": {"type": "integer", "minimum": 1},
+    "status": {"enum": ["draft", "active", "deprecated"]},
+    "updated_at": {"type": "string", "format": "date"},
+    "proposal_id": {"type": "string", "minLength": 1},
+    "change_reason": {"type": "string", "minLength": 1},
+    "families": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["model_family_id", "title", "selector_label", "introduction"],
+        "properties": {
+          "model_family_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+          "title": {"type": "string", "minLength": 1},
+          "selector_label": {"type": "string", "minLength": 1},
+          "introduction": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["en", "zh"],
+            "properties": {
+              "en": {"type": "string", "minLength": 1},
+              "zh": {"type": "string", "minLength": 1}
+            }
+          }
+        }
+      }
+    },
+    "paper_assignments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["model_family_id", "primary_paper_ids", "secondary_paper_ids"],
+        "properties": {
+          "model_family_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+          "primary_paper_ids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {"type": "string", "pattern": "^p_[a-z0-9_]+$"}
+          },
+          "secondary_paper_ids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {"type": "string", "pattern": "^p_[a-z0-9_]+$"}
+          }
+        }
+      }
+    }
+  }
+}
