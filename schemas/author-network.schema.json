@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "author-network.schema.json",
+  "title": "Derived Author Coauthorship Network",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "network_type", "generated_from", "statistics", "nodes", "edges"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "network_type": {"const": "coauthorship"},
+    "generated_from": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["corpus_id", "corpus_version", "paper_count"],
+      "properties": {
+        "corpus_id": {"type": "string", "minLength": 1},
+        "corpus_version": {"type": "integer", "minimum": 1},
+        "paper_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["node_count", "edge_count", "isolated_node_count"],
+      "properties": {
+        "node_count": {"type": "integer", "minimum": 0},
+        "edge_count": {"type": "integer", "minimum": 0},
+        "isolated_node_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/node"}
+    },
+    "edges": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/edge"}
+    }
+  },
+  "$defs": {
+    "nullable_string": {"type": ["string", "null"]},
+    "profile": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["url", "source_url", "retrieved_on"],
+          "properties": {
+            "url": {"type": "string", "format": "uri"},
+            "source_url": {"type": "string", "format": "uri"},
+            "retrieved_on": {"type": "string", "format": "date"}
+          }
+        }
+      ]
+    },
+    "affiliation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "ror_id", "country_code", "evidence_year", "source_url", "retrieved_on"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "ror_id": {"$ref": "#/$defs/nullable_string"},
+        "country_code": {"$ref": "#/$defs/nullable_string"},
+        "evidence_year": {"type": ["integer", "null"]},
+        "source_url": {"type": "string", "format": "uri"},
+        "retrieved_on": {"type": "string", "format": "date"}
+      }
+    },
+    "collaborator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["author_id", "paper_ids", "paper_count"],
+      "properties": {
+        "author_id": {"type": "string", "pattern": "^a_[a-z0-9_]+$"},
+        "paper_ids": {"$ref": "#/$defs/paper_ids"},
+        "paper_count": {"type": "integer", "minimum": 1}
+      }
+    },
+    "paper_ids": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^p_[a-z0-9_]+$"},
+      "uniqueItems": true
+    },
+    "node": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "author_id", "canonical_name", "aliases", "external_ids", "current_affiliations", "profiles",
+        "paper_ids", "paper_count", "first_author_paper_ids", "first_author_paper_count",
+        "last_author_paper_ids", "last_author_paper_count", "coauthor_count", "weighted_degree", "collaborators"
+      ],
+      "properties": {
+        "author_id": {"type": "string", "pattern": "^a_[a-z0-9_]+$"},
+        "canonical_name": {"type": "string", "minLength": 1},
+        "aliases": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "external_ids": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["orcid", "openalex", "semantic_scholar"],
+          "properties": {
+            "orcid": {"$ref": "#/$defs/nullable_string"},
+            "openalex": {"$ref": "#/$defs/nullable_string"},
+            "semantic_scholar": {"$ref": "#/$defs/nullable_string"}
+          }
+        },
+        "current_affiliations": {"type": "array", "items": {"$ref": "#/$defs/affiliation"}},
+        "profiles": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["homepage", "google_scholar"],
+          "properties": {
+            "homepage": {"$ref": "#/$defs/profile"},
+            "google_scholar": {"$ref": "#/$defs/profile"}
+          }
+        },
+        "paper_ids": {"$ref": "#/$defs/paper_ids"},
+        "paper_count": {"type": "integer", "minimum": 1},
+        "first_author_paper_ids": {"$ref": "#/$defs/paper_ids"},
+        "first_author_paper_count": {"type": "integer", "minimum": 0},
+        "last_author_paper_ids": {"$ref": "#/$defs/paper_ids"},
+        "last_author_paper_count": {"type": "integer", "minimum": 0},
+        "coauthor_count": {"type": "integer", "minimum": 0},
+        "weighted_degree": {"type": "integer", "minimum": 0},
+        "collaborators": {"type": "array", "items": {"$ref": "#/$defs/collaborator"}}
+      }
+    },
+    "edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "target", "paper_ids", "paper_count"],
+      "properties": {
+        "source": {"type": "string", "pattern": "^a_[a-z0-9_]+$"},
+        "target": {"type": "string", "pattern": "^a_[a-z0-9_]+$"},
+        "paper_ids": {"$ref": "#/$defs/paper_ids"},
+        "paper_count": {"type": "integer", "minimum": 1}
+      }
+    }
+  }
+}

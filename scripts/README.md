@@ -47,3 +47,15 @@ conda run -n interpret-vis python scripts/enrich_authors.py --include-semantic-s
 ```
 
 默认使用 OpenAlex 以及其中已确认 ORCID 的公开自报主页。若 Semantic Scholar 的公共接口可用，可追加 `--include-semantic-scholar` 补充其作者主页数据；`--include-wikidata` 会使用已经确认的 ORCID、OpenAlex 或 Semantic Scholar ID 反查官方主页和 Google Scholar ID。接口限流不会阻塞默认流程。
+
+## `build_author_network.py`
+
+从当前 corpus、论文作者顺序和 `data/authors.yaml` 生成完整且不做视觉剪枝的作者合作网络。节点包含 corpus 内论文、第一作者论文、末位作者论文、合作者及加权合作次数；边保存两位作者共同署名的论文及共同论文数。
+
+默认输出是 Git 忽略的 `.generated/author-network.json`。它是可重复生成的派生数据，不作为作者或论文事实来源：
+
+```text
+conda run -n interpret-vis python scripts/build_author_network.py
+```
+
+输出格式由 `schemas/author-network.schema.json` 约束。
