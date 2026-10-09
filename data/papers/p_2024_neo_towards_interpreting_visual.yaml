@@ -1,5 +1,5 @@
 ---
-schema_version: 1
+schema_version: 2
 paper_id: p_2024_neo_towards_interpreting_visual
 title: Towards Interpreting Visual Information Processing in Vision-Language Models
 year: 2024
@@ -76,11 +76,20 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+attributes:
+  contribution_role: empirical-discovery
+  evidence_strength: causal-local
+  modality: vision-language
 knowledge_base:
   record_id: p_2024_neo_towards_interpreting_visual
   has_pdf: true
   has_docling_fulltext: true
 provenance:
+  attribute_annotation:
+    annotated_by: project_agent
+    annotated_at: '2026-10-09'
+    basis: Paper abstract, approved Techniques classification, and primary Model Family assignment.
+    change_reason: Add approved paper-level facets for filtering and visualization.
   imported_from: PaperManage
   imported_at: 
   handoff_id: 2026-10-08__llm-interpretability-final-corpus

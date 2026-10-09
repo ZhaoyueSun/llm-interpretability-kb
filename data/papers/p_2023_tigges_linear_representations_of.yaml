@@ -1,5 +1,5 @@
 ---
-schema_version: 1
+schema_version: 2
 paper_id: p_2023_tigges_linear_representations_of
 title: Linear Representations of Sentiment in Large Language Models
 year: 2023
@@ -66,11 +66,20 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+attributes:
+  contribution_role: empirical-discovery
+  evidence_strength: descriptive
+  modality: language
 knowledge_base:
   record_id: p_2023_tigges_linear_representations_of
   has_pdf: true
   has_docling_fulltext: true
 provenance:
+  attribute_annotation:
+    annotated_by: project_agent
+    annotated_at: '2026-10-09'
+    basis: Paper abstract, approved Techniques classification, and primary Model Family assignment.
+    change_reason: Add approved paper-level facets for filtering and visualization.
   imported_from: PaperManage
   imported_at: 
   handoff_id: 2026-10-08__llm-interpretability-final-corpus

@@ -1,5 +1,5 @@
 ---
-schema_version: 1
+schema_version: 2
 paper_id: p_2022_scherlis_polysemanticity_and_capacity
 title: Polysemanticity and Capacity in Neural Networks
 year: 2022
@@ -68,11 +68,20 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+attributes:
+  contribution_role: theory
+  evidence_strength: formal
+  modality: architecture-agnostic
 knowledge_base:
   record_id: p_2022_scherlis_polysemanticity_and_capacity
   has_pdf: true
   has_docling_fulltext: true
 provenance:
+  attribute_annotation:
+    annotated_by: project_agent
+    annotated_at: '2026-10-09'
+    basis: Paper abstract, approved Techniques classification, and primary Model Family assignment.
+    change_reason: Add approved paper-level facets for filtering and visualization.
   imported_from: PaperManage
   imported_at: 
   handoff_id: 2026-10-08__llm-interpretability-final-corpus

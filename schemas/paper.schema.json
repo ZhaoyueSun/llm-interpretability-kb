@@ -18,10 +18,11 @@
     "authors",
     "abstract",
     "knowledge_base",
+    "attributes",
     "provenance"
   ],
   "properties": {
-    "schema_version": {"const": 1},
+    "schema_version": {"const": 2},
     "paper_id": {"type": "string", "pattern": "^p_[a-z0-9_]+$"},
     "title": {"type": "string", "minLength": 1},
     "year": {"type": ["integer", "null"]},
@@ -88,6 +89,25 @@
             "translated_by": {"type": ["string", "null"]},
             "third_party_api_used": {"const": false}
           }
+        }
+      }
+    },
+    "attributes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contribution_role", "evidence_strength", "modality"],
+      "properties": {
+        "contribution_role": {
+          "description": "The paper's primary contribution to the literature.",
+          "enum": ["method", "empirical-discovery", "theory", "evaluation", "application"]
+        },
+        "evidence_strength": {
+          "description": "The evidential level supporting the paper's central mechanistic claim.",
+          "enum": ["descriptive", "decodable", "sensitivity", "causal-local", "causal-structural", "formal", "audit"]
+        },
+        "modality": {
+          "description": "The primary data modality in which the paper's central claim is established.",
+          "enum": ["language", "vision", "vision-language", "biological-sequence", "architecture-agnostic"]
         }
       }
     },

@@ -1,5 +1,5 @@
 ---
-schema_version: 1
+schema_version: 2
 paper_id: p_2025_kim_interpreting_attention_heads
 title: Interpreting Attention Heads for Image-to-Text Information Flow in Large Vision-Language
   Models
@@ -74,11 +74,20 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+attributes:
+  contribution_role: empirical-discovery
+  evidence_strength: sensitivity
+  modality: vision-language
 knowledge_base:
   record_id: p_2025_kim_interpreting_attention_heads
   has_pdf: true
   has_docling_fulltext: true
 provenance:
+  attribute_annotation:
+    annotated_by: project_agent
+    annotated_at: '2026-10-09'
+    basis: Paper abstract, approved Techniques classification, and primary Model Family assignment.
+    change_reason: Add approved paper-level facets for filtering and visualization.
   imported_from: PaperManage
   imported_at: 
   handoff_id: 2026-10-08__llm-interpretability-final-corpus

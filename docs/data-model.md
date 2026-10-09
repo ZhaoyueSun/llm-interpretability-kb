@@ -35,11 +35,18 @@ Corpus 不复制标题、作者、facet、tag、绝对路径或全文抽取状�
 - 链接；
 - 有顺序的作者及论文发表时的机构；
 - 英文 abstract 原文与中文翻译；
+- 论文的主贡献类型、核心证据强度和主要研究模态；
 - abstract 来源和翻译状态；
 - PaperKnowledgeBase record 引用；
 - 导入与核验 provenance。
 
-论文文件不包含 Core 或 Classic 身份、taxonomy 节点、当前引用数或作者图统计。
+三个论文属性均为单值，描述论文核心主张而不是穷举全文内容：
+
+- `contribution_role`：`method`、`empirical-discovery`、`theory`、`evaluation` 或 `application`；
+- `evidence_strength`：`descriptive`、`decodable`、`sensitivity`、`causal-local`、`causal-structural`、`formal` 或 `audit`；
+- `modality`：`language`、`vision`、`vision-language`、`biological-sequence` 或 `architecture-agnostic`。
+
+属性判断以论文的中心贡献为准。论文同时使用的其他技术、对象或模型族继续由各自的 primary/secondary 关系表达，不在属性字段中重复罗列。论文文件不包含 Core 或 Classic 身份、taxonomy 节点、当前引用数或作者图统计。
 
 ## Author
 

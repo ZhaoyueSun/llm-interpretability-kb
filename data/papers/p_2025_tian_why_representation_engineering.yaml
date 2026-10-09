@@ -1,5 +1,5 @@
 ---
-schema_version: 1
+schema_version: 2
 paper_id: p_2025_tian_why_representation_engineering
 title: 'Why Representation Engineering Works: A Theoretical and Empirical Study in
   Vision-Language Models'
@@ -76,11 +76,20 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+attributes:
+  contribution_role: theory
+  evidence_strength: causal-local
+  modality: vision-language
 knowledge_base:
   record_id: p_2025_tian_why_representation_engineering
   has_pdf: true
   has_docling_fulltext: true
 provenance:
+  attribute_annotation:
+    annotated_by: project_agent
+    annotated_at: '2026-10-09'
+    basis: Paper abstract, approved Techniques classification, and primary Model Family assignment.
+    change_reason: Add approved paper-level facets for filtering and visualization.
   imported_from: PaperManage
   imported_at: 
   handoff_id: 2026-10-08__llm-interpretability-final-corpus

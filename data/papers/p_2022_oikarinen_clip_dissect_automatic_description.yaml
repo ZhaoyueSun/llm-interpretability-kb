@@ -1,5 +1,5 @@
 ---
-schema_version: 1
+schema_version: 2
 paper_id: p_2022_oikarinen_clip_dissect_automatic_description
 title: 'CLIP-Dissect: Automatic Description of Neuron Representations in Deep Vision
   Networks'
@@ -52,11 +52,20 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+attributes:
+  contribution_role: method
+  evidence_strength: decodable
+  modality: vision
 knowledge_base:
   record_id: p_2022_oikarinen_clip_dissect_automatic_description
   has_pdf: true
   has_docling_fulltext: true
 provenance:
+  attribute_annotation:
+    annotated_by: project_agent
+    annotated_at: '2026-10-09'
+    basis: Paper abstract, approved Techniques classification, and primary Model Family assignment.
+    change_reason: Add approved paper-level facets for filtering and visualization.
   imported_from: PaperManage
   imported_at:
   handoff_id: 2026-10-09__llm-interpretability-taxonomy-supplement
