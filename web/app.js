@@ -13,6 +13,7 @@ const RQ_FAMILY_COLORS = {
   "evidential-standards": "#346fc4",
   "representation-form": "#e8b72f",
   "computational-mechanism": "#df6ba8",
+  "mechanism-explanation": "#8b72c6",
   "temporal-development": "#39aaa8",
   "intervention-control": "#57ba73",
   "generality-transfer": "#ee7b34",
@@ -1550,7 +1551,7 @@ function renderResearchQuestionGraph() {
         cx: 39,
         cy: position.y + 36,
         r: 6,
-        fill: RQ_FAMILY_COLORS[family.family_id],
+        fill: RQ_FAMILY_COLORS[family.family_id] || "#7f8790",
       }),
     );
     const familyLabel = createSvgElement("text", {
@@ -1608,7 +1609,7 @@ function renderResearchQuestionGraph() {
       role: "button",
       tabindex: "0",
       "aria-label": `${node.display_code}: ${localized({ en: node.question_en, zh: node.question_zh })}`,
-      style: `--rq-color: ${RQ_FAMILY_COLORS[node.family_id]}`,
+      style: `--rq-color: ${RQ_FAMILY_COLORS[node.family_id] || "#7f8790"}`,
     });
     const title = createSvgElement("title");
     title.textContent = `${node.display_code} · ${node.first_date}\n${localized({ en: node.question_en, zh: node.question_zh })}`;
