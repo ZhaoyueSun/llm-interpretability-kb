@@ -1,6 +1,6 @@
 schema_version: 1
 taxonomy_id: techniques
-version: 25
+version: 26
 status: active
 title: Techniques
 nodes:
@@ -1839,100 +1839,156 @@ nodes:
   parent_id: technique
   title: Evaluation and Falsification Protocols
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v26_evaluation_intros
   introduction:
     en: >-
-      An explanation can look persuasive while depending on an arbitrary baseline,
-      leaking information through a probe, or failing to predict what happens under
-      intervention. Evaluation and falsification protocols are designed to expose these
-      failures. They do not usually discover a mechanism themselves; instead, they ask
-      whether another interpretability method is sensitive to the trained model, faithful
-      to behavior, robust to reasonable choices, and useful compared with alternatives.
+      Evaluation and Falsification Protocols test whether an explanation method,
+      mechanism hypothesis, or explanatory artifact actually supports the claims made for
+      it. A result can look intuitive while being driven mainly by input structure,
+      dataset bias, an arbitrary baseline, probe capacity, or the method's own computation
+      rather than by the trained model's mechanism. Researchers therefore need tests under
+      which a mistaken explanation can fail. They may randomize the weights on which the
+      explanation claims to depend, construct control conditions that match the original
+      task in form and difficulty but lack the target mechanism, ask whether the
+      explanation predicts behavior after an internal component is ablated or replaced,
+      or compare it with simple but competitive baselines under the same data and compute
+      budget. Passing any one evaluation supports only one aspect of an explanation; it
+      does not by itself show that the explanation is complete, faithful, or causally
+      correct.
     zh: >-
-      一个解释可能看起来很有说服力，却依赖任意基线、被 probe 的信息泄漏误导，或无法预测真实干预的结果。
-      Evaluation and Falsification Protocols 就是为了暴露这些失败。
-      它们通常不直接发现机制，而是检验其他方法是否真正依赖训练后的模型、是否忠实于行为、
-      是否对合理选择保持稳健，以及相较替代方案是否有用。
+      Evaluation and Falsification Protocols 检验一种解释方法、机制假设或解释性产物是否真的支持它所声称的结论。
+      一个结果即使看起来直观，也可能主要来自输入结构、数据偏差、任意基线、probe 容量或方法自身的计算规则，而不是训练后模型的真实机制。
+      研究者因此不能只看解释是否合理，而要设计能够让错误解释暴露出来的实验。例如，可以随机化解释声称依赖的模型权重，设置理论上不应包含目标机制但形式和难度相近的对照条件，
+      检验解释能否预测消融或替换内部组件后的行为变化，或者在相同数据和计算预算下与简单而有竞争力的基线比较。
+      通过某项评估通常只能提供一个方面的支持，不能单独证明解释已经完整、忠实或具有因果正确性。
 - node_id: randomized-sanity-controls
   parent_id: evaluation-protocols
   title: Randomization and Sanity Controls
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v26_evaluation_intros
   introduction:
     en: >-
-      A basic sanity check asks whether an explanation changes when the structure it is
-      supposed to explain is destroyed. Researchers randomize model layers, labels, or
-      other learned dependencies and rerun the explanation method. If nearly the same
-      saliency map or ranking survives, the method may be responding to the input or its
-      own design rather than to what the trained network learned.
+      Randomization and Sanity Controls test whether an explanation actually depends on
+      structures learned during training. Parameter randomization reinitializes selected
+      layers or the entire model before the explanation is recomputed. Label randomization
+      shuffles the training targets and retrains the same architecture, removing the
+      original input–label relationship while preserving other aspects of the setup.
+      Researchers then compare saliency maps, attribution rankings, or other explanation
+      outputs before and after randomization. If nearly the same result survives after the
+      model has lost the function it originally learned, the method may be responding
+      primarily to the input, architectural priors, or its own computation. For example,
+      a sharp edge-like map can remain visually plausible even when it no longer explains
+      a trained visual mechanism. Passing a randomization check establishes sensitivity
+      to the relevant learned structure, but is not sufficient to prove faithfulness,
+      completeness, or causal correctness.
     zh: >-
-      一个最基本的 sanity check 是：当被解释的学习结构遭到破坏时，解释是否随之改变。
-      研究者会随机化模型层、标签或其他学习依赖，再重新运行解释方法。
-      如果几乎相同的 saliency map 或排序仍然存在，方法可能主要响应输入或自身设计，而不是训练网络真正学到的内容。
+      Randomization and Sanity Controls 检查解释结果是否真正依赖模型训练得到的结构。参数随机化会重新初始化部分或全部模型层，再比较随机化前后的 saliency map、归因排序或其他解释；
+      标签随机化则打乱训练标签，重新训练同一架构，从而消除原有的输入—标签关系，同时保留实验的其他结构。
+      如果模型已经失去原来学到的函数，解释却几乎没有变化，该方法可能主要反映输入轮廓、架构先验或自身的计算规则，而不是模型学到的决策依据。
+      例如，一些显著图在随机化后仍像清晰的边缘图，并不表示随机模型保留了原来的视觉机制。
+      通过随机化检查说明解释至少对相关学习结构敏感，但不能单独证明解释已经忠实、充分或具有因果意义。
 - node_id: probe-controls
   parent_id: evaluation-protocols
   title: Probe Controls and Detectability Analysis
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v26_evaluation_intros
   introduction:
     en: >-
-      Probe evaluation must guard against two opposite mistakes: a powerful probe may
-      manufacture a pattern from weak signals, while a poorly chosen probe may miss
-      information that is genuinely present. Control tasks, matched-capacity baselines,
-      description-length measures, and detectability analyses help separate these cases.
-      The goal is to learn what the representation supports, not merely how accurate one
-      particular classifier happened to be.
+      Probe Controls and Detectability Analysis asks whether a probe result comes from the
+      model representation or from the probe's own capacity, dataset artifacts, or limited
+      statistical power. An overly expressive probe may memorize token identities or fit
+      a weak incidental signal, while a restricted probe, a small sample, or unfavorable
+      representation geometry may miss information that is genuinely present. Randomized
+      control tasks, capacity-matched probes, random-representation baselines, description
+      length, sample-complexity estimates, and power analyses help distinguish these
+      cases. High probe accuracy shows that the chosen predictor can recover information;
+      it does not show that the original model uses that information for its task. A
+      chance-level result supports absence only when the experiment had enough power to
+      detect the signal of interest.
     zh: >-
-      Probe 评估要防止两种相反错误：容量过强的 probe 可能从微弱信号中“制造”模式，选择不当的 probe 又可能漏掉真实存在的信息。
-      控制任务、容量匹配基线、描述长度和 detectability analysis 用来区分这些情况。
-      目标是理解表征究竟支持什么，而不只是报告某个分类器恰好取得了多高准确率。
+      Probe Controls and Detectability Analysis 检查 probe 的结果究竟来自模型表征，还是来自 probe 自身的容量、数据偏差或统计功效。
+      容量过强的 probe 可能记忆词身份或从极弱信号中拟合出较高准确率；容量不足、样本过少或目标属性在几何上难以分离，又可能使真实存在的信息无法被检测。
+      研究者可以使用随机控制任务、容量匹配的 probe、随机表示基线、描述长度、样本复杂度和统计功效分析，判断结果在多大程度上超过记忆与偶然拟合。
+      较高 probe 准确率只说明信息能够被所选预测器恢复，不说明原模型在完成任务时使用了这些信息；接近随机的结果也只有在实验具有足够检测能力时，才能作为信息缺失的证据。
 - node_id: intervention-faithfulness
   parent_id: evaluation-protocols
   title: Intervention Faithfulness and Robustness Tests
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v26_evaluation_intros
   introduction:
     en: >-
-      Intervention-based explanations contain many choices: what value replaces an
-      activation, how the input is corrupted, which behavior is scored, and where a
-      circuit is thresholded. Robustness testing repeats the analysis across plausible
-      choices and checks whether the selected mechanism continues to predict exact
-      interventions and held-out behavior. A conclusion that disappears under a small
-      methodological change is not yet a stable mechanistic finding.
+      Intervention Faithfulness and Robustness Tests ask whether an explanation predicts
+      what happens when the model's internal computation is actively changed. If an
+      explanation claims that a component is necessary, a path carries crucial
+      information, or a feature controls a concept, researchers can test those claims by
+      ablating, replacing, patching, steering, or editing the proposed object. Evaluation
+      considers not only whether the target output changes, but also whether predicted
+      importance agrees with the measured intervention effect, whether the behavior
+      changes or recovers on held-out inputs, and whether unrelated behavior remains
+      intact. Because the result can depend on the corruption procedure, replacement
+      baseline, component granularity, output metric, and intervention strength, the
+      experiment should be repeated across plausible choices. A finding that disappears
+      under a small methodological change is not yet a stable mechanism claim. Conversely,
+      a successful intervention identifies an effective handle on behavior but does not
+      establish that the explanation found the unique mechanism.
     zh: >-
-      干预式解释包含许多选择：用什么值替换激活、怎样污染输入、用哪个行为指标评分，以及在何处截断 circuit。
-      Robustness Test 会在多种合理选择下重复分析，并检查所得机制能否继续预测精确干预和留出行为。
-      若结论随着很小的方法变化就消失，它还不能算稳定的机制发现。
+      Intervention Faithfulness and Robustness Tests 检查一个解释能否预测主动改变模型内部状态后会发生什么。
+      如果某种解释声称一个组件对行为是必要的、某条路径传递了关键信息，或某个特征能够控制目标概念，研究者就可以通过消融、替换、patching、steering 或参数编辑检验这些预测。
+      评估不仅要看干预是否改变目标输出，还要检查解释给出的重要性排序是否与实际干预效应一致、目标行为能否在未见输入上恢复或改变，以及无关行为是否保持稳定。
+      由于结论可能受到 corruption 方法、replacement baseline、组件粒度、输出指标和干预强度影响，还需要在多种合理设置下重复实验。
+      一个只在单一基线或指标下成立的结果，尚不足以支持稳定的机制结论；干预成功也只能证明存在一个有效操作入口，不一定说明解释找到了唯一机制。
 - node_id: dictionary-quality-metrics
   parent_id: evaluation-protocols
   title: Dictionary Quality and Monosemanticity Metrics
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v26_evaluation_intros
   introduction:
     en: >-
-      A feature dictionary can reconstruct activations well while producing features
-      that are redundant, fragmented, or behaviorally irrelevant. Dictionary evaluation
-      therefore examines several dimensions: sparsity, reconstruction, downstream
-      fidelity, semantic coherence, feature splitting, absorption, and usefulness for
-      intervention. These goals can conflict, so there is no single number that certifies
-      a dictionary as “interpretable.”
+      Dictionary Quality and Monosemanticity Metrics evaluate whether features learned by
+      an SAE, Transcoder, or Crosscoder form a useful internal vocabulary. Reconstruction
+      error and sparsity show whether a small number of active features can approximate
+      the original activation, but they do not guarantee that individual features are
+      semantically coherent, distinct, or functionally faithful. Researchers also test
+      whether known concepts are recovered, whether one concept is split across several
+      features, whether a broad feature is absorbed by more specific ones, and whether
+      features are duplicated or mix several concepts. Reinserting reconstructed
+      activations, ablating or editing features, and measuring downstream behavior can
+      reveal whether semantic interpretations agree with causal effects. Synthetic ground
+      truth, supervised upper bounds, and strong baselines provide useful reference
+      points, but each metric covers only one aspect of explanation quality; no single
+      score certifies monosemanticity or overall interpretability. This node concerns how
+      these problems are measured, whereas Optimization-Landscape Analysis studies why
+      training objectives and optimization produce them.
     zh: >-
-      一本特征字典即使重构激活很好，也可能产生冗余、碎片化或与行为无关的特征。
-      因此字典评估会同时考察稀疏性、重构、下游忠实度、语义一致性、feature splitting、absorption 和干预用途。
-      这些目标之间可能冲突，所以不存在一个数字可以单独认证字典“具有可解释性”。
+      Dictionary Quality and Monosemanticity Metrics 评估 SAE、Transcoder、Crosscoder 等方法学到的特征是否真的构成有用的内部词汇表。
+      重构误差和稀疏度只能说明字典能否用少量活跃特征近似原始激活，却不能保证每个特征语义一致、彼此独立或保留模型原有功能。
+      研究者还会检查特征在不同样本上的激活是否连贯、已知概念能否被恢复、一个概念是否被拆成多个特征、宽泛特征是否被更具体的特征吸收，以及不同特征是否重复或混合多个概念。
+      把重构激活重新放回模型、消融或编辑特征，还可以检验字典是否保持下游行为，以及特征的语义解释是否与其因果作用一致。
+      合成真值、监督式上限和强基线能够提供参照，但每项指标只覆盖解释质量的一个侧面；不存在单一分数可以独立证明一个字典具有单义性或整体可解释性。
+      这里关注的是怎样测量这些问题，Optimization-Landscape Analysis 则研究它们为什么会由训练目标和优化过程产生。
 - node_id: benchmark-comparison
   parent_id: evaluation-protocols
   title: Controlled Benchmarking and Method Comparison
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v26_evaluation_intros
   introduction:
     en: >-
-      A benchmark places competing methods under the same tasks, datasets, metrics, and
-      computational constraints. This reveals trade-offs that isolated case studies can
-      hide—for example, a method may localize well but steer poorly, or produce readable
-      features at the cost of faithfulness. Good benchmarking does more than rank methods:
-      it clarifies which scientific question and operating regime each method is suited for.
+      Controlled Benchmarking and Method Comparison places interpretability methods under
+      the same tasks, data splits, training budgets, metrics, and computational
+      constraints. Depending on the methods' claims, the benchmark may measure concept
+      detection, mechanism localization, causal intervention, attribute disentanglement,
+      steering quality, or efficiency. Reliable comparisons include held-out examples,
+      difficult negatives, and simple but competitive baselines, and whenever possible
+      use known ground truth, explicit counterfactual targets, or directly observable
+      behavioral outcomes rather than readability alone. A benchmark is valuable not only
+      for ranking methods but for exposing trade-offs among quality, faithfulness,
+      controllability, generalization, and cost, thereby identifying the tasks and
+      operating conditions for which each method is suitable. Rankings remain conditional
+      on the models, data, budgets, and metrics used; they do not establish universal
+      superiority.
     zh: >-
-      Benchmark 把竞争方法放到相同任务、数据集、指标和计算约束下比较。
-      它能揭示孤立案例容易隐藏的权衡，例如某方法定位准确却不善于 steering，或特征容易阅读但功能忠实度较差。
-      好的 benchmark 不只是排出名次，还应说明每种方法适合回答什么科学问题、适合在哪种工作区间使用。
+      Controlled Benchmarking and Method Comparison 把不同解释方法放在统一的任务、数据划分、训练预算、评价指标和计算约束下比较。
+      评测目标可以是概念检测、机制定位、因果干预、属性解耦、steering 效果或计算效率；具体指标必须与方法所声称解决的问题一致。
+      可靠的 benchmark 还需要设置未见样本、困难负例、简单但有竞争力的基线，并尽可能使用已知真值、明确的反事实目标或可直接观察的行为结果，避免只根据解释是否容易阅读来排名。
+      Benchmark 的价值不只是选出平均分最高的方法，而是揭示质量、忠实度、可控性、泛化能力和成本之间的权衡，并说明不同方法分别适合什么任务和工作条件。
+      排名只对所采用的模型、数据、预算和指标有效，不能自动推广为普遍优劣结论。

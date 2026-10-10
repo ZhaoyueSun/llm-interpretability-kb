@@ -2693,3 +2693,31 @@ proposals:
     roles of controlled toy models, empirical checkpoint trajectories, analytic training
     dynamics, neural feature-learning theory, and optimization-landscape analysis. The
     tree structure, node titles, and paper assignments are unchanged.
+- proposal_id: tp_20261010_techniques_v26_evaluation_intros
+  kind: taxonomy_content
+  status: approved
+  created_at: '2026-10-10'
+  approved_at: '2026-10-10'
+  approval_basis: >-
+    The user requested a fresh review of Evaluation and Falsification Protocols, approved
+    all five child-node drafts, asked for a clearer and non-repetitive parent introduction,
+    reviewed the complete revised parent text, and approved writing the branch.
+  title: Rewrite the Evaluation and Falsification Protocols introductions
+  taxonomy_id: techniques
+  from_taxonomy_version: 25
+  resulting_taxonomy_version: 26
+  taxonomy_file: data/taxonomies/techniques.yaml
+  affected_node_ids:
+  - evaluation-protocols
+  - randomized-sanity-controls
+  - probe-controls
+  - intervention-faithfulness
+  - dictionary-quality-metrics
+  - benchmark-comparison
+  revision_reason: >-
+    Explain how each evaluation family constructs controls, measures failure, and limits
+    the claims that can be drawn from a successful test. Distinguish model-sensitivity
+    checks, probe detectability, intervention-based faithfulness, dictionary-quality
+    measurement, and controlled cross-method comparison without repeating the child list
+    in the parent introduction. The tree structure, node titles, and paper assignments
+    are unchanged.
