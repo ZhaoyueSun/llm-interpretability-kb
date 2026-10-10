@@ -63,6 +63,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** What conclusions about internal information are supported by a probe's success or failure? In this paper, *When and Why Do Linear Bias Probes Fail? A Geometric and Statistical Theory of Bias Detectability in Large Language Model Representations* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Linear probing is the standard instrument for detecting social biases in the hidden representations of large language models. Yet reported probe accuracies come almost exclusively from counterfactual evaluations in which every input carries an explicit demographic marker. Once only a fraction $α$ of inputs carries demographic information, performance degrades sharply, and a weak probe may reflect either an unbiased model or an underpowered detector.
+
+    **Method.** We develop a theory that resolves this ambiguity.
+
+    **Validation.** Modeling representations as two class-conditional clusters with Mahalanobis separation $s$ on a manifold of curvature $\kappa$, we prove: (i) a finite-sample generalization bound governed by the manifold's extrinsic radius with a matching $\smash{\sqrt{d_B/n}}$ minimax lower bound; (ii) an exact purity law for the maximum linear-probe area under the receiver operating characteristic curve (AUC), strictly increasing in $α$; (iii) a curvature ceiling: ambient chordal separation on a space form cannot exceed $2/\sqrt{\kappa}$; and (iv) a detectability threshold below which no audit can distinguish probe output from chance. Every theorem is validated on synthetic manifolds with known ground truth and on six open-weight models $\times$ four bias dimensions, where the purity law predicts entire AUC--$α$ curves from a single cross-fitted $\hat s$ measured at $α=1$, with no parameters fitted to those curves.
+
+    **Conclusion & Evidence.** The framework turns bias auditing into a power analysis: given a target purity and effect size, it prescribes the sample budget $n(α)$ for a conclusive audit. The counterexamples or controls strongly delimit what the audited method can justify. They do not, on their own, prove that any proposed replacement is universally faithful or sufficient.
+  zh: |-
+    **研究问题。** linear bias probe 的成功或失败如何由 class separation、manifold curvature、intrinsic dimension、signal purity 与 sample size 共同决定？怎样区分“模型无偏”与“审计统计功效不足”，并预测 counterfactual 与真实语料评测的巨大差异？
+
+    **方法。** 我们提出一套理论来消除这种歧义。该框架把偏见审计转化为统计功效分析：给定目标纯度和效应量，它可以给出获得确定性审计结论所需的样本预算 $n(α)$。
+
+    **实验验证。** 我们在具有已知真值的合成流形以及六个开放权重模型乘以四个偏见维度上验证了所有定理。纯度定律只需使用在 $α=1$ 时测得的单个交叉拟合 $\hat s$，无需针对曲线拟合任何参数，就能预测完整的 受试者工作特征曲线下面积（Area Under the Curve, AUC）–$α$ 曲线。
+
+    **结论与证据。** 我们将表征建模为曲率为 $\kappa$ 的流形上的两个类条件簇，其马氏间隔为 $s$，并证明：（i）一个由流形外在半径控制的有限样本泛化界，以及与之匹配的 $\smash{\sqrt{d_B/n}}$ 极小极大下界；（ii）最大线性探针 AUC 的精确纯度定律，该值随 $α$ 严格递增；（iii）曲率上限：空间形式上的环境弦距不可能超过 $2/\sqrt{\kappa}$；以及（iv）一个可检测性阈值，低于该阈值时，任何审计都无法区分探针输出与随机结果。反例和控制实验有力限定了被审计方法能够支持的结论，但它们本身不能证明任何替代方法普遍忠实或充分。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: evaluation
   evidence_strength: audit

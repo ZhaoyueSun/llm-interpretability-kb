@@ -128,6 +128,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** The paper asks why neural-network neurons become polysemantic and whether models represent more features than they have dimensions by placing features in non-orthogonal directions, a phenomenon called superposition. It further asks how feature sparsity, importance, and nonlinearity determine when this strategy is favored.
+
+    **Method.** The authors construct small models with known input features and a bottleneck representation, then optimize reconstruction or task loss while varying sparsity, feature importance, dimensionality, and activation functions. Because the ground-truth features are known, the geometry of learned feature vectors can be inspected directly and compared with predictions based on interference costs.
+
+    **Validation.** Parameter sweeps visualize phase changes between ignoring features, allocating dedicated dimensions, and packing many features into superposition. The study examines geometric configurations such as antipodal pairs and regular polytopes, compares ReLU and linear settings, studies correlated and anticorrelated features, and reproduces qualitative phenomena observed in larger networks.
+
+    **Conclusion & Evidence.** Sparse features make non-orthogonal packing advantageous because most interfering features are inactive at any one time; importance and sparsity determine which features receive dedicated capacity, share capacity, or are dropped. The controlled models provide strong mechanistic evidence that superposition can generate polysemantic neurons and predict its geometry. They establish a plausible mechanism, not direct proof that the same optimization fully explains feature organization in large language models.
+  zh: |-
+    **研究问题。** 论文研究神经网络中的神经元为何会呈现多义性，以及模型是否会通过把特征放在非正交方向上，在有限维空间中表示多于维度数量的特征，即形成叠加（superposition）；并进一步考察特征稀疏性、重要性和非线性在什么条件下使这种策略成为最优。
+
+    **方法。** 作者构造具有已知输入特征和表示瓶颈的小型模型，在改变稀疏度、特征重要性、表示维度与激活函数的条件下优化重构或任务损失。由于真值特征已知，可以直接检查学习到的特征向量几何，并将其与“非正交特征相互干扰所产生的代价”这一理论预期比较。
+
+    **实验验证。** 参数扫描展示了忽略特征、为特征分配独占维度以及把多个特征压入 superposition 之间的相变。研究分析对跖向量、正多面体等几何结构，比较线性与线性整流单元（Rectified Linear Unit, ReLU）设置，并考察相关或负相关特征，同时复现大模型中观察到的若干定性现象。
+
+    **结论与证据。** 当特征稀疏时，大部分相互干扰的特征不会同时激活，因此非正交打包具有收益；特征重要性和稀疏度共同决定哪些特征获得独占容量、共享容量或被完全忽略。受控模型为 superposition 能产生多义神经元并形成特定几何提供了较强机制证据，但它证明的是一种可行机制，而非大型语言模型中的特征组织完全由同一优化过程解释。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: theory
   evidence_strength: formal

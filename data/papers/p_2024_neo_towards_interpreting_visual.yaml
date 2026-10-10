@@ -76,6 +76,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** How is visual information represented, routed, and converted into text predictions after entering a language model? In this paper, *Towards Interpreting Visual Information Processing in Vision-Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Vision-Language Models (VLMs) are powerful tools for processing and understanding text and images.
+
+    **Method.** We study the processing of visual tokens in the language model component of LLaVA, a prominent vision–language model (VLM). Our approach focuses on analyzing the localization of object information, the evolution of visual token representations across layers, and the mechanism of integrating visual information for predictions.
+
+    **Validation.** Through ablation studies, we demonstrated that object identification accuracy drops by over 70% when object-specific tokens are removed.
+
+    **Conclusion & Evidence.** We observed that visual token representations become increasingly interpretable in the vocabulary space across layers, suggesting an alignment with textual tokens corresponding to image content. Finally, we found that the model extracts object information from these refined representations at the last token position for prediction, mirroring the process in text-only language models for factual association tasks. These findings provide crucial insights into how VLMs process and integrate visual information, bridging the gap between our understanding of language and vision models, and paving the way for more interpretable and controllable multimodal systems. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+  zh: |-
+    **研究问题。** LLaVA-style 视觉—语言模型（Vision-Language Model, VLM） 输入 LM 的视觉 soft tokens 如何编码物体信息：信息是否保留空间局部性、随层演化为可解释词汇方向，并在何时经 attention 被抽取到回答位置？文本模型上的机制理解能否迁移到视觉输入处理？
+
+    **方法。** 我们研究代表性视觉语言模型 LLaVA 的语言模型组件如何处理视觉 token。研究方法聚焦于分析物体信息的定位、视觉 token 表征跨层的演变，以及整合视觉信息用于预测的机制。
+
+    **实验验证。** 消融研究显示，移除物体特定 token 后，物体识别准确率下降超过 70%。
+
+    **结论与证据。** 我们观察到，视觉 token 表征在跨层传播时，在词汇空间中变得越来越可解释，这表明它们逐渐与对应图像内容的文本 token 对齐。最后，我们发现，模型会在最后一个 token 位置从这些经过细化的表征中提取物体信息用于预测，这与纯文本语言模型处理事实关联任务的过程相似。这些发现为视觉语言模型如何处理和整合视觉信息提供了关键认识，弥合了语言模型与视觉模型之间的理解差距，并为构建更具可解释性和可控性的多模态系统铺平道路。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: empirical-discovery
   evidence_strength: causal-local

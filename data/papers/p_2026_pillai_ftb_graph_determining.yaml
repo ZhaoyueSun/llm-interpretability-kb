@@ -71,6 +71,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Which internal units and broadcast mechanisms implement language choice and cross-lingual capability? In this paper, *FTB Graph: Determining and Validating First-token Broadcasters and Language-Identity Head Circuits in Multilingual Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Large language models operating in multilingual contexts must resolve target response languages early in generation, yet the causal circuitry governing first-token language identity decisions remains poorly mapped.
+
+    **Method.** We present an end-to-end structural circuit analysis across six model architectures spanning four families: GPT-2, BLOOM-560M, Pythia-1B/2.8B, and Qwen2.5-1.5B Base/Instruct.
+
+    **Validation.** Using Edge Attribution Patching (EAP) with FP16 active clamping, followed by exact activation patching verification with a 2,000-candidate-edge search ceiling, we extract directed acyclic graphs driving first-token language broadcasting. Across the standalone models, we observe deep or mid-to-deep broadcasting hubs, though the evidence is strongest for Pythia-2.8B and BLOOM-560M because GPT-2 and Pythia-1B leave few out-of-graph heads for comparison, while both Qwen2.5-1.5B variants invert the necessity check. Scaling from Pythia-1B to 2.8B expands node participation while maintaining a similar verified edge budget, producing sparser topology.
+
+    **Conclusion & Evidence.** The Qwen2.5-1.5B base and instruct circuits retain 84.7% Jaccard similarity, including the Layer 27 hub, indicating that first-token routing is largely established during pretraining and preserved by instruction tuning. Finally, EAP scores correlate weakly with exact patching deltas across most models, showing that linear gradient approximations can diverge from causal interventions in FP16 and motivating exact-patching verification for reliable circuit discovery. The interventions establish that the behavior is sensitive to the targeted representation or parameter direction, but sensitivity alone does not yield a complete or unique mechanism.
+  zh: |-
+    **研究问题。** 多语言模型在生成首 token 前在哪里决定目标语言，是否由少数 language-identity heads 计算并广播信号以约束后续生成？该 circuit 是否跨架构/规模复现，并在 base-to-instruct fine-tuning 中保持拓扑？
+
+    **方法。** 我们针对横跨四个家族的六种模型架构开展端到端结构回路分析，包括 GPT-2、BLOOM-560M、Pythia-1B/2.8B，以及 Qwen2.5-1.5B Base/Instruct。
+
+    **实验验证。** 我们首先使用带 FP16 主动钳制的边归因修补（EAP），再通过精确激活修补进行验证，并将候选边搜索上限设为 2,000，从而提取驱动首个 token 语言广播的有向无环图。在各个独立模型中，我们观察到位于深层或中后层的广播枢纽；不过，Pythia-2.8B 和 BLOOM-560M 的证据最强，因为 GPT-2 和 Pythia-1B 留给图外比较的注意力头很少，而 Qwen2.5-1.5B 的基础版和指令版在必要性检验中都呈现反向结果。从 Pythia-1B 扩展到 2.8B 后，参与节点增多，但经验证的边预算大致不变，因此拓扑更加稀疏。
+
+    **结论与证据。** Qwen2.5-1.5B 基础版与指令版的回路保留了 84.7% 的 Jaccard 相似度，包括第 27 层枢纽；这说明首 token 路由主要在预训练期间建立，并被指令微调保留。最后，在大多数模型上，EAP 分数与精确修补差值只有较弱相关性，表明 FP16 条件下线性梯度近似可能偏离因果干预，因此可靠的回路发现需要精确修补验证。干预证明行为对目标表示或参数方向具有敏感性，但敏感性本身并不构成完整或唯一的机制解释。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: sensitivity

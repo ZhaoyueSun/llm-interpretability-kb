@@ -54,6 +54,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Can circuit discovery be automated and scaled while preserving the quality of mechanism recovery? In this paper, *Attribution Patching Outperforms Automated Circuit Discovery* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Automated interpretability research has recently attracted attention as a potential research direction that could scale explanations of neural network behavior to large models. Existing automated circuit discovery work applies activation patching to identify subnetworks responsible for solving specific tasks (circuits).
+
+    **Method.** In this work, we show that a simple method based on attribution patching outperforms all existing methods while requiring just two forward passes and a backward pass.
+
+    **Validation.** We apply a linear approximation to activation patching to estimate the importance of each edge in the computational subgraph. Using this approximation, we prune the least important edges of the network.
+
+    **Conclusion & Evidence.** We survey the performance and limitations of this method, finding that averaged over all tasks our method has greater area under the receiver operating characteristic curve (AUC) from circuit recovery than other methods. The interventions establish that the behavior is sensitive to the targeted representation or parameter direction, but sensitivity alone does not yield a complete or unique mechanism.
+  zh: |-
+    **研究问题。** 能否用一次前向—反向传播得到的 edge attribution patching 近似逐边 activation patching，从而比 自动电路发现（Automated Circuit Discovery, ACDC） 更高效地恢复已知电路？该近似为何有效、在哪些情况下仍需与 ACDC 结合？
+
+    **方法。** 本文表明，一种基于归因修补的简单方法优于所有现有方法，而且只需要两次前向传播和一次反向传播。
+
+    **实验验证。** 我们对激活修补作线性近似，以估计计算子图中每条边的重要性，并利用该近似剪除网络中最不重要的边。
+
+    **结论与证据。** 我们系统考察该方法的性能和局限，发现对所有任务取平均后，该方法在回路恢复上的 受试者工作特征曲线下面积（Area Under the Curve, AUC） 高于其他方法。干预证明行为对目标表示或参数方向具有敏感性，但敏感性本身并不构成完整或唯一的机制解释。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: sensitivity

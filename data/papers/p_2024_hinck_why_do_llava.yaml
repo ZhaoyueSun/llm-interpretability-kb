@@ -94,6 +94,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Which internal units and broadcast mechanisms implement language choice and cross-lingual capability? In this paper, *Why do LLaVA Vision-Language Models Reply to Images in English?* addresses that question through its specific object of study and tests how far the resulting claim can be supported.
+
+    **Method.** We uncover a surprising multilingual bias occurring in a popular class of multimodal vision-language models (VLMs). Including an image in the query to a LLaVA-style vision–language model (VLM) significantly increases the likelihood of the model returning an English response, regardless of the language of the query. Both approaches indicate that the issue stems in the language modelling component of the LLaVA model.
+
+    **Validation.** This paper investigates the causes of this loss with a two-pronged approach that combines extensive ablation of the design space with a mechanistic analysis of the models' internal representations of image and text inputs.
+
+    **Conclusion & Evidence.** Statistically, we find that switching the language backbone for a bilingual language model has the strongest effect on reducing this error. Mechanistically, we provide compelling evidence that visual inputs are not mapped to a similar space as text ones, and that intervening on intermediary attention layers can reduce this bias. Our findings provide important insights to researchers and engineers seeking to understand the crossover between multimodal and multilingual spaces, and contribute to the goal of developing capable and inclusive VLMs for non-English contexts. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+  zh: |-
+    **研究问题。** 为何向多语言 LLaVA-style 视觉—语言模型（Vision-Language Model, VLM） 加入图像会显著降低 response language fidelity？哪些训练/架构选择与内部表示造成 Image-induced Fidelity Loss，问题可否定位到 language model 并通过 hidden-state intervention 缓解？
+
+    **方法。** 两种方法都表明，问题源自 LLaVA 模型的语言建模组件。
+
+    **实验验证。** 我们揭示了一个出现在常见多模态视觉语言模型（VLM）类别中的意外多语言偏差：向 LLaVA 风格视觉语言模型的查询中加入图像，会显著提高模型用英语回答的概率，而无论查询使用什么语言。本文采用双管齐下的方法调查这种能力损失的原因：一方面对设计空间开展大规模消融，另一方面从机制层面分析模型对图像和文本输入的内部表征。
+
+    **结论与证据。** 从统计结果看，把语言骨干替换为双语语言模型，对减少这一错误的作用最强。从机制角度看，我们提供了有力证据，说明视觉输入并未映射到与文本输入相似的空间，而对中间注意力层进行干预可以减少这种偏差。我们的发现为希望理解多模态空间与多语言空间交叉关系的研究者和工程师提供了重要认识，也有助于面向非英语环境开发能力强且具有包容性的视觉语言模型。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: empirical-discovery
   evidence_strength: causal-local

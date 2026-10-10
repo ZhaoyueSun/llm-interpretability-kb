@@ -69,6 +69,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Where and how do separately trained modality representations achieve semantic alignment? In this paper, *Multimodal Neurons in Pretrained Text-Only Transformers* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Language models demonstrate remarkable capacity to generalize representations learned in one modality to downstream tasks in other modalities.
+
+    **Method.** Can we trace this ability to individual neurons? We introduce a procedure for identifying "multimodal neurons" that convert visual representations into corresponding text, and decoding the concepts they inject into the model’s residual stream.
+
+    **Validation.** We study the case where a frozen text transformer is augmented with vision using a self-supervised visual encoder and a single linear projection learned on an image-to-text task.
+
+    **Conclusion & Evidence.** Outputs of the projection layer are not immediately decodable into language describing image content; instead, we find that translation between modalities occurs deeper within the transformer. In a series of experiments, we show that multimodal neurons operate on specific visual concepts across inputs, and have a systematic causal effect on image captioning. Project page: mmns.csail.mit.edu The evidence establishes that the information is accessible to the chosen readout or decomposition; it does not by itself show that the original model causally uses that information to produce its behavior.
+  zh: |-
+    **研究问题。** 当冻结的文本 Transformer 通过独立视觉编码器和线性投影接收图像时，跨模态语义是在投影层完成，还是由文本模型内部形成？能否找到同时响应视觉与文本概念、并对图像描述具有因果作用的 multimodal 多层感知机（Multi-Layer Perceptron, MLP） neurons？
+
+    **方法。** 我们能否把这种能力追踪到单个神经元？我们提出一种方法，用于识别把视觉表征转换成对应文本的“多模态神经元”，并解码它们注入模型残差流的概念。
+
+    **实验验证。** 本文研究这样一种情形：使用自监督视觉编码器和一个在图像到文本任务上学习的线性投影，为冻结的文本 Transformer 增加视觉能力。
+
+    **结论与证据。** 投影层的输出无法立即被解码成描述图像内容的语言；相反，我们发现模态之间的转换发生在 Transformer 内部更深的位置。通过一系列实验，我们表明，多模态神经元能够跨输入处理特定视觉概念，并对图像描述任务产生系统性的因果影响。项目页面：mmns.csail.mit.edu。证据说明相应信息可以被所选读出器或分解方法访问，但不能单独证明原模型在产生行为时因果使用了这些信息。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: empirical-discovery
   evidence_strength: decodable

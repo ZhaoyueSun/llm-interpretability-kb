@@ -73,6 +73,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Can sparse dictionaries recover interpretable and intervenable latent features from superposition? In this paper, *Sparse Autoencoders Find Highly Interpretable Features in Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. One of the roadblocks to a better understanding of neural networks' internals is polysemanticity, where neurons appear to activate in multiple, semantically distinct contexts. Polysemanticity prevents us from identifying concise, human-understandable explanations for what neural networks are doing internally. One hypothesised cause of polysemanticity is superposition, where neural networks represent more features than they have neurons by assigning features to an overcomplete set of directions in activation space, rather than to individual neurons.
+
+    **Method.** Here, we attempt to identify those directions, using sparse autoencoders to reconstruct the internal activations of a language model.
+
+    **Validation.** These autoencoders learn sets of sparsely activating features that are more interpretable and monosemantic than directions identified by alternative approaches, where interpretability is measured by automated methods.
+
+    **Conclusion & Evidence.** Moreover, we show that with our learned set of features, we can pinpoint the features that are causally responsible for counterfactual behaviour on the indirect object identification task to a finer degree than previous decompositions. This work indicates that it is possible to resolve superposition in language models using a scalable, unsupervised method. Our method may serve as a foundation for future mechanistic interpretability work, which we hope will enable greater model transparency and steerability. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+  zh: |-
+    **研究问题。** 稀疏自编码器能否从 superposition 中恢复过完备特征基？所得特征是否比单个神经元或 主成分分析（Principal Component Analysis, PCA） components 更可解释、更单义，并对模型行为具有可验证的因果作用？
+
+    **方法。** 多义性使我们无法为神经网络内部正在进行的计算找出简洁且人类可理解的解释。关于多义性成因的一种假说是叠加：神经网络并非把特征分配给单个神经元，而是分配到激活空间中的一组过完备方向，从而表征比神经元数量更多的特征。这些自编码器学习到一组稀疏激活的特征；根据自动化方法衡量的可解释性，它们比替代方法识别出的方向更易解释且单义性更强。此外，利用所学到的这组特征，我们能够比以往分解更精细地定位在间接宾语识别任务（Wang 等，2022）中对反事实行为负有因果责任的特征。我们的方法可以成为未来机制可解释性研究的基础，并有望带来更高的模型透明度和可引导性。
+
+    **实验验证。** 本文尝试使用稀疏自编码器重构语言模型的内部激活，以识别这些方向。
+
+    **结论与证据。** 这项工作表明，可以使用可扩展的无监督方法消解语言模型中的叠加。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: descriptive

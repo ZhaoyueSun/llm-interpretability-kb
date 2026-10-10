@@ -84,6 +84,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Where is factual knowledge stored, routed, combined, and used to generate answers? In this paper, *Knowledge Circuits in Pretrained Transformers* addresses that question through its specific object of study and tests how far the resulting claim can be supported. The remarkable capabilities of modern large language models are rooted in their vast repositories of knowledge encoded within their parameters, enabling them to perceive the world and engage in reasoning. The inner workings of how these models store knowledge have long been a subject of intense interest and investigation among researchers. To date, most studies have concentrated on isolated components within these models, such as the Multilayer Perceptrons and attention head.
+
+    **Method.** In this paper, we delve into the computation graph of the language model to uncover the knowledge circuits that are instrumental in articulating specific knowledge.
+
+    **Validation.** The experiments, conducted with GPT2 and TinyLLAMA, have allowed us to observe how certain information heads, relation heads, and Multilayer Perceptrons collaboratively encode knowledge within the model. Moreover, we evaluate the impact of current knowledge editing techniques on these knowledge circuits, providing deeper insights into the functioning and constraints of these editing methodologies. Finally, we utilize knowledge circuits to analyze and interpret language model behaviors such as hallucinations and in-context learning.
+
+    **Conclusion & Evidence.** We believe the knowledge circuits hold potential for advancing our understanding of Transformers and guiding the improved design of knowledge editing. Code and data are available in https://github.com/zjunlp/KnowledgeCircuits. The coordinated interventions provide comparatively strong structural causal evidence for the proposed information flow or circuit. Completeness, uniqueness, and transfer to other models still require separate validation.
+  zh: |-
+    **研究问题。** 事实、常识、语言与偏见知识是否应理解为 attention heads、多层感知机（Multi-Layer Perceptrons, MLPs） 与 embeddings 协同构成的 knowledge circuits，而非孤立 knowledge neurons？这些电路如何存储、表达并跨情境使用知识，又能否指导编辑？
+
+    **方法。** 通过在 GPT2 和 TinyLLAMA 上进行实验，我们观察到某些信息头、关系头和多层感知机如何协同在模型内部编码知识。
+
+    **实验验证。** 此外，我们评估了当前知识编辑技术对这些知识回路的影响，从而更深入地理解这些编辑方法的工作方式和约束。最后，我们使用知识回路分析并解释幻觉和上下文学习等语言模型行为。
+
+    **结论与证据。** 本文深入语言模型的计算图，发现对表达特定知识起关键作用的知识回路。我们认为，知识回路有望推动对 Transformer 的理解，并指导知识编辑的改进设计。代码和数据见 https://github.com/zjunlp/KnowledgeCircuits。相互配合的干预为所提出的信息流或电路提供了较强的结构因果证据，但机制的完备性、唯一性以及跨模型迁移仍需独立验证。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: empirical-discovery
   evidence_strength: causal-structural

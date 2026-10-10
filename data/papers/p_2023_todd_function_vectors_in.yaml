@@ -77,6 +77,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Can a model compress a task or program into a composable, transferable, and causally effective vector? In this paper, *Function Vectors in Large Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported.
+
+    **Method.** We report the presence of a simple neural mechanism that represents an input-output function as a vector within autoregressive transformer language models (LMs).
+
+    **Validation.** FVs are robust to changes in context, i.e., they trigger execution of the task on inputs such as zero-shot and natural text settings that do not resemble the in-context learning (ICL) contexts from which they are collected. We test FVs across a range of tasks, models, and layers and find strong causal effects across settings in middle layers.
+
+    **Conclusion & Evidence.** Using causal mediation analysis on a diverse range of in-context-learning (ICL) tasks, we find that a small number attention heads transport a compact representation of the demonstrated task, which we call a function vector (FV). We investigate the internal structure of FVs and find while that they often contain information that encodes the output space of the function, this information alone is not sufficient to reconstruct an FV. Finally, we test semantic vector composition in FVs, and find that to some extent they can be summed to create vectors that trigger new complex tasks. Our findings show that compact, causal internal vector representations of function abstractions can be explicitly extracted from LLMs. Our code and data are available at https://functions.baulab.info. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+  zh: |-
+    **研究问题。** in-context learning 的任务本身是否被编码为可从少数 causal attention heads 提取的 compact function vector？这种向量能否跨上下文触发任务、携带超出输出词汇的信息，并通过向量组合形成复合函数？
+
+    **方法。** 我们报告了一种简单神经机制的存在：它在自回归 Transformer 语言模型（LM）内部用一个向量表示输入—输出函数。
+
+    **实验验证。** 函数向量对上下文变化具有鲁棒性：在零样本设置和自然文本等与其提取来源 上下文学习（In-Context Learning, ICL） 上下文并不相似的输入中，它们仍能触发任务执行。我们跨多种任务、模型和层测试函数向量，并在不同设置的中间层发现了很强的因果效应。最后，我们测试函数向量的语义向量组合，发现它们在一定程度上可以相加，形成能够触发新复杂任务的向量。
+
+    **结论与证据。** 通过对多种上下文学习（ICL）任务进行因果中介分析，我们发现，少量注意力头会传递所示范任务的紧凑表征，我们称之为函数向量（FV）。我们进一步考察函数向量的内部结构，发现它们虽经常包含编码函数输出空间的信息，但仅凭这些信息不足以重建函数向量。我们的发现表明，可以从大语言模型中显式提取对函数抽象的紧凑、具有因果作用的内部向量表征。代码和数据见 https://functions.baulab.info。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: causal-local

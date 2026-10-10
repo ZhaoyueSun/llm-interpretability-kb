@@ -58,6 +58,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** The paper asks whether a linguistic property being decodable from a representation implies that the model used that property to solve its main task. It specifically tests whether incidental encoding, pretrained embeddings, or even random correlations can produce high probing scores when the property is irrelevant to the trained task.
+
+    **Method.** The authors construct controlled natural-language inference settings in which a linguistic property is present in the input but unnecessary for determining the label. They then train probes on the resulting sentence representations and separately manipulate pretrained word embeddings and synthetic data so that the target property becomes task-irrelevant or random noise.
+
+    **Validation.** Experiments use natural-language inference encoders and controlled synthetic tasks, comparing representations trained with and without a need for the probed property. Additional controls isolate how much information comes from pretrained embeddings rather than task training and test whether probes recover randomly distributed properties above chance.
+
+    **Conclusion & Evidence.** Linguistic properties can remain highly decodable even when the main model has no reason to use them, and pretrained lexical representations account for a substantial part of this signal. Synthetic controls further show above-chance probing of random or incidental structure. These results strongly refute the inference from probing accuracy to task relevance, but they do not make probing useless: probes still establish accessibility of information, provided that claims about functional use require separate interventions.
+  zh: |-
+    **研究问题。** 论文研究某种语言属性可以从表示中被解码，是否意味着模型在完成主任务时实际使用了它；特别检验当该属性与任务无关时，偶然编码、预训练词向量乃至随机相关性是否仍会产生较高的探针分数。
+
+    **方法。** 作者构造受控的自然语言推理（Natural Language Inference, NLI）场景，使目标语言属性存在于输入中，却不是判断任务标签所必需的信息；随后在模型的句子表示上训练探针。他们还分别操纵预训练词向量和合成数据，让被探测属性成为与任务无关的信息或随机噪声。
+
+    **实验验证。** 实验比较“完成主任务需要该属性”与“不需要该属性”两类 NLI 编码器表示。额外控制用于分离预训练词向量而非任务训练所带来的信息，并在合成任务中检验探针是否能以高于随机水平的准确率恢复随机分布或偶然存在的属性。
+
+    **结论与证据。** 即使主模型没有理由使用某种语言属性，该属性仍可能高度可解码，而预训练词汇表示贡献了其中相当一部分信号；合成控制进一步显示随机或偶然结构也可能被探针读出。这些结果有力否定了“探针准确率高就意味着属性与任务相关”的推断，但并不说明探针没有价值：它仍能证明信息可访问，只是关于功能使用的主张需要独立的因果干预。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: evaluation
   evidence_strength: audit

@@ -88,6 +88,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Which internal units and broadcast mechanisms implement language choice and cross-lingual capability? In this paper, *Language-Specific Neurons: The Key to Multilingual Capabilities in Large Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Large language models (LLMs) demonstrate remarkable multilingual capabilities without being pre-trained on specially curated multilingual parallel corpora. It remains a challenging problem to explain the underlying mechanisms by which LLMs process multilingual texts.
+
+    **Method.** In this paper, we delve into the composition of Transformer architectures in LLMs to pinpoint language-specific regions. Specially, we propose a novel detection method, language activation probability entropy (LAPE), to identify language-specific neurons within LLMs.
+
+    **Validation.** Based on LAPE, we conduct comprehensive experiments on several representative LLMs, such as LLaMA-2, BLOOM, and Mistral.
+
+    **Conclusion & Evidence.** Our findings indicate that LLMs' proficiency in processing a particular language is predominantly due to a small subset of neurons, primarily situated in the models' top and bottom layers. Furthermore, we showcase the feasibility to"steer"the output language of LLMs by selectively activating or deactivating language-specific neurons. Our research provides important evidence to the understanding and exploration of the multilingual capabilities of LLMs. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+  zh: |-
+    **研究问题。** 大语言模型（Large Language Model, LLM） 是否存在可由 language activation probability entropy 识别的 language-specific neurons，它们如何分布并影响不同语言的处理？选择性激活或抑制这些神经元能否控制输出语言并缓解 off-target generation？
+
+    **方法。** 本文深入分析语言模型中 Transformer 架构的组成，以定位语言特定区域。具体而言，我们提出一种新的检测方法——语言激活概率熵（LAPE），用于识别语言模型内部的语言特定神经元。
+
+    **实验验证。** 基于 LAPE，我们在 LLaMA-2、BLOOM 和 Mistral 等多个代表性语言模型上进行了全面实验。
+
+    **结论与证据。** 结果表明，语言模型处理某种特定语言的能力主要来自一小部分神经元，它们主要位于模型的顶部层和底部层。此外，我们展示了通过选择性激活或停用语言特定神经元来“引导”语言模型输出语言的可行性。本研究为理解和探索语言模型的多语言能力提供了重要证据。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: empirical-discovery
   evidence_strength: descriptive

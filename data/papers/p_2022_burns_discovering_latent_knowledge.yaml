@@ -66,6 +66,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** The paper asks whether a language model's latent knowledge can be recovered without labels and without trusting the model's stated answers. It tests whether the logical structure of mutually exclusive statements is sufficient to identify a truth-related direction in hidden representations.
+
+    **Method.** Contrast-Consistent Search (CCS) collects representations of paired statements such as a proposition and its negation. A small probe is optimized without ground-truth labels so that its probabilities are consistent—one member of each pair should be true—and confident rather than assigning both the same status. The resulting direction is used to classify which statement the model internally treats as true.
+
+    **Validation.** CCS is evaluated across pretrained language models and diverse binary-question datasets, including natural-language inference, sentiment, ethics, and factual tasks. The authors compare it with zero-shot model answers, supervised and unsupervised probes, random baselines, multiple prompt formats, layers, and cases where demonstrations intentionally encourage incorrect verbal responses.
+
+    **Conclusion & Evidence.** Hidden states often contain a direction that predicts labels more accurately than the model's explicit zero-shot answers, and CCS can recover part of this signal without supervision. This supports the existence of accessible latent knowledge and the utility of logical consistency constraints. The evidence is decodability rather than proof of a universal truth representation: performance varies by task and prompt, the probe may exploit other correlated structure, and successful readout does not show that the model uses the direction during generation.
+  zh: |-
+    **研究问题。** 论文研究能否在没有标签、也不信任模型口头回答的情况下恢复语言模型的潜在知识，并检验互斥陈述所具有的逻辑结构是否足以从隐藏表示中识别与真值相关的方向。
+
+    **方法。** 对比一致性搜索（Contrast-Consistent Search, CCS）收集成对陈述的表示，例如一个命题及其否定。方法在无真值标签的条件下优化一个小型探针，要求每对陈述的预测满足一致性——恰有一个为真——并具有足够置信度，而不是给两者相同判断。所得方向用于判定模型内部更倾向把哪项陈述视为真实。
+
+    **实验验证。** CCS 在多个预训练语言模型和多种二分类数据集上评估，包括自然语言推理、情感、伦理和事实判断任务。作者将其与模型零样本回答、有监督及无监督探针、随机基线比较，并改变提示格式、读取层以及示例是否诱导模型给出错误口头答案。
+
+    **结论与证据。** 隐藏状态中经常存在比模型显式零样本回答更准确预测标签的方向，CCS 无需监督即可恢复其中一部分信号。这支持模型含有可访问的潜在知识，也支持利用逻辑一致性约束进行读出；但证据属于可解码性而非普遍真值表示的证明：表现会随任务和提示变化，探针可能利用其他相关结构，而成功读出也不能说明模型生成时实际使用该方向。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: decodable

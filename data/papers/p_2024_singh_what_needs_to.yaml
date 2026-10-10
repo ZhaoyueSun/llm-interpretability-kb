@@ -74,6 +74,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** How do circuits implementing a capability form progressively from random initialization? In this paper, *What needs to go right for an induction head? A mechanistic study of in-context learning circuits and their formation* addresses that question through its specific object of study and tests how far the resulting claim can be supported. In-context learning is a powerful emergent ability in transformer models. Prior work in mechanistic interpretability has identified a circuit element that may be critical for in-context learning -- the induction head (IH), which performs a match-and-copy operation. During training of large transformers on natural language data, IHs emerge around the same time as a notable phase change in the loss.
+
+    **Method.** We answer these questions by studying IH emergence dynamics in a controlled setting by training on synthetic data. In doing so, we develop and share a novel optogenetics-inspired causal framework for modifying activations throughout training. By clamping subsets of activations throughout training, we then identify three underlying subcircuits that interact to drive IH formation, yielding the phase change.
+
+    **Validation.** Using this framework, we delineate the diverse and additive nature of IHs.
+
+    **Conclusion & Evidence.** Furthermore, these subcircuits shed light on data-dependent properties of formation, such as phase change timing, already showing the promise of this more in-depth understanding of subcircuits that need to"go right"for an induction head. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+  zh: |-
+    **研究问题。** induction circuits 在训练中形成需要哪些相互作用的子计算？能否通过贯穿训练过程的 causal clamping，把表面突发的 phase change 分解为平滑学习的 match、copy 等 subcircuits，并解释数据分布如何改变出现时机？
+
+    **方法。** 为什么它们会突然出现，又有哪些子回路使它们得以形成？我们在合成数据上训练模型，以受控方式研究归纳注意力头的涌现动力学，从而回答这些问题。借助该框架，我们阐明归纳注意力头的多样性与可加性。随后，通过在整个训练期间钳制激活子集，我们识别出三个相互作用、共同驱动归纳注意力头形成并产生相变的底层子回路。
+
+    **实验验证。** 在此过程中，我们开发并公开一种受光遗传学启发的新型因果框架，用于在整个训练过程中修改激活。
+
+    **结论与证据。** 尽管已有充分证据支持归纳注意力头的存在，而且它与相变的同步现象也很有意思，我们对归纳注意力头的多样性和涌现动力学仍知之甚少：为什么会存在不止一个归纳注意力头，它们如何相互依赖？此外，这些子回路还揭示了形成过程中依赖数据的属性，例如相变发生的时机，初步体现了深入理解一个归纳注意力头得以形成所需子回路的价值。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: empirical-discovery
   evidence_strength: descriptive

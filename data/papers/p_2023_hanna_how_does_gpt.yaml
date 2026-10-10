@@ -57,6 +57,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Can a model behavior be reduced to a complete, intervenable, end-to-end component circuit? In this paper, *How does GPT-2 compute greater-than?: Interpreting mathematical abilities in a pre-trained language model* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Pre-trained language models can be surprisingly adept at tasks they were not explicitly trained on, but how they implement these capabilities is poorly understood.
+
+    **Method.** In this paper, we investigate the basic mathematical abilities often acquired by pre-trained language models. Concretely, we use mechanistic interpretability techniques to explain the (limited) mathematical abilities of GPT-2 small.
+
+    **Validation.** As a case study, we examine its ability to take in sentences such as"The war lasted from the year 1732 to the year 17", and predict valid two-digit end years (years>32). We first identify a circuit, a small subset of GPT-2 small's computational graph that computes this task's output.
+
+    **Conclusion & Evidence.** Then, we explain the role of each circuit component, showing that GPT-2 small's final multi-layer perceptrons boost the probability of end years greater than the start year. Finally, we find related tasks that activate our circuit. Our results suggest that GPT-2 small computes greater-than using a complex but general mechanism that activates across diverse contexts. The coordinated interventions provide comparatively strong structural causal evidence for the proposed information flow or circuit. Completeness, uniqueness, and transfer to other models still require separate validation.
+  zh: |-
+    **研究问题。** 未经专门数学训练的 GPT-2 small 如何完成 year-span greater-than prediction？哪些 attention heads、多层感知机（Multi-Layer Perceptrons, MLPs） 和 neurons 构成充分的因果回路，各组件分别如何传递数字信息和实现比较计算，该回路是否跨相邻 greater-than contexts 复用？
+
+    **方法。** 本文研究预训练语言模型经常获得的基础数学能力。具体而言，我们使用机制可解释性技术解释 GPT-2 small 有限的数学能力。
+
+    **实验验证。** 作为案例，我们考察它处理如下句子的能力：“战争从 1732 年持续到 17__ 年”，并预测有效的两位数结束年份（年份大于 32）。首先，我们识别出一个回路，即 GPT-2 small 计算图中负责算出该任务输出的一小部分。随后，我们解释每个回路组件的作用，表明 GPT-2 small 最后的多层感知机提高了结束年份大于开始年份的概率。
+
+    **结论与证据。** 最后，我们找到了能够激活该回路的相关任务。结果表明，GPT-2 small 使用一种复杂但具有一般性的机制计算“大于”关系，并且该机制会在多样的上下文中激活。相互配合的干预为所提出的信息流或电路提供了较强的结构因果证据，但机制的完备性、唯一性以及跨模型迁移仍需独立验证。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: empirical-discovery
   evidence_strength: causal-structural

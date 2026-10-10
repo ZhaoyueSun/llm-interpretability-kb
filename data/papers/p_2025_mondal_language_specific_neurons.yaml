@@ -61,6 +61,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Which internal units and broadcast mechanisms implement language choice and cross-lingual capability? In this paper, *Language-specific Neurons Do Not Facilitate Cross-Lingual Transfer* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Multilingual large language models (LLMs) aim towards robust natural language understanding across diverse languages, yet their performance significantly degrades on low-resource languages.
+
+    **Method.** This work explores whether existing techniques to identify language-specific neurons can be leveraged to enhance cross-lingual task performance of lowresource languages.
+
+    **Validation.** We conduct detailed experiments covering existing language-specific neuron identification techniques (such as Language Activation Probability Entropy and activation probability-based thresholding) and neuron-specific LoRA fine-tuning with models like Llama 3.1 and Mistral Nemo. We find that such neuron-specific interventions are insufficient to yield cross-lingual improvements on downstream tasks (XNLI, XQuAD) in lowresource languages.
+
+    **Conclusion & Evidence.** This study highlights the challenges in achieving cross-lingual generalization and provides critical insights for multilingual LLMs. The counterexamples or controls strongly delimit what the audited method can justify. They do not, on their own, prove that any proposed replacement is universally faithful or sufficient.
+  zh: |-
+    **研究问题。** 已识别的 language-specific neurons 是否真能通过 test-time activation intervention 或 targeted fine-tuning 改善低资源语言的 cross-lingual downstream transfer，而不只是影响生成语言？其 polysemanticity 是否限制了这种作用？
+
+    **方法。** 本研究探讨能否利用现有的语言特定神经元识别技术，提升低资源语言的跨语言任务表现。
+
+    **实验验证。** 我们开展了细致实验，涵盖现有语言特定神经元识别技术（例如语言激活概率熵和基于激活概率的阈值法），以及在 Llama 3.1、Mistral Nemo 等模型上进行的神经元特定 LoRA 微调。结果发现，这类针对特定神经元的干预不足以提升低资源语言在下游任务（XNLI、XQuAD）上的跨语言表现。
+
+    **结论与证据。** 本研究凸显了实现跨语言泛化所面临的挑战，并为多语言大语言模型提供了重要认识。反例和控制实验有力限定了被审计方法能够支持的结论，但它们本身不能证明任何替代方法普遍忠实或充分。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: evaluation
   evidence_strength: audit

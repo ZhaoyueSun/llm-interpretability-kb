@@ -54,6 +54,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** The paper asks whether high probing accuracy demonstrates linguistic structure in a representation or merely the probe's ability to learn and memorize the task. It seeks a control that measures this confound and supports better choices of probe complexity and model layer.
+
+    **Method.** A control task assigns each word type a random label while preserving the input and label-space structure of the linguistic task. Because the representation cannot contain a systematic linguistic rule for these random assignments, success measures the probe's capacity to memorize word identities. Selectivity is defined by contrasting linguistic-task accuracy with control-task accuracy; a useful probe should be accurate on the real task but poor on the control.
+
+    **Validation.** Control tasks are constructed for English part-of-speech tagging and dependency-edge prediction on contextual Embeddings from Language Models (ELMo). The authors compare linear and multilayer perceptron probes, vary hidden size and regularization, test dropout, and revisit conclusions about which ELMo layer best represents part of speech.
+
+    **Conclusion & Evidence.** Popular probes can achieve high linguistic accuracy while also learning randomized controls, so raw accuracy alone overstates what should be attributed to the representation. Selectivity changes probe and layer comparisons; regularization can improve it, whereas dropout is not consistently effective for multilayer perceptrons. The evidence strongly establishes a memorization confound and a useful audit, but selectivity still measures decodability under a chosen probe family and does not establish causal use of the linguistic property.
+  zh: |-
+    **研究问题。** 论文研究探针的高准确率究竟证明表示编码了语言结构，还是只说明探针能够学习甚至记忆任务；并试图设计一种控制方法，量化这种混淆，从而更可靠地选择探针复杂度和模型层。
+
+    **方法。** 控制任务把每种词类型随机映射到一个标签，同时尽量保留原语言任务的输入和标签空间结构。由于表示中不可能存在解释这些随机映射的系统性语言规则，控制任务表现主要反映探针记忆词身份的能力。作者用真实语言任务准确率与控制任务准确率之差定义选择性（selectivity）：理想探针应在真实任务上准确，而在随机控制上表现较差。
+
+    **实验验证。** 作者为英语词性标注和依存边预测构造控制任务，并在语言模型嵌入（Embeddings from Language Models, ELMo）上比较线性探针与多层感知机（Multi-Layer Perceptron, MLP）探针。他们改变隐藏层规模和正则化方式，检验 dropout，并重新评估 ELMo 哪一层更好地表示词性。
+
+    **结论与证据。** 常用探针可能在语言任务上取得高准确率，同时也能学会随机控制任务，因此原始准确率会夸大应归因于表示本身的信息。选择性会改变对探针和层的比较；部分正则化方法能够改善选择性，而 dropout 对 MLP 并不稳定有效。证据较强地确认了探针记忆这一混淆因素及控制任务的审计价值，但选择性仍是在特定探针族下衡量可解码性，不能证明相应语言属性被模型因果使用。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: evaluation
   evidence_strength: audit

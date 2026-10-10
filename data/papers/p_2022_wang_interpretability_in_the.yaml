@@ -71,6 +71,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** The paper asks how GPT-2 small performs indirect object identification (IOI), a task such as completing “Alice gave a drink to …” with the other person. It seeks an end-to-end circuit explanation, functional roles for its components, and quantitative tests of the circuit's faithfulness, completeness, and minimality.
+
+    **Method.** The authors combine activation patching, path patching, attention analysis, and logit attribution to isolate information flow. They organize 26 attention heads into seven functional classes—including name mover, inhibition, duplicate-token, induction, and previous-token heads—and propose how these classes transmit subject and indirect-object information to the final prediction.
+
+    **Validation.** The circuit is discovered and tested on controlled IOI sentence templates in GPT-2 small. Components and paths are ablated or patched between clean and counterfactual prompts; the authors measure recovery of the IO-versus-subject logit difference, compare with random or omitted heads, and evaluate whether the selected circuit reproduces model behavior while excluding unnecessary components.
+
+    **Conclusion & Evidence.** The identified heads form a coherent causal pathway that explains a large fraction of GPT-2 small's IOI behavior, and quantitative tests support substantial faithfulness and completeness. Remaining performance and backup mechanisms show that the account is not perfectly complete or uniquely minimal. The work provides strong task- and model-local structural causal evidence, not proof that the same components implement IOI in larger models or across unconstrained language.
+  zh: |-
+    **研究问题。** 论文研究 GPT-2 small 如何完成间接宾语识别（Indirect Object Identification, IOI），例如在“Alice 把饮料给了……”之后预测另一位人物；目标是给出端到端电路解释、说明各组件的功能角色，并定量检验电路的忠实性、完备性和最小性。
+
+    **方法。** 作者结合激活修补、路径修补、注意力分析和 logit 归因来定位信息流，并把 26 个注意力头组织为七类功能组件，包括 name mover、inhibition、duplicate-token、induction 和 previous-token heads，提出这些组件如何把主语与间接宾语信息传递到最终预测。
+
+    **实验验证。** 电路在 GPT-2 small 的受控 IOI 句式模板上发现和检验。研究者在干净提示与反事实提示之间消融或修补组件及路径，测量间接宾语相对主语的 logit 差能恢复多少，并与随机注意力头及遗漏组件的电路比较，以判断所选电路能否复现模型行为且排除不必要部分。
+
+    **结论与证据。** 所识别的注意力头构成了连贯的因果信息通路，能够解释 GPT-2 small 相当大比例的 IOI 行为，忠实性和完备性指标也总体支持该解释。残余性能和备份机制说明它并非完全完备或唯一最小。论文提供的是针对特定任务与模型的较强结构因果证据，不能证明更大模型或开放语言中的 IOI 使用相同组件。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: empirical-discovery
   evidence_strength: causal-structural

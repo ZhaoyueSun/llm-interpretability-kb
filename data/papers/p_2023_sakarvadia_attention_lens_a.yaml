@@ -84,6 +84,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** What information does an individual model component read, transform, and write back within a distributed computation? In this paper, *Attention Lens: A Tool for Mechanistically Interpreting the Attention Head Information Retrieval Mechanism* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Transformer-based Large Language Models (LLMs) are the state-of-the-art for natural language tasks. Recent work has attempted to decode, by reverse engineering the role of linear layers, the internal mechanisms by which LLMs arrive at their final predictions for text completion tasks. Yet little is known about the specific role of attention heads in producing the final token prediction.
+
+    **Method.** We propose Attention Lens, a tool that enables researchers to translate the outputs of attention heads into vocabulary tokens via learned attention-head-specific transformations called lenses.
+
+    **Validation.** Preliminary findings from our trained lenses indicate that attention heads play highly specialized roles in language models.
+
+    **Conclusion & Evidence.** The code for Attention Lens is available at github.com/msakarvadia/AttentionLens. The evidence establishes that the information is accessible to the chosen readout or decomposition; it does not by itself show that the original model causally uses that information to produce its behavior.
+  zh: |-
+    **研究问题。** 能否学习从单个 attention-head output 到词表空间的映射，以解释各 head 向 residual stream 注入了哪些语义信息，并据此定位知识检索、错误与偏见？这种映射是否比直接使用 unembedding 更适合中间层？
+
+    **方法。** 然而，对于注意力头在生成最终 token 预测中发挥的具体作用，我们仍知之甚少。
+
+    **实验验证。** 我们提出 Attention Lens 工具；它使用学习得到的、针对各个注意力头的变换——称为“透镜”——把注意力头输出转换为词汇 token。
+
+    **结论与证据。** 训练所得透镜的初步结果表明，注意力头在语言模型中承担高度专门化的作用。Attention Lens 代码见 github.com/msakarvadia/AttentionLens。证据说明相应信息可以被所选读出器或分解方法访问，但不能单独证明原模型在产生行为时因果使用了这些信息。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: decodable

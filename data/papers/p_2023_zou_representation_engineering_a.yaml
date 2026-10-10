@@ -163,6 +163,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Can readable internal directions be manipulated reliably to produce specific and predictable behavioral changes? In this paper, *Representation Engineering: A Top-Down Approach to artificial intelligence (AI) Transparency* addresses that question through its specific object of study and tests how far the resulting claim can be supported.
+
+    **Method.** In this paper, we identify and characterize the emerging area of representation engineering (RepE), an approach to enhancing the transparency of AI systems that draws on insights from cognitive neuroscience. RepE places population-level representations, rather than neurons or circuits, at the center of analysis, equipping us with novel methods for monitoring and manipulating high-level cognitive phenomena in deep neural networks (DNNs).
+
+    **Validation.** We showcase how these methods can provide traction on a wide range of safety-relevant problems, including honesty, harmlessness, power-seeking, and more, demonstrating the promise of top-down transparency research.
+
+    **Conclusion & Evidence.** We provide baselines and an initial analysis of RepE techniques, showing that they offer simple yet effective solutions for improving our understanding and control of large language models. We hope that this work catalyzes further exploration of RepE and fosters advancements in the transparency and safety of AI systems. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+  zh: |-
+    **研究问题。** 能否以群体激活中的高层表示而非单个神经元或局部电路为分析单位，系统地读取和控制 truthfulness、honesty、hallucination、utility 等安全相关状态，并形成可扩展的 top-down transparency 方法？
+
+    **方法。** 本文识别并刻画了新兴的表征工程（Representation Engineering，RepE）领域。这种增强 人工智能（Artificial Intelligence, AI） 系统透明度的方法借鉴了认知神经科学的认识。我们展示了这些方法如何推动一系列与安全相关的问题，包括诚实性、无害性、权力寻求等，由此体现自上而下透明度研究的潜力。
+
+    **实验验证。** RepE 将群体层面的表征置于分析中心，而不是聚焦神经元或回路，从而为监测和操纵深度神经网络（DNN）中的高层认知现象提供新方法。
+
+    **结论与证据。** 我们给出 RepE 技术的基线和初步分析，表明它们能够以简单而有效的方式改善我们对大语言模型的理解和控制。我们希望本工作能够促进对 RepE 的进一步探索，并推动 AI 系统透明度与安全性的进步。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: causal-local

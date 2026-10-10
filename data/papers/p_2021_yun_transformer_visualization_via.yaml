@@ -64,6 +64,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** The paper asks whether contextualized embeddings across Transformer layers can be decomposed into a shared sparse set of interpretable factors without prespecifying a probing task. It further asks whether those factors reveal where lexical, syntactic, and long-range patterns emerge through depth.
+
+    **Method.** The authors formulate multilayer contextual representations as sparse linear combinations of learned Transformer factors. Joint dictionary learning shares factors across layers while assigning sparse coefficients to individual token representations, allowing a factor to be inspected through its highest-loading tokens, contexts, and layerwise coefficient trajectory.
+
+    **Validation.** The method is applied to contextual embeddings from pretrained Transformer language models on large text collections. Qualitative case studies examine word-sense disambiguation, syntactic relations, and long-distance dependencies, while quantitative analyses compare reconstruction, sparsity, stability, and correspondence with known linguistic annotations or baselines.
+
+    **Conclusion & Evidence.** Sparse factors recover coherent contextual patterns and provide a layerwise view of when they appear, offering an unsupervised complement to task-specific probes. The evidence supports the existence of useful low-dimensional factors in the analyzed representations, but it is mainly descriptive and decoding-based. Factor interpretability depends on dictionary-learning choices, and the study does not show that the recovered factors are unique or causally used by the Transformer.
+  zh: |-
+    **研究问题。** 论文研究能否在不预先指定探测任务的情况下，把 Transformer 各层的上下文化嵌入分解为一组共享、稀疏且可解释的因子；并考察这些因子能否揭示词汇、句法和长程依赖结构在网络深度上的形成位置。
+
+    **方法。** 作者把多层上下文化表示建模为若干 Transformer 因子的稀疏线性组合。联合字典学习在不同层之间共享因子，同时为每个 token 表示学习稀疏系数；研究者可以通过最高系数对应的 token、上下文以及系数随层数的变化来解释一个因子。
+
+    **实验验证。** 方法应用于预训练 Transformer 语言模型在大规模文本上的上下文化嵌入。定性案例覆盖词义消歧、句法关系和长距离依赖；定量分析则考察重构误差、稀疏性、稳定性，以及所得因子与已知语言标注或替代分解之间的对应。
+
+    **结论与证据。** 稀疏因子能够恢复语义连贯的上下文模式，并显示这些模式在不同层中何时出现，为任务特定探针提供了无监督补充。证据支持所分析表示中存在有用的低维因素，但主要仍是描述性和可解码性证据；因子解释依赖字典学习设置，研究也未证明这些因子具有唯一性或被 Transformer 因果使用。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: descriptive

@@ -88,6 +88,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Do interpretability methods provide distinctive practical value on causal tasks, realistic distributions, and against strong baselines? In this paper, *AxBench: Steering large language models (LLMs)? Even Simple Baselines Outperform Sparse Autoencoders* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Fine-grained steering of language model outputs is essential for safety and reliability. Prompting and finetuning are widely used to achieve these goals, but interpretability researchers have proposed a variety of representation-based techniques as well, including sparse autoencoders (SAEs), linear artificial tomography, supervised steering vectors, linear probes, and representation finetuning. At present, there is no benchmark for making direct comparisons between these proposals.
+
+    **Method.** Therefore, we introduce AxBench, a large-scale benchmark for steering and concept detection, and report experiments on Gemma-2-2B and 9B. For concept detection, representation-based methods such as difference-in-means, perform the best. We introduce a novel weakly-supervised representational method (Rank-1 Representation Finetuning; ReFT-r1), which is competitive on both tasks while providing the interpretability advantages that prompting lacks.
+
+    **Validation.** For steering, we find that prompting outperforms all existing methods, followed by finetuning. On both evaluations, SAEs are not competitive.
+
+    **Conclusion & Evidence.** Along with AxBench, we train and publicly release SAE-scale feature dictionaries for ReFT-r1 and DiffMean. The counterexamples or controls strongly delimit what the audited method can justify. They do not, on their own, prove that any proposed replacement is universally faithful or sufficient.
+  zh: |-
+    **研究问题。** representation-based steering 是否在开放词汇概念与长文本生成的现实规模上，真正优于 prompting、full/parameter-efficient fine-tuning 等简单控制基线？如何同时以 concept detection 与 model steering 建立可扩展的统一 benchmark？
+
+    **方法。** 我们提出一种新的弱监督表征方法——秩一表征微调（Rank-1 Representation Finetuning，ReFT-r1）。该方法在两项任务上均具有竞争力，同时具备提示方法所缺少的可解释性优势。
+
+    **实验验证。** 因此，我们推出 AxBench——一个用于引导和概念检测的大规模基准，并报告在 Gemma-2-2B 和 Gemma-2-9B 上的实验。就引导而言，提示优于所有现有方法，微调位居其次；就概念检测而言，均值差等基于表征的方法表现最佳。在两项评估中，稀疏自编码器（Sparse Autoencoder, SAE） 都缺乏竞争力。
+
+    **结论与证据。** 除 AxBench 外，我们还训练并公开发布了达到 SAE 规模的 ReFT-r1 和 DiffMean 特征字典。反例和控制实验有力限定了被审计方法能够支持的结论，但它们本身不能证明任何替代方法普遍忠实或充分。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: evaluation
   evidence_strength: audit

@@ -61,6 +61,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Can a model behavior be reduced to a complete, intervenable, end-to-end component circuit? In this paper, *A Mechanistic Interpretation of Arithmetic Reasoning in Language Models using Causal Mediation Analysis* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Mathematical reasoning in large language models (LMs) has garnered significant attention in recent work, but there is a limited understanding of how these models process and store information related to arithmetic tasks within their architecture.
+
+    **Method.** In order to improve our understanding of this aspect of language models, we present a mechanistic interpretation of Transformer-based LMs on arithmetic questions using a causal mediation analysis framework.
+
+    **Validation.** By intervening on the activations of specific model components and measuring the resulting changes in predicted probabilities, we identify the subset of parameters responsible for specific predictions. This provides insights into how information related to arithmetic is processed by LMs. Our experimental results indicate that LMs process the input by transmitting the information relevant to the query from mid-sequence early layers to the final token using the attention mechanism.
+
+    **Conclusion & Evidence.** Then, this information is processed by a set of multilayer perceptron (MLP) modules, which generate result-related information that is incorporated into the residual stream. To assess the specificity of the observed activation dynamics, we compare the effects of different model components on arithmetic queries with other tasks, including number retrieval from prompts and factual knowledge questions. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+  zh: |-
+    **研究问题。** 语言模型回答基本算术问题时，operand、operator 与 result 信息如何在层和位置之间流动？是否由早层处理输入、attention 将信息传至末 token、晚层 多层感知机（Multi-Layer Perceptron, MLP） 写入结果信息，并且这一模式是否跨运算和模型复现？
+
+    **方法。** 为加深对此问题的理解，我们使用因果中介分析框架，对基于 Transformer 的语言模型回答算术问题的过程给出机制解释。
+
+    **实验验证。** 通过干预特定模型组件的激活并测量预测概率随之发生的变化，我们识别出负责特定预测的参数子集，从而揭示语言模型如何处理与算术有关的信息。实验结果表明，语言模型首先利用注意力机制，把与问题相关的信息从序列中部的早期层传送至最后一个 token；随后，一组 MLP 模块对这些信息进行处理，生成与结果有关的信息并将其写入残差流。
+
+    **结论与证据。** 为评估所观察到的激活动力学是否具有任务特异性，我们比较了不同模型组件对算术问题和其他任务的影响，后者包括从提示中检索数字以及回答事实知识问题。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: empirical-discovery
   evidence_strength: causal-local

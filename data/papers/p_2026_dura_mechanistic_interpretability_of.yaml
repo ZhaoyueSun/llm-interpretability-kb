@@ -62,6 +62,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** How does causal computation unfold and reorganize across the generated steps of Chain-of-Thought reasoning? In this paper, *Mechanistic Interpretability of Chain-of-Thought Reasoning via Sequential Activation Patching* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Large Language Models (LLMs) demonstrate remarkable problem-solving capabilities when guided by Chain-of-Thought (CoT) prompting, yet the internal mechanisms underlying these improvements remain poorly understood.
+
+    **Method.** In this work, we investigate where CoT-related causal effects emerge across the generated reasoning trajectory and which attention heads carry signals that contribute to final-answer computation.
+
+    **Validation.** Because CoT reasoning unfolds over multiple generated tokens, standard activation patching at a single static token position is insufficient to characterize these temporally distributed effects. To address this limitation, we introduce a sequential activation patching framework that traces CoT-conditioned attention-head activations across token positions and aggregates their effects using Part-of-Speech-guided analysis. We further introduce Sequential Multi-Head Patching to evaluate the joint contribution of distributed head sets, together with cross-question and random activation controls.
+
+    **Conclusion & Evidence.** Targeted zero-ablation experiments show that the identified heads are functionally important for successful answer generation and affect several overlapping mechanisms, including reasoning-trajectory maintenance, answer anchoring, exemplar-target separation, and numerical generation. Overall, our results provide evidence for distributed reasoning-support sub-circuits associated with CoT-conditioned computation. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+  zh: |-
+    **研究问题。** prompted CoT 只是改变输出表面形式，还是沿生成轨迹因果性地重组内部计算？哪些 token positions 与 attention heads 携带使 No-CoT execution 转向 CoT-like final answer 的信号，如何用 sequential activation patching 追踪其时间分布？
+
+    **方法。** 在本研究中，我们考察与 CoT 有关的因果效应在生成推理轨迹的哪些位置出现，以及哪些注意力头承载了有助于计算最终答案的信号。
+
+    **实验验证。** 由于 CoT 推理跨多个生成 token 展开，只在单个静态 token 位置进行标准激活修补，不足以刻画这些在时间上分布的效应。为解决这一局限，我们提出序列激活修补框架：跨 token 位置追踪以 CoT 为条件的注意力头激活，并借助词性引导的分析汇总其效应。我们还提出序列多头修补，用于评估分布式注意力头集合的联合贡献，并设置跨问题激活对照和随机激活对照。
+
+    **结论与证据。** 定向置零消融实验表明，所识别的注意力头对成功生成答案具有功能重要性，并影响多个相互重叠的机制，包括推理轨迹维持、答案锚定、示例与目标分离以及数值生成。总体而言，我们的结果为与 CoT 条件计算相关的分布式推理支持子回路提供了证据。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: empirical-discovery
   evidence_strength: causal-local

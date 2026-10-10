@@ -68,6 +68,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Can circuit discovery be automated and scaled while preserving the quality of mechanism recovery? In this paper, *Towards Automated Circuit Discovery for Mechanistic Interpretability* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Through considerable effort and intuition, several recent works have reverse-engineered nontrivial behaviors of transformer models.
+
+    **Method.** This paper systematizes the mechanistic interpretability process they followed. For example, the ACDC algorithm rediscovered 5/5 of the component types in a circuit in GPT-2 Small that computes the Greater-Than operation.
+
+    **Validation.** First, researchers choose a metric and dataset that elicit the desired model behavior. Then, they apply activation patching to find which abstract neural network units are involved in the behavior. By varying the dataset, metric, and units under investigation, researchers can understand the functionality of each component. We automate one of the process' steps: to identify the circuit that implements the specified behavior in the model's computational graph. We propose several algorithms and reproduce previous interpretability results to validate them.
+
+    **Conclusion & Evidence.** ACDC selected 68 of the 32,000 edges in GPT-2 Small, all of which were manually found by previous work. Our code is available at https://github.com/ArthurConmy/Automatic-Circuit-Discovery. The coordinated interventions provide comparatively strong structural causal evidence for the proposed information flow or circuit. Completeness, uniqueness, and transfer to other models still require separate validation.
+  zh: |-
+    **研究问题。** 高度依赖人工迭代的 circuit discovery 流程中，哪些步骤可以自动化？自动电路发现（Automated Circuit Discovery, ACDC） 等算法能否依据行为数据、metric 和 activation patching 自动抽取近似已知回路，并用统一指标比较不同自动发现方法？
+
+    **方法。** 本文将这些工作所遵循的机制可解释性流程系统化。
+
+    **实验验证。** 首先，研究者选择能够诱发目标模型行为的指标和数据集；随后应用激活修补，找出哪些抽象神经网络单元参与该行为；通过改变所研究的数据集、指标和单元，研究者可以理解各组件的功能。我们自动化了这一流程中的一个步骤：识别模型计算图中实现指定行为的回路。我们提出多种算法，并通过复现此前的可解释性结果加以验证。
+
+    **结论与证据。** 例如，ACDC 算法重新发现了 GPT-2 Small 中计算“大于”操作的一个回路里全部五类组件。ACDC 从 GPT-2 Small 的 32,000 条边中选择了 68 条，而这些边此前都已由人工研究发现。代码见 https://github.com/ArthurConmy/Automatic-Circuit-Discovery。相互配合的干预为所提出的信息流或电路提供了较强的结构因果证据，但机制的完备性、唯一性以及跨模型迁移仍需独立验证。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: causal-structural

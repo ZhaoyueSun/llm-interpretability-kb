@@ -58,6 +58,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Can semantic variables be represented by directions or subspaces with measurable, intervenable, and compositional properties? In this paper, *The Linear Representation Hypothesis and the Geometry of Large Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Informally, the'linear representation hypothesis'is the idea that high-level concepts are represented linearly as directions in some representation space.
+
+    **Method.** In this paper, we address two closely related questions: What does"linear representation"actually mean? And, how do we make sense of geometric notions (e.g., cosine similarity or projection) in the representation space? To answer these, we use the language of counterfactuals to give two formalizations of"linear representation", one in the output (word) representation space, and one in the input (sentence) space. To make sense of geometric notions, we use the formalization to identify a particular (non-Euclidean) inner product that respects language structure in a sense we make precise. In particular, this allows the construction of probes and steering vectors using counterfactual pairs.
+
+    **Validation.** We then prove these connect to linear probing and model steering, respectively.
+
+    **Conclusion & Evidence.** Using this causal inner product, we show how to unify all notions of linear representation. Experiments with LLaMA-2 demonstrate the existence of linear representations of concepts, the connection to interpretation and control, and the fundamental role of the choice of inner product. The formal result is strong under its stated assumptions, with experiments or constructions supporting the predicted consequences. Its scope is limited by those assumptions and does not automatically extend to every architecture or training regime.
+  zh: |-
+    **研究问题。** “线性表示”作为 subspace、measurement 与 intervention 的三种定义如何形式化并彼此关联？什么 inner product 才能让表示空间的几何反映概念的因果可分性，并统一 embedding 与 unembedding representations？
+
+    **方法。** 本文讨论两个密切相关的问题：“线性表征”究竟是什么意思？我们又该如何理解表征空间中的几何概念（例如余弦相似度或投影）？为回答这些问题，我们使用反事实语言，分别在输出（词）表征空间和输入（句子）空间中给出“线性表征”的两种形式化定义。为了赋予几何概念明确含义，我们利用上述形式化定义识别出一种特定的非欧几里得内积；在我们严格界定的意义下，该内积尊重语言结构。
+
+    **实验验证。** LLaMA-2 实验展示了概念线性表征的存在、它与解释和控制的联系，以及内积选择所起的根本作用。
+
+    **结论与证据。** 随后，我们证明它们分别与线性探测和模型引导相联系。借助这一因果内积，我们说明了如何统一线性表征的各种概念。特别是，它使我们能够使用反事实样本对构造探针和引导向量。形式结果在明确假设下具有较强支持，实验或构造也验证了其预测后果；结论范围受这些假设约束，不能自动推广到所有架构和训练设置。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: theory
   evidence_strength: formal

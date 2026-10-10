@@ -85,6 +85,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** The paper asks whether the parameter difference between a pretrained model and its task-specific fine-tuned version forms a reusable task direction. It tests whether arithmetic on such task vectors can remove, combine, or analogically transfer behaviors without retraining on the target data.
+
+    **Method.** A task vector is defined as the fine-tuned parameters minus the corresponding pretrained parameters. Adding a scaled vector to the base model should induce the task, negating it should suppress the behavior, and adding vectors should combine tasks. Vector analogies use three known task differences to construct an update for a fourth related task.
+
+    **Validation.** Experiments span image and language models, multiple datasets, classification objectives, and model scales. The authors measure target-task improvement, degradation under negation, interference on control tasks, performance of multi-vector addition, and zero-data analogy transfer, comparing with direct fine-tuning and other model-merging baselines.
+
+    **Conclusion & Evidence.** Fine-tuning differences often behave as approximately linear and composable directions: negation removes targeted abilities with limited collateral damage, while addition and analogies can combine or transfer performance. The broad experiments support task arithmetic as an effective editing heuristic. The evidence is behavioral and sensitivity-based rather than a proof that tasks occupy unique linear coordinates; interactions, scale choices, and unrelated fine-tuning trajectories can break composability.
+  zh: |-
+    **研究问题。** 论文研究预训练模型与其任务微调版本之间的参数差，是否形成可复用的任务方向；并检验对这种任务向量做算术运算，能否在不使用目标数据重新训练的情况下删除、组合或类比迁移模型行为。
+
+    **方法。** 任务向量被定义为微调参数减去对应的预训练参数。把缩放后的向量加回基础模型应注入相应任务能力，对向量取负应抑制该行为，而多个向量相加则尝试组合多项任务。类比运算进一步利用三个已知任务的参数差，为第四个相关任务构造更新。
+
+    **实验验证。** 实验覆盖图像与语言模型、多种数据集、分类目标和模型规模。作者测量任务向量带来的目标性能提升、取负后的能力下降、控制任务上的副作用、多向量相加的联合表现，以及不使用第四项任务数据时的类比迁移，并与直接微调和模型合并基线比较。
+
+    **结论与证据。** 微调参数差经常表现为近似线性且可组合的方向：取负可以较有针对性地移除能力，相加和类比则能组合或迁移性能。跨模型与任务实验支持任务算术是一种有效编辑启发式方法。不过证据主要是行为和敏感性证据，并不能证明每项任务具有唯一线性坐标；向量交互、缩放选择以及不同微调轨迹都可能破坏可组合性。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: causal-local

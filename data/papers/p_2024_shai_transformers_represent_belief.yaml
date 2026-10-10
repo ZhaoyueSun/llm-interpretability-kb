@@ -68,6 +68,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Do sequence-prediction models form and use world states or belief states of the generating process? In this paper, *Transformers represent belief state geometry in their residual stream* addresses that question through its specific object of study and tests how far the resulting claim can be supported.
+
+    **Method.** What computational structure are we building into large language models when we train them on next-token prediction? Here, we present evidence that this structure is given by the meta-dynamics of belief updating over hidden states of the data-generating process. We investigate cases where the belief state geometry is represented in the final residual stream or distributed across the residual streams of multiple layers, providing a framework to explain these observations. Our work provides a general framework connecting the structure of training data to the geometric structure of activations inside transformers.
+
+    **Validation.** Leveraging the theory of optimal prediction, we anticipate and then find that belief states are linearly represented in the residual stream of transformers, even in cases where the predicted belief state geometry has highly nontrivial fractal structure.
+
+    **Conclusion & Evidence.** Furthermore we demonstrate that the inferred belief states contain information about the entire future, beyond the local next-token prediction that the transformers are explicitly trained on. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+  zh: |-
+    **研究问题。** next-token prediction 训练是否迫使 Transformer 表示对数据生成过程 hidden states 的 belief-update meta-dynamics，而不只是局部输出分布？computational mechanics 预测的、甚至呈分形的 belief-state geometry 是否线性嵌入 residual stream？
+
+    **方法。** 当我们使用下一 token 预测训练大语言模型时，究竟在模型中构建了什么样的计算结构？借助最优预测理论，我们预先推导并随后发现：信念状态在线性意义上表征于 Transformer 的残差流中，即使预测出的信念状态几何具有高度非平凡的分形结构也是如此。我们的工作提供了一个通用框架，将训练数据的结构与 Transformer 内部激活的几何结构联系起来。
+
+    **实验验证。** 我们研究了信念状态几何表征在最终残差流中的情况，也研究了它分布于多个层的残差流中的情况，并提供一个解释这些现象的框架。
+
+    **结论与证据。** 本文给出证据，表明这种结构由数据生成过程中针对隐藏状态进行信念更新的元动力学所决定。此外，我们证明，推断出的信念状态包含有关整个未来的信息，超出了 Transformer 明确接受训练的局部下一 token 预测。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: empirical-discovery
   evidence_strength: descriptive

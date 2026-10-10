@@ -63,6 +63,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Do interpretability methods provide distinctive practical value on causal tasks, realistic distributions, and against strong baselines? In this paper, *Towards Principled Evaluations of Sparse Autoencoders for Interpretability and Control* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Disentangling model activations into meaningful features is a central problem in interpretability. However, the absence of ground-truth for these features in realistic scenarios makes validating recent approaches, such as sparse dictionary learning, elusive.
+
+    **Method.** To address this challenge, we propose a framework for evaluating feature dictionaries in the context of specific tasks, by comparing them against supervised feature dictionaries.
+
+    **Validation.** Second, we use the supervised dictionaries to develop and contextualize evaluations of unsupervised dictionaries along the same three axes. We apply this framework to the indirect object identification (IOI) task using GPT-2 Small, with sparse autoencoders (SAEs) trained on either the IOI or OpenWebText datasets. We hope that our framework will provide a useful step towards more objective and grounded evaluations of sparse dictionary learning methods.
+
+    **Conclusion & Evidence.** First, we demonstrate that supervised dictionaries achieve excellent approximation, control, and interpretability of model computations on the task. We find that these SAEs capture interpretable features for the IOI task, but they are less successful than supervised features in controlling the model. Finally, we observe two qualitative phenomena in SAE training: feature occlusion (where a causally relevant concept is robustly overshadowed by even slightly higher-magnitude ones in the learned features), and feature over-splitting (where binary features split into many smaller, less interpretable features). The counterexamples or controls strongly delimit what the audited method can justify. They do not, on their own, prove that any proposed replacement is universally faithful or sufficient.
+  zh: |-
+    **研究问题。** 在不知道“真实特征”的情况下，如何直接、客观地评价 稀疏自编码器（Sparse Autoencoder, SAE） dictionaries 对真实任务是否有用？能否借助 supervised dictionaries，从重建的必要/充分性、稀疏可控性和与因果角色一致的可解释性三方面评测，并诊断 occlusion 与 over-splitting？
+
+    **方法。** 为应对这一挑战，我们提出一个在具体任务语境下评估特征字典的框架，方法是将其与监督式特征字典进行比较。
+
+    **实验验证。** 其次，我们使用监督式字典，围绕同样三个维度开发无监督字典的评估方法并为其提供参照语境。我们把该框架应用于 GPT-2 Small 上的间接宾语识别（IOI）任务，所用稀疏自编码器（SAE）分别在 IOI 或 OpenWebText 数据集上训练。我们希望该框架能推动稀疏字典学习方法获得更加客观且有依据的评估。
+
+    **结论与证据。** 首先，我们证明监督式字典能够出色地近似、控制和解释模型在任务上的计算。我们发现，这些 SAE 能捕捉 IOI 任务的可解释特征，但在控制模型方面不如监督式特征。最后，我们观察到 SAE 训练中的两种定性现象：特征遮蔽，即具有因果相关性的概念会被幅度只略高的其他概念稳定地掩盖；特征过度拆分，即二元特征被拆成许多更小、可解释性更差的特征。反例和控制实验有力限定了被审计方法能够支持的结论，但它们本身不能证明任何替代方法普遍忠实或充分。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: evaluation
   evidence_strength: audit

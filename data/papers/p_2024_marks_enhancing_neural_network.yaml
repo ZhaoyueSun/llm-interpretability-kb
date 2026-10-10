@@ -65,6 +65,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Under what geometric, hierarchical, and optimization conditions do sparse dictionaries produce erroneous or fabricated feature explanations? In this paper, *Enhancing Neural Network Interpretability with Feature-Aligned Sparse Autoencoders* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Sparse Autoencoders (SAEs) have shown promise in improving the interpretability of neural network activations, but can learn features that are not features of the input, limiting their effectiveness.
+
+    **Method.** We propose Mutual Feature Regularization (MFR), a regularization technique for improving feature learning by encouraging SAEs trained in parallel to learn similar features. We then scale MFR to SAEs that are trained to denoise electroencephalography (EEG) data and SAEs that are trained to reconstruct GPT-2 Small activations.
+
+    **Validation.** By training on synthetic data with known features of the input, we show that MFR can help SAEs learn those features, as we can directly compare the features learned by the SAE with the input features for the synthetic data.
+
+    **Conclusion & Evidence.** We motivate MFR by showing that features learned by multiple SAEs are more likely to correlate with features of the input. We show that MFR can improve the reconstruction loss of SAEs by up to 21.21% on GPT-2 Small, and 6.67% on EEG data. Our results suggest that the similarity between features learned by different SAEs can be leveraged to improve SAE training, thereby enhancing performance and the usefulness of SAEs for model interpretability. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+  zh: |-
+    **研究问题。** 稀疏自编码器（Sparse Autoencoder, SAE） 可能学习并非输入真实 features 的 arbitrary split/composed directions；同一数据上多个独立 SAE 反复学到的 features 是否更可能与输入特征对齐？Mutual Feature Regularization 能否利用跨 SAE 一致性改善 feature recovery？
+
+    **方法。** 我们提出互特征正则化（Mutual Feature Regularization，MFR），这是一种通过鼓励并行训练的 SAE 学习相似特征来改进特征学习的正则化技术。
+
+    **实验验证。** 通过在输入特征已知的合成数据上训练，我们可以直接比较 SAE 所学特征与合成数据的输入特征，并由此证明 MFR 能帮助 SAE 学到这些特征。随后，我们把 MFR 扩展到用于脑电图（EEG）数据去噪的 SAE，以及用于重构 GPT-2 Small 激活的 SAE。
+
+    **结论与证据。** 我们发现，由多个 SAE 共同学到的特征更可能与输入特征相关，这为 MFR 提供了动机。结果表明，MFR 可使 SAE 在 GPT-2 Small 上的重构损失最多改善 21.21%，在 EEG 数据上最多改善 6.67%。研究结果说明，可以利用不同 SAE 所学特征之间的相似性改进 SAE 训练，从而提升其性能以及在模型可解释性中的实用价值。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: descriptive

@@ -83,6 +83,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** What should sparse representation learning optimize to balance sparsity, reconstruction faithfulness, and functional fidelity? In this paper, *Jumping Ahead: Improving Reconstruction Fidelity with JumpReLU Sparse Autoencoders* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Sparse autoencoders (SAEs) are a promising unsupervised approach for identifying causally relevant and interpretable linear features in a language model's (LM) activations. To be useful for downstream tasks, SAEs need to decompose LM activations faithfully; yet to be interpretable the decomposition must be sparse -- two objectives that are in tension.
+
+    **Method.** In this paper, we introduce JumpReLU SAEs, which achieve state-of-the-art reconstruction fidelity at a given sparsity level on Gemma 2 9B activations, compared to other recent advances such as Gated and TopK SAEs. Similarly, we use STEs to directly train L0 to be sparse, instead of training on proxies such as L1, avoiding problems like shrinkage.
+
+    **Validation.** JumpReLU SAEs are a simple modification of vanilla (ReLU) SAEs -- where we replace the ReLU with a discontinuous JumpReLU activation function -- and are similarly efficient to train and run.
+
+    **Conclusion & Evidence.** We also show that this improvement does not come at the cost of interpretability through manual and automated interpretability studies. By utilising straight-through-estimators (STEs) in a principled manner, we show how it is possible to train JumpReLU SAEs effectively despite the discontinuous JumpReLU function introduced in the SAE's forward pass. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+  zh: |-
+    **研究问题。** 能否用具有可学习正阈值的 JumpReLU 与直接 L0 penalty，减少 ReLU 稀疏自编码器（Sparse Autoencoder, SAE） 的 false positives 和 magnitude underestimation，在给定稀疏度下提高重建忠实度，同时保持特征可解释性并降低训练复杂度？
+
+    **方法。** 本文提出 JumpReLU SAE。与 Gated SAE 和 TopK SAE 等近期方法相比，它在给定稀疏度下对 Gemma 2 9B 激活实现了最先进的重构忠实度。JumpReLU SAE 是对普通 ReLU SAE 的简单修改：把 ReLU 替换为不连续的 JumpReLU 激活函数；它的训练和运行效率也与普通 SAE 相近。类似地，我们使用 STE 直接训练 L0 稀疏性，而不是在 L1 等代理目标上训练，从而避免收缩等问题。
+
+    **实验验证。** 通过人工和自动化可解释性研究，我们还表明，这项改进并未以牺牲可解释性为代价。
+
+    **结论与证据。** 通过以有原则的方式使用直通估计器（STE），我们说明了即使 SAE 的前向传播中引入了不连续的 JumpReLU 函数，仍可有效训练 JumpReLU SAE。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: descriptive

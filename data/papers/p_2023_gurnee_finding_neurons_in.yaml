@@ -76,6 +76,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** How sparsely and stably are functional features implemented by native neurons in real large models? In this paper, *Finding Neurons in a Haystack: Case Studies with Sparse Probing* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Despite rapid adoption and deployment of large language models (LLMs), the internal computations of these models remain opaque and poorly understood.
+
+    **Method.** In this work, we seek to understand how high-level human-interpretable features are represented within the internal neuron activations of LLMs. We train $k$-sparse linear classifiers (probes) on these internal activations to predict the presence of features in the input; by varying the value of $k$ we study the sparsity of learned representations and how this varies with model scale.
+
+    **Validation.** With $k=1$, we localize individual neurons which are highly relevant for a particular feature, and perform a number of case studies to illustrate general properties of LLMs.
+
+    **Conclusion & Evidence.** In particular, we show that early layers make use of sparse combinations of neurons to represent many features in superposition, that middle layers have seemingly dedicated neurons to represent higher-level contextual features, and that increasing scale causes representational sparsity to increase on average, but there are multiple types of scaling dynamics. In all, we probe for over 100 unique features comprising 10 different categories in 7 different models spanning 70 million to 6.9 billion parameters. The evidence establishes that the information is accessible to the chosen readout or decomposition; it does not by itself show that the original model causally uses that information to produce its behavior.
+  zh: |-
+    **研究问题。** toy models 中关于 monosemanticity、polysemanticity 和 superposition 的观察在真实大语言模型中是否存在？k-sparse probes 能否可靠定位少量相关 neurons，并区分显式特征、组合性和 superposition，同时减少高容量 probes 的记忆混淆？
+
+    **方法。** 在本研究中，我们试图理解人类可解释的高层特征如何表征于语言模型内部神经元激活中。我们在这些内部激活上训练 $k$-稀疏线性分类器（探针），以预测输入中是否存在某项特征；通过改变 $k$ 的取值，我们研究所学表征的稀疏性，以及这种稀疏性如何随模型规模变化。
+
+    **实验验证。** 当 $k=1$ 时，我们定位到与特定特征高度相关的单个神经元，并通过多个案例研究说明语言模型的一般性质。
+
+    **结论与证据。** 具体而言，我们表明：早期层使用稀疏神经元组合，以叠加方式表征许多特征；中间层似乎有专门表征高层上下文特征的神经元；模型规模增加会使表征稀疏性平均上升，但其中存在多种缩放动力学。总体上，我们在 7 个参数量从 7,000 万到 69 亿不等的模型中，探测了属于 10 个不同类别的 100 多项独特特征。证据说明相应信息可以被所选读出器或分解方法访问，但不能单独证明原模型在产生行为时因果使用了这些信息。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: decodable

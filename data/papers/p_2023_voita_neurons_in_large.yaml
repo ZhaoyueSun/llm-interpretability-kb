@@ -60,6 +60,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** How sparsely and stably are functional features implemented by native neurons in real large models? In this paper, *Neurons in Large Language Models: Dead, N-gram, Positional* addresses that question through its specific object of study and tests how far the resulting claim can be supported.
+
+    **Method.** We analyze a family of large language models in such a lightweight manner that can be done on a single graphics processing unit (GPU). Specifically, we focus on the OPT family of models ranging from 125m to 66b parameters and rely only on whether an FFN neuron is activated or not.
+
+    **Validation.** Here, many neurons (more than 70% in some layers of the 66b model) are"dead", i.e. they never activate on a large collection of diverse data. At the same time, many of the alive neurons are reserved for discrete features and act as token and n-gram detectors. Interestingly, their corresponding FFN updates not only promote next token candidates as could be expected, but also explicitly focus on removing the information about triggering them tokens, i.e., current input. To the best of our knowledge, this is the first example of mechanisms specialized at removing (rather than adding) information from the residual stream. With scale, models become more sparse in a sense that they have more dead neurons and token detectors.
+
+    **Conclusion & Evidence.** First, we find that the early part of the network is sparse and represents many discrete features. Finally, some neurons are positional: them being activated or not depends largely (or solely) on position and less so (or not at all) on textual data. We find that smaller models have sets of neurons acting as position range indicators while larger models operate in a less explicit manner. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+  zh: |-
+    **研究问题。** Transformer FFN 中有哪些功能性 neuron 类型（如 dead、token/n-gram detector 与 positional neurons），它们随模型规模如何变化？FFN 是否不只是 key–value memory，还会主动移除当前 token 信息？
+
+    **方法。** 我们以一种可在单块 图形处理器（Graphics Processing Unit, GPU） 上完成的轻量方式，分析一系列大语言模型。具体而言，我们聚焦参数量从 1.25 亿到 660 亿的 OPT 模型家族，并且只考察 FFN 神经元是否激活。
+
+    **实验验证。** 这里有大量神经元处于“死亡”状态——例如 660 亿参数模型的某些层中超过 70%——即它们在大量多样数据上从不激活。与此同时，许多活跃神经元专门负责离散特征，充当 token 和 n-gram 检测器。有趣的是，它们对应的 FFN 更新不仅会像预期那样提升下一 token 候选项，还会明确地移除有关触发这些神经元之 token、也就是当前输入的信息。据我们所知，这是首个专门从残差流中移除信息而非添加信息的机制实例。随着规模增大，模型会变得更稀疏，即拥有更多死亡神经元和 token 检测器。
+
+    **结论与证据。** 首先，我们发现网络的早期部分较为稀疏，并表征许多离散特征。最后，一些神经元具有位置性：它们是否激活主要或完全取决于位置，而较少或完全不取决于文本数据。我们发现，小模型具有充当位置范围指示器的神经元集合，而大模型则以不那么显式的方式运作。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: empirical-discovery
   evidence_strength: descriptive

@@ -105,6 +105,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Under what geometric, hierarchical, and optimization conditions do sparse dictionaries produce erroneous or fabricated feature explanations? In this paper, *A Unified Theory of Sparse Dictionary Learning in Mechanistic Interpretability: Piecewise Biconvexity and Spurious Minima* addresses that question through its specific object of study and tests how far the resulting claim can be supported. As artificial intelligence (AI) models achieve remarkable capabilities across diverse domains, understanding what representations they learn and how they encode concepts has become increasingly important for both scientific progress and trustworthy deployment. Recent works in mechanistic interpretability have widely reported that neural networks represent meaningful concepts as linear directions in their representation spaces and often encode diverse concepts in superposition. Various sparse dictionary learning (SDL) methods, including sparse autoencoders, transcoders, and crosscoders, are utilized to address this by training auxiliary models with sparsity constraints to disentangle these superposed concepts into monosemantic features.
+
+    **Method.** We develop the first unified theoretical framework that casts all major SDL variants as a single piecewise biconvex optimization problem, and characterize its global solution set, non-identifiability, and spurious optima. To expose these pathologies under full ground-truth access, we introduce the Linear Representation Bench.
+
+    **Validation.** This analysis yields principled explanations for feature absorption and dead neurons.
+
+    **Conclusion & Evidence.** Guided by our theory, we propose feature anchoring, a novel technique that restores SDL identifiability, substantially improving feature recovery across synthetic benchmarks and real neural representations. The formal result is strong under its stated assumptions, with experiments or constructions supporting the predicted consequences. Its scope is limited by those assumptions and does not automatically extend to every architecture or training regime.
+  zh: |-
+    **研究问题。** 稀疏自编码器（Sparse Autoencoders, SAEs）、transcoders 与 crosscoders 能否表述为统一的 sparse dictionary optimization，它的 landscape 具有何种结构？为何零 reconstruction loss 仍可能不恢复真实 features，polysemanticity、feature absorption 与 spurious partial minima 如何产生，feature anchoring 能否缓解欠定性？
+
+    **方法。** 我们建立了首个统一理论框架，把所有主要 SDL 变体都表述成同一个分片双凸优化问题，并刻画其全局解集、不可辨识性和虚假最优解。
+
+    **实验验证。** 该分析为特征吸收和死亡神经元提供了基于原理的解释。受理论指导，我们进一步提出“特征锚定”技术，以恢复 SDL 的可辨识性，并在合成基准和真实神经表征上显著改善特征恢复效果。
+
+    **结论与证据。** 为在能够完全访问真值的条件下揭示这些病态现象，我们引入 Linear Representation Bench。形式结果在明确假设下具有较强支持，实验或构造也验证了其预测后果；结论范围受这些假设约束，不能自动推广到所有架构和训练设置。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: theory
   evidence_strength: formal

@@ -17,6 +17,7 @@
     "links",
     "authors",
     "abstract",
+    "ai_summary",
     "knowledge_base",
     "attributes",
     "provenance"
@@ -26,7 +27,10 @@
     "paper_id": {"type": "string", "pattern": "^p_[a-z0-9_]+$"},
     "title": {"type": "string", "minLength": 1},
     "year": {"type": ["integer", "null"]},
-    "earliest_public_date": {"type": "string", "format": "date"},
+    "earliest_public_date": {
+      "type": "string",
+      "pattern": "^[0-9]{4}(-[0-9]{2}(-[0-9]{2})?)?$"
+    },
     "earliest_public_date_precision": {"enum": ["day", "month", "year"]},
     "venue": {"type": ["string", "null"]},
     "publication_type": {"type": ["string", "null"]},
@@ -87,6 +91,27 @@
           "properties": {
             "status": {"enum": ["pending", "complete", "needs_review"]},
             "translated_by": {"type": ["string", "null"]},
+            "third_party_api_used": {"const": false}
+          }
+        }
+      }
+    },
+    "ai_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["basis", "en", "zh", "generation"],
+      "properties": {
+        "basis": {"type": "string", "minLength": 1},
+        "en": {"type": "string", "minLength": 1},
+        "zh": {"type": "string", "minLength": 1},
+        "generation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "generated_by", "generated_at", "third_party_api_used"],
+          "properties": {
+            "status": {"enum": ["complete", "needs_review"]},
+            "generated_by": {"type": "string", "minLength": 1},
+            "generated_at": {"type": "string", "format": "date"},
             "third_party_api_used": {"const": false}
           }
         }

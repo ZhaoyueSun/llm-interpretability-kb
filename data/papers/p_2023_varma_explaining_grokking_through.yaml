@@ -68,6 +68,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Are apparently abrupt capability transitions driven by smoother changes in internal mechanisms? In this paper, *Explaining grokking through circuit efficiency* addresses that question through its specific object of study and tests how far the resulting claim can be supported. One of the most surprising puzzles in neural network generalisation is grokking: a network with perfect training accuracy but poor generalisation will, upon further training, transition to perfect generalisation.
+
+    **Method.** We propose that grokking occurs when the task admits a generalising solution and a memorising solution, where the generalising solution is slower to learn but more efficient, producing larger logits with the same parameter norm.
+
+    **Validation.** We hypothesise that memorising circuits become more inefficient with larger training datasets while generalising circuits do not, suggesting there is a critical dataset size at which memorisation and generalisation are equally efficient.
+
+    **Conclusion & Evidence.** We make and confirm four novel predictions about grokking, providing significant evidence in favour of our explanation. Most strikingly, we demonstrate two novel and surprising behaviours: ungrokking, in which a network regresses from perfect to low test accuracy, and semi-grokking, in which a network shows delayed generalisation to partial rather than perfect test accuracy. The formal result is strong under its stated assumptions, with experiments or constructions supporting the predicted consequences. Its scope is limited by those assumptions and does not automatically extend to every architecture or training regime.
+  zh: |-
+    **研究问题。** 训练损失饱和后测试性能为何仍会突然跃升？grokking 是否源于更慢学得、但参数范数更高效的泛化电路最终取代记忆电路，并由此统一解释 semi-grokking 与 ungrokking？
+
+    **方法。** 我们提出，当一项任务同时存在泛化解和记忆解，而泛化解虽然学习较慢、效率却更高——即在相同参数范数下产生更大的 logits——时，顿悟就会发生。
+
+    **实验验证。** 我们假设，随着训练数据集增大，记忆回路的效率会降低，而泛化回路不会，因此存在一个临界数据集规模，使记忆与泛化具有相同效率。
+
+    **结论与证据。** 我们针对顿悟提出并证实了四项新预测，为上述解释提供了有力证据。最引人注目的是，我们展示了两种新颖且出人意料的行为：反顿悟，即网络从完美测试准确率退化为较低准确率；以及半顿悟，即网络延迟泛化后只达到部分而非完美的测试准确率。形式结果在明确假设下具有较强支持，实验或构造也验证了其预测后果；结论范围受这些假设约束，不能自动推广到所有架构和训练设置。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: theory
   evidence_strength: formal

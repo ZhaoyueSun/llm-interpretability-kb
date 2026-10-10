@@ -98,6 +98,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Can interpretable feature extraction scale to frontier models, all relevant layers and positions, and the long tail of the training distribution? In this paper, *Gemma Scope: Open Sparse Autoencoders Everywhere All At Once on Gemma 2* addresses that question through its specific object of study and tests how far the resulting claim can be supported.
+
+    **Method.** Sparse autoencoders (SAEs) are an unsupervised method for learning a sparse decomposition of a neural network’s latent representations into seemingly interpretable features.Despite recent excitement about their potential, research applications outside of industry are limited by the high cost of training a comprehensive suite of SAEs.In this work, we introduce Gemma Scope, an open suite of JumpReLU SAEs trained on all layers and sub-layers of Gemma 2 2B and 9B and select layers of Gemma 2 27B base models.We primarily train SAEs on the Gemma 2 pre-trained models, but additionally release SAEs trained on instruction-tuned Gemma 2 9B for comparison.We evaluate the quality of each SAE on standard metrics and release these results.We hope that by releasing these SAE weights, we can help make more ambitious safety and interpretability research easier for the community.
+
+    **Validation.** Sparse autoencoders (SAEs) are an unsupervised method for learning a sparse decomposition of a neural network’s latent representations into seemingly interpretable features.Despite recent excitement about their potential, research applications outside of industry are limited by the high cost of training a comprehensive suite of SAEs.In this work, we introduce Gemma Scope, an open suite of JumpReLU SAEs trained on all layers and sub-layers of Gemma 2 2B and 9B and select layers of Gemma 2 27B base models.We primarily train SAEs on the Gemma 2 pre-trained models, but additionally release SAEs trained on instruction-tuned Gemma 2 9B for comparison.We evaluate the quality of each SAE on standard metrics and release these results.We hope that by releasing these SAE weights, we can help make more ambitious safety and interpretability research easier for the community.
+
+    **Conclusion & Evidence.** Weights and a tutorial can be found at https://huggingface.co/google/gemma-scope and an interactive demo can be found at https://neuronpedia.org/gemma-scope. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+  zh: |-
+    **研究问题。** 如何把 稀疏自编码器（Sparse Autoencoder, SAE） 研究从小模型或单层扩展到现代开放 大语言模型（Large Language Model, LLM） 的所有层与子层，并提供可复用的大规模公共基础设施？大规模 JumpReLU SAE 的训练、评测、feature splitting 与跨分布表现呈现什么规律？
+
+    **方法。** 本文推出 Gemma Scope：一套开放的 JumpReLU SAE，覆盖 Gemma 2 2B 和 9B 基础模型的所有层与子层，以及 Gemma 2 27B 基础模型的若干选定层。
+
+    **实验验证。** 我们主要在 Gemma 2 预训练模型上训练 SAE，同时也发布在经过指令调优的 Gemma 2 9B 上训练的 SAE 以供比较。我们使用标准指标评估每个 SAE 的质量，并公开评估结果。我们希望通过发布这些 SAE 权重，帮助研究社区更容易开展更具雄心的安全性与可解释性研究。
+
+    **结论与证据。** 权重和教程见 https://huggingface.co/google/gemma-scope，交互式演示见 https://neuronpedia.org/gemma-scope。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: descriptive

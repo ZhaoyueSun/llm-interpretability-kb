@@ -9,7 +9,7 @@ PaperManage 提供最终论文名单、筛选过程、论文信息、入选原�
 导入后的正式数据只有以下几类：
 
 - `data/corpus.yaml`：正式 corpus 的成员、Core 或 Classic 身份及入选原因。
-- `data/papers/<paper_id>.yaml`：单篇论文事实和双语 abstract。
+- `data/papers/<paper_id>.yaml`：单篇论文事实、双语 abstract 和双语 AI Summary。
 - `data/authors.yaml`：跨论文作者身份与别名。
 - `data/model-families.yaml`：模型族定义、选择器文案以及论文与模型族的主次关系。
 - `data/taxonomies/*.yaml`：树结构和各节点的双语综述式介绍。
@@ -35,10 +35,22 @@ Corpus 不复制标题、作者、facet、tag、绝对路径或全文抽取状�
 - 链接；
 - 有顺序的作者及论文发表时的机构；
 - 英文 abstract 原文与中文翻译；
+- 项目撰写的英文、中文 AI Summary；
 - 论文的主贡献类型、核心证据强度和主要研究模态；
 - abstract 来源和翻译状态；
 - PaperKnowledgeBase record 引用；
 - 导入与核验 provenance。
+
+AI Summary 不是 abstract 的改写或翻译，而是基于 PaperKnowledgeBase Docling 全文、已核验 abstract
+和项目 research-question review 撰写的结构化综述。中英文均使用四段式 Markdown：
+
+1. `Research Question / 研究问题`：说明论文回答的核心问题及其拆分；
+2. `Method / 方法`：说明理论、模型、算法或机制分析方法；
+3. `Validation / 实验验证`：说明所用模型、数据集、任务、干预、对照或形式验证；
+4. `Conclusion & Evidence / 结论与证据`：区分作者结论与实际证据强度，并保留适用边界。
+
+总结可使用 LaTeX 公式。每种语言中，非通用缩写第一次出现时必须给出全称；后续才可只使用缩写。
+总结保存依据、生成者、生成日期、完成状态及是否调用第三方 API，不取代论文原始 abstract。
 
 三个论文属性均为单值，描述论文核心主张而不是穷举全文内容：
 

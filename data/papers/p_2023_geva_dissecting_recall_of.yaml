@@ -67,6 +67,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Where is factual knowledge stored, routed, combined, and used to generate answers? In this paper, *Dissecting Recall of Factual Associations in Auto-Regressive Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Transformer-based language models (LMs) are known to capture factual knowledge in their parameters. While previous work looked into where factual associations are stored, only little is known about how they are retrieved internally during inference.
+
+    **Method.** We investigate this question through the lens of information flow. Given a subject-relation query, we study how the model aggregates information about the subject and relation to predict the correct attribute.
+
+    **Validation.** With interventions on attention edges, we first identify two critical points where information propagates to the prediction: one from the relation positions followed by another from the subject positions. Next, by analyzing the information at these points, we unveil a three-step internal mechanism for attribute extraction. First, the representation at the last-subject position goes through an enrichment process, driven by the early multilayer perceptron (MLP) sublayers, to encode many subject-related attributes. Second, information from the relation propagates to the prediction. Third, the prediction representation"queries"the enriched subject to extract the attribute.
+
+    **Conclusion & Evidence.** Perhaps surprisingly, this extraction is typically done via attention heads, which often encode subject-attribute mappings in their parameters. Overall, our findings introduce a comprehensive view of how factual associations are stored and extracted internally in LMs, facilitating future research on knowledge localization and editing. The coordinated interventions provide comparatively strong structural causal evidence for the proposed information flow or circuit. Completeness, uniqueness, and transfer to other models still require separate validation.
+  zh: |-
+    **研究问题。** 自回归语言模型在收到 subject–relation prompt 后，如何从参数中提取并生成对应事实 attribute？subject representation 如何被 多层感知机（Multi-Layer Perceptrons, MLPs） 逐层丰富、relation 如何传播，以及 attention 如何在输出位置抽取所需属性？
+
+    **方法。** 以往工作研究了事实关联存储在何处，但对于推理期间如何在模型内部检索这些关联，我们仍知之甚少。我们从信息流角度研究这一问题。
+
+    **实验验证。** 给定一个主语—关系查询，我们考察模型如何汇总有关主语和关系的信息，以预测正确属性。首先，通过干预注意力边，我们识别出信息向预测位置传播的两个关键节点：先从关系位置传播，随后从主语位置传播。第一，最后一个主语位置的表征在早期 MLP 子层驱动下经历增强过程，从而编码许多与主语有关的属性。第二，来自关系的信息传播到预测位置。第三，预测位置的表征“查询”增强后的主语表征，以提取相应属性。
+
+    **结论与证据。** 接着，通过分析这些节点的信息，我们揭示出一种提取属性的三步内部机制。或许出人意料的是，这一提取通常由注意力头完成，而这些注意力头往往在参数中编码主语—属性映射。总体而言，我们的发现全面展示了语言模型如何在内部存储和提取事实关联，为未来的知识定位与编辑研究提供基础。相互配合的干预为所提出的信息流或电路提供了较强的结构因果证据，但机制的完备性、唯一性以及跨模型迁移仍需独立验证。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: empirical-discovery
   evidence_strength: causal-structural

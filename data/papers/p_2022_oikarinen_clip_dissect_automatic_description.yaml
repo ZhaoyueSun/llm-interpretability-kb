@@ -52,6 +52,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** The paper asks whether individual neurons in vision networks can be labeled automatically with open-vocabulary concepts, without pixel-level concept annotations, a fixed ontology, or additional model training. It also asks whether a pretrained vision–language model can make this process more accurate and efficient than prior neuron-labeling methods.
+
+    **Method.** CLIP-Dissect collects images that highly activate a target neuron and uses Contrastive Language–Image Pretraining (CLIP) embeddings to compare that activation profile with candidate textual concepts. Several similarity rules convert image–text relationships into a ranked concept label, allowing arbitrary vocabularies and application to different vision architectures.
+
+    **Validation.** The method is tested on output neurons with known class labels and on hidden units from networks such as ResNet-50. It is compared with Network Dissection and other labeling baselines using label accuracy, qualitative hidden-unit inspection, runtime, vocabulary changes, and a crowdsourced user study. The system labels all neurons from five ResNet-50 layers in about four minutes.
+
+    **Conclusion & Evidence.** CLIP-Dissect produces more accurate labels on neurons with ground truth, plausible open-vocabulary descriptions for hidden units, and over a tenfold speedup over the compared method. The results support it as a scalable semantic annotation tool. They provide decodability evidence rather than causal interpretation: labels inherit CLIP's concepts and biases, and a semantic match does not show that the neuron is necessary or sufficient for network behavior.
+  zh: |-
+    **研究问题。** 论文研究能否在不依赖像素级概念标注、固定本体或额外模型训练的情况下，用开放词汇自动描述视觉网络中的单个神经元；并考察预训练视觉—语言模型能否使这一过程比既有神经元标注方法更准确高效。
+
+    **方法。** CLIP-Dissect 先收集能使目标神经元高度激活的图像，再利用对比语言—图像预训练模型（Contrastive Language–Image Pretraining, CLIP）的嵌入，比较该神经元的激活模式与候选文本概念。不同相似度规则把图像—文本关系转换为概念排序，因此方法可以使用任意词表并应用于不同视觉架构。
+
+    **实验验证。** 方法在具有已知类别标签的输出神经元以及 ResNet-50 等网络的隐藏单元上测试。作者通过标签准确率、隐藏单元定性检查、运行时间、词表变化和众包用户研究，将其与 Network Dissection 等基线比较；系统约四分钟即可标注 ResNet-50 五个层的全部神经元。
+
+    **结论与证据。** CLIP-Dissect 在有真值的神经元上给出更准确标签，对隐藏单元生成合理的开放词汇描述，并相对所比较方法实现十倍以上加速。这些结果支持它作为可扩展的语义标注工具，但证据属于可解码性而非因果解释：标签会继承 CLIP 的概念边界与偏差，语义匹配也不能证明某神经元对行为具有必要性或充分性。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: decodable

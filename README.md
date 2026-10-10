@@ -6,7 +6,7 @@
 
 ## 数据边界
 
-- Git 保存论文属性、双语 abstract、作者消歧、taxonomy、分类变更记录和网页代码。
+- Git 保存论文属性、双语 abstract、双语 AI Summary、作者消歧、taxonomy、分类变更记录和网页代码。
 - PDF 和 Docling 全文保存在 PaperKnowledgeBase，本项目只读访问，不复制到本仓库。
 - PaperManage 的交付格式暂不预设；交付文件放在 Git 忽略的 `imports/` 中，收到实际结果后再编写适配逻辑。
 - 英文 abstract 与中文翻译在最终论文名单确定后由本项目处理，不调用第三方 API。

@@ -67,6 +67,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Do interpretability methods provide distinctive practical value on causal tasks, realistic distributions, and against strong baselines? In this paper, *RAVEL: Evaluating Interpretability Methods on Disentangling Language Model Representations* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Individual neurons participate in the representation of multiple high-level concepts. To what extent can different interpretability methods successfully disentangle these roles?
+
+    **Method.** To help address this question, we introduce RAVEL (Resolving Attribute-Value Entanglements in Language Models), a dataset that enables tightly controlled, quantitative comparisons between a variety of existing interpretability methods. We use the resulting conceptual framework to define the new method of Multi-task Distributed Alignment Search (MDAS), which allows us to find distributed representations satisfying multiple causal criteria.
+
+    **Validation.** We release our benchmark at https://github.com/explanare/ravel.
+
+    **Conclusion & Evidence.** With Llama2-7B as the target language model, MDAS achieves state-of-the-art results on RAVEL, demonstrating the importance of going beyond neuron-level analyses to identify features distributed across activations. The counterexamples or controls strongly delimit what the audited method can justify. They do not, on their own, prove that any proposed replacement is universally faithful or sufficient.
+  zh: |-
+    **研究问题。** 不同 featurization/interpretability 方法能否把某一 entity attribute 与其他相关属性分离，并在新实体和新上下文中保持可定位、可干预、可泛化？如何建立统一 benchmark 比较其 faithfulness、causal efficacy 与 disentanglement？
+
+    **方法。** 为帮助回答这一问题，我们推出 RAVEL（Resolving Attribute-Value Entanglements in Language Models），这是一个可对多种现有可解释性方法进行严格控制和定量比较的数据集。我们利用由此形成的概念框架，定义一种新方法——多任务分布式对齐搜索（MDAS）；它使我们能够找到同时满足多项因果标准的分布式表征。
+
+    **实验验证。** 基准见 https://github.com/explanare/ravel。
+
+    **结论与证据。** 以 Llama2-7B 为目标语言模型，MDAS 在 RAVEL 上取得最先进结果，证明分析不能止于神经元层面，而应识别分布于激活中的特征。反例和控制实验有力限定了被审计方法能够支持的结论，但它们本身不能证明任何替代方法普遍忠实或充分。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: evaluation
   evidence_strength: audit

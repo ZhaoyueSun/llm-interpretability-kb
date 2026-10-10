@@ -69,6 +69,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Is a causally localized site of information use also the most effective and localized place to edit behavior? In this paper, *Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Language models learn a great quantity of factual information during pretraining, and recent work localizes this information to specific model weights like mid-layer multilayer perceptron (MLP) weights.
+
+    **Method.** In this paper, we find that we can change how a fact is stored in a model by editing weights that are in a different location than where existing methods suggest that the fact is stored. This is surprising because we would expect that localizing facts to specific model parameters would tell us where to manipulate knowledge in models, and this assumption has motivated past work on model editing methods.
+
+    **Validation.** Next, we consider several variants of the editing problem, including erasing and amplifying facts.
+
+    **Conclusion & Evidence.** Specifically, we show that localization conclusions from representation denoising (also known as Causal Tracing) do not provide any insight into which model MLP layer would be best to edit in order to override an existing stored fact with a new one. This finding raises questions about how past work relies on Causal Tracing to select which model layers to edit. For one of our editing problems, editing performance does relate to localization results from representation denoising, but we find that which layer we edit is a far better predictor of performance. Our results suggest, counterintuitively, that better mechanistic understanding of how pretrained language models work may not always translate to insights about how to best change their behavior. Our code is available at https://github.com/google/belief-localization The counterexamples or controls strongly delimit what the audited method can justify. They do not, on their own, prove that any proposed replacement is universally faithful or sufficient.
+  zh: |-
+    **研究问题。** Causal Tracing 所定位的事实信息位置，是否真的预测在哪一层进行 knowledge editing 最有效？定位强度与编辑成功是否相关、局部化位置是否必要或最优，以及在何种修改后的编辑目标下二者才可能重新一致？
+
+    **方法。** 本文发现，通过编辑与现有方法所指出的事实存储位置不同的权重，也可以改变事实在模型中的存储方式。这一点令人意外，因为我们通常预期，把事实定位到特定模型参数会告诉我们应在何处操纵模型知识，而以往模型编辑研究也受这一假设推动。
+
+    **实验验证。** 随后，我们考虑了事实擦除和增强等多个编辑问题变体。
+
+    **结论与证据。** 具体而言，我们表明，表征去噪（又称因果追踪）所得定位结论，完全无法说明应编辑哪个 多层感知机（Multi-Layer Perceptron, MLP） 层，才能用新事实覆盖模型已有事实。这一发现使人们需要重新审视以往研究依赖因果追踪选择模型编辑层的做法。对其中一个编辑问题，编辑性能确实与表征去噪的定位结果有关，但我们发现，所编辑的具体层是远强于定位结果的性能预测因素。我们的结果反直觉地表明，对预训练语言模型工作机制取得更好的理解，并不总能转化为如何最有效改变其行为的认识。代码见 https://github.com/google/belief-localization。反例和控制实验有力限定了被审计方法能够支持的结论，但它们本身不能证明任何替代方法普遍忠实或充分。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: evaluation
   evidence_strength: audit

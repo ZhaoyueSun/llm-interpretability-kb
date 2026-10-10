@@ -92,6 +92,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Can manual mechanistic analysis scale to frontier-size models while preserving semantics across the input distribution? In this paper, *Does Circuit Analysis Interpretability Scale? Evidence from Multiple Choice Capabilities in Chinchilla* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Circuit analysis is a promising technique for understanding the internal mechanisms of language models. However, existing analyses are done in small models far from the state of the art.
+
+    **Method.** To address this, we present a case study of circuit analysis in the 70B Chinchilla model, aiming to test the scalability of circuit analysis.
+
+    **Validation.** In particular, we study multiple-choice question answering, and investigate Chinchilla's capability to identify the correct answer label given knowledge of the correct answer text. We find that the existing techniques of logit attribution, attention pattern visualization, and activation patching naturally scale to Chinchilla, allowing us to identify and categorize a small set of `output nodes' (attention heads and multilayer perceptrons (MLPs)).
+
+    **Conclusion & Evidence.** We further study the `correct letter' category of attention heads aiming to understand the semantics of their features, with mixed results. For normal multiple-choice question answers, we significantly compress the query, key and value subspaces of the head without loss of performance when operating on the answer labels for multiple-choice questions, and we show that the query and key subspaces represent an `Nth item in an enumeration' feature to at least some extent. However, when we attempt to use this explanation to understand the heads' behaviour on a more general distribution including randomized answer labels, we find that it is only a partial explanation, suggesting there is more to learn about the operation of `correct letter' heads on multiple choice question answering. The coordinated interventions provide comparatively strong structural causal evidence for the proposed information flow or circuit. Completeness, uniqueness, and transfer to other models still require separate validation.
+  zh: |-
+    **研究问题。** 在 70B Chinchilla 上，既有 logit attribution、attention visualization 与 activation patching 是否仍能找到 multiple-choice output-label circuit？所发现 correct-letter heads 中流动的具体信息能否被压缩为可泛化的低维语义，而不仅是在原数据分布上的组件定位？
+
+    **方法。** 为此，我们以 700 亿参数的 Chinchilla 模型为案例开展回路分析，以检验该方法的可扩展性。具体而言，我们研究多项选择问答，并考察在已经知道正确答案文本的情况下，Chinchilla 如何识别正确的答案标签。
+
+    **实验验证。** 我们发现，logit 归因、注意力模式可视化和激活修补等现有技术能够自然扩展到 Chinchilla，使我们可以识别并分类一小组“输出节点”（注意力头和 多层感知机（Multi-Layer Perceptron, MLP））。
+
+    **结论与证据。** 我们进一步研究其中的“正确字母”类注意力头，试图理解其特征语义，但结果好坏参半。对于普通多项选择题，在操作答案标签时，我们可以显著压缩这些注意力头的查询、键和值子空间而不损失性能；并且我们证明，查询和键子空间至少在一定程度上表示了“枚举中的第 N 项”这一特征。然而，当我们尝试用这种解释理解这些注意力头在包含随机答案标签的更一般分布上的行为时，发现它只能提供部分解释。这说明，对于“正确字母”注意力头在多项选择问答中的工作方式，仍有更多内容需要理解。相互配合的干预为所提出的信息流或电路提供了较强的结构因果证据，但机制的完备性、唯一性以及跨模型迁移仍需独立验证。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: empirical-discovery
   evidence_strength: causal-structural

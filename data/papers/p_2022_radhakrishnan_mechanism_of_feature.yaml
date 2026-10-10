@@ -67,6 +67,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** The paper asks what mechanism causes deep fully connected networks to select and amplify prediction-relevant features during training. It proposes that layerwise weight geometry is governed by average gradient outer products and asks whether this principle explains feature-learning phenomena and can endow kernel methods with recursive feature learning.
+
+    **Method.** The Deep Neural Feature Ansatz relates a layer's learned weight Gram matrix to the average outer product of gradients with respect to that layer's inputs. This quantity emphasizes directions that most affect the output. The authors turn the relation into Recursive Feature Machines, which alternate fitting a kernel predictor with updating its feature metric from gradient outer products, without backpropagating through a deep network.
+
+    **Validation.** Analytical arguments and controlled neural-network experiments compare predicted and observed feature metrics across depths and training regimes. Case studies examine spurious features, simplicity bias, grokking, pruning, and lottery-ticket behavior. Recursive Feature Machines are evaluated on multiple tabular benchmarks against classical kernels, tree ensembles, and neural networks.
+
+    **Conclusion & Evidence.** Average gradient geometry captures important directions learned by deep networks and yields a practical kernel algorithm with strong tabular performance. The theory offers a unifying mechanism for several feature-learning observations, supported by empirical correspondence. Its strength is formal and predictive under the studied assumptions; it is not a universal proof for all architectures, optimizers, or high-dimensional language-model representations.
+  zh: |-
+    **研究问题。** 论文研究深层全连接网络在训练中选择并增强预测相关特征的机制，提出各层权重几何可能由输入上的平均梯度外积决定，并考察这一原理能否统一解释多种特征学习现象，以及让核方法获得递归特征学习能力。
+
+    **方法。** 深度神经特征假设（Deep Neural Feature Ansatz）把某层学习后的权重 Gram 矩阵与该层输入梯度的平均外积联系起来，后者会强调最能影响模型输出的方向。作者进一步构造递归特征机（Recursive Feature Machine, RFM），交替拟合核预测器并根据梯度外积更新特征度量，从而不通过深网反向传播也能迭代学习特征。
+
+    **实验验证。** 理论分析与受控神经网络实验比较不同深度和训练设置下预测的特征度量与实际权重几何。案例覆盖虚假特征、简单性偏置、grokking、剪枝和彩票假说；RFM 还在多个表格数据基准上与传统核方法、树模型和神经网络比较。
+
+    **结论与证据。** 平均梯度几何能够刻画深网学到的重要方向，并导出在表格任务上表现很强的实用核算法。理论为多种特征学习现象提供了统一机制，并得到经验对应支持。其证据在所研究假设下具有较强形式性和预测性，但并不是对所有架构、优化器或高维语言模型表示的普遍证明。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: theory
   evidence_strength: formal

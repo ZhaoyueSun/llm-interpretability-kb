@@ -63,6 +63,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** The paper asks what Transformer feed-forward layers, which contain much of the model's parameters, actually compute. It investigates whether their neurons can be interpreted as key–value memories and how those memories contribute to the output distribution across layers.
+
+    **Method.** A feed-forward layer is written as a sum of memory contributions. Each first-layer weight vector acts as a key whose dot product with the current hidden state determines activation, while the corresponding second-layer vector acts as a value that can be projected through the language-model unembedding to obtain a token distribution. This decomposition allows the authors to inspect triggering text patterns and predicted outputs for individual memories.
+
+    **Validation.** The analysis is applied to pretrained Transformer language models using large text corpora. For memories at different depths, the authors retrieve highly activating contexts, measure their semantic coherence, examine the vocabulary distributions induced by value vectors, and trace how residual updates from successive feed-forward layers move the model toward its final prediction.
+
+    **Conclusion & Evidence.** Lower-layer keys tend to respond to shallow patterns, whereas higher layers capture more semantic contexts; their values often promote tokens that plausibly continue those patterns. Feed-forward outputs behave as compositions of many such memories that are refined across layers. The evidence supports a useful descriptive key–value interpretation, but it is primarily correlational: semantic activation and vocabulary projection do not prove that each neuron stores a discrete fact or that the proposed decomposition is the only causal account of the layer.
+  zh: |-
+    **研究问题。** 论文研究占据 Transformer 大量参数的前馈层究竟执行什么计算，重点考察其神经元能否被解释为键值记忆，以及这些记忆如何在不同层中共同影响最终输出分布。
+
+    **方法。** 作者把前馈层写成多项记忆贡献之和。第一层的每个权重向量充当“键”，它与当前隐藏状态的内积决定相应神经元是否激活；第二层中对应的向量充当“值”，并可通过语言模型的反嵌入矩阵投影为词表上的 token 分布。该分解使研究者能够分别检查每项记忆的触发文本模式和它倾向写入的输出。
+
+    **实验验证。** 分析在预训练 Transformer 语言模型和大规模文本语料上开展。作者为不同深度的记忆检索高激活上下文，衡量其语义一致性，检查 value 向量诱导的词表分布，并追踪连续前馈层经由残差连接如何逐步把输出推向最终预测。
+
+    **结论与证据。** 较低层的 key 更常响应浅层文本模式，较高层则表现出更强的语义性；对应 value 往往提升可能接续这些模式的 token。前馈层输出可以被描述为多项记忆的组合，并在后续层中持续细化。证据支持这种有用的描述性键值解释，但主要仍是相关性证据：语义激活和词表投影不能证明每个神经元存储一个离散事实，也不能证明该分解是前馈层唯一的因果机制。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: empirical-discovery
   evidence_strength: descriptive

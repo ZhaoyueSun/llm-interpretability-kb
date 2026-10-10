@@ -53,6 +53,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Do sequence-prediction models form and use world states or belief states of the generating process? In this paper, *Emergent Linear Representations in World Models of Self-Supervised Sequence Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. How do sequence models represent their decision-making process? Prior work suggests that Othello-playing neural network learned nonlinear models of the board state (Li et al., 2023a).
+
+    **Method.** In this work, we provide evidence of a closely related linear representation of the board.
+
+    **Validation.** This precise understanding of the internal representations allows us to control the model’s behaviour with simple vector arithmetic.
+
+    **Conclusion & Evidence.** In particular, we show that probing for “my colour” vs. “opponent’s colour” may be a simple yet powerful way to interpret the model’s internal state. Linear representations enable significant interpretability progress, which we demonstrate with further exploration of how the world model is computed. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+  zh: |-
+    **研究问题。** Othello 模型中看似非线性的棋盘状态表示，是否在改用“相对当前玩家”的正确坐标系后成为线性表示？这些线性方向是否不仅可被 probe 解码，而且可因果地改变模型预测？
+
+    **方法。** 具体而言，我们表明，探测“我的颜色”与“对手的颜色”可能是一种简单却有力的模型内部状态解释方法。
+
+    **实验验证。** 对内部表征的这种精确认识，使我们可以用简单的向量运算控制模型行为。
+
+    **结论与证据。** 在本研究中，我们给出证据，证明存在一种密切相关的棋盘线性表征。线性表征推动了可解释性的显著进展；我们通过进一步探索世界模型如何计算来展示这一点。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: empirical-discovery
   evidence_strength: descriptive

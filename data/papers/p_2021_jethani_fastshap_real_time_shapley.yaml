@@ -63,6 +63,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** The paper asks whether Shapley-value explanations can be amortized into a single forward pass without first computing expensive ground-truth explanations for training. It also asks how to reduce estimator variance while retaining the efficiency property of Shapley values.
+
+    **Method.** FastSHAP trains an explainer network to predict instance-specific Shapley values. Its objective is the weighted least-squares characterization used by KernelSHAP, optimized by sampling feature coalitions and querying the original predictive model. An efficiency-normalization step forces predicted attributions to sum to the difference between the full-input and baseline predictions.
+
+    **Validation.** Experiments cover tabular and image classification tasks with several predictive models. FastSHAP is compared with KernelSHAP, DeepSHAP, and other approximation methods on attribution error where reference values are available, explanation faithfulness under masking, runtime per explanation, convergence, and performance in downstream explanation-based tasks.
+
+    **Conclusion & Evidence.** After one-time training, FastSHAP produces explanations orders of magnitude faster than per-instance sampling while approaching reference Shapley estimates and maintaining the efficiency constraint. This provides strong empirical evidence for amortized attribution, not for the causal faithfulness of Shapley values themselves. Accuracy depends on the explainer's training distribution, masking model, and coalition sampling, so distribution shift can weaken the guarantee.
+  zh: |-
+    **研究问题。** 论文研究能否把昂贵的 Shapley 值估计摊销为一次前向计算，而无需先为训练样本计算完整的真值解释；同时考察如何降低估计方差，并保持 Shapley 值的效率性性质。
+
+    **方法。** FastSHAP 训练一个解释器网络，为每个输入直接预测实例级 Shapley 值。其训练目标来自 KernelSHAP 的加权最小二乘刻画，通过采样特征联盟并查询原预测模型来优化。随后使用效率归一化，使所有预测归因之和等于完整输入预测与基线预测之间的差。
+
+    **实验验证。** 实验覆盖表格和图像分类任务以及多种预测模型。作者将 FastSHAP 与 KernelSHAP、DeepSHAP 等近似方法比较，评估存在参考值时的归因误差、遮蔽测试中的解释效果、单次解释运行时间、训练收敛，以及解释用于下游任务时的表现。
+
+    **结论与证据。** 在完成一次性训练后，FastSHAP 能以比逐样本采样快若干数量级的速度生成解释，同时接近参考 Shapley 估计并满足效率约束。这为“归因计算可以被摊销”提供了较强实证证据，但并不证明 Shapley 值本身是模型推理的因果忠实解释。结果仍依赖解释器训练分布、缺失特征建模和联盟采样，分布变化会削弱其可靠性。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: sensitivity

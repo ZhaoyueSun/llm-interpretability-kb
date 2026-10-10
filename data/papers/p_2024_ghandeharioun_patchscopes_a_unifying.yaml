@@ -69,6 +69,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** How can a single hidden state reveal model knowledge richer and more expressive than its next-token distribution? In this paper, *Patchscopes: A Unifying Framework for Inspecting Hidden Representations of Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Understanding the internal representations of large language models (LLMs) can help explain models' behavior and verify their alignment with human values.
+
+    **Method.** Given the capabilities of LLMs in generating human-understandable text, we propose leveraging the model itself to explain its internal representations in natural language.
+
+    **Validation.** We introduce a framework called Patchscopes and show how it can be used to answer a wide range of questions about an LLM's computation. We show that many prior interpretability methods based on projecting representations into the vocabulary space and intervening on the LLM computation can be viewed as instances of this framework. Moreover, several of their shortcomings such as failure in inspecting early layers or lack of expressivity can be mitigated by Patchscopes.
+
+    **Conclusion & Evidence.** Beyond unifying prior inspection techniques, Patchscopes also opens up new possibilities such as using a more capable model to explain the representations of a smaller model, and multihop reasoning error correction. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+  zh: |-
+    **研究问题。** 能否通过把 source hidden state patch 到可配置的 target prompt/model/layer，让模型自身以自然语言解释内部表示，并统一 probing、vocabulary projection 与 intervention 等方法？该框架能否更好地解码预测、属性、实体解析过程及跨模型信息？
+
+    **方法。** 鉴于语言模型能够生成人类可理解的文本，我们提出利用模型自身，以自然语言解释其内部表征。我们引入名为 Patchscopes 的框架，并展示如何用它回答有关语言模型计算的广泛问题。此外，Patchscopes 可以缓解这些方法的若干缺陷，例如无法检查早期层或表达能力不足。
+
+    **实验验证。** 我们说明，许多把表征投影到词汇空间并干预语言模型计算的既有可解释性方法，都可以视为这一框架的实例。
+
+    **结论与证据。** Patchscopes 不仅统一了以往的检查技术，还带来新的可能性，例如使用能力更强的模型解释较小模型的表征，以及纠正多跳推理错误。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: causal-local

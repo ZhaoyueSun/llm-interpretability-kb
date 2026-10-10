@@ -60,6 +60,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** When does a neural network's low-level mechanism faithfully implement a high-level interpretable causal process? In this paper, *Uncovering Intermediate Variables in Transformers using Circuit Probing* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Neural network models have achieved high performance on a wide variety of complex tasks, but the algorithms that they implement are notoriously difficult to interpret. It is often necessary to hypothesize intermediate variables involved in a network's computation in order to understand these algorithms. For example, does a language model depend on particular syntactic properties when generating a sentence?
+
+    **Method.** We propose a new analysis technique - circuit probing - that automatically uncovers low-level circuits that compute hypothesized intermediate variables. We apply this method to models trained on simple arithmetic tasks, demonstrating its effectiveness at (1) deciphering the algorithms that models have learned, (2) revealing modular structure within a model, and (3) tracking the development of circuits over training.
+
+    **Validation.** This enables causal analysis through targeted ablation at the level of model parameters. Across these three experiments we demonstrate that circuit probing combines and extends the capabilities of existing methods, providing one unified approach for a variety of analyses.
+
+    **Conclusion & Evidence.** Finally, we demonstrate circuit probing on a real-world use case: uncovering circuits that are responsible for subject-verb agreement and reflexive anaphora in GPT2-Small and Medium. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+  zh: |-
+    **研究问题。** 在未知完整算法、但能提出候选中间变量时，能否通过可训练权重 mask 同时检验该变量是否被表示、是否因果参与行为，以及由哪个低层 circuit 计算？这种 circuit probing 是否比普通线性/非线性 probes 更忠实？
+
+    **方法。** 我们提出一种新的分析技术——回路探测（circuit probing），它能自动发现计算假设中间变量的底层回路，从而支持在模型参数层面通过定向消融开展因果分析。我们将该方法应用于在简单算术任务上训练的模型，并展示它在以下方面的有效性：（1）解析模型学到的算法；（2）揭示模型内部的模块化结构；（3）追踪回路在训练过程中的形成。
+
+    **实验验证。** 通过这三项实验，我们表明回路探测综合并扩展了现有方法的能力，为多类分析提供了一种统一方法。
+
+    **结论与证据。** 最后，我们在真实用例中演示回路探测：发现 GPT2-Small 和 GPT2-Medium 中负责主谓一致与反身照应的回路。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: causal-local

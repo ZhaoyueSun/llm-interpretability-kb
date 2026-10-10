@@ -52,6 +52,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Do interpretability methods provide distinctive practical value on causal tasks, realistic distributions, and against strong baselines? In this paper, *Measuring Monosemanticity in Sparse Autoencoders via Latent Activation Coherence* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Within Explainable Artificial Intelligence, mechanistic interpretability uses Sparse Autoencoders (SAEs) to extract more interpretable features from neural representations. However, assessing their monosemanticity, and thus explanation quality, remains challenging. Existing metrics require external concept labels or depend on pretrained embedding models, making them sensitive to encoder's geometry.
+
+    **Method.** We introduce the Tversky Monosemanticity Score (TMS), a label-free metric that operationalizes monosemanticity as activation-set coherence of binarized SAE latents, and does not require external embedding encoders.
+
+    **Validation.** We evaluate TMS on SAEs trained on features from pretrained vision and vision-language models (DINOv3, Contrastive Language–Image Pretraining (CLIP), BLIP2), two common SAE regimes (TopK, BatchTopK), multiple sparsity levels, and expansion factors. TMS also reveals distinct SAE training dynamics across base models.
+
+    **Conclusion & Evidence.** Our results show that TMS is less affected by encoder anisotropy than its embedding-based alternative, while remaining aligned with established monosemanticity indicators. Moreover, under encoder anisotropy, TMS provides a stronger indication of probe-based concept deletion effectiveness, while being competitive otherwise. The counterexamples or controls strongly delimit what the audited method can justify. They do not, on their own, prove that any proposed replacement is universally faithful or sufficient.
+  zh: |-
+    **研究问题。** 如何在不依赖 concept labels、auxiliary classifiers 或外部 embedding geometry 的情况下定义并衡量 稀疏自编码器（Sparse Autoencoder, SAE） latent monosemanticity？基于二值 activation-set coherence 的 Tversky Monosemantic Score 能否稳定比较训练动态并预测 concept deletion 效果？
+
+    **方法。** 我们提出 Tversky 单义性分数（TMS），这是一种无需标签的指标：它把单义性操作化为二值化 SAE 潜变量的激活集合一致性，并且不需要外部嵌入编码器。
+
+    **实验验证。** 我们在以下范围内评估 TMS：基于预训练视觉与视觉—语言模型（DINOv3、对比语言—图像预训练（Contrastive Language–Image Pretraining, CLIP）、BLIP2）特征训练的 SAE、两种常见 SAE 方案（TopK、BatchTopK）、多个稀疏度和扩展因子。此外，在编码器存在各向异性时，TMS 能更有力地指示基于探针的概念删除效果；在其他情况下，它也具有竞争力。
+
+    **结论与证据。** 结果表明，与基于嵌入的替代指标相比，TMS 受编码器各向异性的影响更小，同时仍与已有单义性指标保持一致。TMS 还揭示了不同基础模型上各异的 SAE 训练动力学。反例和控制实验有力限定了被审计方法能够支持的结论，但它们本身不能证明任何替代方法普遍忠实或充分。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: evaluation
   evidence_strength: audit

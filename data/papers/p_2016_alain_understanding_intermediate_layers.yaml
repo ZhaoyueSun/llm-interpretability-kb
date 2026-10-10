@@ -46,6 +46,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** The paper asks how class-relevant information evolves across the depth and training trajectory of a deep classifier, and whether this evolution can be measured without changing the network itself. It also asks whether layerwise measurements can reveal optimization failures that final-task loss alone conceals.
+
+    **Method.** The authors attach an independently trained linear classifier, or linear probe, to each hidden layer while keeping the original network frozen. Probe accuracy estimates how linearly accessible the target classes are from that layer; tracking the same quantity over layers and checkpoints turns the probe into a diagnostic of representation development rather than a new component of the predictor.
+
+    **Validation.** The method is applied to Inception v3 and Residual Network 50 (ResNet-50) image classifiers. The experiments compare probe performance across depth and training time, and use abnormal training runs to test whether the layerwise curves expose stalled or poorly coordinated representation learning.
+
+    **Conclusion & Evidence.** Linear separability generally increases with depth, and probe trajectories provide information about intermediate learning dynamics that is absent from the final loss. The evidence strongly supports probes as non-invasive measurements of decodable class information and useful diagnostics. It does not show that the probed information is causally used by the network, nor that a linear probe recovers the complete computation performed by a layer.
+  zh: |-
+    **研究问题。** 论文研究类别相关信息如何随深度分类网络的层数和训练过程演化，以及能否在不改变原模型的情况下测量这种变化。它还考察逐层测量能否揭示仅观察最终任务损失时难以发现的优化异常。
+
+    **方法。** 作者在冻结原网络的前提下，为每个隐藏层独立训练一个线性分类器，即线性探针（linear probe）。探针准确率用于估计目标类别能否从该层表示中被线性读出；沿网络深度和训练检查点追踪该指标，可以把探针作为表示形成过程的诊断工具，而不是预测模型的新组成部分。
+
+    **实验验证。** 方法在 Inception v3 和残差网络 50（Residual Network 50, ResNet-50）图像分类器上进行验证。实验比较不同层和不同训练阶段的探针表现，并利用异常训练过程检验逐层曲线是否能够暴露表示学习停滞或层间配合不良等问题。
+
+    **结论与证据。** 实验中，类别表示的线性可分性通常随深度单调提高，探针轨迹也确实提供了最终损失之外的中间学习动态信息。证据较强地支持线性探针作为“可解码类别信息”的非侵入式测量和诊断手段；但它不能证明被读出的信息实际参与了模型决策，也不能说明线性探针恢复了某层的完整计算机制。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: decodable

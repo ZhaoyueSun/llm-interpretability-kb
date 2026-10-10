@@ -82,6 +82,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** The paper asks how an input-level attribution map that only says where evidence occurs can be extended to explain what concepts a network recognized, where those concepts appear, and how they jointly support a particular prediction. It seeks to connect local attribution with global concept analysis in one model-specific explanation.
+
+    **Method.** Concept Relevance Propagation (CRP) extends Layer-wise Relevance Propagation by conditioning relevance flows on internal concept channels. Relevance is propagated backward from a chosen output through selected neurons or feature maps to the input, producing concept-conditioned heatmaps and scores. Aggregating these scores across data yields global concept views, while conditioning on one sample yields a local concept decomposition.
+
+    **Validation.** CRP is demonstrated on image classifiers including convolutional and concept-based architectures. The experiments visualize concept-specific evidence, compare explanations across classes and samples, perform concept interventions or removals, and use controlled examples and established attribution baselines to test whether the recovered concepts correspond to prediction-relevant regions.
+
+    **Conclusion & Evidence.** CRP produces explanations that connect output relevance to named or inspected internal concepts and their spatial evidence, revealing both useful strategies and spurious cues. Intervention and relevance-conservation analyses provide stronger support than visualization alone, but the explanation remains conditional on the chosen layer, concept basis, and attribution rule. It identifies model-sensitive concept relevance rather than proving a unique human-level causal account of the prediction.
+  zh: |-
+    **研究问题。** 论文研究如何把只说明“哪里重要”的输入归因图，扩展为同时解释模型识别了什么概念、概念出现在哪里，以及多个概念如何共同支持某次预测；目标是把局部归因和全局概念分析统一到同一份模型解释中。
+
+    **方法。** 概念相关性传播（Concept Relevance Propagation, CRP）在逐层相关性传播的基础上，对内部概念通道施加条件。相关性从指定输出经由选定神经元或特征图反向传播到输入，从而得到概念条件化的热图和分数；跨样本聚合形成全局概念视图，而在单个样本上计算则给出局部概念分解。
+
+    **实验验证。** CRP 在卷积图像分类器和概念式架构上展示。实验可视化特定概念对应的输入证据，比较不同类别与样本的解释，执行概念移除或干预，并通过受控案例和既有归因基线检验恢复的概念是否对应真正影响预测的图像区域。
+
+    **结论与证据。** CRP 能把输出相关性连接到可命名或可检查的内部概念及其空间证据，并揭示合理策略与虚假线索。概念干预和相关性守恒分析使证据强于单纯可视化，但解释仍取决于所选层、概念基和归因规则；它刻画的是模型敏感的概念相关性，而不是唯一的人类层次因果解释。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: sensitivity

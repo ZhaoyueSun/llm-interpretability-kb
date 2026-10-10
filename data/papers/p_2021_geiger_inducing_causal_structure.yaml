@@ -88,6 +88,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** The paper asks whether a desired high-level causal structure can be induced during neural-network training rather than only discovered afterward. It also tests whether enforcing counterfactual agreement with a symbolic causal model improves systematic generalization while making the learned computation easier to interpret.
+
+    **Method.** Interchange Intervention Training (IIT) samples pairs of examples, swaps representations at network locations aligned with high-level causal variables, and trains the network's intervened output to match the high-level model under the corresponding variable intervention. The objective supplements ordinary behavioral supervision with counterfactual constraints on internal computation.
+
+    **Validation.** IIT is evaluated on synthetic and natural-language compositional reasoning tasks, including settings where training data leave systematic combinations unseen. The authors compare standard training, multitask or representation-level supervision, and IIT; they measure in-distribution accuracy, systematic out-of-distribution generalization, and intervention accuracy under the intended alignment.
+
+    **Conclusion & Evidence.** Networks trained with IIT more reliably realize the specified causal structure and often generalize better to unseen compositions than observational baselines. Intervention accuracy provides direct evidence that the aligned internal states participate according to the intended high-level process. The result is strong within tasks where the correct causal model and alignment are supplied, but it does not solve how to discover the right abstraction in domains where those ingredients are unknown.
+  zh: |-
+    **研究问题。** 论文研究能否在神经网络训练过程中主动注入期望的高层因果结构，而不是仅在训练后寻找它；同时检验与符号因果模型保持反事实一致，是否能够改善系统性泛化并提高内部计算的可解释性。
+
+    **方法。** 交换干预训练（Interchange Intervention Training, IIT）从两个样本中取得表示，在与高层因果变量对齐的网络位置交换这些表示，并要求干预后网络输出与高层模型执行相应变量干预后的输出一致。该目标在普通行为监督之外，增加了对内部计算的反事实结构约束。
+
+    **实验验证。** IIT 在合成推理和自然语言组合推理任务上评估，其中包括训练集故意缺少某些系统性组合的分布外设置。作者将标准训练、多任务或表示级监督与 IIT 比较，并同时测量分布内准确率、系统性分布外泛化，以及给定对齐下的干预准确率。
+
+    **结论与证据。** IIT 训练的网络更稳定地实现了指定因果结构，并常常比仅依赖观察监督的基线更好地泛化到未见组合。干预准确率直接支持对齐状态按照预期高层过程发挥作用。证据在“正确因果模型和对齐已由研究者给出”的任务中较强，但该方法没有解决现实领域中如何发现正确抽象与对齐的问题。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: causal-structural

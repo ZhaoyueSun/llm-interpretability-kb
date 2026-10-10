@@ -64,6 +64,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Do different training runs, models, and architectures reproduce the same mechanism, or only share an abstract algorithm? In this paper, *Transferring Linear Features Across Language Models With Model Stitching* addresses that question through its specific object of study and tests how far the resulting claim can be supported.
+
+    **Method.** We apply this technique to transfer the weights of Sparse Autoencoders (SAEs) between models of different sizes to compare their representations. We find that small and large models learn similar representation spaces, which motivates training expensive components like SAEs on a smaller model and transferring to a larger model at a FLOPs savings. In particular, using a small-to-large transferred SAE as initialization can lead to 50% cheaper training runs when training SAEs on larger models.
+
+    **Validation.** Finally, we dive deeper into feature-level transferability, finding that semantic and structural features transfer noticeably differently while specific classes of functional features have their roles faithfully mapped.
+
+    **Conclusion & Evidence.** In this work, we demonstrate that affine mappings between residual streams of language models is a cheap way to effectively transfer represented features between models. Next, we show that transferred probes and steering vectors can effectively recover ground truth performance. Overall, our findings illustrate similarities and differences in the linear representation spaces of small and large models and demonstrate a method for improving the training efficiency of SAEs. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+  zh: |-
+    **研究问题。** 若不同规模同家族模型共享部分线性表示，简单 affine model stitches 能否在其 residual spaces 间转移 稀疏自编码器（Sparse Autoencoders, SAEs）、probes 与 steering vectors？这种迁移能否节省 SAE 训练计算，并揭示 semantic、structural 与 functional features 的 universality 差异？
+
+    **方法。** 本文证明，利用语言模型残差流之间的仿射映射，可以低成本而有效地在模型间迁移已表征的特征。
+
+    **实验验证。** 我们运用该技术，在不同规模的模型之间迁移稀疏自编码器（SAE）权重，以比较它们的表征。结果发现，小模型与大模型会学到相似的表征空间；这促使我们在较小模型上训练 SAE 等昂贵组件，再把它们迁移到较大模型，从而节省浮点运算量。特别是，在较大模型上训练 SAE 时，使用从小模型迁移到大模型的 SAE 作为初始化，可使训练成本降低 50%。
+
+    **结论与证据。** 随后，我们表明，迁移后的探针和引导向量能够有效恢复真值性能。最后，我们深入研究特征层面的可迁移性，发现语义特征与结构特征的迁移方式明显不同，而某些特定类别的功能特征则能忠实映射其作用。总体而言，我们的发现揭示了小模型与大模型线性表征空间的相似性和差异，并展示了一种提高 SAE 训练效率的方法。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: descriptive

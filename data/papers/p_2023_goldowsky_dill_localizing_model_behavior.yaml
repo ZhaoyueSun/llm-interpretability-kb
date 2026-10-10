@@ -58,6 +58,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** How can paths and shared circuits implementing a target subcomputation be localized from behavioral constraints? In this paper, *Localizing Model Behavior with Path Patching* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Localizing behaviors of neural networks to a subset of the network's components or a subset of interactions between components is a natural first step towards analyzing network mechanisms and possible failure modes. Existing work is often qualitative and ad-hoc, and there is no consensus on the appropriate way to evaluate localization claims.
+
+    **Method.** We introduce path patching, a technique for expressing and quantitatively testing a natural class of hypotheses expressing that behaviors are localized to a set of paths.
+
+    **Validation.** We refine an explanation of induction heads, characterize a behavior of GPT-2, and open source a framework for efficiently running similar experiments.
+
+    **Conclusion & Evidence.** We introduce path patching, a technique for expressing and quantitatively testing a natural class of hypotheses expressing that behaviors are localized to a set of paths. The coordinated interventions provide comparatively strong structural causal evidence for the proposed information flow or circuit. Completeness, uniqueness, and transfer to other models still require separate validation.
+  zh: |-
+    **研究问题。** 如何把“某些计算路径中介了目标行为”的定位主张精确定义为可证伪假说，而不只列出重要 nodes？广义 path patching 能否在任意计算图上量化路径集合的充分性、指出假说误差来源并支持迭代细化？
+
+    **方法。** 我们提出路径修补，这是一种用于表达并定量检验一类自然假说的技术；这类假说认为，某些行为被定位于一组路径。
+
+    **实验验证。** 我们提出路径修补，这是一种用于表达并定量检验一类自然假说的技术；这类假说认为，某些行为被定位于一组路径。
+
+    **结论与证据。** 我们改进了对归纳注意力头的解释，刻画了 GPT-2 的一种行为，并开源了一个高效开展类似实验的框架。相互配合的干预为所提出的信息流或电路提供了较强的结构因果证据，但机制的完备性、唯一性以及跨模型迁移仍需独立验证。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: causal-structural

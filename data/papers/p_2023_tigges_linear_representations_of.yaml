@@ -66,6 +66,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Can semantic variables be represented by directions or subspaces with measurable, intervenable, and compositional properties? In this paper, *Linear Representations of Sentiment in Large Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Sentiment is a pervasive feature in natural language text, yet it is an open question how sentiment is represented within Large Language Models (LLMs).
+
+    **Method.** In this study, we reveal that across a range of models, sentiment is represented linearly: a single direction in activation space mostly captures the feature across a range of tasks with one extreme for positive and the other for negative.
+
+    **Validation.** Through causal interventions, we isolate this direction and show it is causally relevant in both toy tasks and real world datasets such as Stanford Sentiment Treebank. Through this case study we model a thorough investigation of what a single direction means on a broad data distribution. We further uncover the mechanisms that involve this direction, highlighting the roles of a small subset of attention heads and neurons.
+
+    **Conclusion & Evidence.** Finally, we discover a phenomenon which we term the summarization motif: sentiment is not solely represented on emotionally charged words, but is additionally summarized at intermediate positions without inherent sentiment, such as punctuation and names. We show that in Stanford Sentiment Treebank zero-shot classification, 76% of above-chance classification accuracy is lost when ablating the sentiment direction, nearly half of which (36%) is due to ablating the summarized sentiment direction exclusively at comma positions. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+  zh: |-
+    **研究问题。** 语言模型是否沿单一线性方向表示跨语境的 sentiment，该方向是否被模型因果性地使用？情感信息是否先汇聚到标点或名词等 summarization tokens，再由专门电路读出以完成预测？
+
+    **方法。** 通过因果干预，我们分离出这一方向，并表明它在玩具任务和 Stanford Sentiment Treebank 等真实数据集中都具有因果相关性。
+
+    **实验验证。** 借助这一案例研究，我们示范了如何在广泛的数据分布上深入考察“单一方向”的含义。在 Stanford Sentiment Treebank 的零样本分类中，消融情感方向会使高于随机水平的分类准确率损失 76%；其中近一半（36%）来自仅在逗号位置消融汇总后的情感方向。
+
+    **结论与证据。** 在本研究中，我们发现，在一系列模型中，情感都以线性方式表征：激活空间中的一个方向基本能够跨多种任务捕捉这一特征，其两个极端分别对应正面和负面情感。我们进一步揭示了涉及这一方向的机制，并突出少量注意力头和神经元所发挥的作用。最后，我们发现一种称为“汇总模体”（summarization motif）的现象：情感不仅表征在带有强烈情绪色彩的词上，还会汇总到本身不含情感的中间位置，例如标点符号和人名。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: empirical-discovery
   evidence_strength: descriptive

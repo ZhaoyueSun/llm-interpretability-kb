@@ -59,6 +59,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Can interpretable feature extraction scale to frontier models, all relevant layers and positions, and the long tail of the training distribution? In this paper, *Decoding Dark Matter: Specialized Sparse Autoencoders for Interpreting Rare Concepts in Foundation Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Understanding and mitigating the potential risks associated with foundation models (FMs) hinges on developing effective interpretability methods. Sparse Autoencoders (SAEs) have emerged as a promising tool for disentangling FM representations, but they struggle to capture rare, yet crucial concepts in the data.
+
+    **Method.** We introduce Specialized Sparse Autoencoders (SSAEs), designed to illuminate these elusive dark matter features by focusing on specific subdomains.
+
+    **Validation.** We present a practical recipe for training SSAEs, demonstrating the efficacy of dense retrieval for data selection and the benefits of Tilted Empirical Risk Minimization as a training objective to improve concept recall. Our evaluation of SSAEs on standard metrics, such as downstream perplexity and $L_0$ sparsity, show that they effectively capture subdomain tail concepts, exceeding the capabilities of general-purpose SAEs. We showcase the practical utility of SSAEs in a case study on the Bias in Bios dataset, where SSAEs achieve a 12.5% increase in worst-group classification accuracy when applied to remove spurious gender information.
+
+    **Conclusion & Evidence.** SSAEs provide a powerful new lens for peering into the inner workings of FMs in subdomains. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+  zh: |-
+    **研究问题。** 不把通用 稀疏自编码器（Sparse Autoencoder, SAE） 扩到数十亿 features，能否用 subdomain-targeted Specialized 稀疏自编码器（Sparse Autoencoders, SAEs） 与数据检索高效捕获极少出现的 tail concepts？Tilted ERM 能否进一步平衡 head/tail feature learning，改善稀有概念检测、解释与控制？
+
+    **方法。** 我们提出专用稀疏自编码器（SSAE），通过聚焦特定子领域来揭示这些难以捕捉的“暗物质”特征。
+
+    **实验验证。** 我们给出训练 SSAE 的实用方案，展示使用稠密检索选择数据的有效性，以及把倾斜经验风险最小化作为训练目标以提高概念召回率的益处。使用下游困惑度和 $L_0$ 稀疏性等标准指标进行的评估表明，SSAE 能有效捕捉子领域的长尾概念，其能力超过通用 SAE。我们还在 Bias in Bios 数据集的案例研究中展示 SSAE 的实际用途：使用 SSAE 去除虚假的性别信息后，最差群体分类准确率提高了 12.5%。
+
+    **结论与证据。** SSAE 为深入观察基础模型在子领域中的内部运作提供了一种强有力的新视角。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: descriptive

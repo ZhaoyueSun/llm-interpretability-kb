@@ -70,6 +70,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** The paper asks whether apparently semantic units in a convolutional neural network (CNN) reflect genuine axis-aligned structure or are artifacts that could be reproduced under an arbitrary rotation of the representation. It also asks how architecture, supervision, and training choices affect the number and type of interpretable units.
+
+    **Method.** Network Dissection assigns semantics to individual convolutional units by thresholding their spatial activation maps, upsampling them to the input image, and measuring intersection-over-union with pixel-level concept masks. The concept vocabulary spans objects, parts, scenes, materials, textures, and colors. Comparing the original basis with rotated representations tests whether interpretability is tied to the learned coordinate system.
+
+    **Validation.** The framework is applied across multiple CNN architectures and training objectives using the Broadly and Densely Labeled Dataset (Broden). The authors compare networks trained for scene and object recognition, follow units over training, vary initialization, dropout, and batch normalization, and rotate feature spaces while preserving predictive information.
+
+    **Conclusion & Evidence.** Networks differ substantially in the number of units aligned with human concepts, and supervised training can create axis-aligned semantic detectors that largely disappear after basis rotation even when task performance is preserved. The evidence supports Network Dissection as a reproducible measure of unit–concept alignment and rejects basis invariance for this form of interpretability. It remains a decoding-style criterion dependent on the concept dataset and does not establish that a labeled unit is causally necessary for the model's prediction.
+  zh: |-
+    **研究问题。** 论文考察卷积神经网络（Convolutional Neural Network, CNN）中看似具有语义的单元，究竟反映了真实的轴对齐结构，还是经过任意基变换也能产生的表象；同时研究架构、监督信号和训练设置如何影响可解释单元的数量与类型。
+
+    **方法。** 网络剖析（Network Dissection）先对卷积单元的空间激活图设定阈值并上采样到输入图像，再计算它与像素级概念掩码的交并比，以此为单个单元赋予语义。概念词表覆盖物体、部件、场景、材质、纹理和颜色。通过比较原始表示基与旋转后的表示，方法进一步检验可解释性是否依赖模型学到的坐标轴。
+
+    **实验验证。** 作者使用广泛且密集标注数据集（Broadly and Densely Labeled Dataset, Broden），在多种 CNN 架构和训练目标上应用该框架。他们比较场景识别与物体识别网络，跟踪训练过程中的语义单元，并考察初始化、dropout、批归一化以及保持预测信息不变的表示旋转所产生的影响。
+
+    **结论与证据。** 不同网络与训练方式形成的概念对齐单元数量差异明显；监督训练能够形成轴对齐的语义检测器，而基旋转会在保持任务性能的同时显著削弱这种单元级可解释性。证据支持 Network Dissection 作为可复现的“单元—概念对齐”度量，并否定这种可解释性的基不变性；但它仍属于依赖概念数据集的解码式证据，不能单独证明某个被命名的单元对预测具有因果必要性。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: decodable

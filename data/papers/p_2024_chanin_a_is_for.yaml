@@ -76,6 +76,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Under what geometric, hierarchical, and optimization conditions do sparse dictionaries produce erroneous or fabricated feature explanations? In this paper, *A is for Absorption: Studying Feature Splitting and Absorption in Sparse Autoencoders* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Sparse Autoencoders (SAEs) aim to decompose the activation space of large language models (LLMs) into human-interpretable latent directions or features.
+
+    **Method.** As we increase the number of features in the SAE, hierarchical features tend to split into finer features ("math"may split into"algebra","geometry", etc.), a phenomenon referred to as feature splitting. We discuss the implications of feature absorption in SAEs and some potential approaches to solve the fundamental theoretical issues before SAEs can be used for interpreting LLMs robustly and at scale.
+
+    **Validation.** We introduce a metric to detect absorption in SAEs, and validate our findings empirically on hundreds of LLM SAEs.
+
+    **Conclusion & Evidence.** However, we show that sparse decomposition and splitting of hierarchical features is not robust. Specifically, we show that seemingly monosemantic features fail to fire where they should, and instead get"absorbed"into their children features. We coin this phenomenon feature absorption, and show that it is caused by optimizing for sparsity in SAEs whenever the underlying features form a hierarchy. Our investigation suggests that varying SAE sizes or sparsity is insufficient to solve this issue. The counterexamples or controls strongly delimit what the audited method can justify. They do not, on their own, prove that any proposed replacement is universally faithful or sufficient.
+  zh: |-
+    **研究问题。** 即使真实 features 线性且稀疏，层级关系是否仍会使 稀疏自编码器（Sparse Autoencoder, SAE） 无法恢复它们？feature splitting 如何导致更一般特征的方向被更具体 latent 吸收、出现 precision/recall holes，且这种 absorption 在真实 Gemma Scope 稀疏自编码器（Sparse Autoencoders, SAEs） 中有多普遍？
+
+    **方法。** 我们讨论了 SAE 特征吸收的影响，以及在 SAE 能够稳健且大规模地用于解释语言模型之前，解决这些基础理论问题的一些潜在方法。
+
+    **实验验证。** 具体而言，看似单义的特征会在本应激活的位置失去响应，反而被其子特征“吸收”。我们提出一个检测 SAE 特征吸收的指标，并在数百个语言模型 SAE 上经验验证了相关发现。
+
+    **结论与证据。** 然而，我们表明，稀疏分解和层级特征拆分并不稳健。我们把这种现象称为特征吸收，并表明，只要底层特征构成层级结构，SAE 对稀疏性的优化就会导致特征吸收。研究结果表明，仅改变 SAE 规模或稀疏度不足以解决该问题。反例和控制实验有力限定了被审计方法能够支持的结论，但它们本身不能证明任何替代方法普遍忠实或充分。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: evaluation
   evidence_strength: audit

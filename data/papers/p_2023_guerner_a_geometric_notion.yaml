@@ -73,6 +73,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Can semantic variables be represented by directions or subspaces with measurable, intervenable, and compositional properties? In this paper, *A Geometric Notion of Causal Probing* addresses that question through its specific object of study and tests how far the resulting claim can be supported. The linear subspace hypothesis (Bolukbasi et al., 2016) states that, in a language model's representation space, all information about a concept such as verbal number is encoded in a linear subspace. Prior work has relied on auxiliary classification tasks to identify and evaluate candidate subspaces that might give support for this hypothesis.
+
+    **Method.** Our information-theoretic framework accounts for spuriously correlated features in the representation space (Kumar et al., 2022) by reconciling the statistical notion of concept information and the geometric notion of how concepts are encoded in the representation space. As a byproduct of this analysis, we hypothesize a causal process for how a language model might leverage concepts during generation.
+
+    **Validation.** Empirically, we find that linear concept erasure is successful in erasing most concept information under our framework for verbal number as well as some complex aspect-level sentiment concepts from a restaurant review dataset.
+
+    **Conclusion & Evidence.** We instead give a set of intrinsic criteria which characterize an ideal linear concept subspace and enable us to identify the subspace using only the language model distribution. Our causal intervention for controlled generation shows that, for at least one concept across two languages models, the concept subspace can be used to manipulate the concept value of the generated word with precision. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+  zh: |-
+    **研究问题。** 如何以内生于语言模型分布、而非依赖外部 probe family 的方式，定义线性子空间包含多少 concept information？在存在相关非概念特征时，counterfactual marginalization 与 erasure、encapsulation、stability、containment 条件能否识别并干预因果概念子空间？
+
+    **方法。** 与此不同，我们给出一组刻画理想线性概念子空间的内在判据，使我们仅利用语言模型分布便可识别该子空间。我们的信息论框架通过协调“概念信息”的统计含义与“概念如何编码于表征空间”的几何含义，将表征空间中存在虚假相关的特征纳入考虑（Kumar 等，2022）。作为这项分析的副产物，我们提出一个关于语言模型在生成过程中如何利用概念的因果过程假说。
+
+    **实验验证。** 经验结果显示，在我们的框架下，线性概念擦除能够成功去除语法数的大部分概念信息，也能去除餐厅评论数据集中一些复杂的方面级情感概念。
+
+    **结论与证据。** 用于可控生成的因果干预还表明，至少对两个语言模型中的一个概念而言，可以利用其概念子空间精确操控生成词的概念取值。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: descriptive

@@ -54,6 +54,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** The paper asks whether seemingly different local explanation methods share a common mathematical form, and whether desirable explanation properties determine a unique feature-attribution rule. It further asks how that rule can be approximated efficiently for different model classes.
+
+    **Method.** The authors define additive feature-attribution methods as local surrogate models over binary indicators of whether features are present. They show that local accuracy, missingness, and consistency select a unique attribution equal to Shapley values, yielding SHapley Additive exPlanations (SHAP). Model-agnostic KernelSHAP and model-specific algorithms such as TreeSHAP and DeepSHAP are derived as practical estimators within the same framework.
+
+    **Validation.** The paper proves the uniqueness result and maps six prior explanation methods into the additive framework, identifying where some violate the proposed properties. Experiments compare approximation accuracy, computational cost, stability under model changes, and agreement with human intuition across tabular and image prediction settings.
+
+    **Conclusion & Evidence.** SHAP provides a principled common target for local feature attribution and explains why several existing methods behave similarly or inconsistently. The formal axioms and proofs strongly support uniqueness within the stated additive explanation class, while experiments support the usefulness of the proposed estimators. The result does not make feature attribution a causal account of model reasoning: conclusions still depend on the chosen background distribution and on how “missing” features are represented.
+  zh: |-
+    **研究问题。** 论文研究多种看似不同的局部解释方法是否具有共同的数学结构，以及一组理想解释性质能否唯一确定特征归因规则；进一步考察该规则如何在不同模型类型上被高效近似。
+
+    **方法。** 作者把加性特征归因方法形式化为一个局部替代模型，其输入是特征是否出现的二元指示变量。他们证明，局部准确性、缺失性和一致性三项性质会唯一导出 Shapley 值，从而得到 SHAP（SHapley Additive exPlanations）框架。模型无关的 KernelSHAP，以及面向树模型和深度模型的 TreeSHAP、DeepSHAP，都被视为同一归因目标的实用估计方法。
+
+    **实验验证。** 论文首先给出唯一性定理，并将六类既有解释方法映射到统一的加性框架中，指出其中部分方法违反哪些理想性质。随后在表格和图像预测场景中比较不同近似算法的准确性、计算成本、模型变化下的一致性，以及与人类直觉的符合程度。
+
+    **结论与证据。** SHAP 为局部特征归因提供了一个有公理依据的共同目标，也解释了不同既有方法为何会出现相似或不一致的行为。形式化公理与证明对“在所定义的加性解释类中解是唯一的”提供了很强证据，实验则支持相应估计方法的实用性；但特征归因并不因此成为模型推理的因果解释，结果仍取决于背景分布以及“特征缺失”的具体定义。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: sensitivity

@@ -71,6 +71,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** How far into the future generation trajectory is the current internal state already committed? In this paper, *Future Lens: Anticipating Subsequent Tokens from a Single Hidden State* addresses that question through its specific object of study and tests how far the resulting claim can be supported.
+
+    **Method.** We conjecture that hidden state vectors corresponding to individual input tokens encode information sufficient to accurately predict several tokens ahead. Finally we present a “Future Lens” visualization that uses these methods to create a new view of transformer states.
+
+    **Validation.** More concretely, in this paper we ask: Given a hidden (internal) representation of a single token at position t in an input, can we reliably anticipate the tokens that will appear at positions ≥ t + 2? To test this, we measure linear approximation and causal intervention methods in GPT-J-6B to evaluate the degree to which individual hidden states in the network contain signal rich enough to predict future hidden states and, ultimately, token outputs.
+
+    **Conclusion & Evidence.** We find that, at some layers, we can approximate a model’s output with more than 48% accuracy with respect to its prediction of subsequent tokens through a single hidden state. The evidence establishes that the information is accessible to the chosen readout or decomposition; it does not by itself show that the original model causally uses that information to produce its behavior.
+  zh: |-
+    **研究问题。** 单个中间 hidden state 是否编码了不止下一 token、而是更远未来的多个 token？线性映射、state transplantation 与 learned prompts 能在多大程度上把这些未来预测解码出来？
+
+    **方法。** 我们猜想，与单个输入 token 对应的隐藏状态向量编码了足够的信息，能够准确预测其后若干 token。更具体地说，本文提出如下问题：给定输入中位置 $t$ 上单个 token 的隐藏内部表征，我们能否可靠地预见位置 $\ge t+2$ 上将出现的 token？
+
+    **实验验证。** 为了检验这一点，我们在 GPT-J-6B 上评估线性近似和因果干预方法，衡量网络中的单个隐藏状态是否包含足够丰富的信号，从而预测未来隐藏状态，并最终预测输出 token。
+
+    **结论与证据。** 我们发现，在某些层中，仅通过一个隐藏状态，就能以超过 48% 的准确率近似模型对后续 token 的预测。最后，我们提出“Future Lens”可视化，利用这些方法提供一种观察 Transformer 状态的新视角。证据说明相应信息可以被所选读出器或分解方法访问，但不能单独证明原模型在产生行为时因果使用了这些信息。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: decodable

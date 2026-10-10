@@ -90,6 +90,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** What information does an individual model component read, transform, and write back within a distributed computation? In this paper, *Massive Values in Self-Attention Modules are the Key to Contextual Knowledge Understanding* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Large language models (LLMs) have achieved remarkable success in contextual knowledge understanding.
+
+    **Method.** In this paper, we show that these concentrated massive values consistently emerge in specific regions of attention queries (Q) and keys (K) while not having such patterns in values (V) in various modern transformer-based LLMs (Q, K, and V mean the representations output by the query, key, and value layers respectively).
+
+    **Validation.** Through extensive experiments, we further demonstrate that these massive values play a critical role in interpreting contextual knowledge (knowledge obtained from the current context window) rather than in retrieving parametric knowledge stored within the model's parameters.
+
+    **Conclusion & Evidence.** Our further investigation of quantization strategies reveals that ignoring these massive values leads to a pronounced drop in performance on tasks requiring rich contextual understanding, aligning with our analysis. Finally, we trace the emergence of concentrated massive values and find that such concentration is caused by Rotary Positional Encoding (RoPE), which has appeared since the first layers. These findings shed new light on how Q and K operate in LLMs and offer practical insights for model design and optimization. The Code is Available at https://github.com/MingyuJ666/Rope_with_LLM. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+  zh: |-
+    **研究问题。** RoPE-based 大语言模型（Large Language Model, LLM） 的 Q/K 中为何会在各 heads 相似维度出现 concentrated massive values？这些值是否专门支撑 contextual knowledge understanding 而非 parametric retrieval，并能否解释不同 quantization 方法对上下文能力的影响？
+
+    **方法。** 本文表明，在多种现代 Transformer 大语言模型中，高度集中的巨大数值持续出现在注意力查询（Q）和键（K）的特定区域，而值（V）中不存在这类模式；这里 Q、K、V 分别指查询层、键层和值层输出的表征。
+
+    **实验验证。** 通过广泛实验，我们进一步证明，这些巨大数值在解释上下文知识——即从当前上下文窗口获得的知识——时发挥关键作用，而不是用于检索存储在模型参数中的参数知识。
+
+    **结论与证据。** 对量化策略的进一步研究显示，忽略这些巨大数值，会使模型在需要丰富上下文理解的任务上出现明显性能下降，这与我们的分析一致。最后，我们追踪集中巨大数值的形成过程，发现这种集中现象由旋转位置编码（RoPE）引起，并且从最早的层就已经出现。这些发现为理解 Q 和 K 在语言模型中的运作方式提供了新视角，也为模型设计与优化带来实际启示。代码见 https://github.com/MingyuJ666/Rope_with_LLM。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: empirical-discovery
   evidence_strength: descriptive

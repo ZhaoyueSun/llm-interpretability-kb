@@ -108,6 +108,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Can a model behavior be reduced to a complete, intervenable, end-to-end component circuit? In this paper, *Counting Circuits: Mechanistic Interpretability of Visual Reasoning in Large Vision-Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Counting serves as a simple but powerful test of a Large Vision-Language Model's (LVLM's) reasoning; it forces the model to identify each individual object and then add them all up.
+
+    **Method.** In this study, we investigate how LVLMs implement counting using controlled synthetic and real-world benchmarks, combined with mechanistic analyses.
+
+    **Validation.** We introduce two novel interpretability methods, Visual Activation Patching and HeadLens, and use them to uncover a structured "counting circuit" that is largely shared across a variety of visual reasoning tasks. Building on these insights, we propose a lightweight intervention strategy that exploits simple and abundantly available synthetic images to fine-tune arbitrary pretrained LVLMs exclusively on counting.
+
+    **Conclusion & Evidence.** Our results show that LVLMs display a human-like counting behavior, with precise performance on small numerosities and noisy estimation for larger quantities. Despite the narrow scope of this fine-tuning, the intervention not only enhances counting accuracy on in-distribution synthetic data, but also yields an average improvement of +8.36% on out-of-distribution counting benchmarks and an average gain of +1.54% on complex, general visual reasoning tasks for Qwen2.5-VL. These findings highlight the central, influential role of counting in visual reasoning and suggest a potential pathway for improving overall visual reasoning capabilities through targeted enhancement of counting mechanisms. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+  zh: |-
+    **研究问题。** 大型视觉—语言模型（Large Vision-Language Model, LVLM） 如何在 circuit level 执行视觉计数，subitizing 与大数估计的行为断裂对应什么表示几何与跨模态信息路由？能否识别 visual grounding、routing、aggregation 与 awareness heads，并通过定向干预把计数机制迁移为更一般的视觉推理增益？
+
+    **方法。** 我们提出两种新的可解释性方法——Visual Activation Patching 和 HeadLens——并利用它们揭示一个结构化的“计数回路”；该回路在多种视觉推理任务之间大体共享。
+
+    **实验验证。** 本文结合受控合成基准、真实世界基准和机制分析，研究 LVLM 如何实现计数。在这些认识的基础上，我们提出一种轻量干预策略：利用简单且易于大量获取的合成图像，只针对计数任务对任意预训练 LVLM 进行微调。
+
+    **结论与证据。** 结果表明，LVLM 呈现类似人类的计数行为：对较小数量可以精确处理，对较大数量则进行带噪估计。尽管微调范围很窄，该干预不仅提高了分布内合成数据上的计数准确率，还使 Qwen2.5-VL 在分布外计数基准上平均提升 8.36%，在复杂、通用的视觉推理任务上平均提升 1.54%。这些发现凸显了计数在视觉推理中的核心影响，并表明通过有针对性地增强计数机制，可能进一步改善模型的整体视觉推理能力。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: empirical-discovery
   evidence_strength: causal-local

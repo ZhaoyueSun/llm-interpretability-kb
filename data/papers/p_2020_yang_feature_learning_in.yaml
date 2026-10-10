@@ -55,6 +55,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** The paper asks whether infinitely wide neural networks can retain genuine feature learning rather than collapsing to fixed-kernel dynamics such as the Neural Tangent Kernel (NTK). It seeks a classification of stable parameterizations and a tractable description of the representations they learn during training.
+
+    **Method.** Using the tensor-program formalism, the authors analyze families of width-dependent parameterizations and derive their infinite-width training limits. They identify the maximal-update, or μP, parameterization, in which hidden representations and feature kernels evolve by an order-one amount while activations and gradients remain stable. The resulting dynamics can be computed through deterministic recursive equations.
+
+    **Validation.** The theory is checked against finite-width multilayer perceptrons and convolutional networks across synthetic and real prediction tasks. Experiments compare standard, Neural Tangent Kernel, and feature-learning parameterizations as width grows, examining training curves, representation change, hyperparameter transfer, and performance on tasks that require learned features.
+
+    **Conclusion & Evidence.** Infinite width does not inherently eliminate feature learning: it depends on parameterization. The μP limit preserves nontrivial representation dynamics and better predicts finite-network behavior in feature-dependent regimes than a fixed NTK description. The formal derivations provide strong evidence under the stated architectural and scaling assumptions, with empirical convergence supporting relevance to large finite networks; they do not imply that every practical architecture follows the same limit.
+  zh: |-
+    **研究问题。** 论文研究无限宽神经网络能否保留真实的特征学习，而不是退化为神经切线核（Neural Tangent Kernel, NTK）一类固定核动力学；同时试图分类稳定的参数化方式，并为训练过程中形成的表示给出可计算描述。
+
+    **方法。** 作者利用张量程序（tensor program）形式化分析一组随网络宽度缩放的参数化，并推导各自的无限宽训练极限。他们识别出最大更新参数化（maximal-update parameterization, μP）：在保持激活与梯度稳定的同时，隐藏表示和特征核能够发生常数量级变化。相应训练动力学可由确定性的递归方程计算。
+
+    **实验验证。** 理论在有限宽多层感知机和卷积网络上进行检验，覆盖合成任务与真实预测任务。实验比较标准参数化、NTK 参数化和特征学习参数化随宽度增加时的训练曲线、表示变化、超参数迁移，以及在必须学习新特征的任务上的表现。
+
+    **结论与证据。** 无限宽本身并不必然消除特征学习，关键取决于参数化。μP 极限保留了非平凡的表示动力学，在依赖特征学习的情形下也比固定 NTK 更好地预测有限网络。形式推导在明确的架构与缩放假设下提供了很强证据，有限网络实验则支持其现实相关性；但这些结果不意味着所有实际架构都服从同一极限。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: theory
   evidence_strength: formal

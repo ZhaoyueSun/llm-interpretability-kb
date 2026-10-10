@@ -67,6 +67,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Do different training runs, models, and architectures reproduce the same mechanism, or only share an abstract algorithm? In this paper, *Successor Heads: Recurring, Interpretable Attention Heads In The Wild* addresses that question through its specific object of study and tests how far the resulting claim can be supported.
+
+    **Method.** In this work we present successor heads: attention heads that increment tokens with a natural ordering, such as numbers, months, and days. For example, successor heads increment 'Monday' into 'Tuesday'. We explain the successor head behavior with an approach rooted in mechanistic interpretability, the field that aims to explain how models complete tasks in human-understandable terms.
+
+    **Validation.** Existing research in this area has found interpretable language model components in small toy models. They form in large language models (LLMs) with as few as 31 million parameters, and at least as many as 12 billion parameters, such as GPT-2, Pythia, and Llama-2.
+
+    **Conclusion & Evidence.** However, results in toy models have not yet led to insights that explain the internals of frontier models and little is currently understood about the internal operations of large language models. In this paper, we analyze the behavior of successor heads in large language models (LLMs) and find that they implement abstract representations that are common to different architectures. We find a set of 'mod-10 features' that underlie how successor heads increment in LLMs across different architectures and sizes. We perform vector arithmetic with these features to edit head behavior and provide insights into numeric representations within LLMs. Additionally, we study the behavior of successor heads on natural language data, identifying interpretable polysemanticity in a Pythia successor head. The coordinated interventions provide comparatively strong structural causal evidence for the proposed information flow or circuit. Completeness, uniqueness, and transfer to other models still require separate validation.
+  zh: |-
+    **研究问题。** 执行序列递增的 successor heads 是否跨模型规模与架构反复出现，从而支持 weak universality？它们是否依赖可组合的抽象数值表示（如 mod-10 features），并在自然文本上实际降低 loss？
+
+    **方法。** 本文提出“后继注意力头”：这类注意力头会把具有自然顺序的 token 向后递增，例如数字、月份和星期。比如，它会把“Monday”递增为“Tuesday”。我们使用植根于机制可解释性的方法解释这种行为；机制可解释性旨在用人类可理解的方式说明模型如何完成任务。
+
+    **实验验证。** 我们发现一组“模 10 特征”，它们构成不同架构和规模的语言模型中后继注意力头执行递增运算的基础。
+
+    **结论与证据。** 该领域的现有研究已在小型玩具模型中找到可解释的语言模型组件，但玩具模型中的结果尚未转化为解释前沿模型内部机制的认识，目前人们对大语言模型内部运算仍知之甚少。本文分析大语言模型（LLM）中后继注意力头的行为，并发现它们实现了不同架构共有的抽象表征。这类注意力头既会在仅有 3,100 万参数的模型中形成，也存在于参数量至少达到 120 亿的模型中，包括 GPT-2、Pythia 和 Llama-2。我们使用这些特征进行向量运算，以编辑注意力头行为，并揭示语言模型内部的数值表征。此外，我们还研究后继注意力头在自然语言数据上的行为，在 Pythia 的一个后继注意力头中识别出可解释的多义性。相互配合的干预为所提出的信息流或电路提供了较强的结构因果证据，但机制的完备性、唯一性以及跨模型迁移仍需独立验证。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: empirical-discovery
   evidence_strength: causal-structural

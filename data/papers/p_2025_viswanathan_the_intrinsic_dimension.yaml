@@ -74,6 +74,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Can semantic variables be represented by directions or subspaces with measurable, intervenable, and compositional properties? In this paper, *The Intrinsic Dimension of Prompts in Internal Representations of Large Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported.
+
+    **Method.** We study the geometry of token representations at the prompt level in large language models through the lens of intrinsic dimension.
+
+    **Validation.** Viewing transformers as mean-field particle systems, we estimate the intrinsic dimension of the empirical measure at each layer and demonstrate that it correlates with next-token uncertainty. As a case study in practical interpretability and safety, we train a linear probe on the per-layer intrinsic dimension profile to distinguish malicious from benign prompts before generation. This probe achieves accuracy of 90 to 95% in different datasets, outperforming widely used guardrails such as Llama Guard and Shield Gemma.
+
+    **Conclusion & Evidence.** Across models and intrinsic dimension estimators, we find that intrinsic dimension peaks in early to middle layers and increases under syntactic and semantic disruption (by shuffling tokens), and that it is strongly correlated with average surprisal, with a simple analysis linking logits geometry to entropy via softmax. We further compare against linear probes built from layerwise entropy derived via the Tuned Lens and find that the intrinsic dimension-based probe is competitive and complementary, offering a compact, interpretable signal distributed across layers. Our findings suggest that prompt-level geometry provides actionable signals for monitoring and controlling LLM behavior, and offers a bridge between mechanistic insights and practical safety tools. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+  zh: |-
+    **研究问题。** 以整段 prompt 的 token point cloud 而非 last-token dataset geometry 计算 intrinsic dimension，能否刻画各层内部几何与 token interactions？该维度如何关联语义结构、模型不确定性，并能否在输出前用于恶意 prompt screening？
+
+    **方法。** 我们从内在维度的角度研究大语言模型中提示层面的 token 表征几何。
+
+    **实验验证。** 作为实际可解释性和安全性的案例研究，我们在逐层内在维度轮廓上训练线性探针，以便在生成前区分恶意提示和无害提示。该探针在不同数据集上达到 90% 至 95% 的准确率，超过 Llama Guard 和 Shield Gemma 等广泛使用的护栏。
+
+    **结论与证据。** 把 Transformer 看作平均场粒子系统，我们估计每一层经验测度的内在维度，并证明它与下一 token 的不确定性相关。在不同模型和内在维度估计器中，我们发现：内在维度在早期至中间层达到峰值；当通过打乱 token 破坏句法和语义时，内在维度会增加；它还与平均惊异度高度相关，而一个简单分析通过 softmax 把 logits 几何与熵联系起来。我们还将其与基于 Tuned Lens 所得逐层熵构建的线性探针比较，发现基于内在维度的探针既有竞争力又具互补性，提供了一个分布于各层的紧凑、可解释信号。我们的发现表明，提示层面的几何为监测和控制语言模型行为提供了可操作信号，并在机制认识与实用安全工具之间架起桥梁。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: empirical-discovery
   evidence_strength: descriptive

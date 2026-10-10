@@ -72,6 +72,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** When does a neural network's low-level mechanism faithfully implement a high-level interpretable causal process? In this paper, *Finding Alignments Between Interpretable Causal Variables and Distributed Neural Representations* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Causal abstraction is a promising theoretical framework for explainable artificial intelligence that defines when an interpretable high-level causal model is a faithful simplification of a low-level deep learning system. However, existing causal abstraction methods have two major limitations: they require a brute-force search over alignments between the high-level model and the low-level one, and they presuppose that variables in the high-level model will align with disjoint sets of neurons in the low-level one.
+
+    **Method.** In this paper, we present distributed alignment search (DAS), which overcomes these limitations.
+
+    **Validation.** Our experiments show that DAS can discover internal structure that prior approaches miss.
+
+    **Conclusion & Evidence.** In DAS, we find the alignment between high-level and low-level models using gradient descent rather than conducting a brute-force search, and we allow individual neurons to play multiple distinct roles by analyzing representations in non-standard bases-distributed representations. Overall, DAS removes previous obstacles to conducting causal abstraction analyses and allows us to find conceptual structure in trained neural nets. The coordinated interventions provide comparatively strong structural causal evidence for the proposed information flow or circuit. Completeness, uniqueness, and transfer to other models still require separate validation.
+  zh: |-
+    **研究问题。** 当高层变量以跨神经元分布式子空间表示时，如何避免 localist 假设与 brute-force alignment search？能否通过 gradient-based distributed alignment search 找到使 interchange interventions 与符号算法一致的旋转子空间，并检验该子空间是否还可分解为更低层变量？
+
+    **方法。** 本文提出分布式对齐搜索（DAS），以克服这些限制。
+
+    **实验验证。** 在 DAS 中，我们使用梯度下降而非暴力搜索来寻找高层与低层模型之间的对齐；同时，通过在非标准基中分析表征，即分析分布式表征，我们允许单个神经元承担多个不同角色。实验表明，DAS 能够发现以往方法遗漏的内部结构。
+
+    **结论与证据。** 总体而言，DAS 消除了此前开展因果抽象分析时的障碍，使我们能够在训练好的神经网络中发现概念结构。相互配合的干预为所提出的信息流或电路提供了较强的结构因果证据，但机制的完备性、唯一性以及跨模型迁移仍需独立验证。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: causal-structural

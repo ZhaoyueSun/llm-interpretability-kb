@@ -72,6 +72,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** The paper asks whether factual knowledge in pretrained Transformers can be localized to particular feed-forward neurons, and whether manipulating those neurons can suppress, enhance, or revise the corresponding facts. It also asks whether identified neurons generalize across different prompts expressing the same fact.
+
+    **Method.** The authors use integrated gradients to attribute a factual prediction to intermediate feed-forward activations and select consistently high-attribution units as knowledge neurons. They then intervene by suppressing or amplifying these activations, and edit a fact by modifying the outgoing weights of the selected neurons toward the embedding of a new object.
+
+    **Validation.** Experiments are conducted on masked-language models with factual triples elicited by multiple prompt templates. The study measures cross-template neuron overlap, changes in correct-object probability under suppression and enhancement, effects on unrelated facts, and success of weight-based knowledge updates, with comparisons to random-neuron interventions.
+
+    **Conclusion & Evidence.** Small neuron sets correlate with particular factual predictions, and targeted interventions change those predictions more than random controls; some edits also transfer across paraphrases. This provides local causal evidence that selected feed-forward units participate in expressing facts. It does not show that a fact is stored exclusively in those neurons: attribution is prompt-dependent, knowledge can be distributed, and changing a selected unit may affect several coupled associations.
+  zh: |-
+    **研究问题。** 论文研究预训练 Transformer 中的事实知识能否定位到特定前馈神经元，以及操纵这些神经元能否抑制、增强或改写相应事实；同时考察被定位的单元能否跨越表达同一事实的不同提示模板保持稳定。
+
+    **方法。** 作者使用积分梯度（Integrated Gradients, IG）把事实预测归因到中间前馈激活，并将跨模板持续获得高归因值的单元选为知识神经元（knowledge neurons）。随后通过抑制或放大这些神经元的激活进行干预，并把所选神经元的输出权重朝新宾语的嵌入方向修改，以实现事实编辑。
+
+    **实验验证。** 实验在掩码语言模型和由多个模板表达的事实三元组上进行。作者测量不同模板间的神经元重合度，比较抑制与增强后正确宾语概率的变化，检查对无关事实的影响，并评估基于权重修改的知识更新；随机神经元干预被用作主要对照。
+
+    **结论与证据。** 少量神经元集合与特定事实预测稳定相关，针对性干预对预测的影响也明显强于随机对照，部分编辑还能迁移到改写提示。这为所选前馈单元参与事实表达提供了局部因果证据，但不能证明事实只存储在这些神经元中：归因结果依赖提示，知识可能是分布式的，修改一个单元也可能影响多项耦合关联。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: empirical-discovery
   evidence_strength: sensitivity

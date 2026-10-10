@@ -112,6 +112,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Can interpretable feature extraction scale to frontier models, all relevant layers and positions, and the long tail of the training distribution? In this paper, *Llama Scope: Extracting Millions of Features from Llama-3.1-8B with Sparse Autoencoders* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Sparse Autoencoders (SAEs) have emerged as a powerful unsupervised method for extracting sparse representations from language models, yet scalable training remains a significant challenge.
+
+    **Method.** We introduce a suite of 256 SAEs, trained on each layer and sublayer of the Llama-3.1-8B-Base model, with 32K and 128K features. In particular, we assess the generalizability of SAEs trained on base models to longer contexts and fine-tuned models. The Llama Scope SAE checkpoints are publicly available at https://huggingface.co/fnlp/Llama-Scope, alongside our scalable training, interpretation, and visualization tools at https://github.com/OpenMOSS/Language-Model-SAEs.
+
+    **Validation.** Modifications to a state-of-the-art SAE variant, Top-K SAEs, are evaluated across multiple dimensions.
+
+    **Conclusion & Evidence.** Additionally, we analyze the geometry of learned SAE latents, confirming that feature splitting enables the discovery of new features. These contributions aim to advance the open-source Sparse Autoencoder ecosystem and support mechanistic interpretability research by reducing the need for redundant SAE training. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+  zh: |-
+    **研究问题。** 如何为 Llama-3.1-8B 的每层 residual、attention、多层感知机（Multi-Layer Perceptron, MLP） outputs 与 transcoders 训练并开放多宽度 稀疏自编码器（Sparse Autoencoders, SAEs）？改进 TopK 训练后，这些 features 的 sparsity、fidelity、interpretability、几何结构及向长上下文和 instruction model 的迁移性如何？
+
+    **方法。** 我们推出一套包含 256 个 SAE 的资源，它们分别在 Llama-3.1-8B-Base 模型的每一层和子层上训练，特征数量为 32K 或 128K。Llama Scope 的 SAE 检查点公开于 https://huggingface.co/fnlp/Llama-Scope；可扩展训练、解释和可视化工具见 https://github.com/OpenMOSS/Language-Model-SAEs。
+
+    **实验验证。** 我们从多个维度评估了对先进 SAE 变体 Top-K SAE 的修改。特别是，我们评估在基础模型上训练的 SAE 对更长上下文和微调模型的泛化能力。
+
+    **结论与证据。** 此外，我们分析所学 SAE 潜变量的几何结构，确认特征拆分能够发现新特征。这些贡献旨在推动开源稀疏自编码器生态发展，并通过减少重复训练 SAE 的需要来支持机制可解释性研究。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: descriptive

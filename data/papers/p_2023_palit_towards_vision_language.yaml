@@ -62,6 +62,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** How is visual information represented, routed, and converted into text predictions after entering a language model? In this paper, *Towards Vision-Language Mechanistic Interpretability: A Causal Tracing Tool for BLIP* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Mechanistic interpretability seeks to understand the neural mechanisms that enable specific behaviors in Large Language Models (LLMs) by leveraging causality-based methods. While these approaches have identified neural circuits that copy spans of text, capture factual knowledge, and more, they remain unusable for multimodal models since adapting these tools to the vision-language domain requires considerable architectural changes.
+
+    **Method.** We demonstrate our approach on a visual question answering dataset, highlighting the causal relevance of later layer representations for all tokens.
+
+    **Validation.** Furthermore, we release our BLIP causal tracing tool as open source to enable further experimentation in vision-language mechanistic interpretability by the community.
+
+    **Conclusion & Evidence.** In this work, we adapt a unimodal causal tracing tool to BLIP to enable the study of the neural mechanisms underlying image-conditioned text generation. Our code is available at this URL. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+  zh: |-
+    **研究问题。** 如何把 causal mediation/causal tracing 从纯语言模型扩展到 BLIP 一类视觉—语言模型，并定位视觉信息和问题信息在 VQA 预测中经过哪些层、模态模块与融合路径产生因果影响？
+
+    **方法。** 在本研究中，我们把一种单模态因果追踪工具适配到 BLIP，使研究图像条件文本生成背后的神经机制成为可能。
+
+    **实验验证。** 我们在一个视觉问答数据集上展示该方法，并强调较后层表征对所有 token 都具有因果相关性。此外，我们将 BLIP 因果追踪工具开源，以便研究社区进一步开展视觉—语言机制可解释性实验。
+
+    **结论与证据。** 代码可通过原文所给网址获取。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: causal-local

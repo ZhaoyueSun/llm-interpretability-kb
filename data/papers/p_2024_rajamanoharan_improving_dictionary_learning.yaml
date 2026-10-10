@@ -86,6 +86,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** What should sparse representation learning optimize to balance sparsity, reconstruction faithfulness, and functional fidelity? In this paper, *Improving Dictionary Learning with Gated Sparse Autoencoders* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Recent work has found that sparse autoencoders (SAEs) are an effective technique for unsupervised discovery of interpretable features in language models' (LMs) activations, by finding sparse, linear reconstructions of LM activations.
+
+    **Method.** We introduce the Gated Sparse Autoencoder (Gated SAE), which achieves a Pareto improvement over training with prevailing methods.
+
+    **Validation.** In SAEs, the L1 penalty used to encourage sparsity introduces many undesirable biases, such as shrinkage -- systematic underestimation of feature activations.
+
+    **Conclusion & Evidence.** The key insight of Gated SAEs is to separate the functionality of (a) determining which directions to use and (b) estimating the magnitudes of those directions: this enables us to apply the L1 penalty only to the former, limiting the scope of undesirable side effects. Through training SAEs on LMs of up to 7B parameters we find that, in typical hyper-parameter ranges, Gated SAEs solve shrinkage, are similarly interpretable, and require half as many firing features to achieve comparable reconstruction fidelity. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+  zh: |-
+    **研究问题。** 标准 稀疏自编码器（Sparse Autoencoder, SAE） 的 L1 sparsity penalty 是否因把 feature detection 与 magnitude estimation 耦合而产生 shrinkage 与重建偏差？将两者解耦的 Gated SAE 能否在固定计算下改善 sparsity–fidelity Pareto frontier，同时保持 feature interpretability？
+
+    **方法。** 我们提出门控稀疏自编码器（Gated SAE），相比当前主流训练方法实现了帕累托改进。在 SAE 中，用于促进稀疏性的 L1 惩罚会引入许多不良偏差，例如收缩——系统性低估特征激活。
+
+    **实验验证。** Gated SAE 的核心思想，是把（a）决定使用哪些方向与（b）估计这些方向的幅度两项功能分离。这样便可只对前者施加 L1 惩罚，限制其不良副作用的范围。
+
+    **结论与证据。** 我们在参数量最大达到 70 亿的语言模型上训练 SAE，结果发现，在典型超参数范围内，Gated SAE 能够解决收缩问题，保持相近的可解释性，并且只需一半数量的激活特征即可达到相当的重构忠实度。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: descriptive

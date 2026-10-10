@@ -74,6 +74,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Do interpretability methods provide distinctive practical value on causal tasks, realistic distributions, and against strong baselines? In this paper, *Are Sparse Autoencoders Useful? A Case Study in Sparse Probing* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Sparse autoencoders (SAEs) are a popular method for interpreting concepts represented in large language model (LLM) activations. However, there is a lack of evidence regarding the validity of their interpretations due to the lack of a ground truth for the concepts used by an LLM, and a growing number of works have presented problems with current SAEs. One alternative source of evidence would be demonstrating that SAEs improve performance on downstream tasks beyond existing baselines.
+
+    **Method.** We test this by applying SAEs to the real-world task of LLM activation probing in four regimes: data scarcity, class imbalance, label noise, and covariate shift.
+
+    **Validation.** Due to the difficulty of detecting concepts in these challenging settings, we hypothesize that SAEs' basis of interpretable, concept-level latents should provide a useful inductive bias. However, although SAEs occasionally perform better than baselines on individual datasets, we are unable to design ensemble methods combining SAEs with baselines that consistently outperform ensemble methods solely using baselines. Additionally, although SAEs initially appear promising for identifying spurious correlations, detecting poor dataset quality, and training multi-token probes, we are able to achieve similar results with simple non-SAE baselines as well.
+
+    **Conclusion & Evidence.** Though we cannot discount SAEs' utility on other tasks, our findings highlight the shortcomings of current SAEs and the need to rigorously evaluate interpretability methods on downstream tasks with strong baselines. The counterexamples or controls strongly delimit what the audited method can justify. They do not, on their own, prove that any proposed replacement is universally faithful or sufficient.
+  zh: |-
+    **研究问题。** 稀疏自编码器（Sparse Autoencoder, SAE） latents 除了改善 reconstruction 等 proxy metrics，是否能在真实 probing 任务中为实践者带来超过强基线的增量价值？在数据稀缺、类别不平衡、label noise 与 covariate shift 下，这种更可解释的基底是否形成稳定优势？
+
+    **方法。** 我们通过把 SAE 应用于真实的语言模型激活探测任务来检验这一点，覆盖四种设置：数据稀缺、类别不平衡、标签噪声和协变量偏移。
+
+    **实验验证。** 由于在这些具有挑战性的设置中很难检测概念，我们假设，SAE 由可解释的概念级潜变量构成的基底应当提供有益的归纳偏置。然而，尽管 SAE 偶尔会在个别数据集上优于基线，我们无法设计出一种结合 SAE 和基线的集成方法，使其持续优于只使用基线的集成方法。此外，虽然 SAE 起初似乎有望用于识别虚假相关、检测低质量数据集和训练多 token 探针，但简单的非 SAE 基线也能取得相似结果。
+
+    **结论与证据。** 尽管我们不能排除 SAE 在其他任务上的价值，研究结果仍凸显了当前 SAE 的不足，以及使用强基线在下游任务上严格评估可解释性方法的必要性。反例和控制实验有力限定了被审计方法能够支持的结论，但它们本身不能证明任何替代方法普遍忠实或充分。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: evaluation
   evidence_strength: audit

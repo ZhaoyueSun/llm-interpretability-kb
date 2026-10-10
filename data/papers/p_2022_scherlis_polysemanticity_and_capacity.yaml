@@ -68,6 +68,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** The paper asks when a loss function rewards polysemantic representations. By defining feature capacity as the fractional dimension assigned to a feature, it investigates why features are ignored, represented monosemantically, or packed in superposition, and how sparsity, importance, and architecture determine these regimes.
+
+    **Method.** Capacity is formalized from the geometry of feature embeddings and the sensitivity of represented features to interference. In analytically tractable toy models, the authors optimize capacity allocation subject to a finite dimensional budget, then derive how loss, sparsity, and importance determine equilibrium allocations and the block structure of feature vectors.
+
+    **Validation.** Numerical optimization sweeps vary feature importance, input sparsity or kurtosis, bottleneck width, and architectural details. Learned embeddings are compared with the predicted allocation regimes and inspected for block-semi-orthogonal geometry, with examples showing transitions among dedicated dimensions, shared polysemantic dimensions, and ignored features.
+
+    **Conclusion & Evidence.** Optimal allocation gives the most important features dedicated capacity, packs less important sparse features proportionally to their effect on loss, and drops the least useful features. Higher sparsity and some architectures favor polysemanticity, while embeddings organize into blocks whose sizes depend on the model. Formal analysis and controlled simulations strongly support the mechanism in the toy setting, but large-model feature spaces may contain additional objectives and constraints.
+  zh: |-
+    **研究问题。** 论文研究损失函数在什么条件下会奖励多义表示。通过把特征容量定义为分配给某个特征的分数维度，作者试图解释特征为何会被忽略、获得单义表示或以 superposition 共享维度，以及稀疏性、重要性和架构如何决定这些状态。
+
+    **方法。** 特征容量由特征嵌入的几何结构及其对干扰的敏感性形式化。在可解析的玩具模型中，作者在有限维预算下优化容量分配，并推导损失、稀疏度和重要性如何决定均衡分配以及特征向量的分块结构。
+
+    **实验验证。** 数值优化系统改变特征重要性、输入稀疏度或峰度、瓶颈宽度和架构细节。所得嵌入与理论预测的容量状态比较，并检查是否出现分块半正交几何；实验展示了独占维度、共享的多义维度以及完全忽略特征之间的转变。
+
+    **结论与证据。** 最优分配倾向为最重要特征提供独占容量，按对损失的影响把较不重要且稀疏的特征压入共享维度，并丢弃最不重要特征。更高稀疏性和某些架构更容易产生多义性，嵌入还会形成大小依赖模型的分块结构。形式分析与受控模拟在玩具设定中提供了很强证据，但大模型特征空间可能受到更多目标和约束影响。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: theory
   evidence_strength: formal

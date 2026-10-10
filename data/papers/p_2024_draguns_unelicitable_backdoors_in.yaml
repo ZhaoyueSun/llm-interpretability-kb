@@ -79,6 +79,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Can hidden mechanisms exist that are in principle undiscoverable through behavioral elicitation alone? In this paper, *Unelicitable Backdoors in Language Models via Cryptographic Transformer Circuits* addresses that question through its specific object of study and tests how far the resulting claim can be supported. The rapid proliferation of open-source language models significantly increases the risks of downstream backdoor attacks. These backdoors can introduce dangerous behaviours during model deployment and can evade detection by conventional cybersecurity monitoring systems.
+
+    **Method.** In this paper, we introduce a novel class of backdoors in transformer models, that, in contrast to prior art, are unelicitable in nature. Unelicitability prevents the defender from triggering the backdoor, making it impossible to properly evaluate ahead of deployment even if given full white-box access and using automated techniques, such as red-teaming or certain formal verification methods. We show that our novel construction is not only unelicitable thanks to using cryptographic techniques, but also has favourable robustness properties.
+
+    **Validation.** We confirm these properties in empirical investigations, and provide evidence that our backdoors can withstand state-of-the-art mitigation strategies.
+
+    **Conclusion & Evidence.** Additionally, we expand on previous work by showing that our universal backdoors, while not completely undetectable in white-box settings, can be harder to detect than some existing designs. By demonstrating the feasibility of seamlessly integrating backdoors into transformer models, this paper fundamentally questions the efficacy of pre-deployment detection strategies. This offers new insights into the offence-defence balance in artificial intelligence (AI) safety and security. The coordinated interventions provide comparatively strong structural causal evidence for the proposed information flow or circuit. Completeness, uniqueness, and transfer to other models still require separate validation.
+  zh: |-
+    **研究问题。** 能否在 Transformer 中编译只有预定 cryptographic trigger 才激活、即使 white-box 访问也无法由多项式时间方法 elicitation 的任意 backdoor behavior？这对 red-teaming、ELK、formal verification 与 mechanistic detection 的理论边界意味着什么？
+
+    **方法。** 本文提出 Transformer 模型中的一类新型后门；不同于以往设计，这类后门在本质上无法被诱发。
+
+    **实验验证。** 不可诱发性使防御者无法触发后门，因此即使拥有完整白盒访问权限并使用红队测试或某些形式化验证方法等自动化技术，也无法在部署前对其进行适当评估。
+
+    **结论与证据。** 我们表明，借助密码学技术，我们的新构造不仅不可诱发，而且具有良好的鲁棒性。我们通过经验研究确认这些性质，并给出证据说明该后门能够抵御最先进的缓解策略。此外，我们扩展了此前工作，表明这种通用后门在白盒设置下虽非完全不可检测，却可能比某些现有设计更难发现。本文证明了把后门无缝集成进 Transformer 模型的可行性，从根本上质疑了部署前检测策略的有效性，并为 人工智能（Artificial Intelligence, AI） 安全与安保中的攻防平衡提供了新认识。相互配合的干预为所提出的信息流或电路提供了较强的结构因果证据，但机制的完备性、唯一性以及跨模型迁移仍需独立验证。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: application
   evidence_strength: causal-structural

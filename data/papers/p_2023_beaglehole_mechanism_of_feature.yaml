@@ -66,6 +66,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** How does a network select, reweight, and progressively form prediction-relevant features during training? In this paper, *Mechanism of feature learning in convolutional neural networks* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Understanding the mechanism of how convolutional neural networks learn features from image data is a fundamental problem in machine learning and computer vision.
+
+    **Method.** In this work, we identify such a mechanism. We also provide supporting theoretical evidence.
+
+    **Validation.** We posit the Convolutional Neural Feature Ansatz, which states that covariances of filters in any convolutional layer are proportional to the average gradient outer product (AGOP) taken with respect to patches of the input to that layer. We present extensive empirical evidence for our ansatz, including identifying high correlation between covariances of filters and patch-based AGOPs for convolutional layers in standard neural architectures, such as AlexNet, VGG, and ResNets pre-trained on ImageNet. We then demonstrate the generality of our result by using the patch-based AGOP to enable deep feature learning in convolutional kernel machines.
+
+    **Conclusion & Evidence.** We refer to the resulting algorithm as (Deep) ConvRFM and show that our algorithm recovers similar features to deep convolutional networks including the notable emergence of edge detectors. Moreover, we find that Deep ConvRFM overcomes previously identified limitations of convolutional kernels, such as their inability to adapt to local signals in images and, as a result, leads to sizable performance improvement over fixed convolutional kernels. The formal result is strong under its stated assumptions, with experiments or constructions supporting the predicted consequences. Its scope is limited by those assumptions and does not automatically extend to every architecture or training regime.
+  zh: |-
+    **研究问题。** 卷积网络的 feature learning 是否可由 patch-level average gradient outer product（AGOP）等算子刻画？这一关系能否用于在卷积 kernel machine 中重建神经网络学到的特征并改善性能？
+
+    **方法。** 本文识别出这样一种机制。我们提出卷积神经特征假设（Convolutional Neural Feature Ansatz）：任意卷积层中滤波器的协方差，与相对于该层输入图像块计算的平均梯度外积（AGOP）成正比。
+
+    **实验验证。** 我们为这一假设提供了广泛的经验证据，包括在 AlexNet、VGG 和基于 ImageNet 预训练的 ResNet 等标准神经架构的卷积层中，发现滤波器协方差与基于图像块的 AGOP 高度相关。
+
+    **结论与证据。** 我们还给出了支持性的理论证据。随后，我们使用基于图像块的 AGOP，使卷积核机器能够进行深度特征学习，由此展示该结果的一般性。我们把所得算法称为（深度）ConvRFM，并表明它能恢复与深度卷积网络相似的特征，包括引人注目的边缘检测器涌现。此外，我们发现，Deep ConvRFM 克服了此前识别出的卷积核局限，例如无法适应图像中的局部信号，因而相比固定卷积核带来显著性能提升。形式结果在明确假设下具有较强支持，实验或构造也验证了其预测后果；结论范围受这些假设约束，不能自动推广到所有架构和训练设置。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: theory
   evidence_strength: formal

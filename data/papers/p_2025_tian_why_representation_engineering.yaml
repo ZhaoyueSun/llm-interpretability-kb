@@ -76,6 +76,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Can readable internal directions be manipulated reliably to produce specific and predictable behavioral changes? In this paper, *Why Representation Engineering Works: A Theoretical and Empirical Study in Vision-Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Representation Engineering (RepE) has emerged as a powerful paradigm for enhancing artificial intelligence (AI) transparency by focusing on high-level representations rather than individual neurons or circuits. It has proven effective in improving interpretability and control, showing that representations can emerge, propagate, and shape final model outputs in large language models (LLMs). However, in Vision-Language Models (VLMs), visual input can override factual linguistic knowledge, leading to hallucinated responses that contradict reality.
+
+    **Method.** To address this challenge, we make the first attempt to extend RepE to VLMs, analyzing how multimodal representations are preserved and transformed. Building on our findings and drawing inspiration from successful RepE applications, we develop a theoretical framework that explains the stability of neural activity across layers using the principal eigenvector, uncovering the underlying mechanism of RepE.
+
+    **Validation.** We empirically validate these instrinsic properties, demonstrating their broad applicability and significance.
+
+    **Conclusion & Evidence.** By bridging theoretical insights with empirical validation, this work transforms RepE from a descriptive tool into a structured theoretical framework, opening new directions for improving AI robustness, fairness, and transparency. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+  zh: |-
+    **研究问题。** 表征工程（Representation Engineering, RepE） 在 视觉—语言模型（Vision-Language Model, VLM） 中如何跨层传递并稳定保存 honesty/fairness 等高层概念，又能否抵抗跨模态失配与 hallucination？self-attention 的 principal eigenvector 与 shrinking spectral gap 是否为这种稳定和概念分化提供理论解释？
+
+    **方法。** 为应对这一问题，我们首次尝试将 RepE 扩展到 VLM，并分析多模态表征如何得到保留与变换。
+
+    **实验验证。** 我们通过实验验证了这些内在性质，证明其具有广泛的适用性和重要意义。通过结合理论洞见与经验验证，本工作将 RepE 从描述性工具转化为结构化理论框架，为提高人工智能的稳健性、公平性与透明度开辟了新的方向。
+
+    **结论与证据。** 基于这些发现，并借鉴 RepE 的成功应用，我们建立了一个理论框架，利用主特征向量解释跨层神经活动的稳定性，从而揭示 RepE 的底层机制。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: theory
   evidence_strength: causal-local

@@ -51,6 +51,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** How robust are causal-intervention conclusions to metrics, replacement values, and experimental-design choices? In this paper, *Towards Best Practices of Activation Patching in Language Models: Metrics and Methods* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Mechanistic interpretability seeks to understand the internal mechanisms of machine learning models, where localization -- identifying the important model components -- is a key step. Activation patching, also known as causal tracing or interchange intervention, is a standard technique for this task (Vig et al., 2020), but the literature contains many variants with little consensus on the choice of hyperparameters or methodology.
+
+    **Method.** In this work, we systematically examine the impact of methodological details in activation patching, including evaluation metrics and corruption methods.
+
+    **Validation.** Backed by empirical observations, we give conceptual arguments for why certain metrics or methods may be preferred. Finally, we provide recommendations for the best practices of activation patching going forwards.
+
+    **Conclusion & Evidence.** In several settings of localization and circuit discovery in language models, we find that varying these hyperparameters could lead to disparate interpretability results. The counterexamples or controls strongly delimit what the audited method can justify. They do not, on their own, prove that any proposed replacement is universally faithful or sufficient.
+  zh: |-
+    **研究问题。** activation patching 的定位结论对 corruption method、评价指标和 sliding-window patching 等自由度有多敏感？Gaussian noise 与 symmetric token replacement、probability 与 logit difference 会否得出不一致结论，怎样形成更可靠的实践规范？
+
+    **方法。** 在本研究中，我们系统考察激活修补中各项方法细节的影响，包括评估指标和扰动方法。
+
+    **实验验证。** 最后，我们为今后实施激活修补提出最佳实践建议。
+
+    **结论与证据。** 在语言模型的多种定位与回路发现设置中，我们发现改变这些超参数可能产生截然不同的可解释性结果。基于经验观察，我们从概念层面论证为何某些指标或方法可能更值得采用。反例和控制实验有力限定了被审计方法能够支持的结论，但它们本身不能证明任何替代方法普遍忠实或充分。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: evaluation
   evidence_strength: audit

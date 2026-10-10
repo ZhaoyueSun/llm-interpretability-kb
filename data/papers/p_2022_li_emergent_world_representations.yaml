@@ -72,6 +72,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** The paper asks whether a sequence model trained only to predict legal Othello moves develops an internal representation of the board state, rather than merely memorizing surface move statistics. It further asks what form that representation takes and whether changing it causally changes the model's next-move predictions.
+
+    **Method.** A Generative Pretrained Transformer (GPT) is trained on move sequences without being given board states or game rules. Probes are trained to decode the color of each board square from hidden activations. Because linear probes initially appear weak, the authors also use nonlinear probes and analyze how board information is distributed across layers and token positions; probe directions are then used for activation interventions.
+
+    **Validation.** Experiments use synthetic Othello game transcripts with exactly recoverable board states. Probe accuracy is compared across linear and nonlinear models and against alternative hypotheses based on move history. Interventions edit internal square representations toward a counterfactual board, after which changes in legal-move logits are measured and visualized as latent saliency maps.
+
+    **Conclusion & Evidence.** The model develops a nonlinear representation from which the current board can be decoded with high accuracy, and targeted representation edits systematically alter predicted legal moves. This provides local causal evidence that the world-state representation participates in computation, beyond mere surface correlation. The result is nevertheless established in a fully specified synthetic environment and does not by itself show that natural-language models form equally coherent or manipulable world models.
+  zh: |-
+    **研究问题。** 论文研究一个只接受 Othello 落子序列并预测下一步合法落子的模型，是否会形成当前棋盘状态的内部表示，而不仅是记忆表面落子统计；并进一步考察这种表示采用什么形式，以及改变表示能否因果改变下一步预测。
+
+    **方法。** 作者在不提供棋盘状态或游戏规则的情况下训练生成式预训练 Transformer（Generative Pretrained Transformer, GPT）预测落子序列，再用探针从隐藏激活中解码每个棋盘格的棋子颜色。由于线性探针最初表现有限，研究进一步使用非线性探针并分析棋盘信息在层和 token 位置间的分布，随后利用探针方向实施激活干预。
+
+    **实验验证。** 实验使用棋盘状态可被精确恢复的合成 Othello 对局记录。作者比较线性与非线性探针准确率，并与只利用落子历史的替代解释比较；干预阶段把特定棋格的内部表示推向反事实棋盘状态，再测量合法落子 logits 的系统性变化，并构造潜在显著性图。
+
+    **结论与证据。** 模型形成了可被高准确率非线性解码的当前棋盘表示，定向修改该表示也会系统改变合法落子预测。这为世界状态表示实际参与计算提供了局部因果证据，强于单纯表面相关性。不过结论建立在规则完全明确的合成环境中，不能直接推出自然语言模型也形成同样完整、可操纵的世界模型。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: empirical-discovery
   evidence_strength: decodable

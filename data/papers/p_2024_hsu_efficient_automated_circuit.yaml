@@ -96,6 +96,29 @@ abstract:
     status: complete
     translated_by: project_agent
     third_party_api_used: false
+ai_summary:
+  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  en: |-
+    **Research Question.** Can circuit discovery be automated and scaled while preserving the quality of mechanism recovery? In this paper, *Efficient Automated Circuit Discovery in Transformers using Contextual Decomposition* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Automated mechanistic interpretation research has attracted great interest due to its potential to scale explanations of neural network internals to large models. Existing automated circuit discovery work relies on activation patching or its approximations to identify subgraphs in models for specific tasks (circuits). They often suffer from slow runtime, approximation errors, and specific requirements of metrics, such as non-zero gradients.
+
+    **Method.** In this work, we introduce contextual decomposition for transformers (CD-T) to build interpretable circuits in large language models. CD-T can produce circuits of arbitrary level of abstraction, and is the first able to produce circuits as fine-grained as attention heads at specific sequence positions efficiently.
+
+    **Validation.** CD-T consists of a set of mathematical equations to isolate contribution of model features. Through recursively computing contribution of all nodes in a computational graph of a model using CD-T followed by pruning, we are able to reduce circuit discovery runtime from hours to seconds compared to state-of-the-art baselines. On three standard circuit evaluation datasets (indirect object identification, greater-than comparisons, and docstring completion), we demonstrate that CD-T outperforms ACDC and Edge Attribution Patching (EAP) by better recovering the manual circuits with an average of 97% ROC area under the receiver operating characteristic curve (AUC) under low runtimes. In addition, we provide evidence that faithfulness of CD-T circuits is not due to random chance by showing our circuits are 80% more faithful than random circuits of up to 60% of the original model size.
+
+    **Conclusion & Evidence.** Finally, we show CD-T circuits are able to perfectly replicate original models' behavior (faithfulness $ = 1$) using fewer nodes than the baselines for all tasks. Our results underscore the great promise of CD-T for efficient automated mechanistic interpretability, paving the way for new insights into the workings of large language models. The interventions establish that the behavior is sensitive to the targeted representation or parameter direction, but sensitivity alone does not yield a complete or unique mechanism.
+  zh: |-
+    **研究问题。** 能否把 contextual decomposition 扩展到各类 Transformer，解析任意 source activation constituent 对 target activation 的贡献，并据此在无需训练或人工构造样本的情况下，以秒级速度发现位置细粒度电路？
+
+    **方法。** 本文引入面向 Transformer 的上下文分解方法（CD-T），用于在大型语言模型中构建可解释回路。CD-T 可以产生任意抽象层级的回路，也是首个能够高效生成细化到特定序列位置上注意力头级别回路的方法。
+
+    **实验验证。** CD-T 由一组用于分离模型特征贡献的数学方程组成。在三个标准回路评估数据集——间接宾语识别、大于比较和文档字符串补全——上，CD-T 对人工回路的恢复优于 自动电路发现（Automated Circuit Discovery, ACDC） 和 边归因修补（Edge Attribution Patching, EAP），在低运行时间下平均达到 97% ROC 受试者工作特征曲线下面积（Area Under the Curve, AUC）。
+
+    **结论与证据。** 通过使用 CD-T 递归计算模型计算图中所有节点的贡献并进行剪枝，与当前最佳基线相比，我们将回路发现时间从数小时缩短至数秒。此外，通过证明所得回路比规模最高达到原模型 60% 的随机回路忠实度高 80%，我们提供了 CD-T 回路的忠实性并非随机偶然的证据。最后，在所有任务上，CD-T 回路使用比基线更少的节点即可完全复现原模型行为（忠实度 $=1$）。这些结果凸显了 CD-T 在高效自动化机制可解释性方面的潜力，为理解大型语言模型的工作机制铺平了道路。干预证明行为对目标表示或参数方向具有敏感性，但敏感性本身并不构成完整或唯一的机制解释。
+  generation:
+    status: complete
+    generated_by: project_agent
+    generated_at: '2026-10-10'
+    third_party_api_used: false
 attributes:
   contribution_role: method
   evidence_strength: sensitivity
