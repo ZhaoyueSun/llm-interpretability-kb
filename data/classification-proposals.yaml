@@ -2277,3 +2277,39 @@ proposals:
       belief state 甚至可能形成复杂的分形结构，而 prompt 表征的内在维度会随预测不确定性变化。这些分析可以揭示信息怎样被组织、
       不同关系是否在层间或模型间得到保持，但几何结构本身仍可能只是可读出的相关规律；要证明模型确实使用它，还需要通过投影、移除或沿相应方向进行干预，
       并观察模型计算或行为是否随之改变。
+- proposal_id: tp_20261010_techniques_v16_internal_vocabulary
+  kind: taxonomy_content
+  status: approved
+  created_at: '2026-10-10'
+  approved_at: '2026-10-10'
+  approval_basis: >-
+    The user approved completing the parent-node explanation by stating why an internal
+    vocabulary is needed and what researchers use it to do.
+  title: Complete the internal vocabulary explanation
+  taxonomy_id: techniques
+  from_taxonomy_version: 15
+  resulting_taxonomy_version: 16
+  taxonomy_file: data/taxonomies/techniques.yaml
+  affected_node_ids: [feature-discovery-decomposition]
+  revision_reason: >-
+    Clarify that concepts can be distributed or superposed, define the purpose of an
+    internal vocabulary, and connect native-unit labeling with learned-basis and
+    statistical-decomposition approaches. The tree structure and paper assignments are
+    unchanged.
+  approved_introduction:
+    en: >-
+      Many concepts are not represented independently by single neurons, but are
+      distributed or superposed across multiple dimensions. Researchers therefore need
+      an "internal vocabulary" better suited to the model than its native neurons alone:
+      a set of features in which complex model activity can be identified, named,
+      compared, and intervened on. Some methods directly search for semantic labels for
+      the model's existing neurons or channels; others learn a new basis that separates
+      signals superposed within the same activation vector into latent features. This
+      branch brings these approaches together while distinguishing whether the resulting
+      features come from native components, a learned dictionary, or a statistical
+      decomposition.
+    zh: >-
+      许多概念并不是由单个神经元独立表示，而是分布或叠加在多个维度上。因此，研究者需要寻找一套比原生神经元更合适的
+      “内部词汇表”，把复杂的模型活动表达成可以识别、命名、比较和干预的特征。有些方法直接为模型已有的神经元或通道寻找语义标签，
+      另一些方法则学习新的基底，把叠加在同一激活向量中的信号分离成潜在特征。本分支把这些路线放在一起，同时区分所得特征究竟来自原生组件、
+      学习字典，还是统计分解。

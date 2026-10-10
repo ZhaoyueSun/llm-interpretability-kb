@@ -1,6 +1,6 @@
 schema_version: 1
 taxonomy_id: techniques
-version: 15
+version: 16
 status: active
 title: Techniques
 nodes:
@@ -504,19 +504,24 @@ nodes:
   parent_id: technique
   title: Feature Discovery and Decomposition
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v16_internal_vocabulary
   introduction:
     en: >-
-      Models represent far more concepts than can be read from individual neurons, so
-      researchers need ways to discover a more useful vocabulary for internal activity.
-      Some methods attach meanings to the model's native units; others learn a new basis
-      that separates superposed signals into features. This branch brings those approaches
-      together while keeping clear whether the discovered features come from native
-      components, a learned dictionary, or a statistical decomposition.
+      Many concepts are not represented independently by single neurons, but are
+      distributed or superposed across multiple dimensions. Researchers therefore need
+      an "internal vocabulary" better suited to the model than its native neurons alone:
+      a set of features in which complex model activity can be identified, named,
+      compared, and intervened on. Some methods directly search for semantic labels for
+      the model's existing neurons or channels; others learn a new basis that separates
+      signals superposed within the same activation vector into latent features. This
+      branch brings these approaches together while distinguishing whether the resulting
+      features come from native components, a learned dictionary, or a statistical
+      decomposition.
     zh: >-
-      模型表示的概念远多于单个神经元能够直接呈现的内容，因此研究者需要一套更合适的“内部词汇表”。
-      有些方法尝试给模型原生单元赋予含义，另一些方法则学习新的基底，把叠加在一起的信号拆成特征。
-      本分支把这些路线放在一起，同时区分特征究竟来自原生组件、学习字典，还是统计分解。
+      许多概念并不是由单个神经元独立表示，而是分布或叠加在多个维度上。因此，研究者需要寻找一套比原生神经元更合适的
+      “内部词汇表”，把复杂的模型活动表达成可以识别、命名、比较和干预的特征。有些方法直接为模型已有的神经元或通道寻找语义标签，
+      另一些方法则学习新的基底，把叠加在同一激活向量中的信号分离成潜在特征。本分支把这些路线放在一起，同时区分所得特征究竟来自原生组件、
+      学习字典，还是统计分解。
 - node_id: concept-unit-alignment
   parent_id: feature-discovery-decomposition
   title: Concept–Unit Alignment
