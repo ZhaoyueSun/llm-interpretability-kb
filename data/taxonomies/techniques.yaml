@@ -1,6 +1,6 @@
 schema_version: 1
 taxonomy_id: techniques
-version: 23
+version: 24
 status: active
 title: Techniques
 nodes:
@@ -1094,43 +1094,97 @@ nodes:
       研究者通常准备一组具有不同属性或答案的 base–counterfactual input pairs，记录两次运行中的 mediator activation，再进行混合运行：输入保持来自一种条件，但 mediator 被替换为另一种条件下的激活。
       替换前后的输出概率或 logit 差异构成 mediated effect 或 indirect effect。它在操作上与 Activation Patching 很接近，但重点不是单纯定位哪个位置能恢复行为，而是围绕预先定义的 input treatment、mediator 和 outcome 分解一条因果效应。
       所得效应依赖输入如何配对、mediator 选择在哪种粒度，以及用什么输出指标衡量；在存在非线性和变量交互时，不同 mediator 的效应可能重叠，也未必能相加为完整的总效应。
-- node_id: interchange-intervention
+- node_id: causal-abstraction-analysis
   parent_id: causal-intervention-attribution
-  title: Interchange Interventions and Distributed Alignment Search
+  title: Causal Abstraction and Counterfactual Analysis
   status: active
-  proposal_id: tp_20261010_techniques_v21_causal_intervention_children
+  proposal_id: tp_20261010_techniques_v24_causal_abstraction_branch
   introduction:
     en: >-
-      Interchange Interventions and Distributed Alignment Search support causal abstraction
-      analysis. Rather than asking only whether a component affects behavior, they test
-      whether an internal neural representation implements a proposed high-level causal
-      variable and whether the network's causal relationships match those of an
-      interpretable high-level causal model. Researchers first construct the high-level
-      model and prepare a base input and a source input. In the high-level model, they
-      replace one variable's value in the base case with its value from the source case to
-      obtain an expected counterfactual output. In the neural network, the corresponding
-      Interchange Intervention replaces the candidate internal state in the base run with
-      the state produced by the source input. If the two systems produce the same
-      counterfactual result across many input combinations, the high-level model is
-      supported as a causal abstraction of the network under the tested alignment. This
-      agreement is commonly measured by interchange intervention accuracy. Interchange
-      Intervention assumes that the neural location or subspace corresponding to the
-      high-level variable is already known. Distributed Alignment Search instead learns a
-      rotation or subspace that makes the matched counterfactual swaps succeed. DAS is
-      therefore an optimization method for finding distributed intervention sites, not a
-      separate kind of causal evidence. The analysis tests a proposed high-level model
-      rather than discovering a unique explanation from scratch. Results depend on the
-      chosen variables, counterfactual samples, and search space, and high-dimensional
-      representations may permit accidental alignments. Held-out inputs, alternative
-      high-level models, random networks, and other controls are needed to rule them out.
+      Causal Abstraction and Counterfactual Analysis asks whether a neural network's
+      internal states and causal relationships implement an intelligible high-level
+      variable or algorithm. Correlation between a neural state and a concept is not
+      sufficient: the high-level model and the neural network must also agree under
+      matched interventions. Researchers therefore specify the conditions that make such
+      a correspondence meaningful, test it by exchanging internal states, and, when the
+      correspondence is unknown, search for candidate alignments in a distributed
+      representation. Causal abstraction thereby turns a proposed high-level mechanism
+      into causal hypotheses that can be defined, tested, and compared.
     zh: >-
-      Interchange Interventions and Distributed Alignment Search 共同服务于 causal abstraction analysis：它们不只询问某个组件是否影响行为，还要检验神经网络中的内部表征是否实现了一个预先提出的高层因果变量，
-      以及模型内部的因果关系是否与高层 causal model 相对应。研究者首先构建一个可解释的高层 causal model，并准备 base input 与 source input。随后在高层模型中，把某个变量的值从 source case 交换到 base case，得到高层模型预测的 counterfactual output；
-      在神经网络中，则执行对应的 Interchange Intervention，把 source input 在候选位置产生的内部状态换入 base run。如果两个系统在大量输入组合上产生相同的反事实结果，就说明在所测试的 alignment 下，
-      该高层模型可以作为神经网络计算的一种 causal abstraction；这种一致程度通常用 interchange intervention accuracy 衡量。Interchange Intervention 假设研究者已经知道高层变量与哪个神经位置或子空间对应，
-      Distributed Alignment Search 则通过学习一个旋转或子空间来寻找这种对应关系，使匹配的反事实交换尽可能成功。因此，DAS 不是另一种独立的因果证据，而是为 Interchange Intervention 寻找分布式干预位置的优化方法。
-      这类分析提供的证据比局部重要性分数更具结构性，但它检验的是预先提出的高层模型，而不是从零发现唯一解释；结果仍依赖高层变量、反事实样本和搜索空间的设计。高维空间还可能提供偶然对齐，
-      因此需要在未见样本上验证，并与替代高层模型、随机网络或其他控制条件比较。
+      Causal Abstraction and Counterfactual Analysis 研究如何判断神经网络中的内部状态和计算关系，
+      是否实现了某个可理解的高层变量或算法。它不只观察内部状态与概念是否相关，而是要求高层模型和神经网络在相匹配的干预下产生一致的反事实结果。
+      研究者需要先明确这种对应关系应满足的理论条件，再在神经网络中执行相应的交换实验；如果高层变量与神经表征之间的对应关系未知，还可以从分布式表征中搜索可能的对齐方式。
+      由此，因果抽象把高层机制解释转化为可以定义、检验和比较的因果假设。
+- node_id: causal-abstraction-formalism
+  parent_id: causal-abstraction-analysis
+  title: Causal-Abstraction Formalism
+  status: active
+  proposal_id: tp_20261010_techniques_v24_causal_abstraction_branch
+  introduction:
+    en: >-
+      Causal-Abstraction Formalism gives precise meaning to the claim that a neural
+      network implements a high-level variable or algorithm. Researchers represent the
+      neural network and the high-level explanation as causal models, then specify how
+      low-level neural states map to high-level variables and how high-level interventions
+      are realized by low-level interventions. If intervening on the neural model and then
+      translating its result agrees with translating to the high-level model and applying
+      the corresponding intervention there, the high-level model qualifies as a causal
+      abstraction within the stated scope. The theory can also describe approximate or
+      graded agreement and accommodate distributed, polysemantic, or linear
+      representations. It supplies definitions and theoretical criteria; it does not by
+      itself discover the correct high-level model or neural alignment.
+    zh: >-
+      Causal-Abstraction Formalism 为“神经网络实现了某个高层变量或算法”给出严格定义。
+      研究者分别把神经网络和高层解释表示成因果模型，并规定底层神经状态如何映射为高层变量，以及高层干预应由什么底层干预来实现。
+      如果先在神经网络中实施干预、再把结果映射到高层，与先在高层模型中实施对应干预得到的结果一致，高层模型就可以在所声明的范围内被视为神经网络的一种 causal abstraction。
+      相关理论还可以描述近似或分级的一致性，以及分布式表征、polysemantic representation 和 linear representation 等情况。
+      这类工作提供定义、判据和理论结果，但不会自动找到正确的高层模型或神经对应关系。
+- node_id: interchange-intervention
+  parent_id: causal-abstraction-analysis
+  title: Interchange Intervention Testing
+  status: active
+  proposal_id: tp_20261010_techniques_v24_causal_abstraction_branch
+  introduction:
+    en: >-
+      Interchange Intervention Testing asks whether a specified neural location or
+      subspace performs the function of a proposed high-level causal variable.
+      Researchers prepare a base input and a source input. In the high-level model, they
+      replace the variable's value in the base case with its value from the source case to
+      obtain an expected counterfactual output. In the neural network, they replace the
+      candidate internal state in the base run with the state produced by the source
+      input. Agreement between the two counterfactual results across many input pairs and
+      held-out examples supports a causal correspondence between the neural state and the
+      high-level variable. The test requires a high-level model and a candidate alignment
+      to be specified in advance. High agreement supports that particular hypothesis but
+      does not rule out other high-level models or alternative neural implementations.
+    zh: >-
+      Interchange Intervention Testing 用于检验一个已经指定的神经位置或子空间，是否承担了某个高层因果变量的功能。
+      研究者准备 base input 和 source input，在高层模型中把该变量在 source case 中的值换入 base case，得到预期的反事实输出；
+      在神经网络中，则把 source input 在候选位置产生的内部状态换入 base run。然后比较两个系统的反事实结果是否一致。
+      如果这种一致性能够在大量输入组合和未见样本上保持，就支持所假设的神经状态与高层变量之间存在因果对应关系。
+      该方法要求研究者事先提出高层模型，并指定候选对应位置；较高的一致率只支持这项具体假设，不能排除其他高层模型或其他神经实现方式。
+- node_id: distributed-alignment-search
+  parent_id: causal-abstraction-analysis
+  title: Distributed Alignment Search
+  status: active
+  proposal_id: tp_20261010_techniques_v24_causal_abstraction_branch
+  introduction:
+    en: >-
+      Distributed Alignment Search is used when a high-level variable may be distributed
+      across several neural directions and its corresponding location cannot be specified
+      directly. It learns a rotation, projection, or subspace that places the distributed
+      representation in coordinates suitable for Interchange Intervention, optimizing the
+      alignment so that the neural network's counterfactual outputs match those of the
+      high-level model. A successful search identifies a candidate alignment that supports
+      the required counterfactual exchanges, but that alignment need not be unique.
+      High-dimensional representation spaces may also admit accidental solutions, so the
+      result should be tested on held-out inputs and compared with alternative high-level
+      models, random networks, random subspaces, or other controls.
+    zh: >-
+      Distributed Alignment Search 用于高层变量可能分布在多个神经方向中、无法直接指定对应位置的情况。
+      它学习一个旋转、投影或子空间，把分布式神经表征转换到更适合执行 Interchange Intervention 的坐标系，并以神经网络与高层模型的反事实结果尽可能一致为优化目标。
+      搜索成功意味着找到了一个能够支持所需反事实交换的候选对齐关系，但这种对齐未必唯一；高维表征空间还可能产生偶然有效的解。
+      因此，需要在未参与搜索的输入上验证，并与替代高层模型、随机网络、随机子空间或其他控制条件比较。
 - node_id: circuit-discovery
   parent_id: technique
   title: Circuit Discovery
@@ -1694,23 +1748,6 @@ nodes:
       Convolutional NFM 把 Neural Feature Ansatz 扩展到空间共享的卷积滤波器。
       它比较学习滤波器的协方差与局部图像 patch 上的梯度外积，检验网络是否放大了对任务重要的 patch 方向。
       同样的几何还可构造卷积 Recursive Feature Machine，从“网络在学习任务适配滤波器”的角度解释边缘检测器等特征。
-- node_id: causal-abstraction-formalism
-  parent_id: formal-temporal-analysis
-  title: Causal-Abstraction and Counterfactual Formalism
-  status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
-  introduction:
-    en: >-
-      A mechanistic explanation often claims that a collection of neural states
-      implements a higher-level variable or algorithm. Causal abstraction makes this
-      claim precise by specifying a mapping between the neural causal model and a simpler
-      high-level model. If interventions correspond and the two models agree on the
-      resulting counterfactuals, the high-level description earns a formal sense of
-      implementation rather than being merely an analogy.
-    zh: >-
-      机制解释常声称，一组神经状态实现了某个高层变量或算法。
-      Causal Abstraction 通过明确底层神经因果模型与简化高层模型之间的映射，把这种主张形式化。
-      如果两边的干预能够对应，并且在反事实结果上保持一致，高层描述就获得了“被模型实现”的正式含义，而不只是一个类比。
 - node_id: optimization-landscape-analysis
   parent_id: formal-temporal-analysis
   title: Optimization-Landscape Analysis

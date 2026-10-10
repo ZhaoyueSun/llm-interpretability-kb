@@ -2601,3 +2601,64 @@ proposals:
     Existing paper assignments remain on the same stable leaf node IDs, so no
     classification events are changed. The approved bilingual text is recorded in
     techniques taxonomy version 23.
+- proposal_id: tp_20261010_techniques_v24_causal_abstraction_branch
+  kind: taxonomy_and_classification
+  status: approved
+  created_at: '2026-10-10'
+  approved_at: '2026-10-10'
+  approval_basis: >-
+    The user requested moving causal abstraction under Causal Intervention, required
+    every paper associated with an organizing parent to be classified into a concrete
+    child, explicitly requested a separate formalism branch, reviewed the proposed
+    structure and Chinese introductions, and approved writing this part for visual review.
+  title: Integrate causal abstraction into the Causal Intervention branch
+  taxonomy_id: techniques
+  from_taxonomy_version: 23
+  resulting_taxonomy_version: 24
+  taxonomy_file: data/taxonomies/techniques.yaml
+  affected_node_ids:
+  - causal-intervention-attribution
+  - causal-abstraction-analysis
+  - causal-abstraction-formalism
+  - interchange-intervention
+  - distributed-alignment-search
+  structural_changes:
+  - action: add
+    node_id: causal-abstraction-analysis
+    parent_id: causal-intervention-attribution
+  - action: move
+    node_id: causal-abstraction-formalism
+    from_parent_id: formal-temporal-analysis
+    to_parent_id: causal-abstraction-analysis
+  - action: rename
+    node_id: causal-abstraction-formalism
+    from_title: Causal-Abstraction and Counterfactual Formalism
+    to_title: Causal-Abstraction Formalism
+  - action: move
+    node_id: interchange-intervention
+    from_parent_id: causal-intervention-attribution
+    to_parent_id: causal-abstraction-analysis
+  - action: rename
+    node_id: interchange-intervention
+    from_title: Interchange Interventions and Distributed Alignment Search
+    to_title: Interchange Intervention Testing
+  - action: add
+    node_id: distributed-alignment-search
+    parent_id: causal-abstraction-analysis
+  classification_changes:
+  - action: replace
+    paper_id: p_2023_geiger_finding_alignments_between
+    relation_role: primary
+    from_node_id: interchange-intervention
+    to_node_id: distributed-alignment-search
+  - action: replace
+    paper_id: p_2024_huang_ravel_evaluating_interpretability
+    relation_role: secondary
+    from_node_id: interchange-intervention
+    to_node_id: distributed-alignment-search
+  revision_reason: >-
+    Treat causal abstraction as a counterfactual-analysis family within Causal
+    Intervention while keeping theory, specified-alignment testing, and learned alignment
+    search as distinct leaves. The organizing node carries no paper assignments. Existing
+    formalism and interchange assignments retain their stable leaf IDs; only papers whose
+    recorded method explicitly centers Distributed Alignment Search move to the new leaf.
