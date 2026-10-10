@@ -1,6 +1,6 @@
 schema_version: 1
 taxonomy_id: application-scenarios
-version: 1
+version: 2
 status: active
 title: Application and Experimental Scenarios
 nodes:
@@ -50,16 +50,16 @@ nodes:
   parent_id: general-experimental-settings
   title: Cross-Domain Task Suites
   status: active
-  proposal_id: tp_20261009_application_scenarios_v2
+  proposal_id: tp_20261010_application_scenarios_reader_intros_v2
   introduction:
     en: >-
-      A cross-domain study deliberately tests its claim on several substantially
-      different task families—for example language, vision, mathematics, and code—so
-      that no single application captures the experiment as a whole. The concrete task
-      families remain useful as secondary labels.
+      A cross-domain study tests the same claim across substantially different task
+      families, such as language, vision, mathematics, and code. This setting helps
+      readers understand whether a finding extends beyond a single benchmark, domain,
+      or data modality.
     zh: >-
-      跨领域研究会有意在多个明显不同的任务族上检验同一结论，例如同时覆盖语言、视觉、数学与代码。
-      因此没有某一个具体应用能够概括整篇论文，但各项实际任务仍会作为 secondary 分类保留下来。
+      跨领域研究会在多个明显不同的任务族上检验同一结论，例如语言、视觉、数学与代码。
+      这类实验可以帮助读者判断一项发现能否超越单个 benchmark、领域或数据模态而成立。
 - node_id: synthetic-controlled-tasks
   parent_id: general-experimental-settings
   title: Synthetic Controlled Tasks
@@ -78,16 +78,17 @@ nodes:
   parent_id: application-scenarios
   title: Language, Knowledge, and Interaction
   status: active
-  proposal_id: tp_20261009_application_scenarios_v2
+  proposal_id: tp_20261010_application_scenarios_reader_intros_v2
   introduction:
     en: >-
-      This branch covers language tasks in which a model must recover stored knowledge,
-      use information supplied in context, understand linguistic relations, or adapt its
-      response to language and social cues. The leaves distinguish where the information
-      comes from and what kind of language behavior is being evaluated.
+      Language models draw on several kinds of information when producing an answer:
+      knowledge acquired during training, evidence provided in the current context,
+      linguistic relationships, and cues about language or social setting. Studying
+      these tasks helps reveal how different information sources shape what a model
+      understands and expresses.
     zh: >-
-      这一分支涵盖模型调用已有知识、利用当前上下文、理解语言关系，或根据语言与社会线索调整回答的任务。
-      各叶节点进一步区分信息来自哪里，以及实验实际评估的是哪一种语言行为。
+      语言模型生成回答时会综合多种信息，包括训练中获得的知识、当前上下文提供的证据、语言中的结构与关系，
+      以及语言或社会情境中的线索。研究这些任务，有助于理解不同信息来源如何影响模型的理解与表达。
 - node_id: factual-recall-editing
   parent_id: language-knowledge-interaction
   title: Factual Recall and Editing
@@ -175,71 +176,82 @@ nodes:
   parent_id: application-scenarios
   title: Reasoning and Formal Tasks
   status: active
-  proposal_id: tp_20261009_application_scenarios_v2
+  proposal_id: tp_20261010_application_scenarios_reader_intros_v2
   introduction:
     en: >-
-      Formal tasks have explicit rules or compositional structure that make intermediate
-      computations easier to specify and test. This branch separates numerical reasoning,
-      logical or symbolic manipulation, rule-based worlds, and programming tasks because
-      they demand different kinds of model behavior.
+      Reasoning and formal tasks provide a valuable test bed for interpretability because
+      their rules, intermediate steps, and correct outcomes can often be specified
+      clearly. Studying how models solve them helps researchers distinguish genuine
+      rule-based computation from memorization or surface-pattern matching, and reveals
+      why a model may succeed on familiar problems yet fail under small changes.
     zh: >-
-      形式任务具有明确规则或组合结构，因此比较容易描述并检验中间计算过程。这里进一步区分数值推理、逻辑与符号操作、
-      规则世界和编程任务，因为它们要求模型完成的行为并不相同。
+      推理与形式任务通常具有明确的规则、中间步骤和正确答案，因此是研究模型内部机制的重要试验场。
+      理解模型如何解决这些任务，可以帮助研究者区分真正的规则计算、记忆和表面模式匹配，
+      并解释模型为什么能解决熟悉问题，却可能在问题稍作变化后失败。
 - node_id: mathematics-arithmetic
   parent_id: reasoning-formal-tasks
   title: Mathematics and Arithmetic
   status: active
-  proposal_id: tp_20261009_application_scenarios_v2
+  proposal_id: tp_20261010_application_scenarios_reader_intros_v2
   introduction:
     en: >-
-      These tasks require numerical comparison, arithmetic, algebraic composition, or
-      mathematical problem solving. They range from controlled operations such as modular
-      addition and year comparison to natural-language word problems and competition-style
-      reasoning benchmarks.
+      Mathematical tasks make it possible to compare a model's internal computation with
+      a known solution procedure. Interpretability can reveal whether the model represents
+      quantities, carries intermediate results, and composes operations systematically,
+      or instead relies on memorized answers and fragile numerical shortcuts. This matters
+      for evaluating whether mathematical performance will generalize to unfamiliar values
+      and problem forms.
     zh: >-
-      这类任务要求模型进行数值比较、算术、代数组合或数学问题求解，既包括模加法、年份比较等可控运算，
-      也包括自然语言数学文字题和竞赛式推理 benchmark。
+      数学任务允许研究者把模型内部计算与已知的求解过程进行比较。可解释性分析可以揭示模型是否表示了数量、
+      保存了中间结果并系统地组合运算，还是主要依赖记忆答案和脆弱的数值捷径。
+      这对于判断数学能力能否泛化到陌生数值和新题型尤其重要。
 - node_id: logic-symbolic-reasoning
   parent_id: reasoning-formal-tasks
   title: Logic and Symbolic Reasoning
   status: active
-  proposal_id: tp_20261009_application_scenarios_v2
+  proposal_id: tp_20261010_application_scenarios_reader_intros_v2
   introduction:
     en: >-
-      Logic and symbolic tasks ask a model to follow relations and rules rather than
-      primarily calculate a number. Examples include natural-logic inference, syllogisms,
-      variable binding, bracket or quotation tracking, and transformations over formal
-      symbol sequences.
+      Logic and symbolic tasks test whether a model can preserve variables, relations,
+      and rules across several reasoning steps. A correct final answer may still come
+      from an unreliable heuristic, so examining the underlying mechanism helps
+      distinguish valid inference from accidental pattern matching and identifies where
+      a reasoning chain breaks.
     zh: >-
-      逻辑与符号任务主要要求模型遵循关系和规则，而不是计算一个数值。典型例子包括自然逻辑推理、三段论、变量绑定、
-      括号或引号跟踪，以及对形式符号序列进行变换。
+      逻辑与符号任务检验模型能否在多个推理步骤中持续维护变量、关系和规则。即使最终答案正确，
+      也可能只是碰巧使用了不可靠的启发式模式；研究内部机制能够区分有效推理与偶然的模式匹配，
+      并定位推理链在哪一步发生断裂。
 - node_id: games-world-models
   parent_id: reasoning-formal-tasks
   title: Games and Rule-Based Worlds
   status: active
-  proposal_id: tp_20261009_application_scenarios_v2
+  proposal_id: tp_20261010_application_scenarios_reader_intros_v2
   introduction:
     en: >-
-      Games and small rule-based worlds provide an environment with a known state and
-      legal transitions. Interpretability studies use them to ask whether a model has
-      learned the board, entities, or rules needed to predict a valid next action, rather
-      than merely matching surface patterns.
+      Games provide compact worlds with explicit states, legal actions, and transition
+      rules. They allow researchers to test whether a model has built an internal
+      representation of the world and uses it to choose valid actions, rather than merely
+      imitating common move sequences. Understanding these mechanisms also offers clues
+      about planning and state tracking in more complex agents.
     zh: >-
-      游戏和小型规则世界具有明确状态与合法转移。可解释性研究借此判断模型是否真正学会了棋盘、实体或规则，
-      并利用这些信息预测下一步行动，而不只是匹配表面模式。
+      游戏提供了状态、合法行动和转移规则都很明确的紧凑世界。研究者可以借此判断模型是否建立了内部世界表征，
+      并利用它选择合法行动，而不只是模仿常见的落子序列。理解这些机制，也有助于研究更复杂智能体中的规划和状态跟踪能力。
 - node_id: code
   parent_id: reasoning-formal-tasks
   title: Code
   status: active
-  proposal_id: tp_20261009_application_scenarios_v2
+  proposal_id: tp_20261010_application_scenarios_reader_intros_v2
   introduction:
     en: >-
-      Code tasks ask models to complete, understand, transform, or debug programs and
-      software documentation. Their formal syntax and executable semantics make it
-      possible to connect internal mechanisms with concrete programming behavior.
+      Code has precise syntax and executable semantics, making many model errors directly
+      testable rather than open to subjective judgment. Studying how models represent
+      program structure, dependencies, and execution behavior can reveal why code
+      generation succeeds or fails, support more targeted debugging, and help identify
+      brittle or unsafe programming behavior.
     zh: >-
-      代码任务要求模型补全、理解、转换或调试程序与软件文档。代码具有形式化语法和可执行语义，
-      因而可以把模型内部机制与具体编程行为联系起来。
+      代码具有精确的语法和可执行语义，因此许多模型错误可以被直接检验，而不依赖主观判断。
+      研究模型如何表示程序结构、依赖关系和执行行为，可以解释代码生成为什么成功或失败，
+      支持更有针对性的调试，并帮助发现脆弱或不安全的编程行为。
 - node_id: trustworthiness-alignment
   parent_id: application-scenarios
   title: Trustworthiness and Alignment

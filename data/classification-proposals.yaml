@@ -1775,6 +1775,32 @@ proposals:
   - Multi-purpose benchmark papers use Cross-Domain Task Suites as primary and retain concrete task families as secondary labels.
   - Papers evaluated only on generic pretraining text use General Language Modeling rather than an invented downstream scenario.
   - The approved taxonomy and relations are written to the formal taxonomy file and append-only event stream.
+- proposal_id: tp_20261010_application_scenarios_reader_intros_v2
+  kind: taxonomy_content
+  status: approved
+  created_at: '2026-10-10'
+  approved_at: '2026-10-10'
+  approval_basis: >-
+    The user reviewed the proposed bilingual wording node by node and explicitly
+    requested a unified update after completing the review.
+  title: Reader-oriented introductions for selected Application and Experimental Scenarios nodes
+  taxonomy_id: application-scenarios
+  from_taxonomy_version: 1
+  resulting_taxonomy_version: 2
+  taxonomy_file: data/taxonomies/application-scenarios.yaml
+  affected_node_ids:
+  - cross-domain-multi-task
+  - language-knowledge-interaction
+  - reasoning-formal-tasks
+  - mathematics-arithmetic
+  - logic-symbolic-reasoning
+  - games-world-models
+  - code
+  revision_reason: >-
+    Remove taxonomy-maintenance language from reader-facing introductions and explain
+    why cross-domain, language, mathematical, logical, game, and code tasks are useful
+    settings for interpretability research. The tree structure and paper assignments
+    are unchanged.
 - proposal_id: tp_20261010_techniques_v4_attention_heatmap_wording
   kind: taxonomy_content
   status: approved
