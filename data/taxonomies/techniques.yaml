@@ -1,6 +1,6 @@
 schema_version: 1
 taxonomy_id: techniques
-version: 11
+version: 12
 status: active
 title: Techniques
 nodes:
@@ -273,19 +273,42 @@ nodes:
   parent_id: attribution-sensitivity
   title: Decomposition and Component Attribution
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v12_decomposition_component_attribution
   introduction:
     en: >-
-      Decomposition methods start from a quantity such as a logit and rewrite it as a
-      sum of contributions from tokens, heads, MLPs, or information-flow paths. The
-      decomposition can follow the model's algebra, a contextual-decomposition rule, or
-      another bookkeeping scheme. This often yields a readable account of how signals
-      combine, although the chosen decomposition is an explanatory convention rather
-      than an exhaustive causal experiment.
+      This branch comprises two different analytical routes: Decomposition and Component
+      Attribution.
+      Decomposition leaves the model's current computation unchanged and follows its
+      operations to separate an internal state or final output into contributions from
+      different sources. A Transformer's residual stream is formed by successively adding
+      embeddings and the outputs of attention heads and MLPs, so these additive terms can
+      be tracked separately. Information Flow Routes further splits an attention update
+      into information-transfer edges associated with different source tokens and heads,
+      then connects high-contribution edges across layers into a graph for one prediction.
+      For operations such as attention, layer normalization, and nonlinear functions that
+      cannot be separated by addition alone, CD-T partitions activations into a part
+      relevant to the target factor and a part containing other information, then uses
+      predefined rules to propagate both parts through the model. Component Attribution
+      instead changes which components participate in the computation and estimates their
+      contributions from the resulting output changes. For example, LVLM Head Attribution
+      ablates different combinations of attention heads and uses linear regression to
+      estimate each head's contribution to the answer logit; Ships/Sahara identifies
+      safety-related heads from changes in refusal probability or safety representations
+      after head ablation. These methods can show how multiple components jointly support
+      a prediction, but their results still depend on component boundaries, baselines,
+      decomposition rules, and the treatment of interactions. Researchers therefore
+      usually test faithfulness by retaining or ablating the identified components.
     zh: >-
-      Decomposition 方法从 logit 等量出发，把它改写成 token、attention head、MLP 或信息流路径贡献之和。
-      分解可以遵循模型自身的代数结构，也可以采用 contextual decomposition 等记账规则。
-      它常能给出信号如何组合的清晰叙述，但所选分解仍是一种解释约定，而不是穷尽式因果实验。
+      Decomposition and Component Attribution 包含两条不同的分析路线。Decomposition 不改变模型的这次
+      计算，而是沿着模型的运算过程，把内部状态或最终输出拆成不同来源的贡献。Transformer 的 residual stream
+      由 embedding、attention head 和 MLP 输出逐步相加形成，因此这些加法项可以分别追踪；Information Flow
+      Routes 还会把 attention 输出进一步拆成由不同来源 token 和 head 形成的信息传递边，并逐层连接成一次预测的
+      信息流图。对于 attention、layer normalization 和非线性函数等不能直接按加法拆开的运算，CD-T 会把激活
+      划分成“与目标因素相关”和“其他信息”两部分，再按照预先定义的规则让两部分继续通过模型。Component
+      Attribution 则主动改变哪些组件参与计算，再根据输出变化估计贡献：例如 LVLM Head Attribution 消融不同
+      attention head 组合，并用线性回归估计各个 head 对答案 logit 的贡献；Ships/Sahara 根据消融 head 后拒答
+      概率或安全表征的变化来寻找安全相关 head。这些方法可以展示多个组件如何共同支持预测，但结果仍取决于组件
+      划分、基线、分解规则以及如何处理组件交互，因此通常还需要通过保留或消融所得组件来验证解释是否忠实。
 - node_id: relevance-propagation
   parent_id: attribution-sensitivity
   title: Layer-Wise and Concept Relevance Propagation
