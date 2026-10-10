@@ -1,6 +1,6 @@
 schema_version: 1
 taxonomy_id: techniques
-version: 18
+version: 19
 status: active
 title: Techniques
 nodes:
@@ -834,36 +834,68 @@ nodes:
   parent_id: feature-discovery-decomposition
   title: ICA-Based Decomposition and ICA Lens
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v19_ica_stitching
   introduction:
     en: >-
-      ICA offers a classical alternative to training a neural feature dictionary. It
-      searches for directions whose activations are as statistically independent and
-      non-Gaussian as possible, based on the intuition that selective semantic features
-      may stand out from a Gaussian background. ICA Lens adapts this idea to large model
-      activations with stability checks and efficient fitting, making it useful as a
-      lightweight first view of representation structure.
+      ICA-Based Decomposition is a classical statistical decomposition method. Rather
+      than training another encoder–decoder, it searches for approximately independent
+      components directly in model activations collected from many tokens. A standard
+      FastICA pipeline first centers and whitens the activations, removing linear
+      correlations between dimensions and normalizing their variances. It then rotates
+      the whitened space to find directions whose activation distributions depart
+      strongly from a Gaussian distribution. If the observed activations are mixtures of
+      approximately independent sources, these directions may separate those sources
+      into distinct statistical components. Projecting a token activation onto a
+      component produces a signed component score. Researchers can inspect examples with
+      the highest positive and negative scores to form semantic hypotheses, and use the
+      inverse transformation to obtain activation-space directions for comparison or
+      intervention. ICA Lens builds on this classical pipeline rather than introducing a
+      separate decomposition principle. It adds per-sample normalization, GPU-parallel
+      FastICA, per-component convergence diagnostics, and adaptive component counts to
+      address large-norm outliers and unstable convergence in language-model activations.
+      Statistical independence or non-Gaussianity does not imply that a component is
+      semantically atomic or causally important. The recovered components also depend on
+      the corpus, preprocessing, and convergence quality, so their stability,
+      interpretability, and intervention effects must be evaluated separately.
     zh: >-
-      ICA 是训练神经特征字典之外的一条经典路线。它寻找激活在统计上尽可能独立且非高斯的方向，
-      背后的直觉是：具有选择性的语义特征可能会从近似高斯的背景中凸显出来。
-      ICA Lens 为大模型激活加入稳定性检查和高效拟合，使 ICA 成为观察表征结构的一种轻量级第一视角。
+      ICA-Based Decomposition 是一种经典的统计分解方法。它不训练新的 encoder–decoder，而是直接从大量 token 的模型激活中寻找近似独立的统计成分。
+      标准 FastICA 流程会先将激活减去均值并进行 whitening，也就是消除维度之间的线性相关并统一方差；随后旋转这个经过处理的空间，寻找激活分布明显偏离高斯分布的方向。
+      如果观测到的激活确实由若干近似独立的来源混合而成，这些方向就可能将它们分离为不同的统计成分。每个 token 在某个成分上的投影形成一个带正负号的 component score；
+      研究者可以查看正向和负向得分最高的样本来提出语义解释，也可以通过逆变换得到激活空间中的方向，用于比较或干预。ICA Lens 是在这一经典流程上的改进，而不是另一种分解原理。
+      它针对语言模型激活中的异常大范数样本和不稳定收敛问题，加入逐样本归一化、GPU 并行 FastICA、逐成分收敛诊断和自适应成分数量，使 ICA 更适合作为低成本的初步探索工具。
+      但统计独立或非高斯并不等于语义单一，更不能自动证明因果作用；所得成分还会受到语料、预处理和收敛状态影响，因此需要进一步检查稳定性、可解释性和干预效果。
 - node_id: cross-model-feature-alignment
   parent_id: feature-discovery-decomposition
   title: Cross-Model Feature Alignment and Stitching
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v19_ica_stitching
   introduction:
     en: >-
-      Two models may encode a similar concept in differently rotated, scaled, or
-      distributed coordinates. Cross-model alignment learns a correspondence or
-      transformation that places their representations in a shared frame, enabling
-      feature comparison, transfer, and stitching. A good numerical match is not always
-      unique, however, so researchers must check whether the inferred correspondence is
-      stable and functionally meaningful.
+      Even when two models represent similar information, their residual-stream
+      coordinates, dimensions, and scales may differ, so directions cannot be compared
+      or transferred directly. Cross-Model Feature Alignment typically runs both models
+      on the same inputs, collects activations at corresponding token positions, and
+      learns a linear or affine mapping from one activation space to the other. Alignment
+      estimates this coordinate correspondence; Model Stitching goes further by using the
+      mapping as an interface between models. An activation from a layer in model A is
+      mapped into model B's space, substituted for the activation at a corresponding
+      layer in B, and then processed by B's downstream layers. If this substitution
+      preserves low prediction loss or the target behavior, the mapping has some
+      functional validity rather than merely fitting activation values. The same mapping
+      can also transfer SAE weights, probes, or steering vectors across models, supporting
+      comparisons between model sizes or training stages. A linear mapping may,
+      nevertheless, favor common or high-variance patterns while missing rare semantic
+      features and nonlinear relationships. Its performance also depends on the paired
+      data, layer selection, model family, and tokenizer. Low reconstruction error or
+      successful stitching does not by itself establish a one-to-one feature
+      correspondence or show that the two models implement the same internal algorithm.
     zh: >-
-      两个模型可能编码了相似概念，却使用了旋转、缩放或分布方式不同的坐标。
-      Cross-Model Alignment 学习一种对应或变换，把它们放进共享参照系，从而支持特征比较、迁移和 stitching。
-      但数值上拟合良好的映射未必唯一，因此还要检验对应关系是否稳定，并且在功能上确有意义。
+      即使两个模型表示了相似信息，它们的 residual-stream 坐标、维度和尺度也可能不同，因此不能直接比较或迁移其中的方向。
+      Cross-Model Feature Alignment 通常让两个模型处理相同输入，收集对应 token 位置的激活，再学习从一个模型激活空间到另一个空间的线性或 affine mapping。
+      Alignment 指的是估计这种坐标对应关系；Model Stitching 则进一步把映射当作两个模型之间的接口：将模型 A 某一层的激活映射到模型 B 的空间，替换模型 B 对应层的激活，
+      再让模型 B 的后续层继续计算。只有当这种替换仍能保留较低的预测损失或目标行为时，映射才不仅是在数值上拟合激活，也具有一定的功能意义。
+      学到的映射还可以用于迁移 SAE 权重、probe 或 steering vector，从而比较不同规模或不同训练阶段模型中的特征。不过，线性映射可能优先保留常见或高方差模式，而遗漏稀有语义和非线性关系；
+      其效果也取决于配对数据、层的选择、模型家族和 tokenizer。较低的重构误差或成功的 stitching 不能单独证明两个模型具有逐特征的一一对应关系，也不能证明它们执行了相同的内部算法。
 - node_id: causal-intervention-attribution
   parent_id: technique
   title: Causal Intervention and Attribution

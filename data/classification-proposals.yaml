@@ -2429,3 +2429,26 @@ proposals:
     mechanism, intended benefit, and principal limitations. The taxonomy structure and
     paper assignments are unchanged. The approved bilingual text is recorded on the
     affected nodes in techniques taxonomy version 18.
+- proposal_id: tp_20261010_techniques_v19_ica_stitching
+  kind: taxonomy_content
+  status: approved
+  created_at: '2026-10-10'
+  approved_at: '2026-10-10'
+  approval_basis: >-
+    The user reviewed both introductions, clarified that the ICA text must distinguish
+    the classical ICA/FastICA procedure from the ICA Lens workflow, and approved writing
+    that revision together with the reviewed Cross-Model Feature Alignment and Stitching
+    introduction in both languages.
+  title: Clarify ICA decomposition and cross-model stitching
+  taxonomy_id: techniques
+  from_taxonomy_version: 18
+  resulting_taxonomy_version: 19
+  taxonomy_file: data/taxonomies/techniques.yaml
+  affected_node_ids: [ica-based-decomposition, cross-model-feature-alignment]
+  revision_reason: >-
+    Explain the standard centering, whitening, FastICA, scoring, and inverse-mapping
+    workflow before identifying ICA Lens as an engineering extension; distinguish
+    coordinate alignment from functional model stitching and state the principal
+    assumptions and limitations of both method families. The tree structure and paper
+    assignments are unchanged. The approved bilingual text is recorded on the affected
+    nodes in techniques taxonomy version 19.
