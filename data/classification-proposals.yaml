@@ -2475,3 +2475,34 @@ proposals:
     failure modes. Child-node text, tree structure, and paper assignments are unchanged.
     The approved bilingual text is recorded on the affected node in techniques taxonomy
     version 20.
+- proposal_id: tp_20261010_techniques_v21_causal_intervention_children
+  kind: taxonomy_content
+  status: approved
+  created_at: '2026-10-10'
+  approved_at: '2026-10-10'
+  approval_basis: >-
+    The user reviewed all seven child introductions, approved clarifying Learned Masks and
+    Gates as a search over intervention configurations, approved the revised explanation
+    of the shared causal-abstraction role of Interchange Interventions and Distributed
+    Alignment Search, and then approved writing the entire reviewed branch.
+  title: Clarify the Causal Intervention child methods
+  taxonomy_id: techniques
+  from_taxonomy_version: 20
+  resulting_taxonomy_version: 21
+  taxonomy_file: data/taxonomies/techniques.yaml
+  affected_node_ids:
+  - activation-ablation-replacement
+  - activation-patching
+  - path-patching
+  - attribution-patching
+  - learned-gates-masks
+  - causal-mediation
+  - interchange-intervention
+  revision_reason: >-
+    Explain the intervention performed by each method, the causal question it can answer,
+    and the conditions under which that answer is valid; distinguish exact patching from
+    gradient approximation, differentiable intervention search from causal validation,
+    and local effect measurement from causal-abstraction testing. Rename Learned Masks
+    and Gates to Learned Intervention Masks and Gates. The tree structure and paper
+    assignments are unchanged. The approved bilingual text is recorded on the affected
+    nodes in techniques taxonomy version 21.

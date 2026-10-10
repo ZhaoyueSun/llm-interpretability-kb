@@ -1,6 +1,6 @@
 schema_version: 1
 taxonomy_id: techniques
-version: 20
+version: 21
 status: active
 title: Techniques
 nodes:
@@ -932,119 +932,205 @@ nodes:
   parent_id: causal-intervention-attribution
   title: Activation Ablation and Replacement
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v21_causal_intervention_children
   introduction:
     en: >-
-      Ablation asks whether a component is needed by suppressing it and observing what
-      breaks. The suppression may set an activation to zero, replace it with a mean or a
-      resampled value, or scale it toward inactivity. Each choice corresponds to a
-      different counterfactual—“absent,” “typical,” or “taken from another case”—so the
-      baseline is part of the scientific question rather than a harmless implementation detail.
+      Activation Ablation and Replacement changes the activation of a selected component
+      during a forward pass and measures how a target output metric responds. Common
+      operations set the activation to zero, reduce its magnitude, replace it with a
+      dataset mean, or substitute an activation produced by another example. These
+      replacements define different counterfactuals: zeroing attempts to remove the
+      signal, mean replacement puts the component in a more typical state, and resampling
+      asks what would happen if the component carried information from another case. If
+      an intervention substantially damages the target behavior, the model depends on the
+      component under that intervention, but this does not show that the component is
+      uniquely necessary. Conversely, a small effect may reflect redundancy, compensating
+      paths, or an insensitive metric rather than irrelevance. Because zeroing and other
+      replacements can also create states outside the model's normal activation
+      distribution, reliable analysis compares several baselines and checks whether the
+      result is stable.
     zh: >-
-      Ablation 通过压制一个组件并观察哪里出错，来检验它是否为行为所需要。
-      压制方式可以是置零、均值替换、重采样，或逐渐缩小激活。每种选择对应不同的反事实：
-      “完全不存在”“处于典型状态”或“取自另一个案例”。因此基线是科学问题的一部分，而不是无关紧要的实现细节。
+      Activation Ablation and Replacement 在一次 forward pass 中改变选定组件的激活，再观察目标输出指标如何变化。常见操作包括把激活置零、缩小其幅值、
+      替换为数据集均值，或换成另一个样本产生的激活。不同替换值定义了不同的反事实：置零试图模拟信号被移除，均值替换让组件处于较典型的状态，resampling 则询问如果该组件携带另一个样本的信息会发生什么。
+      若干预使目标行为明显受损，可以说明模型在这一干预条件下依赖该组件；但这不证明它是唯一必要的组件。相反，效果很小也可能来自功能冗余、补偿路径或不敏感的评价指标。
+      尤其是置零等操作可能产生偏离正常激活分布的状态，因此需要比较多种替换基线，并检查结果是否稳定。
 - node_id: activation-patching
   parent_id: causal-intervention-attribution
   title: Activation Patching and Causal Tracing
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v21_causal_intervention_children
   introduction:
     en: >-
-      Activation patching compares a clean run with a carefully corrupted one. The
-      researcher restores one internal activation from the clean run and asks whether the
-      correct behavior returns; causal tracing applies this logic systematically across
-      locations. A successful patch suggests that the restored state carries information
-      needed downstream, but the conclusion depends on what was corrupted and on how
-      narrowly the activation was patched.
+      Activation Patching usually begins with a clean input that elicits the target
+      behavior and a corrupted input that removes or changes it. Researchers save the
+      internal activations from both runs and then perform a hybrid run: a clean
+      activation can replace the corresponding corrupted activation to test whether the
+      behavior is restored, or a corrupted activation can be inserted into the clean run
+      to test whether the behavior is damaged. Causal Tracing typically applies the
+      restoration experiment systematically across layers, token positions, or components
+      to locate states that carry the behavioral difference between the clean and
+      corrupted conditions. A substantial patching effect shows that the state at that
+      location can influence the target output in the specified counterfactual setting.
+      It does not establish that the information was originally computed there or that
+      the location is uniquely necessary. Conclusions also depend on the corruption
+      method, patch granularity, evaluation metric, and whether the resulting hybrid state
+      is natural for the model.
     zh: >-
-      Activation Patching 会比较一次干净运行和一次经过精心污染的运行。
-      研究者把某个内部激活从干净运行恢复到污染运行中，观察正确行为是否回来；Causal Tracing 则系统地在不同位置重复这一过程。
-      成功 patch 表明该状态携带了后续计算所需的信息，但结论依赖污染了什么，以及 patch 的粒度有多细。
+      Activation Patching 通常先构造一个能够产生目标行为的 clean input，以及一个使该行为消失或改变的 corrupted input，并保存两次运行中的内部激活。
+      研究者随后进行一次混合运行，在某个位置用 clean activation 替换 corrupted activation，观察目标行为能否恢复；也可以反向把 corrupted activation 放入 clean run，检查行为是否受到破坏。
+      Causal Tracing 通常把这种恢复实验系统地应用到不同层、token 位置或组件上，以定位哪些内部状态能够传递 clean 与 corrupted 条件之间的行为差异。显著的 patching effect 说明该位置的状态能够在给定反事实设置下影响目标输出，
+      但不能单独说明相关信息最初在这里产生，也不能证明该位置是唯一必要的。结果还会受到 corruption 方法、patch 粒度、评价指标以及混合状态是否自然的影响。
 - node_id: path-patching
   parent_id: causal-intervention-attribution
   title: Path Patching
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v21_causal_intervention_children
   introduction:
     en: >-
-      Ordinary patching can show that a component matters without revealing which later
-      component receives its useful signal. Path patching keeps a selected sender-to-
-      receiver route active while controlling competing routes, allowing researchers to
-      test a directed communication hypothesis. This provides a more circuit-like account
-      of information flow, but requires many carefully coordinated interventions.
+      Ordinary Activation Patching changes a component's output for all of its downstream
+      consumers at once. It can therefore show that the component matters without
+      identifying the particular connection through which its effect travels. Path
+      Patching expresses a hypothesis as a set of directed computational paths and
+      controls signals sent from the same component to different receivers separately.
+      Paths retained by the hypothesis use values from a reference run, while other paths
+      use values from a counterfactual run. Researchers then compare this patched subgraph
+      with the original model to measure how much of the target behavior the selected
+      paths explain. The method can test whether a sender acts through a specified receiver
+      or whether a larger path set forms a sufficiently faithful approximation. Its result
+      depends on how the computational graph is decomposed, how reference and
+      counterfactual inputs are paired, and which error or recovery metric is used. A low
+      average error can also conceal severe failures on a minority of inputs. Path
+      Patching therefore tests a precise path hypothesis rather than automatically
+      discovering or conclusively proving the model's true information flow.
     zh: >-
-      普通 patching 可以说明某个组件重要，却未必告诉我们它把有用信号传给了哪个后续组件。
-      Path Patching 在控制竞争路径的同时保留选定的发送者—接收者路线，从而检验一个有向通信假设。
-      它能给出更接近 circuit 的信息流解释，但需要大量彼此协调的干预。
+      普通 Activation Patching 改变一个组件的输出后，这个变化通常会同时传到它的所有下游接收者，因此只能说明组件整体是否重要，不能确定作用沿哪条连接传递。
+      Path Patching 把假说表述为一组有向计算路径，并分别控制同一组件发往不同接收者的信号：假说中保留的路径使用 reference run 的值，其他路径则使用 counterfactual run 的值。
+      研究者再比较这个经过 patch 的子图与原模型输出之间的差异，判断所选路径能够解释多少目标行为。它既可以检验某个 sender 是否通过指定 receiver 发挥作用，也可以评价一整组路径是否形成足够忠实的模型近似。
+      不过，结果依赖计算图如何拆分、reference 与 counterfactual inputs 如何配对，以及采用平均误差还是其他指标；较低的平均误差也可能掩盖少数输入上的严重失败。因此，Path Patching 检验的是一个明确的路径假说，
+      而不是自动发现或最终证明真实信息流。
 - node_id: attribution-patching
   parent_id: causal-intervention-attribution
   title: Attribution Patching
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v21_causal_intervention_children
   introduction:
     en: >-
-      Exhaustively patching every activation or edge is expensive. Attribution patching
-      estimates the effect of those interventions with a first-order Taylor expansion,
-      using the difference between clean and corrupted activations together with a
-      gradient. The approximation can screen an enormous number of candidates with only
-      a few passes, after which the most important findings should be checked with exact
-      interventions—especially when nonlinear effects may be large.
+      Attribution Patching uses gradients to approximate the effect of Activation
+      Patching instead of executing a separate intervention for every candidate. For an
+      activation or computational edge, researchers compute the gradient of the target
+      metric and multiply it by the difference between the corresponding clean and
+      corrupted activations. This gradient–difference product is a first-order Taylor
+      approximation of how much the metric would change if that location were replaced
+      by its corrupted state. A clean forward pass, a corrupted forward pass, and one
+      backward pass can therefore score a very large number of components or edges,
+      making the method useful for quickly screening candidate circuits. It estimates a
+      local linear effect around the clean state rather than actually performing every
+      patch. The estimate can fail when the gradient is near zero, the activation change
+      is large, or saturation and component interactions create strong nonlinear effects.
+      Attribution Patching scores are consequently useful for ranking and narrowing the
+      search space, but important candidates should still be verified with exact
+      Activation Patching.
     zh: >-
-      对每个激活或每条边逐一做精确 patching，计算成本很高。
-      Attribution Patching 使用一阶 Taylor 展开，把干净与污染激活的差值和梯度结合起来，估计这些干预的效果。
-      它能用很少的前后向传播筛选海量候选；随后仍应对最重要的结果做精确干预验证，尤其是在非线性作用可能很强时。
+      Attribution Patching 用梯度近似 Activation Patching 的效果，而不为每个候选位置分别执行一次干预。研究者先计算目标指标对某个 activation 或 edge 的梯度，
+      再将该梯度与 clean activation 和 corrupted activation 之间的差值相乘；这个 gradient–difference product 是一阶 Taylor approximation，用来估计把该位置从 clean 状态替换为 corrupted 状态会使指标变化多少。
+      一次 clean forward pass、一次 corrupted forward pass 和一次 backward pass 就可以同时得到大量组件或边的近似分数，因此很适合快速筛选候选 circuit。它测量的是 clean 状态附近的局部线性效应，并没有真正执行每个 patch；
+      当梯度接近零、变化幅度较大，或存在饱和与组件交互时，估计可能失真。因此这些分数适合排序和缩小搜索范围，重要候选仍应通过精确 Activation Patching 验证。
 - node_id: learned-gates-masks
   parent_id: causal-intervention-attribution
-  title: Learned Masks and Gates
+  title: Learned Intervention Masks and Gates
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v21_causal_intervention_children
   introduction:
     en: >-
-      Rather than testing components one at a time, learned-mask methods place a soft
-      gate on many components or edges and optimize all gates together. A sparsity penalty
-      encourages the procedure to keep only a small subset that preserves—or disrupts—
-      the target behavior. The selected subset is therefore a product of both the model
-      and the optimization setup, including the regularizer, initialization, and meaning
-      assigned to a closed gate.
+      Learned Intervention Masks and Gates turn the combinatorial search over which
+      components to intervene on into a differentiable optimization problem. Researchers
+      freeze the original model, place learnable multiplicative coefficients on weights
+      or component outputs, and jointly adjust those coefficients to find components that
+      should be retained, suppressed, or ablated. Different methods define the target
+      subset differently. Circuit Probing learns a sparse, nearly binary mask over model
+      weights and uses a hypothesized intermediate variable as supervision, encouraging
+      the retained subnetwork's outputs to form classes corresponding to that variable.
+      Mask training only identifies a candidate subnetwork; the causal evidence comes
+      from subsequently inverting the mask, ablating the subnetwork, and measuring model
+      behavior. Causal Head Gating instead learns soft gates directly on attention-head
+      outputs under the model's original next-token loss. It asks which heads must remain
+      active, which improve performance when suppressed, and which can be switched on or
+      off with little effect, describing them as facilitating, interfering, or irrelevant.
+      A learned mask or gate represents one intervention solution under a particular
+      dataset, objective, and regularization scheme rather than a uniquely true circuit.
+      Redundancy, component interactions, initialization, and regularization strength can
+      all produce different solutions, so independent ablations, repeated optimization,
+      and held-out data are needed to assess stability.
     zh: >-
-      Learned Masks and Gates 不再逐个测试组件，而是在许多组件或边上放置软门，并同时优化这些门。
-      稀疏惩罚促使方法只保留一小部分足以维持或破坏目标行为的元素。
-      因而最终子集既来自模型，也来自优化设置，包括正则强度、初始化以及“关门”在干预中究竟意味着什么。
+      Learned Intervention Masks and Gates 将“应该干预哪些组件”的组合搜索转化为可微优化。研究者冻结原模型，在权重或组件输出上加入可学习的乘法系数，
+      再根据目标函数联合调整这些系数，以寻找应当保留、抑制或消融的组件。不同方法对“目标子集”的定义并不相同。Circuit Probing 在模型权重上学习接近二值的稀疏 mask，
+      并使用一个预先假设的中间变量作为监督信号，使被保留子网络的输出能够按照该变量形成不同类别；mask 训练只能发现候选子网络，真正的因果证据来自随后反转 mask、消融该子网络并检查模型行为。
+      Causal Head Gating 则直接在 attention head 的输出上学习软门，并根据模型原有的 next-token loss 判断哪些 head 被关闭后使性能下降、改善或基本不变，从而将它们描述为 facilitating、interfering 或 irrelevant。
+      学习得到的 mask 或 gate 只代表特定数据、目标函数和正则设置下找到的一种干预方案，不一定对应唯一的真实 circuit；模型冗余、组件交互、初始化和正则强度都可能产生不同结果，
+      因此还需要通过独立消融、重复训练和未见数据检查其稳定性。
 - node_id: causal-mediation
   parent_id: causal-intervention-attribution
   title: Causal Mediation Analysis
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v21_causal_intervention_children
   introduction:
     en: >-
-      Causal mediation analysis asks how much of an input's effect on the output travels
-      through a chosen internal variable. It compares counterfactual worlds in which the
-      input and mediator are changed in controlled combinations, separating a mediated
-      effect from effects that travel elsewhere. This gives a quantitative account of a
-      component's causal role, provided the mediator and counterfactual interventions are
-      well defined.
+      Causal Mediation Analysis treats a model component as a mediator between an input
+      condition and an output, asking how much of the output difference caused by changing
+      the input can be transmitted by changing that mediator's state. Researchers usually
+      construct base–counterfactual input pairs with different properties or answers and
+      record the mediator activation in both runs. In a hybrid run, the input remains in
+      one condition while the mediator is replaced by its activation from the other. The
+      resulting change in output probability or logits is reported as a mediated or
+      indirect effect. Operationally, this resembles Activation Patching, but the goal is
+      not merely to locate a state that restores behavior. The experiment is organized
+      around a predefined input treatment, mediator, and outcome in order to decompose a
+      causal effect. The estimate depends on how inputs are paired, the granularity at
+      which the mediator is defined, and the output metric. With nonlinearities and
+      interactions, mediated effects for different components may overlap and need not
+      add up to the total effect.
     zh: >-
-      Causal Mediation Analysis 询问：输入对输出的影响中，有多少是通过选定内部变量传递的。
-      它比较多个反事实世界，在其中以受控组合改变输入和 mediator，从而把经该变量传递的效应与其他路径上的效应分开。
-      这种方法能定量描述组件的因果角色，前提是 mediator 和反事实干预都有清楚的定义。
+      Causal Mediation Analysis 把某个模型组件视为输入条件与输出之间的 mediator，并询问输入变化造成的输出差异中，有多少能够通过改变这个 mediator 的状态来传递。
+      研究者通常准备一组具有不同属性或答案的 base–counterfactual input pairs，记录两次运行中的 mediator activation，再进行混合运行：输入保持来自一种条件，但 mediator 被替换为另一种条件下的激活。
+      替换前后的输出概率或 logit 差异构成 mediated effect 或 indirect effect。它在操作上与 Activation Patching 很接近，但重点不是单纯定位哪个位置能恢复行为，而是围绕预先定义的 input treatment、mediator 和 outcome 分解一条因果效应。
+      所得效应依赖输入如何配对、mediator 选择在哪种粒度，以及用什么输出指标衡量；在存在非线性和变量交互时，不同 mediator 的效应可能重叠，也未必能相加为完整的总效应。
 - node_id: interchange-intervention
   parent_id: causal-intervention-attribution
   title: Interchange Interventions and Distributed Alignment Search
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v21_causal_intervention_children
   introduction:
     en: >-
-      Interchange intervention connects a neural representation to a proposed high-level
-      variable. The internal state associated with that variable is swapped between two
-      examples, and the model is expected to behave like the high-level causal model under
-      the corresponding counterfactual swap. When the relevant neural subspace is unknown,
-      Distributed Alignment Search learns the alignment that makes these counterfactual
-      tests succeed.
+      Interchange Interventions and Distributed Alignment Search support causal abstraction
+      analysis. Rather than asking only whether a component affects behavior, they test
+      whether an internal neural representation implements a proposed high-level causal
+      variable and whether the network's causal relationships match those of an
+      interpretable high-level causal model. Researchers first construct the high-level
+      model and prepare a base input and a source input. In the high-level model, they
+      replace one variable's value in the base case with its value from the source case to
+      obtain an expected counterfactual output. In the neural network, the corresponding
+      Interchange Intervention replaces the candidate internal state in the base run with
+      the state produced by the source input. If the two systems produce the same
+      counterfactual result across many input combinations, the high-level model is
+      supported as a causal abstraction of the network under the tested alignment. This
+      agreement is commonly measured by interchange intervention accuracy. Interchange
+      Intervention assumes that the neural location or subspace corresponding to the
+      high-level variable is already known. Distributed Alignment Search instead learns a
+      rotation or subspace that makes the matched counterfactual swaps succeed. DAS is
+      therefore an optimization method for finding distributed intervention sites, not a
+      separate kind of causal evidence. The analysis tests a proposed high-level model
+      rather than discovering a unique explanation from scratch. Results depend on the
+      chosen variables, counterfactual samples, and search space, and high-dimensional
+      representations may permit accidental alignments. Held-out inputs, alternative
+      high-level models, random networks, and other controls are needed to rule them out.
     zh: >-
-      Interchange Intervention 用来把神经表征与一个假设的高层变量联系起来。
-      研究者在两个样本间交换与该变量对应的内部状态，并检验模型是否像高层因果模型在相同反事实交换下那样行动。
-      若相关神经子空间未知，Distributed Alignment Search 会学习能让这些反事实检验成立的对齐关系。
+      Interchange Interventions and Distributed Alignment Search 共同服务于 causal abstraction analysis：它们不只询问某个组件是否影响行为，还要检验神经网络中的内部表征是否实现了一个预先提出的高层因果变量，
+      以及模型内部的因果关系是否与高层 causal model 相对应。研究者首先构建一个可解释的高层 causal model，并准备 base input 与 source input。随后在高层模型中，把某个变量的值从 source case 交换到 base case，得到高层模型预测的 counterfactual output；
+      在神经网络中，则执行对应的 Interchange Intervention，把 source input 在候选位置产生的内部状态换入 base run。如果两个系统在大量输入组合上产生相同的反事实结果，就说明在所测试的 alignment 下，
+      该高层模型可以作为神经网络计算的一种 causal abstraction；这种一致程度通常用 interchange intervention accuracy 衡量。Interchange Intervention 假设研究者已经知道高层变量与哪个神经位置或子空间对应，
+      Distributed Alignment Search 则通过学习一个旋转或子空间来寻找这种对应关系，使匹配的反事实交换尽可能成功。因此，DAS 不是另一种独立的因果证据，而是为 Interchange Intervention 寻找分布式干预位置的优化方法。
+      这类分析提供的证据比局部重要性分数更具结构性，但它检验的是预先提出的高层模型，而不是从零发现唯一解释；结果仍依赖高层变量、反事实样本和搜索空间的设计。高维空间还可能提供偶然对齐，
+      因此需要在未见样本上验证，并与替代高层模型、随机网络或其他控制条件比较。
 - node_id: circuit-discovery
   parent_id: technique
   title: Circuit Discovery
