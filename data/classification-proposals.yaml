@@ -2538,3 +2538,66 @@ proposals:
     mutually exclusive methods. The tree structure, node titles, and paper assignments
     are unchanged. The approved bilingual text is recorded on the affected nodes in
     techniques taxonomy version 22.
+- proposal_id: tp_20261010_techniques_v23_steering_model_change
+  kind: taxonomy
+  status: approved
+  created_at: '2026-10-10'
+  approved_at: '2026-10-10'
+  approval_basis: >-
+    The user reviewed the Steering and Model Change parent and every descendant
+    introduction, requested a clearer explanation of how Projection Erasure differs from
+    fixed vector addition, supplied and approved the final Chinese wording for that node,
+    and then approved writing the entire branch together.
+  title: Reorganize and clarify Steering and Model Change
+  taxonomy_id: techniques
+  from_taxonomy_version: 22
+  resulting_taxonomy_version: 23
+  taxonomy_file: data/taxonomies/techniques.yaml
+  affected_node_ids:
+  - steering-model-change
+  - inference-time-steering
+  - activation-space-intervention
+  - activation-scaling-suppression
+  - activation-vector-addition
+  - projection-erasure
+  - logit-steering
+  - persistent-model-modification
+  - parameter-space-editing
+  - task-vector-arithmetic
+  - targeted-parameter-editing
+  - mechanism-induction-construction
+  structural_changes:
+  - action: add
+    node_id: inference-time-steering
+    parent_id: steering-model-change
+  - action: add
+    node_id: persistent-model-modification
+    parent_id: steering-model-change
+  - action: move
+    node_id: activation-space-intervention
+    from_parent_id: steering-model-change
+    to_parent_id: inference-time-steering
+  - action: move
+    node_id: logit-steering
+    from_parent_id: steering-model-change
+    to_parent_id: inference-time-steering
+  - action: move
+    node_id: parameter-space-editing
+    from_parent_id: steering-model-change
+    to_parent_id: persistent-model-modification
+  - action: move
+    node_id: mechanism-induction-construction
+    from_parent_id: steering-model-change
+    to_parent_id: persistent-model-modification
+  - action: rename
+    node_id: activation-scaling-suppression
+    from_title: Activation Scaling, Suppression, and Runtime Gating
+    to_title: Activation Scaling, Suppression, Replacement, and Runtime Gating
+  revision_reason: >-
+    Separate reversible inference-time control from persistent model modification;
+    distinguish activation, logit, and parameter targets; explain how steering overlaps
+    operationally with causal intervention while serving a different experimental goal;
+    and clarify the mechanisms, limitations, and relationships of every child method.
+    Existing paper assignments remain on the same stable leaf node IDs, so no
+    classification events are changed. The approved bilingual text is recorded in
+    techniques taxonomy version 23.

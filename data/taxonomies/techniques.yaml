@@ -1,6 +1,6 @@
 schema_version: 1
 taxonomy_id: techniques
-version: 22
+version: 23
 status: active
 title: Techniques
 nodes:
@@ -1292,173 +1292,271 @@ nodes:
   parent_id: technique
   title: Steering and Model Change
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v23_steering_model_change
   introduction:
     en: >-
-      Steering turns an interpretability hypothesis into a controlled change: if a
-      direction, feature, or parameter set represents the proposed mechanism, modifying
-      it should predictably modify behavior. Interventions can be temporary, acting on
-      activations or logits during inference, or persistent, editing model weights.
-      Successful control is evidence that the manipulated object is sufficient to affect
-      behavior, but it does not guarantee specificity or absence of side effects.
+      Steering and Model Change covers methods whose primary purpose is to alter a
+      model's behavior or internal computation deliberately. Researchers may modify
+      intermediate activations or output logits during inference, change stored weights,
+      or train and construct a model to implement a specified mechanism. The same
+      operation may also appear under Causal Intervention: there it is used as an
+      experiment to investigate how the original model works, whereas here it is judged
+      by whether it produces reliable control. Evaluation must therefore consider not
+      only whether the target behavior changes, but also whether the effect generalizes,
+      preserves unrelated capabilities, remains stable, and is temporary or persistent.
+      Successful control identifies an effective handle on behavior; it does not by
+      itself establish that the manipulated object is the unique or complete mechanism.
     zh: >-
-      Steering 把可解释性假设变成一次受控改变：如果某个方向、特征或参数集合确实表示了所提出机制，修改它就应可预测地改变行为。
-      干预可以是临时的，在推理时作用于激活或 logits；也可以是持久的，直接编辑模型权重。
-      控制成功说明被操控对象足以影响行为，但不保证作用足够专一，也不保证没有副作用。
-- node_id: activation-space-intervention
+      Steering and Model Change 收录以主动改变模型行为或内部计算为主要目的的方法。研究者可以在推理时修改中间激活或输出 logits，
+      也可以改变模型权重，或者通过训练和直接构造让模型实现预先指定的机制。同一种操作也可能出现在 Causal Intervention 中：
+      作为因果实验时，它用于检验模型原本如何工作；作为 steering 时，重点则是能否稳定地产生预期行为。评价 steering 不能只看目标行为是否发生，
+      还需要检查效果能否泛化、是否影响无关能力、控制是否稳定，以及改变是临时的还是持久的。控制成功说明找到了一个能够影响行为的操作入口，
+      但不自动证明它对应唯一或完整的内部机制。
+- node_id: inference-time-steering
   parent_id: steering-model-change
+  title: Inference-Time Steering
+  status: active
+  proposal_id: tp_20261010_techniques_v23_steering_model_change
+  introduction:
+    en: >-
+      Inference-Time Steering temporarily changes the computation while the model is
+      processing an input or generating tokens, without saving the modification into the
+      model's weights. The intervention may act on an intermediate activation or directly
+      on output logits. It can usually be enabled, adjusted, or removed at runtime, which
+      makes it useful for real-time control. The intervention must, however, be applied
+      again on each run, and its effect may vary with the input, generation position, and
+      control strength.
+    zh: >-
+      Inference-Time Steering 在模型处理输入或生成 token 的过程中临时改变计算状态，而不把修改保存进模型权重。
+      干预可以发生在中间激活上，也可以直接发生在输出 logits 上。它通常能够随时启用、调整或撤销，适合实时控制；
+      但每次推理都需要重新施加，效果也可能随输入、生成位置和控制强度变化。
+- node_id: activation-space-intervention
+  parent_id: inference-time-steering
   title: Activation-Space Intervention
   status: active
-  proposal_id: tp_20261009_techniques_v3_activation_wording
+  proposal_id: tp_20261010_techniques_v23_steering_model_change
   introduction:
     en: >-
-      Activation-space methods intervene on values produced during a forward pass rather
-      than changing the model's stored parameters. These activations can include residual-stream states, attention-head or MLP
-      outputs, individual neuron activations, and learned features. This makes the methods
-      useful both for testing whether an internal representation has a functional effect
-      and for reversible inference-time control. Common operations amplify or suppress
-      existing activity, add a steering direction, or project out information carried by
-      a direction or subspace. Because an intervention may also disturb correlated
-      information, successful control does not by itself show that the targeted
-      representation is unique or disentangled.
+      Activation-Space Intervention intercepts an activation at a selected layer or
+      position during a forward pass, modifies it, and returns the altered value to the
+      model's later computation. The activation may be a residual-stream state, an
+      attention-head or MLP output, an individual neuron's activation, or a feature
+      learned by an SAE or a related method. The child methods respectively change the
+      strength of existing activity, add a new direction, or remove the component of the
+      state that lies in a chosen direction or subspace. Although the stored weights stay
+      unchanged, repeatedly applying the intervention across tokens or layers can still
+      alter generation substantially. Results depend on the intervention layer, token
+      position, strength, and reference value, and researchers must check whether the
+      operation also disrupts other information correlated with the target behavior.
     zh: >-
-      Activation-Space Intervention 修改的是模型一次前向传播中产生的中间激活，而不是长期保存的参数。
-      这里的激活既可以是 residual stream 等整体状态，也可以是 attention head 或
-      MLP 的输出、单个神经元的激活以及学习得到的特征。因而，这类方法既能检验某种内部表征是否对行为具有
-      功能作用，也能用于可逆的推理时控制。常见操作包括增强或压制已有活动、加入 steering direction，
-      以及投影掉某个方向或子空间携带的信息。由于干预也可能扰动相关联的信息，控制成功本身并不能证明
-      被操控的表征是唯一的或已经与其他因素解耦。
+      Activation-Space Intervention 会在前向传播的某一层或位置截取模型产生的激活，对其进行修改，再把修改后的值交给后续层继续计算。
+      这里的激活可以是 residual-stream state、attention head 或 MLP 输出、单个神经元的激活，也可以是 SAE 等方法得到的特征激活。
+      下面的方法分别改变已有活动的强度、加入一个新的方向，或者移除状态在某个方向或子空间上的分量。模型权重虽然保持不变，
+      但持续在多个 token 或层上施加干预仍可能显著改变生成行为。结果通常取决于干预层、token 位置、强度和使用的参考值，
+      也需要检查是否同时扰乱了与目标行为相关联的其他信息。
 - node_id: activation-scaling-suppression
   parent_id: activation-space-intervention
-  title: Activation Scaling, Suppression, and Runtime Gating
+  title: Activation Scaling, Suppression, Replacement, and Runtime Gating
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v23_steering_model_change
   introduction:
     en: >-
-      These methods change how strongly a selected component participates in the current
-      forward pass. A neuron, head, or feature can be multiplied by a factor, clamped,
-      suppressed, or opened and closed by a runtime gate. The operation resembles an
-      ablation, but here the emphasis is on controlling behavior rather than merely
-      diagnosing which component matters.
+      These methods directly control how much information an internal component
+      contributes to the current computation. Researchers may multiply a neuron, head,
+      or feature activation by a coefficient, attenuate or zero it, replace it with a
+      reference activation, or use a runtime gate to decide whether its output enters
+      later computation. Unlike Activation Vector Addition, these operations primarily
+      adjust or replace activity that a component has already produced rather than add a
+      new direction to the whole state. The same operations can serve as ablation tests;
+      in this node, their purpose is to produce a desired behavior, such as suppressing
+      an incorrect knowledge flow or strengthening a target one. Effects may vary across
+      prompts, decoding positions, and control strengths, and a component that serves
+      several functions can introduce unintended side effects.
     zh: >-
-      这类方法改变某个组件在当前前向传播中参与计算的强度。
-      神经元、attention head 或特征可以乘以系数、被截断、被压制，或由运行时门控打开与关闭。
-      操作形式与 ablation 相似，但这里更关注如何控制行为，而不只是诊断哪个组件重要。
+      这类方法直接控制一个内部组件在当前计算中贡献多少信息。研究者可以把某个神经元、attention head 或特征的激活乘以系数，
+      将其压低或置零，用参考激活替换它，或者通过运行时 gate 决定其输出是否进入后续计算。它与 Activation Vector Addition 的区别在于，
+      这里主要调节或替换组件已经产生的活动，而不是向整个状态加入一个新的方向。相同操作也可以用作消融实验；在本节点中，
+      关注点是利用它产生预期行为，例如压制错误知识流或增强目标信息流。效果仍可能依赖 prompt、解码位置和门控强度，
+      并可能因组件承担多种功能而产生副作用。
 - node_id: activation-vector-addition
   parent_id: activation-space-intervention
   title: Activation Vector Addition and Representation Engineering
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v23_steering_model_change
   introduction:
     en: >-
-      If two groups of examples differ along a meaningful activation direction, adding
-      that direction to a new example may push the model toward the corresponding
-      behavior. Steering vectors can come from contrastive means, probes, function
-      vectors, representation engineering, or learned SAE features. Their appeal is that
-      they offer immediate control without retraining, while their quality depends on
-      whether the direction captures the intended concept rather than correlated changes.
+      Activation Vector Addition first identifies a direction in activation space that
+      is associated with a target attribute or capability. At selected layers and token
+      positions, the method adds that vector to the current state with a chosen strength
+      and lets the model's later computation process the shifted representation. A
+      steering vector may come from the difference between mean activations for positive
+      and negative examples, a direction learned by a probe, a function vector, a
+      separately optimized direction, or an SAE decoder direction. Unlike Activation
+      Scaling, this operation introduces a direction rather than merely changing the
+      strength of an existing component; unlike Projection Erasure, it moves the state
+      rather than removing the component already present along a direction. A strong
+      behavioral effect shows that the direction can control the model, but does not
+      establish that the target concept is represented only along that direction, since
+      the vector may also contain correlated differences in the data.
     zh: >-
-      如果两组样本在某个有意义的激活方向上存在差异，那么把该方向加到新样本中，可能把模型推向相应行为。
-      Steering vector 可以来自对比均值、probe、function vector、representation engineering 或 SAE 特征。
-      它无需重新训练就能立即控制模型，但效果取决于方向是否真正捕捉了目标概念，而不是一组相关变化。
+      这类方法先在激活空间中确定一个与目标属性或能力相关的方向，再在指定层和 token 位置把该向量按一定强度加入当前状态，
+      让模型的后续计算处理这个经过移动的表示。Steering vector 可以来自正负样本的平均激活差、probe 学到的方向、function vector、
+      专门优化得到的方向，或 SAE decoder direction。调整系数可以控制干预方向和强度。它与 Activation Scaling 的区别是加入一个方向，
+      而不是只调节现有组件；与 Projection Erasure 的区别是主动移动状态，而不是移除状态原有的某个分量。明显的行为变化说明该方向可以控制模型，
+      但不能单独证明目标概念只沿这一方向表示，因为向量也可能携带数据中的相关差异。
 - node_id: projection-erasure
   parent_id: activation-space-intervention
   title: Projection Erasure and Direction Removal
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v23_steering_model_change
   introduction:
     en: >-
-      Direction removal asks what the model can still do after information aligned with
-      a chosen direction or subspace has been projected out. If the target behavior
-      disappears, the removed representation may have been functionally important.
-      Because neural representations are entangled, however, the projection may also
-      erase neighboring information, so selectivity must be checked with control behaviors.
+      Projection Erasure first measures how much of the current activation lies in a
+      target direction or subspace, then subtracts that component so that later layers
+      receive only the remaining orthogonal part. This differs from simply adding a
+      reverse steering vector. Projection Erasure determines how much to remove from each
+      input according to the target component already present, so different inputs may
+      receive changes of different sizes; a fixed steering vector instead adds or
+      subtracts the same vector at a predetermined strength for every input. If removing
+      the direction weakens the target behavior, the information carried along it has a
+      functional role. The direction may also contain other related information, however,
+      so unrelated behaviors and overall capability must be checked for damage. This node
+      covers projection from runtime activations; permanently removing a direction by
+      changing weights belongs under Parameter-Space Editing.
     zh: >-
-      Direction Removal 询问：把与某个方向或子空间对齐的信息投影掉之后，模型还能够做什么。
-      若目标行为消失，被移除的表征可能具有功能重要性。
-      但神经表征常彼此纠缠，投影也可能一并擦除邻近信息，因此需要用控制行为检验作用是否专一。
+      Projection Erasure 先测量当前激活在某个目标方向或子空间上包含多少分量，再从激活中减去这部分信息，使后续层只能接收到剩余的正交分量。
+      与简单加入一个反向 steering vector 不同，Projection Erasure 根据每个输入当前包含的目标分量决定减去多少，因此不同输入受到的改动可能不同；
+      固定的 steering vector 则只是按预先设定的强度，对所有输入加入或减去同一个向量。若移除该方向后目标行为减弱，说明沿该方向传递的信息对行为具有功能作用。
+      但目标方向可能同时包含其他相关信息，因此还需要检查无关行为和整体能力是否受到影响。本节点只描述推理时对激活进行投影移除；
+      如果通过修改权重永久消除某个方向，则属于 Parameter-Space Editing。
 - node_id: logit-steering
-  parent_id: steering-model-change
+  parent_id: inference-time-steering
   title: Logit-Space Steering
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v23_steering_model_change
   introduction:
     en: >-
-      Logit steering modifies the model at its output interface, directly increasing or
-      decreasing the scores of tokens or output classes. This gives transparent and
-      often reliable control over the final distribution, making it useful when the goal
-      is behavior rather than internal diagnosis. Because the intervention occurs after
-      most computation is complete, it offers limited evidence about how the model
-      originally arrived at those logits.
+      Logit-Space Steering modifies vocabulary logits before softmax and token sampling.
+      It may add a bias to desired tokens, suppress tokens that should not be generated,
+      or combine output scores from contrasting model runs. The modification immediately
+      changes the distribution of the next token, which then enters the context and can
+      redirect the rest of the autoregressive generation. Because it need not locate the
+      internal components that produced the behavior, logit steering often provides
+      direct and transparent control. For the same reason, it offers little evidence
+      about the model's internal mechanism and may mask rather than repair the computation
+      that originally produced the logits.
     zh: >-
-      Logit Steering 在模型输出接口直接修改 token 或类别的分数，提高或降低其生成概率。
-      这种方式对最终分布的控制直观而可靠，适合以行为控制为目标的场景。
-      但干预发生在大部分内部计算完成之后，因此很难说明模型原本是怎样得到这些 logits 的。
-- node_id: parameter-space-editing
+      Logit-Space Steering 在 softmax 和 token 采样之前直接修改词表中各 token 的 logits，例如为目标 token 加入偏置、
+      压低不希望生成的 token，或组合不同运行得到的输出分数。修改后的 logits 会立即改变下一 token 的概率，而这个 token 又会进入后续上下文，
+      因此局部调整可能逐步改变整段生成。它不需要找到模型内部产生该行为的组件，控制效果通常也比较直接；相应地，
+      它只能提供很有限的内部机制证据，并可能通过改变输出分布掩盖而不是修复原有计算过程。
+- node_id: persistent-model-modification
   parent_id: steering-model-change
+  title: Persistent Model Modification
+  status: active
+  proposal_id: tp_20261010_techniques_v23_steering_model_change
+  introduction:
+    en: >-
+      Persistent Model Modification changes or retrains stored parameters so that the new
+      behavior remains after the modified model is saved and used on later inputs. Unlike
+      inference-time steering, it does not require the control signal to be injected on
+      every run, but its effects are also harder to contain. The child methods include
+      arithmetic on existing weight differences, localized optimization for a specified
+      target, and training or installing a mechanism whose structure is chosen in
+      advance. Evaluation must examine the target effect, generalization to paraphrases
+      and new inputs, and changes to unrelated knowledge and capabilities.
+    zh: >-
+      Persistent Model Modification 直接改变或重新训练模型的参数，使新的行为在修改被保存后继续作用于后续输入。
+      与推理时 steering 不同，它不需要每次运行都重新注入控制信号，但影响范围也更难限制。下面的方法包括对已有权重差分进行代数运算、
+      针对特定目标优化局部参数，以及训练或安装预先设计的机制。评估需要同时检查目标效果、对改写和新输入的泛化，
+      以及对无关知识和能力的影响。
+- node_id: parameter-space-editing
+  parent_id: persistent-model-modification
   title: Parameter-Space Editing
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v23_steering_model_change
   introduction:
     en: >-
-      Parameter-space methods make a lasting change to the model by editing its weights.
-      Some treat the difference between whole models as a meaningful vector that can be
-      combined algebraically; others localize a fact or behavior and update only a small
-      parameter subset. Because the change persists across inputs, evaluation must cover
-      both the desired effect and unintended changes elsewhere in the model.
+      Parameter-Space Editing produces a persistent behavioral change by modifying the
+      model's stored weights. This branch contains two main routes. Task-vector methods
+      treat the difference between whole models as a reusable direction, whereas targeted
+      editing optimizes a localized update under a target objective and preservation
+      constraints. Both can alter behavior through a comparatively small change, but the
+      same weights are reused across many inputs and computational paths, so a localized
+      parameter update does not guarantee a localized behavioral effect.
     zh: >-
-      Parameter-Space Editing 直接修改模型权重，因此产生持久变化。
-      有些方法把两个完整模型之间的差分视为可做代数运算的有意义向量；另一些方法先定位事实或行为，再只更新少量参数。
-      由于改变会持续作用于各种输入，评估不仅要检查目标效果，也要检查模型其他能力是否受到意外影响。
+      Parameter-Space Editing 通过修改模型保存的权重产生持久变化。本分支包含两条主要路线：Task Vector 方法把两个模型之间的整体权重差当作可复用的方向；
+      Targeted Editing 则根据目标行为和保留要求，优化一个受限制的局部更新。两者都可能用较小改动改变模型行为，
+      但权重会在大量输入和计算路径中被重复使用，因此局部参数变化并不保证只产生局部行为影响。
 - node_id: task-vector-arithmetic
   parent_id: parameter-space-editing
   title: Parameter-Space Task Vectors and Task Arithmetic
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v23_steering_model_change
   introduction:
     en: >-
-      A task vector is obtained by subtracting a pretrained model's weights from the
-      weights of the same model after task-specific fine-tuning. If this difference
-      captures the learned capability, adding it to another model may transfer the task,
-      while negating it may suppress the task and adding several vectors may combine
-      capabilities. Task arithmetic therefore probes an unexpectedly simple hypothesis:
-      some learned behaviors may be approximately linear and composable in weight space.
+      A task vector is usually obtained by subtracting a pretrained model's weights from
+      the weights of the same model after task-specific fine-tuning. Researchers can add
+      a scaled version of this difference back to a base model to strengthen the
+      capability, negate it to suppress the capability, or combine several task vectors
+      to merge behaviors. These operations require compatible architectures and
+      parameter correspondence. A fine-tuning difference may contain changes caused by
+      the dataset, optimizer, and randomness in addition to the intended task, and
+      several vectors may interfere with one another. Successful arithmetic therefore
+      does not establish that the capability is implemented by one unique and independent
+      direction in weight space.
     zh: >-
-      Task Vector 由任务微调后的模型权重减去同一模型的预训练权重得到。
-      如果这个差分确实捕捉了学到的能力，把它加到另一模型上可能转移任务，取负可能压制任务，多个向量相加则可能组合能力。
-      Task Arithmetic 因而检验一个看似简单却很强的假设：某些学习行为在权重空间中近似线性且可组合。
+      Task Vector 通常由任务微调模型的权重减去同一预训练模型的权重得到。研究者可以把这一差分按系数加回基础模型以增强相应能力，
+      取反以压制它，或组合多个 task vectors 以合并不同能力。这种运算要求模型具有兼容的架构和参数对应关系。
+      微调产生的权重差不一定只包含目标任务，也可能混入训练数据、优化过程和随机性带来的变化；多个向量还可能相互干扰。
+      因此，行为可以通过向量运算转移，并不意味着能力由一个唯一、独立的权重方向实现。
 - node_id: targeted-parameter-editing
   parent_id: parameter-space-editing
   title: Targeted Parameter Editing and Local Fine-Tuning
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v23_steering_model_change
   introduction:
     en: >-
-      Targeted editing aims to change one fact, association, or behavior without retraining
-      the whole model. After locating a relevant layer or parameter set, it applies a
-      rank-one, low-rank, masked, or otherwise localized update. A convincing edit should
-      work on paraphrases and related contexts while leaving unrelated knowledge and
-      capabilities intact, which is much harder than changing one test prompt.
+      Targeted Parameter Editing first specifies a fact, association, or behavior to
+      change, then restricts the update to selected layers, modules, neurons, or a
+      low-rank parameter subspace. Methods such as ROME apply a rank-one update to
+      particular MLP weights, while local fine-tuning allows only a selected parameter
+      subset to receive gradients. The objective typically combines a target change with
+      a requirement to preserve other model outputs. A convincing edit should work on
+      paraphrases, related contexts, and downstream reasoning while leaving unrelated
+      knowledge and capabilities intact. The best place to perform an edit need not be
+      the only place where the original model stored the knowledge, so editing success
+      does not by itself validate a localization claim.
     zh: >-
-      Targeted Parameter Editing 希望在不重新训练整个模型的情况下，改变一个事实、关联或行为。
-      方法先定位相关层或参数集合，再施加 rank-one、低秩、掩码或其他局部更新。
-      有说服力的编辑不仅要改变一个测试 prompt，还应泛化到改写和相关语境，同时保留无关知识与能力。
+      Targeted Parameter Editing 先定义希望改变的事实、关联或行为，再把参数更新限制在选定的层、模块、神经元或低秩子空间中。
+      ROME 等方法对特定 MLP 权重施加 rank-one 更新；局部微调则只允许被选中的参数接收梯度。优化目标通常同时包含改变目标行为和保留原模型其他输出两部分。
+      有说服力的编辑不仅要在一个测试 prompt 上生效，还应适用于改写、相关语境和后续推理，并保持无关知识与能力。
+      适合执行编辑的位置不一定就是原模型唯一存储该知识的位置，因此编辑成功也不能单独证明定位结论。
 - node_id: mechanism-induction-construction
-  parent_id: steering-model-change
+  parent_id: persistent-model-modification
   title: Mechanism Induction and Circuit Construction
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v23_steering_model_change
   introduction:
     en: >-
-      Most interpretability methods analyze a mechanism after it has emerged. Mechanism
-      induction reverses the direction: training objectives, architectural constraints,
-      or targeted edits are used to make the network implement a chosen causal structure
-      or algorithm. Because the intended mechanism is known in advance, the result can be
-      tested against a clear high-level specification rather than inferred only from behavior.
+      This branch does not search an existing model for a naturally learned mechanism.
+      Instead, it makes a model implement a causal structure or algorithm proposed in
+      advance. Mechanism induction may add counterfactual training constraints—for
+      example, Interchange Intervention Training teaches a neural network to reproduce a
+      high-level causal model when aligned internal variables are exchanged. Circuit
+      construction may directly design or install weights and computational paths that
+      implement a known algorithm, such as a cryptographic computation inside a
+      Transformer. Because the intended mechanism is known beforehand, researchers can
+      test the model directly against behavioral and causal specifications. The result
+      shows that such a mechanism can be trained or constructed, not that an unconstrained
+      model would learn it naturally. Alternative bypass paths, robustness to distribution
+      shift, and stability under further training still require evaluation.
     zh: >-
-      大多数可解释性方法是在机制已经涌现之后再分析它；Mechanism Induction 则反过来进行。
-      研究者利用训练目标、架构约束或定向编辑，让网络实现预先选定的因果结构或算法。
-      因为预期机制事先已知，结果可以直接与清楚的高层规范比较，而不必只从行为中反推。
+      这一分支不是在已有模型中寻找自然形成的机制，而是让模型按照预先提出的因果结构或算法工作。Mechanism Induction 可以在训练中加入反事实约束，
+      例如使用 Interchange Intervention Training，使神经网络在交换内部变量时复现高层因果模型的行为；Circuit Construction 则可以直接设计或安装实现某个算法的权重和计算路径，
+      例如构造执行特定密码学过程的 Transformer circuit。由于目标机制事先已知，研究者可以直接检查模型是否满足相应的行为和因果规范。
+      不过，这类结果说明的是一个机制可以被训练或构造出来，不代表未经约束训练的模型会自然形成相同机制；还需检查是否存在绕过目标 circuit 的其他路径，
+      以及机制在分布变化和进一步训练后是否保持稳定。
 - node_id: formal-temporal-analysis
   parent_id: technique
   title: Formal and Temporal Mechanism Analysis
