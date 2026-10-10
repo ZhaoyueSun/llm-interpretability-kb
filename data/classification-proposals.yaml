@@ -1920,3 +1920,32 @@ proposals:
       做法推广为通用的 model-internal readout 框架：研究者先设计一段用于提问的提示，把待解释的 hidden state
       插入提示对应的模型计算中，再让模型继续生成答案。通过改变提示和插入位置，可以询问这个状态表示的是哪个
       token、实体，或者包含什么属性和关系。
+- proposal_id: tp_20261010_techniques_v8_probing_wording
+  kind: taxonomy_content
+  status: approved
+  created_at: '2026-10-10'
+  approved_at: '2026-10-10'
+  approval_basis: >-
+    The user identified the metaphor of treating a model representation "as data" as
+    confusing and explicitly instructed that it be removed.
+  title: Remove the data metaphor from the probing introduction
+  taxonomy_id: techniques
+  from_taxonomy_version: 7
+  resulting_taxonomy_version: 8
+  taxonomy_file: data/taxonomies/techniques.yaml
+  affected_node_ids: [probing]
+  revision_reason: >-
+    State the probing question directly: whether an auxiliary predictor can recover a
+    target property from a model representation. The tree structure and paper assignments
+    are unchanged.
+  approved_introduction:
+    en: >-
+      Probing asks whether a separate, usually simple predictor can recover a property
+      of interest from a model representation. A successful
+      probe tells us that the information is accessible in the representation, which is
+      often an important first finding. It does not yet tell us that the original model
+      reads or uses that information when producing its behavior.
+    zh: >-
+      Probing 询问一个额外的、通常较简单的预测器能否从模型表征中恢复目标属性。
+      探针成功说明这种信息在表征中是可访问的，这往往是重要的第一步发现。
+      但它还不能说明原模型在产生行为时真的读取或使用了这部分信息。

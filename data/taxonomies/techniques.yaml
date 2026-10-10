@@ -1,6 +1,6 @@
 schema_version: 1
 taxonomy_id: techniques
-version: 7
+version: 8
 status: active
 title: Techniques
 nodes:
@@ -143,16 +143,16 @@ nodes:
   parent_id: readout-measurement
   title: Probing
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v8_probing_wording
   introduction:
     en: >-
-      Probing treats a model representation as data and asks whether a separate,
-      usually simple predictor can recover a property of interest from it. A successful
+      Probing asks whether a separate, usually simple predictor can recover a property
+      of interest from a model representation. A successful
       probe tells us that the information is accessible in the representation, which is
       often an important first finding. It does not yet tell us that the original model
       reads or uses that information when producing its behavior.
     zh: >-
-      Probing 把模型表征当作一份数据，询问一个额外的、通常较简单的预测器能否从中恢复目标属性。
+      Probing 询问一个额外的、通常较简单的预测器能否从模型表征中恢复目标属性。
       探针成功说明这种信息在表征中是可访问的，这往往是重要的第一步发现。
       但它还不能说明原模型在产生行为时真的读取或使用了这部分信息。
 - node_id: supervised-probing
