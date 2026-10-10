@@ -1,6 +1,6 @@
 schema_version: 1
 taxonomy_id: techniques
-version: 12
+version: 13
 status: active
 title: Techniques
 nodes:
@@ -313,19 +313,42 @@ nodes:
   parent_id: attribution-sensitivity
   title: Layer-Wise and Concept Relevance Propagation
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v13_relevance_propagation_workflow
   introduction:
     en: >-
-      Relevance propagation begins with a model output and sends its “relevance” backward
-      through the layers, redistributing the score according to each operation's local
-      contribution. Ordinary layer-wise relevance propagation highlights where the
-      supporting evidence lies. Concept Relevance Propagation additionally conditions
-      the backward flow on interpretable concepts, helping connect the location of
-      evidence with the kind of evidence the model appears to use.
+      Relevance Propagation explains how much different inputs or internal concepts
+      contribute to the model's current prediction. The researcher first selects an
+      output to explain, such as a class score or the logit of a target token, and treats
+      its value as the total relevance. Using a chosen propagation rule, the method then
+      combines each layer's activations, weights, and connections to redistribute an
+      upper-layer unit's relevance among the lower-layer units that contributed to it,
+      continuing backward until it reaches the input. What travels backward here is a
+      relevance score, not a gradient used directly to measure sensitivity. The result
+      assigns each pixel, token, or intermediate channel a score indicating how it
+      supports or opposes the current prediction. Layer-Wise Relevance Propagation (LRP)
+      typically combines contributions from different concepts in a single attribution
+      map and mainly shows where the evidence lies. Concept Relevance Propagation (CRP)
+      instead retains only the relevance that flows through a selected concept channel
+      and uses representative examples to interpret what that channel means. For a
+      "dog" prediction, for instance, CRP can separately show how much concepts such as
+      "fur" and "eye" contribute and where they appear in the image, thereby answering
+      both what the evidence is and where it occurs. The result still depends on the
+      propagation rule, stabilization choices, and the selected concept channels. It is
+      therefore an attribution of the current prediction rather than causal proof;
+      establishing that the model must use a concept requires interventions that remove,
+      replace, or insert it.
     zh: >-
-      Relevance Propagation 从模型输出开始，把“相关性”分数逐层向后传递，并依据每个局部运算对分数进行重新分配。
-      普通的 Layer-Wise Relevance Propagation 主要显示支持预测的证据在哪里；Concept Relevance Propagation
-      进一步让反向传播以可理解概念为条件，从而同时回答模型使用了哪一类证据。
+      Relevance Propagation 解释的是哪些输入或内部概念对当前预测贡献了多少。计算时，
+      研究者先选定需要解释的输出，例如某个类别分数或目标 token 的 logit，并把这个数值作为总的
+      relevance。算法随后结合每一层的激活、权重和连接关系，按照预先选定的传播规则，将上层单元的
+      relevance 分配给对它有贡献的下层单元，再逐层传回输入。这里向后传递的是 relevance 分数，
+      而不是直接使用梯度衡量敏感性。最终，每个 pixel、token 或中间通道都会得到支持或反对当前预测的归因分数。
+      Layer-Wise Relevance Propagation（LRP）通常把不同概念的贡献汇总在一张 attribution map 中，主要回答
+      证据出现在哪里。Concept Relevance Propagation（CRP）则在向后传播时只保留经过某个概念通道的
+      relevance，并结合能够代表该通道的样本解释其含义。例如，对于 “dog” 预测，CRP 可以分别显示 “fur” 和
+      “eye” 概念贡献了多少，以及这些概念出现在图像的什么位置，从而同时回答证据“是什么”和“在哪里”。
+      这些结果会受到传播规则、稳定化方式和概念通道选择的影响，因此仍然是对当前预测的归因，而不是因果证明；
+      若要确认模型是否必须使用某个概念，还需要通过移除、替换或插入该概念进行干预验证。
 - node_id: shapley-attribution
   parent_id: attribution-sensitivity
   title: Shapley-Value Attribution
