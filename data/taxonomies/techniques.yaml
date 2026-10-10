@@ -1,6 +1,6 @@
 schema_version: 1
 taxonomy_id: techniques
-version: 8
+version: 9
 status: active
 title: Techniques
 nodes:
@@ -143,18 +143,20 @@ nodes:
   parent_id: readout-measurement
   title: Probing
   status: active
-  proposal_id: tp_20261010_techniques_v8_probing_wording
+  proposal_id: tp_20261010_techniques_v9_probing_examples
   introduction:
     en: >-
-      Probing asks whether a separate, usually simple predictor can recover a property
-      of interest from a model representation. A successful
-      probe tells us that the information is accessible in the representation, which is
-      often an important first finding. It does not yet tell us that the original model
-      reads or uses that information when producing its behavior.
+      Probing asks whether a separate, usually simple predictor can recover a target
+      property from a model representation—for example, a token's part of speech,
+      grammatical number, or another linguistic attribute; the sentiment expressed by
+      a text; or an entity category. A successful probe tells us that the information is
+      accessible in the representation, which is often an important first finding. It
+      does not yet tell us that the original model reads or uses that information when
+      producing its behavior.
     zh: >-
-      Probing 询问一个额外的、通常较简单的预测器能否从模型表征中恢复目标属性。
-      探针成功说明这种信息在表征中是可访问的，这往往是重要的第一步发现。
-      但它还不能说明原模型在产生行为时真的读取或使用了这部分信息。
+      Probing 询问一个额外的、通常较简单的预测器能否从模型表征中恢复某种目标属性（例如某个 token 的词性、
+      单复数等语言学属性，文本表达的情感或实体类别）。探针成功说明这种信息在表征中是可访问的，这往往是重要的
+      第一步发现。但它还不能说明原模型在产生行为时真的读取或使用了这部分信息。
 - node_id: supervised-probing
   parent_id: probing
   title: Supervised and Sparse Probing

@@ -1949,3 +1949,34 @@ proposals:
       Probing 询问一个额外的、通常较简单的预测器能否从模型表征中恢复目标属性。
       探针成功说明这种信息在表征中是可访问的，这往往是重要的第一步发现。
       但它还不能说明原模型在产生行为时真的读取或使用了这部分信息。
+- proposal_id: tp_20261010_techniques_v9_probing_examples
+  kind: taxonomy_content
+  status: approved
+  created_at: '2026-10-10'
+  approved_at: '2026-10-10'
+  approval_basis: >-
+    The user approved adding concrete examples of target properties and explicitly
+    instructed that the revised probing introduction be written to the taxonomy.
+  title: Add target-property examples to the probing introduction
+  taxonomy_id: techniques
+  from_taxonomy_version: 8
+  resulting_taxonomy_version: 9
+  taxonomy_file: data/taxonomies/techniques.yaml
+  affected_node_ids: [probing]
+  revision_reason: >-
+    Illustrate target properties with linguistic attributes, textual sentiment, and entity
+    categories so that readers unfamiliar with probing can understand what a probe may
+    attempt to recover. The tree structure and paper assignments are unchanged.
+  approved_introduction:
+    en: >-
+      Probing asks whether a separate, usually simple predictor can recover a target
+      property from a model representation—for example, a token's part of speech,
+      grammatical number, or another linguistic attribute; the sentiment expressed by
+      a text; or an entity category. A successful probe tells us that the information is
+      accessible in the representation, which is often an important first finding. It
+      does not yet tell us that the original model reads or uses that information when
+      producing its behavior.
+    zh: >-
+      Probing 询问一个额外的、通常较简单的预测器能否从模型表征中恢复某种目标属性（例如某个 token 的词性、
+      单复数等语言学属性，文本表达的情感或实体类别）。探针成功说明这种信息在表征中是可访问的，这往往是重要的
+      第一步发现。但它还不能说明原模型在产生行为时真的读取或使用了这部分信息。
