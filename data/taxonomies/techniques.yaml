@@ -1,6 +1,6 @@
 schema_version: 1
 taxonomy_id: techniques
-version: 5
+version: 6
 status: active
 title: Techniques
 nodes:
@@ -42,18 +42,20 @@ nodes:
   parent_id: readout-measurement
   title: Activation Statistics
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v6_activation_statistics_aggregation
   introduction:
     en: >-
       Activation statistics ask a simple exploratory question: which internal units
       respond, how often do they respond, and how strongly or selectively? Researchers
-      summarize activations across tokens or datasets using quantities such as
-      frequency, sparsity, variance, entropy, and norm. The resulting patterns are
-      useful for finding candidates worth studying, although a conspicuous activation
-      is not necessarily one the model relies on.
+      collect an internal unit's activations as it processes different tokens and, over
+      many examples, summarize its activation frequency, sparsity, magnitude distribution,
+      variance, entropy, and norm. The resulting patterns are useful for finding candidates
+      worth studying, although a conspicuous activation is not necessarily one the model
+      relies on.
     zh: >-
       Activation Statistics 回答的是一个直观的探索性问题：哪些内部单元会响应、响应得多频繁、强度和选择性如何。
-      研究者会在 token 或数据集上汇总激活频率、稀疏性、方差、熵和范数等指标。
+      研究者会收集某个内部单元在处理不同 token 时产生的激活，并在大量样本上统计其激活频率、稀疏性、
+      强度分布、方差、熵和范数等指标。
       这些规律可以帮助筛选值得深入研究的候选对象，但“激活很显眼”并不等于“模型必须依赖它”。
 - node_id: attention-pattern-analysis
   parent_id: readout-measurement

@@ -1834,3 +1834,36 @@ proposals:
       因此，QK 和 attention pattern 回答“从哪里读、读多少”，OV 回答“读到的信息怎样写回模型”。
       只看 attention 权重热力图只能看到路由，不能看到实际写入的内容，也不能单独证明这个 head 对最终预测
       具有因果作用。
+- proposal_id: tp_20261010_techniques_v6_activation_statistics_aggregation
+  kind: taxonomy_content
+  status: approved
+  created_at: '2026-10-10'
+  approved_at: '2026-10-10'
+  approval_basis: >-
+    The user approved replacing the ambiguous phrase "across tokens or datasets" with a
+    formulation that distinguishes collecting token-level activations from aggregating
+    statistics over many samples, and explicitly requested both Chinese and English updates.
+  title: Clarify the aggregation scope of activation statistics
+  taxonomy_id: techniques
+  from_taxonomy_version: 5
+  resulting_taxonomy_version: 6
+  taxonomy_file: data/taxonomies/techniques.yaml
+  affected_node_ids: [activation-statistics]
+  revision_reason: >-
+    Explain that activations are observed while an internal unit processes different tokens,
+    whereas summary statistics are estimated across many examples. The tree structure and
+    paper assignments are unchanged.
+  approved_introduction:
+    en: >-
+      Activation statistics ask a simple exploratory question: which internal units
+      respond, how often do they respond, and how strongly or selectively? Researchers
+      collect an internal unit's activations as it processes different tokens and, over
+      many examples, summarize its activation frequency, sparsity, magnitude distribution,
+      variance, entropy, and norm. The resulting patterns are useful for finding candidates
+      worth studying, although a conspicuous activation is not necessarily one the model
+      relies on.
+    zh: >-
+      Activation Statistics 回答的是一个直观的探索性问题：哪些内部单元会响应、响应得多频繁、强度和选择性如何。
+      研究者会收集某个内部单元在处理不同 token 时产生的激活，并在大量样本上统计其激活频率、稀疏性、
+      强度分布、方差、熵和范数等指标。
+      这些规律可以帮助筛选值得深入研究的候选对象，但“激活很显眼”并不等于“模型必须依赖它”。
