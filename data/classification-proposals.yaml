@@ -2794,3 +2794,61 @@ proposals:
     readers to another taxonomy; and rewrite the component, parameter, and composed-
     mechanism introductions as self-contained object definitions. The tree structure,
     node titles, and paper assignments are unchanged.
+- proposal_id: cp_20261010_techniques_concrete_children_2papers
+  kind: classification
+  status: approved
+  created_at: '2026-10-10'
+  approved_at: '2026-10-10'
+  approval_basis: >-
+    The user required papers assigned to organizing parents to be placed in concrete
+    child techniques where the full-text evidence supports that decision, reviewed the
+    proposed reclassification of both papers, and explicitly approved updating the
+    proposal and formal classification events together.
+  title: Move two Techniques relations from organizing parents to concrete methods
+  taxonomy_id: techniques
+  taxonomy_version: 26
+  affected_paper_ids:
+  - p_2023_schwettmann_multimodal_neurons_in
+  - p_2025_tang_a_unified_theory
+  affected_node_ids:
+  - concept-unit-alignment
+  - network-dissection
+  - gradient-sensitivity
+  - vocabulary-projection
+  - sparse-autoencoders
+  - vanilla-topk-sae
+  - gated-jumprelu-sae
+  classification_changes:
+  - action: replace
+    paper_id: p_2023_schwettmann_multimodal_neurons_in
+    relation_role: primary
+    from_node_id: concept-unit-alignment
+    to_node_id: network-dissection
+  - action: assign
+    paper_id: p_2023_schwettmann_multimodal_neurons_in
+    relation_role: secondary
+    node_id: gradient-sensitivity
+  - action: assign
+    paper_id: p_2023_schwettmann_multimodal_neurons_in
+    relation_role: secondary
+    node_id: vocabulary-projection
+  - action: revoke
+    paper_id: p_2025_tang_a_unified_theory
+    relation_role: secondary
+    node_id: sparse-autoencoders
+  - action: assign
+    paper_id: p_2025_tang_a_unified_theory
+    relation_role: secondary
+    node_id: vanilla-topk-sae
+  - action: assign
+    paper_id: p_2025_tang_a_unified_theory
+    relation_role: secondary
+    node_id: gated-jumprelu-sae
+  revision_reason: >-
+    Schwettmann et al. adapt Network Dissection's spatial activation-mask and IoU
+    workflow to multimodal Transformer neurons, rank units with activation-times-gradient,
+    and decode their output directions through the unembedding. Tang et al. explicitly
+    formalize and evaluate ReLU, Top-K, BatchTopK, and JumpReLU SAE variants, so its
+    generic Sparse Autoencoders relation is replaced by the two supported concrete SAE
+    child families. Existing ablation, optimization-landscape, transcoder, and crosscoder
+    relations remain unchanged.
