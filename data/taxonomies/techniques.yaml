@@ -1,6 +1,6 @@
 schema_version: 1
 taxonomy_id: techniques
-version: 9
+version: 10
 status: active
 title: Techniques
 nodes:
@@ -212,19 +212,30 @@ nodes:
   parent_id: readout-measurement
   title: Attribution and Sensitivity
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v10_attribution_sensitivity_calculation
   introduction:
     en: >-
-      Attribution methods try to divide a prediction among the inputs or internal
-      elements that may have contributed to it. Sensitivity methods ask the closely
-      related question of how much the prediction would change under a small local
-      perturbation. These scores are useful for narrowing a large search space, but
-      their meaning depends on the chosen baseline, approximation, and definition of a
-      “missing” feature; high attribution should therefore not be read as causal proof.
+      Attribution tries to assign credit for a prediction to the inputs or internal
+      elements that may have contributed to it. Researchers usually begin by selecting
+      an output to explain, such as the target token's logit, and then calculate how much
+      each token, neuron, attention head, or feature contributes to that output. The
+      specific methods all estimate an element's contribution to the current output
+      (for example, Gradient × Input, Integrated Gradients, Relevance Propagation, or the
+      change in output after removing the element). Sensitivity does not estimate how
+      much a factor has already contributed; instead, it measures how rapidly the
+      prediction would change under a small additional change to that factor, usually
+      using an output gradient or the output difference caused by a small perturbation.
+      These scores are useful for narrowing a large search space, but their meaning
+      depends on the chosen baseline, approximation, and definition of a “missing”
+      feature; high attribution should therefore not be read as causal proof.
     zh: >-
-      Attribution 试图把一次预测的“功劳”分配给可能参与其中的输入或内部元素；Sensitivity 则询问，
-      对某个局部因素做小幅改变时，预测会变化多少。这些分数很适合缩小庞大的搜索空间，
-      但其含义依赖基线、近似方式以及“特征缺失”的定义，因此高归因分数不应直接读成因果证明。
+      Attribution 试图把一次预测的“功劳”分配给可能参与其中的输入或内部元素。研究者通常先选定要解释的
+      输出（如目标 token 的 logit），再为不同 token、神经元、attention head 或特征计算它们对该输出的
+      归因分数。具体方法都在估计各元素对当前输出的贡献（例如 Gradient × Input、Integrated Gradients、
+      Relevance Propagation，或移除元素前后的输出差异）。Sensitivity 不估计某个因素“已经贡献了多少”，
+      而是衡量继续对它做小幅改变时，预测会变化多快，通常通过输出梯度或小扰动造成的输出差值来计算。
+      这些分数很适合缩小庞大的搜索空间，但其含义依赖基线、近似方式以及“特征缺失”的定义，因此高归因分数
+      不应直接读成因果证明。
 - node_id: gradient-sensitivity
   parent_id: attribution-sensitivity
   title: Gradient Sensitivity
