@@ -2395,3 +2395,37 @@ proposals:
       待解释的视觉模型则给出某个单元在同一组图像上的激活变化。CLIP-Dissect 比较这两种跨图像的变化模式，并把最匹配的候选文本作为该单元的描述，
       而不是简单地给最高激活图像生成 caption。它可以灵活更换 probe images 和候选文本，不受固定像素标注数据集限制，但仍只能从提供的候选文本中选择标签，
       结果也会受到 CLIP 的语义能力、probe images、激活汇总方式和匹配函数影响。所得标签描述的是相关的响应模式，不一定覆盖单元的全部语义，也不能单独证明其因果功能。
+- proposal_id: tp_20261010_techniques_v18_feature_dictionary_sae
+  kind: taxonomy_content
+  status: approved
+  created_at: '2026-10-10'
+  approved_at: '2026-10-10'
+  approval_basis: >-
+    The user reviewed the Feature Dictionary Learning branch node by node, requested that
+    parent nodes explain shared operations before child-specific details, approved the
+    clarification of Gated SAE's gating and magnitude calculations, requested a Chinese
+    translation for shrinkage, retained Specialized and Feature-Aligned SAEs in one node
+    with their commonality stated first, and then approved writing all reviewed bilingual
+    introductions together.
+  title: Clarify feature dictionary learning and sparse-autoencoder variants
+  taxonomy_id: techniques
+  from_taxonomy_version: 17
+  resulting_taxonomy_version: 18
+  taxonomy_file: data/taxonomies/techniques.yaml
+  affected_node_ids:
+  - feature-dictionary-learning
+  - sparse-autoencoders
+  - vanilla-topk-sae
+  - gated-jumprelu-sae
+  - specialized-feature-aligned-sae
+  - end-to-end-functional-dictionary
+  - subspace-aware-dictionary
+  - transcoders
+  - crosscoders
+  revision_reason: >-
+    Explain the shared encoder–latent–decoder operation at the parent level; distinguish
+    state reconstruction, transformation approximation, and cross-space alignment in the
+    child methods; and give each SAE variant an accessible account of its training
+    mechanism, intended benefit, and principal limitations. The taxonomy structure and
+    paper assignments are unchanged. The approved bilingual text is recorded on the
+    affected nodes in techniques taxonomy version 18.

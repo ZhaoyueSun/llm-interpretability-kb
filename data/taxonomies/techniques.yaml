@@ -1,6 +1,6 @@
 schema_version: 1
 taxonomy_id: techniques
-version: 17
+version: 18
 status: active
 title: Techniques
 nodes:
@@ -602,151 +602,234 @@ nodes:
   parent_id: feature-discovery-decomposition
   title: Feature Dictionary Learning
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v18_feature_dictionary_sae
   introduction:
     en: >-
-      Feature dictionary learning assumes that a dense activation can be expressed using
-      a relatively small number of latent features selected from a much larger dictionary.
-      Learning this dictionary gives researchers a new coordinate system in which model
-      activity may be easier to name, compare, and intervene on. SAEs reconstruct a state,
-      transcoders reconstruct a transformation, and crosscoders learn a shared vocabulary
-      across states or models—related ideas, but not the same method.
+      Feature Dictionary Learning does not attach labels directly to the model's native
+      neurons. Instead, it learns a new set of feature elements whose sparse weighted
+      combinations approximate the model's dense activations or a target transformation.
+      For each input, an encoder converts model activity into latent feature strengths,
+      of which usually only a small number are active; a decoder then combines the
+      corresponding feature directions to reconstruct the target. Each latent coordinate
+      and its decoder direction therefore become a candidate entry in an internal
+      vocabulary. These dictionary elements need not be orthogonal, unique, or identical
+      to real concepts. A single concept may be split across several features, several
+      concepts may be mixed in one feature, and an accurate reconstruction may still fail
+      to preserve model behavior. A learned dictionary must therefore be assessed through
+      sparsity, reconstruction quality, semantic consistency, and functional faithfulness.
     zh: >-
-      Feature Dictionary Learning 假设，一个稠密激活可以由大型字典中少数被选中的潜在特征来表达。
-      学到这本字典后，研究者就获得了新的坐标系，模型活动可能因此更容易命名、比较和干预。
-      SAE 重构一个状态，Transcoder 重构一种变换，Crosscoder 则在不同状态或模型之间学习共享词汇；它们思路相关，但不是同一种方法。
+      Feature Dictionary Learning 不直接给模型的原生神经元贴标签，而是学习一组新的特征元素，
+      用它们的稀疏加权组合来近似模型原有的稠密激活或目标变换。对于每个输入，编码器把模型活动转换成一组潜在特征强度，
+      其中通常只有少数特征处于激活状态；解码器再把这些特征对应的方向组合起来，重构目标。每个潜在坐标及其 decoder direction
+      因而成为一个候选的内部词汇条目。这些字典元素不一定正交、唯一或等同于真实概念：一个概念可能被拆成多个特征，
+      多个概念也可能混在同一特征中；即使重构准确，也可能没有保留模型行为。因此，还需要同时检查稀疏性、重构质量、语义一致性和功能忠实度。
 - node_id: sparse-autoencoders
   parent_id: feature-dictionary-learning
   title: Sparse Autoencoders
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v18_feature_dictionary_sae
   introduction:
     en: >-
-      Sparse autoencoders are motivated by superposition: a model may pack many concepts
-      into the same activation dimensions, making neurons difficult to interpret one by
-      one. An SAE expands the activation into many latent coordinates, encourages only a
-      few to be active for each example, and then reconstructs the original activation.
-      Researchers inspect these sparse latents as candidate features, while checking how
-      much information and model behavior the reconstruction preserves.
+      Sparse Autoencoders learn a feature dictionary for the activations at a particular
+      location in a model. Their motivation is superposition: the model may encode more
+      features than it has activation dimensions, so a native neuron can respond to
+      several unrelated patterns. An SAE's encoder maps a dense activation vector into a
+      usually wider set of latent feature strengths and encourages only a small number to
+      be active for each input. Its decoder combines the corresponding directions to
+      reconstruct the original activation. Researchers interpret a latent by examining
+      the inputs that activate it, generating candidate descriptions, and testing what
+      happens when its value is changed. The sparse coordinates can be easier to study
+      than native neurons, but they are learned approximations rather than guaranteed
+      atomic concepts. Evaluation must account for dead latents, feature splitting or
+      mixing, reconstruction error, and whether replacing the original activation with
+      the reconstruction preserves downstream model behavior.
     zh: >-
-      Sparse Autoencoder 的出发点是 superposition：模型可能把许多概念压进同一组激活维度，因此逐个神经元很难解释。
-      SAE 把激活展开到数量更多的潜在坐标中，让每个样本只激活少数坐标，再重构原始激活。
-      研究者把这些稀疏潜变量当作候选特征，同时检查重构保留了多少信息和模型行为。
+      Sparse Autoencoder 针对模型某个位置的激活学习特征字典。它的出发点是 superposition：模型需要表示的特征可能多于激活空间的维数，
+      因此一个原生神经元可能同时响应多种无关模式。SAE 的编码器把稠密激活向量转换到通常更宽的潜在特征空间，并让每个输入只激活少数特征；
+      解码器再组合对应的特征方向，重构原始激活。研究者可以通过查看某个潜在特征被哪些输入激活、为它生成候选描述，以及改变其数值后观察模型变化来解释它。
+      这些稀疏坐标可能比原生神经元更容易研究，但它们仍是学习得到的近似，不能保证对应不可再分的真实概念。评估时还需要考虑 dead latents、特征拆分或混合、
+      重构误差，以及用重构结果替换原激活后是否保留了模型的后续行为。
 - node_id: vanilla-topk-sae
   parent_id: sparse-autoencoders
   title: Vanilla and Top-K Sparse Autoencoders
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v18_feature_dictionary_sae
   introduction:
     en: >-
-      The basic SAE uses a wide hidden layer together with an \(L_1\)-style penalty so
-      that most latent features remain inactive. Top-\(k\) variants instead keep only
-      the \(k\) strongest latents for each example, making the desired sparsity explicit.
-      These simple designs are the main reference point for evaluating whether a more
-      elaborate dictionary method improves reconstruction, sparsity, or interpretability.
+      Vanilla and Top-K SAEs differ mainly in how they make latent activations sparse. A
+      Vanilla SAE usually uses a ReLU encoder and adds an \(L_1\) penalty on latent
+      activations to the reconstruction loss. The penalty encourages most latents to be
+      zero or close to zero, but it also suppresses the magnitudes of features that are
+      active, creating a systematic bias in the reconstruction. A Top-K SAE does not use
+      \(L_1\) to induce sparsity indirectly. For each input, it permits only the \(k\)
+      strongest encoder outputs to remain nonzero and reconstructs the original
+      activation from their decoder directions. This gives direct control over the number
+      of features used in each reconstruction, although one fixed \(k\) may be too large
+      for simple inputs and too small for complex ones, and latents that are rarely
+      selected can still become dead. The two designs should be compared at similar
+      sparsity using reconstruction quality, preservation of model performance, and
+      feature interpretability rather than assuming that either sparsity mechanism is
+      automatically superior.
     zh: >-
-      基础 SAE 使用较宽的隐藏层，并通过 \(L_1\) 类惩罚让大多数潜在特征保持关闭。
-      Top-\(k\) 变体则直接为每个样本只保留最强的 \(k\) 个潜变量，使目标稀疏度更加明确。
-      这些简单设计是重要基线，用来判断更复杂的字典方法是否真的改善了重构、稀疏性或可解释性。
+      Vanilla SAE 和 Top-K SAE 的主要区别在于如何让 latent activations 保持稀疏。Vanilla SAE 通常使用 ReLU encoder，
+      并在 reconstruction loss 之外对 latent activations 加入 \(L_1\) penalty。这个 penalty 鼓励大多数潜变量保持为零或接近零，
+      但也会压低已经激活的特征强度，使重构结果出现系统性的幅值偏差。Top-K SAE 不再通过 \(L_1\) 间接推动稀疏，而是在每个输入上只允许 encoder 输出中最强的
+      \(k\) 个潜变量保留非零值，再用它们对应的 decoder directions 重构原始激活。这样可以直接控制每次重构使用多少个特征，
+      但固定的 \(k\) 对简单输入可能过大、对复杂输入又可能过小，也仍需要处理长期不被选中的 dead latents。比较两类方法时，需要在相近稀疏程度下同时考察重构质量、
+      模型性能保留程度和特征可解释性，而不能假定某种稀疏机制必然更好。
 - node_id: gated-jumprelu-sae
   parent_id: sparse-autoencoders
   title: Gated and JumpReLU Sparse Autoencoders
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v18_feature_dictionary_sae
   introduction:
     en: >-
-      With an \(L_1\) penalty, a feature may be pushed toward zero even after the model
-      has decided that it is present, producing a systematic shrinkage in its magnitude.
-      Gated SAEs separate the decision to activate a feature from the amount to activate
-      it, while JumpReLU SAEs learn a threshold below which the feature is exactly off.
-      Both designs aim to obtain clean sparsity without paying as much reconstruction error.
+      A conventional \(L_1\) penalty affects both whether a feature activates and how
+      large its activation is, so minimizing the combined objective can systematically
+      underestimate feature magnitudes. A Gated SAE computes these two questions
+      separately: a gating mechanism first decides which latent features should be
+      active, and a magnitude calculation then estimates the strengths of those active
+      features. The sparsity constraint acts mainly on feature selection and therefore
+      does not directly suppress the magnitudes used for reconstruction. A JumpReLU SAE
+      instead learns a positive threshold for each latent feature. Responses below the
+      threshold become zero, while those above it largely retain their original sizes;
+      approximate-gradient training provides more direct control over the number of
+      nonzero features. Both methods seek to reduce the feature-magnitude shrinkage
+      caused by \(L_1\) and improve the trade-off between sparsity and reconstruction,
+      but better reconstruction does not automatically make the learned features more
+      semantically consistent or causally important.
     zh: >-
-      在 \(L_1\) 惩罚下，即使模型已经判断某个特征存在，它的幅值仍可能被系统性地压向零，这就是 shrinkage bias。
-      Gated SAE 把“是否激活”与“激活多少”分开；JumpReLU SAE 则学习一个阈值，低于阈值时特征完全关闭。
-      两者都希望在获得清晰稀疏性的同时，减少重构质量的损失。
+      普通的 \(L_1\) penalty 同时影响一个特征是否激活以及激活后的强度，因此可能为了降低稀疏惩罚而系统性地低估特征幅值。
+      Gated SAE 将这两个问题分开计算：首先通过 gating mechanism 判断哪些潜在特征应当激活，再通过 magnitude calculation 估计这些已激活特征的强度。
+      稀疏约束主要作用于前一步的特征选择，因此不会直接压低用于重构的特征幅值。JumpReLU SAE 则为每个潜在特征学习一个正阈值；低于阈值的响应直接归零，
+      超过阈值的响应基本保留原有大小，并通过近似梯度训练更直接地控制非零特征的数量。两者都试图缓解 \(L_1\) 引起的特征幅值收缩，并改善稀疏性与重构质量之间的权衡，
+      但更好的重构表现并不自动意味着学到的特征更具语义一致性或因果作用。
 - node_id: specialized-feature-aligned-sae
   parent_id: sparse-autoencoders
   title: Specialized and Feature-Aligned Sparse Autoencoders
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v18_feature_dictionary_sae
   introduction:
     en: >-
-      A general-purpose SAE tends to spend most of its capacity on patterns common in
-      the training distribution, which can leave rare but important concepts poorly
-      represented. Specialized or feature-aligned SAEs change the sampling, loss, or
-      alignment objective so that selected domains and concepts receive more capacity.
-      The benefit is better coverage of the target phenomenon; the trade-off is that the
-      resulting dictionary may be less neutral or less useful elsewhere.
+      Some methods improve the coverage or training stability of the features learned by
+      a standard SAE by changing its training process. A Specialized SAE targets domains
+      or long-tail concepts that occur infrequently in general training data. Researchers
+      use a small seed set to retrieve relevant examples, fine-tune a general-purpose SAE
+      on the selected domain data, and may give greater weight to examples that are
+      difficult to reconstruct so that limited dictionary capacity is devoted to the
+      target features. A Feature-Aligned SAE instead asks whether separate training runs
+      recover stable, consistent features. Mutual Feature Regularization, for example,
+      trains several SAEs on the same model activations, encourages corresponding decoder
+      directions to align across the SAEs, and reinitializes features that perform poorly
+      or remain inactive. Specialization can improve coverage of a target domain but may
+      reduce general coverage and depends on the seed data and retrieval quality.
+      Cross-run alignment can improve consistency, but similar directions learned by
+      several SAEs are not proof that they represent a real, single human concept.
     zh: >-
-      通用 SAE 往往把大部分容量花在训练分布中常见的模式上，稀有但重要的概念可能因此表示不足。
-      Specialized 或 Feature-Aligned SAE 会调整采样、损失或对齐目标，让指定领域和概念获得更多容量。
-      好处是目标现象覆盖更好，代价是字典可能不再中立，或在其他领域不够通用。
+      一些方法通过调整训练过程，改善标准 SAE 对特征的覆盖能力或训练稳定性。其中，Specialized SAE 面向通用训练数据中较少出现的目标领域或长尾概念：
+      研究者先用少量种子样本检索相关数据，再用筛选出的领域数据微调通用 SAE；还可以提高难重构样本的训练权重，使有限的字典容量更多地用于目标特征。
+      Feature-Aligned SAE 则关注不同训练运行能否得到稳定一致的特征。例如，Mutual Feature Regularization 会在同一批模型激活上同时训练多个 SAE，
+      鼓励不同 SAE 中相互对应的 decoder directions 对齐，并重新初始化表现不佳或长期不激活的特征。前者提高特定领域的覆盖率，却可能牺牲通用覆盖，并依赖种子数据和检索质量；
+      后者提高跨训练运行的一致性，但多个 SAE 学到相似方向仍不能证明这些方向必然对应真实、单一的人类概念。
 - node_id: end-to-end-functional-dictionary
   parent_id: sparse-autoencoders
   title: End-to-End Functional Dictionary Learning
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v18_feature_dictionary_sae
   introduction:
     en: >-
-      A low reconstruction error does not guarantee that a dictionary preserves the
-      parts of an activation that matter to the rest of the network. End-to-end
-      functional dictionary learning therefore evaluates the reconstructed state through
-      downstream layers or directly against the model's behavior. Its features are
-      encouraged to preserve function, not merely to reproduce a vector at one location.
+      A conventional SAE minimizes reconstruction error at the layer where it is trained,
+      but a small local error does not guarantee that it preserves the information used
+      by the model's later computation. An End-to-End SAE inserts its reconstructed
+      activation into the frozen model, passes it through the downstream layers, and is
+      trained with both a sparsity constraint and a KL-divergence objective comparing the
+      original and SAE-modified output distributions. It can therefore prioritize
+      information important to the model's final behavior without reproducing every
+      variation in the local activation. A downstream-loss variant additionally compares
+      states at several later layers, discouraging the SAE from finding a different
+      internal route that happens to yield similar outputs. Similar outputs still do not
+      prove that the original internal mechanism has been faithfully recovered, so
+      downstream states, stability across random seeds, feature semantics, and
+      intervention effects must also be checked.
     zh: >-
-      局部重构误差很低，并不保证字典保留了后续网络真正需要的那部分信息。
-      End-to-End Functional Dictionary Learning 会让重构状态继续经过后续层，或直接按照模型行为来评价字典。
-      因此它鼓励特征保留功能，而不仅是在某个位置复现一个向量。
+      普通 SAE 主要要求重构某一层的激活，但局部 reconstruction error 较小，并不保证模型后续计算仍然产生相同的结果。
+      End-to-End SAE 把 SAE 重构出的激活真正送入冻结模型的后续层，并比较原模型与 SAE 介入后模型的输出分布，通常通过 KL divergence 与稀疏约束共同训练字典。
+      它因此可以优先保留对模型最终行为重要的信息，而不必精确复原局部激活中的所有变化。进一步的 downstream-loss 版本还会比较若干后续层的状态，以减少 SAE 借助另一条计算路径得到相似输出的可能性。
+      不过，输出相近仍不等于原有内部机制被忠实还原，因此还需要检查后续状态、跨随机种子的稳定性、特征语义和干预效果。
 - node_id: subspace-aware-dictionary
   parent_id: sparse-autoencoders
   title: Subspace-Aware Dictionary Learning
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v18_feature_dictionary_sae
   introduction:
     en: >-
-      Standard dictionary learning usually represents each feature by one decoder
-      direction. Subspace-aware methods relax this assumption and allow one feature to
-      occupy several coordinated directions, which is useful when a concept varies with
-      context, position, or another attribute. The method trades a simpler one-vector
-      interpretation for a richer account of feature geometry.
+      A standard SAE usually represents each latent feature with one decoder direction.
+      If a concept varies with context, position, or state along several related
+      directions, this one-vector assumption can split it into many nearly aligned
+      dictionary atoms. Subspace-aware methods instead represent one candidate feature
+      with a group of decoder directions. The encoder supplies coordinates within each
+      group, and group-level sparse selection keeps only a small number of groups active,
+      so sparsity is measured by how many feature subspaces are used rather than by every
+      direction inside them. Some methods also constrain the effective rank used within
+      a group to prevent unconstrained growth in representational capacity. This design
+      can preserve continuous variation or geometry within a concept, but it assumes that
+      the grouped directions really form one coherent feature. A group may still mix
+      several concepts, and naming or causally intervening on a subspace is more complex
+      than working with a single direction.
     zh: >-
-      标准字典学习通常用一个 decoder direction 表示一个特征。
-      Subspace-Aware 方法放宽这一假设，允许一个特征占据多个相互协调的方向，适合处理会随上下文、位置或其他属性变化的概念。
-      它用更丰富的特征几何，换取了不再那么简单的“一个向量一个概念”解释。
+      标准 SAE 通常用一个 decoder direction 表示一个潜在特征，但有些概念会随着上下文、位置或状态变化而沿多个相关方向展开。
+      强行用单个方向表示它们，可能使同一概念被拆成许多彼此接近的 dictionary atoms。Subspace-aware 方法改为用一组 decoder directions 共同表示一个候选特征：
+      encoder 先给出各组内部的坐标，再只激活少数几个方向组，使稀疏性约束作用于“使用了多少个特征子空间”，而不是单独计算其中的每个方向。
+      部分方法还会限制每个子空间实际使用的有效维度，以避免无约束地扩大表示容量。这类方法能够保留概念内部的连续变化或几何结构，但它假设相关方向确实构成一个连贯特征；
+      一个方向组仍可能混合多个概念，而且特征命名和因果干预也比单方向字典更复杂。
 - node_id: transcoders
   parent_id: feature-dictionary-learning
   title: Transcoders
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v18_feature_dictionary_sae
   introduction:
     en: >-
-      An SAE explains what is present at one activation site, but circuit analysis also
-      needs to know how one set of features is transformed into the next. A transcoder
-      learns a sparse, interpretable replacement for a dense operation such as an MLP,
-      mapping its input activation to its output activation. This makes it possible to
-      trace feature-to-feature influence through a layer instead of stopping at a static
-      feature description.
+      Whereas an SAE reconstructs the same activation that it receives, a Transcoder
+      learns the input–output transformation performed by a dense model component such as
+      an MLP. Its encoder reads the component's input activation and converts it into a
+      sparse set of latent feature strengths; its decoder combines output directions to
+      predict the component's output activation. Each latent therefore connects a pattern
+      that is detected at the input with a direction written at the output. Researchers
+      can use these sparse input–output links to trace how one feature contributes to
+      later features and to build feature-level approximations of circuits. A Transcoder
+      is nevertheless a learned surrogate rather than a literal decomposition of the
+      original component. Its apparent links can depend on the training distribution and
+      reconstruction error, and a sparse approximation may hide interactions implemented
+      by the original nonlinear computation.
     zh: >-
-      SAE 可以解释某个位置“存在什么”，但 circuit analysis 还需要知道一组特征如何变成下一组特征。
-      Transcoder 学习一个稀疏、可解释的替代模型，用来近似 MLP 等稠密运算从输入激活到输出激活的映射。
-      这样，研究者就能追踪特征如何穿过一层影响其他特征，而不只停留在静态特征描述上。
+      SAE 重构它接收到的同一个激活，而 Transcoder 学习 MLP 等稠密模型组件执行的输入—输出变换。它的编码器读取该组件的输入激活，
+      并将其转换成一组稀疏的潜在特征强度；解码器再组合对应的输出方向，预测该组件的输出激活。因此，每个潜在特征都将一种在输入端被识别的模式与一个写入输出端的方向联系起来。
+      研究者可以利用这些稀疏的输入—输出联系，追踪一个特征如何促成后续特征，并构建特征层面的 circuit 近似。不过，Transcoder 是学习得到的代理模型，而不是对原组件的逐项拆解。
+      它显示的联系可能受训练数据分布和重构误差影响，稀疏近似也可能隐藏原有非线性计算实现的特征交互。
 - node_id: crosscoders
   parent_id: feature-dictionary-learning
   title: Crosscoders
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v18_feature_dictionary_sae
   introduction:
     en: >-
-      To understand what fine-tuning or scaling changed, it is not enough to train two
-      unrelated dictionaries and compare their feature names afterward. A crosscoder
-      learns a shared latent vocabulary whose decoder directions can differ across two
-      models, layers, or checkpoints. Shared and model-specific latents then provide a
-      direct language for model diffing, although training artifacts can make an ordinary
-      shared concept look spuriously unique to one model.
+      A Crosscoder learns one sparse latent vocabulary from two or more activation spaces,
+      such as corresponding layers in a base model and a fine-tuned model. Its encoder
+      uses the related activations to produce latent feature strengths, while separate
+      decoder directions reconstruct each activation space. A latent can therefore write
+      strongly into several spaces, mainly into one of them, or in different directions
+      in each. Researchers use these patterns to identify candidate shared, model-specific,
+      or changed features without first training unrelated dictionaries and matching
+      their entries afterward. The result is still a learned alignment: decoder norms,
+      activation normalization, training choices, and reconstruction error can make an
+      ordinary shared feature appear model-specific or can merge distinct features into
+      one latent. A shared latent also does not by itself establish that different models
+      use the feature in the same computation or for the same behavior.
     zh: >-
-      若想理解微调或扩展规模改变了什么，分别训练两本互不关联的字典再比较特征名称通常不够可靠。
-      Crosscoder 会学习一套共享潜在词汇，同时允许其 decoder direction 在两个模型、层或 checkpoint 中不同。
-      共同潜变量和模型特有潜变量由此成为 model diffing 的直接语言，但训练伪影也可能把普通共享概念误判为某个模型独有。
+      Crosscoder 从两个或多个激活空间中学习同一套稀疏潜在词汇，例如基础模型与微调模型对应层的激活。它的编码器利用这些相关激活产生潜在特征强度，
+      再用各个激活空间各自的 decoder directions 完成重构。因此，同一个潜在特征可以同时强烈写入多个空间，主要写入其中一个，或在不同空间中对应不同方向。
+      研究者可以据此寻找候选的共享特征、模型特有特征或发生变化的特征，无需先分别训练互不相关的字典，再事后匹配其条目。不过，这仍然是一种学习得到的对齐。decoder norm、激活归一化、
+      训练设置和重构误差都可能把普通共享特征显得像模型特有特征，或把不同特征合并到同一潜变量中。共享潜变量也不能单独证明不同模型使用它执行了相同计算或产生了相同行为。
 - node_id: ica-based-decomposition
   parent_id: feature-discovery-decomposition
   title: ICA-Based Decomposition and ICA Lens
