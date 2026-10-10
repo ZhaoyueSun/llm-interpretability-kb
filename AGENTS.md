@@ -23,6 +23,7 @@
 - taxonomy 采用树状结构。每个节点有稳定 `node_id`、英文标题、父节点、英文介绍和中文介绍。
 - 标题统一使用英文，不维护中文标题。
 - 节点介绍使用 Markdown 文本，并允许 `\(...\)` 行内公式和 `$$...$$` 块级公式。
+- `Research Objects` 的对象类型、节点介绍、父子粒度、证据边界、双语和审核流程见 `docs/research-object-writing-guide.md`，更新时必须遵守。
 - `Techniques` 节点介绍的写作、父子继承、证据边界、双语和审核标准见 `docs/technique-introduction-guidelines.md`，更新时必须遵守。
 - `Application and Experimental Scenarios` 的实验任务判定、主次分类、节点介绍、双语和审批标准见 `docs/application-scenario-guidelines.md`，更新时必须遵守。
 - `Research Questions` 的论文级与标准化 RQ、标题、节点介绍、当前进展、主次论文归属、关系线和审核流程见 `docs/research-question-writing-guidelines.md`，更新时必须遵守。
