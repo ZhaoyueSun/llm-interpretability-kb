@@ -79,23 +79,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Do fine-tuning and post-training create new mechanisms, or strengthen, suppress, and reorganize existing ones? In this paper, *Overcoming Sparsity Artifacts in Crosscoders to Interpret Chat-Tuning* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Model diffing is the study of how fine-tuning changes a model's representations and internal algorithms. Many behaviors of interest are introduced during fine-tuning, and model diffing offers a promising lens to interpret such behaviors. Crosscoders are a recent model diffing method that learns a shared dictionary of interpretable concepts represented as latent directions in both the base and fine-tuned models, allowing us to track how concepts shift or emerge during fine-tuning.
+    **Research Question.** The paper asks whether crosscoder latents labeled “chat-only” truly emerge during chat tuning or are artifacts of the (L_1) sparsity objective. It isolates two failure modes—complete shrinkage and latent decoupling—and asks whether better diagnostics and a BatchTopK objective recover genuinely model-specific features.
 
-    **Method.** However, we identify two issues which stem from the crosscoders L1 training loss that can misattribute concepts as unique to the fine-tuned model, when they really exist in both models. We develop Latent Scaling to flag these issues by more accurately measuring each latent's presence across models. Building on these insights, we train a crosscoder with BatchTopK loss and show that it substantially mitigates these issues, finding more genuinely chat-specific and highly interpretable concepts.
+    **Method.** Standard crosscoders share latent activations across base/chat models but use separate decoders; decoder-norm imbalance is commonly treated as specificity. Latent Scaling instead regresses each latent's contribution to each model's reconstruction/error, detecting features that remain functionally present despite a tiny decoder norm or have split into paired latents. A BatchTopK crosscoder imposes a batch-level activation budget to reduce (L_1)-induced shrinkage.
 
-    **Validation.** In experiments comparing Gemma 2 2B base and chat models, we observe that the standard crosscoder suffers heavily from these issues. We recommend practitioners adopt similar techniques.
+    **Validation.** (L_1) and BatchTopK crosscoders are trained on layer-13 web/chat activations from Gemma-2-2B and Gemma-2-2B-it. Norm scores are compared with scaling coefficients, reconstruction mean-squared-error improvements, activation divergence, cosine-matched latent pairs, automatic interpretations, and causal patching/approximation tests on chat data including LMSYS-Chat. Findings are replicated on an independently trained 16,384-latent crosscoder containing 265 norm-defined chat-only latents. BatchTopK yields fewer artifacts and interpretable chat-specific features such as false information, personal questions, and differentiated refusal triggers.
 
-    **Conclusion & Evidence.** Using the BatchTopK crosscoder, we successfully identify a set of chat-specific latents that are both interpretable and causally effective, representing concepts such as $false information$ and $personal question$, along with multiple refusal-related latents that show nuanced preferences for different refusal triggers. Overall, our work advances best practices for the crosscoder-based methodology for model diffing and demonstrates that it can provide concrete insights into how chat-tuning modifies model behavior. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+    **Conclusion & Evidence.** Decoder norm alone systematically overstates feature novelty; many apparent chat-only latents are shared concepts distorted by sparse optimization. Latent Scaling diagnoses the problem, and BatchTopK improves model diffing while retaining causally effective chat features. Replication and reconstruction/causal checks provide strong evidence for the artifact claim. The study uses one base/chat pair and layer, residual errors still encode chat behavior, and it cannot distinguish a newly created concept from an old concept whose activation distribution shifted.
   zh: |-
-    **研究问题。** crosscoder 中 base decoder norm 为零的“chat-only latent”是否真的由 chat-tuning 新增，还是 L1 sparsity 引起的 complete shrinkage/latent decoupling artifact？如何用 Latent Scaling 检出伪特征，并用 BatchTopK 更可靠地区分 shared 与 model-specific latents？
+    **研究问题。** 该论文研究 crosscoder 标成“聊天模型独有”的潜变量是否真由聊天微调产生，还是 (L_1) 稀疏目标的伪影；具体分离“完全收缩”和“潜变量解耦”两种失败模式，并检验新诊断与 BatchTopK 目标能否找回真正模型特异特征。
 
-    **方法。** Crosscoder 是近期提出的一种模型差分方法，它学习由基础模型和微调模型中的潜在方向共同表征的可解释概念字典，使我们能够追踪概念在微调期间如何变化或出现。值得注意的是，以往工作观察到一些在基础模型中没有对应方向的概念，并据此假设这些模型特有的潜变量是微调时引入的概念。然而，我们发现，crosscoder 的 L1 训练损失会引发两个问题，使本来同时存在于两个模型中的概念被错误归为微调模型所独有。我们提出潜变量缩放（Latent Scaling），通过更准确地衡量每个潜变量在不同模型中的存在程度来标记这些问题。
+    **方法。** 标准 crosscoder 在基础/聊天模型间共享潜激活，却使用不同解码器，通常以解码器范数不平衡判断特异性。Latent Scaling 改为回归每个潜变量对两模型重构/误差的贡献，识别范数很小却仍有功能的特征，或被拆成成对潜变量的共享特征。BatchTopK crosscoder 施加批级激活预算，以减少 (L_1) 引起的收缩。
 
-    **实验验证。** 在比较 Gemma 2 2B 基础模型与聊天模型的实验中，我们观察到标准 crosscoder 严重受到这些问题影响。我们建议实践者采用类似技术。
+    **实验验证。** 在 Gemma-2-2B 与 Gemma-2-2B-it 第 13 层的网页/聊天激活上训练 (L_1) 和 BatchTopK crosscoder。范数分数与缩放系数、重构均方误差改善、激活差异、余弦匹配潜变量对、自动解释及聊天数据（含 LMSYS-Chat）的因果修补/近似测试比较；并在独立训练的 16,384 潜变量 crosscoder 上复现，其中范数法标出 265 个聊天独有潜变量。BatchTopK 伪影更少，并找出“虚假信息”“私人问题”和不同拒答触发等可解释且有因果效果的特征。
 
-    **结论与证据。** 基于上述认识，我们使用 BatchTopK 损失训练 crosscoder，并证明它能大幅缓解相关问题，发现更多真正为聊天模型所特有且高度可解释的概念。借助 BatchTopK crosscoder，我们成功识别出一组既可解释又具有因果效力的聊天模型特有潜变量，它们表征“虚假信息”“私人问题”等概念，以及多个与拒绝有关、对不同拒绝触发条件表现出细致偏好的潜变量。总体而言，本工作改进了使用 crosscoder 开展模型差分的方法实践，并证明它能够具体揭示聊天调优如何改变模型行为。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+    **结论与证据。** 仅用解码器范数会系统性夸大特征新颖性，许多“聊天独有”潜变量其实是被稀疏优化扭曲的共享概念。Latent Scaling 可诊断问题，BatchTopK 改善模型差异分析。独立复现、重构和因果检查为伪影结论提供强证据。但实验限于一对模型和一层，残差仍含聊天行为，也无法区分真正新概念与旧概念激活分布的变化。
   generation:
     status: complete
     generated_by: project_agent

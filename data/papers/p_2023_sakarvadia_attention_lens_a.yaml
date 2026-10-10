@@ -85,23 +85,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** What information does an individual model component read, transform, and write back within a distributed computation? In this paper, *Attention Lens: A Tool for Mechanistically Interpreting the Attention Head Information Retrieval Mechanism* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Transformer-based Large Language Models (LLMs) are the state-of-the-art for natural language tasks. Recent work has attempted to decode, by reverse engineering the role of linear layers, the internal mechanisms by which LLMs arrive at their final predictions for text completion tasks. Yet little is known about the specific role of attention heads in producing the final token prediction.
+    **Research Question.** The paper asks how the semantic information written by an individual attention head can be translated into vocabulary terms, and whether such translations reveal specialized information-retrieval roles that ordinary logit or tuned lenses—designed for residual-stream states—miss.
 
-    **Method.** We propose Attention Lens, a tool that enables researchers to translate the outputs of attention heads into vocabulary tokens via learned attention-head-specific transformations called lenses.
+    **Method.** Attention Lens assigns a separate learned linear map \(L_{\ell,h}\in\mathbb{R}^{d\times |V|}\) to each head output. The map is trained to minimize Kullback–Leibler divergence between its vocabulary distribution and the model's final output distribution. Unlike a logit lens, it is not claimed to be an intermediate next-token prediction; it is intended to expose concepts a head contributes to the residual stream.
 
-    **Validation.** Preliminary findings from our trained lenses indicate that attention heads play highly specialized roles in language models.
+    **Validation.** The implementation trains 144 lenses for all 12×12 heads of GPT-2 Small on BookCorpus. Each roughly 38M-parameter lens is optimized for about 250,000 steps; the full lens bank contains about 5.5B parameters and each layer group costs approximately 1,200 GPU-hours. Evidence is qualitative: decoded head outputs are inspected for known specialized roles and two prompts show layer-9 head-8 shifting from generic grammar tokens to Nazi/Germany/Holocaust-related vocabulary under a malicious suffix; another biased completion exposes race- and Confederacy-related tokens. No held-out accuracy, causal intervention, or fidelity metric is reported.
 
-    **Conclusion & Evidence.** The code for Attention Lens is available at github.com/msakarvadia/AttentionLens. The evidence establishes that the information is accessible to the chosen readout or decomposition; it does not by itself show that the original model causally uses that information to produce its behavior.
+    **Conclusion & Evidence.** Learned head-specific maps can produce more semantically coherent vocabulary descriptions than directly applying the model unembedding, and examples suggest attention heads often retrieve specialized information. The support is preliminary and descriptive, not a validated mechanistic claim: the training target may encourage each lens to imitate final logits, training data differ from GPT-2's original corpus, only one model is studied, and the paper explicitly leaves causal-basis fidelity and quantitative transfer evaluation to future work.
   zh: |-
-    **研究问题。** 能否学习从单个 attention-head output 到词表空间的映射，以解释各 head 向 residual stream 注入了哪些语义信息，并据此定位知识检索、错误与偏见？这种映射是否比直接使用 unembedding 更适合中间层？
+    **研究问题。** 该论文研究如何把单个注意力头写入残差流的语义信息翻译为词表词元，以及这种翻译能否揭示普通 logit lens 或 tuned lens（面向残差流状态）遗漏的专门化信息检索角色。
 
-    **方法。** 然而，对于注意力头在生成最终 token 预测中发挥的具体作用，我们仍知之甚少。
+    **方法。** Attention Lens 为每个注意力头输出学习独立线性映射 \(L_{\ell,h}\in\mathbb{R}^{d\times |V|}\)，以其词表分布和模型最终输出分布之间的 Kullback–Leibler 散度为训练目标。与 logit lens 不同，该输出并不被解释为中间层下一词预测，而是用来显示该注意力头向残差流贡献的概念。
 
-    **实验验证。** 我们提出 Attention Lens 工具；它使用学习得到的、针对各个注意力头的变换——称为“透镜”——把注意力头输出转换为词汇 token。
+    **实验验证。** 实现在 BookCorpus 上为 GPT-2 Small 的 12×12 个注意力头训练 144 个 lens。每个约含 3,800 万参数、训练约 25 万步，完整 lens 组约 55 亿参数，每层的 12 个 lens 约耗费 1,200 GPU 小时。论文提供的是定性案例：检查已知专门化角色，并展示第 9 层第 8 头在普通语法提示下输出通用词元、加入恶意后缀后转向 Nazi/Germany/Holocaust 相关词；另一条有偏续写中出现种族和南方邦联相关词。论文没有报告留出准确率、因果干预或忠实度指标。
 
-    **结论与证据。** 训练所得透镜的初步结果表明，注意力头在语言模型中承担高度专门化的作用。Attention Lens 代码见 github.com/msakarvadia/AttentionLens。证据说明相应信息可以被所选读出器或分解方法访问，但不能单独证明原模型在产生行为时因果使用了这些信息。
+    **结论与证据。** 相比直接套用模型反嵌入，学习得到的头专属映射能产生语义更连贯的词表描述，案例也提示注意力头常承担专门信息检索。证据仍属初步描述，而非经验证的机制结论：训练目标可能只促使 lens 模仿最终 logit，训练数据与 GPT-2 原始语料不同，只研究了一个模型，因果基忠实度和定量迁移也被明确留作后续工作。
   generation:
     status: complete
     generated_by: project_agent

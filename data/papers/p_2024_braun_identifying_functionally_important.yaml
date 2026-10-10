@@ -68,23 +68,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** What should sparse representation learning optimize to balance sparsity, reconstruction faithfulness, and functional fidelity? In this paper, *Identifying Functionally Important Features with End-to-End Sparse Dictionary Learning* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Identifying the features learned by neural networks is a core challenge in mechanistic interpretability. Sparse autoencoders (SAEs), which learn a sparse, overcomplete dictionary that reconstructs a network's internal activations, have been used to identify these features. However, SAEs may learn more about the structure of the datatset than the computational structure of the network.
+    **Research Question.** The paper asks whether sparse autoencoders trained only to reconstruct one layer's activations waste capacity on variance that does not matter to model behavior. It tests whether end-to-end objectives can learn sparser features that preserve the language model's output and whether an auxiliary downstream loss also preserves the original computational route.
 
-    **Method.** We propose end-to-end (e2e) sparse dictionary learning, a method for training SAEs that ensures the features learned are functionally important by minimizing the KL divergence between the output distributions of the original model and the model with SAE activations inserted. E2e dictionary learning brings us closer to methods that can explain network behavior concisely and accurately. We release our library for training e2e SAEs and reproducing our analysis at https://github.com/ApolloResearch/e2e_sae
+    **Method.** Three frozen-model dictionaries are compared. A local sparse autoencoder minimizes activation mean-squared error plus an (L_1) penalty; an end-to-end autoencoder replaces the activation and minimizes the Kullback–Leibler divergence between original and reconstructed output distributions plus sparsity; an end-to-end-plus-downstream variant additionally matches later-layer activations. Reconstruction–sparsity and behavior–sparsity Pareto frontiers separate local fidelity from functional fidelity.
 
-    **Validation.** We explore geometric and qualitative differences between e2e SAE features and standard SAE features.
+    **Validation.** Main experiments insert 46,080-feature dictionaries before layer 6 of GPT-2 Small and train on 400,000 OpenWebText contexts of length 1,024; layers 2 and 10 and TinyStories-1M provide replications. Evaluation on 500 held-out OpenWebText contexts reports average active features ((L_0)), language-model cross-entropy increase, live features, local and downstream mean-squared error, and automated feature-interpretability scores. At matched (L_0), end-to-end models produce less than 45% of the local model's cross-entropy increase, while the local model needs more than twice as many active features to match behavior. Larger local dictionaries and more training data do not close the frontier; seed, geometry, and training-time analyses provide controls.
 
-    **Conclusion & Evidence.** Compared to standard SAEs, e2e SAEs offer a Pareto improvement: They explain more network performance, require fewer total features, and require fewer simultaneously active features per datapoint, all with no cost to interpretability. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+    **Conclusion & Evidence.** Optimizing for downstream output identifies features that are substantially more efficient at preserving model function than activation reconstruction alone, and the downstream-state penalty recovers much of the original pathway without losing that advantage. Matched-sparsity Pareto curves across models and layers give strong comparative evidence. The result is not proof that the learned features are uniquely causal or human-meaningful: end-to-end training can Goodhart on the chosen output metric, automated interpretability is noisy, experiments use small models and a few insertion layers, and training costs about 2–3.5 times more.
   zh: |-
-    **研究问题。** 以局部 activation MSE 训练 稀疏自编码器（Sparse Autoencoder, SAE） 是否把容量浪费在对模型行为不重要的细节上？直接优化替换 SAE 后输出 logits 的 KL divergence，并约束 downstream reconstruction，能否以更少、更稀疏的 features 保留模型功能并减少 feature splitting？
+    **研究问题。** 该论文研究仅以单层激活重构训练稀疏自编码器，是否会把容量浪费在不影响模型行为的方差上；并检验端到端目标能否学习更稀疏但保留语言模型输出的特征，以及加入下游损失能否同时保留原有计算路径。
 
-    **方法。** 我们提出端到端（e2e）稀疏字典学习：通过最小化原始模型与插入 SAE 激活后模型的输出分布之间的 KL 散度，训练 SAE 并确保所学特征具有功能重要性。端到端字典学习使我们更接近能够简洁、准确解释网络行为的方法。用于训练 e2e SAE 和复现分析的代码库见 https://github.com/ApolloResearch/e2e_sae。
+    **方法。** 比较三种冻结语言模型的字典。局部稀疏自编码器最小化激活均方误差与 (L_1) 稀疏惩罚；端到端版本把重构激活插回模型，以原输出和重构输出分布的 Kullback–Leibler 散度加稀疏项训练；端到端加下游版本还匹配后续层激活。重构—稀疏和行为—稀疏 Pareto 前沿用于区分局部保真与功能保真。
 
-    **实验验证。** 我们还探索了 e2e SAE 特征与标准 SAE 特征之间的几何和定性差异。
+    **实验验证。** 主实验在 GPT-2 Small 第 6 层前插入含 46,080 个特征的字典，用 40 万段、每段 1,024 词元的 OpenWebText 训练；第 2、10 层及 TinyStories-1M 用于复现。500 段留出 OpenWebText 上报告平均激活特征数 (L_0)、语言模型交叉熵增量、存活特征数、局部/下游均方误差和自动特征可解释性分数。在相同 (L_0) 下，端到端模型的交叉熵增量低于局部模型的 45%；局部模型要使用两倍以上激活特征才能匹配行为。扩大局部字典或训练数据仍未追平，另有随机种子、特征几何和训练时间对照。
 
-    **结论与证据。** 与标准 SAE 相比，e2e SAE 实现了帕累托改进：它们能解释更多网络性能，需要的特征总数更少，每个数据点同时激活的特征也更少，同时不损害可解释性。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+    **结论与证据。** 直接优化下游输出能找到比局部激活重构更高效地保留模型功能的特征；加入下游状态惩罚后，还能恢复更多原始计算路径而不牺牲该优势。跨模型、层和匹配稀疏度的 Pareto 曲线提供较强比较证据。但这不证明特征具有唯一因果性或人类可理解语义：端到端训练可能对所选输出指标产生 Goodhart 效应，自动解释分数有噪声，实验只覆盖小模型和少数插入层，训练成本也高约 2—3.5 倍。
   generation:
     status: complete
     generated_by: project_agent

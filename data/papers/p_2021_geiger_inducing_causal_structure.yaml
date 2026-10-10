@@ -89,23 +89,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** The paper asks whether a desired high-level causal structure can be induced during neural-network training rather than only discovered afterward. It also tests whether enforcing counterfactual agreement with a symbolic causal model improves systematic generalization while making the learned computation easier to interpret.
+    **Research Question.** The paper asks whether known high-level causal structure can be imposed during neural-network training so that a model both generalizes systematically and implements an interpretable internal computation. It contrasts structural training with ordinary supervision, multitask probing objectives, and input-level data augmentation.
 
-    **Method.** Interchange Intervention Training (IIT) samples pairs of examples, swaps representations at network locations aligned with high-level causal variables, and trains the network's intervened output to match the high-level model under the corresponding variable intervention. The objective supplements ordinary behavioral supervision with counterfactual constraints on internal computation.
+    **Method.** Interchange Intervention Training (IIT) aligns a symbolic causal variable with a neural subrepresentation, swaps that representation between source and base examples, and trains the neural counterfactual output to match the symbolic model's counterfactual label. The differentiable IIT loss can be combined with standard and multitask losses; zero IIT loss is proven sufficient for the target causal model to be a causal abstraction of the network. Structural fidelity is measured by interchange intervention accuracy, not only ordinary input–output accuracy.
 
-    **Validation.** IIT is evaluated on synthetic and natural-language compositional reasoning tasks, including settings where training data leave systematic combinations unseen. The authors compare standard training, multitask or representation-level supervision, and IIT; they measure in-distribution accuracy, systematic out-of-distribution generalization, and intervention accuracy under the intended alignment.
+    **Validation.** Three controlled domains are used. On Modified National Institute of Standards and Technology Pointer-Value Retrieval (MNIST-PVR), a ResNet-18 trained with IIT reaches 93.93% test accuracy and 94.85% intervention accuracy, rising to 96.01% and 96.64% with multitask training, whereas standard and multitask-only models collapse under the test shift. On ReaSCAN, a convolutional neural network–long short-term memory model is tested on novel color, size, direction, and action-length compositions; only IIT variants obtain consistent traction, with IIT plus multitask learning strongest. On MQNLI, BERT is trained from 500,000 examples and one million intervention pairs per epoch; alignments at layer 6 or later produce nearly 100% behavioral and intervention accuracy.
 
-    **Conclusion & Evidence.** Networks trained with IIT more reliably realize the specified causal structure and often generalize better to unseen compositions than observational baselines. Intervention accuracy provides direct evidence that the aligned internal states participate according to the intended high-level process. The result is strong within tasks where the correct causal model and alignment are supplied, but it does not solve how to discover the right abstraction in domains where those ingredients are unknown.
+    **Conclusion & Evidence.** Across vision, grounded navigation, and natural-language inference, training on internal counterfactuals improves both systematic generalization and conformity to the chosen causal program, often beyond behaviorally strong data augmentation. The zero-loss result supplies a formal guarantee, while held-out intervention accuracy tests approximate realization in finite models. Evidence is strong for the three engineered tasks but conditional on the supplied causal model and alignment; the paper does not solve how to discover the correct high-level structure for an unconstrained real-world system.
   zh: |-
-    **研究问题。** 论文研究能否在神经网络训练过程中主动注入期望的高层因果结构，而不是仅在训练后寻找它；同时检验与符号因果模型保持反事实一致，是否能够改善系统性泛化并提高内部计算的可解释性。
+    **研究问题。** 该论文研究能否在训练阶段把已知高层因果结构注入神经网络，使模型同时获得系统性泛化能力和可解释内部计算，并将这种结构化训练与普通监督、多任务探针目标及输入级数据增强进行比较。
 
-    **方法。** 交换干预训练（Interchange Intervention Training, IIT）从两个样本中取得表示，在与高层因果变量对齐的网络位置交换这些表示，并要求干预后网络输出与高层模型执行相应变量干预后的输出一致。该目标在普通行为监督之外，增加了对内部计算的反事实结构约束。
+    **方法。** 交换干预训练（Interchange Intervention Training, IIT）把符号因果变量与一组神经表示对齐，在来源样本和基础样本之间交换该表示，再训练神经模型的反事实输出匹配符号模型给出的反事实标签。可微的 IIT 损失能够与标准损失和多任务损失组合；论文证明 IIT 损失为零足以保证目标因果模型是神经网络的因果抽象。结构忠实度由交换干预准确率衡量，而不只看普通输入—输出准确率。
 
-    **实验验证。** IIT 在合成推理和自然语言组合推理任务上评估，其中包括训练集故意缺少某些系统性组合的分布外设置。作者将标准训练、多任务或表示级监督与 IIT 比较，并同时测量分布内准确率、系统性分布外泛化，以及给定对齐下的干预准确率。
+    **实验验证。** 实验覆盖三个受控领域。在美国国家标准与技术研究院手写数字指针—值检索（Modified National Institute of Standards and Technology Pointer-Value Retrieval, MNIST-PVR）上，IIT 训练的 ResNet-18 测试准确率为 93.93%、干预准确率为 94.85%；叠加多任务目标后分别达到 96.01% 和 96.64%，而仅用标准或多任务训练的模型在分布迁移下失败。ReaSCAN 使用卷积神经网络—长短期记忆网络，在新颜色、新尺寸、新方向和新动作长度组合上评估，只有 IIT 变体能稳定泛化。MQNLI 实验用 500,000 个训练样本和每轮一百万个干预对微调 BERT；当变量对齐到第 6 层或更高层时，行为与干预准确率均接近 100%。
 
-    **结论与证据。** IIT 训练的网络更稳定地实现了指定因果结构，并常常比仅依赖观察监督的基线更好地泛化到未见组合。干预准确率直接支持对齐状态按照预期高层过程发挥作用。证据在“正确因果模型和对齐已由研究者给出”的任务中较强，但该方法没有解决现实领域中如何发现正确抽象与对齐的问题。
+    **结论与证据。** 在视觉、具身导航和自然语言推断三个领域，内部反事实训练同时提高系统泛化和对指定因果程序的符合程度，且常优于行为表现很强的数据增强。零损失定理提供形式保证，留出干预准确率则检验有限模型中的近似实现。证据在三个工程化任务上很强，但以给定因果模型和对齐为条件；论文没有解决如何为不受控真实系统发现正确高层结构。
   generation:
     status: complete
     generated_by: project_agent

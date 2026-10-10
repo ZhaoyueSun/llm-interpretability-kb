@@ -62,23 +62,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Can stable, interpretable representational factors be discovered from activation statistics without predefined concept labels or probing hypotheses? In this paper, *independent component analysis (ICA) Lens: Interpreting Language Models Without Training Another Dictionary* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Finding interpretable directions in language-model representations is critical for understanding and controlling model behavior. Sparse autoencoders (SAEs) have become the standard tool for this purpose, but using them as the default first lens often requires training, storing, and evaluating large overcomplete dictionaries. This bottleneck limits rapid exploration and raises a fundamental question: how much interpretable structure is already visible from activation geometry before training another neural dictionary?
+    **Research Question.** The paper asks how much interpretable structure can be recovered directly from language-model activation geometry before training a large Sparse Autoencoder (SAE), and whether Independent Component Analysis (ICA) yields useful sparse probes and selective interventions rather than merely readable examples.
 
-    **Method.** We therefore revisit independent component analysis (ICA), a classical method for finding non-Gaussian directions, as a compact lens for language-model interpretability. To bridge these gaps, we introduce ICALens, the first practical workflow for stable, efficient, and auditable ICA analysis of large language model (LLM) representations. Across GPT-2 Small, Gemma 2 2B, and Qwen 3.5 2B Base, ICALens efficiently recovers compact, human-interpretable directions without per-layer gradient-based dictionary training.
+    **Method.** ICALens adapts GPU-parallel FastICA with activation-corpus construction, row normalization, robust convergence tests, adaptive refitting, and per-layer diagnostics. Components maximize non-Gaussian independence; empirical receptive fields, positive/negative examples, token traces, and prompt tests support human labeling. Sparse probing and Targeted Probe Perturbation test practical utility, while component overlap compares ICA with SAE dictionaries.
 
-    **Validation.** We find that ICA has been underestimated for LLM interpretability, because prior uses often relied on off-the-shelf ICA implementations that are brittle on LLM activations and lacked systematic tools for inspecting and evaluating the recovered directions. It combines an optimized GPU-parallel FastICA pipeline with LLM-specific stability recipes and better fitting diagnostics, enabling efficient and reliable layer-wise analysis.
+    **Validation.** GPT-2 Small, Gemma-2-2B, and Qwen-3.5-2B Base are analyzed across layers. ICA is compared with public high-capacity and Matryoshka SAEs, Iterative Thresholding Dictionary Algorithm, Principal Component Analysis, and random directions. Non-Gaussianity controls distinguish recovered axes from random projections; blinded/random-component annotation audits estimate interpretability. On SAEBench, ICA is competitive in sparse probing and exceeds public SAEs on targeted perturbation at small-to-medium feature budgets, with additional polysemous-word, sentence-trace, and lexical-analogy case studies.
 
-    **Conclusion & Evidence.** On SAEBench, ICA is competitive with public SAEs in sparse probing and outperforms them in targeted probe perturbation under small-to-medium budgets. These results suggest that ICA should not be viewed as a weak baseline, but as an efficient and complementary first lens for exploring language-model representations. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+    **Conclusion & Evidence.** Stable ICA offers a cheap, compact first lens that recovers many human-readable and intervention-useful directions without per-layer dictionary training. Benchmarks, random audits, and causal perturbation provide stronger support than cherry-picked examples. ICA is not a replacement for overcomplete SAEs: it returns at most one basis-sized set, assumes statistical independence/non-Gaussianity, labels remain partly subjective, and results cover three relatively small models.
   zh: |-
-    **研究问题。** 大语言模型（Large Language Model, LLM） activations 的 non-Gaussian geometry 中已经显露多少可解释结构，是否无需训练大型 overcomplete 稀疏自编码器（Sparse Autoencoder, SAE） 即可用稳定、高效的 独立成分分析（Independent Component Analysis, ICA） 找到？这些 compact directions 是否兼具人工可解释性、上下文依赖与 probing/intervention utility？
+    **研究问题。** 该论文研究在训练大型稀疏自编码器（Sparse Autoencoder, SAE）之前，能从语言模型激活几何直接恢复多少可解释结构，以及独立成分分析（Independent Component Analysis, ICA）是否不仅产生可读例子，还能支持稀疏探测与选择性干预。
 
-    **方法。** 我们的直觉很简单：许多可解释方向只对部分 token 具有选择性，因此它们应当比随机方向更不符合高斯分布。于是，我们重新考察独立成分分析（ICA）这一寻找非高斯方向的经典方法，把它用作语言模型可解释性的紧凑观察工具。为弥补这些不足，我们提出 ICALens，这是首个针对语言模型表征进行稳定、高效且可审计 ICA 分析的实用工作流。在 GPT-2 Small、Gemma 2 2B 和 Qwen 3.5 2B Base 上，ICALens 无需逐层开展基于梯度的字典训练，就能高效恢复紧凑且人类可解释的方向。
+    **方法。** ICALens 对 GPU 并行 FastICA 加入激活语料构造、逐行归一化、稳健收敛判据、自适应重拟合和逐层诊断。成分通过最大化非高斯独立性获得；经验感受野、正反激活例、词元轨迹和提示测试支持人工标注。稀疏探测与 Targeted Probe Perturbation 检验实用性，成分重合用于比较 ICA 与 SAE 字典。
 
-    **实验验证。** 我们发现，ICA 在语言模型可解释性中的价值一直被低估，因为以往应用往往依赖现成的 ICA 实现；这些实现在语言模型激活上很脆弱，同时也缺少系统检查和评估所得方向的工具。
+    **实验验证。** GPT-2 Small、Gemma-2-2B 和 Qwen-3.5-2B Base 接受逐层分析。ICA 与公开高容量/Matryoshka SAE、迭代阈值字典算法、主成分分析和随机方向比较。非高斯性对照区分真实成分与随机投影，盲法/随机成分标注审计估计可解释性。SAEBench 上，ICA 的稀疏探测有竞争力，在小中等特征预算的定向扰动上超过公开 SAE；另含多义词、句子轨迹和词汇类比案例。
 
-    **结论与证据。** 它把经过优化的 图形处理器（Graphics Processing Unit, GPU） 并行 FastICA 流水线、面向语言模型的稳定性方案和更好的拟合诊断相结合，从而支持高效、可靠的逐层分析。在 SAEBench 上，ICA 在稀疏探测方面可与公开 SAE 竞争，并在小到中等预算下的定向探针扰动中优于它们。这些结果说明，ICA 不应被视为较弱的基线，而应成为探索语言模型表征时高效且互补的第一观察工具。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+    **结论与证据。** 稳定 ICA 是低成本紧凑的第一观察工具，无需逐层训练字典即可恢复许多可读且可干预方向。基准、随机审计和因果扰动比精选例子提供更强支持。但 ICA 不能替代过完备 SAE：成分数至多一个基维，依赖独立/非高斯假设，标签仍有主观性，且只测了三个相对较小模型。
   generation:
     status: complete
     generated_by: project_agent

@@ -59,23 +59,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** The paper asks whether a linguistic property being decodable from a representation implies that the model used that property to solve its main task. It specifically tests whether incidental encoding, pretrained embeddings, or even random correlations can produce high probing scores when the property is irrelevant to the trained task.
+    **Research Question.** The paper asks whether high probing accuracy shows that a neural model relied on the probed linguistic property for its original task, or merely that the property is recoverable from its representation. It separates task relevance from incidental encoding and from information already present in pretrained word embeddings.
 
-    **Method.** The authors construct controlled natural-language inference settings in which a linguistic property is present in the input but unnecessary for determining the label. They then train probes on the resulting sentence representations and separately manipulate pretrained word embeddings and synthetic data so that the target property becomes task-irrelevant or random noise.
+    **Method.** Linguistic control datasets are constructed by holding a property constant across every example, making tense, subject number, or object number nondiscriminative for the main label. Sentence encoders trained on these controls are compared with size-matched encoders trained on ordinary data and are probed with the same classifier. Additional controls replace pretrained embeddings with random initialization. Synthetic string tasks then vary whether a marker is noise, correlated with another feature, partially predictive, or fully predictive of the task.
 
-    **Validation.** Experiments use natural-language inference encoders and controlled synthetic tasks, comparing representations trained with and without a need for the probed property. Additional controls isolate how much information comes from pretrained embeddings rather than task training and test whether probes recover randomly distributed properties above chance.
+    **Validation.** The main task is three-way natural language inference on Multi-Genre Natural Language Inference (MultiNLI), using continuous-bag-of-words and several bidirectional long short-term memory (BiLSTM) pooling encoders initialized with 300-dimensional GloVe vectors. The probe is a one-hidden-layer multilayer perceptron with 200 units. Control and downsampled models are evaluated on matched development subsets and on probing sets for the three linguistic properties; controlled models still reach probing accuracies around 80% in some settings. Randomly initialized embeddings sharply lower probing scores. Each synthetic condition contains 20,000 training, 5,000 development, and 5,000 test examples, and representation and probe capacity are varied independently.
 
-    **Conclusion & Evidence.** Linguistic properties can remain highly decodable even when the main model has no reason to use them, and pretrained lexical representations account for a substantial part of this signal. Synthetic controls further show above-chance probing of random or incidental structure. These results strongly refute the inference from probing accuracy to task relevance, but they do not make probing useless: probes still establish accessibility of information, provided that claims about functional use require separate interventions.
+    **Conclusion & Evidence.** The encoders preserve probe-readable linguistic information even when it cannot help the controlled task, and synthetic models encode an explicitly random marker above chance. The matched controls and synthetic interventions directly show that recoverability does not entail task use; they also identify pretrained embeddings and representation capacity as important confounds. The study does not show that probing is useless—negative results and carefully controlled comparisons remain informative—but positive accuracy alone cannot support a causal claim about the computation used for prediction.
   zh: |-
-    **研究问题。** 论文研究某种语言属性可以从表示中被解码，是否意味着模型在完成主任务时实际使用了它；特别检验当该属性与任务无关时，偶然编码、预训练词向量乃至随机相关性是否仍会产生较高的探针分数。
+    **研究问题。** 该论文研究高探针准确率究竟说明神经模型在原任务中使用了某种语言属性，还是仅说明该属性可以从表示中读出。分析进一步区分任务相关信息、偶然编码的信息，以及预训练词嵌入已经携带的信息。
 
-    **方法。** 作者构造受控的自然语言推理（Natural Language Inference, NLI）场景，使目标语言属性存在于输入中，却不是判断任务标签所必需的信息；随后在模型的句子表示上训练探针。他们还分别操纵预训练词向量和合成数据，让被探测属性成为与任务无关的信息或随机噪声。
+    **方法。** 语言控制数据集把某个属性在所有样本中固定为同一取值，使时态、主语数或宾语数无法区分主任务标签。作者比较在这些控制数据上训练的句子编码器与在等规模普通数据上训练的编码器，并使用同一种探针；另一组对照把预训练词嵌入替换为随机初始化。合成字符串任务则控制一个标记分别作为随机噪声、与其他特征相关、部分预测标签或完全预测标签。
 
-    **实验验证。** 实验比较“完成主任务需要该属性”与“不需要该属性”两类 NLI 编码器表示。额外控制用于分离预训练词向量而非任务训练所带来的信息，并在合成任务中检验探针是否能以高于随机水平的准确率恢复随机分布或偶然存在的属性。
+    **实验验证。** 主任务是多体裁自然语言推断（Multi-Genre Natural Language Inference, MultiNLI）上的三分类，模型包括连续词袋编码器和多种双向长短期记忆网络（Bidirectional Long Short-Term Memory, BiLSTM）池化方式，默认使用 300 维 GloVe 词向量。探针是含 200 个隐藏单元的一层多层感知机。控制模型和等规模下采样模型在匹配开发集以及三项语言探针任务上比较；即使属性对主任务无用，部分设置的探针准确率仍接近 80%。随机初始化词嵌入会显著降低探针分数。四种合成条件各含 20,000 个训练、5,000 个开发和 5,000 个测试样本，并分别改变表示容量与探针容量。
 
-    **结论与证据。** 即使主模型没有理由使用某种语言属性，该属性仍可能高度可解码，而预训练词汇表示贡献了其中相当一部分信号；合成控制进一步显示随机或偶然结构也可能被探针读出。这些结果有力否定了“探针准确率高就意味着属性与任务相关”的推断，但并不说明探针没有价值：它仍能证明信息可访问，只是关于功能使用的主张需要独立的因果干预。
+    **结论与证据。** 编码器会保留对受控任务无帮助但仍可被探针读出的语言信息，合成模型甚至能以高于随机的准确率编码明确注入的随机标记。匹配控制和合成干预直接证明“可恢复”不蕴含“被任务使用”，并显示预训练词嵌入和表示容量是重要混淆因素。论文并未否定探针本身：负结果和有严格对照的比较仍有意义，但单独的正向准确率不能支持关于模型计算过程的因果结论。
   generation:
     status: complete
     generated_by: project_agent

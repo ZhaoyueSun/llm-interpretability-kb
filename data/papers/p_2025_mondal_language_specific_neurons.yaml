@@ -62,23 +62,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Which internal units and broadcast mechanisms implement language choice and cross-lingual capability? In this paper, *Language-specific Neurons Do Not Facilitate Cross-Lingual Transfer* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Multilingual large language models (LLMs) aim towards robust natural language understanding across diverse languages, yet their performance significantly degrades on low-resource languages.
+    **Research Question.** The paper asks whether neurons identified as language-specific can be exploited to improve zero-shot transfer from a high-resource source language to low-resource target languages. It tests both inference-time activation manipulation and parameter-efficient fine-tuning restricted to those neurons.
 
-    **Method.** This work explores whether existing techniques to identify language-specific neurons can be leveraged to enhance cross-lingual task performance of lowresource languages.
+    **Method.** Language Activation Probability Entropy (LAPE) and a 90th-percentile activation-probability method rank feed-forward neurons using language-conditioned Wikipedia activations. At test time, target-language neurons are zeroed or set to language statistics. For training, Low-Rank Adaptation (LoRA) updates are restricted to matrices associated with selected neurons, then combined with the same interventions.
 
-    **Validation.** We conduct detailed experiments covering existing language-specific neuron identification techniques (such as Language Activation Probability Entropy and activation probability-based thresholding) and neuron-specific LoRA fine-tuning with models like Llama 3.1 and Mistral Nemo. We find that such neuron-specific interventions are insufficient to yield cross-lingual improvements on downstream tasks (XNLI, XQuAD) in lowresource languages.
+    **Validation.** Llama-3.1-8B and Mistral-Nemo-12B are analyzed using up to 100 million Wikipedia tokens for each of 16 languages, with sequences capped at 512 tokens. Cross-lingual Natural Language Inference (XNLI) and Cross-lingual Question Answering Dataset (XQuAD) evaluate source-language training and target-language testing. Experiments compare LAPE versus activation thresholds, multiple neuron fractions/statistics, ordinary LoRA, random-neuron LoRA, no intervention, and zeroing; evaluation includes several low-resource Indic languages.
 
-    **Conclusion & Evidence.** This study highlights the challenges in achieving cross-lingual generalization and provides critical insights for multilingual LLMs. The counterexamples or controls strongly delimit what the audited method can justify. They do not, on their own, prove that any proposed replacement is universally faithful or sufficient.
+    **Conclusion & Evidence.** Neither manipulating nor fine-tuning the identified language-specific neurons reliably improves cross-lingual accuracy, and setting them to zero often causes little damage. Strong controls therefore reject the simple claim that these units independently mediate transferable language competence. This negative result does not contradict their influence on output-language choice: distributed interactions, inaccurate “zero” deactivation, limited models/tasks, or source–target mismatch may prevent using selectivity as a transfer handle.
   zh: |-
-    **研究问题。** 已识别的 language-specific neurons 是否真能通过 test-time activation intervention 或 targeted fine-tuning 改善低资源语言的 cross-lingual downstream transfer，而不只是影响生成语言？其 polysemanticity 是否限制了这种作用？
+    **研究问题。** 该论文研究能否利用“语言专用神经元”改善从高资源源语言到低资源目标语言的零样本迁移，并分别测试推理时激活操控和只针对这些神经元的参数高效微调。
 
-    **方法。** 本研究探讨能否利用现有的语言特定神经元识别技术，提升低资源语言的跨语言任务表现。
+    **方法。** 语言激活概率熵（Language Activation Probability Entropy, LAPE）和基于第 90 百分位激活概率的方法，根据各语言 Wikipedia 激活排序前馈神经元。测试时将目标语言神经元置零或设为该语言统计量；训练时把低秩适配（Low-Rank Adaptation, LoRA）更新限制在入选神经元相关矩阵，并与相同干预组合。
 
-    **实验验证。** 我们开展了细致实验，涵盖现有语言特定神经元识别技术（例如语言激活概率熵和基于激活概率的阈值法），以及在 Llama 3.1、Mistral Nemo 等模型上进行的神经元特定 LoRA 微调。结果发现，这类针对特定神经元的干预不足以提升低资源语言在下游任务（XNLI、XQuAD）上的跨语言表现。
+    **实验验证。** Llama-3.1-8B 与 Mistral-Nemo-12B 使用 16 种语言、每种最多 1 亿 Wikipedia 词元分析，序列上限 512。跨语言自然语言推断（XNLI）和跨语言问答数据集（XQuAD）评测源语言训练、目标语言测试。实验比较 LAPE 与激活阈值、多种神经元比例/统计量、普通 LoRA、随机神经元 LoRA、无干预及置零，并覆盖多种低资源印度语言。
 
-    **结论与证据。** 本研究凸显了实现跨语言泛化所面临的挑战，并为多语言大语言模型提供了重要认识。反例和控制实验有力限定了被审计方法能够支持的结论，但它们本身不能证明任何替代方法普遍忠实或充分。
+    **结论与证据。** 操控或微调入选语言神经元均未稳定提高跨语言准确率，置零往往也几乎不损害性能。强对照因此否定“这些单元独立承载可迁移语言能力”的简单主张。但负面结果不否定它们影响输出语言选择；分布式交互、置零并非真正停用、模型/任务有限或源–目标错配，都可能使选择性无法转化为迁移杠杆。
   generation:
     status: complete
     generated_by: project_agent

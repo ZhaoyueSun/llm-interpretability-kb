@@ -70,23 +70,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Is a causally localized site of information use also the most effective and localized place to edit behavior? In this paper, *Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Language models learn a great quantity of factual information during pretraining, and recent work localizes this information to specific model weights like mid-layer multilayer perceptron (MLP) weights.
+    **Research Question.** The paper tests a common assumption behind knowledge editing: if causal localization says a fact is represented strongly at a layer, should changing that fact at the same layer be easier or more successful? It further asks whether any relationship survives changes in editing objective, editor, localization method, metric, model, or dataset.
 
-    **Method.** In this paper, we find that we can change how a fact is stored in a model by editing weights that are in a different location than where existing methods suggest that the fact is stored. This is surprising because we would expect that localizing facts to specific model parameters would tell us where to manipulate knowledge in models, and this assumption has motivated past work on model editing methods.
+    **Method.** Causal Tracing corrupts subject embeddings and restores windows of hidden states, assigning each layer a fractional recovery effect. For the same fact and layer, Rank-One Model Editing (ROME), Mass-Editing Memory in a Transformer (MEMIT), or constrained Adam fine-tuning changes multilayer-perceptron weights. Rewrite, paraphrase, neighborhood, and aggregate scores quantify target acquisition, generalization, and specificity; pointwise correlations and regressions compare edit success with tracing effect while controlling for the edited layer.
 
-    **Validation.** Next, we consider several variants of the editing problem, including erasing and amplifying facts.
+    **Validation.** The main experiment uses 652 CounterFact prompts that GPT-J (6B) answers correctly and evaluates edits at nine layers; ROME achieves about 99% mean rewrite score at its default layer. Tracing effect and rewrite score have correlation \(\rho=-0.13\), and tracing alone explains \(R^2=0.016\) versus 0.947 for layer identity; adding tracing to layer raises \(R^2\) only to 0.948. Four alternate objectives—error injection, tracing reversal, fact erasure, amplification, and forcing—are tested with ROME, MEMIT, and one- or five-layer fine-tuning. Robustness checks use ZSRE, GPT-2 XL, representation zeroing, alternate tracing windows and edit metrics; tracing contributes at most about 3.2 additional variance points.
 
-    **Conclusion & Evidence.** Specifically, we show that localization conclusions from representation denoising (also known as Causal Tracing) do not provide any insight into which model MLP layer would be best to edit in order to override an existing stored fact with a new one. This finding raises questions about how past work relies on Causal Tracing to select which model layers to edit. For one of our editing problems, editing performance does relate to localization results from representation denoising, but we find that which layer we edit is a far better predictor of performance. Our results suggest, counterintuitively, that better mechanistic understanding of how pretrained language models work may not always translate to insights about how to best change their behavior. Our code is available at https://github.com/google/belief-localization The counterexamples or controls strongly delimit what the audited method can justify. They do not, on their own, prove that any proposed replacement is universally faithful or sufficient.
+    **Conclusion & Evidence.** Causal localization and weight editing answer different questions: an activation site can be important for expressing a fact without being the uniquely or optimally editable storage site, because another layer can override the computation. The near-zero pointwise relationships are replicated across a broad factorial set of controls, strongly rejecting tracing score as a layer-selection rule for these factual edits. The result is narrower than a rejection of localization itself: it concerns short English factual associations and current editors, and does not show that causal tracing fails to identify representations used during inference.
   zh: |-
-    **研究问题。** Causal Tracing 所定位的事实信息位置，是否真的预测在哪一层进行 knowledge editing 最有效？定位强度与编辑成功是否相关、局部化位置是否必要或最优，以及在何种修改后的编辑目标下二者才可能重新一致？
+    **研究问题。** 该论文检验知识编辑中的一个常见假设：如果因果定位显示某事实在某层有很强表示，那么在同一层修改该事实是否应更容易或更成功；并进一步考察这种关系在更换编辑目标、编辑器、定位方法、指标、模型或数据集后是否仍成立。
 
-    **方法。** 本文发现，通过编辑与现有方法所指出的事实存储位置不同的权重，也可以改变事实在模型中的存储方式。这一点令人意外，因为我们通常预期，把事实定位到特定模型参数会告诉我们应在何处操纵模型知识，而以往模型编辑研究也受这一假设推动。
+    **方法。** 因果追踪先扰动主语嵌入，再恢复滑动窗口内的隐藏状态，为每层计算分数化恢复效应。随后对同一事实和同一层，使用秩一模型编辑（Rank-One Model Editing, ROME）、Transformer 大规模记忆编辑（Mass-Editing Memory in a Transformer, MEMIT）或受约束 Adam 微调修改多层感知机权重。改写、释义、邻域和综合分数分别衡量目标注入、泛化与特异性；逐样本相关和回归在控制编辑层后比较编辑成功与追踪效应。
 
-    **实验验证。** 随后，我们考虑了事实擦除和增强等多个编辑问题变体。
+    **实验验证。** 主实验使用 GPT-J（60 亿参数）能够正确回答的 652 条 CounterFact 提示，并在 9 个层位置编辑；ROME 在默认层的平均改写分约为 99%。追踪效应与改写分的相关为 \(\rho=-0.13\)，单独追踪仅解释 \(R^2=0.016\)，层身份则解释 0.947；加入追踪后仅升至 0.948。实验还测试错误注入、追踪逆转、事实擦除、放大和强制等目标，以及 ROME、MEMIT、单层/五层微调；稳健性检查覆盖 ZSRE、GPT-2 XL、表示置零、不同追踪窗口和编辑指标，追踪最多只额外解释约 3.2 个百分点的方差。
 
-    **结论与证据。** 具体而言，我们表明，表征去噪（又称因果追踪）所得定位结论，完全无法说明应编辑哪个 多层感知机（Multi-Layer Perceptron, MLP） 层，才能用新事实覆盖模型已有事实。这一发现使人们需要重新审视以往研究依赖因果追踪选择模型编辑层的做法。对其中一个编辑问题，编辑性能确实与表征去噪的定位结果有关，但我们发现，所编辑的具体层是远强于定位结果的性能预测因素。我们的结果反直觉地表明，对预训练语言模型工作机制取得更好的理解，并不总能转化为如何最有效改变其行为的认识。代码见 https://github.com/google/belief-localization。反例和控制实验有力限定了被审计方法能够支持的结论，但它们本身不能证明任何替代方法普遍忠实或充分。
+    **结论与证据。** 因果定位与权重编辑回答的是不同问题：某激活位置可对事实表达很重要，却未必是唯一或最佳编辑位置，因为其他层可以覆盖原计算。跨多种控制条件反复出现的近零逐样本关系，强烈否定把追踪分数直接用作这些事实编辑的选层规则。但结论并非否定定位本身：它只涉及短英文事实关联和现有编辑器，也没有证明因果追踪未能找到推理时实际使用的表示。
   generation:
     status: complete
     generated_by: project_agent

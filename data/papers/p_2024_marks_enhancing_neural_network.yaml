@@ -66,23 +66,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Under what geometric, hierarchical, and optimization conditions do sparse dictionaries produce erroneous or fabricated feature explanations? In this paper, *Enhancing Neural Network Interpretability with Feature-Aligned Sparse Autoencoders* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Sparse Autoencoders (SAEs) have shown promise in improving the interpretability of neural network activations, but can learn features that are not features of the input, limiting their effectiveness.
+    **Research Question.** The paper asks whether features independently rediscovered by multiple sparse autoencoders are more likely to reflect true input structure than run-specific artifacts, and whether this cross-run agreement can be used during training to improve feature recovery and reconstruction on realistic activations.
 
-    **Method.** We propose Mutual Feature Regularization (MFR), a regularization technique for improving feature learning by encouraging SAEs trained in parallel to learn similar features. We then scale MFR to SAEs that are trained to denoise electroencephalography (EEG) data and SAEs that are trained to reconstruct GPT-2 Small activations.
+    **Method.** Mutual Feature Regularization (MFR) trains several autoencoders in parallel and adds a decoder-alignment penalty that rewards each learned direction for matching a direction learned by another run. Synthetic superposition data supply known generating features for direct recovery measurement. An early reinitialization rule detects poor runs from persistently inactive Top-(K) latents, while ablations separate the effects of reinitialization and mutual regularization.
 
-    **Validation.** By training on synthetic data with known features of the input, we show that MFR can help SAEs learn those features, as we can directly compare the features learned by the SAE with the input features for the synthetic data.
+    **Validation.** On synthetic vectors with more generating features than dimensions, decoder directions shared across independent runs correlate more strongly with the known feature matrix; MFR increases the fraction recovered across seeds and sparsity settings. The method is then applied to Top-(K) autoencoders over GPT-2 Small activations and to denoising autoencoders for electroencephalography (EEG) data. Relative to matched independently trained baselines, reconstruction loss improves by as much as 21.21% for GPT-2 activations and 6.67% for EEG. Reinitialization-only, penalty-only, and weight-distance analyses test whether gains arise merely from lucky initialization; adding the penalty changes final synthetic reconstruction loss by only about 2.4% while improving feature alignment.
 
-    **Conclusion & Evidence.** We motivate MFR by showing that features learned by multiple SAEs are more likely to correlate with features of the input. We show that MFR can improve the reconstruction loss of SAEs by up to 21.21% on GPT-2 Small, and 6.67% on EEG data. Our results suggest that the similarity between features learned by different SAEs can be leveraged to improve SAE training, thereby enhancing performance and the usefulness of SAEs for model interpretability. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+    **Conclusion & Evidence.** Agreement among independently trained dictionaries is a useful weak signal for real features, and explicitly aligning those dictionaries can improve both known-feature recovery and reconstruction. Ground-truth synthetic tests plus two real-data domains support the optimization claim. For real activations the actual features remain unknown, so lower reconstruction loss does not establish greater interpretability; correlated artifacts could also be shared, alignment may reduce legitimate feature diversity, and MFR requires the extra compute and memory of training multiple SAEs.
   zh: |-
-    **研究问题。** 稀疏自编码器（Sparse Autoencoder, SAE） 可能学习并非输入真实 features 的 arbitrary split/composed directions；同一数据上多个独立 SAE 反复学到的 features 是否更可能与输入特征对齐？Mutual Feature Regularization 能否利用跨 SAE 一致性改善 feature recovery？
+    **研究问题。** 该论文研究多个独立稀疏自编码器反复发现的特征，是否比单次运行特有方向更可能对应真实输入结构，以及能否在训练中利用这种跨运行一致性，提高真实激活上的特征恢复和重构。
 
-    **方法。** 我们提出互特征正则化（Mutual Feature Regularization，MFR），这是一种通过鼓励并行训练的 SAE 学习相似特征来改进特征学习的正则化技术。
+    **方法。** 互特征正则化（Mutual Feature Regularization, MFR）并行训练多个自编码器，并加入解码器对齐惩罚，使每个学习方向匹配另一运行的某个方向。合成叠加数据提供已知生成特征，可直接测量恢复率；早期重初始化规则用长期不活跃的 Top-(K) 潜变量识别差初始化，并通过只重初始化、只加惩罚等消融分离作用。
 
-    **实验验证。** 通过在输入特征已知的合成数据上训练，我们可以直接比较 SAE 所学特征与合成数据的输入特征，并由此证明 MFR 能帮助 SAE 学到这些特征。随后，我们把 MFR 扩展到用于脑电图（EEG）数据去噪的 SAE，以及用于重构 GPT-2 Small 激活的 SAE。
+    **实验验证。** 在生成特征数多于维度的合成向量上，独立运行共同学到的解码方向与已知特征矩阵相关更强；MFR 跨随机种子和稀疏设置提高恢复比例。随后把方法用于 GPT-2 Small 激活上的 Top-(K) 自编码器，以及脑电图（Electroencephalography, EEG）去噪自编码器。相对匹配独立训练基线，重构损失最高分别改善 21.21% 和 6.67%。重初始化/惩罚消融与权重距离分析检查增益是否只来自幸运初始化；合成数据中加入惩罚对最终重构损失仅约 2.4% 相对影响，却改善特征对齐。
 
-    **结论与证据。** 我们发现，由多个 SAE 共同学到的特征更可能与输入特征相关，这为 MFR 提供了动机。结果表明，MFR 可使 SAE 在 GPT-2 Small 上的重构损失最多改善 21.21%，在 EEG 数据上最多改善 6.67%。研究结果说明，可以利用不同 SAE 所学特征之间的相似性改进 SAE 训练，从而提升其性能以及在模型可解释性中的实用价值。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+    **结论与证据。** 独立字典间的一致性可作为真实特征的弱信号，显式对齐能同时改善已知特征恢复和重构。具有真值的合成实验及两个真实数据领域支持优化结论。但真实激活的实际特征未知，较低重构损失不等于更可解释；相关伪特征也可能被共同学到，对齐可能压制合理特征多样性，MFR 还需并行训练多个 SAE 的额外算力和内存。
   generation:
     status: complete
     generated_by: project_agent

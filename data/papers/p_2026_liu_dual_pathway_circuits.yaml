@@ -100,23 +100,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Do multimodal hallucinations arise from reproducible competing pathways or architectural bottlenecks? In this paper, *Dual-Pathway Circuits of Object Hallucination in Vision-Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Vision-language models (VLMs) have demonstrated remarkable capabilities in bridging visual perception and natural language understanding, enabling a wide range of multimodal reasoning tasks. However, they often produce object hallucinations, describing content absent from the input image, which limits their reliability and interpretability.
+    **Research Question.** The paper asks whether object hallucination reflects competition between a visual-grounding pathway and a hallucination-promoting pathway, how their interactions differ on correct versus erroneous samples, and whether selectively suppressing the latter generalizes across models and hallucination types.
 
-    **Method.** To address this limitation, we propose Dual-Pathway Circuit Analysis, a framework that identifies and characterizes hallucination-related circuits in VLMs for mechanistic understanding and causal probing. We then introduce Conditional Pathway Analysis (CPA) to characterize pathway-level interactions, revealing that grounding components remain strongly redundant in both correct and hallucinating samples but undergo a consistent polarity flip, shifting from supporting the ground truth on correct samples to aligning with the hallucinated answer on erroneous ones.
+    **Method.** Visual-token activation patching extracts components that restore the ground-truth answer or support the hallucinated answer. Conditional Pathway Analysis (CPA) decomposes individual and joint indirect effects to measure redundancy and polarity. Logit Lens independently labels layer contributions; cross-architecture matching compares organization rather than exact head identity. Inference-time component scaling suppresses the hallucination path.
 
-    **Validation.** We first apply activation patching across five architecturally diverse VLMs to identify a visual grounding pathway that supports correct predictions and a hallucination pathway that drives erroneous outputs. We further perform targeted suppression of hallucination-pathway components, showing that scaling these components reduces object hallucination by up to 76% with minimal accuracy cost, and validate that the same circuit selectively transfers to relational but not attribute hallucination.
+    **Validation.** Five models span three language backbones, four vision–language integration designs, and two scales. Independent POPE-adversarial splits provide 1,000 discovery, 400 CPA, 200 Logit-Lens, and 500 intervention samples; 100 of the last choose hyperparameters and 400 are held out. Hyperparameters transfer unchanged to POPE popular/random and AMBER existence, attribute, and relation splits. Gaussian corruption, threshold sweeps, static steering/probe baselines, grounding-path controls, and singular-spectrum analysis are included. Suppression reduces object hallucination by as much as 76% with little accuracy loss and transfers to relation but not attribute hallucination.
 
-    **Conclusion & Evidence.** Evaluations on POPE-adversarial and AMBER show that the identified circuits are consistent across architectures, support causal intervention, and transfer selectively across hallucination types. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+    **Conclusion & Evidence.** Architectures share a dual-pathway organization despite different wiring. Grounding components remain redundant but flip polarity—supporting truth on correct cases and the hallucinated answer on errors—while hallucination influence is distributed rather than one static direction. Independent splits, CPA, Logit Lens, and targeted suppression give strong local causal evidence. Binary object questions simplify hallucination, pathway thresholds are analyst-chosen, and selective transfer shows the account is not universal across error types.
   zh: |-
-    **研究问题。** 视觉—语言模型（Vision-Language Model, VLM） object-existence hallucination 的电路是 architecture-specific，还是跨模型共享 visual-grounding 与 hallucination 双路径？路径内组件如何交互，目标 suppression 能否因果验证该结构，并向 relational/attribute hallucination 迁移？
+    **研究问题。** 该论文研究物体幻觉是否源于视觉落地路线与促幻觉路线竞争，两者交互在正确和错误样本上如何变化，以及选择性抑制后者能否跨模型与幻觉类型迁移。
 
-    **方法。** 为解决这一问题，我们提出双路径回路分析（Dual-Pathway Circuit Analysis），该框架识别并刻画 VLM 中与幻觉有关的回路，以支持机制理解和因果探测。随后，我们提出条件路径分析（CPA）来刻画路径层面的交互。
+    **方法。** 视觉词元激活修补提取恢复真值答案或支持幻觉答案的组件。条件路线分析（Conditional Pathway Analysis, CPA）分解单独与联合间接效应，以测冗余和极性；Logit Lens 独立标注逐层贡献，跨架构比较关注组织而非相同头身份。推理时组件缩放用于压制幻觉路线。
 
-    **实验验证。** 首先，我们在五种架构各异的 VLM 上应用激活修补，识别出一条支持正确预测的视觉锚定路径，以及一条驱动错误输出的幻觉路径。
+    **实验验证。** 五模型覆盖三个语言骨干、四种视觉–语言整合方式和两种规模。独立 POPE-adversarial 子集分别提供 1,000 条发现、400 条 CPA、200 条 Logit Lens 和 500 条干预样本；后者中 100 条选超参数、400 条留出。超参数不变迁移到 POPE popular/random 及 AMBER 的存在、属性、关系子集。对照含高斯破坏、阈值扫描、静态引导/探针、落地路线抑制及奇异谱分析。压制最多降低 76% 物体幻觉且准确率代价小，并迁移到关系而非属性幻觉。
 
-    **结论与证据。** 结果显示，无论样本预测正确还是发生幻觉，锚定组件都保持很强的冗余性，但会持续发生极性翻转：在正确样本中支持真实答案，在错误样本中则转而与幻觉答案一致。我们还对幻觉路径组件进行定向抑制，结果表明，缩放这些组件最多可使物体幻觉减少 76%，同时只付出很小的准确率代价；我们并验证了同一回路可选择性迁移到关系幻觉，但不能迁移到属性幻觉。在 POPE-adversarial 和 AMBER 上的评估表明，所识别的回路跨架构保持一致，支持因果干预，并能在不同幻觉类型之间实现选择性迁移。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+    **结论与证据。** 不同架构虽接线不同，却共享双路线组织。落地组件保持强冗余，但会发生极性翻转：正确样本支持真值，错误样本反而对齐幻觉；幻觉信号则分布于多方向。独立数据划分、CPA、Logit Lens 和定向压制提供强局部因果证据。但二元物体问题简化了幻觉，路线阈值由研究者选择，选择性迁移也说明机制并不覆盖所有错误类型。
   generation:
     status: complete
     generated_by: project_agent

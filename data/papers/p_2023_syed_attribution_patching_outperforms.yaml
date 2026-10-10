@@ -55,23 +55,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Can circuit discovery be automated and scaled while preserving the quality of mechanism recovery? In this paper, *Attribution Patching Outperforms Automated Circuit Discovery* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Automated interpretability research has recently attracted attention as a potential research direction that could scale explanations of neural network behavior to large models. Existing automated circuit discovery work applies activation patching to identify subnetworks responsible for solving specific tasks (circuits).
+    **Research Question.** The paper asks whether automated circuit discovery needs repeated expensive activation patching, or whether a first-order gradient approximation can rank all computational-graph edges more efficiently and recover known circuits at least as well. It also asks where that approximation fails and whether a slower search still adds value afterward.
 
-    **Method.** In this work, we show that a simple method based on attribution patching outperforms all existing methods while requiring just two forward passes and a backward pass.
+    **Method.** Edge Attribution Patching (EAP) estimates the metric change from replacing a clean edge activation \(e_c\) by a corrupted one \(e_r\) as \((e_r-e_c)^\top\nabla_e L\). Two forward passes and one backward pass produce scores for all residual and query/key/value edges; sorting absolute scores and retaining the top \(k\) yields a circuit. Task-specific logit metrics avoid the zero gradient that Kullback–Leibler divergence has at the uncorrupted global minimum.
 
-    **Validation.** We apply a linear approximation to activation patching to estimate the importance of each edge in the computational subgraph. Using this approximation, we prune the least important edges of the network.
+    **Validation.** Recovery is benchmarked against published ground-truth circuits for indirect-object identification, Python docstring completion, and greater-than prediction using receiver-operating-characteristic curves and area under the curve (AUC). EAP has the best AUC on two tasks; Automated Circuit Discovery (ACDC) with KL divergence wins the third, while repeated exact activation patching is feasible only for the small docstring model. Score distributions place most high-magnitude Indirect Object Identification (IOI) edges inside the reference circuit and align signs with mover versus negative-mover roles. Interpolating selected edges exposes concave response curves where the linear approximation overestimates effects; applying ACDC after EAP pre-pruning improves true/false-positive trade-offs.
 
-    **Conclusion & Evidence.** We survey the performance and limitations of this method, finding that averaged over all tasks our method has greater area under the receiver operating characteristic curve (AUC) from circuit recovery than other methods. The interventions establish that the behavior is sensitive to the targeted representation or parameter direction, but sensitivity alone does not yield a complete or unique mechanism.
+    **Conclusion & Evidence.** A single-gradient edge ranking is generally faster and at least competitive with iterative activation-patching search, making EAP a useful first stage and ACDC a refinement stage. Multi-task circuit-recovery curves and role-consistent signs support the ranking claim, but the benchmark treats hand-built circuits as ground truth and does not prove discovered subnetworks are uniquely faithful. First-order errors can be large, gradients fail for locally flat metrics, and AUC recovery does not directly measure behavioral sufficiency under simultaneous edge ablation.
   zh: |-
-    **研究问题。** 能否用一次前向—反向传播得到的 edge attribution patching 近似逐边 activation patching，从而比 自动电路发现（Automated Circuit Discovery, ACDC） 更高效地恢复已知电路？该近似为何有效、在哪些情况下仍需与 ACDC 结合？
+    **研究问题。** 该论文研究自动电路发现是否必须反复执行昂贵的激活修补，还是一阶梯度近似就能更高效地排序计算图全部边，并至少同样好地恢复已知电路；同时分析近似何处失败，以及慢速搜索在后处理阶段是否仍有价值。
 
-    **方法。** 本文表明，一种基于归因修补的简单方法优于所有现有方法，而且只需要两次前向传播和一次反向传播。
+    **方法。** 边归因修补（Edge Attribution Patching, EAP）把干净边激活 \(e_c\) 替换为污染激活 \(e_r\) 后的指标变化近似为 \((e_r-e_c)^\top\nabla_e L\)。两次前向和一次反向传播即可得到所有残差边及查询/键/值边的分数，再按绝对值排序并保留前 \(k\) 条形成电路。方法使用任务特定 logit 指标，避免 Kullback–Leibler 散度在未污染全局最小点梯度为零的问题。
 
-    **实验验证。** 我们对激活修补作线性近似，以估计计算子图中每条边的重要性，并利用该近似剪除网络中最不重要的边。
+    **实验验证。** 以间接宾语识别、Python docstring 补全和“大于”预测的已发表人工电路为真值，用受试者工作特征曲线及曲线下面积（Area Under the Curve, AUC）评测恢复。EAP 在两项任务取得最高 AUC，使用 KL 散度的自动电路发现（Automated Circuit Discovery, ACDC）在第三项胜出；反复精确激活修补只在较小的 docstring 模型上可承受。IOI 中多数高绝对值边位于参考电路内，正负号也符合搬运头与负搬运头角色。对边做连续插值则发现凹响应会令线性近似高估效应；先用 EAP 剪枝再运行 ACDC 可改善真假阳性权衡。
 
-    **结论与证据。** 我们系统考察该方法的性能和局限，发现对所有任务取平均后，该方法在回路恢复上的 受试者工作特征曲线下面积（Area Under the Curve, AUC） 高于其他方法。干预证明行为对目标表示或参数方向具有敏感性，但敏感性本身并不构成完整或唯一的机制解释。
+    **结论与证据。** 单梯度边排序通常比迭代激活修补搜索更快且至少具有竞争力，因此 EAP 适合作为第一阶段、ACDC 作为细化阶段。多任务电路恢复曲线和与角色一致的符号支持排序结论，但评测把人工电路当作真值，并未证明发现的子网是唯一忠实解释。一阶误差可能很大，局部平坦指标会使梯度失效，而 AUC 恢复也不直接等于同时消融多条边后的行为充分性。
   generation:
     status: complete
     generated_by: project_agent

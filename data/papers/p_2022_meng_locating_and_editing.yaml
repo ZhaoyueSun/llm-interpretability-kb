@@ -67,23 +67,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** The paper asks where and in what computational form autoregressive language models store and recall factual associations. It further tests whether a correct localization should make it possible to edit one fact directly while preserving paraphrase generalization and specificity to unrelated facts.
+    **Research Question.** The paper asks where autoregressive Transformers retrieve factual associations and whether a causally implicated site can be edited to replace one subject–relation–object fact. The edit must succeed on the requested prompt, generalize to paraphrases, and avoid changing neighboring facts or generation quality.
 
-    **Method.** Causal tracing corrupts the subject representation and then restores individual hidden states from a clean run; the increase in the correct object's probability estimates each state's indirect effect. This motivates the hypothesis that middle-layer multilayer perceptrons (MLPs) at the final subject token act as associative memories. Rank-One Model Editing (ROME) then inserts a new subject–object key–value association with a covariance-adjusted rank-one update to an MLP projection matrix.
+    **Method.** Causal tracing first corrupts a subject's embeddings, then restores one clean hidden state at a time; recovery of the correct object's probability is its indirect effect. The observed middle-layer, final-subject-token peak motivates Rank-One Model Editing (ROME): an optimized key represents the subject context, a target value makes the model predict the new object, and a covariance-adjusted rank-one update writes that key–value pair into one multilayer perceptron projection matrix.
 
-    **Validation.** Causal tracing is run on 1,000 factual statements in GPT-2 XL. Editing is tested on 10,000 zero-shot relation extraction records and on COUNTERFACT, including 7,500 GPT-2 XL and 2,000 GPT-J cases. Evaluations measure efficacy, paraphrase generalization, interference with neighboring entities, generation consistency, and fluency, with layer–token sweeps, human judgments, and comparisons to fine-tuning, Knowledge Neurons, Knowledge Editor, and Model Editor Networks with Gradient Decomposition.
+    **Validation.** Localization uses 1,000 factual statements in GPT-2 XL with token/layer restoration maps and controls at other sites. Editing uses 10,000 zero-shot relation-extraction records and COUNTERFACT, including 7,500 GPT-2 XL and 2,000 GPT-J edits. Metrics cover edit efficacy, paraphrase generalization, neighborhood specificity, generation consistency, and fluency; comparisons include fine-tuning, Knowledge Neurons, Knowledge Editor, and Model Editor Networks with Gradient Decomposition, plus layer sweeps and human judgments. ROME's composite COUNTERFACT score is 89.2 on GPT-2 XL and 91.5 on GPT-J, with near-perfect direct efficacy and a stronger generalization–specificity balance than tested baselines.
 
-    **Conclusion & Evidence.** Restoring and editing middle-layer MLP states at the final subject token produces the strongest effects. ROME reaches composite COUNTERFACT scores of 89.2 on GPT-2 XL and 91.5 on GPT-J, with near-perfect edit efficacy and substantially better generalization–specificity balance than the tested baselines. The converging activation and weight interventions provide strong local causal evidence for this site, but do not prove that all knowledge is exclusively stored there or that the mechanism covers logical, numerical, or large-scale multi-fact editing.
+    **Conclusion & Evidence.** Middle-layer multilayer perceptron states at the final subject token are a high-leverage site for factual recall, and a rank-one write there can reliably alter a single association. Agreement between activation restoration and targeted weight edits gives strong local causal evidence. It does not prove that facts are stored exclusively or atomically at that site; evaluation emphasizes single edits, specificity is finite, and logical, numerical, temporal, or many-edit consistency remains unresolved.
   zh: |-
-    **研究问题。** 论文研究自回归语言模型在何处、以何种计算形式存储和召回事实关联，并进一步检验：如果定位正确，能否直接修改该局部计算，使模型学会新事实，同时保持改写泛化性以及对无关事实的特异性。
+    **研究问题。** 该论文研究自回归 Transformer 在哪里取回事实关联，以及能否在因果相关位置替换一条主语–关系–宾语事实。合格编辑不仅要让目标提示成功，还须泛化到改写，同时尽量不改变邻近事实和生成质量。
 
-    **方法。** 因果追踪先破坏主语表示，再逐层恢复干净运行中的单个隐藏状态，以正确宾语概率的恢复幅度估计该状态的间接效应。结果导向“中间层多层感知机（Multi-Layer Perceptron, MLP）在主语最后一个 token 上充当联想记忆”的假说。秩一模型编辑（Rank-One Model Editing, ROME）随后用经过协方差校正的秩一权重更新，在 MLP 投影矩阵中写入新的主语—宾语键值关联。
+    **方法。** 因果追踪先破坏主语嵌入，再逐个恢复干净运行中的隐藏状态，以正确宾语概率的恢复量作为间接效应。中间层、主语末词元出现峰值，据此提出秩一模型编辑（Rank-One Model Editing, ROME）：优化的键表示主语语境，目标值促使模型预测新宾语，再用协方差校正的秩一更新把键–值对写入某个多层感知机投影矩阵。
 
-    **实验验证。** 因果追踪在 GPT-2 XL 的 1,000 条事实陈述上进行；模型编辑则在 10,000 条零样本关系抽取记录和 COUNTERFACT 数据集上评估，其中包含 7,500 个 GPT-2 XL 和 2,000 个 GPT-J 测试案例。指标覆盖编辑成功率、改写泛化、邻近实体干扰、生成一致性和流畅性，并配合层—token 扫描、人工评价以及与微调、Knowledge Neurons、Knowledge Editor 和梯度分解模型编辑网络等方法的比较。
+    **实验验证。** 定位阶段在 GPT-2 XL 的 1,000 条事实陈述上绘制词元–层恢复图，并检查其他位置。编辑阶段使用 10,000 条零样本关系抽取记录及 COUNTERFACT，其中 GPT-2 XL 7,500 条、GPT-J 2,000 条。指标包括编辑成功、改写泛化、邻域特异性、生成一致性与流畅度；基线含普通微调、Knowledge Neurons、Knowledge Editor 和 Model Editor Networks with Gradient Decomposition，并做人评与层扫描。ROME 的 COUNTERFACT 综合分在两模型上为 89.2/91.5，直接编辑近乎全成功，泛化–特异性平衡优于所测基线。
 
-    **结论与证据。** 在主语末 token 的中间层 MLP 上恢复或编辑状态会产生最强效果。ROME 在 GPT-2 XL 和 GPT-J 的 COUNTERFACT 综合分分别达到 89.2 和 91.5，编辑成功率接近 100%，泛化—特异性平衡也明显优于所测基线。激活干预与权重干预相互印证，形成较强的局部因果证据；但它不能证明所有知识都只存储在该位置，也未覆盖逻辑、数值或大规模多事实编辑。
+    **结论与证据。** 中间层多层感知机在主语末词元处是事实回忆的高杠杆位置，秩一写入可可靠改变单条关联。激活恢复和定向权重编辑相互印证，提供强局部因果证据。但这未证明事实只在该处或以原子形式存储；评测以单次编辑为主，特异性范围有限，逻辑、数值、时效及大规模多事实一致性仍未解决。
   generation:
     status: complete
     generated_by: project_agent

@@ -66,23 +66,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** How can paths and shared circuits implementing a target subcomputation be localized from behavioral constraints? In this paper, *Discovering Variable Binding Circuitry with Desiderata* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Recent work has shown that computation in language models may be human-understandable, with successful efforts to localize and intervene on both single-unit features and input-output circuits.
+    **Research Question.** The paper asks whether a computation can be localized automatically by specifying causal properties that its components should satisfy, rather than supplying a known circuit, and uses context-dependent variable binding as the test case.
 
-    **Method.** Here, we introduce an approach which extends causal mediation experiments to automatically identify model components responsible for performing a specific subtask by solely specifying a set of desiderata, or causal attributes of the model components executing that subtask.
+    **Method.** A differentiable binary mask is learned over attention heads and multilayer perceptron outputs. Training examples define complementary desiderata: under a value-dependent intervention the masked components should transmit the alternative variable value, while under an operation-only intervention they should preserve the original value. Activation patching through the mask supplies the causal signal, and an (L_0)-style penalty favors a small component set.
 
-    **Validation.** As a proof of concept, we apply our method to automatically discover shared variable binding circuitry in LLaMA-13B, which retrieves variable values for multiple arithmetic tasks.
+    **Validation.** The method is applied to LLaMA-13B prompts that bind variables to numbers and then perform arithmetic. Masks are trained on addition and subtraction cases and evaluated on held-out value-dependent and operation-interchange examples; multiplication supplies an unseen-operation transfer test. The final mask contains nine of roughly 1,600 attention heads plus one multilayer perceptron in the final-token residual stream. Patching only these ten components produces the alternative answer when a bound value changes, retains the original answer when only the operation changes, and transfers to multiplication; single-desideratum and regularization ablations test specificity.
 
-    **Conclusion & Evidence.** Our method successfully localizes variable binding to only 9 attention heads (of the 1.6k) and one multilayer perceptron (MLP) in the final token's residual stream. The coordinated interventions provide comparatively strong structural causal evidence for the proposed information flow or circuit. Completeness, uniqueness, and transfer to other models still require separate validation.
+    **Conclusion & Evidence.** The ten-component set behaves like shared value-copying circuitry rather than a task-specific arithmetic-output circuit, and both desiderata are necessary to separate those functions. Held-out activation interventions and transfer to an unseen operation provide causal-local evidence that the localized components participate in variable retrieval. The result does not establish a complete or unique binding circuit: mask solutions depend on the chosen desiderata, patching distribution, and sparsity penalty, and only one model family and prompt regime are examined.
   zh: |-
-    **研究问题。** 能否只指定目标子计算应满足的 causal desiderata，而无需预先给出完整 clean/corrupted 行为模板，就自动学习稀疏组件 mask？这种方法能否在 LLaMA-13B 中定位跨多种算术操作共享的 variable-value binding/copying circuitry？
+    **研究问题。** 该论文研究能否只指定目标计算应满足的因果属性，而不提供已知电路，就自动定位执行该计算的模型组件，并以依赖上下文的变量绑定作为测试案例。
 
-    **方法。** 本文提出一种方法，把因果中介实验扩展为自动识别负责特定子任务的模型组件；使用者只需指定一组期望条件（desiderata），即执行该子任务的模型组件应具备的因果属性。
+    **方法。** 方法在注意力头和多层感知机输出上学习可微二值掩码。训练样本定义两项互补要求：在“变量值改变”的干预中，掩码组件应传递替代值；在“只改变运算”的干预中，它们应保留原变量值。通过掩码进行激活修补提供因果训练信号，近似 (L_0) 惩罚则鼓励得到较小组件集合。
 
-    **实验验证。** 作为概念验证，我们应用该方法，在 LLaMA-13B 中自动发现被多个算术任务共同使用、用于检索变量取值的变量绑定回路。
+    **实验验证。** 实验使用 LLaMA-13B 的变量赋值与算术提示，在加法和减法上训练掩码，再于留出的“值改变”和“运算改变”样本上评估；乘法作为未见运算迁移测试。最终掩码只含约 1,600 个注意力头中的 9 个，以及最终 token 残差流中的一个多层感知机。仅修补这十个组件时，变量值改变会产生替代答案，只改变运算则保留原答案，并能迁移到乘法；单一要求和正则强度消融用于检验特异性。
 
-    **结论与证据。** 该方法成功将变量绑定定位到仅 9 个注意力头（总计 1,600 个）以及最后一个 token 残差流中的一个 多层感知机（Multi-Layer Perceptron, MLP）。相互配合的干预为所提出的信息流或电路提供了较强的结构因果证据，但机制的完备性、唯一性以及跨模型迁移仍需独立验证。
+    **结论与证据。** 这十个组件更像共享的数值复制电路，而不是某种算术输出电路，两项要求共同使用才能分离二者。留出激活干预及向未见运算迁移提供了局部因果证据，说明这些组件参与变量取回。但结果不能证明电路完整或唯一；掩码依赖所选要求、修补分布和稀疏惩罚，而且只检验了一个模型系列和提示范围。
   generation:
     status: complete
     generated_by: project_agent

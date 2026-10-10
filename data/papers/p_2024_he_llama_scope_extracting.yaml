@@ -113,23 +113,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Can interpretable feature extraction scale to frontier models, all relevant layers and positions, and the long tail of the training distribution? In this paper, *Llama Scope: Extracting Millions of Features from Llama-3.1-8B with Sparse Autoencoders* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Sparse Autoencoders (SAEs) have emerged as a powerful unsupervised method for extracting sparse representations from language models, yet scalable training remains a significant challenge.
+    **Research Question.** The paper asks whether sparse autoencoders (SAEs) can be trained comprehensively across every major activation site of an 8B-parameter language model, which training design gives the best sparsity–fidelity trade-off, and whether the learned dictionaries generalize to longer contexts and instruction-tuned variants.
 
-    **Method.** We introduce a suite of 256 SAEs, trained on each layer and sublayer of the Llama-3.1-8B-Base model, with 32K and 128K features. In particular, we assess the generalizability of SAEs trained on base models to longer contexts and fine-tuned models. The Llama Scope SAE checkpoints are publicly available at https://huggingface.co/fnlp/Llama-Scope, alongside our scalable training, interpretation, and visualization tools at https://github.com/OpenMOSS/Language-Model-SAEs.
+    **Method.** Llama Scope trains Top-(K) and vanilla SAEs at the post-multilayer perceptron (MLP) residual stream, attention output, MLP output, and transcoder site in all 32 Llama-3.1-8B layers, with 32K and 128K dictionaries. The Top-(K) recipe incorporates decoder-column norms into selection, anneals (K) during early training, and converts the model post hoc to independent JumpReLU thresholds. Input/output norm normalization and mixed parallelism support consistent large-scale training.
 
-    **Validation.** Modifications to a state-of-the-art SAE variant, Top-K SAEs, are evaluated across multiple dimensions.
+    **Validation.** The 256 SAEs are trained on SlimPajama activations and evaluated on 50 million held-out tokens using latent (L_0), explained variance, and language-model loss increase after insertion. Across layers, sites, and widths, Top-(K) models reduce typical (L_0) from about 150 to 50 while matching or improving fidelity; 128K dictionaries improve reconstruction at matched sparsity. GPT-4o labels and scores 768 randomly selected features from layers 7, 15, and 23, followed by manual checking; about 10% are judged uninterpretable and Top-(K) is not worse than vanilla. Additional tests extend sequence length and insert base-model SAEs into instruction-tuned models, with substantial degradation mainly at the last residual site.
 
-    **Conclusion & Evidence.** Additionally, we analyze the geometry of learned SAE latents, confirming that feature splitting enables the discovery of new features. These contributions aim to advance the open-source Sparse Autoencoder ecosystem and support mechanistic interpretability research by reducing the need for redundant SAE training. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+    **Conclusion & Evidence.** Industrial-scale, layer-complete SAE dictionaries can be trained with favorable reconstruction/sparsity metrics and reused across nearby deployment conditions, providing an open feature basis for subsequent analysis. The broad held-out evaluation strongly supports engineering scalability, but not the causal or unique validity of every feature. Automated labels inspect only top activations, downstream circuit usefulness is not tested, feature splitting complicates ontology, and fidelity metrics can reward reconstructions that remain hard to interpret.
   zh: |-
-    **研究问题。** 如何为 Llama-3.1-8B 的每层 residual、attention、多层感知机（Multi-Layer Perceptron, MLP） outputs 与 transcoders 训练并开放多宽度 稀疏自编码器（Sparse Autoencoders, SAEs）？改进 TopK 训练后，这些 features 的 sparsity、fidelity、interpretability、几何结构及向长上下文和 instruction model 的迁移性如何？
+    **研究问题。** 该论文研究能否在 80 亿参数语言模型的每类主要激活位置上系统训练稀疏自编码器（Sparse Autoencoder, SAE），哪种训练设计具有更好的稀疏—保真权衡，以及所得字典能否泛化到更长上下文和指令微调模型。
 
-    **方法。** 我们推出一套包含 256 个 SAE 的资源，它们分别在 Llama-3.1-8B-Base 模型的每一层和子层上训练，特征数量为 32K 或 128K。Llama Scope 的 SAE 检查点公开于 https://huggingface.co/fnlp/Llama-Scope；可扩展训练、解释和可视化工具见 https://github.com/OpenMOSS/Language-Model-SAEs。
+    **方法。** Llama Scope 在 Llama-3.1-8B 的 32 层上，分别对 多层感知机（Multilayer Perceptron, MLP） 后残差流、注意力输出、MLP 输出和转码器位置训练 Top-(K) 与普通 SAE，字典宽度为 32K 或 128K。Top-(K) 配方把解码列范数纳入选择，训练早期逐步退火 (K)，训练后再转换为各特征独立阈值的 JumpReLU；输入/输出范数归一化和混合并行支持大规模一致训练。
 
-    **实验验证。** 我们从多个维度评估了对先进 SAE 变体 Top-K SAE 的修改。特别是，我们评估在基础模型上训练的 SAE 对更长上下文和微调模型的泛化能力。
+    **实验验证。** 256 个 SAE 用 SlimPajama 激活训练，在 5,000 万留出词元上以潜变量 (L_0)、解释方差和插入 SAE 后的语言模型损失增量评测。跨层、位置和宽度，Top-(K) 把典型 (L_0) 从约 150 降到 50，同时持平或改善保真度；128K 字典在相同稀疏度下重构更好。GPT-4o 对第 7、15、23 层随机抽取的 768 个特征生成标签和评分，并由人工复核；约 10% 不可解释，Top-(K) 不差于普通 SAE。另测试更长序列，并把基础模型 SAE 插入指令微调模型，明显退化主要发生在最后残差位置。
 
-    **结论与证据。** 此外，我们分析所学 SAE 潜变量的几何结构，确认特征拆分能够发现新特征。这些贡献旨在推动开源稀疏自编码器生态发展，并通过减少重复训练 SAE 的需要来支持机制可解释性研究。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+    **结论与证据。** 可以为工业规模模型训练覆盖全层的 SAE 字典，并在重构—稀疏指标上取得良好结果，且能在相近部署条件间复用，为后续分析提供开放特征基底。大规模留出评测强力支持工程可扩展性，但不能证明每个特征都具有因果性或唯一性。自动标签只看最高激活，下游电路用途尚未验证，特征分裂会扰乱本体，而保真指标也可能奖励仍难解释的重构。
   generation:
     status: complete
     generated_by: project_agent

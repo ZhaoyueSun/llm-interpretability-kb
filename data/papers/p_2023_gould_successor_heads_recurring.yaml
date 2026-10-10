@@ -68,23 +68,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Do different training runs, models, and architectures reproduce the same mechanism, or only share an abstract algorithm? In this paper, *Successor Heads: Recurring, Interpretable Attention Heads In The Wild* addresses that question through its specific object of study and tests how far the resulting claim can be supported.
+    **Research Question.** The paper asks whether language models contain a recurring, mechanistically interpretable component for advancing ordered sequences, whether its input representation is shared across domains such as numbers and months, and whether that component matters on naturally occurring text rather than only synthetic prompts.
 
-    **Method.** In this work we present successor heads: attention heads that increment tokens with a natural ordering, such as numbers, months, and days. For example, successor heads increment 'Monday' into 'Tuesday'. We explain the successor head behavior with an approach rooted in mechanistic interpretability, the field that aims to explain how models complete tasks in human-understandable terms.
+    **Method.** A successor head is operationalized through its effective output–value (OV) circuit: for a token in eight ordinal tasks, the head must assign the largest within-task logit to that token's successor, and its successor score is the fraction of tokens satisfying this test. In Pythia-1.4B, the analysis decomposes the first multilayer perceptron's outputs with a sparse autoencoder, identifies features indexed by value modulo 10, and tests them with linear probes, neuron ablations, and vector arithmetic that replaces \(f_n\) by \(f_i\) while preserving task identity.
 
-    **Validation.** Existing research in this area has found interpretable language model components in small toy models. They form in large language models (LLMs) with as few as 31 million parameters, and at least as many as 12 billion parameters, such as GPT-2, Pythia, and Llama-2.
+    **Validation.** Successor scores are measured across GPT-2, Pythia, and Llama-2 models from 31 million to 12 billion parameters on numbers, number words, ordinals, days, months, years, letters, and Roman numerals. A held-out compositional decoding test reaches 1.00 top-1 accuracy and largely transfers to unseen Roman numerals; the modulo-10 decomposition is reproduced in Pythia-2.8B and a GPT-2-medium variant. Steering is judged by whether the edited representation's top OV-circuit output has the requested ordinal and original domain. On Pythia training-data samples, direct and total ablations measure loss changes, including a numbered-list case study; days and alphabet provide reported failure cases for the modulo-10 features.
 
-    **Conclusion & Evidence.** However, results in toy models have not yet led to insights that explain the internals of frontier models and little is currently understood about the internal operations of large language models. In this paper, we analyze the behavior of successor heads in large language models (LLMs) and find that they implement abstract representations that are common to different architectures. We find a set of 'mod-10 features' that underlie how successor heads increment in LLMs across different architectures and sizes. We perform vector arithmetic with these features to edit head behavior and provide insights into numeric representations within LLMs. Additionally, we study the behavior of successor heads on natural language data, identifying interpretable polysemanticity in a Pythia successor head. The coordinated interventions provide comparatively strong structural causal evidence for the proposed information flow or circuit. Completeness, uniqueness, and transfer to other models still require separate validation.
+    **Conclusion & Evidence.** Successor heads recur across architectures and scales and can reuse an abstract ordinal representation containing modulo-10 structure; causal edits and ablations show that this structure can control predictions and reduce loss on real succession examples. The combination of weight-level analysis, held-out transfer, steering, and loss interventions is strong evidence for the identified mechanism in the studied heads. It supports only a weak form of universality: not every model has a high-scoring head, some domains do not exhibit clean modulo-10 features, and the polysemantic heads also perform functions outside succession.
   zh: |-
-    **研究问题。** 执行序列递增的 successor heads 是否跨模型规模与架构反复出现，从而支持 weak universality？它们是否依赖可组合的抽象数值表示（如 mod-10 features），并在自然文本上实际降低 loss？
+    **研究问题。** 该论文研究语言模型中是否反复出现一种可进行机制解释的组件，用于把有序序列推进到下一项；其输入表示是否能跨数字、月份等领域共享；以及该组件在自然文本而非仅在合成提示中是否确实重要。
 
-    **方法。** 本文提出“后继注意力头”：这类注意力头会把具有自然顺序的 token 向后递增，例如数字、月份和星期。比如，它会把“Monday”递增为“Tuesday”。我们使用植根于机制可解释性的方法解释这种行为；机制可解释性旨在用人类可理解的方式说明模型如何完成任务。
+    **方法。** 后继头通过有效输出—值（Output–Value, OV）电路定义：对八类有序任务中的一个词元，若该注意力头在同任务候选中给其后继项最高 logit，则算一次成功；后继分数是成功词元的比例。对 Pythia-1.4B，研究用稀疏自编码器分解第一个多层感知机的输出，找出按数值模 10 编号的特征，再用线性探针、神经元消融以及以 \(f_i\) 替换 \(f_n\) 且保持任务身份的向量运算检验这些特征。
 
-    **实验验证。** 我们发现一组“模 10 特征”，它们构成不同架构和规模的语言模型中后继注意力头执行递增运算的基础。
+    **实验验证。** 后继分数在 3100 万至 120 亿参数的 GPT-2、Pythia 和 Llama-2 上测量，任务包括阿拉伯数字、数词、序数、星期、月份、年份、字母和罗马数字。留出数据上的组合解码达到 1.00 的 top-1 准确率，并大体迁移到未用于训练的罗马数字；模 10 分解也在 Pythia-2.8B 和一个 GPT-2-medium 变体中复现。操控实验检查编辑后表示经 OV 电路得到的最高输出是否同时具有目标序数和原领域；在 Pythia 训练文本上则用直接与总效应消融测量损失变化，并分析编号列表，星期和字母任务作为报告的失败案例。
 
-    **结论与证据。** 该领域的现有研究已在小型玩具模型中找到可解释的语言模型组件，但玩具模型中的结果尚未转化为解释前沿模型内部机制的认识，目前人们对大语言模型内部运算仍知之甚少。本文分析大语言模型（LLM）中后继注意力头的行为，并发现它们实现了不同架构共有的抽象表征。这类注意力头既会在仅有 3,100 万参数的模型中形成，也存在于参数量至少达到 120 亿的模型中，包括 GPT-2、Pythia 和 Llama-2。我们使用这些特征进行向量运算，以编辑注意力头行为，并揭示语言模型内部的数值表征。此外，我们还研究后继注意力头在自然语言数据上的行为，在 Pythia 的一个后继注意力头中识别出可解释的多义性。相互配合的干预为所提出的信息流或电路提供了较强的结构因果证据，但机制的完备性、唯一性以及跨模型迁移仍需独立验证。
+    **结论与证据。** 后继头跨架构和规模反复出现，并能复用带有模 10 结构的抽象序数表示；因果编辑和消融表明，该结构可控制预测，也会降低真实递增样本的损失。权重分析、留出迁移、表示操控和损失干预共同为所研究注意力头中的机制提供较强证据，但只支持弱普适性：并非所有模型都有高分后继头，部分领域没有清晰的模 10 特征，而且这些多义注意力头还承担递增之外的功能。
   generation:
     status: complete
     generated_by: project_agent

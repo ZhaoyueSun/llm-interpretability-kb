@@ -61,23 +61,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** How should the faithfulness of a discovered circuit be validated through behavioral preservation rather than component overlap? In this paper, *Have Faith in Faithfulness: Going Beyond Circuit Overlap When Finding Model Mechanisms* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Many recent language model (LM) interpretability studies have adopted the circuits framework, which aims to find the minimal computational subgraph, or circuit, that explains LM behavior on a given task. Most studies determine which edges belong in a LM's circuit by performing causal interventions on each edge independently, but this scales poorly with model size. Edge attribution patching (EAP), gradient-based approximation to interventions, has emerged as a scalable but imperfect solution to this problem.
+    **Research Question.** The paper asks how automated circuit-finding methods should be judged when overlap with a published circuit does not guarantee preservation of model behavior. It tests whether integrated gradients can improve Edge Attribution Patching (EAP), and whether circuit overlap predicts faithfulness within or across tasks.
 
-    **Method.** In this paper, we introduce a new method - EAP with integrated gradients (EAP-IG) - that aims to better maintain a core property of circuits: faithfulness.
+    **Method.** Circuit faithfulness is measured by ablating every graph edge outside a selected subgraph and normalizing the retained task performance between corrupted and full-model baselines. EAP with Integrated Gradients (EAP-IG) averages edge gradients along a path from corrupted to clean activations before ranking absolute edge scores; a greedy search forms circuits of varying size. Activation-patching circuits, ordinary EAP, variants, and overlap metrics provide comparisons.
 
-    **Validation.** A circuit is faithful if all model edges outside the circuit can be ablated without changing the model's performance on the task; faithfulness is what justifies studying circuits, rather than the full model. Our experiments demonstrate that circuits found using EAP are less faithful than those found using EAP-IG, even though both have high node overlap with circuits found previously using causal interventions.
+    **Validation.** GPT-2 Small experiments span six tasks, including Indirect Object Identification (IOI), greater-than, subject–verb agreement, gender bias, hypernymy, and capital–country; logit or probability differences define behavior. EAP-IG uses five integration steps after sweeps show three or more are usually sufficient. It improves faithfulness over EAP across tasks and retrieves the manual greater-than circuit with better node/edge precision–recall, although on IOI both EAP variants plateau around 0.6 faithfulness while activation patching exceeds 0.8. A circuit containing at least 90% of the manual IOI nodes can still have 0% faithfulness; cross-task overlap is similarly unreliable except at extremes. Replications on GPT-2 XL and Pythia-2.8B use 100 examples per task and preserve the EAP-IG advantage.
 
-    **Conclusion & Evidence.** We conclude more generally that when using circuits to compare the mechanisms models use to solve tasks, faithfulness, not overlap, is what should be measured. The interventions establish that the behavior is sensitive to the targeted representation or parameter direction, but sensitivity alone does not yield a complete or unique mechanism.
+    **Conclusion & Evidence.** Behavioral faithfulness must be tested directly; moderate node or edge overlap is not a dependable proxy for sharing a mechanism. Integrated-gradient scoring is a low-cost improvement over first-order EAP, but does not uniformly match exact patching. Six-task comparisons, explicit outside-circuit ablations, overlap counterexamples, and larger-model replications strongly support the methodological conclusion. Faithfulness alone does not guarantee completeness or uniqueness, depends on the corruption and task metric, and becomes expensive to compute as graphs grow.
   zh: |-
-    **研究问题。** 边归因修补（Edge Attribution Patching, EAP） 自动发现的电路在移除 circuit 外边后能否保持原模型行为，即是否 faithful？与已知电路的 component overlap 是否能代表 faithfulness，integrated gradients 能否改善 edge scoring 与所得电路的忠实度？
+    **研究问题。** 该论文研究当“与已发表电路重合”不能保证保留模型行为时，应如何评价自动电路发现；具体检验积分梯度能否改进边归因修补（Edge Attribution Patching, EAP），以及电路重合度能否预测同任务或跨任务保真度。
 
-    **方法。** 本文提出一种新方法——采用积分梯度的 EAP（EAP-IG），旨在更好地维持回路的一项核心属性：忠实性。
+    **方法。** 电路保真度通过消融所选子图之外的全部计算图边，并在污染基线与完整模型表现之间归一化剩余任务性能来衡量。积分梯度边归因修补（EAP with Integrated Gradients, EAP-IG）沿污染激活到干净激活的路径平均边梯度，再按绝对边分数排序；贪心搜索形成不同规模电路。精确激活修补、普通 EAP、若干变体及重合指标用于比较。
 
-    **实验验证。** 如果消融回路之外的所有模型边都不会改变模型在该任务上的表现，那么这个回路就是忠实的；正是忠实性使研究回路而非完整模型具有合理性。实验表明，尽管 EAP 与 EAP-IG 找到的回路都与此前使用因果干预发现的回路具有很高的节点重叠度，但 EAP 找到的回路不如 EAP-IG 找到的回路忠实。
+    **实验验证。** GPT-2 Small 上覆盖 6 项任务，包括间接宾语识别（Indirect Object Identification, IOI）、大于判断、主谓一致、性别偏见、上下位词和首都—国家，以 logit 差或概率差衡量行为。步数扫描表明通常 3 步以上即可，主实验采用 5 步。EAP-IG 跨任务比 EAP 更保真，并以更好的节点/边精确率—召回率恢复人工“大于”电路；但 IOI 中二者约停在 0.6，精确修补超过 0.8。包含人工 IOI 电路至少 90% 节点的子图仍可能是 0% 保真，跨任务中除极端情况外重合度同样不可靠。GPT-2 XL 与 Pythia-2.8B 上每任务 100 样本的复现保留了 EAP-IG 优势。
 
-    **结论与证据。** 更一般地说，我们的结论是：使用回路比较模型解决任务所采用的机制时，应当衡量的是忠实性，而不是重叠度。干预证明行为对目标表示或参数方向具有敏感性，但敏感性本身并不构成完整或唯一的机制解释。
+    **结论与证据。** 行为保真度必须直接检验，中等节点或边重合不是共享机制的可靠代理。积分梯度是相对一阶 EAP 的低成本改进，但不能稳定达到精确修补。六任务比较、子图外消融、重合反例和大模型复现强力支持该方法学结论。不过保真不保证完整性或唯一性，并依赖污染方式和任务指标；随着图规模增长，保真评测本身也很昂贵。
   generation:
     status: complete
     generated_by: project_agent

@@ -74,23 +74,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Can semantic variables be represented by directions or subspaces with measurable, intervenable, and compositional properties? In this paper, *A Geometric Notion of Causal Probing* addresses that question through its specific object of study and tests how far the resulting claim can be supported. The linear subspace hypothesis (Bolukbasi et al., 2016) states that, in a language model's representation space, all information about a concept such as verbal number is encoded in a linear subspace. Prior work has relied on auxiliary classification tasks to identify and evaluate candidate subspaces that might give support for this hypothesis.
+    **Research Question.** The paper asks what it should mean geometrically and causally for a language-model representation to encode a concept in a linear subspace. It specifically addresses how to separate concept information from correlated non-concept information, and whether the resulting subspace can support controlled generation and causal-effect estimation.
 
-    **Method.** Our information-theoretic framework accounts for spuriously correlated features in the representation space (Kumar et al., 2022) by reconciling the statistical notion of concept information and the geometric notion of how concepts are encoded in the representation space. As a byproduct of this analysis, we hypothesize a causal process for how a language model might leverage concepts during generation.
+    **Method.** The framework derives an intrinsic mutual-information measure from the language model's own induced word distribution rather than from an auxiliary probe. It counterfactually makes the proposed concept subspace and its orthogonal complement independent, then evaluates four criteria: erasure and encapsulation of concept information, containment of non-concept information, and stability of the complement. Linear concept erasers such as Linear Adversarial Concept Erasure (LEACE) define candidate projections; a causal graphical model then yields a do-intervention that replaces only the concept component during generation.
 
-    **Validation.** Empirically, we find that linear concept erasure is successful in erasing most concept information under our framework for verbal number as well as some complex aspect-level sentiment concepts from a restaurant review dataset.
+    **Validation.** Experiments study English verbal number with GPT-2 Large, French grammatical gender with French GPT-2, and aspect sentiment in the CEBaB restaurant-review benchmark; Llama-2-7B is also used for verbal number. The learned projections are scored by the four information-theoretic criteria across layers. Controlled generation compares the proposed do-intervention with non-causal subspace replacement by the precision with which a generated word takes the requested concept value. On CEBaB's human-written counterfactual review pairs for food, service, ambiance, and noise, the intervention is inserted into the benchmark pipeline and compared with Iterative Nullspace Projection (INLP) and LEACE as estimators of aspect-level causal effects.
 
-    **Conclusion & Evidence.** We instead give a set of intrinsic criteria which characterize an ideal linear concept subspace and enable us to identify the subspace using only the language model distribution. Our causal intervention for controlled generation shows that, for at least one concept across two languages models, the concept subspace can be used to manipulate the concept value of the generated word with precision. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+    **Conclusion & Evidence.** A one-dimensional LEACE subspace captures most verbal-number information while preserving much of the remaining distribution, and intervening in it controls number with high precision in two models; the same approach is not successful for French gender. On CEBaB, the do-intervention improves INLP and LEACE effect estimates, supporting the value of modeling the backdoor dependence between concept and context. The evidence combines intrinsic diagnostics and interventions but is concept-dependent: it does not establish that every concept has a clean linear causal subspace, and successful erasure alone remains insufficient evidence of causal use.
   zh: |-
-    **研究问题。** 如何以内生于语言模型分布、而非依赖外部 probe family 的方式，定义线性子空间包含多少 concept information？在存在相关非概念特征时，counterfactual marginalization 与 erasure、encapsulation、stability、containment 条件能否识别并干预因果概念子空间？
+    **研究问题。** 该论文研究语言模型表示在线性子空间中编码概念，在几何和因果意义上应满足什么条件；重点是如何把概念信息与相关但非概念的信息区分开，以及所得子空间能否用于受控生成和因果效应估计。
 
-    **方法。** 与此不同，我们给出一组刻画理想线性概念子空间的内在判据，使我们仅利用语言模型分布便可识别该子空间。我们的信息论框架通过协调“概念信息”的统计含义与“概念如何编码于表征空间”的几何含义，将表征空间中存在虚假相关的特征纳入考虑（Kumar 等，2022）。作为这项分析的副产物，我们提出一个关于语言模型在生成过程中如何利用概念的因果过程假说。
+    **方法。** 框架不依赖辅助探针，而是从语言模型自身诱导的词分布定义内在互信息。它在反事实分布中令候选概念子空间与其正交补独立，再考察四项标准：概念信息的擦除与封装、非概念信息的包含性，以及正交补的稳定性。线性对抗概念擦除（Linear Adversarial Concept Erasure, LEACE）等方法给出候选投影；随后通过因果图模型推导只替换概念分量的 do-干预生成方法。
 
-    **实验验证。** 经验结果显示，在我们的框架下，线性概念擦除能够成功去除语法数的大部分概念信息，也能去除餐厅评论数据集中一些复杂的方面级情感概念。
+    **实验验证。** 实验包括 GPT-2 Large 上的英语动词数、法语 GPT-2 上的语法性别，以及 CEBaB 餐厅评论基准中的方面情感；动词数还使用 Llama-2-7B。各层投影由四项信息论指标评估。受控生成通过“生成词是否精确取得目标概念值”比较 do-干预与非因果子空间替换。CEBaB 含针对食物、服务、环境和噪声的人工反事实评论对，研究把干预接入其评测流程，并与迭代零空间投影（Iterative Nullspace Projection, INLP）及 LEACE 的方面因果效应估计比较。
 
-    **结论与证据。** 用于可控生成的因果干预还表明，至少对两个语言模型中的一个概念而言，可以利用其概念子空间精确操控生成词的概念取值。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+    **结论与证据。** 一维 LEACE 子空间能保留大部分动词数信息，同时较好保存其余分布；对该方向实施干预可在两个模型中高精度控制数，但对法语语法性别并未成功。在 CEBaB 上，do-干预改善了 INLP 和 LEACE 的效应估计，说明建模概念与上下文之间的后门依赖具有价值。证据兼有内在诊断和干预，但明显依赖概念：它没有证明每个概念都存在干净的线性因果子空间，成功擦除本身也不足以证明模型实际使用该方向。
   generation:
     status: complete
     generated_by: project_agent

@@ -54,23 +54,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Do sequence-prediction models form and use world states or belief states of the generating process? In this paper, *Emergent Linear Representations in World Models of Self-Supervised Sequence Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. How do sequence models represent their decision-making process? Prior work suggests that Othello-playing neural network learned nonlinear models of the board state (Li et al., 2023a).
+    **Research Question.** The paper revisits the claim that OthelloGPT's internal board state is nonlinearly encoded. It asks whether a different coordinate system makes the world model linear and, crucially, whether those linear directions are the representations the model uses to choose legal moves.
 
-    **Method.** In this work, we provide evidence of a closely related linear representation of the board.
+    **Method.** Instead of classifying each square as black, white, or empty, linear probes classify it relative to the current player as MINE, YOURS, or EMPTY. To test causality, the corresponding probe directions are added to the residual stream across layers so the model should behave as if selected squares had a counterfactual state. Additional projections analyze empty-square detection, flipped pieces, and the layer-by-layer order in which board state and legal moves emerge.
 
-    **Validation.** This precise understanding of the internal representations allows us to control the model’s behaviour with simple vector arithmetic.
+    **Validation.** The target is an eight-layer, eight-head, 512-dimensional OthelloGPT trained only to predict moves. Probes train on up to 3.5 million games, validate on 512, and test on 1,000 held-out games; random-network, marginal-frequency, absolute-color linear, and nonlinear probes serve as baselines. Relative-state linear accuracy becomes near-perfect by layer 4. On 1,000 counterfactual boards, the intervention is evaluated by false-positive plus false-negative legal moves: linear addition yields average errors of 0.10 and 0.02 in two settings, comparable to gradient-based nonlinear editing (0.12 and 0.11) and far below null edits (2.72 and 2.73). End-game and flipped-piece interventions add robustness checks.
 
-    **Conclusion & Evidence.** In particular, we show that probing for “my colour” vs. “opponent’s colour” may be a simple yet powerful way to interpret the model’s internal state. Linear representations enable significant interpretability progress, which we demonstrate with further exploration of how the world model is computed. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+    **Conclusion & Evidence.** OthelloGPT linearly represents a player-relative world state, so the earlier apparent nonlinearity came largely from choosing absolute color labels that ignore whose turn it is. Direct vector additions make predictions follow the edited board, providing strong causal evidence that the directions are used rather than merely decodable. The result concerns one synthetic game model and requires interventions across enough layers; imperfect end-game board decoding and evidence of alternate legal-move circuits show that the linear board model is important but not necessarily the sole computation.
   zh: |-
-    **研究问题。** Othello 模型中看似非线性的棋盘状态表示，是否在改用“相对当前玩家”的正确坐标系后成为线性表示？这些线性方向是否不仅可被 probe 解码，而且可因果地改变模型预测？
+    **研究问题。** 该论文重新检验“OthelloGPT 的内部棋盘状态以非线性方式编码”的结论，询问换一种坐标系后世界模型是否其实是线性的，并进一步检验这些线性方向是否真被模型用于选择合法落子。
 
-    **方法。** 具体而言，我们表明，探测“我的颜色”与“对手的颜色”可能是一种简单却有力的模型内部状态解释方法。
+    **方法。** 线性探针不再把每格分为黑、白、空，而是相对当前行棋方标记为“己方、对方、空”。为检验因果性，研究把对应探针方向加到多层残差流，使模型把指定棋格视为处于反事实状态；另用线性投影分析空格检测、被翻转棋子，以及棋盘状态和合法走法逐层形成的先后顺序。
 
-    **实验验证。** 对内部表征的这种精确认识，使我们可以用简单的向量运算控制模型行为。
+    **实验验证。** 对象是一个只训练预测落子的 OthelloGPT，含 8 层、每层 8 个注意力头，隐藏维度 512。探针最多用 350 万盘棋训练、512 盘验证、1,000 盘留出测试，并与随机网络、边际频率、绝对颜色线性探针及非线性探针对照；相对状态的线性准确率到第 4 层已接近完美。1,000 个反事实棋盘以合法走法的假阳性加假阴性为误差，线性加法在两种设置中得到 0.10 和 0.02，与梯度式非线性编辑的 0.12 和 0.11 相当，远低于空干预的 2.72 和 2.73；残局与翻转棋子干预提供进一步检查。
 
-    **结论与证据。** 在本研究中，我们给出证据，证明存在一种密切相关的棋盘线性表征。线性表征推动了可解释性的显著进展；我们通过进一步探索世界模型如何计算来展示这一点。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+    **结论与证据。** OthelloGPT 线性表示的是“相对当前玩家”的世界状态，先前的表观非线性很大程度源于采用忽略轮次的绝对颜色标签。直接向量加法使预测跟随被编辑棋盘，为这些方向被实际使用而非仅可解码提供强因果证据。但结果只涉及一个合成棋类模型，并要求跨足够多层实施干预；残局解码不完美及替代合法走法电路的迹象说明，线性棋盘模型很重要，却未必是唯一计算路径。
   generation:
     status: complete
     generated_by: project_agent

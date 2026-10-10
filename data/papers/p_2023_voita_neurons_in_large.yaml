@@ -61,23 +61,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** How sparsely and stably are functional features implemented by native neurons in real large models? In this paper, *Neurons in Large Language Models: Dead, N-gram, Positional* addresses that question through its specific object of study and tests how far the resulting claim can be supported.
+    **Research Question.** The paper asks how feed-forward-network neurons change with language-model scale and what can be learned from the lightweight binary question of whether each ReLU neuron activates. It focuses on dead units, token/n-gram detectors, the content of their residual updates, and neurons whose firing depends on absolute position rather than text.
 
-    **Method.** We analyze a family of large language models in such a lightweight manner that can be done on a single graphics processing unit (GPU). Specifically, we focus on the OPT family of models ranging from 125m to 66b parameters and rely only on whether an FFN neuron is activated or not.
+    **Method.** For each neuron, activation frequency is measured across domains. A neuron is “dead” if never positive; an n-gram detector is identified when one to five triggers cover at least 95% of both the neuron's activations and occurrences of those triggers. Multiplying its output row through the unembedding reveals promoted and suppressed vocabulary. Positional neurons are selected by mutual information \(I(\text{active};\text{position})>0.05\) and categorized by oscillatory, threshold, or weaker activation patterns.
 
-    **Validation.** Here, many neurons (more than 70% in some layers of the 66b model) are"dead", i.e. they never activate on a large collection of diverse data. At the same time, many of the alive neurons are reserved for discrete features and act as token and n-gram detectors. Interestingly, their corresponding FFN updates not only promote next token candidates as could be expected, but also explicitly focus on removing the information about triggering them tokens, i.e., current input. To the best of our knowledge, this is the first example of mechanisms specialized at removing (rather than adding) information from the residual stream. With scale, models become more sparse in a sense that they have more dead neurons and token detectors.
+    **Validation.** The analysis covers the OPT family from 125M to 66B parameters on more than 20M tokens for dead-neuron estimates and more than 5M for other tests, drawn from Pile domains, Reddit, and CodeParrot. One layer at a time is loaded so even 66B fits the single-GPU workflow. Some early 66B layers have over 70% dead units; that model contains 5,351 token detectors, covers over 10,000 distinct tokens across layers, and more than 80% of detectors write negatively toward their triggers. Full 2,048-token sequences test position effects. Separately trained 125M models with and without positional embeddings on 3B OpenWebText tokens both develop positional neurons.
 
-    **Conclusion & Evidence.** First, we find that the early part of the network is sparse and represents many discrete features. Finally, some neurons are positional: them being activated or not depends largely (or solely) on position and less so (or not at all) on textual data. We find that smaller models have sets of neurons acting as position range indicators while larger models operate in a less explicit manner. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+    **Conclusion & Evidence.** Early feed-forward layers become sparser and more discretely specialized with scale: many units detect lexical patterns, jointly cover different vocabulary across layers, and explicitly remove current-token identity while promoting likely continuations. Small models encode absolute position with coordinated range indicators, whereas larger models use less explicit patterns. The evidence is broad and reproducible across one architecture family, but mainly observational: “dead” means unseen on sampled data, output-weight projections do not prove behavioral necessity, the 350M post-LayerNorm outlier shows architectural sensitivity, and no neuron interventions quantify causal effects.
   zh: |-
-    **研究问题。** Transformer FFN 中有哪些功能性 neuron 类型（如 dead、token/n-gram detector 与 positional neurons），它们随模型规模如何变化？FFN 是否不只是 key–value memory，还会主动移除当前 token 信息？
+    **研究问题。** 该论文研究前馈网络神经元如何随语言模型规模变化，以及仅利用 ReLU 神经元是否激活这一轻量信息能揭示什么；重点包括死亡单元、词元/ n-gram 检测器、它们写入残差流的内容，以及由绝对位置而非文本决定激活的神经元。
 
-    **方法。** 我们以一种可在单块 图形处理器（Graphics Processing Unit, GPU） 上完成的轻量方式，分析一系列大语言模型。具体而言，我们聚焦参数量从 1.25 亿到 660 亿的 OPT 模型家族，并且只考察 FFN 神经元是否激活。
+    **方法。** 研究跨领域统计每个神经元的激活频率；从未为正者定义为“死亡”，若 1—5 个触发 n-gram 同时覆盖至少 95% 的神经元激活和这些触发的出现，则判为检测器。把输出行经反嵌入投影可查看被促进与抑制的词表项。位置神经元以互信息 \(I(\text{active};\text{position})>0.05\) 筛选，并按振荡、阈值或较弱位置模式分类。
 
-    **实验验证。** 这里有大量神经元处于“死亡”状态——例如 660 亿参数模型的某些层中超过 70%——即它们在大量多样数据上从不激活。与此同时，许多活跃神经元专门负责离散特征，充当 token 和 n-gram 检测器。有趣的是，它们对应的 FFN 更新不仅会像预期那样提升下一 token 候选项，还会明确地移除有关触发这些神经元之 token、也就是当前输入的信息。据我们所知，这是首个专门从残差流中移除信息而非添加信息的机制实例。随着规模增大，模型会变得更稀疏，即拥有更多死亡神经元和 token 检测器。
+    **实验验证。** 分析覆盖 1.25 亿至 660 亿参数的 OPT 系列；死亡神经元统计使用超过 2,000 万词元，其余实验超过 500 万词元，来自 Pile 多领域、Reddit 和 CodeParrot。逐层加载使 660 亿模型也能在单 GPU 上分析。部分 66B 早层超过 70% 单元死亡，整个模型含 5,351 个词元检测器，跨层覆盖超过 1 万个不同词元，且 80% 以上检测器的写入方向会抑制自身触发词。位置分析使用长度 2,048 的完整序列；另在 30 亿 OpenWebText 词元上分别训练有/无位置嵌入的 125M 模型，两者都形成位置神经元。
 
-    **结论与证据。** 首先，我们发现网络的早期部分较为稀疏，并表征许多离散特征。最后，一些神经元具有位置性：它们是否激活主要或完全取决于位置，而较少或完全不取决于文本数据。我们发现，小模型具有充当位置范围指示器的神经元集合，而大模型则以不那么显式的方式运作。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+    **结论与证据。** 随规模增大，早期前馈层更稀疏、离散专门化更明显：许多单元检测词汇模式，不同层协同覆盖不同词表，并在促进可能续词的同时显式移除当前词元身份。小模型以协调的位置区间指示器编码绝对位置，大模型的模式更不显式。证据跨同一架构族较广，但主要是观察性：所谓“死亡”只代表采样数据上未激活，输出权重投影不证明行为必要性，350M 的后置 LayerNorm 异常说明结果依赖架构，且没有神经元干预量化因果效应。
   generation:
     status: complete
     generated_by: project_agent

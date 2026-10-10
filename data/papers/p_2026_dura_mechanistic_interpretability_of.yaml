@@ -63,23 +63,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** How does causal computation unfold and reorganize across the generated steps of Chain-of-Thought reasoning? In this paper, *Mechanistic Interpretability of Chain-of-Thought Reasoning via Sequential Activation Patching* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Large Language Models (LLMs) demonstrate remarkable problem-solving capabilities when guided by Chain-of-Thought (CoT) prompting, yet the internal mechanisms underlying these improvements remain poorly understood.
+    **Research Question.** The paper asks whether Chain-of-Thought (CoT) prompting merely changes generated text or causally reorganizes computation across the whole reasoning trajectory, and which attention-head sets support intermediate reasoning and the final answer.
 
-    **Method.** In this work, we investigate where CoT-related causal effects emerge across the generated reasoning trajectory and which attention heads carry signals that contribute to final-answer computation.
+    **Method.** Sequential Activation Patching transfers each head's activations across all generated positions between CoT, no-CoT, and cross-question runs. Jensen–Shannon divergence and answer-margin recovery quantify effects; part-of-speech aggregation groups them over the trajectory. Sequential Multi-Head Patching tests jointly distributed sets, followed by zero ablation. Cross-question and random-activation patching control for generic trajectory disruption.
 
-    **Validation.** Because CoT reasoning unfolds over multiple generated tokens, standard activation patching at a single static token position is insufficient to characterize these temporally distributed effects. To address this limitation, we introduce a sequential activation patching framework that traces CoT-conditioned attention-head activations across token positions and aggregates their effects using Part-of-Speech-guided analysis. We further introduce Sequential Multi-Head Patching to evaluate the joint contribution of distributed head sets, together with cross-question and random activation controls.
+    **Validation.** Mathematical questions are generated under matched CoT and direct-answer prompts, then corrupted without changing superficial format. Single-head maps are aggregated by token role, joint patching tests whether individually weak heads become effective together, and selected sets are zero-ablated during full generation. Random-source activations, unrelated questions, and alternative head sets establish a baseline. The interventions identify overlapping sets involved in maintaining a reasoning trajectory, anchoring the answer, separating exemplar from target, and generating numbers; ablating them reduces successful answers.
 
-    **Conclusion & Evidence.** Targeted zero-ablation experiments show that the identified heads are functionally important for successful answer generation and affect several overlapping mechanisms, including reasoning-trajectory maintenance, answer anchoring, exemplar-target separation, and numerical generation. Overall, our results provide evidence for distributed reasoning-support sub-circuits associated with CoT-conditioned computation. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+    **Conclusion & Evidence.** CoT support is temporally distributed and coalition-based rather than localized at one static token, so ordinary single-position patching misses important effects. Sequential cross-patching and zero ablation provide moderate causal evidence for reasoning-support subcircuits. The analysis does not prove the textual rationale is faithful to the answer computation, part-of-speech aggregation is coarse, source trajectories differ in length/content, and the tested math/model setting limits generalization.
   zh: |-
-    **研究问题。** prompted CoT 只是改变输出表面形式，还是沿生成轨迹因果性地重组内部计算？哪些 token positions 与 attention heads 携带使 No-CoT execution 转向 CoT-like final answer 的信号，如何用 sequential activation patching 追踪其时间分布？
+    **研究问题。** 该论文研究思维链（Chain-of-Thought, CoT）提示只是改变生成文本，还是会在完整推理轨迹上因果重组计算；并定位哪些注意力头集合支持中间推理与最终答案。
 
-    **方法。** 在本研究中，我们考察与 CoT 有关的因果效应在生成推理轨迹的哪些位置出现，以及哪些注意力头承载了有助于计算最终答案的信号。
+    **方法。** 顺序激活修补在 CoT、无 CoT 和跨问题运行之间，迁移每个头在全部生成位置的激活；Jensen–Shannon 散度与答案边际恢复衡量效应，词性聚合把影响按轨迹角色汇总。顺序多头修补测试分布式头集的联合贡献，再做置零消融；跨问题和随机激活修补控制一般轨迹扰动。
 
-    **实验验证。** 由于 CoT 推理跨多个生成 token 展开，只在单个静态 token 位置进行标准激活修补，不足以刻画这些在时间上分布的效应。为解决这一局限，我们提出序列激活修补框架：跨 token 位置追踪以 CoT 为条件的注意力头激活，并借助词性引导的分析汇总其效应。我们还提出序列多头修补，用于评估分布式注意力头集合的联合贡献，并设置跨问题激活对照和随机激活对照。
+    **实验验证。** 数学问题分别以匹配的 CoT 与直接回答提示生成，并在不改变表面格式下破坏。单头图按词元角色聚合，联合修补检验单独较弱的头是否协作，入选集合在完整生成中置零。随机来源激活、无关问题和替代头集提供基线。干预识别出维持推理轨迹、锚定答案、区分示例与目标、生成数字等相互重叠的头集；消融后成功回答下降。
 
-    **结论与证据。** 定向置零消融实验表明，所识别的注意力头对成功生成答案具有功能重要性，并影响多个相互重叠的机制，包括推理轨迹维持、答案锚定、示例与目标分离以及数值生成。总体而言，我们的结果为与 CoT 条件计算相关的分布式推理支持子回路提供了证据。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+    **结论与证据。** CoT 支持在时间上分布且依赖头的协作，普通单位置修补会漏掉重要作用。顺序交叉修补和置零消融为推理支持子电路提供中等因果证据。但分析未证明文字推理对答案忠实，词性聚合较粗，来源轨迹长度/内容不同，所测数学任务和模型也限制泛化。
   generation:
     status: complete
     generated_by: project_agent

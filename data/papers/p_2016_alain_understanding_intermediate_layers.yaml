@@ -47,23 +47,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** The paper asks how class-relevant information evolves across the depth and training trajectory of a deep classifier, and whether this evolution can be measured without changing the network itself. It also asks whether layerwise measurements can reveal optimization failures that final-task loss alone conceals.
+    **Research Question.** The paper asks whether intermediate representations in a trained classifier become progressively easier to use for the target task, and whether this progression can expose training dynamics or architectural failures that final loss and accuracy conceal. The empirical scope is convolutional image classifiers, with layerwise linear separability used as the operational notion of task-relevant accessibility.
 
-    **Method.** The authors attach an independently trained linear classifier, or linear probe, to each hidden layer while keeping the original network frozen. Probe accuracy estimates how linearly accessible the target classes are from that layer; tracking the same quantity over layers and checkpoints turns the probe into a diagnostic of representation development rather than a new component of the predictor.
+    **Method.** An independently trained linear classifier, called a linear probe, is attached to each hidden layer while the original network remains frozen with respect to the probe loss. Each probe maps the layer activation to the original class labels and is optimized with cross-entropy; probe classification error therefore measures what a linear readout can extract from that layer without claiming that the network itself uses the readout. Pooling or fixed feature subsampling makes probes tractable for large convolutional activations.
 
-    **Validation.** The method is applied to Inception v3 and Residual Network 50 (ResNet-50) image classifiers. The experiments compare probe performance across depth and training time, and use abnormal training runs to test whether the layerwise curves expose stalled or poorly coordinated representation learning.
+    **Validation.** The study first instruments a small convolutional network on the Modified National Institute of Standards and Technology (MNIST) dataset, then probes pretrained Residual Network 50 (ResNet-50) and a two-week Inception v3 training run on ImageNet. It reports validation classification error across depth and, for Inception v3, across training checkpoints. A diagnostic case deliberately uses a pathological 128-layer, 128-unit fully connected MNIST network with a long skip connection; the probes reveal that the bypassed half carries no useful class signal even though ordinary stochastic-gradient training succeeds.
 
-    **Conclusion & Evidence.** Linear separability generally increases with depth, and probe trajectories provide information about intermediate learning dynamics that is absent from the final loss. The evidence strongly supports probes as non-invasive measurements of decodable class information and useful diagnostics. It does not show that the probed information is causally used by the network, nor that a linear probe recovers the complete computation performed by a layer.
+    **Conclusion & Evidence.** Probe error decreases almost monotonically with depth in ResNet-50 and Inception v3, and the checkpoint curves show class information becoming more linearly accessible during training. The failed-network case supports the narrower claim that probes can reveal unused or poorly trained regions missed by the final objective. The evidence establishes decodability and diagnostic utility on the tested image models, but it does not establish that probe-readable features are causally used by the original classifier or that monotonicity is universal.
   zh: |-
-    **研究问题。** 论文研究类别相关信息如何随深度分类网络的层数和训练过程演化，以及能否在不改变原模型的情况下测量这种变化。它还考察逐层测量能否揭示仅观察最终任务损失时难以发现的优化异常。
+    **研究问题。** 该论文研究分类模型的中间表示是否会随网络加深而越来越容易支持目标任务，以及这种逐层变化能否揭示最终损失和准确率看不到的训练动态或架构故障。研究以卷积图像分类器为对象，并把表示的线性可分性作为任务信息“可访问程度”的操作化定义。
 
-    **方法。** 作者在冻结原网络的前提下，为每个隐藏层独立训练一个线性分类器，即线性探针（linear probe）。探针准确率用于估计目标类别能否从该层表示中被线性读出；沿网络深度和训练检查点追踪该指标，可以把探针作为表示形成过程的诊断工具，而不是预测模型的新组成部分。
+    **方法。** 作者在每个隐藏层上训练一个独立的线性分类器，即线性探针（linear probe），同时保证探针损失不会更新原网络。探针用该层激活预测原始类别，并以交叉熵训练；其分类误差衡量线性读出能够提取多少类别信息，但不等同于原模型实际使用了该读出。对于大型卷积激活，实验通过空间池化或固定特征子采样控制探针规模。
 
-    **实验验证。** 方法在 Inception v3 和残差网络 50（Residual Network 50, ResNet-50）图像分类器上进行验证。实验比较不同层和不同训练阶段的探针表现，并利用异常训练过程检验逐层曲线是否能够暴露表示学习停滞或层间配合不良等问题。
+    **实验验证。** 实验先在美国国家标准与技术研究院手写数字数据集（Modified National Institute of Standards and Technology, MNIST）的小型卷积网络上布置探针，再分析 ImageNet 上的预训练残差网络 50（Residual Network 50, ResNet-50）以及训练两周的 Inception v3。指标是各层验证集分类误差；Inception v3 还比较多个训练检查点。诊断实验另外构造一个带长跳跃连接的 128 层、每层 128 单元的病态 MNIST 全连接网络，探针显示被跳过的前半段没有形成有用类别信号，尽管常规随机梯度训练能够收敛。
 
-    **结论与证据。** 实验中，类别表示的线性可分性通常随深度单调提高，探针轨迹也确实提供了最终损失之外的中间学习动态信息。证据较强地支持线性探针作为“可解码类别信息”的非侵入式测量和诊断手段；但它不能证明被读出的信息实际参与了模型决策，也不能说明线性探针恢复了某层的完整计算机制。
+    **结论与证据。** ResNet-50 和 Inception v3 的探针误差几乎随深度单调下降，训练检查点也显示类别信息逐步变得更容易线性读出；病态网络实验则支持探针发现未被利用区域的诊断价值。证据能够支持“可解码性”和特定模型上的诊断用途，但不能证明原分类器因果性地使用了探针读出的特征，也不足以说明单调规律适用于所有架构。
   generation:
     status: complete
     generated_by: project_agent

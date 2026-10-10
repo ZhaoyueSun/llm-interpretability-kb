@@ -63,23 +63,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Can sparse features serve as more interpretable and scalable circuit nodes than native model components? In this paper, *Transcoders Find Interpretable large language model (LLM) Feature Circuits* addresses that question through its specific object of study and tests how far the resulting claim can be supported. A key goal in mechanistic interpretability is circuit analysis: finding sparse subgraphs of models corresponding to specific behaviors or capabilities. However, multilayer perceptron (MLP) sublayers make fine-grained circuit analysis on transformer-based language models difficult. In particular, interpretable features -- such as those found by sparse autoencoders (SAEs) -- are typically linear combinations of extremely many neurons, each with its own nonlinearity to account for.
+    **Research Question.** The paper asks how to obtain sparse, interpretable circuits through nonlinear multilayer perceptron (MLP) sublayers. Sparse autoencoder features are distributed over many MLP neurons, so the study tests whether a sparse surrogate that maps MLP inputs directly to outputs can expose both input-specific and input-invariant feature connections.
 
-    **Method.** To address this we explore transcoders, which seek to faithfully approximate a densely activating MLP layer with a wider, sparsely-activating MLP layer. We introduce a novel method for using transcoders to perform weights-based circuit analysis through MLP sublayers. We then successfully train transcoders on language models with 120M, 410M, and 1.4B parameters, and find them to perform at least on par with SAEs in terms of sparsity, faithfulness, and human-interpretability.
+    **Method.** A transcoder is a wide one-hidden-layer rectified-linear network trained to reproduce an original MLP's output from its input with an (L_1) activation penalty. Because both encoder and decoder are linear around sparse feature activations, feature-to-feature attributions through MLPs factor into an activation-dependent term and a weight-only connection. Attention value/output paths and de-embedding scores extend this into a greedy feature-circuit tracing algorithm.
 
-    **Validation.** Finally, we apply transcoders to reverse-engineer unknown circuits in the model, and we obtain novel insights regarding the "greater-than circuit" in GPT2-small.
+    **Validation.** Transcoders and sparse autoencoders are trained on GPT-2 Small, Pythia-410M, and Pythia-1.4B and evaluated on the same 3.2 million OpenWebText tokens using mean active features and next-token cross-entropy increase after module replacement. Their sparsity–fidelity Pareto frontier is equal to or better than the autoencoder frontier. A blinded human inspection compares 50 random Pythia transcoder features with 50 autoencoder features. Nine blind GPT-2 circuit case studies infer feature semantics without viewing source tokens. On 100 “year greater-than” prompts, zero-ablation shows that a handful of layer-10 transcoder features recover most surrogate performance more compactly than the top MLP neurons, and the traced paths reproduce known attention-head structure.
 
-    **Conclusion & Evidence.** The resulting circuits neatly factorize into input-dependent and input-invariant terms. Our results suggest that transcoders can prove effective in decomposing model computations involving multilayer perceptrons (MLPs) into interpretable circuits. Code is available at https://github.com/jacobdunefsky/transcoder_circuits/. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+    **Conclusion & Evidence.** Transcoders provide an interpretable sparse approximation of MLP computation and make weight-level feature circuits tractable without an observed interpretability or fidelity penalty relative to sparse autoencoders. Matched quantitative comparisons, blinded feature reading, and causal ablation in a known circuit provide moderate-to-strong support. The surrogate does not fully recover the original model, the autoencoder learning rate was not separately optimized, only a few qualitative circuits were analyzed, and approximation error can omit behaviorally important computation.
   zh: |-
-    **研究问题。** 如何在 fine-grained circuit analysis 中处理 多层感知机（Multi-Layer Perceptron, MLP） 非线性而不退回 polysemantic neurons 或输入依赖的梯度近似？以稀疏宽 MLP 近似原 MLP 的 transcoders 能否提供 input-invariant feature-to-feature effects，并达到不逊于 稀疏自编码器（Sparse Autoencoder, SAE） 的 fidelity 与 interpretability？
+    **研究问题。** 该论文研究如何穿过非线性的多层感知机（Multilayer Perceptron, MLP）子层得到稀疏、可解释的电路。由于稀疏自编码器特征分布在大量 MLP 神经元上，研究检验直接从 MLP 输入映射到输出的稀疏替代模块，能否同时揭示输入相关和输入无关的特征连接。
 
-    **方法。** 为解决该问题，我们研究 transcoder；它试图使用更宽、稀疏激活的 MLP 层忠实近似一个稠密激活的 MLP 层。我们提出一种使用 transcoder 对穿过 MLP 子层的计算进行基于权重的回路分析的新方法，所得回路可以整齐地分解为依赖输入和不随输入变化的两类项。
+    **方法。** 转码器（transcoder）是一个宽的单隐层 ReLU 网络，以 MLP 输入预测原 MLP 输出，并加入 (L_1) 激活稀疏惩罚。借助稀疏特征两侧的线性编码/解码，穿过 MLP 的特征归因可分解为激活相关项与只由权重决定的连接项；再结合注意力值/输出路径和反嵌入分数，形成贪心特征电路追踪算法。
 
-    **实验验证。** 随后，我们在参数量为 1.2 亿、4.1 亿和 14 亿的语言模型上成功训练 transcoder，并发现其稀疏性、忠实性和人类可解释性至少与 SAE 相当。最后，我们应用 transcoder 对模型中的未知回路进行逆向工程，并获得了有关 GPT2-small“大于”回路的新认识。
+    **实验验证。** 在 GPT-2 Small、Pythia-410M 和 Pythia-1.4B 上训练转码器与稀疏自编码器，并在相同的 320 万 OpenWebText 词元上，以平均活跃特征数和替换模块后的下一词元交叉熵增量评测；转码器的稀疏—保真 Pareto 前沿不差于自编码器。盲评由人工比较 50 个随机 Pythia 转码器特征和 50 个自编码器特征；9 个 GPT-2 盲电路案例在不看原词元的情况下推断语义。100 条“年份大于”提示上，零消融显示少数第 10 层转码器特征比高方差 MLP 神经元更紧凑地恢复替代模型表现，追踪路径也复现已知注意力头结构。
 
-    **结论与证据。** 结果表明，transcoder 可以有效地把涉及 MLP 的模型计算分解为可解释回路。代码见 https://github.com/jacobdunefsky/transcoder_circuits/。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+    **结论与证据。** 转码器能以可解释的稀疏近似表示 MLP 计算，并使权重级特征电路可追踪，相对稀疏自编码器未观察到解释性或保真度代价。匹配量化比较、盲特征解读和已知电路中的因果消融提供中到强证据。但替代模块未完全恢复原模型，自编码器学习率没有单独优化，电路分析仅含少数定性案例，而且近似误差可能遗漏行为关键计算。
   generation:
     status: complete
     generated_by: project_agent

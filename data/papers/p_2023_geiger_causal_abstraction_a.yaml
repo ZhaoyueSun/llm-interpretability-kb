@@ -105,23 +105,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** When does a neural network's low-level mechanism faithfully implement a high-level interpretable causal process? In this paper, *Causal Abstraction: A Theoretical Foundation for Mechanistic Interpretability* addresses that question through its specific object of study and tests how far the resulting claim can be supported.
+    **Research Question.** The paper asks when a transparent high-level algorithm is a faithful explanation of an opaque low-level model and whether one formal language can compare the different causal claims made by probing, attribution, activation patching, ablation, circuit discovery, feature learning, steering, and interpretability training.
 
-    **Method.** Causal abstraction provides a theoretical foundation for mechanistic interpretability, the field concerned with providing intelligible algorithms that are faithful simplifications of the known, but opaque low-level details of black box artificial intelligence (AI) models.
+    **Method.** The framework defines deterministic causal models together with an intervention algebra, a translation from low-level states to high-level states, and a mapping between allowed interventions. Exact causal abstraction requires that translating after any allowed low-level intervention gives the same result as intervening after translation; approximate abstraction replaces equality with a graded error measure. Constructive abstraction, interchange interventions, and decomposed alignments make the definitions applicable to distributed neural representations.
 
-    **Validation.** Our contributions are (1) generalizing the theory of causal abstraction from mechanism replacement (i.e., hard and soft interventions) to arbitrary mechanism transformation (i.e., functionals from old mechanisms to new mechanisms), (2) providing a flexible, yet precise formalization for the core concepts of polysemantic neurons, the linear representation hypothesis, modular features, and graded faithfulness, and (3) unifying a variety of mechanistic interpretability methods in the common language of causal abstraction, namely, activation and path patching, causal mediation analysis, causal scrubbing, causal tracing, circuit analysis, concept erasure, sparse autoencoders, differential binary masking, distributed alignment search, and steering.
+    **Validation.** This is primarily a theoretical synthesis rather than an empirical benchmark. The paper proves relationships among exact transformations, constructive abstractions, intervention mappings, and interchange tests, including settings with cycles and infinite variable domains. It then reconstructs common interpretability practices as particular abstraction claims: behavioral fidelity as a two-variable chain, mediation and ablation as three-variable causal models, path patching as recursive interchange intervention, subcircuit sufficiency as preservation under edge ablation, modular feature learning as a change of variables, and steering as an intervention correspondence.
 
-    **Conclusion & Evidence.** Causal abstraction provides a theoretical foundation for mechanistic interpretability, the field concerned with providing intelligible algorithms that are faithful simplifications of the known, but opaque low-level details of black box AI models. The formal result is strong under its stated assumptions, with experiments or constructions supporting the predicted consequences. Its scope is limited by those assumptions and does not automatically extend to every architecture or training regime.
+    **Conclusion & Evidence.** Causal abstraction separates merely readable information from representations whose interventions reproduce a high-level algorithm's counterfactual behavior, and it exposes which method-specific assumptions are required for a faithfulness claim. The support is formal and definitional: within the framework, the reductions precisely state what each analysis establishes. It does not empirically show that a proposed abstraction is true for a particular large model, nor does the formalism automatically choose the right concepts, alignment, intervention set, or approximation threshold.
   zh: |-
-    **研究问题。** 一个人类可理解的高层算法在什么条件下才是神经网络低层机制的 faithful interpretation，而非 just-so story？因果抽象理论如何扩展到分布式、重叠和非线性的 neural features，并统一表述 probing、ablation、subcircuit analysis 等机制解释主张？
+    **研究问题。** 该论文研究在什么条件下，透明的高层算法能够成为不透明低层模型的忠实解释，以及能否用一种形式语言比较探针、归因、激活修补、消融、电路发现、特征学习、表示操控和可解释性训练所提出的不同因果主张。
 
-    **方法。** 本文的贡献包括：（1）把因果抽象理论从机制替换（即硬干预与软干预）推广到任意机制变换（即从旧机制到新机制的泛函）；（2）为多义神经元、线性表征假说、模块化特征和分级忠实性等核心概念提供既灵活又精确的形式化定义；（3）使用因果抽象这一共同语言统一多种机制可解释性方法，包括激活修补与路径修补、因果中介分析、因果擦洗、因果追踪、回路分析、概念擦除、稀疏自编码器、差分二值掩码、分布式对齐搜索和模型引导。
+    **方法。** 框架定义确定性因果模型、干预代数、从低层状态到高层状态的翻译，以及允许干预之间的映射。精确因果抽象要求：任一允许的低层干预之后再翻译，与先翻译再实施对应高层干预得到相同结果；近似抽象则用分级误差取代严格相等。构造性抽象、交换干预和可分解对齐使定义能够处理分布式神经表示。
 
-    **实验验证。** 本文的贡献包括：（1）把因果抽象理论从机制替换（即硬干预与软干预）推广到任意机制变换（即从旧机制到新机制的泛函）；（2）为多义神经元、线性表征假说、模块化特征和分级忠实性等核心概念提供既灵活又精确的形式化定义；（3）使用因果抽象这一共同语言统一多种机制可解释性方法，包括激活修补与路径修补、因果中介分析、因果擦洗、因果追踪、回路分析、概念擦除、稀疏自编码器、差分二值掩码、分布式对齐搜索和模型引导。
+    **实验验证。** 该研究主要是理论综合，而非经验基准。论文证明精确变换、构造性抽象、干预映射和交换检验之间的关系，并覆盖带环和无限变量域的情形；随后把常见解释方法重写为特定抽象主张：行为忠实度对应二变量链，中介和消融对应三变量因果模型，路径修补对应递归交换干预，子电路充分性对应边消融下的行为保持，模块化特征学习对应变量变换，表示操控对应干预映射。
 
-    **结论与证据。** 本文的贡献包括：（1）把因果抽象理论从机制替换（即硬干预与软干预）推广到任意机制变换（即从旧机制到新机制的泛函）；（2）为多义神经元、线性表征假说、模块化特征和分级忠实性等核心概念提供既灵活又精确的形式化定义；（3）使用因果抽象这一共同语言统一多种机制可解释性方法，包括激活修补与路径修补、因果中介分析、因果擦洗、因果追踪、回路分析、概念擦除、稀疏自编码器、差分二值掩码、分布式对齐搜索和模型引导。形式结果在明确假设下具有较强支持，实验或构造也验证了其预测后果；结论范围受这些假设约束，不能自动推广到所有架构和训练设置。
+    **结论与证据。** 因果抽象能够区分“信息可读出”和“干预后复现高层算法反事实行为”的表示，并明确各种忠实性结论各自需要哪些假设。其证据属于形式化和定义层面：在该框架内，各种归约精确说明了分析能够证明什么；但它没有经验性证明某个大模型确实满足给定抽象，也不会自动选择正确概念、对齐、干预集合或近似阈值。
   generation:
     status: complete
     generated_by: project_agent

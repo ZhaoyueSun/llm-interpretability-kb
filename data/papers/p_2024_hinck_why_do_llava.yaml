@@ -95,23 +95,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Which internal units and broadcast mechanisms implement language choice and cross-lingual capability? In this paper, *Why do LLaVA Vision-Language Models Reply to Images in English?* addresses that question through its specific object of study and tests how far the resulting claim can be supported.
+    **Research Question.** The paper asks why adding a language-agnostic image to a non-English query makes LLaVA-style vision–language models more likely to answer in English. It separates effects of the language backbone, vision encoder, and training-data language, then asks where image-induced fidelity loss is represented and whether a training-free intervention can reduce it.
 
-    **Method.** We uncover a surprising multilingual bias occurring in a popular class of multimodal vision-language models (VLMs). Including an image in the query to a LLaVA-style vision–language model (VLM) significantly increases the likelihood of the model returning an English response, regardless of the language of the query. Both approaches indicate that the issue stems in the language modelling component of the LLaVA model.
+    **Method.** Semantically paired treatments replace an image with its textual description while keeping the query language fixed. A controlled 14-configuration design swaps Vicuna for Chinese–English Yi or German–English Leo, CLIP for DINOv2, and English for translated training data. Uniform Manifold Approximation and Projection and Centered Kernel Alignment compare image/text representations. A steering vector, estimated from one text example per language at an intermediate language-model layer, is added to each generated-token state.
 
-    **Validation.** This paper investigates the causes of this loss with a two-pronged approach that combines extensive ablation of the design space with a mechanistic analysis of the models' internal representations of image and text inputs.
+    **Validation.** Four pretrained LLaVA-style models produce 15,480 responses each on 7,740 paired tasks from MaXM, PALO-LLaVA-Bench-In-The-Wild, and ViSIT across 14 languages. GlotLID language labels are debiased with 1,000 expert annotations. Images reduce fidelity by 5.9–13.7 percentage points for LLaVA-7B, 10.8–19.2 for LLaVA-13B, and 42.9–52.9 for LLaVA-Gemma-2B. In Chinese/German ablations, bilingual backbones reduce the loss by 17/7 points, whereas DINOv2 and translated data worsen it; accuracy effects are statistically inconclusive. Representation analyses show image tokens separated from text and structurally stable across models, and the single-example intermediate-layer intervention significantly improves fidelity across pretrained models.
 
-    **Conclusion & Evidence.** Statistically, we find that switching the language backbone for a bilingual language model has the strongest effect on reducing this error. Mechanistically, we provide compelling evidence that visual inputs are not mapped to a similar space as text ones, and that intervening on intermediary attention layers can reduce this bias. Our findings provide important insights to researchers and engineers seeking to understand the crossover between multimodal and multilingual spaces, and contribute to the goal of developing capable and inclusive VLMs for non-English contexts. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+    **Conclusion & Evidence.** Image-induced language drift is systematic and is driven chiefly by how the language backbone interprets out-of-distribution visual embeddings, rather than by the projector placing images near English tokens. Paired inputs, controlled retraining, confidence intervals, representation comparisons, and successful steering provide convergent but not complete causal evidence. Language identification and GPT-4o accuracy proxies require debiasing, the visualization does not prove semantic separation, interactions among design factors are underpowered, and results are limited to LLaVA-style systems and 14 languages.
   zh: |-
-    **研究问题。** 为何向多语言 LLaVA-style 视觉—语言模型（Vision-Language Model, VLM） 加入图像会显著降低 response language fidelity？哪些训练/架构选择与内部表示造成 Image-induced Fidelity Loss，问题可否定位到 language model 并通过 hidden-state intervention 缓解？
+    **研究问题。** 该论文研究为何向非英语查询加入本应与语言无关的图像，会使 LLaVA 风格视觉—语言模型更倾向用英语作答。研究分离语言骨干、视觉编码器和训练数据语言的作用，并定位图像诱发语言忠实度损失（Image-induced Fidelity Loss, IFL）的内部来源及训练外干预可能性。
 
-    **方法。** 两种方法都表明，问题源自 LLaVA 模型的语言建模组件。
+    **方法。** 配对处理在保持查询语言不变时，用图像的文字描述替换图像。受控的 14 配置设计把 Vicuna 换成中英 Yi 或德英 Leo，把 CLIP 换成 DINOv2，并改变训练数据语言。Uniform Manifold Approximation and Projection 与中心核对齐比较图文表示；另从每种语言一个文字样本估计中间语言模型层的引导向量，并加到每个生成词元状态。
 
-    **实验验证。** 我们揭示了一个出现在常见多模态视觉语言模型（VLM）类别中的意外多语言偏差：向 LLaVA 风格视觉语言模型的查询中加入图像，会显著提高模型用英语回答的概率，而无论查询使用什么语言。本文采用双管齐下的方法调查这种能力损失的原因：一方面对设计空间开展大规模消融，另一方面从机制层面分析模型对图像和文本输入的内部表征。
+    **实验验证。** 四个预训练 LLaVA 风格模型分别在 MaXM、PALO-LLaVA-Bench-In-The-Wild 和 ViSIT 的 14 种语言、7,740 对任务上生成 15,480 个回答；GlotLID 语言标签用 1,000 条专家标注去偏。图像使 LLaVA-7B 忠实度下降 5.9—13.7 个百分点、13B 下降 10.8—19.2 点、LLaVA-Gemma-2B 下降 42.9—52.9 点。中/德语消融中，双语骨干分别减少损失 17/7 点，DINOv2 和翻译训练数据反而恶化，准确率差异统计上不确定。表示分析显示图像词元与文本分离且跨模型结构稳定，单样本中间层干预则在各预训练模型上显著改善忠实度。
 
-    **结论与证据。** 从统计结果看，把语言骨干替换为双语语言模型，对减少这一错误的作用最强。从机制角度看，我们提供了有力证据，说明视觉输入并未映射到与文本输入相似的空间，而对中间注意力层进行干预可以减少这种偏差。我们的发现为希望理解多模态空间与多语言空间交叉关系的研究者和工程师提供了重要认识，也有助于面向非英语环境开发能力强且具有包容性的视觉语言模型。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+    **结论与证据。** 图像诱发的语言漂移是系统现象，主因更像是语言骨干如何解释分布外视觉嵌入，而非投影器把图像映射到英语词元附近。配对输入、受控重训、置信区间、表示比较和成功引导提供汇聚但不完整的因果证据。语言识别与 GPT-4o 准确率代理需要去偏，可视化不证明语义空间分离，设计因素交互统计力不足，结果也只覆盖 LLaVA 风格系统和 14 种语言。
   generation:
     status: complete
     generated_by: project_agent

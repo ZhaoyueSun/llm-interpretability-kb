@@ -63,23 +63,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** How is visual information represented, routed, and converted into text predictions after entering a language model? In this paper, *Towards Vision-Language Mechanistic Interpretability: A Causal Tracing Tool for BLIP* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Mechanistic interpretability seeks to understand the neural mechanisms that enable specific behaviors in Large Language Models (LLMs) by leveraging causality-based methods. While these approaches have identified neural circuits that copy spans of text, capture factual knowledge, and more, they remain unusable for multimodal models since adapting these tools to the vision-language domain requires considerable architectural changes.
+    **Research Question.** The paper asks how to adapt causal tracing from text-only Transformers to a vision–language model and which internal states of BLIP causally carry image information needed for visual question answering.
 
-    **Method.** We demonstrate our approach on a visual question answering dataset, highlighting the causal relevance of later layer representations for all tokens.
+    **Method.** Noise multiplicatively corrupts all 577 image-patch embeddings before BLIP's question encoder. For each layer–token state in the question encoder or answer decoder, the clean activation is patched into the corrupted run. Recovery is normalized as \(\Gamma_{L,T}=[p(A\mid\text{patched})-p(A\mid E^*)]/[p(A\mid E)-p(A\mid E^*)]\), so zero means no recovery and one means restoration of the clean correct-answer probability.
 
-    **Validation.** Furthermore, we release our BLIP causal tracing tool as open source to enable further experimentation in vision-language mechanistic interpretability by the community.
+    **Validation.** The tool is demonstrated on COCO-QA, which contains 123,287 images, 78,736 training questions, and 38,948 test questions with one-word answers for object, count, color, and location. Because pretrained BLIP reaches 80.23% on color identification and formatting artifacts depress other categories, tracing focuses on color. Noise scales from 0.1 to 30 are swept on 200 samples with ten runs each; \(\nu=5\) is selected to avoid trivial or irrecoverable corruption. Layer–token heatmaps are then averaged across ten noise draws and 200 examples for both 12-layer encoder and decoder blocks.
 
-    **Conclusion & Evidence.** In this work, we adapt a unimodal causal tracing tool to BLIP to enable the study of the neural mechanisms underlying image-conditioned text generation. Our code is available at this URL. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+    **Conclusion & Evidence.** Clean visual information produces the largest single-state recovery at encoder layer 11 and decoder layers 9–11 across question tokens, suggesting that late representations dominate BLIP's answer restoration. The intervention is causal with respect to the chosen corruption and probability metric, but the evidence is exploratory: only 200 color questions are traced, only one state is restored at a time, noise sensitivity is non-monotonic, and late-layer dominance could reflect downstream overriding rather than independent visual and linguistic processing earlier in the network.
   zh: |-
-    **研究问题。** 如何把 causal mediation/causal tracing 从纯语言模型扩展到 BLIP 一类视觉—语言模型，并定位视觉信息和问题信息在 VQA 预测中经过哪些层、模态模块与融合路径产生因果影响？
+    **研究问题。** 该论文研究如何把纯文本 Transformer 的因果追踪改造到视觉—语言模型，以及 BLIP 内部哪些状态因果性地承载视觉问答所需的图像信息。
 
-    **方法。** 在本研究中，我们把一种单模态因果追踪工具适配到 BLIP，使研究图像条件文本生成背后的神经机制成为可能。
+    **方法。** 在 BLIP 问题编码器之前，用乘性噪声污染全部 577 个图像块嵌入；随后对问题编码器或答案解码器中的每个“层—词元”状态，分别把干净运行的激活修补进污染运行。恢复度定义为 \(\Gamma_{L,T}=[p(A\mid\text{patched})-p(A\mid E^*)]/[p(A\mid E)-p(A\mid E^*)]\)，因此 0 表示没有恢复，1 表示正确答案概率恢复到干净水平。
 
-    **实验验证。** 我们在一个视觉问答数据集上展示该方法，并强调较后层表征对所有 token 都具有因果相关性。此外，我们将 BLIP 因果追踪工具开源，以便研究社区进一步开展视觉—语言机制可解释性实验。
+    **实验验证。** 工具在 COCO-QA 上演示；该数据集含 123,287 张图像、78,736 个训练问题和 38,948 个测试问题，答案均为单词，覆盖物体、数量、颜色和位置。预训练 BLIP 在颜色识别上达到 80.23%，而其他类别受输出格式影响，因此追踪集中于颜色。研究先在 200 个样本上对 0.1—30 的噪声强度各运行 10 次，选择 \(\nu=5\) 以避免污染过轻或无法恢复；再对编码器和解码器的 12 层生成层—词元热图，并在 10 次噪声及 200 个样本上平均。
 
-    **结论与证据。** 代码可通过原文所给网址获取。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+    **结论与证据。** 在所有问题词元上，编码器第 11 层和解码器第 9—11 层的单状态修补恢复最大，说明晚层表示主导 BLIP 的答案恢复。相对于指定污染与概率指标，这属于因果干预证据，但仍是探索性的：只追踪了 200 个颜色问题，每次只恢复一个状态，噪声敏感性并非单调，而且晚层占优也可能是下游覆盖效应，不能据此断定早层独立处理视觉和语言。
   generation:
     status: complete
     generated_by: project_agent

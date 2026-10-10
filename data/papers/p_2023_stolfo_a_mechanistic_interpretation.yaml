@@ -62,23 +62,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Can a model behavior be reduced to a complete, intervenable, end-to-end component circuit? In this paper, *A Mechanistic Interpretation of Arithmetic Reasoning in Language Models using Causal Mediation Analysis* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Mathematical reasoning in large language models (LMs) has garnered significant attention in recent work, but there is a limited understanding of how these models process and store information related to arithmetic tasks within their architecture.
+    **Research Question.** The paper asks how Transformer language models route operand information and construct results for simple arithmetic. It separates effects of operands, operators, and result tokens; compares arithmetic with mere number retrieval and factual recall; and asks how this information flow changes after arithmetic fine-tuning.
 
-    **Method.** In order to improve our understanding of this aspect of language models, we present a mechanistic interpretation of Transformer-based LMs on arithmetic questions using a causal mediation analysis framework.
+    **Method.** Causal mediation analysis treats each attention or multilayer-perceptron output at each token and layer as a mediator. For paired prompts with different operands, an activation from one prompt is inserted into the other and the indirect effect is the induced change in probability of the original and counterfactual results. Layer–position heatmaps trace information flow; result-preserving operand pairs isolate input-related from answer-related effects, and neuron-level interventions refine the final-token analysis.
 
-    **Validation.** By intervening on the activations of specific model components and measuring the resulting changes in predicted probabilities, we identify the subset of parameters responsible for specific predictions. This provides insights into how information related to arithmetic is processed by LMs. Our experimental results indicate that LMs process the input by transmitting the information relevant to the query from mid-sequence early layers to the final token using the attention mechanism.
+    **Validation.** Experiments cover GPT-J, Pythia-2.8B, LLaMA-7B, and arithmetic-tuned Goat on addition, subtraction, multiplication, and division, with digit and numeral-word prompts. Baseline overall accuracies are 67.8%, 59.9%, 97.2%, and 85.6%, respectively. Controls use direct number retrieval and six T-REx relations from the LAMA factual benchmark, where GPT-J reaches 65.0%; an alternate log-probability effect checks metric dependence. Pythia's three-operand accuracy increases from 0.9% to 39.7% after fine-tuning, and the intervention heatmaps are compared before and after.
 
-    **Conclusion & Evidence.** Then, this information is processed by a set of multilayer perceptron (MLP) modules, which generate result-related information that is incorporated into the residual stream. To assess the specificity of the observed activation dynamics, we compare the effects of different model components on arithmetic queries with other tasks, including number retrieval from prompts and factual knowledge questions. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+    **Conclusion & Evidence.** Across models, early and middle components route operand information, while late attention and multilayer-perceptron activity at the final token is strongly tied to producing the result; this pattern strengthens or reorganizes when arithmetic ability is fine-tuned and differs from retrieval or factual completion. Replication across four models, matched counterfactuals, task controls, and alternate metrics supports a task-specific causal-flow account. It remains a coarse localization rather than a complete algorithm: interventions aggregate whole modules, attention heads are not individually resolved, prompt templates are simple, and correct output does not show how multi-step arithmetic is represented.
   zh: |-
-    **研究问题。** 语言模型回答基本算术问题时，operand、operator 与 result 信息如何在层和位置之间流动？是否由早层处理输入、attention 将信息传至末 token、晚层 多层感知机（Multi-Layer Perceptron, MLP） 写入结果信息，并且这一模式是否跨运算和模型复现？
+    **研究问题。** 该论文研究 Transformer 语言模型如何传递操作数信息并构造简单算术结果，具体区分操作数、运算符和结果词元的效应；将算术与数字提取、事实回忆比较；并考察算术微调如何改变信息流。
 
-    **方法。** 为加深对此问题的理解，我们使用因果中介分析框架，对基于 Transformer 的语言模型回答算术问题的过程给出机制解释。
+    **方法。** 因果中介分析把每个层和词元位置上的注意力或多层感知机输出视为中介变量。对操作数不同的配对提示，将一条提示的激活插入另一条提示，以原结果和反事实结果概率的变化定义间接效应。层—位置热图追踪信息流；结果相同但操作数不同的配对分离输入相关与答案相关效应，神经元级干预进一步细化末词元分析。
 
-    **实验验证。** 通过干预特定模型组件的激活并测量预测概率随之发生的变化，我们识别出负责特定预测的参数子集，从而揭示语言模型如何处理与算术有关的信息。实验结果表明，语言模型首先利用注意力机制，把与问题相关的信息从序列中部的早期层传送至最后一个 token；随后，一组 MLP 模块对这些信息进行处理，生成与结果有关的信息并将其写入残差流。
+    **实验验证。** 实验覆盖 GPT-J、Pythia-2.8B、LLaMA-7B 和算术微调 Goat，任务含加减乘除及数字/英文数词提示；总体基线准确率分别为 67.8%、59.9%、97.2% 和 85.6%。对照包括直接数字提取和 LAMA 事实基准中 6 种 T-REx 关系，GPT-J 在后者为 65.0%；另用对数概率效应检查指标依赖。Pythia 的三操作数准确率经微调由 0.9% 升至 39.7%，并比较微调前后的干预热图。
 
-    **结论与证据。** 为评估所观察到的激活动力学是否具有任务特异性，我们比较了不同模型组件对算术问题和其他任务的影响，后者包括从提示中检索数字以及回答事实知识问题。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+    **结论与证据。** 多个模型中，早中层组件传递操作数信息，末位置的晚层注意力和多层感知机活动则与输出结果强相关；算术能力微调会强化或重组该模式，而且它不同于数字提取和事实补全。四模型复现、匹配反事实、任务对照及替代指标支持任务特定的因果信息流解释。但这仍是粗粒度定位而非完整算法：干预聚合整个模块，没有解析单独注意力头，提示模板较简单，正确输出也不能说明模型如何表示多步算术。
   generation:
     status: complete
     generated_by: project_agent

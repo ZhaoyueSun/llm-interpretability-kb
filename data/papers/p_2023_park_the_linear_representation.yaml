@@ -59,23 +59,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Can semantic variables be represented by directions or subspaces with measurable, intervenable, and compositional properties? In this paper, *The Linear Representation Hypothesis and the Geometry of Large Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Informally, the'linear representation hypothesis'is the idea that high-level concepts are represented linearly as directions in some representation space.
+    **Research Question.** The paper asks what the “linear representation hypothesis” means precisely, how subspace, linear-probe, and steering formulations relate, and which geometry makes angles and projections semantically meaningful in language-model representation spaces.
 
-    **Method.** In this paper, we address two closely related questions: What does"linear representation"actually mean? And, how do we make sense of geometric notions (e.g., cosine similarity or projection) in the representation space? To answer these, we use the language of counterfactuals to give two formalizations of"linear representation", one in the output (word) representation space, and one in the input (sentence) space. To make sense of geometric notions, we use the formalization to identify a particular (non-Euclidean) inner product that respects language structure in a sense we make precise. In particular, this allows the construction of probes and steering vectors using counterfactual pairs.
+    **Method.** Concepts are defined through counterfactual token pairs that differ only in one value. The theory distinguishes an unembedding direction used to measure a concept from an embedding direction used to intervene on it, proves their links to logit-linear probing and steering, and derives a non-Euclidean causal inner product under which causally separable concepts are orthogonal. A practical estimate uses the inverse covariance of LLaMA's unembedding vectors, which maps output directions into intervention directions.
 
-    **Validation.** We then prove these connect to linear probing and model steering, respectively.
+    **Validation.** Experiments use LLaMA-2 7B and 27 concepts: 22 from the Big Analogy Test Set, four language-translation directions, and frequency. Leave-one-pair-out concept directions are compared with 100,000 random word-pair differences; 26 concepts align substantially better than random, with “thing→part” the exception. Pairwise heatmaps compare causal and Euclidean inner products. Wikipedia contexts test French-versus-Spanish measurement with unrelated concept directions as controls, while graded activation additions test male→female, lowercase→uppercase, and French→Spanish steering and monitor off-target logits; examples include changing “king” to top-ranked “queen.”
 
-    **Conclusion & Evidence.** Using this causal inner product, we show how to unify all notions of linear representation. Experiments with LLaMA-2 demonstrate the existence of linear representations of concepts, the connection to interpretation and control, and the fundamental role of the choice of inner product. The formal result is strong under its stated assumptions, with experiments or constructions supporting the predicted consequences. Its scope is limited by those assumptions and does not automatically extend to every architecture or training regime.
+    **Conclusion & Evidence.** Several natural definitions of linear representation coincide once embedding and unembedding spaces are connected by an appropriate causal geometry, and counterfactual word pairs can construct both probes and steering vectors. Formal theorems establish equivalence under stated assumptions, while held-out pair alignment and selective interventions provide empirical support in LLaMA-2. The evidence does not identify a unique inner product, one concept fails the test, and illustrative next-token interventions do not establish concept-level control across long generation or other models.
   zh: |-
-    **研究问题。** “线性表示”作为 subspace、measurement 与 intervention 的三种定义如何形式化并彼此关联？什么 inner product 才能让表示空间的几何反映概念的因果可分性，并统一 embedding 与 unembedding representations？
+    **研究问题。** 该论文研究“线性表示假设”的精确定义、子空间/线性探针/表示操控三种表述之间的关系，以及何种几何结构能让语言模型表示空间中的夹角和投影具有语义意义。
 
-    **方法。** 本文讨论两个密切相关的问题：“线性表征”究竟是什么意思？我们又该如何理解表征空间中的几何概念（例如余弦相似度或投影）？为回答这些问题，我们使用反事实语言，分别在输出（词）表征空间和输入（句子）空间中给出“线性表征”的两种形式化定义。为了赋予几何概念明确含义，我们利用上述形式化定义识别出一种特定的非欧几里得内积；在我们严格界定的意义下，该内积尊重语言结构。
+    **方法。** 概念由仅在一个属性值上不同的反事实词元对定义。理论区分用于测量概念的反嵌入方向和用于干预概念的嵌入方向，证明它们分别对应 logit 线性探测与操控，并推导一种非欧式因果内积，使可因果分离的概念相互正交。实际估计采用 LLaMA 反嵌入向量协方差的逆，从而把输出方向映射为干预方向。
 
-    **实验验证。** LLaMA-2 实验展示了概念线性表征的存在、它与解释和控制的联系，以及内积选择所起的根本作用。
+    **实验验证。** 实验使用 LLaMA-2 7B 和 27 个概念：22 个来自大类比测试集（Big Analogy Test Set）、4 个语言翻译方向及词频。留一词对概念方向与 10 万个随机词对差向量比较，26 个概念显著更一致，“整体→部分”是例外；成对热图比较因果与欧式内积。Wikipedia 上的法语/西班牙语上下文检验测量能力，以无关概念方向为对照；递增强度的激活加法则测试男→女、小写→大写、法语→西班牙语操控并监测非目标 logit，例如把“king”变为首选“queen”。
 
-    **结论与证据。** 随后，我们证明它们分别与线性探测和模型引导相联系。借助这一因果内积，我们说明了如何统一线性表征的各种概念。特别是，它使我们能够使用反事实样本对构造探针和引导向量。形式结果在明确假设下具有较强支持，实验或构造也验证了其预测后果；结论范围受这些假设约束，不能自动推广到所有架构和训练设置。
+    **结论与证据。** 当嵌入和反嵌入空间通过合适的因果几何连接后，多种自然的线性表示定义可以统一，反事实词对也能同时构造探针和操控向量。形式定理在明确假设下给出等价性，留出词对的一致性和选择性干预则在 LLaMA-2 上提供经验支持。但内积并不唯一，有一个概念未通过检验，少量下一词元案例也不能证明长文本生成或其他模型中的概念级控制。
   generation:
     status: complete
     generated_by: project_agent

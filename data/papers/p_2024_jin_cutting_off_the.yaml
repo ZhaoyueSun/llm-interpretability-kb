@@ -99,23 +99,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** How does a model arbitrate between parametric and contextual knowledge when they conflict? In this paper, *Cutting Off the Head Ends the Conflict: A Mechanism for Interpreting and Mitigating Knowledge Conflicts in Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Recently, retrieval augmentation and tool augmentation have demonstrated a remarkable capability to expand the internal memory boundaries of language models (LMs) by providing external context. However, internal memory and external context inevitably clash, leading to knowledge conflicts within LMs.
+    **Research Question.** The paper asks how a language model resolves a conflict between a factual association in its parameters and a contradictory value supplied in context. It seeks the point where the two information streams interact, whether distinct attention heads retrieve each source, and whether selective head pruning can choose which knowledge source controls the answer.
 
-    **Method.** We find there are some attention heads with opposite effects in the later layers, where memory heads can recall knowledge from internal memory, and context heads can retrieve knowledge from external context.
+    **Method.** Component knockout and causal tracing first compare memory-consistent, context-consistent, and conflict prompts. Gradient sensitivity and path patching identify late-layer “memory heads” and “context heads” that move different attributes to the final token. Pruning Head via PatH PatcHing (PH3) ranks heads by their patched effect, then masks the small opposing set at inference to favor either parametric memory or external context without updating weights.
 
-    **Validation.** In this paper, we aim to interpret the mechanism of knowledge conflicts through the lens of information flow, and then mitigate conflicts by precise interventions at the pivotal point. Inspired by the insights, we propose a novel method called Pruning Head via PatH PatcHing (PH3), which can efficiently mitigate knowledge conflicts by pruning conflicting attention heads without updating model parameters. PH3 can flexibly control eight LMs to use internal memory ($\uparrow$ 44.0%) or external context ($\uparrow$ 38.5%).
+    **Validation.** Mechanistic studies use factual subject–attribute conflicts in GPT-2 XL and GPT-J; extraction tests compare the top 5% memory/context heads with a random 5%. Mitigation is evaluated on World Capital, a distractor-formatted capital set, Official Language, Country, and Continent, plus 1,000 Natural Questions examples supplied with five retrieved passages. Cross-model tests cover eight models, including OPT-1.3B/2.7B, Pythia-6.9B/12B, Llama-2-7B/13B, GPT-2 XL, and GPT-J. Heads selected only on World Capital generalize across relations and formats: PH3 raises use of internal memory by up to 44.0% or external context by 38.5%, beats prompt, contrastive-decoding, gradient-ranking, and random-pruning controls, and improves retrieval-based question-answer recall.
 
-    **Conclusion & Evidence.** Moreover, we reveal that the pivotal point at which knowledge conflicts emerge in LMs is the integration of inconsistent information flows by memory heads and context heads. Moreover, PH3 can also improve the performance of LMs on open-domain QA tasks. We also conduct extensive experiments to demonstrate the cross-model, cross-relation, and cross-format generalization of our method. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+    **Conclusion & Evidence.** Knowledge conflict emerges when late attention heads carrying parametric and contextual attributes converge at the answer position; selectively suppressing one group can causally shift the model's source preference. Path-specific interventions, randomized controls, and transfer across eight models and several relations provide substantial causal evidence for this routing account. It remains a simplified factual-recall setting: head labels summarize average behavior rather than exclusive functions, pruning may alter unrelated tasks, Natural Questions evidence is aggregate, and the analysis does not fully explain upstream retrieval or conflicts requiring multi-step reasoning.
   zh: |-
-    **研究问题。** 当 parametric memory 与 external context 冲突时，冲突在何处、经何种信息流产生？late-layer memory heads 与 context heads 如何竞争，能否通过 path patching 定位并剪除特定 heads 来控制模型遵从内部或外部知识？
+    **研究问题。** 该论文研究语言模型如何处理参数中事实关联与上下文所给矛盾值的冲突；具体寻找两条信息流相互作用的位置、是否由不同注意力头提取各自来源，以及选择性剪枝能否决定哪类知识控制答案。
 
-    **方法。** 我们发现，后部层中存在一些作用相反的注意力头：记忆头可以从内部记忆中召回知识，而上下文头可以从外部上下文中检索知识。
+    **方法。** 组件敲除和因果追踪先比较与记忆一致、与上下文一致及冲突提示；梯度敏感性与路径修补定位晚层“记忆头”和“上下文头”，它们把不同属性搬运到末词元。通过路径修补剪枝注意力头（Pruning Head via PatH PatcHing, PH3）按修补效应排序，并在推理时屏蔽少量对立注意力头，以偏向参数记忆或外部上下文，无需更新权重。
 
-    **实验验证。** 本文旨在从信息流的角度解释知识冲突的机制，并通过在关键位置进行精确干预来缓解冲突。受这些认识启发，我们提出一种名为“通过路径修补剪枝注意力头”（Pruning Head via PatH PatcHing，PH3）的新方法；它无需更新模型参数，只需剪除发生冲突的注意力头，便能高效缓解知识冲突。PH3 可以灵活控制八种语言模型使用内部记忆（$\uparrow$ 44.0%）或外部上下文（$\uparrow$ 38.5%）。
+    **实验验证。** GPT-2 XL 和 GPT-J 上用事实主语—属性冲突做机制分析；提取实验把前 5% 记忆/上下文头与随机 5% 比较。缓解评测含 World Capital、带干扰格式的首都集、Official Language、Country、Continent，以及附有 5 段检索文本的 1,000 条 Natural Questions。跨模型覆盖 8 个模型，包括 OPT-1.3B/2.7B、Pythia-6.9B/12B、Llama-2-7B/13B、GPT-2 XL 和 GPT-J。仅在 World Capital 上选出的头可跨关系和格式迁移：PH3 最高使内部记忆使用率提高 44.0%、外部上下文提高 38.5%，优于提示、对比解码、梯度排序和随机剪枝，并改善检索问答召回率。
 
-    **结论与证据。** 我们进一步揭示，语言模型中知识冲突出现的关键点，是记忆头与上下文头对不一致信息流的整合。此外，PH3 还能提升语言模型在开放域问答任务上的表现。我们还进行了广泛实验，证明该方法能够跨模型、跨关系和跨格式泛化。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+    **结论与证据。** 知识冲突在携带参数属性与上下文属性的晚层注意力头汇聚到答案位置时形成；选择性抑制一组可以因果改变模型的知识来源偏好。路径级干预、随机对照及八模型多关系迁移为这种路由解释提供较强因果证据。但任务仍是简化事实回忆：注意力头标签描述平均作用而非排他功能，剪枝可能影响无关任务，Natural Questions 证据是总体指标，分析也未完整解释上游检索或多步推理冲突。
   generation:
     status: complete
     generated_by: project_agent

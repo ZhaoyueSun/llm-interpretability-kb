@@ -77,23 +77,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** How is visual information represented, routed, and converted into text predictions after entering a language model? In this paper, *Towards Interpreting Visual Information Processing in Vision-Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Vision-Language Models (VLMs) are powerful tools for processing and understanding text and images.
+    **Research Question.** The paper asks where object information resides after image patches are mapped into a language model, how those visual-token states evolve across layers, and whether object information is directly extracted to the answer position or first summarized elsewhere. It tests whether mechanisms known from text-only factual recall transfer to adapter-style vision–language models.
 
-    **Method.** We study the processing of visual tokens in the language model component of LLaVA, a prominent vision–language model (VLM). Our approach focuses on analyzing the localization of object information, the evolution of visual token representations across layers, and the mechanism of integrating visual information for predictions.
+    **Method.** Spatially targeted mean ablation replaces object-region visual tokens, buffered regions, high-norm “register” tokens, random tokens, or integrated-gradient-selected tokens. A logit lens maps each intermediate visual state through the vocabulary unembedding to track text alignment. Attention knockout blocks selected source–destination token links in sliding layer windows, distinguishing direct object-to-answer extraction from global or last-visual-row summarization.
 
-    **Validation.** Through ablation studies, we demonstrated that object identification accuracy drops by over 70% when object-specific tokens are removed.
+    **Validation.** The main model is LLaVA-1.5 with 576 visual tokens, with LLaVA-Phi-3 and Qwen2-VL-2B replications. From COCO Detection, 4,318 simple images are retained only when masking the target object breaks recognition; three tests use free descriptions, yes/no polling, and a manually curated 100-image visual-question-answering set. Ablating spatial object tokens causes over 70% loss in identification and exceeds random, register, and gradient baselines at matched counts. On 170 COCO images, 23.7% of object patches decode to the correct class at each image's best layer, averaging layer 25.7/33; Qwen2-VL obtains 6.5% at 25.1/29 on 253 images. Blocking object-to-final-token attention is most damaging in middle-to-late layers, whereas blocking transfers into the final visual row has little effect.
 
-    **Conclusion & Evidence.** We observed that visual token representations become increasingly interpretable in the vocabulary space across layers, suggesting an alignment with textual tokens corresponding to image content. Finally, we found that the model extracts object information from these refined representations at the last token position for prediction, mirroring the process in text-only language models for factual association tasks. These findings provide crucial insights into how VLMs process and integrate visual information, bridging the gap between our understanding of language and vision models, and paving the way for more interpretable and controllable multimodal systems. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+    **Conclusion & Evidence.** Object evidence remains strongly localized to its original spatial patches, is progressively refined toward language-like vocabulary directions, and is read directly into the answer position mainly in middle-to-late language-model layers. Targeted ablations and attention blocking give local causal support, with cross-model replication for representation and routing trends. Logit-lens matches are correlational and sparse, filtering selects cases the model already handles, tasks are simple object identification rather than reasoning, and results may not generalize beyond adapter-style architectures.
   zh: |-
-    **研究问题。** LLaVA-style 视觉—语言模型（Vision-Language Model, VLM） 输入 LM 的视觉 soft tokens 如何编码物体信息：信息是否保留空间局部性、随层演化为可解释词汇方向，并在何时经 attention 被抽取到回答位置？文本模型上的机制理解能否迁移到视觉输入处理？
+    **研究问题。** 该论文研究图像块映射进语言模型后，物体信息位于何处、视觉词元状态如何跨层演化，以及信息是直接提取到答案位置还是先在其他位置汇总；并检验纯文本事实回忆中的机制是否迁移到适配器式视觉—语言模型。
 
-    **方法。** 我们研究代表性视觉语言模型 LLaVA 的语言模型组件如何处理视觉 token。研究方法聚焦于分析物体信息的定位、视觉 token 表征跨层的演变，以及整合视觉信息用于预测的机制。
+    **方法。** 空间定向均值消融分别替换物体区域视觉词元、带缓冲区域、高范数“寄存器”词元、随机词元或积分梯度选出的词元。logit lens 把每层视觉状态经反嵌入映射到词表，追踪文本对齐；注意力敲除在滑动层窗口中阻断指定来源—目标词元连接，区分直接物体到答案提取、全局汇总和最后视觉行汇总。
 
-    **实验验证。** 消融研究显示，移除物体特定 token 后，物体识别准确率下降超过 70%。
+    **实验验证。** 主模型为含 576 个视觉词元的 LLaVA-1.5，并在 LLaVA-Phi-3 与 Qwen2-VL-2B 复现。COCO Detection 中筛得 4,318 张简单图像，只有遮盖目标物体会破坏识别者才保留；三项测试含自由描述、是/否询问及人工整理的 100 图视觉问答集。消融空间物体词元使识别下降超过 70%，在相同数量下大于随机、寄存器和梯度基线。170 张 COCO 图像上，每图最佳层平均有 23.7% 物体块解码为正确类别，最佳层均值 25.7/33；Qwen2-VL 在 253 图上为 6.5%、25.1/29。阻断物体到末词元注意力在中后层破坏最大，而阻断信息进入最后视觉行几乎无效。
 
-    **结论与证据。** 我们观察到，视觉 token 表征在跨层传播时，在词汇空间中变得越来越可解释，这表明它们逐渐与对应图像内容的文本 token 对齐。最后，我们发现，模型会在最后一个 token 位置从这些经过细化的表征中提取物体信息用于预测，这与纯文本语言模型处理事实关联任务的过程相似。这些发现为视觉语言模型如何处理和整合视觉信息提供了关键认识，弥合了语言模型与视觉模型之间的理解差距，并为构建更具可解释性和可控性的多模态系统铺平道路。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+    **结论与证据。** 物体证据强烈局限于原空间块，随后逐层细化为更接近语言词表的方向，并主要在语言模型中后层直接读入答案位置。定向消融和注意力阻断提供局部因果支持，表示与路由趋势也跨模型复现。但 logit-lens 匹配相关性强且比例不高，筛选只保留模型本来能做的案例，任务是简单物体识别而非推理，结果也未必适用于非适配器架构。
   generation:
     status: complete
     generated_by: project_agent

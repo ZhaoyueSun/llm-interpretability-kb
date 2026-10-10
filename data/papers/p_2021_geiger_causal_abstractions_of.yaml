@@ -64,23 +64,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** The paper asks when a neural network can be said to implement an interpretable high-level causal model rather than merely correlate with its variables. It seeks a formal criterion for aligning low-level neural representations with high-level variables and testing whether their counterfactual behaviors agree.
+    **Research Question.** The paper asks whether a neural network's internal computation can be shown—not merely correlated—to implement variables and dependencies from an interpretable high-level causal model. The case study tests whether BERT's success on compositional natural-language inference comes from partially realizing the tree-structured natural-logic program that generated the task.
 
-    **Method.** A proposed high-level causal model is related to the neural network through an alignment that maps groups of neurons and representation values to causal variables and their values. Interchange interventions replace an internal representation from one input with the representation produced by another; the corresponding high-level intervention swaps the aligned causal variable. Agreement over these paired interventions defines causal abstraction.
+    **Method.** Causal abstraction analysis has three steps: specify a high-level causal model, search for alignments between its variables and neural representations, and test each alignment with interchange interventions. For a base and source input, the method replaces an aligned neural state in the base computation with the source state and compares the resulting output with the counterfactual output obtained by making the analogous intervention in the symbolic model. Agreement over intervention pairs identifies subsets on which the symbolic model is a constructive causal abstraction of the network.
 
-    **Validation.** The framework is demonstrated on neural networks trained for synthetic and natural-language reasoning tasks with known candidate algorithms. The authors search over alignments, compare ordinary input–output accuracy with intervention accuracy, and use counterexamples to show that models with similar observational behavior can implement different internal causal structures.
+    **Validation.** The study trains a 12-layer BERT-base classifier and a bidirectional long short-term memory (BiLSTM) baseline on the hardest split of Multiply Quantified Natural Language Inference (MQNLI), whose labels come from a known natural-logic causal tree. BERT reaches about 88.5% test accuracy, the BiLSTM about 46%, and an unpretrained BERT variant about 49.1%. For 1,000 sampled examples, dozens of token–layer alignments are tested at each non-leaf causal variable; the strongest BERT alignment, for the object noun-phrase relation, yields a 383-example subset with complete pairwise intervention agreement. Probe and Integrated Gradients comparisons assess what correlational decoding and local attribution do or do not establish.
 
-    **Conclusion & Evidence.** Interchange-intervention agreement provides a rigorous behavioral test of whether a network realizes a specified high-level causal process. It is stronger than probing or observational correlation because it requires matched counterfactual effects. The evidence and definitions support the framework as a causal criterion, but a successful result is relative to the proposed high-level model and searched alignment; failure may reflect a poor hypothesis or search procedure rather than absence of interpretable structure.
+    **Conclusion & Evidence.** BERT partially realizes several natural-logic subcomputations, while the weaker recurrent model shows little comparable causal structure. Interchange interventions support a stronger claim than probe accuracy because the aligned state must produce the symbolic model's counterfactual effect on the final output. The result is still partial—383 of 1,000 examples for the strongest alignment rather than a global proof—and depends on a hand-specified causal model, restricted alignment search, and synthetic task with known structure.
   zh: |-
-    **研究问题。** 论文研究在什么条件下可以说神经网络实现了一个可解释的高层因果模型，而不仅是与高层变量相关；目标是形式化低层神经表示与高层变量的对齐，并检验两者的反事实行为是否一致。
+    **研究问题。** 该论文研究能否证明神经网络内部计算真正实现了可解释高层因果模型中的变量与依赖关系，而不只是与这些变量相关。案例分析进一步检验 BERT 在组合式自然语言推断上的成功，是否来自对数据生成所用树状自然逻辑程序的部分实现。
 
-    **方法。** 作者通过一种对齐关系，把神经元群及其表示值映射到高层因果变量及变量值。交换干预（interchange intervention）把某个输入产生的内部表示替换成另一输入的表示，并在高层模型中同步交换与之对齐的因果变量。如果两种系统在成对干预下保持输出一致，则神经网络可被视为该高层模型的因果抽象。
+    **方法。** 因果抽象分析包括三步：提出高层因果模型，在其变量与神经表示之间搜索对齐，并用交换干预检验每个对齐。方法对一个基础输入和一个来源输入分别前向计算，再用来源输入的对齐神经状态替换基础输入的状态；所得输出与在符号模型中实施对应干预后的反事实输出比较。若一组样本的干预组合全部一致，则符号模型在该子集上构成网络的构造性因果抽象。
 
-    **实验验证。** 框架在具有已知候选算法的合成任务和自然语言推理任务网络上展示。作者搜索可能的对齐，比较普通输入—输出准确率与干预准确率，并利用反例说明：观察行为相近的模型仍可能实现不同的内部因果结构。
+    **实验验证。** 研究在乘数量词自然语言推断（Multiply Quantified Natural Language Inference, MQNLI）最难划分上训练 12 层 BERT-base 分类器和双向长短期记忆网络（Bidirectional Long Short-Term Memory, BiLSTM）基线；该数据的标签由已知自然逻辑因果树生成。BERT 测试准确率约 88.5%，BiLSTM 约 46%，未预训练 BERT 约 49.1%。作者从 1,000 个样本出发，为每个非叶因果变量检验几十个 token—层对齐；最强的“宾语名词短语关系”对齐得到 383 个样本组成的完全两两干预一致子集。实验还与探针和 Integrated Gradients 比较，以区分相关解码、局部归因和因果结构证据。
 
-    **结论与证据。** 交换干预的一致性为“网络是否实现某个指定高层因果过程”提供了严格的行为检验。由于它要求低层和高层系统产生匹配的反事实效应，其证据强于探针或观察相关性。不过，成功结论总是相对于所提出的高层模型和找到的对齐而言；检验失败也可能源于高层假说或搜索过程不合适，而不必然意味着模型没有可解释结构。
+    **结论与证据。** BERT 部分实现了多个自然逻辑子计算，较弱的循环模型没有表现出相当的因果结构。交换干预要求对齐状态在最终输出上复现符号反事实，因此比探针准确率支持更强的计算机制主张。但结果仍是局部的——最强对齐覆盖 1,000 个样本中的 383 个，而非全局证明，并依赖人工指定的因果模型、受限对齐搜索和结构已知的合成任务。
   generation:
     status: complete
     generated_by: project_agent

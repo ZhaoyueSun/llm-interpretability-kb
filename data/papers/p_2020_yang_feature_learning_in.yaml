@@ -56,23 +56,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** The paper asks whether infinitely wide neural networks can retain genuine feature learning rather than collapsing to fixed-kernel dynamics such as the Neural Tangent Kernel (NTK). It seeks a classification of stable parameterizations and a tractable description of the representations they learn during training.
+    **Research Question.** The paper asks which infinite-width parameterizations permit learned features to change nontrivially under gradient descent, rather than reducing training to fixed-kernel dynamics, and whether such a limit can model transfer and meta-learning tasks where feature learning is essential.
 
-    **Method.** Using the tensor-program formalism, the authors analyze families of width-dependent parameterizations and derive their infinite-width training limits. They identify the maximal-update, or μP, parameterization, in which hidden representations and feature kernels evolve by an order-one amount while activations and gradients remain stable. The resulting dynamics can be computed through deterministic recursive equations.
+    **Method.** A general (abc)-parameterization records width-dependent scaling of initialization and learning rates. The dynamical-dichotomy theorem classifies every nontrivial stable parameterization in this family as either a feature-learning limit or a kernel-gradient-descent limit, but not both. The Maximal Update Parameterization (µP) is constructed so hidden features receive order-one updates at infinite width, and Tensor Programs plus a master theorem are used to derive its discrete-time stochastic-gradient-descent limit exactly.
 
-    **Validation.** The theory is checked against finite-width multilayer perceptrons and convolutional networks across synthetic and real prediction tasks. Experiments compare standard, Neural Tangent Kernel, and feature-learning parameterizations as width grows, examining training curves, representation change, hyperparameter transfer, and performance on tasks that require learned features.
+    **Validation.** The scaling predictions are stress-tested by varying width and learning rate in multilayer perceptrons, including CIFAR-10 experiments. Practical evaluation then uses two feature-dependent tasks. On Omniglot, first-order Model-Agnostic Meta-Learning performs one-shot, five-way classification over 1,623 characters; hyperparameters are selected over three seeds and reported with 15-seed reruns, where the µP limit reaches about 66.4% test accuracy versus about 47.8% for the Neural Tangent Kernel (NTK). For Word2Vec, continuous-bag-of-words models train on text8 and fil9 Wikipedia corpora and are scored by word-analogy accuracy; finite µP networks approach the analytically computed infinite-width limit as width grows, while Gaussian-process and NTK features remain essentially random.
 
-    **Conclusion & Evidence.** Infinite width does not inherently eliminate feature learning: it depends on parameterization. The μP limit preserves nontrivial representation dynamics and better predicts finite-network behavior in feature-dependent regimes than a fixed NTK description. The formal derivations provide strong evidence under the stated architectural and scaling assumptions, with empirical convergence supporting relevance to large finite networks; they do not imply that every practical architecture follows the same limit.
+    **Conclusion & Evidence.** The formal results show that standard and NTK parameterizations cannot support nontrivial feature evolution in their infinite-width limits, whereas µP can. Width-scaling experiments match the derived dynamics, and both Omniglot adaptation and Word2Vec transfer favor the feature-learning limit over fixed-kernel baselines and finite narrower networks. The theorem is strong within the stated (abc) family and finite training horizons; it does not claim that every practical architecture is already well approximated by the limit or that infinite width is computationally preferable.
   zh: |-
-    **研究问题。** 论文研究无限宽神经网络能否保留真实的特征学习，而不是退化为神经切线核（Neural Tangent Kernel, NTK）一类固定核动力学；同时试图分类稳定的参数化方式，并为训练过程中形成的表示给出可计算描述。
+    **研究问题。** 该论文研究哪些无限宽参数化允许隐藏特征在梯度下降中发生非平凡变化，而不是把训练退化为固定核动力学，并检验这种极限能否描述依赖特征学习的迁移与元学习任务。
 
-    **方法。** 作者利用张量程序（tensor program）形式化分析一组随网络宽度缩放的参数化，并推导各自的无限宽训练极限。他们识别出最大更新参数化（maximal-update parameterization, μP）：在保持激活与梯度稳定的同时，隐藏表示和特征核能够发生常数量级变化。相应训练动力学可由确定性的递归方程计算。
+    **方法。** 一般化的 (abc) 参数化记录初始化和学习率随宽度变化的缩放。动力学二分定理把该族中每个非平凡稳定参数化划分为“特征学习极限”或“核梯度下降极限”，且两者不能同时成立。最大更新参数化（Maximal Update Parameterization, µP）被设计为使隐藏特征在无限宽时仍获得常数量级更新，再用 Tensor Programs 及其主定理精确推导离散时间随机梯度下降极限。
 
-    **实验验证。** 理论在有限宽多层感知机和卷积网络上进行检验，覆盖合成任务与真实预测任务。实验比较标准参数化、NTK 参数化和特征学习参数化随宽度增加时的训练曲线、表示变化、超参数迁移，以及在必须学习新特征的任务上的表现。
+    **实验验证。** 研究首先在多层感知机上改变宽度和学习率，并包含 CIFAR-10 实验，以检验理论缩放。随后选择两个依赖特征学习的真实任务：在 Omniglot 的一样本五分类中，基于一阶模型无关元学习（Model-Agnostic Meta-Learning, MAML）处理 1,623 个字符；超参数由三个随机种子选择，再以 15 个种子复跑，µP 极限测试准确率约为 66.4%，神经切线核（Neural Tangent Kernel, NTK）约为 47.8%。Word2Vec 实验在 text8 和 fil9 两个 Wikipedia 语料上训练连续词袋模型，以词类比准确率评估；有限宽 µP 网络随宽度增加逼近解析的无限宽极限，而高斯过程和 NTK 特征近似随机。
 
-    **结论与证据。** 无限宽本身并不必然消除特征学习，关键取决于参数化。μP 极限保留了非平凡的表示动力学，在依赖特征学习的情形下也比固定 NTK 更好地预测有限网络。形式推导在明确的架构与缩放假设下提供了很强证据，有限网络实验则支持其现实相关性；但这些结果不意味着所有实际架构都服从同一极限。
+    **结论与证据。** 形式化结果证明标准参数化与 NTK 参数化的无限宽极限不能产生非平凡特征演化，而 µP 可以。宽度缩放实验符合推导动力学，Omniglot 适应与 Word2Vec 迁移也都支持特征学习极限优于固定核基线和较窄有限网络。定理在给定 (abc) 参数族和有限训练时长内证据很强，但不意味着所有实际架构已被该极限准确近似，也不意味着无限宽在计算上更优。
   generation:
     status: complete
     generated_by: project_agent

@@ -54,23 +54,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Do different modalities use structurally different but functionally related mechanisms for the same task? In this paper, *Sparse Visual Thought Circuits in Vision-Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Sparse autoencoders (SAEs) improve interpretability in multimodal models, but it remains unclear whether SAE features form modular, composable units for reasoning-an assumption underlying many intervention-based steering methods.
+    **Research Question.** The paper asks whether task-selective Sparse Autoencoder (SAE) features in vision-language models are modular causal units that can be composed by union, or whether individually useful directions interfere geometrically when activated together.
 
-    **Method.** We develop a reproducible causal pipeline to localize and test these sparse visual thought circuits in Qwen3-VL-8B.
+    **Method.** Linear probes first locate task-type information; a TopK SAE at the selected layer yields sparse visual features. An explicit selectivity rule forms task “Pattern” sets and their unions. Inference-time scaling and zero ablation test sufficiency/necessity, while norm-matched union interventions isolate composition from perturbation size. Spatial back-projection, drift, entropy, signal-to-noise analysis, and a LayerNorm noise-amplification model diagnose failure.
 
-    **Validation.** We test this modularity hypothesis and find it often fails: intervening on a task-selective feature set can modestly improve reasoning accuracy, while intervening on the union of two such sets reliably induces output drift (large unintended changes in predictions) and degrades accuracy, even under norm-matched perturbations. This non modular circuit interference is consistent with shared internal pathways where feature unions amplify activation shifts. On a controlled synthetic benchmark with seven task types and three difficulty levels, linear probes identify a mid decoder locus for task type information. We train SAEs at this layer, construct task-selective sets via an explicit rule, and perform inference time scaling and ablation while quantifying accuracy and drift.
+    **Validation.** Qwen3-VL-8B is analyzed on a controlled benchmark with seven task types and three difficulty levels, then fixed circuits transfer across five external datasets and additional vision-language families. Layer 21 is the strongest locus. Pattern steering modestly improves accuracy and has approximately linear drift response ((R^2>0.98)); zero ablation damages the matching task. Yet norm-matched unions reliably increase unintended output drift and reduce accuracy. Bootstrap subsamples, permutation controls, random/norm-matched features, layer sweeps, and cross-model replications test robustness.
 
-    **Conclusion & Evidence.** Our findings-validated with bootstrapped subsamples and permutation controls, and replicated across multiple vision–language model (VLM) families and five diverse datasets clarify the boundaries of SAE feature composability and provide a rigorous diagnostic framework for more reliable VLM control. The counterexamples or controls strongly delimit what the audited method can justify. They do not, on their own, prove that any proposed replacement is universally faithful or sufficient.
+    **Conclusion & Evidence.** Individual sparse visual features can be grounded, necessary, and useful without being compositionally modular; unions can cancel semantic signal, amplify residual noise through normalization, and drive the state off-manifold. Causal ablation plus controlled union failures provide strong counterevidence to naive linear composition. The geometric law is a model of the observed effect rather than a full derivation, feature-set rules and layer choice matter, and replication does not establish that all SAE steering must be noncompositional.
   zh: |-
-    **研究问题。** 视觉推理是否由可线性组合的稀疏模块组成，还是因表示几何纠缠而本质非模块化？稀疏自编码器（Sparse Autoencoder, SAE） features 对推理是否因果必要且单独可 steering，而其合并为何会因 non-orthogonality 与 off-manifold drift 产生干扰？
+    **研究问题。** 该论文研究视觉语言模型中任务选择性的稀疏自编码器（Sparse Autoencoder, SAE）特征是否是可通过并集组合的模块化因果单元，还是各自有用的方向在共同激活时会发生几何干扰。
 
-    **方法。** 这种非模块化的回路干扰与共享内部路径相一致，因为特征并集会放大激活偏移。
+    **方法。** 线性探针先定位任务类型信息，再在选定层训练 TopK SAE。显式选择性规则构造各任务 Pattern 集及其并集；推理时缩放与置零消融测试充分性/必要性，范数匹配的并集干预把组合效应与扰动大小分离。空间反投影、输出漂移、熵、信噪比和 LayerNorm 噪声放大模型用于诊断失败。
 
-    **实验验证。** 我们检验了该模块化假设，并发现它经常失效：干预一个任务选择性特征集合可以小幅提高推理准确率，但干预两个此类集合的并集会稳定地引起输出漂移，即预测发生大量非预期变化，并降低准确率；即使扰动经过范数匹配，这一现象依然存在。我们建立了一套可复现的因果流程，用于在 Qwen3-VL-8B 中定位并检验这些稀疏视觉思维回路。在一个包含七种任务类型和三个难度等级的受控合成基准上，线性探针识别出解码器中层的任务类型信息位置。我们在该层训练 SAE，依据明确规则构造任务选择性集合，并在量化准确率和漂移的同时进行推理时缩放与消融。
+    **实验验证。** Qwen3-VL-8B 先在含 7 类任务、3 个难度的受控基准上分析，再把固定电路迁移到 5 个外部数据集及其他视觉语言家族；第 21 层是最强位置。Pattern 引导小幅提高准确率，漂移随强度近似线性（(R^2>0.98)）；置零会损害对应任务。但范数匹配并集稳定增加非预期输出漂移并降低准确率。Bootstrap 子样本、置换、随机/范数匹配特征、层扫描和跨模型复现检验稳健性。
 
-    **结论与证据。** 研究结果通过 bootstrap 子样本和置换对照得到验证，并在多个视觉语言模型家族和五个不同数据集上复现。这些结果厘清了 SAE 特征可组合性的边界，并为更可靠地控制视觉语言模型提供了严格的诊断框架。反例和控制实验有力限定了被审计方法能够支持的结论，但它们本身不能证明任何替代方法普遍忠实或充分。
+    **结论与证据。** 单个稀疏视觉特征可以有空间落地、具必要性并可用于控制，却不必具组合模块性；并集会抵消语义信号，经归一化放大残余噪声并把状态推离流形。因果消融与受控并集失败强力反驳朴素线性组合。但几何定律是对观察的模型而非完整推导，特征规则和层选择会影响结果，复现也不证明所有 SAE 引导都不可组合。
   generation:
     status: complete
     generated_by: project_agent

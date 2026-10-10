@@ -85,23 +85,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** How do model predictions form and change across network depth? In this paper, *Eliciting Latent Predictions from Transformers with the Tuned Lens* addresses that question through its specific object of study and tests how far the resulting claim can be supported.
+    **Research Question.** The paper asks how to decode a Transformer's intermediate residual states into calibrated next-token predictions without the distribution shift and pathologies of applying the final unembedding directly. It also asks whether the resulting “lens” follows the model's causal response to internal perturbations closely enough to support analysis and monitoring.
 
-    **Method.** We analyze transformers from the perspective of iterative inference, seeking to understand how model predictions are refined layer by layer. To do so, we train an affine probe for each block in a frozen pretrained model, making it possible to decode every hidden state into a distribution over the vocabulary. Our method, the tuned lens, is a refinement of the earlier"logit lens"technique, which yielded useful insights but is often brittle.
+    **Method.** The tuned lens learns an affine translator for each layer and then applies the model's own final layer normalization and unembedding. Each translator is trained with knowledge distillation to minimize Kullback–Leibler divergence from the final output distribution, while the underlying language model stays frozen. Causal fidelity is evaluated by extracting perturbation directions, intervening on hidden states, and comparing the change predicted by a lens with the change in the model's actual output.
 
-    **Validation.** We test our method on various autoregressive language models with up to 20B parameters, showing it to be more predictive, reliable and unbiased than the logit lens. With causal experiments, we show the tuned lens uses similar features to the model itself.
+    **Validation.** Experiments span multiple GPT-2, OPT, Pythia, BLOOM, and LLaMA-family language models and compare tuned-lens cross-entropy, perplexity, transfer across related checkpoints, robustness to layer deletion, and stimulus–response alignment against the ordinary logit lens. Applications reproduce taboo-word “secret knowledge” elicitation, extend overthinking analyses, detect prompt injections from layerwise trajectory anomalies, and predict example difficulty. Static parameter interpretation and toxicity editing are further evaluated on Pythia and OPT variants; causal correlations are reported separately from surface interpretability scores.
 
-    **Conclusion & Evidence.** We also find the trajectory of latent predictions can be used to detect malicious inputs with high accuracy. All code needed to reproduce our results can be found at https://github.com/AlignmentResearch/tuned-lens. The evidence establishes that the information is accessible to the chosen readout or decomposition; it does not by itself show that the original model causally uses that information to produce its behavior.
+    **Conclusion & Evidence.** Learned translators yield smoother, more accurate latent prediction trajectories and generally track the causal effects of residual-stream perturbations better than direct unembedding. The cross-model evaluations and intervention-based fidelity test support the lens as a more reliable decoder, and the downstream applications show practical signal. It remains a trained probe that can introduce its own approximation error, requires one translator per layer, and does not prove that decoded token distributions are the model's native representational format.
   zh: |-
-    **研究问题。** Transformer 各层是否可被理解为对 next-token latent prediction 的迭代更新？如何校正 logit lens 的表示偏差，以可靠解码层间 prediction trajectories，并检验这些中间预测是否平滑收敛、具有因果相关性且可用于异常输入检测等任务？
+    **研究问题。** 该论文研究如何把 Transformer 的中间残差状态解码为校准的下一 token 预测，同时避免直接套用最终反嵌入所产生的分布偏移和异常；还检验这种“透镜”能否忠实跟踪模型对内部扰动的因果响应，从而用于分析和监控。
 
-    **方法。** 我们从迭代推理的角度分析 Transformer，试图理解模型预测如何逐层细化。为此，我们为一个冻结的预训练模型中的每个模块训练仿射探针，从而可以把每个隐藏状态解码为词汇表上的概率分布。我们的方法称为调优透镜（tuned lens），是早期“logit lens”技术的改进；后者虽然带来有益认识，却往往十分脆弱。
+    **方法。** Tuned Lens 为每一层学习一个仿射转换器，再接入模型自身的最终层归一化和反嵌入。每个转换器以知识蒸馏方式最小化相对于最终输出分布的 Kullback–Leibler 散度，原语言模型保持冻结。因果忠实度通过提取扰动方向、干预隐藏状态，并比较透镜预测的分布变化与模型最终输出的实际变化来衡量。
 
-    **实验验证。** 我们在参数量最大达到 200 亿的多种自回归语言模型上测试该方法，发现它比 logit lens 的预测能力更强，也更可靠、更少偏差。因果实验表明，调优透镜使用的特征与模型自身相似。
+    **实验验证。** 实验覆盖多种 GPT-2、OPT、Pythia、BLOOM 和 LLaMA 系列语言模型，并将 Tuned Lens 与普通 Logit Lens 在交叉熵、困惑度、相关检查点间迁移、删除层后的鲁棒性及刺激—响应对齐上比较。应用实验包括禁忌词“秘密知识”提取、过度思考分析、利用逐层轨迹异常检测提示注入，以及预测样本难度。附加实验还在 Pythia 和 OPT 变体上检验参数静态解释与毒性编辑，并把因果相关和表面可解释性指标分开报告。
 
-    **结论与证据。** 我们还发现，潜在预测的轨迹可用于高精度检测恶意输入。复现结果所需的全部代码见 https://github.com/AlignmentResearch/tuned-lens。证据说明相应信息可以被所选读出器或分解方法访问，但不能单独证明原模型在产生行为时因果使用了这些信息。
+    **结论与证据。** 学习式转换器产生更平滑、准确的潜在预测轨迹，通常也比直接反嵌入更好地跟踪残差流扰动的因果影响。跨模型评估和干预式忠实度检验支持它作为更可靠的解码器，下游应用则表明这些信号具有实际用途。但它仍是会引入近似误差的训练探针，每层都需要单独转换器，也不能证明解码后的 token 分布就是模型原生使用的表示格式。
   generation:
     status: complete
     generated_by: project_agent

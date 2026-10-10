@@ -58,23 +58,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Do different training runs, models, and architectures reproduce the same mechanism, or only share an abstract algorithm? In this paper, *A Toy Model of Universality: Reverse Engineering How Networks Learn Group Operations* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Universality is a key hypothesis in mechanistic interpretability -- that different models learn similar features and circuits when trained on similar tasks.
+    **Research Question.** The paper asks whether neural networks trained independently on the same algorithmic task converge on a shared internal algorithm, and distinguishes weak universality—belonging to the same algorithm family—from strong universality—using the same features, circuits, and learning order.
 
-    **Method.** In this work, we study the universality hypothesis by examining how small neural networks learn to implement group composition. We present a novel algorithm by which neural networks may implement composition for any finite group via mathematical representation theory.
+    **Method.** Group composition provides a family of exactly analyzable tasks. The proposed Group Composition via Representations (GCR) algorithm embeds group elements in irreducible representation matrices, multiplies the two input representations, and scores a candidate output with characters such as (\operatorname{tr}[\rho(a)\rho(b)\rho(c^{-1})]). Weight and activation analysis aligns embeddings, multilayer-perceptron neurons, and unembeddings with this computation; restricted and excluded losses plus targeted ablations measure each representation circuit's contribution.
 
-    **Validation.** We then show that networks consistently learn this algorithm by reverse engineering model logits and weights, and confirm our understanding using ablations.
+    **Validation.** Small one-layer rectified-linear-unit multilayer perceptrons and Transformers are trained to grok composition in cyclic, dihedral, symmetric, and alternating groups, with multiple random seeds and architectural choices. The main reverse-engineering case studies permutation-group composition, tracks logit attribution and representation-specific progress measures through training, and ablates or projects out hypothesized subspaces. Cross-model comparisons record which irreducible representations are learned and when; held-out test loss distinguishes generalizing circuits from memorization.
 
-    **Conclusion & Evidence.** By studying networks of differing architectures trained on various groups, we find mixed evidence for universality: using our algorithm, we can completely characterize the family of circuits and features that networks learn on this task, but for a given network the precise circuits learned -- as well as the order they develop -- are arbitrary. The formal result is strong under its stated assumptions, with experiments or constructions supporting the predicted consequences. Its scope is limited by those assumptions and does not automatically extend to every architecture or training regime.
+    **Conclusion & Evidence.** Every analyzed generalizing model implements a variant of GCR, supporting weak universality. Strong universality fails: identical architectures and tasks can select different irreducible representations or learn common representations in different orders. Algebraic predictions, subspace recovery, training trajectories, and causal ablations together provide strong evidence within these finite group tasks, but the models are deliberately small and the study does not establish that practical large networks exhibit the same universality.
   zh: |-
-    **研究问题。** 在不同有限群、架构和随机训练运行中，网络是否收敛到相同的 group-composition 算法与 representation-theoretic circuits？universality 应理解为具体 features/circuits 均相同的强形式，还是仅共享抽象算法原则的弱形式？
+    **研究问题。** 该论文研究在同一算法任务上独立训练的神经网络是否会收敛到共同内部算法，并区分“属于同一算法族”的弱普适性与“使用相同特征、电路和学习顺序”的强普适性。
 
-    **方法。** 本文通过研究小型神经网络如何学习实现群复合运算，考察这一普适性假设。我们基于数学表示论，提出一种神经网络可以用于实现任意有限群复合运算的新算法。
+    **方法。** 群复合被用作可精确分析的一族任务。群表示复合算法（Group Composition via Representations, GCR）先把群元素嵌入不可约表示矩阵，计算两个输入表示的矩阵乘积，再用 (\operatorname{tr}[\rho(a)\rho(b)\rho(c^{-1})]) 等特征标为候选输出打分。权重和激活分析把嵌入、多层感知机神经元及反嵌入与这套计算对齐；受限损失、排除损失以及定向消融衡量各表示电路的贡献。
 
-    **实验验证。** 随后，我们通过逆向分析模型的 logit 和权重，证明网络会稳定地学到这一算法，并通过消融实验确认我们的理解。
+    **实验验证。** 研究训练小型单层修正线性单元多层感知机和 Transformer，使其在循环群、二面体群、对称群与交错群上通过 grokking 学会复合，并改变随机种子和架构。主案例逆向工程置换群复合，沿训练过程追踪 logit 归因和表示特定进度指标，再消融或投影掉假设子空间。跨模型比较记录具体学到哪些不可约表示以及出现顺序，并用留出测试损失区分泛化电路和记忆。
 
-    **结论与证据。** 通过研究在不同群上训练、架构各异的网络，我们发现支持普适性的证据并不一致：借助所提出的算法，我们可以完整刻画网络在该任务上学到的回路和特征家族；但对于某个具体网络，其实际学到的精确回路以及这些回路的形成顺序具有任意性。形式结果在明确假设下具有较强支持，实验或构造也验证了其预测后果；结论范围受这些假设约束，不能自动推广到所有架构和训练设置。
+    **结论与证据。** 所有被分析的泛化模型都实现了 GCR 的某种变体，支持弱普适性；强普适性则不成立，因为相同架构和任务可能选择不同不可约表示，或以不同顺序学到相同表示。代数预测、子空间恢复、训练轨迹和因果消融在有限群任务内形成较强证据，但模型经过刻意简化，尚不能推出实际大模型具有相同普适性。
   generation:
     status: complete
     generated_by: project_agent

@@ -73,23 +73,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** When does a neural network's low-level mechanism faithfully implement a high-level interpretable causal process? In this paper, *Finding Alignments Between Interpretable Causal Variables and Distributed Neural Representations* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Causal abstraction is a promising theoretical framework for explainable artificial intelligence that defines when an interpretable high-level causal model is a faithful simplification of a low-level deep learning system. However, existing causal abstraction methods have two major limitations: they require a brute-force search over alignments between the high-level model and the low-level one, and they presuppose that variables in the high-level model will align with disjoint sets of neurons in the low-level one.
+    **Research Question.** The paper asks how to locate a high-level causal variable when it is encoded in a distributed neural subspace rather than in a single neuron or contiguous coordinate set, and whether the learned alignment can support faithful counterfactual interventions.
 
-    **Method.** In this paper, we present distributed alignment search (DAS), which overcomes these limitations.
+    **Method.** Distributed Alignment Search (DAS) parameterizes an orthogonal rotation of a hidden representation and assigns subspaces in the rotated basis to high-level variables. During training, activation components from source examples are exchanged with a base example inside those subspaces, and the rotation is optimized so the network output matches the high-level causal model's counterfactual label. Interchange intervention accuracy measures the fraction of held-out interventions on which the two models agree.
 
-    **Validation.** Our experiments show that DAS can discover internal structure that prior approaches miss.
+    **Validation.** DAS is tested on feed-forward networks solving hierarchical equality and on pretrained Transformer classifiers fine-tuned for monotonicity natural-language inference; all analyzed models have perfect ordinary train and test accuracy. Experiments vary hidden width, intervention dimension, and layer, and compare learned distributed alignments with the closest localist alignment and exhaustive discrete localist search. On the hardest “both equality relations” hypothesis, DAS finds perfect or near-perfect alignments in several settings, while the best brute-force and best localist alternatives reach only 0.60 and 0.73 intervention accuracy. Randomly initialized networks and subspace-decomposition tests provide controls.
 
-    **Conclusion & Evidence.** In DAS, we find the alignment between high-level and low-level models using gradient descent rather than conducting a brute-force search, and we allow individual neurons to play multiple distinct roles by analyzing representations in non-standard bases-distributed representations. Overall, DAS removes previous obstacles to conducting causal abstraction analyses and allows us to find conceptual structure in trained neural nets. The coordinated interventions provide comparatively strong structural causal evidence for the proposed information flow or circuit. Completeness, uniqueness, and transfer to other models still require separate validation.
+    **Conclusion & Evidence.** Interpretable causal variables can be encoded as distributed directions that no individual neuron faithfully realizes, and gradient-based alignment search can recover them well enough for counterfactual control. Held-out interchange interventions provide structural causal evidence rather than decodability alone, and localist baselines show the gain is not merely search efficiency. The demonstrations use tasks with known high-level programs and prespecified intervention sites; non-uniqueness of rotations and causal models remains, so DAS does not by itself identify the uniquely correct explanation.
   zh: |-
-    **研究问题。** 当高层变量以跨神经元分布式子空间表示时，如何避免 localist 假设与 brute-force alignment search？能否通过 gradient-based distributed alignment search 找到使 interchange interventions 与符号算法一致的旋转子空间，并检验该子空间是否还可分解为更低层变量？
+    **研究问题。** 该论文研究当高层因果变量编码在分布式神经子空间、而非单个神经元或连续坐标中时，如何定位它，并检验所学对齐能否支持忠实的反事实干预。
 
-    **方法。** 本文提出分布式对齐搜索（DAS），以克服这些限制。
+    **方法。** 分布式对齐搜索（Distributed Alignment Search, DAS）为隐藏表示参数化一个正交旋转，并把旋转后基中的不同子空间分配给高层变量。训练时在这些子空间中用来源样本的激活分量替换基础样本分量，再优化旋转，使网络输出匹配高层因果模型的反事实标签。交换干预准确率衡量留出干预中两个模型输出一致的比例。
 
-    **实验验证。** 在 DAS 中，我们使用梯度下降而非暴力搜索来寻找高层与低层模型之间的对齐；同时，通过在非标准基中分析表征，即分析分布式表征，我们允许单个神经元承担多个不同角色。实验表明，DAS 能够发现以往方法遗漏的内部结构。
+    **实验验证。** DAS 在解决层级相等任务的前馈网络，以及针对单调性自然语言推断微调的预训练 Transformer 上测试；所有被分析模型的普通训练和测试准确率均为 100%。实验改变隐藏宽度、干预维度和层位置，并与最接近的局部对齐及离散空间穷举得到的最佳局部对齐比较。在最难的“双相等关系”假设上，DAS 在多种设置中获得接近或达到 100% 的干预准确率，而最佳穷举和最佳局部对齐只有 0.60 和 0.73；随机初始化网络和子空间可分解性实验提供对照。
 
-    **结论与证据。** 总体而言，DAS 消除了此前开展因果抽象分析时的障碍，使我们能够在训练好的神经网络中发现概念结构。相互配合的干预为所提出的信息流或电路提供了较强的结构因果证据，但机制的完备性、唯一性以及跨模型迁移仍需独立验证。
+    **结论与证据。** 可解释因果变量可以编码为任何单个神经元都无法忠实承载的分布式方向，而梯度式对齐搜索能够恢复足以实施反事实控制的子空间。留出交换干预提供结构因果证据，局部基线也表明收益不只是搜索效率。但实验使用具有已知高层程序的任务并预先限定干预位置；旋转和因果模型仍可能不唯一，因此 DAS 本身不能识别唯一正确解释。
   generation:
     status: complete
     generated_by: project_agent

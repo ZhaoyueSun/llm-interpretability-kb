@@ -87,23 +87,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** What should sparse representation learning optimize to balance sparsity, reconstruction faithfulness, and functional fidelity? In this paper, *Improving Dictionary Learning with Gated Sparse Autoencoders* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Recent work has found that sparse autoencoders (SAEs) are an effective technique for unsupervised discovery of interpretable features in language models' (LMs) activations, by finding sparse, linear reconstructions of LM activations.
+    **Research Question.** The paper asks whether the standard (L_1) sparse-autoencoder objective harms reconstruction by coupling feature selection with coefficient estimation. It tests whether separating these two decisions eliminates activation shrinkage and improves the sparsity–fidelity frontier without sacrificing interpretability.
 
-    **Method.** We introduce the Gated Sparse Autoencoder (Gated SAE), which achieves a Pareto improvement over training with prevailing methods.
+    **Method.** A Gated Sparse Autoencoder uses one affine “gate” to decide whether each dictionary element is active and a second, magnitude branch to estimate its coefficient. The (L_1) penalty applies only to the gate, while an auxiliary reconstruction term ensures that gate directions themselves learn useful features. Decoder columns are normalized, and matched-capacity baselines receive 50% more features to compensate for the gated model's extra encoder parameters.
 
-    **Validation.** In SAEs, the L1 penalty used to encourage sparsity introduces many undesirable biases, such as shrinkage -- systematic underestimation of feature activations.
+    **Validation.** Gated and conventional rectified-linear SAEs are compared on a one-layer GELU language model, five residual-stream layers of Pythia-2.8B, and four layers of Gemma-7B, sweeping sparsity coefficients. Evaluation reports mean active features (L_0) and language-model cross-entropy loss recovered when reconstructions replace activations. Across sites and models, gated dictionaries form a better Pareto frontier and typically need about half as many firing features for matched fidelity. Regression of true activations on learned coefficients shows that the standard model systematically underestimates magnitudes while gating largely removes shrinkage. Blinded expert ratings find comparable feature interpretability; architectural and loss ablations show each gating component contributes to the gain.
 
-    **Conclusion & Evidence.** The key insight of Gated SAEs is to separate the functionality of (a) determining which directions to use and (b) estimating the magnitudes of those directions: this enables us to apply the L1 penalty only to the former, limiting the scope of undesirable side effects. Through training SAEs on LMs of up to 7B parameters we find that, in typical hyper-parameter ranges, Gated SAEs solve shrinkage, are similarly interpretable, and require half as many firing features to achieve comparable reconstruction fidelity. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+    **Conclusion & Evidence.** Much of the standard SAE trade-off is an optimization artifact of applying sparsity pressure directly to feature magnitudes; decoupled detection and estimation improves fidelity without an observed semantic cost. Broad matched benchmarks, shrinkage measurements, and ablations strongly support this engineering conclusion. Human interpretation samples are limited, metrics still prioritize reconstruction rather than downstream causal value, extra encoder computation is required, and the study does not show that gated features are uniquely “true” model concepts.
   zh: |-
-    **研究问题。** 标准 稀疏自编码器（Sparse Autoencoder, SAE） 的 L1 sparsity penalty 是否因把 feature detection 与 magnitude estimation 耦合而产生 shrinkage 与重建偏差？将两者解耦的 Gated SAE 能否在固定计算下改善 sparsity–fidelity Pareto frontier，同时保持 feature interpretability？
+    **研究问题。** 该论文研究标准 (L_1) 稀疏自编码器目标把特征选择与系数估计耦合后，是否会损害重构；并检验把两项决策分离能否消除激活收缩、改善稀疏—保真前沿，同时不牺牲可解释性。
 
-    **方法。** 我们提出门控稀疏自编码器（Gated SAE），相比当前主流训练方法实现了帕累托改进。在 SAE 中，用于促进稀疏性的 L1 惩罚会引入许多不良偏差，例如收缩——系统性低估特征激活。
+    **方法。** 门控稀疏自编码器（Gated Sparse Autoencoder）用一个仿射“门”决定每个字典元素是否激活，另一幅度分支估计系数；(L_1) 惩罚只作用于门，辅助重构项保证门方向本身学习有用特征。解码列被归一化；为补偿门控模型更多编码参数，匹配基线获得多 50% 的特征。
 
-    **实验验证。** Gated SAE 的核心思想，是把（a）决定使用哪些方向与（b）估计这些方向的幅度两项功能分离。这样便可只对前者施加 L1 惩罚，限制其不良副作用的范围。
+    **实验验证。** 在单层 GELU 语言模型、Pythia-2.8B 的 5 个残差流层和 Gemma-7B 的 4 个层上比较门控与普通 ReLU SAE，并扫描稀疏系数。指标为平均活跃特征数 (L_0)，以及用重构替换激活后恢复的语言模型交叉熵损失。跨位置和模型，门控字典形成更优 Pareto 前沿，通常只需约一半激活特征即可达到相同保真。真实激活对学习系数的回归显示普通模型系统性低估幅度，门控基本消除收缩。盲法专家评分认为两者特征解释性相当，架构与损失消融表明各门控组成均贡献增益。
 
-    **结论与证据。** 我们在参数量最大达到 70 亿的语言模型上训练 SAE，结果发现，在典型超参数范围内，Gated SAE 能够解决收缩问题，保持相近的可解释性，并且只需一半数量的激活特征即可达到相当的重构忠实度。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+    **结论与证据。** 标准 SAE 的部分权衡其实来自直接压缩特征幅度的优化伪影；把检测与估计解耦能改善保真，且未观察到语义代价。广泛匹配基准、收缩测量和消融强力支持这一工程结论。但人工解释样本有限，指标仍偏重重构而非下游因果价值，门控需额外编码计算，研究也未证明所得特征是唯一“真实”模型概念。
   generation:
     status: complete
     generated_by: project_agent

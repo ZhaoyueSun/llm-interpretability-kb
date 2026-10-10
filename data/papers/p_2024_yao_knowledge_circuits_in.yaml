@@ -85,23 +85,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Where is factual knowledge stored, routed, combined, and used to generate answers? In this paper, *Knowledge Circuits in Pretrained Transformers* addresses that question through its specific object of study and tests how far the resulting claim can be supported. The remarkable capabilities of modern large language models are rooted in their vast repositories of knowledge encoded within their parameters, enabling them to perceive the world and engage in reasoning. The inner workings of how these models store knowledge have long been a subject of intense interest and investigation among researchers. To date, most studies have concentrated on isolated components within these models, such as the Multilayer Perceptrons and attention head.
+    **Research Question.** The paper asks how a Transformer coordinates embeddings, attention heads, and multilayer perceptrons to express stored linguistic, commonsense, factual, and social-bias knowledge. It also asks whether the resulting circuits clarify why knowledge editing succeeds or fails and whether they help analyze hallucination and in-context learning.
 
-    **Method.** In this paper, we delve into the computation graph of the language model to uncover the knowledge circuits that are instrumental in articulating specific knowledge.
+    **Method.** A computation graph is scored with MatchNLL, which measures how zero-ablating a node or edge changes target-token negative log-likelihood. Thresholded high-impact edges form a knowledge circuit. Logit-lens projections label intermediate nodes; recurring components are grouped as information heads, relation heads, and multilayer perceptrons that combine or promote answer information. Circuits before and after Rank-One Model Editing (ROME) or constrained fine-tuning are compared.
 
-    **Validation.** The experiments, conducted with GPT2 and TinyLLAMA, have allowed us to observe how certain information heads, relation heads, and Multilayer Perceptrons collaboratively encode knowledge within the model. Moreover, we evaluate the impact of current knowledge editing techniques on these knowledge circuits, providing deeper insights into the functioning and constraints of these editing methodologies. Finally, we utilize knowledge circuits to analyze and interpret language model behaviors such as hallucinations and in-context learning.
+    **Validation.** Experiments use GPT-2 Medium/Large and a TinyLlama case study on the Language Representation Evaluation dataset's linguistic, commonsense, factual, and bias relations. Circuits are constructed on validation facts and run standalone on held-out facts, scored by whether the answer enters the top ten predictions (Hit@10); random circuits are a control. Across 14 reported relation types, average held-out Hit@10 is 0.47 for the circuit, 0.44 for the full model, and 0 for random, though individual relations range from 0 to 1. Editing case studies trace whether the new answer enters and propagates through the circuit, and circuit analyses are applied to reverse relations, multihop facts, hallucinations, and demonstrations.
 
-    **Conclusion & Evidence.** We believe the knowledge circuits hold potential for advancing our understanding of Transformers and guiding the improved design of knowledge editing. Code and data are available in https://github.com/zjunlp/KnowledgeCircuits. The coordinated interventions provide comparatively strong structural causal evidence for the proposed information flow or circuit. Completeness, uniqueness, and transfer to other models still require separate validation.
+    **Conclusion & Evidence.** Factual expression is distributed across interacting component types rather than a single “knowledge neuron,” and circuit changes can diagnose successful versus superficial edits. Standalone held-out performance and targeted ablation give useful structural evidence, but strength varies sharply by relation and some circuit scores exceed weak full-model baselines. The work is therefore a preliminary circuit account: completeness, threshold sensitivity, cross-architecture transfer, and the mapping from intermediate logits to true computation remain limited.
   zh: |-
-    **研究问题。** 事实、常识、语言与偏见知识是否应理解为 attention heads、多层感知机（Multi-Layer Perceptrons, MLPs） 与 embeddings 协同构成的 knowledge circuits，而非孤立 knowledge neurons？这些电路如何存储、表达并跨情境使用知识，又能否指导编辑？
+    **研究问题。** 该论文研究 Transformer 如何协调嵌入、注意力头和多层感知机来表达语言、常识、事实与社会偏见知识；并进一步考察所得电路能否解释知识编辑成败，以及能否帮助分析幻觉和上下文学习。
 
-    **方法。** 通过在 GPT2 和 TinyLLAMA 上进行实验，我们观察到某些信息头、关系头和多层感知机如何协同在模型内部编码知识。
+    **方法。** 研究把模型表示为计算图，以 MatchNLL 衡量对某节点或边做置零消融后目标词元负对数似然的变化，再把超过阈值的高影响边组成知识电路。Logit Lens 投影用于标注中间节点，反复出现的组件归为信息头、关系头以及组合或提升答案信息的多层感知机；秩一模型编辑（ROME）或受限微调前后的电路再作比较。
 
-    **实验验证。** 此外，我们评估了当前知识编辑技术对这些知识回路的影响，从而更深入地理解这些编辑方法的工作方式和约束。最后，我们使用知识回路分析并解释幻觉和上下文学习等语言模型行为。
+    **实验验证。** 实验使用 GPT-2 Medium/Large，并以 TinyLlama 作架构案例；数据来自 Language Representation Evaluation 的语言、常识、事实和偏见关系。电路在验证事实上构建，再独立运行于留出事实，以答案是否进入前十预测（Hit@10）评分，随机电路作对照。14 类关系的平均留出 Hit@10 为电路 0.47、完整模型 0.44、随机 0，但单类结果从 0 到 1 波动。编辑案例追踪新答案是否进入并沿电路传播，另分析反向关系、多跳事实、幻觉和示例学习。
 
-    **结论与证据。** 本文深入语言模型的计算图，发现对表达特定知识起关键作用的知识回路。我们认为，知识回路有望推动对 Transformer 的理解，并指导知识编辑的改进设计。代码和数据见 https://github.com/zjunlp/KnowledgeCircuits。相互配合的干预为所提出的信息流或电路提供了较强的结构因果证据，但机制的完备性、唯一性以及跨模型迁移仍需独立验证。
+    **结论与证据。** 知识表达分布于多类组件协作，而非单个“知识神经元”；电路变化也能区分成功编辑与表面编辑。独立留出性能和定向消融提供有用结构证据，但不同关系差异很大，且有些电路分数高于本身较弱的完整模型基线。因此这仍是初步电路描述，完整性、阈值敏感性、跨架构迁移及中间 logit 与真实计算的对应均有限。
   generation:
     status: complete
     generated_by: project_agent

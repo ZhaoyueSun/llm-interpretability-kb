@@ -77,23 +77,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** How sparsely and stably are functional features implemented by native neurons in real large models? In this paper, *Finding Neurons in a Haystack: Case Studies with Sparse Probing* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Despite rapid adoption and deployment of large language models (LLMs), the internal computations of these models remain opaque and poorly understood.
+    **Research Question.** The paper asks which linguistic, textual, and factual features are represented by individual or small sets of neurons in large language models, whether real models exhibit both monosemantic neurons and superposition, and how these representation patterns change with layer and scale.
 
-    **Method.** In this work, we seek to understand how high-level human-interpretable features are represented within the internal neuron activations of LLMs. We train $k$-sparse linear classifiers (probes) on these internal activations to predict the presence of features in the input; by varying the value of $k$ we study the sparsity of learned representations and how this varies with model scale.
+    **Method.** A \(k\)-sparse linear probe restricts prediction to at most \(k\) neuron activations, making localization part of the estimator. The study introduces optimal sparse probing, solved with a cutting-plane method for small \(k\), and adaptive thresholding for larger \(k\); candidate neurons are prefiltered by class-mean differences. Probe accuracy and Matthews correlation coefficient are supplemented by activation inspection, weight-based analysis, neuron ablation, and targeted case studies so that decodability is not treated as sufficient evidence of function.
 
-    **Validation.** With $k=1$, we localize individual neurons which are highly relevant for a particular feature, and perform a number of case studies to illustrate general properties of LLMs.
+    **Validation.** The probes cover Pythia models trained on The Pile from 70M to 6.9B parameters and feature sets derived from EuroParl languages, GitHub programming languages, Penn Treebank syntax and morphology, LaTeX structure, compound words, raw-text patterns, document domains, and Wikidata attributes. Most datasets use held-out positive and matched negative examples; the compound-word study alone uses 10,000 short Pile sequences per bigram pattern. Scaling, layer, and sparsity sweeps are paired with detailed studies of early-layer compound-word neurons, middle-layer context neurons, and neuron splitting or quantization. Negative controls include prefixes/suffixes and CounterFact truth labels, where sparse probes fail and roughly 1,024 features are needed to reach 90% accuracy.
 
-    **Conclusion & Evidence.** In particular, we show that early layers make use of sparse combinations of neurons to represent many features in superposition, that middle layers have seemingly dedicated neurons to represent higher-level contextual features, and that increasing scale causes representational sparsity to increase on average, but there are multiple types of scaling dynamics. In all, we probe for over 100 unique features comprising 10 different categories in 7 different models spanning 70 million to 6.9 billion parameters. The evidence establishes that the information is accessible to the chosen readout or decomposition; it does not by itself show that the original model causally uses that information to produce its behavior.
+    **Conclusion & Evidence.** Early layers often encode token-combination features through sparse superpositions, whereas middle layers contain cleaner neurons for contextual categories; larger models are sparser on average but exhibit several distinct scaling dynamics, including features splitting across neurons. Broad probe sweeps plus case-level activation and ablation evidence establish that both superposition and near-monosemantic neurons occur in pretrained models. The causal evidence is uneven across cases, however, and sparse predictability can still reflect correlation; the failed falsehood intervention and dataset-specific confounds limit claims that every located neuron is used by the model for the labeled concept.
   zh: |-
-    **研究问题。** toy models 中关于 monosemanticity、polysemanticity 和 superposition 的观察在真实大语言模型中是否存在？k-sparse probes 能否可靠定位少量相关 neurons，并区分显式特征、组合性和 superposition，同时减少高容量 probes 的记忆混淆？
+    **研究问题。** 该论文研究大语言模型中哪些语言、文本和事实特征由单个或少量神经元表示，真实模型是否同时存在单义神经元与叠加表示，以及这些模式如何随层位置和模型规模变化。
 
-    **方法。** 在本研究中，我们试图理解人类可解释的高层特征如何表征于语言模型内部神经元激活中。我们在这些内部激活上训练 $k$-稀疏线性分类器（探针），以预测输入中是否存在某项特征；通过改变 $k$ 的取值，我们研究所学表征的稀疏性，以及这种稀疏性如何随模型规模变化。
+    **方法。** \(k\)-稀疏线性探针把预测限制在至多 \(k\) 个神经元激活上，从而把定位直接纳入估计器。研究提出两种求解方案：小 \(k\) 时用割平面算法得到最优稀疏探针，大 \(k\) 时用自适应阈值逐步缩减特征；候选神经元先按类别均值差筛选。探针准确率和 Matthews 相关系数之外，还检查激活样本、权重、神经元消融及定向案例，避免把“可解码”直接等同于功能。
 
-    **实验验证。** 当 $k=1$ 时，我们定位到与特定特征高度相关的单个神经元，并通过多个案例研究说明语言模型的一般性质。
+    **实验验证。** 实验覆盖在 The Pile 上训练、参数量从 7000 万到 69 亿的 Pythia 模型；特征集来自 EuroParl 自然语言、GitHub 编程语言、Penn Treebank 句法和形态、LaTeX 结构、复合词、原始文本模式、文档领域及 Wikidata 属性。多数数据集使用留出正例和匹配负例，复合词案例则为每种二元模式构造 1 万条短 Pile 序列。研究扫描规模、层与稀疏度，并细查早层复合词神经元、中层上下文神经元，以及特征分裂或量化；前后缀和 CounterFact 真伪标签作为负例，后者要约 1,024 个特征才达到 90% 准确率。
 
-    **结论与证据。** 具体而言，我们表明：早期层使用稀疏神经元组合，以叠加方式表征许多特征；中间层似乎有专门表征高层上下文特征的神经元；模型规模增加会使表征稀疏性平均上升，但其中存在多种缩放动力学。总体上，我们在 7 个参数量从 7,000 万到 69 亿不等的模型中，探测了属于 10 个不同类别的 100 多项独特特征。证据说明相应信息可以被所选读出器或分解方法访问，但不能单独证明原模型在产生行为时因果使用了这些信息。
+    **结论与证据。** 早层常通过稀疏叠加编码词元组合特征，中层则出现更干净的上下文类别神经元；模型变大后平均表示更稀疏，但也会出现特征跨神经元分裂等多种缩放动态。大范围探针扫描结合案例级激活和消融，支持预训练模型中同时存在叠加与近单义神经元。不过不同案例的因果证据强度不一，稀疏可预测性仍可能来自相关性；“虚假”特征干预失败及数据集混杂因素限制了“每个定位神经元都被模型用于相应概念”的推断。
   generation:
     status: complete
     generated_by: project_agent

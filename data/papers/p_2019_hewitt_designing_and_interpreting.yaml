@@ -55,23 +55,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** The paper asks whether high probing accuracy demonstrates linguistic structure in a representation or merely the probe's ability to learn and memorize the task. It seeks a control that measures this confound and supports better choices of probe complexity and model layer.
+    **Research Question.** The paper asks how to distinguish linguistic information supplied by a representation from task behavior memorized by a flexible probe. It also tests whether probe complexity controls and raw linguistic-task accuracy are sufficient for comparing layers, or whether a separate measure of selectivity changes the interpretation.
 
-    **Method.** A control task assigns each word type a random label while preserving the input and label-space structure of the linguistic task. Because the representation cannot contain a systematic linguistic rule for these random assignments, success measures the probe's capacity to memorize word identities. Selectivity is defined by contrasting linguistic-task accuracy with control-task accuracy; a useful probe should be accurate on the real task but poor on the control.
+    **Method.** A control task assigns a random but deterministic output to each word type while preserving the output space and marginal structure of the corresponding linguistic task. A probe that identifies word types can memorize this mapping, whereas a probe exploiting genuinely reusable linguistic structure should perform well on the linguistic task but poorly on the control. Selectivity is defined as linguistic-task accuracy minus control-task accuracy, and is studied across linear, bilinear, one-layer and two-layer multilayer perceptron probes under rank, hidden-size, training-data, weight-decay, dropout, and early-stopping controls.
 
-    **Validation.** Control tasks are constructed for English part-of-speech tagging and dependency-edge prediction on contextual Embeddings from Language Models (ELMo). The authors compare linear and multilayer perceptron probes, vary hidden size and regularization, test dropout, and revisit conclusions about which ELMo layer best represents part of speech.
+    **Validation.** Experiments use the standard Penn Treebank train, development, and test splits for part-of-speech tagging and dependency-head prediction. They probe the first and second contextual layers of Embeddings from Language Models (ELMo), along with projected noncontextual embeddings and an untrained bidirectional long short-term memory network as baselines. Metrics report both task accuracy and selectivity: for example, an unconstrained multilayer probe reaches 97.3% part-of-speech accuracy but only 4.5 points of selectivity, while a linear probe reaches 97.2% accuracy and 26.0 selectivity; ELMo layer 2 obtains slightly lower part-of-speech accuracy than layer 1, 96.6% versus 97.2%, but higher selectivity, 31.4 versus 26.0.
 
-    **Conclusion & Evidence.** Popular probes can achieve high linguistic accuracy while also learning randomized controls, so raw accuracy alone overstates what should be attributed to the representation. Selectivity changes probe and layer comparisons; regularization can improve it, whereas dropout is not consistently effective for multilayer perceptrons. The evidence strongly establishes a memorization confound and a useful audit, but selectivity still measures decodability under a chosen probe family and does not establish causal use of the linguistic property.
+    **Conclusion & Evidence.** High task accuracy alone can substantially overstate what a representation supplies because an expressive probe may memorize lexical identities. Rank, hidden size, sample size, and weight decay often improve selectivity with little loss of linguistic accuracy, whereas dropout and early stopping are unreliable controls in these experiments. The layer reversal under selectivity is direct evidence that accuracy-only comparisons can be confounded, although the random word-type control detects one important form of memorization rather than every possible probe confound.
   zh: |-
-    **研究问题。** 论文研究探针的高准确率究竟证明表示编码了语言结构，还是只说明探针能够学习甚至记忆任务；并试图设计一种控制方法，量化这种混淆，从而更可靠地选择探针复杂度和模型层。
+    **研究问题。** 该论文研究如何区分“表示本身提供的语言信息”和“高容量探针记住的任务行为”，并检验复杂度控制及单独使用语言任务准确率是否足以比较不同层，还是必须引入独立的选择性指标。
 
-    **方法。** 控制任务把每种词类型随机映射到一个标签，同时尽量保留原语言任务的输入和标签空间结构。由于表示中不可能存在解释这些随机映射的系统性语言规则，控制任务表现主要反映探针记忆词身份的能力。作者用真实语言任务准确率与控制任务准确率之差定义选择性（selectivity）：理想探针应在真实任务上准确，而在随机控制上表现较差。
+    **方法。** 控制任务为每个词类型随机指定一个确定输出，同时保持对应语言任务的输出空间和边缘标签结构。能够识别词身份的探针可以记忆这套随机映射；真正利用可复用语言结构的探针则应在语言任务上表现好、在控制任务上表现差。选择性定义为语言任务准确率减去控制任务准确率，并在受秩、隐藏层宽度、训练样本量、权重衰减、dropout 和早停约束的线性、双线性及一层或两层多层感知机探针之间比较。
 
-    **实验验证。** 作者为英语词性标注和依存边预测构造控制任务，并在语言模型嵌入（Embeddings from Language Models, ELMo）上比较线性探针与多层感知机（Multi-Layer Perceptron, MLP）探针。他们改变隐藏层规模和正则化方式，检验 dropout，并重新评估 ELMo 哪一层更好地表示词性。
+    **实验验证。** 实验使用 Penn Treebank 的标准训练、开发和测试划分，任务是词性标注和依存中心词预测；被探测表示包括语言模型嵌入（Embeddings from Language Models, ELMo）的第一、第二上下文层，以及投影后的非上下文词嵌入和未训练双向长短期记忆网络基线。评估同时报告任务准确率和选择性：无约束多层探针的词性准确率为 97.3%，选择性仅 4.5；线性探针准确率为 97.2%，选择性为 26.0。ELMo 第二层的词性准确率略低于第一层（96.6% 对 97.2%），选择性却更高（31.4 对 26.0）。
 
-    **结论与证据。** 常用探针可能在语言任务上取得高准确率，同时也能学会随机控制任务，因此原始准确率会夸大应归因于表示本身的信息。选择性会改变对探针和层的比较；部分正则化方法能够改善选择性，而 dropout 对 MLP 并不稳定有效。证据较强地确认了探针记忆这一混淆因素及控制任务的审计价值，但选择性仍是在特定探针族下衡量可解码性，不能证明相应语言属性被模型因果使用。
+    **结论与证据。** 高任务准确率会因探针记忆词身份而高估表示所提供的信息；秩、隐藏层宽度、样本量和权重衰减通常能在几乎不损失语言准确率的情况下提高选择性，而 dropout 与早停在这些实验中并不稳定。选择性指标导致层级结论反转，直接证明只比较准确率会受到探针容量混淆；不过，随机词类型控制主要检测一种记忆方式，并不能排除所有潜在探针偏差。
   generation:
     status: complete
     generated_by: project_agent

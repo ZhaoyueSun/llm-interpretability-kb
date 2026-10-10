@@ -69,23 +69,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Do multimodal hallucinations arise from reproducible competing pathways or architectural bottlenecks? In this paper, *Where Hallucinations Live: A Cross-Architecture Circuit in VQ-Tokenized Vision-Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Unified vision-language models (VLMs) that tokenize images through a vector-quantized (VQ) codebook routinely hallucinate objects on grounded yes/no benchmarks, yet existing decoding-time fixes treat this as generic miscalibration without an architectural account.
+    **Research Question.** The paper asks whether object hallucination in vector-quantized (VQ) vision-language models comes from a shared architectural circuit, whether VQ causally installs it, and whether targeting that mechanism improves open-ended generation beyond generic decoding fixes.
 
-    **Method.** Using activation patching across twenty-five models spanning eight large language model (LLM) families, we identify an early-layer ($L_0$) attention routing circuit shared across VQ-tokenized VLMs and propose a three-gate diagnostic that distinguishes the models carrying it from those that do not.
+    **Method.** A three-gate diagnostic uses clean/corrupted image pairs to require early residual divergence, concentrated layer-0 attention routing, and downstream propagation. A controlled projector swap converts LLaVA-1.6 from CLIP+multilayer perceptron to VQ+linear, with a matched-compute multilayer-perceptron control. Layer-0 ablation is compared with tuned Visual Contrastive Decoding (VCD) and Decoding by Contrasting Layers (DoLA), including a response-sanity criterion.
 
-    **Validation.** The diagnostic isolates ten positive models (five natural unified-VQ VLMs across three LLM families and five induced variants) and rejects the remaining fifteen. A single-variable architectural swap (LLaVA-1.6 Contrastive Language–Image Pretraining (CLIP)+multilayer perceptron (MLP) $\rightarrow$ VQ+Linear) installs the circuit, while a matched-compute MLP control on identical data does not, isolating vector quantization as the source of the pathological signal; the routing pathway that carries it is one that the backbone already provides. Against tuned VCD and DoLA baselines, tuned DoLA wins on binary calibration, but only $L_0$ ablation reduces object hallucination in open-ended generation (CHAIR$_i$ reduces by $31\,%$ relatively, whereas tuned DoLA and VCD leave it unchanged or worsen it).
+    **Validation.** Twenty-five models from eight language-backbone families include natural VQ models, continuous-projector controls, and induced variants. Activation patching uses 500 paired NaturalBench/POPE records; evaluation covers POPE, AMBER, and 500 CHAIR images with 10,000 bootstrap resamples. The diagnostic accepts ten models and rejects fifteen for distinct gates. The single-variable VQ swap installs the circuit while the matched control does not. Across 36 tuned configurations, DoLA best calibrates binary answers, but only layer-0 ablation reduces open-ended CHAIR_i hallucination, by 31% relative.
 
-    **Conclusion & Evidence.** These results recast object hallucination in unified VQ VLMs as a property of architecture and pretraining, and yield a targeted intervention that mechanism-agnostic decoding cannot replicate. The coordinated interventions provide comparatively strong structural causal evidence for the proposed information flow or circuit. Completeness, uniqueness, and transfer to other models still require separate validation.
+    **Conclusion & Evidence.** VQ can couple to a pre-existing backbone route and create a reproducible early hallucination circuit; mechanism-targeted ablation changes generative hallucination in a way generic logit methods do not. Cross-architecture diagnosis, construction, controls, and held-out generation provide strong causal evidence. Not every VQ model passes, backbone compatibility matters, ablation may remove useful visual processing, and the result applies to VQ-tokenized object hallucination rather than all multimodal errors.
   zh: |-
-    **研究问题。** unified VQ-tokenized 视觉—语言模型（Vision-Language Model, VLM） 的极端 hallucination bias 是否源于跨架构共享的 early-layer attention routing circuit？VQ bottleneck 是否为其因果来源，能否在训练前后用三门诊断识别，并通过机制定向干预改善 open-ended generation 而非只校准 binary logits？
+    **研究问题。** 该论文研究向量量化（Vector Quantization, VQ）视觉语言模型的物体幻觉是否来自共享架构电路，VQ 是否因果安装该电路，以及定向机制干预能否在开放生成中胜过通用解码修正。
 
-    **方法。** 我们在横跨八个 大语言模型（Large Language Model, LLM） 家族的 25 个模型上使用激活修补，识别出一个由 VQ-token 化 VLM 共享的早期层（$L_0$）注意力路由回路，并提出一种三门诊断，用于区分携带该回路与不携带该回路的模型。
+    **方法。** 三门诊断使用干净/破坏图像对，要求出现早层残差分歧、集中于第 0 层的注意力路由及向下游传播。受控投影器替换把 LLaVA-1.6 从 CLIP+多层感知机改为 VQ+线性，并设匹配计算量的多层感知机对照。第 0 层消融与调优后的视觉对比解码（VCD）和层对比解码（DoLA）比较，并加入防止模型停止作答的合理性条件。
 
-    **实验验证。** 该诊断识别出 10 个阳性模型（来自三个 LLM 家族的五个自然统一 VQ VLM，以及五个诱导得到的变体），并排除了其余 15 个模型。一次单变量架构替换（LLaVA-1.6 对比语言—图像预训练（Contrastive Language–Image Pretraining, CLIP）+多层感知机（Multi-Layer Perceptron, MLP） $\rightarrow$ VQ+Linear）即可装入该回路；而在相同数据上、计算量匹配的 MLP 对照却不能，由此将病理信号的来源锁定为向量量化，而承载该信号的路由路径则是骨干模型原本就具备的。与调优后的 VCD 和 DoLA 基线相比，调优后的 DoLA 在二元校准上获胜，但只有消融 $L_0$ 能减少开放式生成中的物体幻觉（CHAIR$_i$ 相对降低 $31\,%$，而调优后的 DoLA 和 VCD 要么没有改善，要么使之恶化）。
+    **实验验证。** 25 个模型跨 8 个语言骨干家族，含天然 VQ、连续投影对照和诱导变体。激活修补用 500 对 NaturalBench/POPE 记录；评测含 POPE、AMBER 和 500 张 CHAIR 图，以 10,000 次 bootstrap 给区间。诊断接受 10 个模型、按不同门拒绝 15 个。单变量 VQ 替换安装电路，匹配对照不安装。36 组调优配置中，DoLA 的二元校准最好，但只有第 0 层消融降低开放生成 CHAIR_i 幻觉，相对降幅 31%。
 
-    **结论与证据。** 这些结果将统一 VQ VLM 中的物体幻觉重新界定为架构与预训练的属性，并给出一种机制无关的解码方法无法复现的定向干预。相互配合的干预为所提出的信息流或电路提供了较强的结构因果证据，但机制的完备性、唯一性以及跨模型迁移仍需独立验证。
+    **结论与证据。** VQ 可耦合骨干已有路线，形成可复现早层幻觉电路；机制定向消融能改变通用 logit 方法无法改善的生成幻觉。跨架构诊断、构造实验、匹配对照和留出生成提供强因果证据。但并非所有 VQ 模型都通过，骨干兼容性重要，消融可能移除有用视觉处理，结论也限于 VQ 模型的物体幻觉。
   generation:
     status: complete
     generated_by: project_agent

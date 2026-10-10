@@ -76,23 +76,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Do fine-tuning and post-training create new mechanisms, or strengthen, suppress, and reorganize existing ones? In this paper, *Fine-Tuning Enhances Existing Mechanisms: A Case Study on Entity Tracking* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Fine-tuning on generalized tasks such as instruction following, code generation, and mathematics has been shown to enhance language models' performance on a range of tasks. Nevertheless, explanations of how such fine-tuning influences the internal computations in these models remain elusive.
+    **Research Question.** The paper asks whether arithmetic or instruction fine-tuning improves entity tracking by creating a new mechanism or strengthening one already present in a base model. It further asks what the shared circuit computes and which internal changes account for the performance gain.
 
-    **Method.** We study how fine-tuning affects the internal mechanisms implemented in language models.
+    **Method.** Path patching discovers attention-head routes for retrieving an object's value from a queried box. Desiderata-based Component Masking (DCM) trains masks to identify heads encoding object identity, box labels, or object position, followed by targeted activation patching. Cross-Model Activation Patching (CMAP) transfers activations between the base and fine-tuned models at aligned components to locate enhanced subcomputations. Faithfulness, completeness, minimality, and random circuits evaluate the graph.
 
-    **Validation.** As a case study, we explore the property of entity tracking, a crucial facet of language comprehension, where models fine-tuned on mathematics have substantial performance gains.
+    **Validation.** Llama-7B, conversation-tuned Vicuna-7B, LoRA arithmetic-tuned Goat-7B, and full arithmetic-tuned FLoat-7B answer 500 synthetic tasks with seven randomly labeled boxes and single-token objects; chance is 0.14. DCM uses 1,000 training and 500 evaluation examples. The 72-head Llama circuit transfers without graph adjustment and remains faithful across models; separately discovered Goat and FLoat circuits contain 175 heads and achieve faithfulness 0.99 and 1.0 in their own models, with strong cross-transfer and large overlap, approximating supersets of the base circuit. Attention knockout and CMAP show early heads moving query-box/position information and later heads fetching the object; patching fine-tuned positional representations into Llama recovers much of the improvement.
 
-    **Conclusion & Evidence.** We identify the mechanism that enables entity tracking and show that (i) in both the original model and its fine-tuned versions primarily the same circuit implements entity tracking. In fact, the entity tracking circuit of the original model on the fine-tuned versions performs better than the full original model. (ii) The circuits of all the models implement roughly the same functionality: Entity tracking is performed by tracking the position of the correct entity in both the original model and its fine-tuned versions. (iii) Performance boost in the fine-tuned models is primarily attributed to its improved ability to handle the augmented positional information. To uncover these findings, we employ: Patch Patching, DCM, which automatically detects model components responsible for specific semantics, and CMAP, a new approach for patching activations across models to reveal improved mechanisms. Our findings suggest that fine-tuning enhances, rather than fundamentally alters, the mechanistic operation of the model. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+    **Conclusion & Evidence.** Fine-tuning primarily amplifies and extends an existing entity-tracking algorithm rather than replacing it: all models use a shared positional routing core, while arithmetic-tuned models recruit extra heads and encode the relevant position more effectively. Circuit transfer, model-to-model activation interventions, and matched functionality provide strong causal evidence for this task. The circuits are not perfectly complete, one head group remains unexplained, synthetic no-update boxes simplify entity tracking, and four Llama-derived 7B models cannot establish a general law of fine-tuning.
   zh: |-
-    **研究问题。** 通用算术 fine-tuning 提升 entity tracking 时，是产生了新电路还是增强了 base model 的既有电路？共享电路如何工作，性能提升可否通过 cross-model activation patching 定位到具体子机制？
+    **研究问题。** 该论文研究算术或指令微调提升实体追踪，是创造新机制还是增强基础模型已有机制；并进一步询问共享电路计算什么，以及哪些内部变化解释性能提升。
 
-    **方法。** 我们研究微调对语言模型所实现内部机制的影响，并以实体追踪作为案例。
+    **方法。** 路径修补发现从被查询盒子取回物体值的注意力头路线；基于功能要求的组件掩码（Desiderata-based Component Masking, DCM）学习掩码，识别编码物体身份、盒子标签或物体位置的头，再做定向激活修补。跨模型激活修补（Cross-Model Activation Patching, CMAP）在基础与微调模型的对齐组件间迁移激活，定位被增强的子计算；保真度、完整性、最小性和随机电路用于评测。
 
-    **实验验证。** 实体追踪是语言理解的一个关键方面，而在数学任务上微调的模型会在该能力上取得显著提升。我们识别出支持实体追踪的机制，并表明：（i）原始模型与其微调版本主要由同一个回路实现实体追踪；事实上，把原始模型的实体追踪回路置于微调版本中运行，其表现优于完整的原始模型。（ii）所有模型的回路实现大致相同的功能：原始模型及其微调版本都通过追踪正确实体的位置完成实体追踪。（iii）微调模型的性能提升主要来自其处理增强位置信息的能力得到改善。
+    **实验验证。** Llama-7B、对话微调 Vicuna-7B、LoRA 算术微调 Goat-7B 和全量算术微调 FLoat-7B 在 500 条合成任务上作答；每题含 7 个随机标签盒子和单词元物体，随机准确率 0.14。DCM 用 1,000 条训练、500 条评测。72 头 Llama 电路不调整图即可跨模型迁移且保持高保真；独立发现的 Goat/FLoat 电路各 175 头，在本模型保真度 0.99/1.0，交叉迁移强且与基础电路大幅重合，近似其超集。注意力敲除和 CMAP 显示早层搬运查询盒/位置信息，晚层取回物体；把微调模型的位置表示修补进 Llama 可恢复大部分提升。
 
-    **结论与证据。** 为揭示这些发现，我们使用路径修补、自动检测负责特定语义之模型组件的 DCM，以及一种跨模型修补激活以揭示机制改进的新方法 CMAP。结果表明，微调会增强模型已有机制，而不是从根本上改变其机制运作。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+    **结论与证据。** 微调主要放大并扩展已有实体追踪算法，而非替换它：各模型共享位置路由核心，算术微调模型则招募更多头并更好地编码目标位置。电路迁移、跨模型激活干预和功能匹配为该任务提供强因果证据。但电路并非完全完整，一个注意力头组仍未解释，无状态更新的合成盒子简化了实体追踪，四个同源 7B 模型也不足以确立普遍微调规律。
   generation:
     status: complete
     generated_by: project_agent

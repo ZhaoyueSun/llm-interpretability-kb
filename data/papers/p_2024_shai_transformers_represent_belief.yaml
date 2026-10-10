@@ -69,23 +69,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Do sequence-prediction models form and use world states or belief states of the generating process? In this paper, *Transformers represent belief state geometry in their residual stream* addresses that question through its specific object of study and tests how far the resulting claim can be supported.
+    **Research Question.** The paper asks what internal structure next-token prediction forces a Transformer to learn about a hidden data-generating process. It tests whether residual states represent the Bayesian belief distribution over latent states—including information about the entire future that is invisible in the immediate next-token distribution—and whether that geometry can span layers.
 
-    **Method.** What computational structure are we building into large language models when we train them on next-token prediction? Here, we present evidence that this structure is given by the meta-dynamics of belief updating over hidden states of the data-generating process. We investigate cases where the belief state geometry is represented in the final residual stream or distributed across the residual streams of multiple layers, providing a framework to explain these observations. Our work provides a general framework connecting the structure of training data to the geometric structure of activations inside transformers.
+    **Method.** Computational mechanics converts a known edge-emitting hidden Markov model (HMM) into a mixed-state presentation: each observed prefix induces a belief vector (eta) over generator states, updated by Bayes' rule. Transformers are trained on HMM sequences, and affine regression maps residual activations to the ground-truth belief simplex. Geometric distance preservation and comparison with next-token probabilities distinguish belief representation from mere output decoding.
 
-    **Validation.** Leveraging the theory of optimal prediction, we anticipate and then find that belief states are linearly represented in the residual stream of transformers, even in cases where the predicted belief state geometry has highly nontrivial fractal structure.
+    **Validation.** On the three-state Mess3 process, a 2-D projection of 64-dimensional final residual activations reproduces the predicted fractal belief geometry. The structure emerges during training, regression error tracks cross-entropy, an 80% held-out split remains accurate after fitting on 20%, and 1,000 repeated label-shuffle/cross-validation controls collapse the spurious map. The Random-Random-XOR process has 36 beliefs in a 4-simplex with next-token degeneracies: concatenating all layers, but not the final layer alone, recovers it. Pairwise represented distances correlate (R^2=0.95) with belief geometry but only (R^2=0.31) with next-token probabilities.
 
-    **Conclusion & Evidence.** Furthermore we demonstrate that the inferred belief states contain information about the entire future, beyond the local next-token prediction that the transformers are explicitly trained on. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+    **Conclusion & Evidence.** In these controlled processes, Transformers encode the geometry of Bayesian synchronization to hidden state, not only the next symbol; when the output objective is degenerate, the sufficient representation can be distributed across layers. Exact theoretical targets, nontrivial fractal matches, held-out regression, shuffles, and the XOR contrast provide strong representational evidence. No causal intervention tests whether the decoded coordinates are used, models and HMMs are small and stationary/ergodic, and realistic language may require compressed or nonlinear belief representations.
   zh: |-
-    **研究问题。** next-token prediction 训练是否迫使 Transformer 表示对数据生成过程 hidden states 的 belief-update meta-dynamics，而不只是局部输出分布？computational mechanics 预测的、甚至呈分形的 belief-state geometry 是否线性嵌入 residual stream？
+    **研究问题。** 该论文研究下一词元预测会迫使 Transformer 学到数据生成过程的何种内部结构；具体检验残差状态是否表示对潜在状态的贝叶斯信念分布——包括即时下一词元分布不可见的整个未来信息——以及该几何是否跨层分布。
 
-    **方法。** 当我们使用下一 token 预测训练大语言模型时，究竟在模型中构建了什么样的计算结构？借助最优预测理论，我们预先推导并随后发现：信念状态在线性意义上表征于 Transformer 的残差流中，即使预测出的信念状态几何具有高度非平凡的分形结构也是如此。我们的工作提供了一个通用框架，将训练数据的结构与 Transformer 内部激活的几何结构联系起来。
+    **方法。** 计算力学把已知边发射隐马尔可夫模型（Hidden Markov Model, HMM）转换为混合状态表述：每个观测前缀对应生成状态上的信念向量 (eta)，并按贝叶斯规则更新。Transformer 在 HMM 序列上训练，再用仿射回归把残差激活映射到真值信念单纯形；几何距离保持与下一词元概率比较，用于区分信念表示和普通输出解码。
 
-    **实验验证。** 我们研究了信念状态几何表征在最终残差流中的情况，也研究了它分布于多个层的残差流中的情况，并提供一个解释这些现象的框架。
+    **实验验证。** 三状态 Mess3 过程中，64 维最终残差激活的 2 维投影复现理论预测的分形信念几何。结构随训练形成，回归误差与交叉熵同步；只用 20% 拟合后在 80% 留出数据仍准确，1,000 次标签打乱/交叉验证会让伪映射坍缩。Random-Random-XOR 过程有位于 4-单纯形的 36 个信念且下一词元退化：只有拼接全部层而非最后一层才能恢复。表示距离与信念几何相关 (R^2=0.95)，与下一词元概率仅 (R^2=0.31)。
 
-    **结论与证据。** 本文给出证据，表明这种结构由数据生成过程中针对隐藏状态进行信念更新的元动力学所决定。此外，我们证明，推断出的信念状态包含有关整个未来的信息，超出了 Transformer 明确接受训练的局部下一 token 预测。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+    **结论与证据。** 在这些受控过程中，Transformer 编码的是对隐藏状态进行贝叶斯同步的几何，而不只是下一符号；当输出目标退化时，充分表示可以跨层分布。精确理论目标、非平凡分形匹配、留出回归、打乱对照和 XOR 对比提供强表示证据。但没有因果干预测试这些坐标是否被使用，模型与 HMM 很小且平稳遍历，真实语言也可能需要压缩或非线性信念表示。
   generation:
     status: complete
     generated_by: project_agent

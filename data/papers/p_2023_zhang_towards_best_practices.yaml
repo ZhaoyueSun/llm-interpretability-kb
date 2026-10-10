@@ -52,23 +52,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** How robust are causal-intervention conclusions to metrics, replacement values, and experimental-design choices? In this paper, *Towards Best Practices of Activation Patching in Language Models: Metrics and Methods* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Mechanistic interpretability seeks to understand the internal mechanisms of machine learning models, where localization -- identifying the important model components -- is a key step. Activation patching, also known as causal tracing or interchange intervention, is a standard technique for this task (Vig et al., 2020), but the literature contains many variants with little consensus on the choice of hyperparameters or methodology.
+    **Research Question.** The paper asks how activation-patching conclusions depend on two analyst choices: how a clean input is corrupted and which output metric scores recovery. It also tests whether patching several adjacent layers creates localization peaks that single-layer interventions do not support.
 
-    **Method.** In this work, we systematically examine the impact of methodological details in activation patching, including evaluation metrics and corruption methods.
+    **Method.** Gaussian-noise (GN) corruption is compared with symmetric token replacement (STR), which pairs grammatical, in-distribution prompts with different answers. Clean activations are restored into corrupted runs and scored by correct-answer probability, correct-minus-counterfactual logit difference, or Kullback–Leibler (KL) divergence. Single components and sliding windows are patched; activation statistics and attention patterns test whether corruption has moved the model off distribution.
 
-    **Validation.** Backed by empirical observations, we give conceptual arguments for why certain metrics or methods may be preferred. Finally, we provide recommendations for the best practices of activation patching going forwards.
+    **Validation.** Factual-recall experiments use 145 paired CounterFact/Known-1000 prompts on GPT-2 Large/XL and GPT-J; GN peaks are 2–5 times larger than STR despite different layer profiles. On 500 indirect-object identification prompts, corruption/metric combinations recover different subsets of known name-mover, inhibition, duplicate, and induction heads; probability misses negative movers. Further studies use 200 correct GPT-J arithmetic prompts, 200 Python-docstring examples, and 300 GPT-2 Small greater-than prompts. In arithmetic STR can create peaks up to four times sharper than GN, while greater-than GN produces noisy, largely disjoint heads and STR recovers four previously reported ones. Single-layer factual patches do not reproduce the strong early-middle peak from multi-layer windows.
 
-    **Conclusion & Evidence.** In several settings of localization and circuit discovery in language models, we find that varying these hyperparameters could lead to disparate interpretability results. The counterexamples or controls strongly delimit what the audited method can justify. They do not, on their own, prove that any proposed replacement is universally faithful or sufficient.
+    **Conclusion & Evidence.** Activation patching does not yield a method-independent map of where a computation resides: corruption defines the counterfactual question, metrics emphasize different output changes, and window interventions can introduce nonlinear joint recovery. Repeated results across tasks, models, and known circuits strongly support this methodological warning and favor in-distribution replacements plus logit difference when a meaningful alternative exists. These are recommendations rather than a universally optimal recipe; STR requires carefully matched pairs, KL is useful when the whole distribution matters, and the evidence for GN-induced off-distribution mechanisms remains suggestive rather than definitive.
   zh: |-
-    **研究问题。** activation patching 的定位结论对 corruption method、评价指标和 sliding-window patching 等自由度有多敏感？Gaussian noise 与 symmetric token replacement、probability 与 logit difference 会否得出不一致结论，怎样形成更可靠的实践规范？
+    **研究问题。** 该论文研究激活修补的定位结论在多大程度上依赖两个分析选择：如何污染干净输入，以及用何种输出指标衡量恢复；同时检验连续修补多层是否会产生单层干预并不支持的定位峰值。
 
-    **方法。** 在本研究中，我们系统考察激活修补中各项方法细节的影响，包括评估指标和扰动方法。
+    **方法。** 高斯噪声（Gaussian Noise, GN）污染与对称词元替换（Symmetric Token Replacement, STR）比较，后者把答案不同但语法正确、分布内的提示配成对。将干净激活恢复到污染运行后，分别用正确答案概率、正确与反事实答案的 logit 差、或 Kullback–Leibler（KL）散度计分。实验既修补单组件也修补滑动层窗口，并以激活统计和注意力模式检查污染是否把模型推到分布外。
 
-    **实验验证。** 最后，我们为今后实施激活修补提出最佳实践建议。
+    **实验验证。** 事实回忆使用 CounterFact/Known-1000 构造的 145 对提示，在 GPT-2 Large/XL 和 GPT-J 上测试；GN 峰值比 STR 高 2—5 倍，但层分布不同。500 条间接宾语识别提示上，不同污染/指标组合找回的已知姓名搬运、抑制、重复和归纳头子集不同，概率指标还漏掉负向搬运头。进一步实验含 200 条 GPT-J 正确算术提示、200 条 Python docstring 和 300 条 GPT-2 Small 大于任务提示：算术中 STR 峰可比 GN 尖锐 4 倍，大于任务中 GN 噪声很大且定位头几乎不同，STR 则找回 4 个已报道注意力头。单层事实修补也未复现多层窗口的强早中层峰。
 
-    **结论与证据。** 在语言模型的多种定位与回路发现设置中，我们发现改变这些超参数可能产生截然不同的可解释性结果。基于经验观察，我们从概念层面论证为何某些指标或方法可能更值得采用。反例和控制实验有力限定了被审计方法能够支持的结论，但它们本身不能证明任何替代方法普遍忠实或充分。
+    **结论与证据。** 激活修补不会给出与方法无关的“计算位置图”：污染方式定义了反事实问题，指标强调不同输出变化，窗口干预还可能产生非线性联合恢复。跨任务、模型和已知电路的重复结果强烈支持这一方法学警告；在存在有意义替代答案时，更倾向分布内替换与 logit 差。但这不是普适最优配方：STR 依赖精心匹配提示，关注完整分布时 KL 仍有价值，而“GN 导致分布外内部机制”的证据仍偏提示性。
   generation:
     status: complete
     generated_by: project_agent

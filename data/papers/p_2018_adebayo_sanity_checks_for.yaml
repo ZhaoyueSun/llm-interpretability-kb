@@ -76,23 +76,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** The paper asks whether visually convincing saliency maps actually depend on learned model parameters and on the relationship between inputs and labels. It seeks general sanity checks that identify which explanatory claims a saliency method can and cannot support.
+    **Research Question.** The paper asks whether visually plausible saliency maps actually depend on a model's learned parameters and on the input–label relationship in its training data. It further asks which popular gradient-based methods can support model-sensitive uses such as debugging, rather than merely reproducing input or architectural priors.
 
-    **Method.** Two randomization tests are proposed. Model-parameter randomization progressively replaces learned layers with randomly initialized ones; data randomization trains the same architecture after permuting labels. A faithful model-sensitive explanation should change when either the learned computation or the data-generating relationship is destroyed. Similarity between original and randomized saliency maps is measured quantitatively as well as visually.
+    **Method.** Two randomization tests provide negative controls. The parameter test reinitializes weights either cumulatively from the output toward the input or one layer at a time; the data test permutes training labels and retrains the same architecture to memorize them. Saliency maps before and after randomization are compared with signed and absolute Spearman correlation, structural similarity index (SSIM), and histogram-of-oriented-gradients correlation. The paper also analyzes linear and one-layer convolutional models to explain why some methods behave like edge detectors.
 
-    **Validation.** The tests are applied to several gradient- and visualization-based methods on standard image classifiers and datasets. The study examines cascading and independent layer randomization, label randomization, and controls based on simple edge detection. Supporting analyses for a linear model and a one-layer convolutional network explain why some maps remain visually stable.
+    **Validation.** Experiments cover an Inception v3 model on ImageNet, convolutional neural networks (CNNs) on the Modified National Institute of Standards and Technology (MNIST) and Fashion-MNIST datasets, and multilayer perceptrons on both digit datasets. The ImageNet model is randomized over 17 blocks; the random-label MNIST and Fashion-MNIST models are trained above 95% training accuracy, ensuring that they fit labels whose test relationship is destroyed. The comparison includes raw gradients, Gradient × Input, Integrated Gradients, Guided Backpropagation, Grad-CAM, Guided Grad-CAM, SmoothGrad, and VarGrad, with both visualizations and the four similarity metrics used to detect invariance.
 
-    **Conclusion & Evidence.** Several popular saliency methods produce nearly unchanged maps after the model or labels are randomized, showing that visual plausibility can be driven by input structure rather than learned decision logic. The audit provides strong counterexample-based evidence that such methods cannot support model- or data-sensitive claims. Passing the checks is only a necessary condition, however: it does not by itself prove that a method is faithful, causal, or suitable for every explanatory use.
+    **Conclusion & Evidence.** Raw gradients and Grad-CAM respond to relevant parameter randomization, whereas Guided Backpropagation and Guided Grad-CAM remain largely invariant to higher-layer weights; several input-times-gradient variants also retain recognizable input structure after randomization. The cross-dataset controls and simple-model analysis strongly show that visual plausibility alone is not evidence of faithfulness and that methods failing a test cannot explain the corresponding learned property. Passing is only a necessary sanity condition, however, not proof that an attribution is causally correct or otherwise sufficient.
   zh: |-
-    **研究问题。** 论文考察视觉上合理的显著性图是否真的依赖模型学到的参数以及输入—标签关系，并试图建立通用的健全性检验，以判断一种显著性方法能够和不能够支持哪些解释主张。
+    **研究问题。** 该论文研究视觉上合理的显著图是否真正依赖模型学到的参数以及训练数据中的输入—标签关系，并进一步判断哪些常见梯度方法能够支持模型调试等“依赖模型”的用途，而不是主要复现输入结构或网络架构先验。
 
-    **方法。** 作者提出两类随机化检验。模型参数随机化逐步把已训练层替换为随机初始化参数；数据随机化则在打乱标签后重新训练相同架构。如果解释方法确实对模型敏感，那么当已学习的计算或数据生成关系被破坏时，解释也应明显改变。原始显著性图与随机化后显著性图之间的差异同时通过定量相似度和视觉检查衡量。
+    **方法。** 作者设计两类随机化负对照。参数随机化从输出层向输入层逐步重初始化权重，或每次只随机化一层；数据随机化则打乱训练标签，再让相同架构记忆随机标签。随机化前后的显著图通过有符号和绝对值 Spearman 相关、结构相似性指数（Structural Similarity Index, SSIM）以及方向梯度直方图相关进行比较。论文还分析线性模型与单层卷积模型，以解释某些方法为何表现得近似边缘检测器。
 
-    **实验验证。** 这些检验被应用于标准图像分类模型与数据集上的多种梯度式和可视化解释方法。实验覆盖级联式与独立式层随机化、标签随机化，并使用简单边缘检测作为对照；针对线性模型和单层卷积网络的分析进一步解释某些显著性图为何会在随机化后保持稳定。
+    **实验验证。** 实验覆盖 ImageNet 上的 Inception v3、美国国家标准与技术研究院手写数字数据集（Modified National Institute of Standards and Technology, MNIST）和 Fashion-MNIST 上的卷积神经网络（Convolutional Neural Network, CNN），以及两个数字数据集上的多层感知机。ImageNet 模型按 17 个模块逐步随机化；随机标签模型被训练到超过 95% 的训练准确率，以确认其记住了已经破坏测试关系的标签。被检验方法包括原始梯度、Gradient × Input、Integrated Gradients、Guided Backpropagation、Grad-CAM、Guided Grad-CAM、SmoothGrad 和 VarGrad，并同时使用可视化与四类相似度指标判断不变性。
 
-    **结论与证据。** 多种常用方法在模型参数或标签被随机化后仍生成近似不变的显著性图，说明视觉合理性可能主要来自输入的边缘结构，而非模型学到的决策逻辑。这些反例为“相关方法不能支持模型敏感或数据敏感的解释主张”提供了很强的审计证据。不过，通过检验只是必要条件，并不能单独证明某种方法忠实、具有因果意义，或适合所有解释用途。
+    **结论与证据。** 原始梯度和 Grad-CAM 会随相关参数随机化而改变，Guided Backpropagation 与 Guided Grad-CAM 却对高层权重基本不敏感；若干输入乘梯度方法在随机化后仍保留清晰输入轮廓。跨数据集负对照和简单模型分析有力说明“看起来合理”不能作为忠实性证据，也说明未通过某项检查的方法不能解释对应的学习属性。不过，通过检查只是一项必要条件，并不能单独证明归因具有因果正确性或充分性。
   generation:
     status: complete
     generated_by: project_agent

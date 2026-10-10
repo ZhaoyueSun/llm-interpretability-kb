@@ -73,23 +73,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** The paper asks whether factual knowledge in pretrained Transformers can be localized to particular feed-forward neurons, and whether manipulating those neurons can suppress, enhance, or revise the corresponding facts. It also asks whether identified neurons generalize across different prompts expressing the same fact.
+    **Research Question.** The paper asks whether individual feed-forward neurons in a pretrained Transformer can be localized as carriers of particular relational facts, whether manipulating their activations changes expression of the corresponding fact, and whether the same localization can support targeted knowledge updates or erasure.
 
-    **Method.** The authors use integrated gradients to attribute a factual prediction to intermediate feed-forward activations and select consistently high-attribution units as knowledge neurons. They then intervene by suppressing or amplifying these activations, and edit a fact by modifying the outgoing weights of the selected neurons toward the embedding of a new object.
+    **Method.** Feed-forward network blocks are viewed as key–value memories. For each cloze prompt, the method integrates the gradient of the correct-answer probability while scaling a neuron's activation from zero to its observed value, producing an attribution score. High-attribution neurons are intersected across paraphrased prompts for the same fact to obtain a refined set of “knowledge neurons.” Causal tests set these activations to zero or double them, while editing tests directly alter or zero the associated value vectors.
 
-    **Validation.** Experiments are conducted on masked-language models with factual triples elicited by multiple prompt templates. The study measures cross-template neuron overlap, changes in correct-object probability under suppression and enhancement, effects on unrelated facts, and success of weight-based knowledge updates, with comparisons to random-neuron interventions.
+    **Validation.** Experiments use the 12-layer BERT-base-cased model and PARAREL prompts derived from T-REx: after filtering, 34 relations, 27,738 facts, and 253,448 prompts remain, with 8.63 templates per relation on average. The method identifies 4.13 neurons per fact. Suppression reduces the correct-answer probability by 29.03% on average and amplification raises it by 31.17%, versus a 1.47% decrease and 1.27% decrease for activation-based baseline neurons. On the separately crawled BINGREL corpus, mean activation is 0.485 for fact-expressing prompts versus 0.019 and −0.018 for two controls. Editing ten sampled facts per relation changes the original prediction in 48.5% of cases and installs the target as top prediction in 34.4%; relation erasure is evaluated with perplexity on target and nontarget relations.
 
-    **Conclusion & Evidence.** Small neuron sets correlate with particular factual predictions, and targeted interventions change those predictions more than random controls; some edits also transfer across paraphrases. This provides local causal evidence that selected feed-forward units participate in expressing facts. It does not show that a fact is stored exclusively in those neurons: attribution is prompt-dependent, knowledge can be distributed, and changing a selected unit may affect several coupled associations.
+    **Conclusion & Evidence.** Consistent prompt-level attribution, activation interventions, unseen-text activation, and localized value edits jointly support a causal association between the selected neurons and expression of specific facts in this BERT model. The small neuron sets have substantially larger effects than matched baseline or random neurons, while off-target perplexity changes are usually smaller. The evidence remains local rather than a proof that facts are stored exclusively in single neurons: editing succeeds only partially, neurons can be shared within a relation, and broader models and factual formats are not tested.
   zh: |-
-    **研究问题。** 论文研究预训练 Transformer 中的事实知识能否定位到特定前馈神经元，以及操纵这些神经元能否抑制、增强或改写相应事实；同时考察被定位的单元能否跨越表达同一事实的不同提示模板保持稳定。
+    **研究问题。** 该论文研究预训练 Transformer 的单个前馈神经元能否被定位为特定关系事实的载体、操纵其激活是否会改变相应事实的表达，以及同一定位能否用于定向更新或擦除知识。
 
-    **方法。** 作者使用积分梯度（Integrated Gradients, IG）把事实预测归因到中间前馈激活，并将跨模板持续获得高归因值的单元选为知识神经元（knowledge neurons）。随后通过抑制或放大这些神经元的激活进行干预，并把所选神经元的输出权重朝新宾语的嵌入方向修改，以实现事实编辑。
+    **方法。** 前馈网络模块被视为键—值记忆。对每个完形填空提示，方法把某个神经元的激活从零缩放到观测值，并沿该路径积分正确答案概率的梯度，得到归因分数；同一事实的多种改写提示中反复出现的高归因神经元被保留为“知识神经元”。因果检验将其激活置零或加倍，编辑检验则直接修改或清零对应的值向量。
 
-    **实验验证。** 实验在掩码语言模型和由多个模板表达的事实三元组上进行。作者测量不同模板间的神经元重合度，比较抑制与增强后正确宾语概率的变化，检查对无关事实的影响，并评估基于权重修改的知识更新；随机神经元干预被用作主要对照。
+    **实验验证。** 实验使用 12 层 BERT-base-cased 和由 T-REx 构造的 PARAREL 提示；过滤后包含 34 种关系、27,738 个事实和 253,448 个提示，每种关系平均有 8.63 个模板。方法平均为每个事实识别 4.13 个神经元。抑制这些神经元使正确答案概率平均下降 29.03%，放大则平均上升 31.17%；仅按激活选择的基线神经元分别造成 1.47% 和 −1.27% 的变化。在另行抓取的 BINGREL 语料上，事实表达提示的平均激活为 0.485，两类对照为 0.019 和 −0.018。事实编辑的原预测改变率为 48.5%，目标实体成为首选的成功率为 34.4%；关系擦除则以目标和非目标关系困惑度衡量。
 
-    **结论与证据。** 少量神经元集合与特定事实预测稳定相关，针对性干预对预测的影响也明显强于随机对照，部分编辑还能迁移到改写提示。这为所选前馈单元参与事实表达提供了局部因果证据，但不能证明事实只存储在这些神经元中：归因结果依赖提示，知识可能是分布式的，修改一个单元也可能影响多项耦合关联。
+    **结论与证据。** 跨提示归因、激活干预、未见文本激活和局部值向量编辑共同支持这些神经元与 BERT 中特定事实表达之间存在因果联系，其影响也明显强于匹配基线或随机神经元。不过，证据是局部的，并未证明事实只存储在单个神经元中：编辑成功率有限，同一关系内会共享神经元，而且尚未覆盖更多模型和事实表达形式。
   generation:
     status: complete
     generated_by: project_agent

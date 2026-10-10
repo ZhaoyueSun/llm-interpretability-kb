@@ -70,23 +70,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Where and how do separately trained modality representations achieve semantic alignment? In this paper, *Multimodal Neurons in Pretrained Text-Only Transformers* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Language models demonstrate remarkable capacity to generalize representations learned in one modality to downstream tasks in other modalities.
+    **Research Question.** The paper asks where image semantics are converted into language when a separately trained vision encoder is connected to a frozen text-only Transformer by one learned linear adapter. It distinguishes immediate translation by the adapter from conversion by individual multilayer-perceptron neurons inside the language model, and tests whether those neurons causally shape captions.
 
-    **Method.** Can we trace this ability to individual neurons? We introduce a procedure for identifying "multimodal neurons" that convert visual representations into corresponding text, and decoding the concepts they inject into the model’s residual stream.
+    **Method.** In LiMBeR-BEIT, 196 self-supervised BEIT patch vectors are projected into GPT-J-6B's embedding space. For each generated noun, an activation-times-gradient score ranks all 16,384 neurons per multilayer perceptron by first-order contribution to its logit. A neuron's output weight is decoded through GPT-J's unembedding to name the concept it writes; spatial activation masks test visual selectivity, and ranked zero ablation tests causal effect.
 
-    **Validation.** We study the case where a frozen text transformer is augmented with vision using a self-supervised visual encoder and a single linear projection learned on an image-to-text task.
+    **Validation.** Analyses use MS COCO 2017 validation images, with 1,000-image samples for semantic scoring. Projected image prompts are no closer to image semantics than random vectors (CLIPScore Kolmogorov–Smirnov \(D=.037,p>.5\)), whereas decoded top neurons reach CLIPScore 0.3848 and BERTScore 23.43, close to generated captions' 0.5251 and 23.62. Across 12 COCO categories, neuron masks have higher intersection-over-union with objects than same-layer random units; ten ImageNet classes test category selectivity using 200 training images per class. Ablating up to 6,400 top-ranked neurons lowers the target noun probability by about 80% on average, while matched random ablation has little effect.
 
-    **Conclusion & Evidence.** Outputs of the projection layer are not immediately decodable into language describing image content; instead, we find that translation between modalities occurs deeper within the transformer. In a series of experiments, we show that multimodal neurons operate on specific visual concepts across inputs, and have a systematic causal effect on image captioning. Project page: mmns.csail.mit.edu The evidence establishes that the information is accessible to the chosen readout or decomposition; it does not by itself show that the original model causally uses that information to produce its behavior.
+    **Conclusion & Evidence.** Cross-modal translation occurs substantially inside GPT-J—especially MLP layers 5–10—rather than being readable directly from the linear image adapter, and identifiable neurons consistently inject object-related language. Semantic agreement, spatial selectivity, cross-dataset activation, and targeted ablation jointly provide strong evidence for multimodal neurons in this model. The study covers only LiMBeR-BEIT; the gradient score is approximate, large multi-neuron ablations do not prove each unit is independently causal, and upstream construction of these concepts remains unexplained.
   zh: |-
-    **研究问题。** 当冻结的文本 Transformer 通过独立视觉编码器和线性投影接收图像时，跨模态语义是在投影层完成，还是由文本模型内部形成？能否找到同时响应视觉与文本概念、并对图像描述具有因果作用的 multimodal 多层感知机（Multi-Layer Perceptron, MLP） neurons？
+    **研究问题。** 该论文研究当独立训练的视觉编码器通过单个线性适配器连接到冻结的纯文本 Transformer 时，图像语义在哪里被转换成语言；它区分“适配器直接完成翻译”和“语言模型内部多层感知机神经元完成转换”，并检验这些神经元是否因果性地影响图像描述。
 
-    **方法。** 我们能否把这种能力追踪到单个神经元？我们提出一种方法，用于识别把视觉表征转换成对应文本的“多模态神经元”，并解码它们注入模型残差流的概念。
+    **方法。** 在 LiMBeR-BEIT 中，196 个自监督 BEIT 图像块向量被投影到 GPT-J-6B 的嵌入空间。对每个生成名词，激活乘梯度分数按一阶 logit 贡献排序每个多层感知机的 16,384 个神经元；再通过 GPT-J 反嵌入解码神经元输出权重，命名其写入概念。空间激活掩码检验视觉选择性，按排名置零则检验因果影响。
 
-    **实验验证。** 本文研究这样一种情形：使用自监督视觉编码器和一个在图像到文本任务上学习的线性投影，为冻结的文本 Transformer 增加视觉能力。
+    **实验验证。** 分析使用 MS COCO 2017 验证图像，其中语义计分取 1,000 张。投影后的图像提示与随机向量在图像语义上没有显著区别（CLIPScore 的 Kolmogorov–Smirnov 检验 \(D=.037,p>.5\)）；排名靠前神经元的解码词元达到 CLIPScore 0.3848、BERTScore 23.43，接近生成描述的 0.5251 和 23.62。12 个 COCO 类别上，神经元掩码与物体的交并比高于同层随机单元；另以每类 200 张训练图测试 10 个 ImageNet 类别的选择性。消融最多 6,400 个高分神经元后，目标名词概率平均下降约 80%，匹配随机消融影响很小。
 
-    **结论与证据。** 投影层的输出无法立即被解码成描述图像内容的语言；相反，我们发现模态之间的转换发生在 Transformer 内部更深的位置。通过一系列实验，我们表明，多模态神经元能够跨输入处理特定视觉概念，并对图像描述任务产生系统性的因果影响。项目页面：mmns.csail.mit.edu。证据说明相应信息可以被所选读出器或分解方法访问，但不能单独证明原模型在产生行为时因果使用了这些信息。
+    **结论与证据。** 跨模态翻译相当一部分发生在 GPT-J 内部，尤其第 5—10 层 MLP，而不是已经能从线性图像适配器直接读出；可识别神经元会稳定写入物体相关语言。语义一致性、空间选择性、跨数据集激活和定向消融共同为该模型中的多模态神经元提供较强证据。但研究只覆盖 LiMBeR-BEIT，梯度分数只是近似，大规模多神经元消融不能证明每个单元都独立因果，上游如何构造这些概念也未解释。
   generation:
     status: complete
     generated_by: project_agent

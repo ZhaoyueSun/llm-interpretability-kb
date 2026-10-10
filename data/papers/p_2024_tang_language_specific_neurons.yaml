@@ -89,23 +89,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Which internal units and broadcast mechanisms implement language choice and cross-lingual capability? In this paper, *Language-Specific Neurons: The Key to Multilingual Capabilities in Large Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Large language models (LLMs) demonstrate remarkable multilingual capabilities without being pre-trained on specially curated multilingual parallel corpora. It remains a challenging problem to explain the underlying mechanisms by which LLMs process multilingual texts.
+    **Research Question.** The paper asks whether multilingual generation depends on small sets of neurons selective for particular languages, where those neurons lie, and whether manipulating them can causally change language modeling and output-language choice.
 
-    **Method.** In this paper, we delve into the composition of Transformer architectures in LLMs to pinpoint language-specific regions. Specially, we propose a novel detection method, language activation probability entropy (LAPE), to identify language-specific neurons within LLMs.
+    **Method.** Language Activation Probability Entropy (LAPE) estimates, for every feed-forward neuron, its probability of positive activation on each language and computes the entropy of the normalized language profile. Frequently active, low-entropy neurons are labeled language-specific. Deactivation zeros their activations; activation steering raises them to the language-specific mean. Random neurons, activation-probability ranking, parameter-change ranking after monolingual tuning, and language-balanced models provide controls.
 
-    **Validation.** Based on LAPE, we conduct comprehensive experiments on several representative LLMs, such as LLaMA-2, BLOOM, and Mistral.
+    **Validation.** Tests cover Llama-2 7B/13B/70B and BLOOM, with replications on Llama-2 Chat, OPT, Mistral, and Phi-2. Language modeling uses one million post-September-2022 Wikipedia tokens per language; open-ended questions are translated from Vicuna and scored for output language plus GPT-4 content quality. Monolingual Alpaca tuning uses 52,000 examples per target language. Deactivating LAPE-selected neurons selectively raises perplexity for their language more than matched alternatives, while random ablation has little effect. Llama-2-70B shows a U-shaped distribution—about 7,000 selected neurons in layer 2, around 100 in many middle layers, and over 1,000 in each final layer. Steering raises six reported language accuracies from 0.40–0.87 to 0.90–1.00 and can switch a Spanish prompt to fluent Chinese.
 
-    **Conclusion & Evidence.** Our findings indicate that LLMs' proficiency in processing a particular language is predominantly due to a small subset of neurons, primarily situated in the models' top and bottom layers. Furthermore, we showcase the feasibility to"steer"the output language of LLMs by selectively activating or deactivating language-specific neurons. Our research provides important evidence to the understanding and exploration of the multilingual capabilities of LLMs. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+    **Conclusion & Evidence.** A small, layer-concentrated set of feed-forward units has disproportionate causal influence on language identity: lower layers appear involved in mapping languages into a shared space and upper layers in mapping back to vocabulary. Selective perplexity damage, output steering, random/alternative rankings, and cross-model checks support this functional claim. LAPE is relative to the compared language set, individual neurons may remain polysemantic, GPT-4 judges content, steering examples do not prove full language competence, and the U-shaped explanatory story is partly inferred from representation similarity rather than directly intervened upon.
   zh: |-
-    **研究问题。** 大语言模型（Large Language Model, LLM） 是否存在可由 language activation probability entropy 识别的 language-specific neurons，它们如何分布并影响不同语言的处理？选择性激活或抑制这些神经元能否控制输出语言并缓解 off-target generation？
+    **研究问题。** 该论文研究多语言生成是否依赖少量对特定语言选择性的神经元、它们分布在哪里，以及操控这些神经元能否因果改变语言建模与输出语言选择。
 
-    **方法。** 本文深入分析语言模型中 Transformer 架构的组成，以定位语言特定区域。具体而言，我们提出一种新的检测方法——语言激活概率熵（LAPE），用于识别语言模型内部的语言特定神经元。
+    **方法。** 语言激活概率熵（Language Activation Probability Entropy, LAPE）估计每个前馈神经元在各语言上的正激活概率，并计算归一化语言分布的熵；高频激活且低熵者判为语言专用。停用时把激活置零，引导时提升到该语言的平均激活。随机神经元、单纯激活概率排序、单语微调后的参数变化排序及语言均衡模型作为对照。
 
-    **实验验证。** 基于 LAPE，我们在 LLaMA-2、BLOOM 和 Mistral 等多个代表性语言模型上进行了全面实验。
+    **实验验证。** 测试覆盖 Llama-2 7B/13B/70B 和 BLOOM，并在 Llama-2 Chat、OPT、Mistral、Phi-2 复现。语言建模每种语言使用 100 万个 2022 年 9 月后 Wikipedia 词元；开放问答从 Vicuna 翻译，以输出语言和 GPT-4 内容质量评分；单语 Alpaca 微调每种目标语言用 52,000 条。停用 LAPE 神经元会选择性地使对应语言困惑度上升，幅度大于匹配替代法，随机消融影响很小。Llama-2-70B 呈 U 形分布：第 2 层约 7,000 个，中间多层各约 100 个，最后四层各超过 1,000 个。六种语言的引导准确率由 0.40—0.87 提升到 0.90—1.00，还能让西语问题改用流利中文回答。
 
-    **结论与证据。** 结果表明，语言模型处理某种特定语言的能力主要来自一小部分神经元，它们主要位于模型的顶部层和底部层。此外，我们展示了通过选择性激活或停用语言特定神经元来“引导”语言模型输出语言的可行性。本研究为理解和探索语言模型的多语言能力提供了重要证据。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+    **结论与证据。** 少量、集中于特定层的前馈单元对语言身份有不成比例的因果影响：低层可能把不同语言映射进共享空间，高层再映射回词表。选择性困惑度损伤、输出引导、随机/替代排序和跨模型检查支持这一功能结论。但 LAPE 相对于所比较语言集合，单神经元仍可能多义，内容由 GPT-4 判断，少数引导例不证明完整语言能力，而 U 形功能解释部分来自表示相似性推断，未被直接干预验证。
   generation:
     status: complete
     generated_by: project_agent

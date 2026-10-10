@@ -74,23 +74,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Can sparse features serve as more interpretable and scalable circuit nodes than native model components? In this paper, *Sparse Feature Circuits: Discovering and Editing Interpretable Causal Graphs in Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported.
+    **Research Question.** The paper asks whether sparse-autoencoder features can replace polysemantic heads or neurons as circuit nodes, allowing scalable causal graphs that are both interpretable and useful for editing. It tests known linguistic behavior, removal of an unknown spurious classifier signal, and fully unsupervised discovery of many behaviors.
 
-    **Method.** We introduce methods for discovering and applying sparse feature circuits.
+    **Method.** Sparse features and autoencoder reconstruction errors are inserted as nodes in the model computation graph. Attribution patching with integrated gradients estimates node and feature-to-feature edge effects from contrastive inputs; thresholding forms a circuit, and outside-circuit mean ablation measures faithfulness. Sparse Human-Interpretable Feature Trimming (SHIFT) lets an annotator remove circuit features judged task-irrelevant. A separate pipeline clusters low-loss Pile predictions by internal activations or gradients, then builds a circuit for each cluster.
 
-    **Validation.** These are causally implicated subnetworks of human-interpretable features for explaining language model behaviors. Circuits identified in prior work consist of polysemantic and difficult-to-interpret units like attention heads or neurons, rendering them unsuitable for many downstream applications.
+    **Validation.** Subject–verb agreement across four syntactic structures is tested on Pythia-70M with 64×-width trained dictionaries and Gemma-2-2B with 8× Gemma Scope dictionaries. About 100/500 feature nodes explain most Pythia/Gemma behavior, versus roughly 1,500/50,000 neurons for half; human raters find sparse features more interpretable. Relative-clause case circuits contain 86 and 223 nodes at faithfulness 0.21 and expose number detectors, boundary detectors, and two routing paths. On Bias in Bios, classifiers trained where gender perfectly predicts professor/nurse labels are edited without balanced labels: SHIFT plus head retraining yields profession/worst-group accuracies of 93.1/89.0% for Pythia and 95.0/92.9% for Gemma, while gender prediction falls near chance. Clustering 8,192 to 100,000 confident Pile predictions produces thousands of circuits.
 
-    **Conclusion & Evidence.** In contrast, sparse feature circuits enable detailed understanding of unanticipated mechanisms. Because they are based on fine-grained units, sparse feature circuits are useful for downstream tasks: We introduce SHIFT, where we improve the generalization of a classifier by ablating features that a human judges to be task-irrelevant. Finally, we demonstrate an entirely unsupervised and scalable interpretability pipeline by discovering thousands of sparse feature circuits for automatically discovered model behaviors. The coordinated interventions provide comparatively strong structural causal evidence for the proposed information flow or circuit. Completeness, uniqueness, and transfer to other models still require separate validation.
+    **Conclusion & Evidence.** Sparse features support finer and more readable causal graphs than native neurons, and their semantic labels can guide useful interventions even when the spurious variable was not named in training. Held-out ablations, neuron comparisons, human ratings, and the SHIFT intervention provide strong task-level evidence. Circuits depend on Sparse Autoencoder (SAE) approximation and chosen thresholds, error nodes remain uninterpretable, highlighted small circuits explain only about 21% of behavior, human annotation can be subjective, and large-scale clustered circuits receive less causal and semantic validation.
   zh: |-
-    **研究问题。** 能否以 稀疏自编码器（Sparse Autoencoder, SAE） features 取代 polysemantic components，并用线性归因高效发现 feature-to-feature causal graphs，从而解释未知行为？这些 sparse feature circuits 能否识别并删除 spurious features，且扩展到成千上万种自动发现的行为？
+    **研究问题。** 该论文研究稀疏自编码器特征能否取代多义注意力头或神经元作为电路节点，从而形成既可解释又可用于编辑的可扩展因果图；并分别在已知语言行为、未知虚假分类信号移除及大规模无监督行为发现上检验。
 
-    **方法。** 我们提出用于发现和应用稀疏特征回路的方法。稀疏特征回路是由人类可解释特征组成、与因果作用相关的子网络，用于解释语言模型行为。
+    **方法。** 稀疏特征与自编码器重构误差被插入模型计算图作为节点。带积分梯度的归因修补从对比输入估计节点和特征间边效应，阈值化形成电路，子图外均值消融衡量保真度。稀疏人类可解释特征修剪（Sparse Human-Interpretable Feature Trimming, SHIFT）让标注者删除被判断为任务无关的电路特征。另一流水线按内部激活或梯度聚类 Pile 中低损失预测，再为每个簇建电路。
 
-    **实验验证。** 以往工作识别的回路由注意力头或神经元等多义且难以解释的单元构成，因此不适合许多下游应用。相比之下，稀疏特征回路能够帮助我们细致理解未曾预料的机制。由于它们以细粒度单元为基础，稀疏特征回路也适用于下游任务。我们提出 SHIFT：消融经人类判断与任务无关的特征，以改善分类器的泛化能力。
+    **实验验证。** 在四种句法结构的主谓一致上，测试使用 64 倍宽自训字典的 Pythia-70M 和使用 8 倍 Gemma Scope 字典的 Gemma-2-2B。约 100/500 个特征节点解释两模型大部分行为，而解释一半表现需约 1,500/50,000 个神经元；人工也判定稀疏特征更可解释。关系从句案例电路含 86/223 节点，保真度均为 0.21，揭示数检测器、边界检测器和两条路由。在 Bias in Bios 中，用“性别完美预测教授/护士”的数据训练分类器，且不使用平衡标签编辑；SHIFT 加重训分类头后，Pythia 职业/最差组准确率为 93.1/89.0%，Gemma 为 95.0/92.9%，性别预测降到接近随机。对 8,192 至 100,000 条高置信 Pile 预测聚类得到数千电路。
 
-    **结论与证据。** 最后，我们通过为自动发现的模型行为找出数千个稀疏特征回路，展示了一条完全无监督且可扩展的可解释性流水线。相互配合的干预为所提出的信息流或电路提供了较强的结构因果证据，但机制的完备性、唯一性以及跨模型迁移仍需独立验证。
+    **结论与证据。** 稀疏特征比原生神经元支持更细、更可读的因果图，其语义标签即使在训练时未命名虚假变量，也能指导有效干预。留出消融、神经元对比、人工评分和 SHIFT 干预提供强任务级证据。但电路依赖 SAE 近似和阈值，误差节点仍不可解释，小型案例只解释约 21% 行为，人工标注有主观性，大规模聚类电路的因果与语义验证也较弱。
   generation:
     status: complete
     generated_by: project_agent

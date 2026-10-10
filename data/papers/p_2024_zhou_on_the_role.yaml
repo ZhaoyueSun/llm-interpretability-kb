@@ -102,23 +102,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Are safety, refusal, and hidden-trigger behaviors implemented by low-dimensional directions or distributed circuits? In this paper, *On the Role of Attention Heads in Large Language Model Safety* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Large language models (LLMs) achieve state-of-the-art performance on multiple language tasks, yet their safety guardrails can be circumvented, leading to harmful generations. In light of this, recent research on safety mechanisms has emerged, revealing that when safety representations or component are suppressed, the safety capability of LLMs are compromised. However, existing research tends to overlook the safety impact of multi-head attention mechanisms, despite their crucial role in various model functionalities.
+    **Research Question.** The paper asks whether a small number of attention heads are causally important for an aligned model's refusal of harmful requests, how such heads can be attributed over a dataset, and whether they detect unsafe content, generate refusal language, or merely trade safety for general helpfulness.
 
-    **Method.** Hence, in this paper, we aim to explore the connection between standard attention mechanisms and safety capability to fill this gap in the safety-related mechanistic interpretability. We propose a novel metric which tailored for multi-head attention, the Safety Head ImPortant Score (Ships), to assess the individual heads' contributions to model safety.
+    **Method.** Safety Head Important Score (Ships) estimates a head's query-specific safety contribution from the increase in harmful completion likelihood after ablating its output or scaling its value contribution. A dataset-level generalization feeds a greedy Safety Attention Head Attribution Algorithm (Sahara), which searches for interacting head sets. Representation shifts, attention/output ablations, overlap between aligned descendants, and helpful-task evaluation characterize function.
 
-    **Validation.** Based on this, we generalize Ships to the dataset level and further introduce the Safety Attention Head AttRibution Algorithm (Sahara) to attribute the critical safety attention heads inside the model. Ablating a single safety head allows aligned model (e.g., Llama-2-7b-chat) to respond to 16 times more harmful queries, while only modifying 0.006% of the parameters, in contrast to the ~ 5% modification required in previous studies.
+    **Validation.** Llama-2-7B-chat and Vicuna-7B-v1.5 are evaluated primarily on MaliciousInstruct and JailbreakBench, with full autoregressive generation up to 128 new tokens and attack success rate (ASR) as the safety metric. Single- and multi-head ablations are compared with random heads and two intervention implementations; ASR grows as more Sahara-ranked heads are removed. In Llama-2-7B-chat, ablating one head makes the model answer roughly 16 times as many harmful prompts while changing only 0.006% of parameters, versus prior interventions affecting about 5%. Cross-model overlap and benign/helpfulness tests examine inheritance and collateral cost.
 
-    **Conclusion & Evidence.** Our findings show that the special attention head has a significant impact on safety. More importantly, we demonstrate that attention heads primarily function as feature extractors for safety and models fine-tuned from the same base model exhibit overlapping safety heads through comprehensive experiments. Together, our attribution approach and findings provide a novel perspective for unpacking the black box of safety mechanisms within large models. The interventions establish that the behavior is sensitive to the targeted representation or parameter direction, but sensitivity alone does not yield a complete or unique mechanism.
+    **Conclusion & Evidence.** A sparse set of attention heads has disproportionate causal control over refusal, acting mainly as harmful-feature extractors whose outputs help place generation in a refusal regime. Full-generation ablations, random controls, and overlap across models derived from one base provide fairly strong local evidence. The heads are not a complete safety mechanism: ASR depends on the judge and decoding, greedy attribution can miss distributed alternatives, ablation exposes vulnerability rather than normal necessity in all contexts, and results center on two related 7B models.
   zh: |-
-    **研究问题。** aligned 大语言模型（Large Language Model, LLM） 的拒绝与安全能力是否依赖特定 individual/groups of attention heads？如何在需要多步生成的 safety tasks 上归因这些 heads，并判断它们是否跨同源 fine-tuned models 重合、协同工作且可与 helpfulness 分离？
+    **研究问题。** 该论文研究少量注意力头是否因果影响对齐模型拒绝有害请求，如何在数据集层面归因这些头，以及它们究竟负责检测危险内容、生成拒答语言，还是只以一般有用性换取安全。
 
-    **方法。** 为填补安全相关机制可解释性中的这一空白，本文探索标准注意力机制与安全能力之间的联系。我们提出一个为多头注意力定制的新指标——安全注意力头重要性分数（Safety Head ImPortant Score，Ships），用于评估各个注意力头对模型安全性的贡献。
+    **方法。** 安全头重要分数（Safety Head Important Score, Ships）根据消融头输出或缩放值贡献后，有害回答似然的上升估计单条请求上的安全贡献。数据集级分数输入安全注意力头归因算法（Safety Attention Head Attribution Algorithm, Sahara），以贪心方式搜索协同头集合；拒答表示变化、注意力/输出消融、同源对齐模型的头重合及有用性评测用于解释功能。
 
-    **实验验证。** 在此基础上，我们把 Ships 推广到数据集层面，并进一步提出安全注意力头归因算法（Safety Attention Head AttRibution Algorithm，Sahara），以归因模型内部关键的安全注意力头。只消融一个安全注意力头，就会使经过对齐的模型（如 Llama-2-7b-chat）回答的有害问题增至原来的 16 倍，而修改的参数仅占 0.006%；相比之下，既有研究需要修改约 5% 的参数。
+    **实验验证。** 主要在 Llama-2-7B-chat 和 Vicuna-7B-v1.5 上使用 MaliciousInstruct 与 JailbreakBench，完整自回归生成最多 128 个新词元，以攻击成功率（Attack Success Rate, ASR）衡量安全。单头和多头消融与随机头、两种干预实现比较；移除更多 Sahara 高排名头时 ASR 持续上升。Llama-2-7B-chat 中仅消融一个头就使有害请求回答数约增至 16 倍，而只改动 0.006% 参数，既有方案约涉及 5%；跨模型重合与良性任务测试检查继承和副作用。
 
-    **结论与证据。** 研究发现，特定注意力头会显著影响安全性。更重要的是，广泛实验表明，注意力头在安全机制中主要充当特征提取器，并且从同一基础模型微调得到的模型具有相互重叠的安全注意力头。我们的归因方法和研究发现为剖析大模型安全机制这一黑箱提供了新视角。干预证明行为对目标表示或参数方向具有敏感性，但敏感性本身并不构成完整或唯一的机制解释。
+    **结论与证据。** 少量注意力头对拒答有不成比例的因果控制，主要像危险特征提取器，其输出帮助生成进入拒绝状态。完整生成消融、随机对照及同一基础模型衍生模型间的重合提供较强局部证据。但这些头不是完整安全机制：ASR 依赖评审与解码，贪心归因可能漏掉分布式替代路径，消融揭示脆弱性却不等于所有上下文中的正常必要性，且主结论集中在两个同源 7B 模型。
   generation:
     status: complete
     generated_by: project_agent

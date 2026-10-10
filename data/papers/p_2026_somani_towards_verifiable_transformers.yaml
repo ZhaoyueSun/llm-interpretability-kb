@@ -61,23 +61,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Can mechanistic explanations receive explicit domains of validity, counterexample search, and solver-checkable guarantees? In this paper, *Towards Verifiable Transformers: Solver-Checkable Circuit Explanations* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Mechanistic interpretability typically discovers circuits and then argues what they do from examples and ablations.
+    **Research Question.** The paper asks whether circuit explanations can be converted from empirical stories into solver-checkable claims with explicit domains. It targets projected functional equivalence, task-irrelevant invariance, edge necessity, and robustness to every perturbation in a continuous internal ball.
 
-    **Method.** We introduce Verifiable Transformers, a framework for turning task-localized circuits into bounded, solver-checkable claims: projected functional equivalence, task-relevant invariance, edge necessity, and robustness to continuous final-residual perturbations. At small scale, we directly verify all four properties for quote-closing and bracket-type circuits, including program-mediated circuits whose attention selection is entirely symbolic. For two alphabet variants of the same opener-detection/copy-type task, untouched gates expose a localization frontier: bracket-type extraction is exact only with all 144 heads, while the constructed quote artifact verifies with three edges.
+    **Method.** Verification-friendly Transformers replace softmax with sparsemax, use LeakyReLU and normalization choices amenable to linear arithmetic, and allow selected heads to be synthesized as restricted symbolic programs. Circuits and reference programs are encoded for a solver; counterexamples refine construction. At GPT-2 scale, LayerNorm is removed, non-circuit weights are frozen/hashed, and only program-local readouts are calibrated under causal constraints.
 
-    **Validation.** At GPT-2 scale, we remove LayerNorm from a sparsemax/LeakyReLU model after training with a +0.0087 OpenWebText loss increase, replace retained attention heads with synthesized restricted-DSL programs, and calibrate only program-local readouts while freezing and hashing every other parameter.
+    **Validation.** Small quote-closing and bracket-type tasks first verify all four properties directly. At GPT-2 scale, normalization removal raises OpenWebText loss by only 0.0087. Discovery finds a localization frontier: bracket extraction needs all 144 heads for exactness, whereas a constructed quote artifact uses three edges. Over a hash-pinned 1,280-prompt domain, that circuit verifies 1,280/1,280 equivalence and invariance, supplies 640 necessity witnesses per edge, and proves robustness at ε=0.01 with minimum certified radius 0.01515. Held-out counterexamples document where broader claims fail.
 
-    **Conclusion & Evidence.** The resulting three-edge quote circuit (embedding $\to$ multilayer perceptron (MLP) 0 $\to$ program head $\to$ logits) verifies all four properties over a hash-pinned 1,280-prompt domain in linear real arithmetic: 1,280/1,280 equivalence and invariance, 640 edge-necessity witnesses per edge, and robustness at $ε= 0.01$ with minimum certified radius 0.01515. Naive discovery-based verification failed for measured reasons; at scale, we find we must build the object we can verify. The verified object is a calibrated artifact, not the unmodified model, and all claims are bounded to declared domains. The formal result is strong under its stated assumptions, with experiments or constructions supporting the predicted consequences. Its scope is limited by those assumptions and does not automatically extend to every architecture or training regime.
+    **Conclusion & Evidence.** Exact verification is feasible when the model/circuit is deliberately made verifiable, but near-exact discovered circuits are insufficient for universal claims. Solver certificates give very strong evidence inside the declared domain. The verified object is a calibrated artifact rather than the original dense model, the domain is finite and declared rather than held-out generalization, architectural substitutions change computation, and inability to synthesize a program is not proof none exists.
   zh: |-
-    **研究问题。** 能否把 circuit explanations 转化为 solver-checkable bounded claims，验证其在声明域内与 symbolic program 功能等价、边必要、对无关输入不变且对连续扰动稳健？当原生神经电路难以直接证明时，能否构造性地安装并校准可验证的程序电路且禁止新 bypass？
+    **研究问题。** 该论文研究能否把经验性电路故事转化为带明确适用域、可由求解器检查的主张，目标包括投影功能等价、对任务无关变化不变、每条边必要，以及对内部连续扰动球内全部扰动稳健。
 
-    **方法。** 我们提出 Verifiable Transformers 框架，将针对具体任务定位的回路转化为有明确边界、可由求解器检查的主张，包括：投影后的功能等价性、任务相关不变性、边的必要性，以及对最终残差流连续扰动的稳健性。在 GPT-2 规模上，我们对一个 sparsemax/LeakyReLU 模型训练后移除 LayerNorm，OpenWebText 损失只增加了 0.0087；随后用受限领域专用语言合成的程序替换保留的注意力头，只校准程序局部的读出，同时冻结并对其余所有参数进行哈希固定。
+    **方法。** 可验证 Transformer 用 sparsemax 替代 softmax，采用 LeakyReLU 和适合线性算术的归一化，并允许把入选头合成为受限符号程序。电路和参考程序编码给求解器，反例用于改进构造。GPT-2 规模中移除 LayerNorm，冻结并哈希非电路权重，只在因果约束下校准程序局部读出。
 
-    **实验验证。** 在小规模模型上，我们直接验证了引号闭合回路和括号类型回路的上述四项性质，其中还包括注意力选择完全由符号程序实现的程序介导回路。所得三边引号回路（embedding $\to$ 多层感知机（Multi-Layer Perceptron, MLP） 0 $\to$ 程序头 $\to$ logits）在一个经哈希固定、包含 1,280 条提示的域上，使用线性实数算术验证了全部四项性质：等价性和不变性均为 1,280/1,280；每条边有 640 个必要性见证；在 $ε=0.01$ 时通过稳健性验证，最小认证半径为 0.01515。对于同一“检测起始符并复制类型”任务的两个字母表变体，未经修改的门控暴露出一个局部化边界：括号类型抽取只有在使用全部 144 个注意力头时才完全准确，而构造出的引号产物只需三条边即可完成验证。经验证的对象是经过校准的人工产物，而非未经修改的原模型，并且所有主张都只适用于明确声明的域。
+    **实验验证。** 先在小型引号闭合与括号类型任务上直接验证四项性质。GPT-2 规模移除归一化只使 OpenWebText 损失增加 0.0087。发现阶段显示定位边界：括号提取需全部 144 个头才精确，构造的引号工件只需三条边。在哈希固定的 1,280 条提示域上，电路达到 1,280/1,280 等价与不变，每条边有 640 个必要性见证，并在 ε=0.01 下证明稳健，最小认证半径 0.01515；留出反例明确展示外推失败。
 
-    **结论与证据。** 基于朴素发现结果的验证由于可测量的原因而失败；在大规模场景中，我们发现必须主动构造一个能够验证的对象。形式结果在明确假设下具有较强支持，实验或构造也验证了其预测后果；结论范围受这些假设约束，不能自动推广到所有架构和训练设置。
+    **结论与证据。** 当模型/电路被有意设计为可验证时，精确验证可行；近乎精确的发现电路不足以支持普遍主张。求解器证书在声明域内提供极强证据。但被验证的是校准工件而非原密集模型，域是有限声明集而非留出泛化，架构替换改变计算，合成失败也不证明不存在符号解释。
   generation:
     status: complete
     generated_by: project_agent

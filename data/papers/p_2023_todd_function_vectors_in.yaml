@@ -78,23 +78,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Can a model compress a task or program into a composable, transferable, and causally effective vector? In this paper, *Function Vectors in Large Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported.
+    **Research Question.** The paper asks how a language model infers and executes a task from in-context examples, whether that task can be compressed into a single transferable hidden-state vector, and whether the vector acts as a genuine function trigger rather than a simple semantic word offset.
 
-    **Method.** We report the presence of a simple neural mechanism that represents an input-output function as a vector within autoregressive transformer language models (LMs).
+    **Method.** For each task, causal mediation patches individual attention-head outputs from a correct few-shot prompt into a shuffled-label prompt and ranks heads by restored task performance. Averaging the outputs of a small fixed set of high-causal heads across demonstrations yields a function vector (FV), which is added to the residual stream at a chosen layer. Portability tests vary prompt correctness and input, vocabulary decoding interprets the vector, and vector addition/composition tests whether several functions can be invoked together.
 
-    **Validation.** FVs are robust to changes in context, i.e., they trigger execution of the task on inputs such as zero-shot and natural text settings that do not resemble the in-context learning (ICL) contexts from which they are collected. We test FVs across a range of tasks, models, and layers and find strong causal effects across settings in middle layers.
+    **Validation.** Experiments span GPT-J-6B, GPT-NeoX-20B, and Llama-2 7B/13B/70B. Six representative tasks include antonyms, capitalization, country–capital, English–Spanish, pluralization, and present-to-past conversion; another 34 tasks broaden the test. For GPT-J, ten selected heads form each FV. On the six-task average, adding an FV raises shuffled-label accuracy from 39.1% to 90.8% and zero-shot accuracy from 5.5% to 57.5%; for Llama-2 70B across the broader task set, FV results reach 93.0% with shuffled labels and 74.2% zero-shot. Cross-layer, cross-input, cyclic-task, scale, and function-composition experiments provide controls.
 
-    **Conclusion & Evidence.** Using causal mediation analysis on a diverse range of in-context-learning (ICL) tasks, we find that a small number attention heads transport a compact representation of the demonstrated task, which we call a function vector (FV). We investigate the internal structure of FVs and find while that they often contain information that encodes the output space of the function, this information alone is not sufficient to reconstruct an FV. Finally, we test semantic vector composition in FVs, and find that to some extent they can be summed to create vectors that trigger new complex tasks. Our findings show that compact, causal internal vector representations of function abstractions can be explicitly extracted from LLMs. Our code and data are available at https://functions.baulab.info. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+    **Conclusion & Evidence.** A compact additive state extracted from causally important heads can carry the task inferred during in-context learning and trigger the model to execute it even when demonstrations are absent or misleading. Large intervention gains across models, tasks, and prompt regimes support a causal and partially compositional function representation. FVs are averages tied to chosen datasets and layers rather than a fully decoded algorithm; they do not identify all upstream inference steps, some tasks fail or compose imperfectly, and behavior may combine function triggering with ordinary semantic offsets.
   zh: |-
-    **研究问题。** in-context learning 的任务本身是否被编码为可从少数 causal attention heads 提取的 compact function vector？这种向量能否跨上下文触发任务、携带超出输出词汇的信息，并通过向量组合形成复合函数？
+    **研究问题。** 该论文研究语言模型如何从上下文示例推断并执行任务，该任务能否压缩为单个可迁移隐藏状态向量，以及此向量究竟触发真实函数，还是仅相当于简单语义词向量偏移。
 
-    **方法。** 我们报告了一种简单神经机制的存在：它在自回归 Transformer 语言模型（LM）内部用一个向量表示输入—输出函数。
+    **方法。** 对每个任务，因果中介实验把正确少样本提示中的单个注意力头输出修补到标签打乱提示，按任务恢复程度筛选注意力头。将少量高因果头在多个示例上的输出求平均，得到函数向量（Function Vector, FV），再加到指定层的残差流。迁移测试改变提示正确性和输入，词表解码解释向量内容，向量加法与组合则检验能否同时调用多个函数。
 
-    **实验验证。** 函数向量对上下文变化具有鲁棒性：在零样本设置和自然文本等与其提取来源 上下文学习（In-Context Learning, ICL） 上下文并不相似的输入中，它们仍能触发任务执行。我们跨多种任务、模型和层测试函数向量，并在不同设置的中间层发现了很强的因果效应。最后，我们测试函数向量的语义向量组合，发现它们在一定程度上可以相加，形成能够触发新复杂任务的向量。
+    **实验验证。** 实验覆盖 GPT-J-6B、GPT-NeoX-20B 和 Llama-2 7B/13B/70B。六个代表任务含反义词、大小写、国家—首都、英译西、复数化和现在时转过去时，另用 34 项任务扩展评测。GPT-J 每个 FV 使用 10 个筛选注意力头；六任务平均中，加入 FV 后打乱标签准确率由 39.1% 升至 90.8%，零样本准确率由 5.5% 升至 57.5%。Llama-2 70B 在扩展任务上的 FV 结果达到打乱标签 93.0%、零样本 74.2%；跨层、跨输入、循环任务、规模和函数组合实验提供对照。
 
-    **结论与证据。** 通过对多种上下文学习（ICL）任务进行因果中介分析，我们发现，少量注意力头会传递所示范任务的紧凑表征，我们称之为函数向量（FV）。我们进一步考察函数向量的内部结构，发现它们虽经常包含编码函数输出空间的信息，但仅凭这些信息不足以重建函数向量。我们的发现表明，可以从大语言模型中显式提取对函数抽象的紧凑、具有因果作用的内部向量表征。代码和数据见 https://functions.baulab.info。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+    **结论与证据。** 从因果重要注意力头提取的紧凑加性状态能够承载上下文学习所得任务，并在示例缺失或误导时触发模型执行。跨模型、任务和提示条件的大幅干预增益支持一种具有因果性且部分可组合的函数表示。但 FV 是依赖所选数据和层的平均量，并非完整解码算法；它没有定位全部上游推断步骤，部分任务失败或组合不完整，行为也可能混有普通语义偏移。
   generation:
     status: complete
     generated_by: project_agent

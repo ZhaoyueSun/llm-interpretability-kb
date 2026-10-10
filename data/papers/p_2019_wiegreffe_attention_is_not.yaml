@@ -54,23 +54,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** The paper revisits whether attention weights can serve as explanations. It asks whether earlier negative results used appropriate definitions and controls, and how plausible explanations should be distinguished from faithful accounts of a model's decision process.
+    **Research Question.** The paper re-examines whether attention weights can ever function as faithful explanations, rather than asking whether they are explanations in every architecture and task. It specifically tests whether earlier counterexamples—uncorrelated gradients and adversarial attention distributions that preserve predictions—are sufficient to rule out explanatory use.
 
-    **Method.** The authors propose four model-aware tests: comparison with a uniform-attention baseline, calibration against variability across random seeds, diagnostic models that freeze learned attention, and end-to-end adversarial training that searches for alternative attention distributions while preserving predictions. These tests evaluate necessity, stability, and replaceability without treating post-hoc attention changes as if they came from the original model.
+    **Method.** The analysis replaces a universal yes/no claim with model-specific diagnostics. It compares learned attention with a uniform-attention baseline, measures how much attention varies across random initializations, trains adversarial distributions under an explicit optimization objective, and transfers fixed attention weights into a simpler noncontextual model whose token representations cannot recover neighboring context. Prediction differences are measured with total variation distance and attention differences with Jensen–Shannon divergence.
 
-    **Validation.** The framework is evaluated on recurrent neural network (RNN) attention models across several natural-language classification datasets. The experiments compare ordinary attention, uniform weights, random-seed variation, frozen-attention diagnostics, and adversarially trained alternatives, including cases where very different attention distributions yield similar predictions.
+    **Validation.** The experiments reproduce long short-term memory (LSTM) attention classifiers on Stanford Sentiment Treebank, Internet Movie Database reviews, 20 Newsgroups, AG News, and the Diabetes and Anemia tasks derived from Medical Information Mart for Intensive Care III (MIMIC-III). Positive-class F1 evaluates classification; eight random seeds establish ordinary attention variance before adversarial divergence is interpreted. Uniform attention is close to the learned model on several datasets but drops more substantially on the clinical tasks, while the noncontextual diagnostic tests whether original, uniform, random, or adversarial weights carry usable token-ranking information.
 
-    **Conclusion & Evidence.** Alternative attention distributions exist, but their existence alone does not prove that the learned attention is useless as explanation; some fail model-consistent diagnostic tests, and conclusions depend on the intended notion of explanation. The experiments provide strong audit evidence against categorical claims on either side. They do not establish attention weights as universally faithful causal explanations, only that they can carry explanatory value under explicit definitions and controls.
+    **Conclusion & Evidence.** Alternative attention distributions can often preserve a prediction, but this alone does not show that the learned distribution is useless: many adversarial distributions perform poorly when used to guide the restricted diagnostic model, and random-seed variation supplies a necessary calibration. The evidence refutes a blanket claim that attention is never explanatory and offers practical tests for particular settings. It does not prove that attention is generally faithful, because recurrent hidden states may mix contextual information and all conclusions remain architecture- and task-dependent.
   zh: |-
-    **研究问题。** 论文重新审视注意力权重能否充当解释，重点追问此前的否定性结论是否使用了合适的解释定义和控制条件，以及应如何区分“看起来合理的解释”与“忠实反映模型决策过程的解释”。
+    **研究问题。** 该论文重新考察注意力权重是否可能在特定模型中构成忠实解释，而不是假设它在所有架构和任务中都必须是解释。核心检验是：梯度不相关以及“保持预测不变的对抗注意力分布”是否足以否定注意力的解释价值。
 
-    **方法。** 作者提出四类考虑完整模型的测试：均匀注意力基线、跨随机种子方差校准、冻结已学习注意力的诊断模型，以及在尽量保持预测不变的同时搜索替代注意力分布的端到端对抗训练。这些测试分别考察注意力的必要性、稳定性和可替代性，并避免把脱离原模型生成的事后注意力修改直接当作原模型解释。
+    **方法。** 研究把普遍的是非命题改写为针对具体模型的诊断：比较学习到的注意力与均匀注意力基线；用不同随机初始化估计模型内部正常的注意力方差；在明确目标下训练对抗注意力；再把固定注意力权重交给一个非上下文化的简化模型，使词表示无法从邻近词恢复上下文。预测差异用总变差距离衡量，注意力分布差异用 Jensen–Shannon 散度衡量。
 
-    **实验验证。** 框架在多个自然语言分类数据集上的循环神经网络（Recurrent Neural Network, RNN）注意力模型中验证。实验比较原始注意力、均匀权重、不同随机种子、冻结注意力的诊断模型和对抗训练得到的替代分布，并分析注意力差异很大但预测相近的情形。
+    **实验验证。** 实验复现基于长短期记忆网络（Long Short-Term Memory, LSTM）的注意力分类器，数据包括 Stanford Sentiment Treebank、Internet Movie Database 影评、20 Newsgroups、AG News，以及重症监护医学信息集 III（Medical Information Mart for Intensive Care III, MIMIC-III）派生的 Diabetes 和 Anemia 任务。分类指标为正类 F1；八个随机种子用于建立注意力自然波动基线。均匀注意力在若干文本数据上的 F1 接近原模型，但在临床任务上下降更明显；非上下文化诊断则比较原始、均匀、随机和对抗权重是否仍能提供可用的 token 排序信息。
 
-    **结论与证据。** 不同注意力分布确实可能产生相似预测，但这一事实本身不足以证明已学习注意力没有解释价值；部分替代分布无法通过与模型一致的诊断测试，结论也取决于所采用的解释定义。论文为反对双方的绝对化主张提供了较强审计证据，但并未证明注意力权重普遍是忠实的因果解释，只说明在明确的定义和控制下它可能具有解释价值。
+    **结论与证据。** 保持输出近似不变的替代注意力通常确实存在，但这并不能推出原注意力没有信息：许多对抗分布在受限诊断模型上表现较差，而且随机种子方差说明分布差异必须经过校准。证据足以反驳“注意力绝不可能是解释”的普遍断言，并给出针对具体设置的检验办法；但它同样不能证明注意力普遍忠实，因为循环隐藏状态可能混合上下文，结论也依赖任务与架构。
   generation:
     status: complete
     generated_by: project_agent

@@ -89,23 +89,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Do interpretability methods provide distinctive practical value on causal tasks, realistic distributions, and against strong baselines? In this paper, *AxBench: Steering large language models (LLMs)? Even Simple Baselines Outperform Sparse Autoencoders* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Fine-grained steering of language model outputs is essential for safety and reliability. Prompting and finetuning are widely used to achieve these goals, but interpretability researchers have proposed a variety of representation-based techniques as well, including sparse autoencoders (SAEs), linear artificial tomography, supervised steering vectors, linear probes, and representation finetuning. At present, there is no benchmark for making direct comparisons between these proposals.
+    **Research Question.** The paper asks whether representation-based interpretability methods offer a practical advantage for open-vocabulary concept detection and long-form behavior steering when compared fairly with prompting and fine-tuning. It especially tests claims that sparse autoencoder features are useful control interfaces.
 
-    **Method.** Therefore, we introduce AxBench, a large-scale benchmark for steering and concept detection, and report experiments on Gemma-2-2B and 9B. For concept detection, representation-based methods such as difference-in-means, perform the best. We introduce a novel weakly-supervised representational method (Rank-1 Representation Finetuning; ReFT-r1), which is competitive on both tasks while providing the interpretability advantages that prompting lacks.
+    **Method.** AxBench standardizes concept data, training budgets, interventions, and evaluation for detection and steering. Compared methods include Sparse Autoencoders (SAEs), difference-in-means vectors, linear probes/artificial tomography, supervised steering, representation fine-tuning, ordinary fine-tuning, and prompting. Rank-1 Representation Fine-Tuning (ReFT-r1) jointly learns a one-dimensional concept subspace and intervention with weak supervision.
 
-    **Validation.** For steering, we find that prompting outperforms all existing methods, followed by finetuning. On both evaluations, SAEs are not competitive.
+    **Validation.** Instruction-tuned Gemma-2-2B and 9B are tested on concepts drawn from two GemmaScope layers. Each main concept receives 144 generated training examples plus harder evaluation negatives. Detection scores distinguish concept presence; steering uses diverse Alpaca-Eval instructions and judges both concept expression and output quality. Eight aggregate tasks compare methods under equal data, layer selection, steering strength, and compute, while larger CONCEPT16K dictionaries test scale and unseen natural-language-to-subspace mapping.
 
-    **Conclusion & Evidence.** Along with AxBench, we train and publicly release SAE-scale feature dictionaries for ReFT-r1 and DiffMean. The counterexamples or controls strongly delimit what the audited method can justify. They do not, on their own, prove that any proposed replacement is universally faithful or sufficient.
+    **Conclusion & Evidence.** Prompting is the strongest steering baseline, followed by fine-tuning; difference-in-means is strong for detection, ReFT-r1 is competitive across both, and SAEs are not competitive on either. Scale, strong baselines, hard negatives, and quality–control trade-offs make this substantial benchmark evidence against current SAE steering claims. Synthetic concept generation and automated judges may bias rankings, only Gemma models are used, and failure here does not rule out SAE value for scientific discovery or carefully selected causal features.
   zh: |-
-    **研究问题。** representation-based steering 是否在开放词汇概念与长文本生成的现实规模上，真正优于 prompting、full/parameter-efficient fine-tuning 等简单控制基线？如何同时以 concept detection 与 model steering 建立可扩展的统一 benchmark？
+    **研究问题。** 该论文研究在与提示和微调公平比较时，基于表示的解释方法能否在开放词表概念检测和长文本行为引导上提供实用优势，尤其检验稀疏自编码器特征能否充当有效控制接口。
 
-    **方法。** 我们提出一种新的弱监督表征方法——秩一表征微调（Rank-1 Representation Finetuning，ReFT-r1）。该方法在两项任务上均具有竞争力，同时具备提示方法所缺少的可解释性优势。
+    **方法。** AxBench 统一概念数据、训练预算、干预与检测/引导评测。比较方法包括稀疏自编码器（Sparse Autoencoder, SAE）、均值差向量、线性探针/人工断层扫描、监督引导、表示微调、普通微调和提示。秩一表示微调（Rank-1 Representation Fine-Tuning, ReFT-r1）用弱监督联合学习一维概念子空间和干预。
 
-    **实验验证。** 因此，我们推出 AxBench——一个用于引导和概念检测的大规模基准，并报告在 Gemma-2-2B 和 Gemma-2-9B 上的实验。就引导而言，提示优于所有现有方法，微调位居其次；就概念检测而言，均值差等基于表征的方法表现最佳。在两项评估中，稀疏自编码器（Sparse Autoencoder, SAE） 都缺乏竞争力。
+    **实验验证。** 指令微调 Gemma-2-2B/9B 在取自 GemmaScope 两层的概念上测试；主实验每个概念用 144 条生成训练样本，评测含更难负例。检测任务判断概念是否存在；引导任务使用多样 Alpaca-Eval 指令，同时评判概念表达与输出质量。八项聚合任务在匹配数据、层选择、引导强度和计算量下比较；更大的 CONCEPT16K 字典测试规模化及从未见自然语言描述映射到子空间。
 
-    **结论与证据。** 除 AxBench 外，我们还训练并公开发布了达到 SAE 规模的 ReFT-r1 和 DiffMean 特征字典。反例和控制实验有力限定了被审计方法能够支持的结论，但它们本身不能证明任何替代方法普遍忠实或充分。
+    **结论与证据。** 提示是最强引导基线，其次是微调；均值差在检测上很强，ReFT-r1 在两类任务均有竞争力，SAE 则均不具竞争力。大规模、强基线、困难负例和质量–控制权衡构成反对当前 SAE 引导主张的重要基准证据。但合成概念与自动评审可能影响排序，模型只覆盖 Gemma，失败也不排除 SAE 对科学发现或精挑因果特征的价值。
   generation:
     status: complete
     generated_by: project_agent

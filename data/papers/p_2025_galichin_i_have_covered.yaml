@@ -86,23 +86,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Do fine-tuning and post-training create new mechanisms, or strengthen, suppress, and reorganize existing ones? In this paper, *I Have Covered All the Bases Here: Interpreting Reasoning Features in Large Language Models via Sparse Autoencoders* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Recent LLMs like DeepSeek-R1 have demonstrated state-of-the-art performance by integrating deep thinking and complex reasoning during generation. However, the internal mechanisms behind these reasoning processes remain unexplored.
+    **Research Question.** The paper asks whether reasoning models contain identifiable sparse features corresponding to moments such as uncertainty, exploration, reflection, and conclusion, whether post-training adds or amplifies those features, and whether manipulating them changes reasoning quality rather than merely its verbal style.
 
-    **Method.** We hypothesize these words correspond to specific reasoning moments within the models' internal mechanisms. We introduce ReasonScore, an automatic metric to identify active SAE features during these reasoning moments.
+    **Method.** Sparse Autoencoders (SAEs) decompose residual activations from reasoning traces. ReasonScore ranks latents by how selectively their activation aligns with automatically detected reasoning-marker spans, rather than simply frequent words. High-scoring features are interpreted with activation examples and automated descriptions. Model diffing compares base and reasoning-tuned checkpoints, while inference-time feature amplification tests causal effects.
 
-    **Validation.** To test this hypothesis, we employ Sparse Autoencoders (SAEs), a technique for sparse decomposition of neural network activations into human-interpretable features. Through steering experiments, we demonstrate that amplifying these features increases performance on reasoning-intensive benchmarks (+2.2%) while producing longer reasoning traces (+20.5%).
+    **Validation.** Reasoning and non-reasoning variants are compared on generated traces and standard reasoning-intensive benchmarks. Selected features are checked manually and automatically for activation on uncertainty, exploratory search, self-correction, and reflection; lexical controls test whether the score only rediscovers cue words. Steering is compared with unsteered generation and irrelevant-feature controls, measuring task accuracy, trace length, and behavioral side effects. Amplifying the selected set raises benchmark accuracy by 2.2 percentage points and lengthens reasoning traces by 20.5%; checkpoint comparison reports these features predominantly in models trained for reasoning.
 
-    **Conclusion & Evidence.** We observe reasoning LLMs consistently use vocabulary associated with human reasoning processes. We perform manual and automatic interpretation of the features detected by our metric, and find those with activation patterns matching uncertainty, exploratory thinking, and reflection. Using the model diffing technique, we provide evidence that these features are present only in models with reasoning capabilities. Our work provides the first step towards a mechanistic understanding of reasoning in LLMs. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+    **Conclusion & Evidence.** Reasoning post-training is associated with a sparse set of readable features whose manipulation can modestly improve performance, not only increase marker usage. Model comparison, feature-level examples, controls, and steering give moderate causal support. The gain is small relative to the trace-length change, SAE features can split or absorb concepts, ReasonScore depends on a predefined discourse vocabulary, and steering does not establish a complete reasoning algorithm or prove the features are absent rather than less aligned in base models.
   zh: |-
-    **研究问题。** reasoning 大语言模型（Large Language Model, LLM） 的 uncertainty、exploration 与 reflection 是否编码为可由 稀疏自编码器（Sparse Autoencoder, SAE） 和 ReasonScore 识别的稀疏方向？这些 features 是否在 reasoning fine-tuning 后出现，并可通过 steering 因果性地延长推理与提升任务表现？
+    **研究问题。** 该论文研究推理模型是否包含对应不确定、探索、反思和结论等时刻的可识别稀疏特征，后训练是新增还是放大这些特征，以及操控它们改变的是推理质量还是仅改变表面语言风格。
 
-    **方法。** 我们假设，这些词对应于模型内部机制中的特定推理时刻。我们提出 ReasonScore，一种用于识别这些推理时刻中活跃 SAE 特征的自动指标。
+    **方法。** 稀疏自编码器（Sparse Autoencoder, SAE）分解推理轨迹的残差激活。ReasonScore 按潜变量对自动检测的推理标记片段的选择性对齐程度排序，而非只寻找高频词；高分特征通过激活例和自动描述解释。模型差异分析比较基础与推理微调检查点，推理时放大特征测试因果作用。
 
-    **实验验证。** 为检验该假说，我们采用稀疏自编码器（SAE），把神经网络激活稀疏分解为人类可解释的特征。我们对该指标检测出的特征进行人工和自动解释，并发现一些特征的激活模式分别对应不确定性、探索性思考和反思。引导实验表明，放大这些特征可以提升模型在推理密集型基准上的表现（+2.2%），同时产生更长的推理轨迹（+20.5%）。
+    **实验验证。** 推理版与非推理版模型在生成轨迹和标准高推理需求基准上比较。入选特征经人工和自动检查，确认是否在不确定、探索、自我纠正和反思处激活；词汇对照检验分数是否只找回提示词。特征引导与无引导、无关特征对照比较任务准确率、轨迹长度和副作用。放大入选特征使准确率提高 2.2 个百分点，推理轨迹增长 20.5%；检查点比较显示这些特征主要出现在经过推理训练的模型中。
 
-    **结论与证据。** 我们观察到，推理型语言模型会持续使用与人类推理过程有关的词汇。借助模型差分技术，我们给出证据表明，这些特征只存在于具备推理能力的模型中。本工作是迈向机制层面理解语言模型推理的第一步。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+    **结论与证据。** 推理后训练与一组可读稀疏特征相关，操控它们可小幅改善性能，而不只是增加推理标记词。模型对比、特征例、控制和引导提供中等因果支持。但性能增益相对轨迹增长较小，SAE 可能拆分或吸收概念，ReasonScore 依赖预设话语词汇，引导也未给出完整推理算法，不能证明基础模型完全没有而非较弱地表示这些特征。
   generation:
     status: complete
     generated_by: project_agent

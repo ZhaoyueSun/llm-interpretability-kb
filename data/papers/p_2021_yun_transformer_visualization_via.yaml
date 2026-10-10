@@ -65,23 +65,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** The paper asks whether contextualized embeddings across Transformer layers can be decomposed into a shared sparse set of interpretable factors without prespecifying a probing task. It further asks whether those factors reveal where lexical, syntactic, and long-range patterns emerge through depth.
+    **Research Question.** The paper asks whether contextual Transformer embeddings can be decomposed into a shared, sparse set of interpretable factors and whether the layerwise activation of those factors exposes a hierarchy from word-sense disambiguation to sentence patterns and long-range dependencies.
 
-    **Method.** The authors formulate multilayer contextual representations as sparse linear combinations of learned Transformer factors. Joint dictionary learning shares factors across layers while assigning sparse coefficients to individual token representations, allowing a factor to be inspected through its highest-loading tokens, contexts, and layerwise coefficient trajectory.
+    **Method.** Contextualized token vectors from all layers of a frozen 12-layer BERT model are modeled as nonnegative sparse linear combinations of columns in one learned dictionary. A factor's interpretation comes from the corpus tokens and contexts with its largest coefficients, while its “importance score” curve over layers records when the factor emerges or disappears. Sharing a dictionary across layers makes the same factor traceable through depth rather than fitting unrelated bases layer by layer.
 
-    **Validation.** The method is applied to contextual embeddings from pretrained Transformer language models on large text collections. Qualitative case studies examine word-sense disambiguation, syntactic relations, and long-distance dependencies, while quantitative analyses compare reconstruction, sparsity, stability, and correspondence with known linguistic annotations or baselines.
+    **Validation.** The dictionary is learned from BERT activations on a large text corpus and examined through top-activating contexts, layerwise curves, controlled text substitutions, and human-labeled linguistic data. For the polysemous token “left,” a factor peaking near layer 4 separates verbal from nonverbal uses; on the Brown Corpus, a logistic classifier using that single factor obtains 97.2% precision, 95.8% recall, and 96.5% F1 for verb detection, comparable to a fine-tuned BERT part-of-speech model at 96.3% F1. Later-layer factors are challenged by replacing, deleting, masking, or changing adjectives, and qualitative examples track sentence-level coordination and cross-sentence reference.
 
-    **Conclusion & Evidence.** Sparse factors recover coherent contextual patterns and provide a layerwise view of when they appear, offering an unsupervised complement to task-specific probes. The evidence supports the existence of useful low-dimensional factors in the analyzed representations, but it is mainly descriptive and decoding-based. Factor interpretability depends on dictionary-learning choices, and the study does not show that the recovered factors are unique or causally used by the Transformer.
+    **Conclusion & Evidence.** Sparse factors reveal a plausible progression: early layers resolve word-level senses, middle layers form sentence patterns, and later layers capture longer-range structure. The Brown Corpus test and adversarial substitutions show that selected factors respond to controlled linguistic changes rather than only isolated tokens. Evidence is nevertheless concentrated in chosen factors and case studies; the method establishes useful linear descriptions of activation geometry, not that every factor is monosemantic or causally necessary for BERT's predictions.
   zh: |-
-    **研究问题。** 论文研究能否在不预先指定探测任务的情况下，把 Transformer 各层的上下文化嵌入分解为一组共享、稀疏且可解释的因子；并考察这些因子能否揭示词汇、句法和长程依赖结构在网络深度上的形成位置。
+    **研究问题。** 该论文研究上下文化 Transformer 嵌入能否分解为一组共享、稀疏且可解释的因子，以及这些因子随层数变化的激活轨迹是否揭示从词义消歧、句内模式到长距离依赖的表示层级。
 
-    **方法。** 作者把多层上下文化表示建模为若干 Transformer 因子的稀疏线性组合。联合字典学习在不同层之间共享因子，同时为每个 token 表示学习稀疏系数；研究者可以通过最高系数对应的 token、上下文以及系数随层数的变化来解释一个因子。
+    **方法。** 冻结的 12 层 BERT 在各层产生的上下文化 token 向量，被表示为同一个字典列向量的非负稀疏线性组合。因子的语义由系数最大的语料 token 及上下文解释，其逐层“重要性分数”曲线用于记录因子何时出现或消退。跨层共享同一字典，使同一个因子能够沿深度追踪，而不是每层学习互不对应的基。
 
-    **实验验证。** 方法应用于预训练 Transformer 语言模型在大规模文本上的上下文化嵌入。定性案例覆盖词义消歧、句法关系和长距离依赖；定量分析则考察重构误差、稀疏性、稳定性，以及所得因子与已知语言标注或替代分解之间的对应。
+    **实验验证。** 字典由大规模文本上的 BERT 激活学习，并通过最高激活上下文、逐层曲线、受控文本替换以及人工标注语料检验。对于多义词 “left”，在第 4 层附近达到峰值的一个因子可区分动词和非动词用法；在 Brown Corpus 上，只使用该因子的逻辑回归分类器得到 97.2% 精确率、95.8% 召回率和 96.5% F1，与微调 BERT 词性模型的 96.3% F1 相当。中高层因子还通过替换、删除、遮蔽或改变形容词进行扰动，并用案例观察句内协调与跨句指代。
 
-    **结论与证据。** 稀疏因子能够恢复语义连贯的上下文模式，并显示这些模式在不同层中何时出现，为任务特定探针提供了无监督补充。证据支持所分析表示中存在有用的低维因素，但主要仍是描述性和可解码性证据；因子解释依赖字典学习设置，研究也未证明这些因子具有唯一性或被 Transformer 因果使用。
+    **结论与证据。** 稀疏因子显示出合理层级：早期层处理词级语义消歧，中间层形成句子模式，后期层捕获更长距离结构。Brown Corpus 定量测试和对抗替换说明选定因子会响应受控语言变化，而非只对应孤立 token。但证据集中在筛选后的因子和案例上；方法给出有用的激活几何线性描述，并不能证明所有因子都是单义的，或对 BERT 预测具有因果必要性。
   generation:
     status: complete
     generated_by: project_agent

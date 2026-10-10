@@ -83,23 +83,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Are safety, refusal, and hidden-trigger behaviors implemented by low-dimensional directions or distributed circuits? In this paper, *Refusal in Language Models Is Mediated by a Single Direction* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Conversational large language models are fine-tuned for both instruction-following and safety, resulting in models that obey benign requests but refuse harmful ones. While this refusal behavior is widespread across chat models, its underlying mechanisms remain poorly understood.
+    **Research Question.** The paper asks whether refusal in instruction-tuned language models is mediated by a low-dimensional representation shared across harmful requests, and whether that representation is causally necessary and sufficient for refusing. It also asks how jailbreak prompts suppress the mechanism and whether editing model weights can remove it without broadly damaging capability.
 
-    **Method.** Leveraging this insight, we propose a novel white-box jailbreak method that surgically disables refusal with minimal effect on other capabilities.
+    **Method.** A refusal direction is computed as the difference between mean residual-stream activations for harmful and harmless prompts. Directional ablation removes its component throughout the residual stream, activation addition inserts it at one layer, and weight orthogonalization projects the direction out of every matrix that writes to the residual stream. Attention and projection analyses trace how adversarial suffixes prevent the direction from being written.
 
-    **Validation.** In this work, we show that refusal is mediated by a one-dimensional subspace, across 13 popular open-source chat models up to 72B parameters in size. Specifically, for each model, we find a single direction such that erasing this direction from the model's residual stream activations prevents it from refusing harmful instructions, while adding this direction elicits refusal on even harmless instructions. Finally, we mechanistically analyze how adversarial suffixes suppress propagation of the refusal-mediating direction.
+    **Validation.** Tests cover 13 open-source chat models from 1.8B to 72B parameters. Directions use 128 harmful prompts from AdvBench, MaliciousInstruct, TDC2023, and HarmBench plus 128 harmless Alpaca prompts, with 32+32 held out. On 100 JailbreakBench behaviors, refusal is scored by string matching and Llama Guard 2; HarmBench's 159 standard behaviors measure attack success after weight editing. Ablation suppresses refusal and addition induces it on harmless prompts across models. MMLU, ARC, GSM8K, and TruthfulQA check collateral capability; most edited scores remain within the original 99% confidence interval, although some models degrade. A learned adversarial suffix on Qwen-1.8B provides a mechanistic jailbreak case study.
 
-    **Conclusion & Evidence.** Our findings underscore the brittleness of current safety fine-tuning methods. More broadly, our work showcases how an understanding of model internals can be leveraged to develop practical methods for controlling model behavior. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+    **Conclusion & Evidence.** A single linear direction mediates a large fraction of refusal behavior across diverse chat models: removing it disables refusal, adding it induces refusal, and deleting it from weights creates a broadly effective white-box jailbreak. Cross-model necessity/sufficiency interventions provide strong causal evidence for this specific behavior. The claim is not that safety or harmfulness is globally one-dimensional; the experiments concern open-weight chat models and benchmarked prompts, some orthogonalized models lose capability, and substring or classifier judgments imperfectly measure safe, coherent responses.
   zh: |-
-    **研究问题。** chat models 的 refusal behavior 是否跨架构与规模由 residual stream 中单一方向中介？消融或加入该方向、以及 rank-one weight edit，能否分别关闭或诱发拒绝；adversarial suffix 又如何阻断其传播？
+    **研究问题。** 该论文研究指令微调语言模型的拒答是否由跨有害请求共享的低维表示介导，该表示对拒答是否既必要又充分；同时分析越狱提示如何压制这一机制，以及能否通过权重编辑移除它而不普遍损害能力。
 
-    **方法。** 利用这一认识，我们提出一种新的白盒越狱方法，以外科手术般的方式禁用拒绝机制，同时尽量减少对其他能力的影响。更广泛地说，本工作展示了如何利用对模型内部机制的理解，开发控制模型行为的实用方法。
+    **方法。** 拒答方向由有害与无害提示在残差流中的平均激活差得到。方向消融在整个残差流中移除该分量，激活加法在单层注入该分量，权重正交化则从所有写入残差流的矩阵中投影掉该方向。注意力与投影分析进一步追踪对抗后缀如何阻止模型写入拒答方向。
 
-    **实验验证。** 具体而言，对每个模型，我们都找到了一个方向：从模型残差流激活中擦除该方向，会使模型不再拒绝有害指令；加入该方向，则会使模型连无害指令也予以拒绝。最后，我们从机制层面分析对抗性后缀如何抑制拒绝介导方向的传播。
+    **实验验证。** 测试覆盖 13 个 18 亿至 720 亿参数的开源聊天模型。方向使用来自 AdvBench、MaliciousInstruct、TDC2023 和 HarmBench 的 128 条有害提示及 128 条 Alpaca 无害提示，另留出各 32 条。100 项 JailbreakBench 行为用字符串规则和 Llama Guard 2 判断拒答，HarmBench 的 159 项标准行为衡量权重编辑后的攻击成功率。跨模型实验中，消融会压制拒答，加法会让无害提示也被拒绝；MMLU、ARC、GSM8K 和 TruthfulQA 检查副作用，多数编辑后分数仍处于原模型 99% 置信区间内，但部分模型下降。Qwen-1.8B 上学习得到的对抗后缀用于机制个案分析。
 
-    **结论与证据。** 在本研究中，我们表明，在 13 个常用开源聊天模型中——模型规模最大达到 720 亿参数——拒绝行为均由一个一维子空间介导。我们的发现凸显了当前安全微调方法的脆弱性。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+    **结论与证据。** 单一线性方向介导了多种聊天模型中的大部分拒答：移除它可关闭拒答，加入它可诱发拒答，从权重中删除它则形成广泛有效的白盒越狱。跨模型的必要性与充分性干预为这一特定行为提供强因果证据。但结论不等于安全或有害性整体是一维的；实验限于开放权重聊天模型和基准提示，部分正交化模型会损失能力，而字符串或分类器判断也不能完美衡量回答是否安全且连贯。
   generation:
     status: complete
     generated_by: project_agent

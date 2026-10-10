@@ -77,23 +77,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Can sparse features serve as more interpretable and scalable circuit nodes than native model components? In this paper, *Dictionary Learning Improves Patch-Free Circuit Discovery in Mechanistic Interpretability: A Case Study on Othello-Generative Pretrained Transformer (GPT)* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Sparse dictionary learning has been a rapidly growing technique in mechanistic interpretability to attack superposition and extract more human-understandable features from model activations.
+    **Research Question.** The paper asks whether dictionary learning can replace feature-level activation patching when discovering Transformer circuits. It specifically seeks a decomposition that traces output/value and query/key computations from logits or high-level features back to lower-level interpretable features, then tests the framework on a learned Othello world model.
 
-    **Method.** We ask a further question based on the extracted more monosemantic features: How do we recognize circuits connecting the enormous amount of dictionary features? Our framework suffers less from out-of-distribution and proves to be more efficient in terms of asymptotic complexity. The basic unit in our framework is dictionary features decomposed from all modules writing to the residual stream, including embedding, attention output and multilayer perceptron (MLP) output.
+    **Method.** Sparse dictionaries are trained separately on embeddings and every attention or multilayer-perceptron output that writes to the residual stream. Linearized layer normalization decomposes an output/value contribution into lower-feature activations and weight-defined connections; query/key attention scores are decomposed into source–destination feature pairs. For nonlinear multilayer perceptron (MLP)s, approximate direct contribution uses local attribution. Recursive selection of the largest terms yields a patch-free feature circuit.
 
-    **Validation.** We propose a circuit discovery framework alternative to activation patching.
+    **Validation.** A six-layer, 1.2M-parameter Othello-GPT with 128-dimensional states and 512-unit MLPs is trained on about (10^9) game sequences and reaches 99.5% legal-move prediction performance. Each dictionary maps 128 dimensions through 1,024 latent features. Top-activating-board statistics recover unsupervised “mine,” “opponent,” empty-square, move, and flipped-piece features previously found by probes. Case studies trace a local board-state feature through specific attention heads, decompose “attend to mine/theirs” query/key scores, and trace three consecutive moves into an early-MLP flipped-piece feature; head-level output/value contributions account for roughly 105–113% in the highlighted paths.
 
-    **Conclusion & Evidence.** Starting from any logit, dictionary feature or attention score, we manage to trace down to lower-level dictionary features of all tokens and compute their contribution to these more interpretable and local model behaviors. We dig in a small transformer trained on a synthetic task named Othello and find a number of human-understandable fine-grained circuits inside of it. The coordinated interventions provide comparatively strong structural causal evidence for the proposed information flow or circuit. Completeness, uniqueness, and transfer to other models still require separate validation.
+    **Conclusion & Evidence.** Dictionary features plus algebraic attribution can expose coherent Othello circuits without running a separate patch for every feature edge, and recover both known state variables and previously implicit information-flow structure. The evidence is detailed but mainly case-based: the paper explicitly does not claim a universal Othello circuit, dictionaries have about 75% dead latents and late-layer (L_0) can approach the 128-dimensional state size, nonlinear MLP attribution is approximate, and no real language-model circuit or systematic causal sufficiency test is reported.
   zh: |-
-    **研究问题。** 能否先用 dictionary learning 把 Othello-生成式预训练 Transformer（Generative Pretrained Transformer, GPT） 各模块输出分解为稀疏可解释 features，再利用 Transformer 的线性结构追踪 feature-to-feature contributions，从而无需 activation patching 地发现宏观电路并降低复杂度与 分布外（Out-of-Distribution, OOD） 风险？
+    **研究问题。** 该论文研究字典学习能否在发现 Transformer 电路时替代特征级激活修补；具体希望把 logit 或高层特征的输出/值与查询/键计算追溯到低层可解释特征，并在学得 Othello 世界模型上验证该框架。
 
-    **方法。** 基于所提取的、单义性更强的特征，我们进一步提出一个问题：如何识别连接海量字典特征的回路？该框架较少受到分布外问题的影响，并且在渐近复杂度方面更为高效。框架的基本单元是从所有向残差流写入信息的模块中分解出的字典特征，这些模块包括嵌入、注意力输出和 多层感知机（Multi-Layer Perceptron, MLP） 输出。
+    **方法。** 研究分别在嵌入以及每个写入残差流的注意力或多层感知机输出上训练稀疏字典。线性化层归一化把输出/值贡献分解为低层特征激活与权重连接，查询/键注意力分数则分解为来源—目标特征对；对非线性 MLP 使用近似直接贡献进行局部归因。递归保留最大贡献项可得到无需修补的特征电路。
 
-    **实验验证。** 我们提出一个可替代激活修补的回路发现框架。
+    **实验验证。** 六层、120 万参数的 Othello-GPT 使用 128 维状态和 512 单元 MLP，在约 (10^9) 局游戏序列上训练，合法走子预测达到 99.5%。每个字典把 128 维映射到 1,024 个潜在特征；基于最高激活棋盘的统计，无监督恢复此前探针发现的“己方/对方”、空格、落子和翻转棋子特征。案例追踪局部棋盘状态经特定注意力头形成，分解“关注己方/对方”的查询/键分数，并把连续三步落子追到早层 MLP 的翻转特征；高亮路径中单个注意力头的输出/值贡献约占总量 105%—113%。
 
-    **结论与证据。** 从任意 logit、字典特征或注意力分数出发，我们都能向下追踪到所有 token 的底层字典特征，并计算它们对这些更具可解释性、更局部的模型行为所作的贡献。我们深入研究了一个在名为 Othello 的合成任务上训练的小型 Transformer，并在其中发现了多个可由人类理解的细粒度回路。相互配合的干预为所提出的信息流或电路提供了较强的结构因果证据，但机制的完备性、唯一性以及跨模型迁移仍需独立验证。
+    **结论与证据。** 字典特征结合代数归因，能在不逐边修补的情况下展示连贯的 Othello 电路，并恢复已知状态变量及过去未显式呈现的信息流结构。证据细致但主要是案例：论文明确不宣称得到通用 Othello 电路，字典约 75% 潜变量死亡，晚层 (L_0) 可接近 128 维状态大小，非线性 MLP 归因只是近似，也没有真实语言模型电路或系统性因果充分性测试。
   generation:
     status: complete
     generated_by: project_agent

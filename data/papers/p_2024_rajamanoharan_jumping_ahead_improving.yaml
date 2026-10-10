@@ -84,23 +84,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** What should sparse representation learning optimize to balance sparsity, reconstruction faithfulness, and functional fidelity? In this paper, *Jumping Ahead: Improving Reconstruction Fidelity with JumpReLU Sparse Autoencoders* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Sparse autoencoders (SAEs) are a promising unsupervised approach for identifying causally relevant and interpretable linear features in a language model's (LM) activations. To be useful for downstream tasks, SAEs need to decompose LM activations faithfully; yet to be interpretable the decomposition must be sparse -- two objectives that are in tension.
+    **Research Question.** The paper asks whether an autoencoder can optimize the desired (L_0) count of active features directly, rather than an (L_1) proxy that shrinks magnitudes or a fixed Top-(K) constraint. It tests whether learned activation thresholds improve reconstruction at matched sparsity while retaining interpretable features.
 
-    **Method.** In this paper, we introduce JumpReLU SAEs, which achieve state-of-the-art reconstruction fidelity at a given sparsity level on Gemma 2 9B activations, compared to other recent advances such as Gated and TopK SAEs. Similarly, we use STEs to directly train L0 to be sparse, instead of training on proxies such as L1, avoiding problems like shrinkage.
+    **Method.** JumpReLU replaces ReLU with (z,\mathbf{1}[z>\theta]), using a learned positive threshold for every latent and an explicit (L_0) penalty. Although the step is discontinuous, a straight-through estimator derived as a kernel-density estimate supplies gradients for the thresholds. This lets each feature activate independently at inference, unlike Top-(K), without a separate auxiliary threshold task.
 
-    **Validation.** JumpReLU SAEs are a simple modification of vanilla (ReLU) SAEs -- where we replace the ReLU with a discontinuous JumpReLU activation function -- and are similarly efficient to train and run.
+    **Validation.** JumpReLU, Top-(K), original Gated, and reweighted-(L_1) Gated Sparse Autoencoder (SAE)s are trained for 8 billion tokens on Gemma-2-9B residual-stream, attention-output, and multilayer perceptron (MLP)-output activations after layers 9, 20, and 31. Sweeps compare (L_0) against language-model loss increase and fraction of variance unexplained; firing frequencies and attribution-weighted importance are also measured. JumpReLU consistently matches or exceeds Top-(K) fidelity and exceeds Gated variants at matched (L_0). Manual raters and automated explanation/prediction scores find no interpretability loss. Kernel, bandwidth, threshold-targeting, and architecture ablations check training stability.
 
-    **Conclusion & Evidence.** We also show that this improvement does not come at the cost of interpretability through manual and automated interpretability studies. By utilising straight-through-estimators (STEs) in a principled manner, we show how it is possible to train JumpReLU SAEs effectively despite the discontinuous JumpReLU function introduced in the SAE's forward pass. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+    **Conclusion & Evidence.** Learned jump thresholds make direct (L_0) optimization practical and give a robust sparsity–fidelity improvement over major contemporary SAE variants, without detectable loss in average feature interpretability. Multi-site, multi-layer Pareto comparisons and independent interpretation tests provide strong comparative evidence. All experiments use one model family, standard reconstruction metrics may not predict causal utility, straight-through gradients remain biased approximations, and average interpretability scores can hide rare pathological features.
   zh: |-
-    **研究问题。** 能否用具有可学习正阈值的 JumpReLU 与直接 L0 penalty，减少 ReLU 稀疏自编码器（Sparse Autoencoder, SAE） 的 false positives 和 magnitude underestimation，在给定稀疏度下提高重建忠实度，同时保持特征可解释性并降低训练复杂度？
+    **研究问题。** 该论文研究自编码器能否直接优化期望的活跃特征数 (L_0)，而不是使用会收缩幅度的 (L_1) 代理或固定 Top-(K) 约束；并检验可学习激活阈值能否在相同稀疏度下提高重构，同时保留可解释特征。
 
-    **方法。** 本文提出 JumpReLU SAE。与 Gated SAE 和 TopK SAE 等近期方法相比，它在给定稀疏度下对 Gemma 2 9B 激活实现了最先进的重构忠实度。JumpReLU SAE 是对普通 ReLU SAE 的简单修改：把 ReLU 替换为不连续的 JumpReLU 激活函数；它的训练和运行效率也与普通 SAE 相近。类似地，我们使用 STE 直接训练 L0 稀疏性，而不是在 L1 等代理目标上训练，从而避免收缩等问题。
+    **方法。** JumpReLU 用 (z,\mathbf{1}[z>\theta]) 替代 ReLU，为每个潜变量学习正阈值，并直接加入 (L_0) 惩罚。尽管阶跃不连续，研究把直通估计器推导为核密度估计，为阈值提供梯度；因此各特征在推理时可独立激活，不像 Top-(K) 相互竞争，也无需单独阈值辅助任务。
 
-    **实验验证。** 通过人工和自动化可解释性研究，我们还表明，这项改进并未以牺牲可解释性为代价。
+    **实验验证。** JumpReLU、Top-(K)、原始 Gated 和重加权 (L_1) Gated 稀疏自编码器（Sparse Autoencoder, SAE） 均在 Gemma-2-9B 第 9、20、31 层后的残差流、注意力输出和 多层感知机（Multilayer Perceptron, MLP） 输出上训练 80 亿词元。扫描比较 (L_0) 与语言模型损失增量、未解释方差比例，并测量激活频率和归因加权重要性。相同 (L_0) 下，JumpReLU 持续持平或超过 Top-(K)，并优于 Gated 变体；人工评分和自动解释/预测分数未发现可解释性损失。核函数、带宽、目标稀疏度和架构消融检验训练稳定性。
 
-    **结论与证据。** 通过以有原则的方式使用直通估计器（STE），我们说明了即使 SAE 的前向传播中引入了不连续的 JumpReLU 函数，仍可有效训练 JumpReLU SAE。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+    **结论与证据。** 可学习跳跃阈值使直接 (L_0) 优化可行，并在主要同期 SAE 变体上稳定改善稀疏—保真权衡，且平均特征解释性未受可检测损失。多位置、多层 Pareto 比较和独立解释测试提供强比较证据。但实验只用一个模型家族，标准重构指标未必预测因果用途，直通梯度仍是有偏近似，平均解释分也可能掩盖罕见病态特征。
   generation:
     status: complete
     generated_by: project_agent

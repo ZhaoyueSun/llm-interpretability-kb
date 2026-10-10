@@ -65,23 +65,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Do different training runs, models, and architectures reproduce the same mechanism, or only share an abstract algorithm? In this paper, *Transferring Linear Features Across Language Models With Model Stitching* addresses that question through its specific object of study and tests how far the resulting claim can be supported.
+    **Research Question.** The paper asks how similar the residual representation spaces of small and large language models are, and whether an affine correspondence is strong enough to transfer sparse autoencoders, probes, steering vectors, and individual functional features. It also asks whether this transfer can reduce the cost of training interpretability tools on larger models.
 
-    **Method.** We apply this technique to transfer the weights of Sparse Autoencoders (SAEs) between models of different sizes to compare their representations. We find that small and large models learn similar representation spaces, which motivates training expensive components like SAEs on a smaller model and transferring to a larger model at a FLOPs savings. In particular, using a small-to-large transferred SAE as initialization can lead to 50% cheaper training runs when training SAEs on larger models.
+    **Method.** Model stitching learns affine maps (T_{\uparrow}) and (T_{\downarrow}) between selected residual-stream layers so computation can begin in one decoder-only model and finish in another. A sparse autoencoder's encoder and decoder are conjugated through these maps; the transferred dictionary can be evaluated zero-shot or used to initialize retraining. Probes and steering vectors are mapped through the same stitch, while attribution correlations and concept annotations compare feature classes.
 
-    **Validation.** Finally, we dive deeper into feature-level transferability, finding that semantic and structural features transfer noticeably differently while specific classes of functional features have their roles faithfully mapped.
+    **Validation.** Pythia deduplicated models of different sizes are stitched using OpenWebText next-token cross-entropy to choose layer pairs and test one-way and round-trip mappings. Sparse Autoencoders (SAEs) are transferred between 70M/160M and larger pairs, evaluated by sparsity, reconstruction, and downstream loss, then retrained under matched floating-point-operation budgets. Probing covers eight binary SAEBench datasets with (k=1,2,5,10,20) and larger feature sets; multilingual steering uses EuroParl target-language generation. Inversion ablations, direct residual probes, independently trained SAEs, and semantic/structural/functional feature analyses serve as controls. Transferred initialization can cut large-model SAE training compute by about 50% at matched quality.
 
-    **Conclusion & Evidence.** In this work, we demonstrate that affine mappings between residual streams of language models is a cheap way to effectively transfer represented features between models. Next, we show that transferred probes and steering vectors can effectively recover ground truth performance. Overall, our findings illustrate similarities and differences in the linear representation spaces of small and large models and demonstrate a method for improving the training efficiency of SAEs. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+    **Conclusion & Evidence.** Related model scales share enough affine structure to transfer many linear readouts and provide a useful SAE initialization, while semantic and structural features transfer differently and some functional roles map faithfully. Round-trip language modeling, downstream probes/steering, and compute-matched retraining support practical weak universality. Transfer is not exact: zero-shot SAE quality drops, results mostly concern same-family models trained on similar data, and an affine stitch preserving behavior does not prove one-to-one identity of internal concepts.
   zh: |-
-    **研究问题。** 若不同规模同家族模型共享部分线性表示，简单 affine model stitches 能否在其 residual spaces 间转移 稀疏自编码器（Sparse Autoencoders, SAEs）、probes 与 steering vectors？这种迁移能否节省 SAE 训练计算，并揭示 semantic、structural 与 functional features 的 universality 差异？
+    **研究问题。** 该论文研究大小语言模型的残差表示空间有多相似，以及仿射对应是否足以迁移稀疏自编码器、探针、引导向量和单个功能特征；并考察这种迁移能否降低在大模型上训练解释工具的成本。
 
-    **方法。** 本文证明，利用语言模型残差流之间的仿射映射，可以低成本而有效地在模型间迁移已表征的特征。
+    **方法。** 模型拼接在选定残差层之间学习仿射映射 (T_{\uparrow}) 与 (T_{\downarrow})，使计算可从一个仅解码器模型开始、在另一个模型完成。稀疏自编码器的编码器/解码器经映射共轭后，可直接评估或作为再训练初始化；探针和引导向量使用同一映射迁移，归因相关性与概念标注用于比较不同特征类别。
 
-    **实验验证。** 我们运用该技术，在不同规模的模型之间迁移稀疏自编码器（SAE）权重，以比较它们的表征。结果发现，小模型与大模型会学到相似的表征空间；这促使我们在较小模型上训练 SAE 等昂贵组件，再把它们迁移到较大模型，从而节省浮点运算量。特别是，在较大模型上训练 SAE 时，使用从小模型迁移到大模型的 SAE 作为初始化，可使训练成本降低 50%。
+    **实验验证。** 不同规模的 Pythia deduplicated 模型用 OpenWebText 下一词元交叉熵选择拼接层，并测试单向与往返映射。稀疏自编码器（Sparse Autoencoder, SAE）在 70M/160M 及更大模型对之间迁移，以稀疏度、重构和下游损失评测，再在匹配浮点运算预算下继续训练。探针覆盖 8 个二分类 SAEBench 数据集及 (k=1,2,5,10,20) 等特征数；多语引导用 EuroParl 目标语言生成。逆映射消融、直接残差探针、独立训练 SAE 及语义/结构/功能特征分析作对照。迁移初始化在质量匹配时可把大模型 SAE 训练计算削减约 50%。
 
-    **结论与证据。** 随后，我们表明，迁移后的探针和引导向量能够有效恢复真值性能。最后，我们深入研究特征层面的可迁移性，发现语义特征与结构特征的迁移方式明显不同，而某些特定类别的功能特征则能忠实映射其作用。总体而言，我们的发现揭示了小模型与大模型线性表征空间的相似性和差异，并展示了一种提高 SAE 训练效率的方法。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+    **结论与证据。** 同家族不同规模模型共享足够的仿射结构，可迁移许多线性读出并为 SAE 提供高效初始化；语义与结构特征迁移性不同，部分功能角色则能忠实映射。往返语言建模、下游探针/引导及计算匹配再训练支持实用的弱普适性。但迁移并不精确：零样本 SAE 会降质，实验主要限于相似数据训练的同家族模型，保持行为的仿射拼接也不证明内部概念一一相同。
   generation:
     status: complete
     generated_by: project_agent

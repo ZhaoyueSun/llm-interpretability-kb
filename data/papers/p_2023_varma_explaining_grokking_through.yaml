@@ -69,23 +69,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Are apparently abrupt capability transitions driven by smoother changes in internal mechanisms? In this paper, *Explaining grokking through circuit efficiency* addresses that question through its specific object of study and tests how far the resulting claim can be supported. One of the most surprising puzzles in neural network generalisation is grokking: a network with perfect training accuracy but poor generalisation will, upon further training, transition to perfect generalisation.
+    **Research Question.** The paper asks why continued optimization can turn a network that already memorizes its training set into one that suddenly generalizes. It proposes three required ingredients—coexisting memorizing and generalizing circuits, greater norm efficiency of the generalizing circuit, and slower learning of that circuit—and derives predictions about dataset size, “ungrokking,” and partial “semi-grokking.”
 
-    **Method.** We propose that grokking occurs when the task admits a generalising solution and a memorising solution, where the generalising solution is slower to learn but more efficient, producing larger logits with the same parameter norm.
+    **Method.** Circuit efficiency is defined as correct-logit strength produced per parameter norm under cross-entropy plus weight decay. Theory shows that when circuits give the same training logits, regularization allocates more weight to the efficient circuit. Because a memorizer must store each added example but an algorithmic circuit need not change, their efficiencies should cross at a critical dataset size \(D_{crit}\). Random-label runs isolate memorization; the Fourier/trigonometric subspace isolates modular-addition generalization.
 
-    **Validation.** We hypothesise that memorising circuits become more inefficient with larger training datasets while generalising circuits do not, suggesting there is a critical dataset size at which memorisation and generalisation are equally efficient.
+    **Validation.** One-layer, four-head Transformers with 128-dimensional residuals and 512-unit multilayer perceptrons are trained by full-batch AdamW on \(a+b\bmod 113\); the full input space has 12,769 pairs. Sweeps over dataset size, weight decay, seed, and logit/norm show memorization efficiency falling with data size while generalization efficiency stays roughly fixed. Already-grokked models retrained on subsets exhibit a sharp, weight-decay-independent collapse below \(D_{crit}\); 7 subset sizes from 390 to 1,494 with 10 seeds support this, and nine additional group/arithmetic tasks replicate ungrokking. Near 12% data, selected runs pause at partial accuracy (about 55–83%) before sometimes reaching full generalization.
 
-    **Conclusion & Evidence.** We make and confirm four novel predictions about grokking, providing significant evidence in favour of our explanation. Most strikingly, we demonstrate two novel and surprising behaviours: ungrokking, in which a network regresses from perfect to low test accuracy, and semi-grokking, in which a network shows delayed generalisation to partial rather than perfect test accuracy. The formal result is strong under its stated assumptions, with experiments or constructions supporting the predicted consequences. Its scope is limited by those assumptions and does not automatically extend to every architecture or training regime.
+    **Conclusion & Evidence.** With weight decay, grokking can arise because a slowly learned structured circuit eventually produces the same confident answers with less norm than a memorizing circuit; dataset size controls which is efficient enough to dominate. The successful advance predictions of ungrokking and semi-grokking, together with norm–logit sweeps, strongly support this mechanism in the studied algorithmic setting. It is not a complete theory: grokking can occur without explicit weight decay, circuit separation uses proxy subspaces, \(D_{crit}\) varies with seed and optimization history, and realistic tasks contain many interacting circuit families.
   zh: |-
-    **研究问题。** 训练损失饱和后测试性能为何仍会突然跃升？grokking 是否源于更慢学得、但参数范数更高效的泛化电路最终取代记忆电路，并由此统一解释 semi-grokking 与 ungrokking？
+    **研究问题。** 该论文研究为何继续优化会让已经记住训练集的网络突然转向泛化。解释包含三个条件：记忆电路与泛化电路并存、泛化电路的参数范数效率更高、但学习更慢；并据此推导数据规模、“反顿悟”和部分“半顿悟”的预测。
 
-    **方法。** 我们提出，当一项任务同时存在泛化解和记忆解，而泛化解虽然学习较慢、效率却更高——即在相同参数范数下产生更大的 logits——时，顿悟就会发生。
+    **方法。** 电路效率定义为在交叉熵加权重衰减下，单位参数范数产生的正确 logit 强度。理论证明，当多个电路给出相同训练 logit 时，正则化会把更多权重分配给高效率电路。记忆器需为每个新增样本付出容量，而算法电路无需改变，因此两者应在临界数据规模 \(D_{crit}\) 处发生效率交叉。随机标签训练隔离记忆，Fourier/三角子空间则隔离模加法泛化。
 
-    **实验验证。** 我们假设，随着训练数据集增大，记忆回路的效率会降低，而泛化回路不会，因此存在一个临界数据集规模，使记忆与泛化具有相同效率。
+    **实验验证。** 使用一层四头 Transformer，残差维度 128、多层感知机 512 单元，以 full-batch AdamW 训练 \(a+b\bmod 113\)，完整输入空间含 12,769 对。对数据规模、权重衰减、随机种子及 logit/范数扫描发现，记忆效率随数据增多下降，而泛化效率近似不变。已顿悟模型改用小子集继续训练时，在 \(D_{crit}\) 以下出现与权重衰减强度近乎无关的陡峭性能坍塌；7 个 390—1,494 的子集规模、每个 10 个种子支持该现象，另 9 个群论/算术任务也复现反顿悟。约 12% 数据附近，部分运行先停留在约 55%—83% 准确率，之后有时再达到完全泛化。
 
-    **结论与证据。** 我们针对顿悟提出并证实了四项新预测，为上述解释提供了有力证据。最引人注目的是，我们展示了两种新颖且出人意料的行为：反顿悟，即网络从完美测试准确率退化为较低准确率；以及半顿悟，即网络延迟泛化后只达到部分而非完美的测试准确率。形式结果在明确假设下具有较强支持，实验或构造也验证了其预测后果；结论范围受这些假设约束，不能自动推广到所有架构和训练设置。
+    **结论与证据。** 在权重衰减存在时，顿悟可由一个学习较慢但用更小范数产生同等置信答案的结构化电路最终压过记忆电路来解释，数据规模决定谁的效率占优。事先预测并观察到反顿悟和半顿悟，加上范数—logit 扫描，为算法任务中的机制提供强支持。但理论并不完整：无显式权重衰减时也可能顿悟，电路分离依赖代理子空间，\(D_{crit}\) 随种子和优化历史变化，真实任务还包含许多相互作用的电路族。
   generation:
     status: complete
     generated_by: project_agent

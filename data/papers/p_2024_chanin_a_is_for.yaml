@@ -77,23 +77,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Under what geometric, hierarchical, and optimization conditions do sparse dictionaries produce erroneous or fabricated feature explanations? In this paper, *A is for Absorption: Studying Feature Splitting and Absorption in Sparse Autoencoders* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Sparse Autoencoders (SAEs) aim to decompose the activation space of large language models (LLMs) into human-interpretable latent directions or features.
+    **Research Question.** The paper asks why sparse autoencoders sometimes fail to expose a concept even when the base model linearly represents and causally uses it. It isolates two failure modes—feature splitting and feature absorption—and asks whether dictionary size or sparsity reliably fixes them.
 
-    **Method.** As we increase the number of features in the SAE, hierarchical features tend to split into finer features ("math"may split into"algebra","geometry", etc.), a phenomenon referred to as feature splitting. We discuss the implications of feature absorption in SAEs and some potential approaches to solve the fundamental theoretical issues before SAEs can be used for interpreting LLMs robustly and at scale.
+    **Method.** A toy hierarchy shows that a child feature can absorb part of a broader parent feature because activating one mixed latent is cheaper than activating both. In language models, a linear probe predicts the first letter of a single-token English word from residual states; cosine matching and sparse probes locate candidate autoencoder latents. Precision/recall measures splitting, while causal ablation tests absorption: the parent-aligned latent is inactive, but ablating an active child latent removes the parent's logit effect. Latent replacement then attempts to edit one initial letter into another.
 
-    **Validation.** We introduce a metric to detect absorption in SAEs, and validate our findings empirically on hundreds of LLM SAEs.
+    **Validation.** The main study uses Gemma-2-2B and Gemma Scope residual-stream autoencoders with 16K or 65K latents across layers and sparsity levels. Independent autoencoders trained for the first eight layers of Qwen2-0.5B and Llama-3.2-1B on 500 million tokens each test architecture generality. Prompts ask the model to output the first letter of a displayed word; data are split 80/20, and evaluation reports probe accuracy, latent precision/recall/F1, correct-letter logit effects under ablation, and edit success. No single latent consistently matches the linear probe; multiple-feature probes recover more information. Low-(L_0) dictionaries favor precision, high-(L_0) dictionaries favor recall, and wider dictionaries can worsen splitting or absorption.
 
-    **Conclusion & Evidence.** However, we show that sparse decomposition and splitting of hierarchical features is not robust. Specifically, we show that seemingly monosemantic features fail to fire where they should, and instead get"absorbed"into their children features. We coin this phenomenon feature absorption, and show that it is caused by optimizing for sparsity in SAEs whenever the underlying features form a hierarchy. Our investigation suggests that varying SAE sizes or sparsity is insufficient to solve this issue. The counterexamples or controls strongly delimit what the audited method can justify. They do not, on their own, prove that any proposed replacement is universally faithful or sufficient.
+    **Conclusion & Evidence.** Sparse autoencoders can reconstruct activations well yet obscure a causally used hierarchical feature by distributing it across latents or embedding it in more specific features. Toy optima, causal ablations, edits, and replication across three model families provide substantial evidence that the problem is structural rather than an isolated training failure. The first-letter task is deliberately narrow, absorption thresholds are heuristic and conservative, the relevant signal changes after later Gemma layers, and the paper diagnoses rather than solves the failure mode.
   zh: |-
-    **研究问题。** 即使真实 features 线性且稀疏，层级关系是否仍会使 稀疏自编码器（Sparse Autoencoder, SAE） 无法恢复它们？feature splitting 如何导致更一般特征的方向被更具体 latent 吸收、出现 precision/recall holes，且这种 absorption 在真实 Gemma Scope 稀疏自编码器（Sparse Autoencoders, SAEs） 中有多普遍？
+    **研究问题。** 该论文研究为何基础模型已经线性表示并因果使用某个概念时，稀疏自编码器仍可能无法显式揭示它。重点区分“特征分裂”和“特征吸收”两种失败，并检验增大字典或改变稀疏度能否可靠解决。
 
-    **方法。** 我们讨论了 SAE 特征吸收的影响，以及在 SAE 能够稳健且大规模地用于解释语言模型之前，解决这些基础理论问题的一些潜在方法。
+    **方法。** 层级玩具模型说明：若激活一个混合的子特征潜变量比同时激活父、子两个潜变量更省稀疏成本，子特征会吸收一部分更宽泛的父特征。在语言模型中，线性探针从残差状态预测单词首字母，余弦匹配和稀疏探针寻找候选自编码器潜变量。精确率/召回率刻画分裂；因果消融识别吸收——父特征对应潜变量未激活，但消融活跃子潜变量会移除父特征对 logit 的作用。潜变量替换还尝试把一个首字母编辑为另一个。
 
-    **实验验证。** 具体而言，看似单义的特征会在本应激活的位置失去响应，反而被其子特征“吸收”。我们提出一个检测 SAE 特征吸收的指标，并在数百个语言模型 SAE 上经验验证了相关发现。
+    **实验验证。** 主实验使用 Gemma-2-2B 及 Gemma Scope 在多层、多稀疏度下的 16K/65K 残差流自编码器；另在各 5 亿词元上训练 Qwen2-0.5B 和 Llama-3.2-1B 前八层自编码器，检验跨架构性。提示要求模型输出所给单词的首字母，数据按 80/20 划分；指标含探针准确率、潜变量精确率/召回率/F1、消融后的正确字母 logit 效应和编辑成功率。没有单一潜变量能稳定匹配线性探针，多特征探针可恢复更多信息；低 (L_0) 字典偏高精确率，高 (L_0) 偏高召回率，扩大字典有时反而加重分裂或吸收。
 
-    **结论与证据。** 然而，我们表明，稀疏分解和层级特征拆分并不稳健。我们把这种现象称为特征吸收，并表明，只要底层特征构成层级结构，SAE 对稀疏性的优化就会导致特征吸收。研究结果表明，仅改变 SAE 规模或稀疏度不足以解决该问题。反例和控制实验有力限定了被审计方法能够支持的结论，但它们本身不能证明任何替代方法普遍忠实或充分。
+    **结论与证据。** 稀疏自编码器即使很好地重构激活，也可能通过跨潜变量分散信息，或把宽泛特征嵌入更具体特征，而遮蔽模型因果使用的层级概念。玩具最优解、因果消融、表示编辑及三个模型家族复现，较有力地说明这是结构性问题而非单次训练失败。但首字母任务刻意狭窄，吸收判据依赖启发式阈值且较保守，Gemma 后层相关信号会转移，论文主要诊断问题而未提供解决方案。
   generation:
     status: complete
     generated_by: project_agent

@@ -80,23 +80,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Can hidden mechanisms exist that are in principle undiscoverable through behavioral elicitation alone? In this paper, *Unelicitable Backdoors in Language Models via Cryptographic Transformer Circuits* addresses that question through its specific object of study and tests how far the resulting claim can be supported. The rapid proliferation of open-source language models significantly increases the risks of downstream backdoor attacks. These backdoors can introduce dangerous behaviours during model deployment and can evade detection by conventional cybersecurity monitoring systems.
+    **Research Question.** The paper asks whether a Transformer can contain a precisely implemented backdoor whose malicious behavior is present but computationally infeasible to elicit through prompt search. It separates ordinary password triggers, triggers based on NP-complete search, and cryptographically hidden triggers, and asks which are defeated by input optimization or latent-space adversarial training.
 
-    **Method.** In this paper, we introduce a novel class of backdoors in transformer models, that, in contrast to prior art, are unelicitable in nature. Unelicitability prevents the defender from triggering the backdoor, making it impossible to properly evaluate ahead of deployment even if given full white-box access and using automated techniques, such as red-teaming or certain formal verification methods. We show that our novel construction is not only unelicitable thanks to using cryptographic techniques, but also has favourable robustness properties.
+    **Method.** Explicit Transformer circuits verify candidate triggers and gate a target behavior. A domain-specific compiler maps register operations into attention and multilayer-perceptron blocks; the cryptographic construction implements hash-style bit operations such as shifts, rotations, Boolean logic, and modular addition. A password circuit checks equality, an NP-complete circuit verifies a 3-SAT witness, and an encrypted circuit checks a hash preimage. Complexity arguments relate trigger discovery to the underlying search problem.
 
-    **Validation.** We confirm these properties in empirical investigations, and provide evidence that our backdoors can withstand state-of-the-art mitigation strategies.
+    **Validation.** Constructed backdoors are attacked with gradient-based input optimization and latent adversarial training (LAT), which directly optimizes hidden states. Password locks are recoverable; 3-SAT resists input-space attacks but is elicited by LAT. The encrypted circuit remains unelicited during up to (10^4) LAT optimization steps across repeated runs and noise settings. Because a full SHA-256 circuit is expensive, the principal LAT experiment uses a weakened two-round SHA-style hash rather than all 64 rounds; auxiliary circuit checks verify gate behavior and noise sensitivity.
 
-    **Conclusion & Evidence.** Additionally, we expand on previous work by showing that our universal backdoors, while not completely undetectable in white-box settings, can be harder to detect than some existing designs. By demonstrating the feasibility of seamlessly integrating backdoors into transformer models, this paper fundamentally questions the efficacy of pre-deployment detection strategies. This offers new insights into the offence-defence balance in artificial intelligence (AI) safety and security. The coordinated interventions provide comparatively strong structural causal evidence for the proposed information flow or circuit. Completeness, uniqueness, and transfer to other models still require separate validation.
+    **Conclusion & Evidence.** Elicitation difficulty can be engineered independently of whether a dangerous behavior exists: moving from password to NP-complete and cryptographic triggers defeats progressively stronger search procedures. Constructive circuits, attack comparisons, and the conditional cryptographic argument provide strong existence evidence, but not evidence that naturally trained language models contain such backdoors. The evaluated encrypted primitive is deliberately weakened, asymptotic security assumptions do not guarantee practical parameters, and compiled modules may be detectable or removable through weight inspection, fine-tuning, noise, provenance controls, or anomaly detection even when prompting cannot activate them.
   zh: |-
-    **研究问题。** 能否在 Transformer 中编译只有预定 cryptographic trigger 才激活、即使 white-box 访问也无法由多项式时间方法 elicitation 的任意 backdoor behavior？这对 red-teaming、ELK、formal verification 与 mechanistic detection 的理论边界意味着什么？
+    **研究问题。** 该论文研究 Transformer 是否能包含一种精确实现的后门：恶意行为确实存在，但通过提示搜索在计算上难以触发。研究区分普通密码触发、基于 NP 完全搜索的触发和密码学隐藏触发，并检验输入优化或潜空间对抗训练能攻破哪一类。
 
-    **方法。** 本文提出 Transformer 模型中的一类新型后门；不同于以往设计，这类后门在本质上无法被诱发。
+    **方法。** 显式 Transformer 电路验证候选触发并控制目标行为。一个领域专用编译器把寄存器操作映射为注意力和多层感知机模块；密码学构造实现移位、循环移位、布尔逻辑和模加等哈希位运算。密码电路检查字符串相等，NP 完全电路验证 3-SAT 见证，加密电路检查哈希原像；复杂度论证把发现触发条件归约到相应搜索问题。
 
-    **实验验证。** 不可诱发性使防御者无法触发后门，因此即使拥有完整白盒访问权限并使用红队测试或某些形式化验证方法等自动化技术，也无法在部署前对其进行适当评估。
+    **实验验证。** 构造的后门接受基于梯度的输入优化和直接优化隐藏状态的潜对抗训练（Latent Adversarial Training, LAT）攻击。密码锁可以恢复；3-SAT 能抵抗输入空间攻击，却可被 LAT 触发；加密电路在多次运行和噪声设置下经历最多 (10^4) 步 LAT 仍未被触发。由于完整 SHA-256 电路代价高，主要 LAT 实验使用弱化的两轮 SHA 风格哈希，而非全部 64 轮；辅助电路测试检查逻辑门正确性与噪声敏感性。
 
-    **结论与证据。** 我们表明，借助密码学技术，我们的新构造不仅不可诱发，而且具有良好的鲁棒性。我们通过经验研究确认这些性质，并给出证据说明该后门能够抵御最先进的缓解策略。此外，我们扩展了此前工作，表明这种通用后门在白盒设置下虽非完全不可检测，却可能比某些现有设计更难发现。本文证明了把后门无缝集成进 Transformer 模型的可行性，从根本上质疑了部署前检测策略的有效性，并为 人工智能（Artificial Intelligence, AI） 安全与安保中的攻防平衡提供了新认识。相互配合的干预为所提出的信息流或电路提供了较强的结构因果证据，但机制的完备性、唯一性以及跨模型迁移仍需独立验证。
+    **结论与证据。** 危险行为是否存在，可以与它能否被轻易触发分离：从密码、NP 完全到密码学触发，逐级击败更强搜索。显式构造、攻击对比和有条件密码学论证为“这种后门可以存在”提供强证据，但不能说明自然训练的语言模型已有此类后门。实验中的加密原语被刻意弱化，渐近安全假设不保证具体参数安全，而且即使提示无法触发，编译模块仍可能通过权重检查、微调、噪声、来源控制或异常检测被发现和移除。
   generation:
     status: complete
     generated_by: project_agent

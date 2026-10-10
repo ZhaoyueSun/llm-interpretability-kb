@@ -164,23 +164,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Can readable internal directions be manipulated reliably to produce specific and predictable behavioral changes? In this paper, *Representation Engineering: A Top-Down Approach to artificial intelligence (AI) Transparency* addresses that question through its specific object of study and tests how far the resulting claim can be supported.
+    **Research Question.** The paper asks whether high-level properties of language models—such as honesty, harmlessness, power seeking, emotion, and factuality—can be studied and controlled directly in representation space. It reframes interpretability from locating individual neurons or circuits to finding population-level directions that encode behaviorally meaningful concepts.
 
-    **Method.** In this paper, we identify and characterize the emerging area of representation engineering (RepE), an approach to enhancing the transparency of AI systems that draws on insights from cognitive neuroscience. RepE places population-level representations, rather than neurons or circuits, at the center of analysis, equipping us with novel methods for monitoring and manipulating high-level cognitive phenomena in deep neural networks (DNNs).
+    **Method.** Representation Engineering (RepE) separates representation reading from representation control. Linear Artificial Tomography builds contrastive prompt pairs, extracts hidden states at selected layers and token positions, and estimates a concept direction with principal components or class-mean differences. Projection scores read the concept; adding, subtracting, or erasing the direction tests whether it steers behavior. The framework distinguishes correlational evidence from stronger manipulation, termination, and recovery interventions.
 
-    **Validation.** We showcase how these methods can provide traction on a wide range of safety-relevant problems, including honesty, harmlessness, power-seeking, and more, demonstrating the promise of top-down transparency research.
+    **Validation.** Experiments use open-source language models and contrastive stimuli for truthfulness, lying and hallucination detection, morality, power seeking, emotion, harmlessness, fairness, knowledge editing, and memorization. On TruthfulQA, unsupervised honesty steering improves accuracy by 18.1 percentage points over zero-shot prompting. Additional tests project hidden states to classify truthful versus deceptive responses, intervene on directions during generation, and alter agents' choices in interactive moral and power-related scenarios; controls vary layers, prompt templates, and direction construction.
 
-    **Conclusion & Evidence.** We provide baselines and an initial analysis of RepE techniques, showing that they offer simple yet effective solutions for improving our understanding and control of large language models. We hope that this work catalyzes further exploration of RepE and fosters advancements in the transparency and safety of AI systems. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+    **Conclusion & Evidence.** Many high-level concepts are recoverable as simple linear patterns whose intervention changes model behavior, supporting RepE as a broad diagnostic and control interface. The evidence is strongest where the same direction predicts held-out examples and produces reversible behavioral changes, but weaker for demonstrations without standardized metrics. The results do not show that concepts are intrinsically one-dimensional or that RepE identifies the underlying computation; prompt construction, linearity assumptions, benchmark definitions, and possible entanglement with style remain important limitations.
   zh: |-
-    **研究问题。** 能否以群体激活中的高层表示而非单个神经元或局部电路为分析单位，系统地读取和控制 truthfulness、honesty、hallucination、utility 等安全相关状态，并形成可扩展的 top-down transparency 方法？
+    **研究问题。** 该论文研究诚实、无害、追求权力、情绪和事实性等语言模型高层属性，能否直接在表示空间中被研究和控制。它把可解释性视角从定位单个神经元或电路，转向寻找承载行为概念的群体级表示方向。
 
-    **方法。** 本文识别并刻画了新兴的表征工程（Representation Engineering，RepE）领域。这种增强 人工智能（Artificial Intelligence, AI） 系统透明度的方法借鉴了认知神经科学的认识。我们展示了这些方法如何推动一系列与安全相关的问题，包括诚实性、无害性、权力寻求等，由此体现自上而下透明度研究的潜力。
+    **方法。** 表示工程（Representation Engineering, RepE）区分“读取表示”与“控制表示”。线性人工断层成像用对比提示对，在指定层和词元位置提取隐藏状态，再以主成分或类别均值差估计概念方向；投影分数用于读取概念，加、减或擦除该方向用于测试行为操控。框架还把相关性证据与更强的操纵、终止和恢复干预区分开来。
 
-    **实验验证。** RepE 将群体层面的表征置于分析中心，而不是聚焦神经元或回路，从而为监测和操纵深度神经网络（DNN）中的高层认知现象提供新方法。
+    **实验验证。** 实验在开源语言模型上构造对比刺激，覆盖 TruthfulQA 真话回答、谎言与幻觉检测、道德、权力倾向、情绪、无害性、公平、知识编辑和记忆。无监督诚实方向在 TruthfulQA 上比零样本提示提高 18.1 个百分点。其余实验用隐藏状态投影区分真实与欺骗回答，在生成时注入方向，并改变交互式道德或权力场景中的行动选择；层位置、提示模板和方向构造方式作为对照。
 
-    **结论与证据。** 我们给出 RepE 技术的基线和初步分析，表明它们能够以简单而有效的方式改善我们对大语言模型的理解和控制。我们希望本工作能够促进对 RepE 的进一步探索，并推动 AI 系统透明度与安全性的进步。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+    **结论与证据。** 多种高层概念可以由简单线性模式读取，而且干预这些模式会改变行为，说明 RepE 可作为广覆盖的诊断与控制接口。若同一方向既预测留出样本又产生可逆行为变化，证据较强；只有示例而缺少标准指标的任务则较弱。结果并未证明概念本质上是一维的，也没有揭示底层计算；提示构造、线性假设、基准对概念的定义及与表达风格纠缠都是限制。
   generation:
     status: complete
     generated_by: project_agent

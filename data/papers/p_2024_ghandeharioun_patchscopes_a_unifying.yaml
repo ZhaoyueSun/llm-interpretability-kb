@@ -70,23 +70,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** How can a single hidden state reveal model knowledge richer and more expressive than its next-token distribution? In this paper, *Patchscopes: A Unifying Framework for Inspecting Hidden Representations of Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Understanding the internal representations of large language models (LLMs) can help explain models' behavior and verify their alignment with human values.
+    **Research Question.** The paper asks whether vocabulary projection, probing, and activation interventions can be unified as a single operation that decodes hidden states through a language model's own computation. It further asks whether changing the target prompt or model can make early-layer inspection more expressive and can repair latent multi-hop reasoning errors.
 
-    **Method.** Given the capabilities of LLMs in generating human-understandable text, we propose leveraging the model itself to explain its internal representations in natural language.
+    **Method.** A Patchscope takes a source state (h_i^\ell), maps it with (f), and replaces a state at position (i^*), layer (ell^*), in a target model running target prompt (T). Choices of (T,i^*,f,M^*,ell^*) recover logit lens, tuned lens, probing-related lenses, and causal interventions. New configurations use few-shot token-identity prompts, relation-specific prompts, natural-language entity-description prompts, affine cross-model mappings, and a chain-of-thought patch that reroutes an intermediate answer without emitting the reasoning chain.
 
-    **Validation.** We introduce a framework called Patchscopes and show how it can be used to answer a wide range of questions about an LLM's computation. We show that many prior interpretability methods based on projecting representations into the vocabulary space and intervening on the LLM computation can be viewed as instances of this framework. Moreover, several of their shortcomings such as failure in inspecting early layers or lack of expressivity can be mitigated by Patchscopes.
+    **Validation.** Next-token decoding uses LLaMA-2-13B, Vicuna-13B, GPT-J-6B, and Pythia-12B with 10,000 Pile examples for tuned mappings and 2,000 for evaluation; precision@1 and surprisal show the token-identity Patchscope outperforming baselines from layer 10 onward, with gains up to 98% in layers 18–22. On GPT-J, 1,453 WikiText-103 contexts across 12 factual/commonsense relations evaluate attribute accuracy; the training-free method significantly beats logistic probes on 6 tasks and is comparable on 5. Entity resolution is assessed with Rouge-1, Rouge-L, and Sentence-BERT, while cross-model patching reaches precision up to 0.7 for Vicuna and 0.8 for Pythia. Of 1,104 two-hop queries, 46 meet the controlled prerequisite that both hops work separately; patching solves 50%, versus 35.71% for chain-of-thought and 19.57% for direct generation.
 
-    **Conclusion & Evidence.** Beyond unifying prior inspection techniques, Patchscopes also opens up new possibilities such as using a more capable model to explain the representations of a smaller model, and multihop reasoning error correction. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+    **Conclusion & Evidence.** Hidden-state inspection can be expressed as targeted representation transfer, and letting a model continue computation often decodes information more flexibly than direct projection. Multi-model quantitative comparisons and a causal multi-hop repair demonstrate genuine utility. Evidence for a universal interpretability framework is conceptual rather than proof of faithful explanation: outputs can reflect target-prompt priors or placeholder contamination, attribute data are filtered to facts already generatable by the model, and the multi-hop result rests on only 46 selected cases.
   zh: |-
-    **研究问题。** 能否通过把 source hidden state patch 到可配置的 target prompt/model/layer，让模型自身以自然语言解释内部表示，并统一 probing、vocabulary projection 与 intervention 等方法？该框架能否更好地解码预测、属性、实体解析过程及跨模型信息？
+    **研究问题。** 该论文研究词表投影、探针和激活干预能否统一为一种利用语言模型自身计算来解码隐藏状态的操作；并进一步考察改变目标提示或目标模型，能否让早层检查更有表达力，以及能否修复潜在的多跳推理错误。
 
-    **方法。** 鉴于语言模型能够生成人类可理解的文本，我们提出利用模型自身，以自然语言解释其内部表征。我们引入名为 Patchscopes 的框架，并展示如何用它回答有关语言模型计算的广泛问题。此外，Patchscopes 可以缓解这些方法的若干缺陷，例如无法检查早期层或表达能力不足。
+    **方法。** Patchscope 取来源状态 (h_i^\ell)，经映射 (f) 后替换目标模型运行目标提示 (T) 时在位置 (i^*)、层 (ell^*) 的状态。不同的 (T,i^*,f,M^*,ell^*) 选择可涵盖 logit lens、tuned lens、探针相关透镜和因果干预。新配置包括少样本词元恒等提示、关系提示、自然语言实体描述提示、跨模型仿射映射，以及把中间答案改接到下一步而不显式生成推理链的思维链修补。
 
-    **实验验证。** 我们说明，许多把表征投影到词汇空间并干预语言模型计算的既有可解释性方法，都可以视为这一框架的实例。
+    **实验验证。** 下一词元解码覆盖 LLaMA-2-13B、Vicuna-13B、GPT-J-6B 和 Pythia-12B，用 10,000 条 Pile 样本训练 tuned 映射、2,000 条评测；precision@1 与惊讶度显示词元恒等 Patchscope 从第 10 层起优于基线，在第 18—22 层最高提升 98%。GPT-J 上使用 12 种事实/常识关系、共 1,453 个 WikiText-103 上下文评测属性准确率；无训练方法在 6 项显著优于逻辑探针、5 项相当。实体解析用 Rouge-1、Rouge-L 和 Sentence-BERT 评价，跨模型修补在 Vicuna/Pythia 上最高 precision 分别约 0.7/0.8。1,104 条双跳查询中，46 条满足两步单独都能回答的控制条件；修补准确率 50%，思维链为 35.71%，直接生成 19.57%。
 
-    **结论与证据。** Patchscopes 不仅统一了以往的检查技术，还带来新的可能性，例如使用能力更强的模型解释较小模型的表征，以及纠正多跳推理错误。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+    **结论与证据。** 隐藏状态检查可以表述为定向表示迁移，让模型继续计算往往比直接投影更灵活地解码信息。多模型量化比较和因果性多跳修复证明了实用性。但“统一框架”的证据主要是概念统一而非忠实解释证明：输出可能受目标提示先验或占位符污染影响，属性数据筛选为模型本来就能生成的事实，多跳结果也只基于 46 个选择样本。
   generation:
     status: complete
     generated_by: project_agent

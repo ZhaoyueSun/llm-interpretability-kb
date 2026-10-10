@@ -61,23 +61,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** When does a neural network's low-level mechanism faithfully implement a high-level interpretable causal process? In this paper, *Uncovering Intermediate Variables in Transformers using Circuit Probing* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Neural network models have achieved high performance on a wide variety of complex tasks, but the algorithms that they implement are notoriously difficult to interpret. It is often necessary to hypothesize intermediate variables involved in a network's computation in order to understand these algorithms. For example, does a language model depend on particular syntactic properties when generating a sentence?
+    **Research Question.** The paper asks how to test whether a hypothesized intermediate variable is actually computed and used by a Transformer when the complete algorithm is unknown. It further asks whether the responsible parameters reveal algorithm choice, modular reuse, training-time emergence, and real linguistic dependencies.
 
-    **Method.** We propose a new analysis technique - circuit probing - that automatically uncovers low-level circuits that compute hypothesized intermediate variables. We apply this method to models trained on simple arithmetic tasks, demonstrating its effectiveness at (1) deciphering the algorithms that models have learned, (2) revealing modular structure within a model, and (3) tracking the development of circuits over training.
+    **Method.** Circuit probing places a trainable binary mask over the weights of one attention or multilayer-perceptron block. A soft nearest-neighbor contrastive loss makes the masked block's residual update cluster by the proposed variable, while an \(L_0\) penalty encourages a minimal subnetwork. Held-out \(k\)-nearest-neighbor accuracy tests representation; ablating only the learned mask tests causal necessity. Comparisons include linear and nonlinear probes, amnesic probing, counterfactual embeddings, and causal-abstraction alignment.
 
-    **Validation.** This enables causal analysis through targeted ablation at the level of model parameters. Across these three experiments we demonstrate that circuit probing combines and extends the capabilities of existing methods, providing one unified approach for a variety of analyses.
+    **Validation.** Three controlled studies use one-layer GPT-2-style models: exhaustive modulo-113 data distinguishes \(a^2-b^2\) from \((a+b)(a-b)\); a two-task modular-arithmetic dataset tests shared and task-specific variables; and training checkpoints test whether a causal circuit appears as a model generalizes. The real-language study applies the method to GPT-2 Small and Medium on subject–verb agreement and reflexive anaphora, with equal-size random subnetworks as controls. In GPT-2 Small, ablating layer-6 attention circuits causes the largest task drop; GPT-2 Medium shows a layer-7 reflexive circuit but no single strong subject–verb circuit. Early multilayer perceptron (MLP) feature-extractor ablations reduce agreement nearly to chance.
 
-    **Conclusion & Evidence.** Finally, we demonstrate circuit probing on a real-world use case: uncovering circuits that are responsible for subject-verb agreement and reflexive anaphora in GPT2-Small and Medium. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+    **Conclusion & Evidence.** Circuit probing can reject variables that expressive probes decode but the model does not use, while locating compact parameter subsets whose removal selectively damages the associated computation. Agreement with known arithmetic algorithms, causal-abstraction results, training dynamics, and random-ablation controls gives strong evidence in the controlled tasks and meaningful causal evidence for syntactic number. The method still assumes the learned sparse circuit is sufficiently specific to the proposed variable; polysemantic weights and redundancy can confound ablation, as illustrated by the unresolved GPT-2 Medium subject–verb case.
   zh: |-
-    **研究问题。** 在未知完整算法、但能提出候选中间变量时，能否通过可训练权重 mask 同时检验该变量是否被表示、是否因果参与行为，以及由哪个低层 circuit 计算？这种 circuit probing 是否比普通线性/非线性 probes 更忠实？
+    **研究问题。** 该论文研究在完整算法未知时，如何检验 Transformer 是否真正计算并使用某个假设的中间变量；还考察相应参数能否揭示算法选择、模块化复用、训练过程中的形成，以及真实语言依存关系。
 
-    **方法。** 我们提出一种新的分析技术——回路探测（circuit probing），它能自动发现计算假设中间变量的底层回路，从而支持在模型参数层面通过定向消融开展因果分析。我们将该方法应用于在简单算术任务上训练的模型，并展示它在以下方面的有效性：（1）解析模型学到的算法；（2）揭示模型内部的模块化结构；（3）追踪回路在训练过程中的形成。
+    **方法。** 电路探测在一个注意力块或多层感知机块的权重上放置可训练二值掩码。软最近邻对比损失使掩码子网络的残差更新按候选变量聚类，\(L_0\) 正则则鼓励最小子网络。留出数据上的 \(k\) 近邻准确率检验表示能力，仅消融所学掩码检验因果必要性；对照包括线性/非线性探针、遗忘探测、反事实嵌入和因果抽象对齐。
 
-    **实验验证。** 通过这三项实验，我们表明回路探测综合并扩展了现有方法的能力，为多类分析提供了一种统一方法。
+    **实验验证。** 三项受控实验使用单层 GPT-2 式模型：穷举模 113 数据区分 \(a^2-b^2\) 与 \((a+b)(a-b)\) 两种算法；双任务模运算检查共享与任务专属变量；训练检查点实验追踪因果电路是否随泛化形成。真实语言实验在 GPT-2 Small 和 Medium 上研究主谓一致与反身代词照应，并以同规模随机子网络消融为对照。GPT-2 Small 中，消融第 6 层注意力电路造成最大任务下降；GPT-2 Medium 找到第 7 层反身照应电路，但没有单一强主谓电路。早层 MLP 的特征提取电路被消融后，一致性表现接近随机。
 
-    **结论与证据。** 最后，我们在真实用例中演示回路探测：发现 GPT2-Small 和 GPT2-Medium 中负责主谓一致与反身照应的回路。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+    **结论与证据。** 电路探测能够拒绝“表达力强的探针可解码、但模型实际未使用”的变量，并定位移除后会选择性损害相应计算的紧凑参数集合。它与已知算术算法、因果抽象、训练动态及随机消融对照一致，为受控任务提供强证据，也为句法数提供有意义的因果证据。不过方法仍假设稀疏电路对候选变量足够专一；权重多义性和冗余会混淆消融，GPT-2 Medium 中未解决的主谓案例正体现这一限制。
   generation:
     status: complete
     generated_by: project_agent

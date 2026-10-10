@@ -82,23 +82,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** What information does an individual model component read, transform, and write back within a distributed computation? In this paper, *Causal Head Gating: A Framework for Interpreting Roles of Attention Heads in Transformers* addresses that question through its specific object of study and tests how far the resulting claim can be supported.
+    **Research Question.** The paper asks how to identify task-relevant attention heads without prompt templates or predefined target labels, whether heads facilitate, interfere with, or are irrelevant to performance, and whether task behavior is implemented by a unique modular circuit or by several interacting sufficient subsets.
 
-    **Method.** We present causal head gating (CHG), a scalable method for interpreting the functional roles of attention heads in transformer models. We also introduce contrastive CHG, a variant that isolates sub-circuits for specific task components.
+    **Method.** Causal Head Gating (CHG) learns differentiable soft gates over all heads using ordinary next-token loss plus sparsity regularization. Comparing the gated model with the intact model assigns facilitating, interfering, and irrelevant roles. Contrastive CHG optimizes differences between paired task conditions to isolate a subcomputation. Hard ablation, retain-only tests, causal mediation, and pairwise gate interactions validate the learned taxonomy.
 
-    **Validation.** CHG learns soft gates over heads and assigns them a causal taxonomy - facilitating, interfering, or irrelevant - based on their impact on task performance. Unlike prior approaches in mechanistic interpretability, which are hypothesis-driven and require prompt templates or target labels, CHG applies directly to any dataset using standard next-token prediction. We evaluate CHG across multiple large language models (LLMs) in the Llama 3 model family and diverse tasks, including syntax, commonsense, and mathematical reasoning, and show that CHG scores yield causal, not merely correlational, insight validated via ablation and causal mediation analyses.
+    **Validation.** Multiple Llama-3 sizes are tested on datasets spanning syntax, commonsense, mathematical reasoning, instruction following, and in-context learning. Learned head rankings are compared with attention weights, gradient or magnitude scores, and random gates; increasing ablation/retention curves measure necessity and sufficiency. Repeated initializations search for alternative sparse solutions, contrastive conditions separate instruction following from in-context examples, and mediation analysis checks whether gated heads transmit the relevant variable rather than merely correlate with accuracy.
 
-    **Conclusion & Evidence.** Our findings reveal that LLMs contain multiple sparse task-sufficient sub-circuits, that individual head roles depend on interactions with others (low modularity), and that instruction following and in-context learning rely on separable mechanisms. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+    **Conclusion & Evidence.** Head roles are task- and coalition-dependent: models contain several sparse task-sufficient subsets, interfering heads can improve behavior when removed, and instruction following and in-context learning are partly separable. Learned interventions plus ablation and mediation give strong functional evidence, while repeated solutions argue against a single privileged circuit. Soft-gate optimization is still distribution- and objective-dependent, attention heads interact with unmodeled multilayer perceptrons, and sufficiency under ablation does not establish semantic completeness.
   zh: |-
-    **研究问题。** 如何从分布式、交互依赖的视角为所有 attention heads 赋予 facilitating、interfering 或 irrelevant 的因果角色，而不依赖人工标签、对照模板或预设功能假说？不同 tasks/models 的 sufficient subcircuits 有多分布、冗余和可变？
+    **研究问题。** 该论文研究如何在无需提示模板或预定目标标签的情况下识别任务相关注意力头，区分头是促进、干扰还是无关，并判断任务行为由唯一模块化电路实现，还是由多个相互作用的充分子集实现。
 
-    **方法。** 我们提出因果注意力头门控（Causal Head Gating，CHG），这是一种可扩展的方法，用于解释 Transformer 模型中注意力头的功能角色。CHG 学习作用于各注意力头的软门控，并根据它们对任务性能的影响，将其划分到促进、干扰或无关这三个因果类别中。
+    **方法。** 因果头门控（Causal Head Gating, CHG）在全部注意力头上学习可微软门，以普通下一词元损失和稀疏正则优化；与完整模型比较后，把头划为促进、干扰和无关。对比 CHG 优化成对任务条件之差，以分离特定子计算。硬消融、只保留测试、因果中介和两两门交互用于验证分类。
 
-    **实验验证。** 不同于以往由假设驱动、需要提示模板或目标标签的机制可解释性方法，CHG 可以使用标准的下一 token 预测，直接应用于任意数据集。我们在 Llama 3 模型家族的多个大型语言模型上评估 CHG，并覆盖句法、常识和数学推理等多种任务。结果表明，CHG 分数提供的是因果而非仅仅相关性的认识，这一点通过消融和因果中介分析得到验证。我们还提出对比式 CHG 变体，用于分离负责特定任务组成部分的子回路。
+    **实验验证。** 多个 Llama-3 规模在句法、常识、数学推理、指令遵循和上下文学习数据上测试。学习到的头排序与注意力权重、梯度/幅度分数及随机门比较，逐步消融/保留曲线测必要性与充分性。重复初始化搜索不同稀疏解，对比条件分离指令遵循与上下文示例，中介分析检查入选头是否传递目标变量，而非仅与准确率相关。
 
-    **结论与证据。** 研究发现，大语言模型（Large Language Model, LLM） 中存在多个稀疏且足以完成任务的子回路；单个注意力头的角色取决于它与其他注意力头的交互，因而模块化程度较低；指令遵循和上下文学习则依赖彼此可分离的机制。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+    **结论与证据。** 注意力头角色依赖任务与协作集合：模型包含多个稀疏的任务充分子集，删除干扰头可改善行为，指令遵循与上下文学习也部分可分。学习式干预、消融和中介分析提供强功能证据，多种解则反对唯一特权电路。但软门优化仍依赖分布和目标，注意力头会与未建模的多层感知机交互，消融下充分也不等于语义上完整。
   generation:
     status: complete
     generated_by: project_agent

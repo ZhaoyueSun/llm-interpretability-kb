@@ -64,23 +64,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** The paper asks whether Shapley-value explanations can be amortized into a single forward pass without first computing expensive ground-truth explanations for training. It also asks how to reduce estimator variance while retaining the efficiency property of Shapley values.
+    **Research Question.** The paper asks whether Shapley-value explanations can be amortized into a learned explainer that produces accurate attributions in one forward pass, avoiding the hundreds or thousands of model evaluations required separately for every example.
 
-    **Method.** FastSHAP trains an explainer network to predict instance-specific Shapley values. Its objective is the weighted least-squares characterization used by KernelSHAP, optimized by sampling feature coalitions and querying the original predictive model. An efficiency-normalization step forces predicted attributions to sum to the difference between the full-input and baseline predictions.
+    **Method.** FastSHAP trains a parametric explainer directly from the weighted least-squares characterization of Shapley values, without precomputing target attributions. Training samples an input, output class, and feature subset, evaluates a value function for the masked input, and minimizes the Shapley-kernel-weighted reconstruction error; additive-efficiency normalization enforces the sum constraint. A learned surrogate approximates the prediction conditioned on observed features, while paired subset sampling and minibatching reduce gradient variance.
 
-    **Validation.** Experiments cover tabular and image classification tasks with several predictive models. FastSHAP is compared with KernelSHAP, DeepSHAP, and other approximation methods on attribution error where reference values are available, explanation faithfulness under masking, runtime per explanation, convergence, and performance in downstream explanation-based tasks.
+    **Validation.** Tabular experiments use 1994 United States Census, bank marketing, bankruptcy, and online-news datasets with 80/10/10 splits. Distance to converged KernelSHAP is plotted against model evaluations: original KernelSHAP needs 1,200–2,000 evaluations and the best non-amortized alternatives 200–500 to match one FastSHAP pass, corresponding to at least 200-fold measured speedup. Image experiments use ResNet-50 classifiers on CIFAR-10 and Imagenette, producing 14×14 superpixel attributions. On 1,000 images, exclusion and inclusion area under the curve measure how top-1 agreement changes when important regions are removed or restored; FastSHAP is best on exclusion and second to KernelSHAP-S on inclusion, and throughput is measured directly.
 
-    **Conclusion & Evidence.** After one-time training, FastSHAP produces explanations orders of magnitude faster than per-instance sampling while approaching reference Shapley estimates and maintaining the efficiency constraint. This provides strong empirical evidence for amortized attribution, not for the causal faithfulness of Shapley values themselves. Accuracy depends on the explainer's training distribution, masking model, and coalition sampling, so distribution shift can weaken the guarantee.
+    **Conclusion & Evidence.** Amortization can deliver near-Shapley tabular estimates with orders-of-magnitude lower per-example cost after training, and the learned image explanations perform strongly on complementary removal and insertion tests. Comparisons across four tabular value functions, two image datasets, stochastic estimators, and gradient baselines support the practical speed–accuracy claim. The guarantee assumes sufficient data, explainer capacity, and successful optimization, while image experiments lack exact Shapley ground truth and therefore validate usefulness rather than attribution identity.
   zh: |-
-    **研究问题。** 论文研究能否把昂贵的 Shapley 值估计摊销为一次前向计算，而无需先为训练样本计算完整的真值解释；同时考察如何降低估计方差，并保持 Shapley 值的效率性性质。
+    **研究问题。** 该论文研究能否把 Shapley 值估计摊销为一个学习式解释器，使每个样本只需一次前向传播即可得到准确归因，从而避免传统方法对每个样本分别进行数百或数千次模型调用。
 
-    **方法。** FastSHAP 训练一个解释器网络，为每个输入直接预测实例级 Shapley 值。其训练目标来自 KernelSHAP 的加权最小二乘刻画，通过采样特征联盟并查询原预测模型来优化。随后使用效率归一化，使所有预测归因之和等于完整输入预测与基线预测之间的差。
+    **方法。** FastSHAP 直接根据 Shapley 值的加权最小二乘表征训练参数化解释器，无需预先计算目标归因。训练时抽取输入、输出类别和特征子集，计算掩蔽输入的价值函数，并最小化按 Shapley 核加权的重构误差；加性效率归一化用于满足归因和约束。一个监督代理模型近似“仅观察给定特征时”的条件预测，互补子集配对采样和小批量训练用于降低梯度方差。
 
-    **实验验证。** 实验覆盖表格和图像分类任务以及多种预测模型。作者将 FastSHAP 与 KernelSHAP、DeepSHAP 等近似方法比较，评估存在参考值时的归因误差、遮蔽测试中的解释效果、单次解释运行时间、训练收敛，以及解释用于下游任务时的表现。
+    **实验验证。** 表格实验使用 1994 年美国人口普查、银行营销、公司破产和在线新闻数据，均按 80/10/10 划分。评估以收敛的 KernelSHAP 为近似真值，比较归因距离和模型调用次数：原始 KernelSHAP 需要 1,200–2,000 次调用，最佳非摊销替代方法需要 200–500 次，才能达到 FastSHAP 单次前向的精度，实测加速至少 200 倍。图像实验在 CIFAR-10 和 Imagenette 的 ResNet-50 上生成 14×14 超像素归因；在 1,000 张图像上，通过移除或恢复重要区域后的 top-1 一致率计算 exclusion 和 inclusion 曲线下面积，并直接测量吞吐率。FastSHAP 的 exclusion 最优，inclusion 仅次于 KernelSHAP-S。
 
-    **结论与证据。** 在完成一次性训练后，FastSHAP 能以比逐样本采样快若干数量级的速度生成解释，同时接近参考 Shapley 估计并满足效率约束。这为“归因计算可以被摊销”提供了较强实证证据，但并不证明 Shapley 值本身是模型推理的因果忠实解释。结果仍依赖解释器训练分布、缺失特征建模和联盟采样，分布变化会削弱其可靠性。
+    **结论与证据。** 摊销训练后，FastSHAP 能以数量级更低的单样本成本逼近表格数据上的 Shapley 值，并在两类互补图像扰动指标上取得较强结果。四个表格数据集、两种图像数据、随机估计器和梯度基线形成了较充分的速度—精度证据。不过，理论最优性依赖足够数据、解释器容量和成功优化；图像实验没有精确 Shapley 真值，因此验证的是解释效用而非归因完全一致。
   generation:
     status: complete
     generated_by: project_agent

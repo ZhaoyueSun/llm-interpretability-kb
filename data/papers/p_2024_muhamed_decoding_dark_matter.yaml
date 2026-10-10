@@ -60,23 +60,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Can interpretable feature extraction scale to frontier models, all relevant layers and positions, and the long tail of the training distribution? In this paper, *Decoding Dark Matter: Specialized Sparse Autoencoders for Interpreting Rare Concepts in Foundation Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Understanding and mitigating the potential risks associated with foundation models (FMs) hinges on developing effective interpretability methods. Sparse Autoencoders (SAEs) have emerged as a promising tool for disentangling FM representations, but they struggle to capture rare, yet crucial concepts in the data.
+    **Research Question.** The paper asks how sparse autoencoders (SAEs) can capture rare, safety- or domain-relevant concepts without scaling a general dictionary to billions of features. It tests whether subdomain-focused data retrieval and a tail-sensitive training objective improve rare-concept representation, interpretability, detection, and control.
 
-    **Method.** We introduce Specialized Sparse Autoencoders (SSAEs), designed to illuminate these elusive dark matter features by focusing on specific subdomains.
+    **Method.** A Specialized Sparse Autoencoder (SSAE) starts from a general-purpose SAE and fine-tunes on pretraining examples retrieved from a small seed set by BM25, dense embeddings, and optional TracIn gradient reranking. Tilted Empirical Risk Minimization (TERM) replaces average reconstruction risk with a log-sum-exp tilt, increasingly emphasizing high-error examples as the tilt grows. Perplexity after SAE insertion and latent (L_0) measure fidelity/sparsity; logit-lens coverage, probes, automated explanations, and feature ablation measure tail concepts.
 
-    **Validation.** We present a practical recipe for training SSAEs, demonstrating the efficacy of dense retrieval for data selection and the benefits of Tilted Empirical Risk Minimization as a training objective to improve concept recall. Our evaluation of SSAEs on standard metrics, such as downstream perplexity and $L_0$ sparsity, show that they effectively capture subdomain tail concepts, exceeding the capabilities of general-purpose SAEs. We showcase the practical utility of SSAEs in a case study on the Bias in Bios dataset, where SSAEs achieve a 12.5% increase in worst-group classification accuracy when applied to remove spurious gender information.
+    **Validation.** Gemma-2B layer-12, 16,384-feature SAEs are specialized from OpenWebText using a 9.2K-token physics seed expanded to 13.9M tokens, then evaluated on 4.8M arXiv-physics tokens and 700K out-of-distribution physics-instruction tokens; toxicity experiments replicate the ranking. Dense retrieval beats BM25, with TracIn providing a smaller additional gain, and covers more low-frequency physics/toxicity tokens at matched (L_0). For Bias in Bios, Pythia-70M dictionaries pretrained on 2B Pile tokens are fine-tuned on 8M tokens retrieved from five seeds; SSAE-guided spurious-feature removal raises profession accuracy 1.7 points and worst-group accuracy 12.5 points versus the general SAE while lowering gender predictability. TERM reduces tail reconstruction error and improves concept recall with comparable perplexity.
 
-    **Conclusion & Evidence.** SSAEs provide a powerful new lens for peering into the inner workings of FMs in subdomains. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+    **Conclusion & Evidence.** Targeted retrieval is a more efficient route to rare, domain-specific features than indiscriminately widening a general SAE, while TERM shifts the precision–recall trade-off toward detecting rare concepts. In/out-of-domain Pareto tests, tail coverage, and a causal fairness edit provide substantial support. Specialization depends on seed and retriever quality, may reduce general-domain coverage, TERM sacrifices some fine-grained control, automated interpretations rely on another model, and only physics, toxicity, biographies, and TinyStories are tested.
   zh: |-
-    **研究问题。** 不把通用 稀疏自编码器（Sparse Autoencoder, SAE） 扩到数十亿 features，能否用 subdomain-targeted Specialized 稀疏自编码器（Sparse Autoencoders, SAEs） 与数据检索高效捕获极少出现的 tail concepts？Tilted ERM 能否进一步平衡 head/tail feature learning，改善稀有概念检测、解释与控制？
+    **研究问题。** 该论文研究如何在不把通用字典扩展到数十亿特征的情况下，让稀疏自编码器（Sparse Autoencoder, SAE）捕获稀有但与安全或领域相关的概念；并检验子领域数据检索和偏重尾部的训练目标能否改善稀有概念的表示、解释、检测与控制。
 
-    **方法。** 我们提出专用稀疏自编码器（SSAE），通过聚焦特定子领域来揭示这些难以捕捉的“暗物质”特征。
+    **方法。** 专用稀疏自编码器（Specialized Sparse Autoencoder, SSAE）从通用 SAE 出发，用少量种子经 BM25、稠密嵌入及可选 TracIn 梯度重排，从预训练语料检索样本再微调。倾斜经验风险最小化（Tilted Empirical Risk Minimization, TERM）用 log-sum-exp 倾斜替代平均重构风险，倾斜越大越关注高误差样本。插入 SAE 后困惑度与潜变量 (L_0) 衡量保真/稀疏，logit-lens 覆盖、探针、自动解释和特征消融衡量尾部概念。
 
-    **实验验证。** 我们给出训练 SSAE 的实用方案，展示使用稠密检索选择数据的有效性，以及把倾斜经验风险最小化作为训练目标以提高概念召回率的益处。使用下游困惑度和 $L_0$ 稀疏性等标准指标进行的评估表明，SSAE 能有效捕捉子领域的长尾概念，其能力超过通用 SAE。我们还在 Bias in Bios 数据集的案例研究中展示 SSAE 的实际用途：使用 SSAE 去除虚假的性别信息后，最差群体分类准确率提高了 12.5%。
+    **实验验证。** Gemma-2B 第 12 层、16,384 特征 SAE 从 OpenWebText 出发，用 9,200 词元物理种子扩到 1,390 万词元，随后在 480 万 arXiv 物理词元和 70 万分布外物理指令词元上评测；毒性实验复现排序。稠密检索优于 BM25，TracIn 带来较小附加增益，并在相同 (L_0) 下覆盖更多低频物理/毒性词元。Bias in Bios 中，Pythia-70M 字典先用 20 亿 Pile 词元训练，再用 5 个种子检索的 800 万词元专门化；相对通用 SAE，基于 SSAE 的虚假特征移除使职业准确率提高 1.7 点、最差组准确率提高 12.5 点，并降低性别可预测性。TERM 降低尾部重构误差，以近似困惑度提高概念召回。
 
-    **结论与证据。** SSAE 为深入观察基础模型在子领域中的内部运作提供了一种强有力的新视角。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+    **结论与证据。** 定向检索比无差别扩大通用 SAE 更高效地获得稀有领域特征，TERM 则把精确率—召回率权衡推向稀有概念检测。分布内外 Pareto 测试、尾部覆盖及因果公平编辑提供较强支持。但专门化依赖种子和检索器，可能损失通用覆盖，TERM 会牺牲部分细粒度控制，自动解释依赖另一模型，实验领域也仅限物理、毒性、人物简介与 TinyStories。
   generation:
     status: complete
     generated_by: project_agent

@@ -64,23 +64,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Do interpretability methods provide distinctive practical value on causal tasks, realistic distributions, and against strong baselines? In this paper, *Towards Principled Evaluations of Sparse Autoencoders for Interpretability and Control* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Disentangling model activations into meaningful features is a central problem in interpretability. However, the absence of ground-truth for these features in realistic scenarios makes validating recent approaches, such as sparse dictionary learning, elusive.
+    **Research Question.** The paper asks how sparse feature dictionaries should be evaluated when no ground-truth features exist. It proposes task-grounded tests of whether reconstructions are sufficient and necessary for behavior, whether a small number of features can controllably edit task attributes, and whether human interpretations match causal roles.
 
-    **Method.** To address this challenge, we propose a framework for evaluating feature dictionaries in the context of specific tasks, by comparing them against supervised feature dictionaries.
+    **Method.** Prompt attributes define a supervised “skyline” dictionary whose vectors are estimated from conditional activation means. Replacing an internal cross-section with its dictionary reconstruction tests sufficiency; reconstructing only the residual error tests necessity. Counterfactual feature addition/subtraction is compared with full activation patching for controllability, and feature activation labels plus feature-to-feature interactions test interpretability. The same tests are applied without assuming that unsupervised dictionaries recover identical concepts.
 
-    **Validation.** Second, we use the supervised dictionaries to develop and contextualize evaluations of unsupervised dictionaries along the same three axes. We apply this framework to the indirect object identification (IOI) task using GPT-2 Small, with sparse autoencoders (SAEs) trained on either the IOI or OpenWebText datasets. We hope that our framework will provide a useful step towards more objective and grounded evaluations of sparse dictionary learning methods.
+    **Validation.** GPT-2 Small is studied at main cross-sections of its Indirect Object Identification (IOI) circuit. The dataset varies names, objects, places, and templates, with 216 single-token names, 144 objects, and 75 places split equally between train and test; held-out data use unseen values and templates. Supervised edits agree with ground-truth activation interventions more than 80% of the time and obtain perfect label F1 by construction. Sparse autoencoders trained either on IOI activations or OpenWebText are compared on reconstruction necessity/sufficiency, minimal greedy edit size, and interpretation. Both expose IOI-relevant features, but task-trained dictionaries require fewer features to perform counterfactual edits; controlled examples reveal feature occlusion and over-splitting.
 
-    **Conclusion & Evidence.** First, we demonstrate that supervised dictionaries achieve excellent approximation, control, and interpretability of model computations on the task. We find that these SAEs capture interpretable features for the IOI task, but they are less successful than supervised features in controlling the model. Finally, we observe two qualitative phenomena in SAE training: feature occlusion (where a causally relevant concept is robustly overshadowed by even slightly higher-magnitude ones in the learned features), and feature over-splitting (where binary features split into many smaller, less interpretable features). The counterexamples or controls strongly delimit what the audited method can justify. They do not, on their own, prove that any proposed replacement is universally faithful or sufficient.
+    **Conclusion & Evidence.** Reconstruction loss and sparsity alone are inadequate SAE evaluations; task-level causal preservation, controllability, and interpretation–function agreement expose meaningful differences between dictionaries. Held-out counterfactual interventions and a supervised skyline give strong diagnostics for the studied circuit. The evaluation is not a universal ground truth: its supervised variables are analyst-chosen, only GPT-2 Small and IOI are tested, greedy edits approximate an NP-hard search, and good performance may miss model features outside the selected task ontology.
   zh: |-
-    **研究问题。** 在不知道“真实特征”的情况下，如何直接、客观地评价 稀疏自编码器（Sparse Autoencoder, SAE） dictionaries 对真实任务是否有用？能否借助 supervised dictionaries，从重建的必要/充分性、稀疏可控性和与因果角色一致的可解释性三方面评测，并诊断 occlusion 与 over-splitting？
+    **研究问题。** 该论文研究在不存在“真实特征”标签时，应如何评价稀疏特征字典。它提出任务落地的三类检验：重构对行为是否充分且必要，少量特征能否可控地编辑任务属性，以及人类解释是否与特征的因果角色一致。
 
-    **方法。** 为应对这一挑战，我们提出一个在具体任务语境下评估特征字典的框架，方法是将其与监督式特征字典进行比较。
+    **方法。** 研究用提示属性定义监督式“天花板”字典，向量由条件激活均值估计。用字典重构替换内部截面检验充分性，只保留重构残差检验必要性；特征加减的反事实编辑与完整激活修补比较可控性，特征激活标签和特征间相互作用检验可解释性。相同测试用于无监督字典时，不要求其恢复完全相同概念。
 
-    **实验验证。** 其次，我们使用监督式字典，围绕同样三个维度开发无监督字典的评估方法并为其提供参照语境。我们把该框架应用于 GPT-2 Small 上的间接宾语识别（IOI）任务，所用稀疏自编码器（SAE）分别在 IOI 或 OpenWebText 数据集上训练。我们希望该框架能推动稀疏字典学习方法获得更加客观且有依据的评估。
+    **实验验证。** 在 GPT-2 Small 的间接宾语识别（Indirect Object Identification, IOI）电路主要截面上实验。数据改变姓名、物体、地点和模板，含 216 个单词元姓名、144 个物体和 75 个地点，训练/测试各半；测试使用未见取值和模板。监督编辑与真值激活干预的一致率始终高于 80%，标签 F1 因定义方式为满分。随后比较在 IOI 激活或 OpenWebText 上训练的稀疏自编码器，指标含重构必要/充分性、贪心最小编辑规模和解释性。两者都发现 IOI 特征，但任务字典用更少特征完成反事实编辑；受控案例还揭示特征遮蔽与过度分裂。
 
-    **结论与证据。** 首先，我们证明监督式字典能够出色地近似、控制和解释模型在任务上的计算。我们发现，这些 SAE 能捕捉 IOI 任务的可解释特征，但在控制模型方面不如监督式特征。最后，我们观察到 SAE 训练中的两种定性现象：特征遮蔽，即具有因果相关性的概念会被幅度只略高的其他概念稳定地掩盖；特征过度拆分，即二元特征被拆成许多更小、可解释性更差的特征。反例和控制实验有力限定了被审计方法能够支持的结论，但它们本身不能证明任何替代方法普遍忠实或充分。
+    **结论与证据。** 仅用重构损失和稀疏度评价 SAE 不够；任务级因果保持、可控性及解释—功能一致能揭示字典间实质差异。留出反事实干预与监督天花板为该电路提供强诊断。但它不是普适真值：监督变量由分析者选择，只测试 GPT-2 Small 与 IOI，贪心编辑近似一个 NP 困难搜索，而且好成绩仍可能漏掉任务本体之外的模型特征。
   generation:
     status: complete
     generated_by: project_agent

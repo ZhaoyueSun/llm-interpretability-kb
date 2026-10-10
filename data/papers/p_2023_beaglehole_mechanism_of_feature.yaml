@@ -67,23 +67,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** How does a network select, reweight, and progressively form prediction-relevant features during training? In this paper, *Mechanism of feature learning in convolutional neural networks* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Understanding the mechanism of how convolutional neural networks learn features from image data is a fundamental problem in machine learning and computer vision.
+    **Research Question.** The paper asks what mathematical quantity tracks the features learned by convolutional neural networks (CNNs), whether the same mechanism holds across datasets and architectures, and whether it can add adaptive feature learning to convolutional kernel methods that otherwise keep features fixed.
 
-    **Method.** In this work, we identify such a mechanism. We also provide supporting theoretical evidence.
+    **Method.** The Convolutional Neural Feature Ansatz (CNFA) proposes that a layer's convolutional filter covariance is proportional to the average gradient outer product (AGOP) of the trained predictor with respect to image patches. This relation turns prediction gradients into a data-dependent feature matrix. Convolutional Recursive Feature Machines (ConvRFM) alternate convolutional-kernel regression with AGOP-based patch transformations; the deep variant applies the procedure greedily across layers.
 
-    **Validation.** We posit the Convolutional Neural Feature Ansatz, which states that covariances of filters in any convolutional layer are proportional to the average gradient outer product (AGOP) taken with respect to patches of the input to that layer. We present extensive empirical evidence for our ansatz, including identifying high correlation between covariances of filters and patch-based AGOPs for convolutional layers in standard neural architectures, such as AlexNet, VGG, and ResNets pre-trained on ImageNet. We then demonstrate the generality of our result by using the patch-based AGOP to enable deep feature learning in convolutional kernel machines.
+    **Validation.** CNFA is tested with SimpleNet on CIFAR-10, CIFAR-100, ImageNet32, Street View House Numbers (SVHN), German Traffic Sign Recognition Benchmark (GTSRB), Extended MNIST, and synthetic localized-signal tasks, using cosine or Pearson correlation between learned filter covariances and AGOP matrices. Correlations are also measured for ImageNet-pretrained AlexNet, VGG, and ResNet models, often exceeding 0.9. ConvRFM and Deep ConvRFM are compared with their fixed Convolutional Neural Tangent Kernel (CNTK) counterparts on classification accuracy, and learned matrices are visualized to test whether they recover edge-like and localized features.
 
-    **Conclusion & Evidence.** We refer to the resulting algorithm as (Deep) ConvRFM and show that our algorithm recovers similar features to deep convolutional networks including the notable emergence of edge detectors. Moreover, we find that Deep ConvRFM overcomes previously identified limitations of convolutional kernels, such as their inability to adapt to local signals in images and, as a result, leads to sizable performance improvement over fixed convolutional kernels. The formal result is strong under its stated assumptions, with experiments or constructions supporting the predicted consequences. Its scope is limited by those assumptions and does not automatically extend to every architecture or training regime.
+    **Conclusion & Evidence.** Across the tested networks, AGOP closely tracks the orientation of learned convolutional filters, and recursively incorporating it lets kernel machines adapt to localized signals and recover CNN-like edge features. The repeated cross-architecture correlations, synthetic controls, and accuracy gains provide strong empirical support for CNFA as a useful mechanism, complemented by theoretical results under stated assumptions. The ansatz is not an exact identity for arbitrary trained CNNs, and correlation between matrices alone does not establish that it is the unique optimization mechanism.
   zh: |-
-    **研究问题。** 卷积网络的 feature learning 是否可由 patch-level average gradient outer product（AGOP）等算子刻画？这一关系能否用于在卷积 kernel machine 中重建神经网络学到的特征并改善性能？
+    **研究问题。** 该论文研究什么数学量能够追踪卷积神经网络（Convolutional Neural Network, CNN）学到的特征、同一机制是否跨数据集和架构成立，以及它能否为原本使用固定特征的卷积核方法加入自适应特征学习。
 
-    **方法。** 本文识别出这样一种机制。我们提出卷积神经特征假设（Convolutional Neural Feature Ansatz）：任意卷积层中滤波器的协方差，与相对于该层输入图像块计算的平均梯度外积（AGOP）成正比。
+    **方法。** 卷积神经特征假设（Convolutional Neural Feature Ansatz, CNFA）提出，某层卷积滤波器的协方差与训练后预测器相对于图像 patch 的平均梯度外积（Average Gradient Outer Product, AGOP）成比例，从而把预测梯度转化为数据依赖特征矩阵。卷积递归特征机（Convolutional Recursive Feature Machine, ConvRFM）在卷积核回归和基于 AGOP 的 patch 变换之间交替，深层版本则逐层贪心应用该过程。
 
-    **实验验证。** 我们为这一假设提供了广泛的经验证据，包括在 AlexNet、VGG 和基于 ImageNet 预训练的 ResNet 等标准神经架构的卷积层中，发现滤波器协方差与基于图像块的 AGOP 高度相关。
+    **实验验证。** CNFA 在 CIFAR-10、CIFAR-100、ImageNet32、街景门牌数字（Street View House Numbers, SVHN）、德国交通标志识别基准、Extended MNIST 和合成局部信号任务上用 SimpleNet 检验，指标是滤波器协方差与 AGOP 矩阵之间的余弦或 Pearson 相关。研究还测量 ImageNet 预训练 AlexNet、VGG 和 ResNet，许多相关系数超过 0.9。ConvRFM 与 Deep ConvRFM 通过分类准确率同固定卷积神经切线核（Convolutional Neural Tangent Kernel, CNTK）比较，并可视化学习矩阵，观察是否恢复边缘和局部化特征。
 
-    **结论与证据。** 我们还给出了支持性的理论证据。随后，我们使用基于图像块的 AGOP，使卷积核机器能够进行深度特征学习，由此展示该结果的一般性。我们把所得算法称为（深度）ConvRFM，并表明它能恢复与深度卷积网络相似的特征，包括引人注目的边缘检测器涌现。此外，我们发现，Deep ConvRFM 克服了此前识别出的卷积核局限，例如无法适应图像中的局部信号，因而相比固定卷积核带来显著性能提升。形式结果在明确假设下具有较强支持，实验或构造也验证了其预测后果；结论范围受这些假设约束，不能自动推广到所有架构和训练设置。
+    **结论与证据。** 在所测网络中，AGOP 与学习到的卷积滤波器方向高度一致；把它递归加入核方法后，模型能够适应局部信号并恢复类似 CNN 的边缘特征。跨架构相关、合成对照和准确率提升为 CNFA 作为有效机制提供了较强经验支持，并有特定假设下的理论结果补充。不过，该假设不是任意已训练 CNN 上的精确恒等式，矩阵相关也不能证明它是唯一优化机制。
   generation:
     status: complete
     generated_by: project_agent

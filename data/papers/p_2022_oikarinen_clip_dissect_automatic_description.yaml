@@ -53,23 +53,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** The paper asks whether individual neurons in vision networks can be labeled automatically with open-vocabulary concepts, without pixel-level concept annotations, a fixed ontology, or additional model training. It also asks whether a pretrained vision–language model can make this process more accurate and efficient than prior neuron-labeling methods.
+    **Research Question.** The paper asks whether hidden vision units can receive accurate open-vocabulary descriptions without a labeled segmentation corpus, fixed concept ontology, or training a separate explanation model. It also asks which way of matching a unit's image-level activation pattern to Contrastive Language–Image Pretraining (CLIP) concepts works best.
 
-    **Method.** CLIP-Dissect collects images that highly activate a target neuron and uses Contrastive Language–Image Pretraining (CLIP) embeddings to compare that activation profile with candidate textual concepts. Several similarity rules convert image–text relationships into a ranked concept label, allowing arbitrary vocabularies and application to different vision architectures.
+    **Method.** CLIP-Dissect records a target neuron's activations over a probe-image set and computes CLIP similarities between those images and candidate text labels. Several rules—including weighted pointwise mutual information and soft weighted pointwise mutual information—score how well each text concept's CLIP profile matches the neuron profile. The highest-scoring phrase becomes the label; arbitrary vocabularies can be substituted without retraining.
 
-    **Validation.** The method is tested on output neurons with known class labels and on hidden units from networks such as ResNet-50. It is compared with Network Dissection and other labeling baselines using label accuracy, qualitative hidden-unit inspection, runtime, vocabulary changes, and a crowdsourced user study. The system labels all neurons from five ResNet-50 layers in about four minutes.
+    **Validation.** Output neurons with known class names provide quantitative ground truth across ImageNet-trained architectures, while hidden units in five ResNet-50 layers receive qualitative and human evaluation. Comparisons include Network Dissection, Compositional Explanations of Neurons, CLIP nearest-image labels, alternative similarity functions, different probe sets, and different candidate vocabularies. A crowdsourced study judges label quality, and runtime is measured end to end: all neurons in five ResNet-50 layers are labeled in about four minutes, more than ten times faster than the principal compared method.
 
-    **Conclusion & Evidence.** CLIP-Dissect produces more accurate labels on neurons with ground truth, plausible open-vocabulary descriptions for hidden units, and over a tenfold speedup over the compared method. The results support it as a scalable semantic annotation tool. They provide decodability evidence rather than causal interpretation: labels inherit CLIP's concepts and biases, and a semantic match does not show that the neuron is necessary or sufficient for network behavior.
+    **Conclusion & Evidence.** CLIP embeddings can turn image-level activation traces into scalable, flexible neuron descriptions, with better known-label accuracy and plausible hidden-unit labels than tested alternatives. Ground-truth output units, human ratings, robustness checks, and runtime comparisons support the annotation claim. The labels remain correlational: they inherit CLIP and vocabulary biases, top-activating images may hide conditional behavior, and a good phrase neither proves that a neuron is monosemantic nor that it causally controls the concept.
   zh: |-
-    **研究问题。** 论文研究能否在不依赖像素级概念标注、固定本体或额外模型训练的情况下，用开放词汇自动描述视觉网络中的单个神经元；并考察预训练视觉—语言模型能否使这一过程比既有神经元标注方法更准确高效。
+    **研究问题。** 该论文研究能否在没有标注分割语料、固定概念本体或另训解释模型的条件下，为视觉网络隐藏单元生成准确的开放词表描述；并比较如何把神经元的图像级激活模式与对比语言–图像预训练（Contrastive Language–Image Pretraining, CLIP）概念匹配。
 
-    **方法。** CLIP-Dissect 先收集能使目标神经元高度激活的图像，再利用对比语言—图像预训练模型（Contrastive Language–Image Pretraining, CLIP）的嵌入，比较该神经元的激活模式与候选文本概念。不同相似度规则把图像—文本关系转换为概念排序，因此方法可以使用任意词表并应用于不同视觉架构。
+    **方法。** CLIP-Dissect 记录目标神经元在探测图像集上的激活，并计算这些图像与候选文本标签的 CLIP 相似度。加权点互信息、软加权点互信息等规则衡量文本概念的 CLIP 轮廓与神经元激活轮廓的吻合度，最高分短语作为标签；替换任意候选词表均无需重训。
 
-    **实验验证。** 方法在具有已知类别标签的输出神经元以及 ResNet-50 等网络的隐藏单元上测试。作者通过标签准确率、隐藏单元定性检查、运行时间、词表变化和众包用户研究，将其与 Network Dissection 等基线比较；系统约四分钟即可标注 ResNet-50 五个层的全部神经元。
+    **实验验证。** ImageNet 模型中具有已知类名的输出神经元提供定量真值，ResNet-50 五层隐藏单元接受定性与人类评测。基线包括 Network Dissection、Compositional Explanations of Neurons、CLIP 最近图像标签、不同相似函数、探测集和候选词表；众包实验评价标签质量，并端到端计时。方法约 4 分钟即可标注 ResNet-50 五层全部神经元，相比主要对照快十倍以上。
 
-    **结论与证据。** CLIP-Dissect 在有真值的神经元上给出更准确标签，对隐藏单元生成合理的开放词汇描述，并相对所比较方法实现十倍以上加速。这些结果支持它作为可扩展的语义标注工具，但证据属于可解码性而非因果解释：标签会继承 CLIP 的概念边界与偏差，语义匹配也不能证明某神经元对行为具有必要性或充分性。
+    **结论与证据。** CLIP 能把图像级激活轨迹转成可扩展、可换词表的神经元描述，在已知标签准确率和隐藏单元可读性上优于所测替代法。输出层真值、人评、稳健性和速度对照支持“自动标注工具”的结论。但标签仍是相关性解释，会继承 CLIP 与词表偏差；最高激活图像可能遮蔽条件行为，好标签也不证明单义性或对概念的因果控制。
   generation:
     status: complete
     generated_by: project_agent

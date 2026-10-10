@@ -71,23 +71,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** The paper asks whether apparently semantic units in a convolutional neural network (CNN) reflect genuine axis-aligned structure or are artifacts that could be reproduced under an arbitrary rotation of the representation. It also asks how architecture, supervision, and training choices affect the number and type of interpretable units.
+    **Research Question.** The paper asks how to quantify the interpretability of individual units in convolutional neural networks (CNNs), whether apparent unit meanings depend on a privileged axis of the representation rather than discriminative information alone, and which architectures, objectives, and training conditions produce more disentangled units.
 
-    **Method.** Network Dissection assigns semantics to individual convolutional units by thresholding their spatial activation maps, upsampling them to the input image, and measuring intersection-over-union with pixel-level concept masks. The concept vocabulary spans objects, parts, scenes, materials, textures, and colors. Comparing the original basis with rotated representations tests whether interpretability is tied to the learned coordinate system.
+    **Method.** Network Dissection treats each hidden unit as a segmentation predictor. For a concept (c), a unit activation map is upsampled and thresholded, then compared with the concept mask using intersection over union (IoU); a unit is counted as a detector when its IoU exceeds a fixed threshold. The accompanying Broadly and Densely Labeled Dataset (Broden) combines pixel- or image-level labels for scenes, objects, parts, materials, textures, and colors, allowing a common semantic vocabulary to be applied across networks.
 
-    **Validation.** The framework is applied across multiple CNN architectures and training objectives using the Broadly and Densely Labeled Dataset (Broden). The authors compare networks trained for scene and object recognition, follow units over training, vary initialization, dropout, and batch normalization, and rotate feature spaces while preserving predictive information.
+    **Validation.** The metric is first compared with Amazon Mechanical Turk judgments of unit descriptions. It is then applied to 1,197 Broden segmentation tasks over AlexNet, VGG-16, GoogLeNet, and ResNet-152 models trained on ImageNet, Places205, Places365, or their hybrid, as well as several AlexNet-style self-supervised objectives. Controlled tests rotate a learned feature space with random unitary matrices while preserving its information and classification performance; further comparisons vary depth, width, dropout, batch normalization, random initialization, and supervision. Broden itself aggregates ADE, OpenSurfaces, Pascal-Context, Pascal-Part, and the Describable Textures Dataset, retaining labels with at least ten examples.
 
-    **Conclusion & Evidence.** Networks differ substantially in the number of units aligned with human concepts, and supervised training can create axis-aligned semantic detectors that largely disappear after basis rotation even when task performance is preserved. The evidence supports Network Dissection as a reproducible measure of unit–concept alignment and rejects basis invariance for this form of interpretability. It remains a decoding-style criterion dependent on the concept dataset and does not establish that a labeled unit is causally necessary for the model's prediction.
+    **Conclusion & Evidence.** Network Dissection agrees sufficiently with human judgments to support its use as a comparative detector count, and higher layers contain more high-level concept detectors. Random rotations sharply reduce measured interpretability without changing discriminative power, showing that unit-level interpretability is axis aligned rather than an inevitable consequence of information content. The broad model and training comparisons provide substantial descriptive evidence about correlations with supervision and architecture, but IoU against a fixed concept vocabulary cannot establish that detected units are causally necessary or that Broden exhausts possible meanings.
   zh: |-
-    **研究问题。** 论文考察卷积神经网络（Convolutional Neural Network, CNN）中看似具有语义的单元，究竟反映了真实的轴对齐结构，还是经过任意基变换也能产生的表象；同时研究架构、监督信号和训练设置如何影响可解释单元的数量与类型。
+    **研究问题。** 该论文研究如何量化卷积神经网络（Convolutional Neural Network, CNN）单个单元的可解释性、观察到的单元语义是否依赖表示空间的特定坐标轴而非仅由判别信息决定，以及哪些架构、训练目标和训练条件更容易形成解耦单元。
 
-    **方法。** 网络剖析（Network Dissection）先对卷积单元的空间激活图设定阈值并上采样到输入图像，再计算它与像素级概念掩码的交并比，以此为单个单元赋予语义。概念词表覆盖物体、部件、场景、材质、纹理和颜色。通过比较原始表示基与旋转后的表示，方法进一步检验可解释性是否依赖模型学到的坐标轴。
+    **方法。** Network Dissection 将每个隐藏单元视为一个语义分割器：先上采样并阈值化激活图，再用交并比（Intersection over Union, IoU）与概念掩码比较；IoU 超过固定阈值时，该单元被计为相应概念的检测器。配套的广泛密集标注数据集（Broadly and Densely Labeled Dataset, Broden）汇集场景、物体、部件、材质、纹理和颜色的像素级或图像级标签，使不同网络能够在同一语义词表下比较。
 
-    **实验验证。** 作者使用广泛且密集标注数据集（Broadly and Densely Labeled Dataset, Broden），在多种 CNN 架构和训练目标上应用该框架。他们比较场景识别与物体识别网络，跟踪训练过程中的语义单元，并考察初始化、dropout、批归一化以及保持预测信息不变的表示旋转所产生的影响。
+    **实验验证。** 研究首先将自动生成的单元解释与 Amazon Mechanical Turk 人工判断比较，随后在 1,197 个 Broden 分割任务上分析 AlexNet、VGG-16、GoogLeNet 和 ResNet-152；这些模型分别在 ImageNet、Places205、Places365 或混合数据上训练，同时还覆盖多种 AlexNet 风格的自监督目标。关键对照用随机酉矩阵旋转表示空间，在保持信息量和分类性能的同时破坏坐标轴对齐；其他实验继续改变网络深度、宽度、dropout、批归一化、随机初始化和监督来源。Broden 由 ADE、OpenSurfaces、Pascal-Context、Pascal-Part 和 Describable Textures Dataset 等数据组成，仅保留至少有十个样本的标签。
 
-    **结论与证据。** 不同网络与训练方式形成的概念对齐单元数量差异明显；监督训练能够形成轴对齐的语义检测器，而基旋转会在保持任务性能的同时显著削弱这种单元级可解释性。证据支持 Network Dissection 作为可复现的“单元—概念对齐”度量，并否定这种可解释性的基不变性；但它仍属于依赖概念数据集的解码式证据，不能单独证明某个被命名的单元对预测具有因果必要性。
+    **结论与证据。** Network Dissection 与人工判断具有足够一致性，可作为跨模型比较的检测器计数；较高层也确实出现更多高层语义概念。随机旋转在不损害判别能力的情况下显著降低可解释性，直接说明单元语义是坐标轴对齐的性质，而不是信息含量的必然结果。多模型、多训练条件实验提供了较强的描述性证据，但固定概念词表上的 IoU 不能证明某个单元对行为具有因果必要性，也不能保证 Broden 覆盖了全部可能语义。
   generation:
     status: complete
     generated_by: project_agent

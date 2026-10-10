@@ -73,23 +73,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** The paper asks whether a sequence model trained only to predict legal Othello moves develops an internal representation of the board state, rather than merely memorizing surface move statistics. It further asks what form that representation takes and whether changing it causally changes the model's next-move predictions.
+    **Research Question.** The paper asks whether next-move prediction alone makes a sequence model construct the latent state of its generating process, rather than memorize move statistics. In Othello, it tests whether the current board is encoded, whether the code is linear or nonlinear, and whether changing it causally changes legal-move predictions.
 
-    **Method.** A Generative Pretrained Transformer (GPT) is trained on move sequences without being given board states or game rules. Probes are trained to decode the color of each board square from hidden activations. Because linear probes initially appear weak, the authors also use nonlinear probes and analyze how board information is distributed across layers and token positions; probe directions are then used for activation interventions.
+    **Method.** An eight-layer, eight-head, 512-dimensional Othello-GPT receives only sequences over 60 playable squares. Linear and two-layer multilayer-perceptron probes predict each square as empty, black, or white from layer activations. To go beyond decoding, gradient descent changes an activation so that the nonlinear probe reports a counterfactual one-square board state; the modified state is repeatedly imposed from a chosen layer onward and the resulting move logits form latent saliency maps.
 
-    **Validation.** Experiments use synthetic Othello game transcripts with exactly recoverable board states. Probe accuracy is compared across linear and nonlinear models and against alternative hypotheses based on move history. Interventions edit internal square representations toward a counterfactual board, after which changes in legal-move logits are measured and visualized as latent saliency maps.
+    **Validation.** Training uses either 140,526 human championship games split 80/20 or 20 million uniformly sampled synthetic games with 3,796,010 validation games. Top-1 illegal-move rates are 5.17% and 0.01%, versus 93.29% untrained; removing an entire opening branch from 20 million training games still gives 0.02%, arguing against transcript memorization. Linear probe error never falls below 20%, whereas nonlinear probes are markedly more accurate. Counterfactual interventions are scored by whether logits rise for moves newly legal under the edited board and fall for newly illegal moves, with random directions and noncausal edits as controls.
 
-    **Conclusion & Evidence.** The model develops a nonlinear representation from which the current board can be decoded with high accuracy, and targeted representation edits systematically alter predicted legal moves. This provides local causal evidence that the world-state representation participates in computation, beyond mere surface correlation. The result is nevertheless established in a fully specified synthetic environment and does not by itself show that natural-language models form equally coherent or manipulable world models.
+    **Conclusion & Evidence.** The model develops a nonlinear board-state representation that is both decodable and locally manipulable, so its legal-move behavior is not explained by surface memorization alone. Held-out game-tree tests and prediction-changing interventions provide strong causal evidence in this environment. The claim remains local: optimizing against a probe may introduce off-manifold states, interventions span several layers, and a fully specified board game does not establish equally coherent world models in natural language.
   zh: |-
-    **研究问题。** 论文研究一个只接受 Othello 落子序列并预测下一步合法落子的模型，是否会形成当前棋盘状态的内部表示，而不仅是记忆表面落子统计；并进一步考察这种表示采用什么形式，以及改变表示能否因果改变下一步预测。
+    **研究问题。** 该论文研究仅做下一步预测是否会让序列模型构建生成过程的潜在状态，而非记忆走子统计；在黑白棋中具体检验当前棋盘是否被编码、编码是线性还是非线性，以及改变编码能否因果改变合法走子预测。
 
-    **方法。** 作者在不提供棋盘状态或游戏规则的情况下训练生成式预训练 Transformer（Generative Pretrained Transformer, GPT）预测落子序列，再用探针从隐藏激活中解码每个棋盘格的棋子颜色。由于线性探针最初表现有限，研究进一步使用非线性探针并分析棋盘信息在层和 token 位置间的分布，随后利用探针方向实施激活干预。
+    **方法。** 八层、每层八头、隐藏维 512 的 Othello-GPT 只接收 60 个可落子格组成的序列。线性探针和两层多层感知机探针从各层激活预测每格为空、黑或白。为超越可解码性，研究用梯度下降修改激活，使非线性探针报告仅一格不同的反事实棋盘；从选定层起反复施加修改，再以走子 logit 变化生成潜在显著图。
 
-    **实验验证。** 实验使用棋盘状态可被精确恢复的合成 Othello 对局记录。作者比较线性与非线性探针准确率，并与只利用落子历史的替代解释比较；干预阶段把特定棋格的内部表示推向反事实棋盘状态，再测量合法落子 logits 的系统性变化，并构造潜在显著性图。
+    **实验验证。** 训练数据分别为 140,526 盘人类冠军赛棋谱（80/20 划分），或 2,000 万盘均匀采样合成棋局及 3,796,010 盘验证局。两模型 top-1 非法落子率为 5.17% 和 0.01%，未训练模型为 93.29%；即使从 2,000 万训练局删除整条开局分支，错误率仍为 0.02%，反驳棋谱记忆解释。线性探针错误率始终不低于 20%，非线性探针明显更准。反事实干预检查新棋盘中新增合法走子的 logit 是否上升、新增非法走子是否下降，并与随机方向和非因果编辑比较。
 
-    **结论与证据。** 模型形成了可被高准确率非线性解码的当前棋盘表示，定向修改该表示也会系统改变合法落子预测。这为世界状态表示实际参与计算提供了局部因果证据，强于单纯表面相关性。不过结论建立在规则完全明确的合成环境中，不能直接推出自然语言模型也形成同样完整、可操纵的世界模型。
+    **结论与证据。** 模型形成可解码且可局部操控的非线性棋盘状态表示，其合法走子行为不能仅由表面记忆解释。留出棋局树测试和改变预测的干预在该环境中提供强因果证据。但结论仍有限：沿探针梯度优化可能产生分布外激活，干预跨越多层，完全可定义的棋盘游戏也不能证明自然语言中存在同样统一的世界模型。
   generation:
     status: complete
     generated_by: project_agent

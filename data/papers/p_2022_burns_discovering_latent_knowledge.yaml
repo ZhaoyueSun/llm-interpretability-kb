@@ -67,23 +67,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** The paper asks whether a language model's latent knowledge can be recovered without labels and without trusting the model's stated answers. It tests whether the logical structure of mutually exclusive statements is sufficient to identify a truth-related direction in hidden representations.
+    **Research Question.** The paper asks whether a language model's internal answer to a binary question can be recovered without labels and without trusting its verbal answer. It decomposes this into whether truth has a contrast-consistent representational signature, whether that signature transfers across prompts and tasks, and whether it survives prompts designed to make the model say the wrong answer.
 
-    **Method.** Contrast-Consistent Search (CCS) collects representations of paired statements such as a proposition and its negation. A small probe is optimized without ground-truth labels so that its probabilities are consistent—one member of each pair should be true—and confident rather than assigning both the same status. The resulting direction is used to classify which statement the model internally treats as true.
+    **Method.** Contrast-Consistent Search (CCS) forms a positive and negative statement for every question, normalizes their hidden activations, and learns a linear probe with no labels. Its loss favors consistency—exactly one statement in each pair should be true—and confidence. Principal-component and bimodal-clustering methods serve as unsupervised alternatives; supervised logistic regression estimates how much label information is decodable in principle.
 
-    **Validation.** CCS is evaluated across pretrained language models and diverse binary-question datasets, including natural-language inference, sentiment, ethics, and factual tasks. The authors compare it with zero-shot model answers, supervised and unsupervised probes, random baselines, multiple prompt formats, layers, and cases where demonstrations intentionally encourage incorrect verbal responses.
+    **Validation.** Six models—T5, UnifiedQA, T0, GPT-J, RoBERTa, and DeBERTa—are tested on ten balanced datasets spanning sentiment, topics, natural-language inference, story completion, question answering, and commonsense reasoning. Each dataset supplies 1,000 examples except 500 for Choice of Plausible Alternatives (COPA), split 60/40 for unsupervised fitting and testing, and evaluated under nine prompts. CCS is compared with raw and calibrated zero-shot answers, supervised probes, clustering baselines, cross-task transfer, sample-size sweeps, and misleading prefixes. Averaged across the main grid, CCS exceeds strong zero-shot accuracy by about four percentage points and can retain useful accuracy when the displayed answer is deliberately corrupted.
 
-    **Conclusion & Evidence.** Hidden states often contain a direction that predicts labels more accurately than the model's explicit zero-shot answers, and CCS can recover part of this signal without supervision. This supports the existence of accessible latent knowledge and the utility of logical consistency constraints. The evidence is decodability rather than proof of a universal truth representation: performance varies by task and prompt, the probe may exploit other correlated structure, and successful readout does not show that the model uses the direction during generation.
+    **Conclusion & Evidence.** Contrastive consistency can expose label-relevant knowledge that is more reliable than a model's stated answer, and the transfer experiments suggest a partly task-general truth direction. The multi-model, multi-dataset comparisons and misleading-prompt control provide substantial evidence for unsupervised readout. The result is still decodability evidence: CCS can select a correlated binary partition, needs a known contrast construction, and neither establishes a unique truth variable nor shows that generation causally uses the recovered direction.
   zh: |-
-    **研究问题。** 论文研究能否在没有标签、也不信任模型口头回答的情况下恢复语言模型的潜在知识，并检验互斥陈述所具有的逻辑结构是否足以从隐藏表示中识别与真值相关的方向。
+    **研究问题。** 该论文研究能否在没有标签、也不信任模型口头答案的条件下，恢复语言模型对二元问题的内部答案；进一步拆解为：真值是否具有跨正反陈述一致的表示特征、该特征能否跨提示与任务迁移，以及在提示诱导模型说错答案时是否仍可读出。
 
-    **方法。** 对比一致性搜索（Contrast-Consistent Search, CCS）收集成对陈述的表示，例如一个命题及其否定。方法在无真值标签的条件下优化一个小型探针，要求每对陈述的预测满足一致性——恰有一个为真——并具有足够置信度，而不是给两者相同判断。所得方向用于判定模型内部更倾向把哪项陈述视为真实。
+    **方法。** 对比一致性搜索（Contrast-Consistent Search, CCS）为每道题构造肯定与否定陈述，归一化二者隐藏激活，再无监督学习线性探针。损失同时要求一致性——一对陈述中恰有一个为真——与置信度。主成分、双峰聚类作为无监督对照；监督逻辑回归用于估计表示中原则上可解码的标签信息。
 
-    **实验验证。** CCS 在多个预训练语言模型和多种二分类数据集上评估，包括自然语言推理、情感、伦理和事实判断任务。作者将其与模型零样本回答、有监督及无监督探针、随机基线比较，并改变提示格式、读取层以及示例是否诱导模型给出错误口头答案。
+    **实验验证。** 实验覆盖 T5、UnifiedQA、T0、GPT-J、RoBERTa 和 DeBERTa，以及情感、主题、自然语言推断、故事补全、问答和常识推理共 10 个数据集。除合理选项选择（Choice of Plausible Alternatives, COPA）为 500 条外，每个数据集抽取 1,000 条平衡样本，按 60/40 用于无监督拟合与测试，并使用 9 种提示。CCS 与原始/校准零样本答案、监督探针、聚类基线比较，还测试跨任务迁移、样本量及误导前缀。主实验平均比强零样本基线高约 4 个百分点，在外显答案被有意误导时仍能保留有效准确率。
 
-    **结论与证据。** 隐藏状态中经常存在比模型显式零样本回答更准确预测标签的方向，CCS 无需监督即可恢复其中一部分信号。这支持模型含有可访问的潜在知识，也支持利用逻辑一致性约束进行读出；但证据属于可解码性而非普遍真值表示的证明：表现会随任务和提示变化，探针可能利用其他相关结构，而成功读出也不能说明模型生成时实际使用该方向。
+    **结论与证据。** 对比一致性可读出比模型口头答案更可靠的标签知识，跨任务结果也支持部分任务无关的真值方向。多模型、多数据集和误导提示对照提供较强的无监督读出证据。但这仍是可解码性而非完整因果机制：CCS 可能选择与真值相关的另一二分结构，依赖已知对比构造，也未证明方向唯一或生成过程实际使用它。
   generation:
     status: complete
     generated_by: project_agent

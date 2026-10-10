@@ -75,23 +75,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** How is visual information represented, routed, and converted into text predictions after entering a language model? In this paper, *Interpreting Attention Heads for Image-to-Text Information Flow in Large Vision-Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Large Vision-Language Models (LVLMs) answer visual questions by transferring information from images to text through a series of attention heads. While this image-to-text information flow is central to visual question answering, its underlying mechanism remains difficult to interpret due to the simultaneous operation of numerous attention heads.
+    **Research Question.** The paper asks which attention heads carry image information into text positions during visual object identification, whether the responsible set is determined by image semantics or visual style, and which image and text tokens participate in the transfer.
 
-    **Method.** To address this challenge, we propose head attribution, a technique inspired by component attribution methods, to identify consistent patterns among attention heads that play a key role in information transfer.
+    **Method.** Head attribution repeatedly ablates subsets of heads and fits a linear model predicting the correct-answer logit from which heads remain. Regression coefficients rank head contributions; compact sets are then evaluated for faithfulness when retained and completeness when removed. Token-level patching decomposes the selected heads by source image token and destination text token.
 
-    **Validation.** Using head attribution, we investigate how LVLMs rely on specific attention heads to identify and answer questions about the main object in an image.
+    **Validation.** Several large vision-language models answer open-ended, single-word main-object questions, preventing the text prompt from revealing the answer and permitting direct logit measurement. Head attribution is compared with random selection, attention-weight ranking, and one-head causal ablation; explained variance and Pearson correlation test the linear approximation. Retain/remove curves, individual-head ablations, alternative prompt wording, and the same semantic object rendered in different image styles test robustness. Token interventions trace role tokens, the final colon, object regions, and background patches.
 
-    **Conclusion & Evidence.** Our analysis reveals that a distinct subset of attention heads facilitates the image-to-text information flow. Remarkably, we find that the selection of these heads is governed by the semantic content of the input image rather than its visual appearance. We further examine the flow of information at the token level and discover that (1) text information first propagates to role-related tokens and the final token before receiving image information, and (2) image information is embedded in both object-related and background tokens. Our work provides evidence that image-to-text information flow follows a structured process, and that analysis at the attention-head level offers a promising direction toward understanding the mechanisms of LVLMs. The interventions establish that the behavior is sensitive to the targeted representation or parameter direction, but sensitivity alone does not yield a complete or unique mechanism.
+    **Conclusion & Evidence.** A distributed but selective head set transfers visual evidence into the answer: text-side routing reaches role and final tokens before image information arrives, while both object and background image tokens contribute. Head identity follows semantic content more than surface style. Regression fit, causal ablation, compact-set faithfulness/completeness, and prompt/style controls give moderate structural evidence. The task is deliberately narrow, attribution assumes approximately additive head effects, image patches are not pure concepts, and the analysis does not establish a complete circuit for general visual question answering.
   zh: |-
-    **研究问题。** 大型视觉—语言模型（Large Vision-Language Model, LVLM） 中哪些 attention heads 负责把视觉 token 信息传给语言 token，信息从哪些图像位置流向哪些文本位置？当单头消融因分布式冗余失效时，多头组合 attribution 能否更 faithful、complete 地刻画该过程？
+    **研究问题。** 该论文研究视觉物体识别时哪些注意力头把图像信息传入文本位置，负责头集合由图像语义还是视觉风格决定，以及哪些图像与文本词元参与信息迁移。
 
-    **方法。** 为应对这一挑战，我们提出受组件归因方法启发的注意力头归因技术，用于识别在信息传递中发挥关键作用的注意力头之间的一致模式。
+    **方法。** 注意力头归因反复消融不同头子集，再用线性模型根据保留哪些头来预测正确答案 logit；回归系数用于排序头贡献，紧凑头集再分别测试保留时的保真性和移除时的完整性。词元级修补进一步按源图像词元与目标文本词元分解入选头。
 
-    **实验验证。** 借助注意力头归因，我们研究大型视觉语言模型如何依靠特定注意力头识别图像中的主要物体并回答相关问题。值得注意的是，这些注意力头的选择由输入图像的语义内容而非视觉外观决定。
+    **实验验证。** 多个大型视觉语言模型回答开放式、单词答案的主物体问题，文本提示无法泄漏答案，且可直接测量 logit。头归因与随机选择、注意力权重排序和单头因果消融比较；解释方差和 Pearson 相关检验线性近似。保留/移除曲线、逐头消融、替代提示措辞及同语义物体的不同图像风格用于稳健性测试；词元干预追踪角色词元、末尾冒号、物体区域和背景图块。
 
-    **结论与证据。** 分析显示，一组明确的注意力头促进了图像到文本的信息流。我们进一步考察 token 层面的信息流，并发现：（1）文本信息首先传播到与角色有关的 token 和最后一个 token，随后才接收图像信息；（2）图像信息同时嵌入与物体有关的 token 和背景 token。我们的工作证明，图像到文本的信息流遵循结构化过程，而在注意力头层面开展分析，是理解大型视觉语言模型机制的一条有前景路径。干预证明行为对目标表示或参数方向具有敏感性，但敏感性本身并不构成完整或唯一的机制解释。
+    **结论与证据。** 一个分布式但有选择性的头集合把视觉证据送往答案位置：文本侧信息先传播到角色词和末词元，随后接收图像信息；图像侧物体与背景词元均有贡献。头身份更多随语义而非表面风格变化。回归拟合、因果消融、紧凑集合的保真/完整性及提示/风格对照提供中等结构证据。但任务刻意狭窄，归因假设头作用近似可加，图块并非纯概念，分析也未给出一般视觉问答的完整电路。
   generation:
     status: complete
     generated_by: project_agent

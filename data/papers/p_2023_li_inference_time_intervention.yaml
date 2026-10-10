@@ -69,23 +69,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Can readable internal directions be manipulated reliably to produce specific and predictable behavioral changes? In this paper, *Inference-Time Intervention: Eliciting Truthful Answers from a Language Model* addresses that question through its specific object of study and tests how far the resulting claim can be supported.
+    **Research Question.** The paper asks whether a language model internally distinguishes truthful from false answers even when its generated answer is wrong, and whether a small activation intervention can elicit that latent distinction without retraining the model or severely degrading informativeness.
 
-    **Method.** We introduce Inference-Time Intervention (ITI), a technique designed to enhance the"truthfulness"of large language models (LLMs). ITI operates by shifting model activations during inference, following a set of directions across a limited number of attention heads. Moreover, the technique is data efficient: while approaches like RLHF require extensive annotations, ITI locates truthful directions using only few hundred examples.
+    **Method.** Inference-Time Intervention (ITI) trains per-head linear probes on truthful versus false question–answer pairs, ranks attention heads by held-out accuracy, and estimates a “truthful” activation direction—primarily the difference between class means. During every decoding step it adds a scaled shift to the selected heads after attention and before their output projection. The number of heads \(K\) and scale \(\alpha\) control a trade-off between truthfulness and disturbance; equivalent bias edits make the runtime overhead negligible.
 
-    **Validation.** This intervention significantly improves the performance of LLaMA models on the TruthfulQA benchmark. We identify a tradeoff between truthfulness and helpfulness and demonstrate how to balance it by tuning the intervention strength. ITI is minimally invasive and computationally inexpensive.
+    **Validation.** On TruthfulQA, directions and evaluation are separated by two-fold cross-validation; a 5% train/validation split selects \(K=48\) and \(\alpha=15\) for LLaMA-7B. Human/GPT-judge truth and informativeness are reported together with OpenWebText cross-entropy and Kullback–Leibler divergence, and baselines include supervised fine-tuning, few-shot prompting, Contrast-Consistent Search, random directions, Alpaca, and Vicuna. In one full run, truth rises from 31.6% to 54.5% while informativeness changes from 96.7% to 93.3%; Alpaca's true-and-informative score rises from 32.5 to 65.1. Frozen TruthfulQA directions also improve Natural Questions 46.6→51.3, TriviaQA 89.6→91.1, and Massive Multitask Language Understanding 35.71→40.16.
 
-    **Conclusion & Evidence.** On an instruction-finetuned LLaMA called Alpaca, ITI improves its truthfulness from 32.5% to 65.1%. Our findings suggest that LLMs may have an internal representation of the likelihood of something being true, even as they produce falsehoods on the surface. The interventions provide local causal evidence for the targeted components or representations. The conclusion remains bounded to the tested models, tasks, and intervention design and need not constitute a complete mechanism.
+    **Conclusion & Evidence.** A sparse set of attention-head activations contains a linearly accessible signal that can causally bias generation toward truthful answers, and the effect partially transfers beyond the benchmark. Cross-validation, random-direction controls, distribution-shift tests, and behavior-versus-KL measurements provide substantial intervention evidence. ITI is not a truth guarantee: supervision defines truth only through TruthfulQA, stronger shifts increase evasive “no comment” answers, mean-shift directions outperform the probe weights themselves, and the perturbation can distort other information encoded in the same activations.
   zh: |-
-    **研究问题。** 当模型中间表示可线性区分真实与错误陈述、但标准生成仍给出错误答案时，是否存在 knowledge–generation gap？能否定位少数 truth-correlated attention-head directions，并在 inference time 沿这些方向移动激活以提高 truthful generation？
+    **研究问题。** 该论文研究语言模型在生成错误答案时，内部是否仍区分真实与虚假回答，以及能否在不重新训练模型、不过度损害信息量的情况下，用小规模激活干预引出这种潜在区分。
 
-    **方法。** 我们提出推理时干预（Inference-Time Intervention，ITI），这是一种旨在提高大语言模型（LLM）“真实性”的技术。ITI 在推理过程中沿一组方向移动模型激活，且只作用于数量有限的注意力头。此外，该技术具有很高的数据效率：RLHF 等方法需要大量标注，而 ITI 仅用数百个样本即可定位真实性方向。
+    **方法。** 推理时干预（Inference-Time Intervention, ITI）在真假问答对上为每个注意力头训练线性探针，按留出准确率排序注意力头，并估计“真实”方向，主要采用两类激活均值之差。每个解码步都在注意力之后、输出投影之前，向选定注意力头加入带尺度的位移；头数 \(K\) 与强度 \(\alpha\) 控制真实性和扰动程度的权衡，也可把同一变换写入偏置，因此运行开销近乎为零。
 
-    **实验验证。** 这种干预显著提升了 LLaMA 模型在 TruthfulQA 基准上的表现。在名为 Alpaca、经过指令微调的 LLaMA 上，ITI 将其真实性从 32.5% 提升至 65.1%。我们识别出真实性与有用性之间的权衡，并说明可以通过调节干预强度在二者之间取得平衡。ITI 的侵入性很低，计算成本也很小。
+    **实验验证。** TruthfulQA 上用二折交叉验证隔离方向学习和评测，并以各 5% 的训练/验证问题为 LLaMA-7B 选择 \(K=48,\alpha=15\)。指标包括人工或 GPT 判定的真实性与信息量、OpenWebText 交叉熵及干预前后的 Kullback–Leibler 散度；基线涵盖监督微调、少样本提示、对比一致性搜索、随机方向、Alpaca 和 Vicuna。一次完整评测中，真实率由 31.6% 升至 54.5%，信息率由 96.7% 变为 93.3%；Alpaca 的“真实且有信息”分数由 32.5 升至 65.1。冻结 TruthfulQA 方向后，Natural Questions、TriviaQA 和大规模多任务语言理解（Massive Multitask Language Understanding, MMLU）准确率也分别由 46.6→51.3、89.6→91.1、35.71→40.16。
 
-    **结论与证据。** 我们的发现表明，即使大语言模型表面上生成了错误陈述，其内部也可能表征着某件事为真的可能性。这些干预为目标组件或表示提供了局部因果证据；结论仍受所测模型、任务和干预设计限制，也不必然构成完整机制。
+    **结论与证据。** 少量注意力头激活包含线性可访问的真实性信号，对其进行干预可因果性地把生成推向真实回答，且部分迁移到基准之外。交叉验证、随机方向对照、分布迁移测试及行为—散度联合测量提供了较强干预证据。但 ITI 不是真实性保证：监督只按 TruthfulQA 定义“真实”，强干预会增加回避式“无可奉告”，类别均值方向反而优于探针权重，而且位移可能破坏同一激活中的其他信息。
   generation:
     status: complete
     generated_by: project_agent

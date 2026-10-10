@@ -59,23 +59,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** How can paths and shared circuits implementing a target subcomputation be localized from behavioral constraints? In this paper, *Localizing Model Behavior with Path Patching* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Localizing behaviors of neural networks to a subset of the network's components or a subset of interactions between components is a natural first step towards analyzing network mechanisms and possible failure modes. Existing work is often qualitative and ad-hoc, and there is no consensus on the appropriate way to evaluate localization claims.
+    **Research Question.** The paper asks how a claim that a neural-network behavior is localized to particular components or interactions can be stated precisely and tested quantitatively. It also asks whether successive failures of such a claim can guide refinement of a mechanistic explanation rather than only rank components by importance.
 
-    **Method.** We introduce path patching, a technique for expressing and quantitatively testing a natural class of hypotheses expressing that behaviors are localized to a set of paths.
+    **Method.** Path patching represents a model as a computational graph and defines a hypothesis \(H=(G,\delta,S,D)\): paths in \(S\) receive a reference input, while every hypothesized-unimportant path receives activations from a paired counterfactual input. “Treeifying” shared subgraphs permits interventions on individual paths rather than whole nodes. Approximation error is measured by average unexplained effect (AUE), and comparison with the total counterfactual effect yields a proportion explained; per-example path-patching attribution identifies where a hypothesis fails.
 
-    **Validation.** We refine an explanation of induction heads, characterize a behavior of GPT-2, and open source a framework for efficiently running similar experiments.
+    **Validation.** The main case study analyzes a two-layer, eight-head-per-layer attention-only Transformer trained on OpenWebText, using the first 300 tokens of 100,000 held-out documents and per-token cross-entropy loss. Starting from a simple induction-head account, the study adds positional, longer-context, and parroting paths; the explained proportion rises from 28.2% for the joint initial hypothesis to 73.5% for the final one, with separate induction and repeat subsets exposing different errors. A second study on GPT-2 Small and GPT-2 XL compares counterfactual path patching, Gaussian-noise causal tracing, and zero ablation on number-continuation prompts, showing that the methods answer different causal questions.
 
-    **Conclusion & Evidence.** We introduce path patching, a technique for expressing and quantitatively testing a natural class of hypotheses expressing that behaviors are localized to a set of paths. The coordinated interventions provide comparatively strong structural causal evidence for the proposed information flow or circuit. Completeness, uniqueness, and transfer to other models still require separate validation.
+    **Conclusion & Evidence.** Localization claims become falsifiable when their graph, input distribution, counterfactual, retained paths, and error metric are explicit, and attribution from rejected claims can reveal missing mechanisms. The evidence is causal and quantitative on both a controlled model and pretrained GPT-2, but the final induction abstraction remains incomplete and behavior-specific. The experiments do not establish that lower AUE guarantees usefulness for downstream safety or debugging tasks, and conclusions may change under a different input distribution or counterfactual construction.
   zh: |-
-    **研究问题。** 如何把“某些计算路径中介了目标行为”的定位主张精确定义为可证伪假说，而不只列出重要 nodes？广义 path patching 能否在任意计算图上量化路径集合的充分性、指出假说误差来源并支持迭代细化？
+    **研究问题。** 该论文研究如何精确定义并定量检验“某种神经网络行为局部化在特定组件或交互路径中”的主张，以及能否利用主张失败的位置逐步修正机制解释，而不只是给组件做重要性排序。
 
-    **方法。** 我们提出路径修补，这是一种用于表达并定量检验一类自然假说的技术；这类假说认为，某些行为被定位于一组路径。
+    **方法。** 路径修补把模型写成计算图，并将假设定义为 \(H=(G,\delta,S,D)\)：集合 \(S\) 中的重要路径接收参考输入，其余被假定为不重要的路径接收配对反事实输入的激活。对共享子图进行“树化”后，可干预单条路径而非整个节点。平均未解释效应（Average Unexplained Effect, AUE）度量近似误差，再相对总反事实效应换算为解释比例；逐样本的路径修补归因用于定位假设失真之处。
 
-    **实验验证。** 我们提出路径修补，这是一种用于表达并定量检验一类自然假说的技术；这类假说认为，某些行为被定位于一组路径。
+    **实验验证。** 主要案例研究一个在 OpenWebText 上训练的两层注意力模型，每层含 8 个注意力头；测试数据是 10 万篇留出文档的前 300 个词元，指标为逐词元交叉熵损失。分析从简单归纳头假设出发，依次补入位置、长上下文和复述路径，联合假设的解释比例由初始的 28.2% 提升到最终的 73.5%，并用归纳子集和重复子集区分不同误差来源。另一组实验在 GPT-2 Small 与 GPT-2 XL 的数字续写提示上比较反事实路径修补、高斯噪声因果追踪和置零消融，显示三者回答的因果问题并不相同。
 
-    **结论与证据。** 我们改进了对归纳注意力头的解释，刻画了 GPT-2 的一种行为，并开源了一个高效开展类似实验的框架。相互配合的干预为所提出的信息流或电路提供了较强的结构因果证据，但机制的完备性、唯一性以及跨模型迁移仍需独立验证。
+    **结论与证据。** 当计算图、输入分布、反事实、保留路径和误差指标均被明确时，局部化主张才是可证伪的，而失败样本的归因可暴露遗漏机制。证据在受控模型和预训练 GPT-2 上均包含定量因果干预，但最终归纳抽象仍不完整且只针对特定行为；实验也没有证明较低 AUE 必然有利于安全或调试，而且更换输入分布或反事实构造可能改变结论。
   generation:
     status: complete
     generated_by: project_agent

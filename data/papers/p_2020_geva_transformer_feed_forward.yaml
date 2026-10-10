@@ -64,23 +64,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** The paper asks what Transformer feed-forward layers, which contain much of the model's parameters, actually compute. It investigates whether their neurons can be interpreted as key–value memories and how those memories contribute to the output distribution across layers.
+    **Research Question.** The paper asks what Transformer feed-forward network (FFN) layers store and compute, whether their two matrices can be interpreted as key–value memories, and how individual memory cells combine across layers to form a next-token distribution.
 
-    **Method.** A feed-forward layer is written as a sum of memory contributions. Each first-layer weight vector acts as a key whose dot product with the current hidden state determines activation, while the corresponding second-layer vector acts as a value that can be projected through the language-model unembedding to obtain a token distribution. This decomposition allows the authors to inspect triggering text patterns and predicted outputs for individual memories.
+    **Method.** For an FFN (\mathrm{FFN}(x)=f(xK^\top)V), each row of the first matrix is treated as a key whose activation coefficient measures a match to the current prefix, and the corresponding row of the second matrix is treated as a value. Keys are interpreted by retrieving training prefixes with the largest coefficients; values are projected through the unembedding matrix to obtain vocabulary distributions. The study then decomposes layer output into the weighted composition of active memories and tracks how residual connections refine predictions.
 
-    **Validation.** The analysis is applied to pretrained Transformer language models using large text corpora. For memories at different depths, the authors retrieve highly activating contexts, measure their semantic coherence, examine the vocabulary distributions induced by value vectors, and trace how residual updates from successive feed-forward layers move the model toward its final prediction.
+    **Validation.** Analysis uses a 16-layer, 1,024-dimensional Transformer language model trained on WikiText-103, containing 4,096 FFN cells per layer. Human natural-language-processing experts annotate the top 25 prefixes for 160 sampled keys; every key receives at least one recurring pattern and 65–80% of retrieved prefixes are covered, with 3.6 patterns per key on average. A larger perturbation test removes first, last, or random tokens from the top 50 triggers of 1,600 keys. Value–key agreement is measured over all cells and rises from near zero in lower layers to 3.5% in upper layers, compared with a 0.0004% random-token rate. Composition and residual refinement are evaluated on 4,000 validation prefixes.
 
-    **Conclusion & Evidence.** Lower-layer keys tend to respond to shallow patterns, whereas higher layers capture more semantic contexts; their values often promote tokens that plausibly continue those patterns. Feed-forward outputs behave as compositions of many such memories that are refined across layers. The evidence supports a useful descriptive key–value interpretation, but it is primarily correlational: semantic activation and vocabulary projection do not prove that each neuron stores a discrete fact or that the proposed decomposition is the only causal account of the layer.
+    **Conclusion & Evidence.** Lower-layer keys mostly match surface patterns, whereas upper-layer keys more often match semantic contexts; upper-layer values disproportionately predict tokens that follow their keys' triggers. Individual cells rarely determine the layer prediction, so FFN behavior is better described as composition among many memories followed by residual refinement. The annotations, perturbations, vocabulary projections, and held-out-prefix analyses provide convergent descriptive evidence for this key–value view, but they do not establish a unique causal decomposition or show that every FFN cell has one stable semantic meaning.
   zh: |-
-    **研究问题。** 论文研究占据 Transformer 大量参数的前馈层究竟执行什么计算，重点考察其神经元能否被解释为键值记忆，以及这些记忆如何在不同层中共同影响最终输出分布。
+    **研究问题。** 该论文研究 Transformer 前馈网络（Feed-Forward Network, FFN）层究竟存储和计算什么、其两组矩阵能否解释为键—值记忆，以及单个记忆单元如何在层内和跨层组合成下一 token 分布。
 
-    **方法。** 作者把前馈层写成多项记忆贡献之和。第一层的每个权重向量充当“键”，它与当前隐藏状态的内积决定相应神经元是否激活；第二层中对应的向量充当“值”，并可通过语言模型的反嵌入矩阵投影为词表上的 token 分布。该分解使研究者能够分别检查每项记忆的触发文本模式和它倾向写入的输出。
+    **方法。** 对于 (\mathrm{FFN}(x)=f(xK^\top)V)，第一组矩阵的每一行被视为“键”，其激活系数表示当前前缀与该键的匹配程度；第二组矩阵的对应行被视为“值”。研究通过检索激活某个键最强的训练前缀解释键，再把值经反嵌入矩阵投影为词表分布；随后将层输出分解为活跃记忆的加权组合，并沿残差连接追踪预测如何被逐层修正。
 
-    **实验验证。** 分析在预训练 Transformer 语言模型和大规模文本语料上开展。作者为不同深度的记忆检索高激活上下文，衡量其语义一致性，检查 value 向量诱导的词表分布，并追踪连续前馈层经由残差连接如何逐步把输出推向最终预测。
+    **实验验证。** 实验对象是 WikiText-103 上训练的 16 层 Transformer 语言模型，隐藏维度为 1,024，每层包含 4,096 个 FFN 单元。自然语言处理专家标注 160 个随机键各自最强的 25 个前缀：所有键都至少对应一种重复模式，65%–80% 的检索前缀可被模式覆盖，每个键平均识别出 3.6 种模式。更大规模的扰动实验对 1,600 个键的前 50 个触发前缀删除首 token、末 token 或随机 token。全体单元上的值—键首选 token 一致率从低层接近零升至高层 3.5%，而随机词表基线仅为 0.0004%；层内组合和残差修正另在 4,000 个验证前缀上评估。
 
-    **结论与证据。** 较低层的 key 更常响应浅层文本模式，较高层则表现出更强的语义性；对应 value 往往提升可能接续这些模式的 token。前馈层输出可以被描述为多项记忆的组合，并在后续层中持续细化。证据支持这种有用的描述性键值解释，但主要仍是相关性证据：语义激活和词表投影不能证明每个神经元存储一个离散事实，也不能证明该分解是前馈层唯一的因果机制。
+    **结论与证据。** 低层键主要匹配表层模式，高层键更常匹配语义上下文；高层值也更倾向预测对应触发模式之后出现的 token。单个单元很少独立决定整层预测，因此 FFN 更适合被描述为多个记忆的组合以及残差流中的逐层修正。人工标注、局部扰动、词表投影和留出前缀分析形成相互印证的描述性证据，但尚不能证明这种分解具有唯一因果性，也不能保证每个单元只有一个稳定语义。
   generation:
     status: complete
     generated_by: project_agent

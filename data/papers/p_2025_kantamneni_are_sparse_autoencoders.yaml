@@ -75,23 +75,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Do interpretability methods provide distinctive practical value on causal tasks, realistic distributions, and against strong baselines? In this paper, *Are Sparse Autoencoders Useful? A Case Study in Sparse Probing* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Sparse autoencoders (SAEs) are a popular method for interpreting concepts represented in large language model (LLM) activations. However, there is a lack of evidence regarding the validity of their interpretations due to the lack of a ground truth for the concepts used by an LLM, and a growing number of works have presented problems with current SAEs. One alternative source of evidence would be demonstrating that SAEs improve performance on downstream tasks beyond existing baselines.
+    **Research Question.** The paper asks whether Sparse Autoencoder (SAE) latents provide a useful inductive bias for real activation probing beyond strong non-SAE baselines. It deliberately targets regimes where interpretable concept bases ought to help: little data, class imbalance, label noise, covariate shift, spurious correlations, poor data quality, and multi-token evidence.
 
-    **Method.** We test this by applying SAEs to the real-world task of LLM activation probing in four regimes: data scarcity, class imbalance, label noise, and covariate shift.
+    **Method.** Hidden states from Gemma-2-9B and Llama-3.1-8B are represented either directly or through public SAE latents. Logistic regression on selected SAE features is compared with five probe families, including linear and nonlinear methods such as multilayer perceptrons, k-nearest neighbors, and XGBoost. The “Quiver of Arrows” protocol selects the best method by validation area under the receiver operating characteristic curve (AUC), then asks whether adding SAE probes improves the toolkit's held-out test AUC.
 
-    **Validation.** Due to the difficulty of detecting concepts in these challenging settings, we hypothesize that SAEs' basis of interpretable, concept-level latents should provide a useful inductive bias. However, although SAEs occasionally perform better than baselines on individual datasets, we are unable to design ensemble methods combining SAEs with baselines that consistently outperform ensemble methods solely using baselines. Additionally, although SAEs initially appear promising for identifying spurious correlations, detecting poor dataset quality, and training multi-token probes, we are able to achieve similar results with simple non-SAE baselines as well.
+    **Validation.** Evaluation uses 113 binary datasets with prompts from 5 to 1,024 tokens. Every method searches ten hyperparameter settings with data-size-appropriate validation: training selection for at most three examples, leave-two-out up to 12, six-fold cross-validation up to 128, and an 80/20 validation split above 128. Controlled corruptions generate scarcity, imbalance, noise, and shift; additional experiments test spurious-correlation identification, dataset-quality diagnosis, multi-token pooling, model/layer choice, SAE architecture, and apparent wins against weak linear baselines.
 
-    **Conclusion & Evidence.** Though we cannot discount SAEs' utility on other tasks, our findings highlight the shortcomings of current SAEs and the need to rigorously evaluate interpretability methods on downstream tasks with strong baselines. The counterexamples or controls strongly delimit what the audited method can justify. They do not, on their own, prove that any proposed replacement is universally faithful or sufficient.
+    **Conclusion & Evidence.** SAE probes sometimes win on individual datasets but do not consistently improve the validation-selected ensemble of strong baselines; several initially promising SAE applications are matched by simple non-SAE methods. The large dataset collection, nested selection, difficult regimes, and stronger baselines make this robust negative evidence against a general probing advantage. It does not show SAEs are useless for causal intervention or discovery, and imperfect public SAEs or probing itself may be the bottleneck.
   zh: |-
-    **研究问题。** 稀疏自编码器（Sparse Autoencoder, SAE） latents 除了改善 reconstruction 等 proxy metrics，是否能在真实 probing 任务中为实践者带来超过强基线的增量价值？在数据稀缺、类别不平衡、label noise 与 covariate shift 下，这种更可解释的基底是否形成稳定优势？
+    **研究问题。** 该论文研究稀疏自编码器（Sparse Autoencoder, SAE）潜变量能否在真实激活探测中提供超越强非 SAE 基线的归纳偏置；特意选择理论上可解释概念基应有优势的场景：小样本、类别不平衡、标签噪声、协变量偏移、伪相关、低质量数据和跨词元证据。
 
-    **方法。** 我们通过把 SAE 应用于真实的语言模型激活探测任务来检验这一点，覆盖四种设置：数据稀缺、类别不平衡、标签噪声和协变量偏移。
+    **方法。** Gemma-2-9B 和 Llama-3.1-8B 的隐藏状态直接使用或先映射到公开 SAE 潜变量。基于 SAE 特征的逻辑回归与五类探针比较，包括线性方法、多层感知机、k 近邻和 XGBoost。“箭袋”协议先按验证集受试者工作特征曲线下面积（Area Under the ROC Curve, AUC）选择最佳方法，再检验加入 SAE 探针是否提升整套工具的留出测试 AUC。
 
-    **实验验证。** 由于在这些具有挑战性的设置中很难检测概念，我们假设，SAE 由可解释的概念级潜变量构成的基底应当提供有益的归纳偏置。然而，尽管 SAE 偶尔会在个别数据集上优于基线，我们无法设计出一种结合 SAE 和基线的集成方法，使其持续优于只使用基线的集成方法。此外，虽然 SAE 起初似乎有望用于识别虚假相关、检测低质量数据集和训练多 token 探针，但简单的非 SAE 基线也能取得相似结果。
+    **实验验证。** 评测包含 113 个二分类数据集，提示长度 5 至 1,024 词元。每种方法搜索 10 组超参数，并按样本量选择验证法：至多 3 条用训练集选择，4–12 条留二交叉验证，13–128 条六折交叉验证，更大数据用 80/20 划分。受控扰动产生小样本、不平衡、噪声和分布偏移；附加实验考察伪相关识别、数据质量诊断、跨词元汇聚、模型/层选择、SAE 架构，以及相对弱线性基线的表面优势。
 
-    **结论与证据。** 尽管我们不能排除 SAE 在其他任务上的价值，研究结果仍凸显了当前 SAE 的不足，以及使用强基线在下游任务上严格评估可解释性方法的必要性。反例和控制实验有力限定了被审计方法能够支持的结论，但它们本身不能证明任何替代方法普遍忠实或充分。
+    **结论与证据。** SAE 探针偶尔在单数据集获胜，却未稳定改善由验证集选择的强基线组合；若干初看有希望的用途也可被简单非 SAE 方法匹配。大规模数据集合、嵌套选择、困难设置和强基线构成稳健负面证据，反对“一般探测优势”。但这不证明 SAE 对因果干预或发现无用；公开 SAE 质量不佳或探测任务本身也可能是瓶颈。
   generation:
     status: complete
     generated_by: project_agent

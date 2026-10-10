@@ -52,23 +52,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** How can correlational findings be progressively upgraded into causal, out-of-distribution, and deployment-relevant interpretability evidence? In this paper, *From Correlation to Cause: A Five-Stage Methodology for Feature Analysis in Transformer Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported.
+    **Research Question.** The paper asks how to prevent a selective, interpretable feature from being mistaken for a causal mechanism. It proposes an end-to-end progression from preregistered hypotheses and feature extraction through causal validation, robustness under distribution shift, and deployment-value analysis.
 
-    **Method.** We propose a five-stage methodology for causal feature analysis in transformer language models (probe design, feature extraction, causal validation, robustness testing, and deployment integration) and demonstrate it end-to-end on GPT-2 small performing the Indirect Object Identification (IOI) task.
+    **Method.** The five stages are probe design, feature extraction, causal validation, robustness testing, and deployment integration. GPT-2 small's Indirect Object Identification (IOI) behavior is first localized by activation patching; an Sparse Autoencoder (SAE) extracts name-selective features; single/cumulative ablation tests causal force. Natural-Language-Attribution-inspired fidelity and reliability diagnostics compare feature reconstruction, selectivity, and causal effect; a cost model evaluates monitoring.
 
-    **Validation.** Activation patching recovers the canonical IOI circuit (layer-9 head 9 alone gives recovery +1.02). A sparse autoencoder recovers per-name selective features with effect sizes of 30 to 50 activation units. Causal validation finds these features specifically but only partially causal: ablating fifteen of them leaves the model accurate on 98% of prompts. Two NLA-inspired evaluations strengthen this picture: the fifteen selective features explain only 31% of activation variance versus the SAE's 99.7%, and selectivity ratio anticorrelates with causal force (r = -0.56). Robustness testing under three distribution shifts finds that the circuit transfers cleanly but feature ablation effects degrade substantially, exposing a gap between detection robustness and causal robustness. A cost-based deployment evaluation (assumed $50/FN, $0.42/FP, 2% error rate) finds an optimal monitor configuration yielding $8.96 per 1000 queries against a $1000 baseline, a 99.1% saving.
+    **Validation.** GPT-2 small begins with mean IO-minus-subject logit difference 3.73 and 100% accuracy on the sample. Layer-9 head 9 patching gives recovery +1.02; name features have 30–50-unit effects. Ablating 15 leaves 98% prompts correct. On 500 held-out prompts, the 15 explain 31% activation variance versus 99.7% for the full SAE; selectivity anticorrelates with causal force ((r=-0.56)). Three shifts preserve the circuit better than feature-ablation effects. Under assumed $50 false-negative, $0.42 false-positive, and 2% error rate, the best monitor costs $8.96 per 1,000 queries versus $1,000 without it.
 
-    **Conclusion & Evidence.** Optimal composition strategy varies with cost ratio and base rate. The conjunction of stages produces findings no single stage would. The counterexamples or controls strongly delimit what the audited method can justify. They do not, on their own, prove that any proposed replacement is universally faithful or sufficient.
+    **Conclusion & Evidence.** Selectivity is not causality: SAE features can be readable, robustly detected, and still only partially responsible for behavior. The staged contradictions provide strong evidence for disciplined claim calibration and show deployment conclusions depend on costs/base rates. It is one small model/task, the economic numbers are hypothetical, SAE choice affects findings, and the workflow improves evidence quality rather than guaranteeing a complete mechanism.
   zh: |-
-    **研究问题。** 如何把 probe design、feature extraction、causal validation、robustness testing 与 deployment integration 串成支持因果主张的完整方法学？feature selectivity、causal force、detection robustness 与 intervention robustness 之间到底是什么关系？
+    **研究问题。** 该论文研究如何避免把选择性强、易解释的特征误认为因果机制，并提出从预注册假设与特征提取，经因果验证和分布偏移稳健性，直到部署价值评估的端到端路线。
 
-    **方法。** 我们提出一种用于 Transformer 语言模型因果特征分析的五阶段方法论，包括探针设计、特征提取、因果验证、鲁棒性测试和部署集成，并在执行间接宾语识别（IOI）任务的 GPT-2 small 上进行了端到端演示。
+    **方法。** 五阶段为探针设计、特征提取、因果验证、稳健性测试和部署整合。先用激活修补定位 GPT-2 small 的间接宾语识别（Indirect Object Identification, IOI），再用 稀疏自编码器（Sparse Autoencoder, SAE） 提取姓名选择性特征，单个/累积消融测因果力。借鉴自然语言归因的保真与可靠性诊断，比较特征重构、选择性和因果效应；成本模型评估监控器。
 
-    **实验验证。** 激活修补恢复了经典 IOI 回路（仅第 9 层第 9 个注意力头就带来 +1.02 的恢复量）。稀疏自编码器恢复出针对单个人名具有选择性的特征，其效应量为 30 至 50 个激活单位。因果验证发现，这些特征具有特异性因果作用，但作用仅是部分的：消融其中 15 个特征后，模型仍能在 98% 的提示上给出正确结果。两项受 NLA 启发的评估进一步强化了这一结论：这 15 个选择性特征只能解释 31% 的激活方差，而 SAE 可解释 99.7%；选择性比率与因果作用强度呈负相关（r = -0.56）。在三种分布偏移下进行的鲁棒性测试发现，回路能够顺利迁移，但特征消融的效应会显著减弱，这暴露出检测鲁棒性与因果鲁棒性之间的差距。基于成本的部署评估（假设每个假阴性的成本为 50 美元、每个假阳性为 0.42 美元、错误率为 2%）发现，最优监控器配置在每 1000 次查询上的成本为 8.96 美元，相比 1000 美元的基线节省 99.1%。
+    **实验验证。** GPT-2 small 初始间接宾语–主语平均 logit 差 3.73，样本准确率 100%；第 9 层头 9 单独修补恢复 +1.02，姓名特征效应 30–50 激活单位。消融 15 个特征后 98% 提示仍答对。在 500 条留出提示上，这 15 个只解释 31% 激活方差，完整 SAE 为 99.7%；选择性与因果力负相关 (r=-0.56)。三类分布偏移下，电路迁移比特征消融效应稳定。假设漏报 $50、误报 $0.42、错误率 2%，最优监控器每千请求成本 $8.96，无监控基线 $1,000。
 
-    **结论与证据。** 最优组合策略会随成本比和基础发生率而变化。只有将这五个阶段结合起来，才能得到任何单一阶段都无法产生的发现。反例和控制实验有力限定了被审计方法能够支持的结论，但它们本身不能证明任何替代方法普遍忠实或充分。
+    **结论与证据。** 选择性不等于因果性：SAE 特征可以可读、检测稳健，却只对行为部分负责。多阶段间的相互否证强力支持谨慎校准主张，也显示部署结论依赖成本与基率。但只测一个小模型/任务，经济参数是假设，SAE 选择会影响结果，该流程提升证据质量却不保证找到完整机制。
   generation:
     status: complete
     generated_by: project_agent

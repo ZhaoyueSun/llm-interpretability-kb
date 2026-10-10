@@ -69,23 +69,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** The paper asks when a loss function rewards polysemantic representations. By defining feature capacity as the fractional dimension assigned to a feature, it investigates why features are ignored, represented monosemantically, or packed in superposition, and how sparsity, importance, and architecture determine these regimes.
+    **Research Question.** The paper asks how a finite representation budget is divided among features and when the optimum yields ignored, monosemantic, or polysemantic features. It aims to explain the sharp capacity “pinning” observed in earlier superposition experiments and how sparsity, importance, and architecture determine block structure.
 
-    **Method.** Capacity is formalized from the geometry of feature embeddings and the sensitivity of represented features to interference. In analytically tractable toy models, the authors optimize capacity allocation subject to a finite dimensional budget, then derive how loss, sparsity, and importance determine equilibrium allocations and the block structure of feature vectors.
+    **Method.** Feature capacity is defined geometrically as the fraction of an embedding dimension protected from interference. An analytically tractable quadratic model turns learning into constrained capacity allocation: feature variance/kurtosis and importance determine the benefit of capacity, while total capacity is limited by hidden dimension. The analysis derives optimal allocations and phase boundaries, then studies matrices realizing those capacities—diagonal monosemantic blocks, semiorthogonal superposition, and mixed tegum-product geometry.
 
-    **Validation.** Numerical optimization sweeps vary feature importance, input sparsity or kurtosis, bottleneck width, and architectural details. Learned embeddings are compared with the predicted allocation regimes and inspected for block-semi-orthogonal geometry, with examples showing transitions among dedicated dimensions, shared polysemantic dimensions, and ignored features.
+    **Validation.** Closed-form predictions are compared with numerical optimization of the quadratic model and with both the Anthropic compression/reconstruction toy model and a Redwood model in which fewer polysemantic neurons emulate more nonlinear monosemantic units. Sweeps over equal and unequal importance, kurtosis/sparsity, bottleneck size, block size, and activation functions test phase diagrams. The theory reproduces sharp transitions between capacity zero and one, proportional allocation for intermediate features, and the different small-polytope versus large-block geometries of the two architectures.
 
-    **Conclusion & Evidence.** Optimal allocation gives the most important features dedicated capacity, packs less important sparse features proportionally to their effect on loss, and drops the least useful features. Higher sparsity and some architectures favor polysemanticity, while embeddings organize into blocks whose sizes depend on the model. Formal analysis and controlled simulations strongly support the mechanism in the toy setting, but large-model feature spaces may contain additional objectives and constraints.
+    **Conclusion & Evidence.** Polysemanticity can be understood as optimal allocation under a dimensional budget: high-value features receive protected dimensions, sufficiently low-value features are omitted, and sparse intermediate features share capacity. Formal optimization plus matching simulations strongly supports this explanation for the studied toy objectives and shows architecture can control block size. It does not demonstrate that real-network features satisfy the assumed independence, quadratic loss, or identifiable ground truth, so quantitative predictions for language models remain hypotheses.
   zh: |-
-    **研究问题。** 论文研究损失函数在什么条件下会奖励多义表示。通过把特征容量定义为分配给某个特征的分数维度，作者试图解释特征为何会被忽略、获得单义表示或以 superposition 共享维度，以及稀疏性、重要性和架构如何决定这些状态。
+    **研究问题。** 该论文研究有限表示预算如何在特征间分配，以及何种条件使最优解忽略特征、形成单义表示或形成多义叠加；目标是解释早期叠加实验中的容量“钉扎”，并分析稀疏性、重要性和架构如何决定块结构。
 
-    **方法。** 特征容量由特征嵌入的几何结构及其对干扰的敏感性形式化。在可解析的玩具模型中，作者在有限维预算下优化容量分配，并推导损失、稀疏度和重要性如何决定均衡分配以及特征向量的分块结构。
+    **方法。** 特征容量被几何定义为免受其他特征干扰的嵌入维度份额。可解析二次模型把学习转为受约束容量分配：特征方差/峰度和重要性决定容量收益，总容量受隐藏维数限制。理论推导最优分配及相边界，再研究实现这些容量的矩阵，包括对角单义块、半正交叠加和混合 tegum-product 几何。
 
-    **实验验证。** 数值优化系统改变特征重要性、输入稀疏度或峰度、瓶颈宽度和架构细节。所得嵌入与理论预测的容量状态比较，并检查是否出现分块半正交几何；实验展示了独占维度、共享的多义维度以及完全忽略特征之间的转变。
+    **实验验证。** 闭式预测与二次模型数值优化比较，并对照 Anthropic 的压缩–重构玩具模型和 Redwood 的“小量多义神经元模拟更多非线性单义神经元”模型。实验扫描相同/不同重要性、峰度/稀疏度、瓶颈宽度、块大小和激活函数。理论复现容量在 0 与 1 间的尖锐转变、中间特征的比例分配，以及两种架构分别出现的小多面体与大叠加块几何。
 
-    **结论与证据。** 最优分配倾向为最重要特征提供独占容量，按对损失的影响把较不重要且稀疏的特征压入共享维度，并丢弃最不重要特征。更高稀疏性和某些架构更容易产生多义性，嵌入还会形成大小依赖模型的分块结构。形式分析与受控模拟在玩具设定中提供了很强证据，但大模型特征空间可能受到更多目标和约束影响。
+    **结论与证据。** 多义性可视为维数预算下的最优分配：高价值特征获得受保护维度，低价值特征被舍弃，稀疏的中等价值特征共享容量。形式优化和吻合模拟强力支持玩具目标中的解释，也显示架构可控制叠加块大小。但真实网络未必满足特征独立、二次损失和真值可辨识假设，因此对语言模型的定量预测仍是待验证假说。
   generation:
     status: complete
     generated_by: project_agent

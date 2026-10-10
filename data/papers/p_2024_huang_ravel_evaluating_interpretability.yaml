@@ -68,23 +68,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Do interpretability methods provide distinctive practical value on causal tasks, realistic distributions, and against strong baselines? In this paper, *RAVEL: Evaluating Interpretability Methods on Disentangling Language Model Representations* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Individual neurons participate in the representation of multiple high-level concepts. To what extent can different interpretability methods successfully disentangle these roles?
+    **Research Question.** The paper asks whether interpretability methods can isolate one causally used entity attribute from correlated attributes, rather than merely decode it. It operationalizes four requirements—faithfulness, causality, generalization, and isolation—and asks which representation-learning methods satisfy them on unseen entities and contexts.
 
-    **Method.** To help address this question, we introduce RAVEL (Resolving Attribute-Value Entanglements in Language Models), a dataset that enables tightly controlled, quantitative comparisons between a variety of existing interpretability methods. We use the resulting conceptual framework to define the new method of Multi-task Distributed Alignment Search (MDAS), which allows us to find distributed representations satisfying multiple causal criteria.
+    **Method.** RAVEL constructs base/source prompt pairs for interchange interventions: an identified feature for attribute (A) is swapped between examples, then Cause measures whether the target (A) changes correctly and Isolation measures whether other attributes remain fixed; their sum forms a Disentangle score. Principal components, sparse autoencoders, relaxed linear adversarial probes, Differential Binary Masking (DBM), and Distributed Alignment Search (DAS) are compared. Multi-task DBM/DAS jointly supervise all attributes so each subspace is penalized for changing the others.
 
-    **Validation.** We release our benchmark at https://github.com/explanare/ravel.
+    **Validation.** The full dataset contains cities, Nobel laureates, verbs, physical objects, and occupations—6,828 entities, 420 templates, and 23 attributes. A filtered Llama-2-7B instance contains 2,800 entities the model predicts reliably and evaluates interventions on held-out entities or contexts. Methods search residual-stream states above the final entity token; per-attribute Cause, Isolation, and Disentangle scores are computed after counterfactual swaps. Multi-task supervision improves DBM by 1.5/4.1 points and DAS by 3.6/8.3 on entity/context splits; multi-task DAS ranks best, while principal components and sparse autoencoders rank lowest. Layer sweeps show Isolation rising roughly from 0.5 at layer 8 to 0.8 at layer 16.
 
-    **Conclusion & Evidence.** With Llama2-7B as the target language model, MDAS achieves state-of-the-art results on RAVEL, demonstrating the importance of going beyond neuron-level analyses to identify features distributed across activations. The counterexamples or controls strongly delimit what the audited method can justify. They do not, on their own, prove that any proposed replacement is universally faithful or sufficient.
+    **Conclusion & Evidence.** Decodability does not imply disentanglement: methods trained directly on counterfactual causal objectives, especially multi-task DAS, isolate attributes more successfully than unsupervised decompositions. Large controlled intervention sets and held-out entity/context splits strongly support the benchmark comparison. The benchmark filters for facts Llama-2-7B already answers, evaluates one model and one residual position, uses constructed attributes with available counterfactual values, and therefore does not establish that the winning method generalizes to free-form concepts or distributed multi-token mechanisms.
   zh: |-
-    **研究问题。** 不同 featurization/interpretability 方法能否把某一 entity attribute 与其他相关属性分离，并在新实体和新上下文中保持可定位、可干预、可泛化？如何建立统一 benchmark 比较其 faithfulness、causal efficacy 与 disentanglement？
+    **研究问题。** 该论文研究可解释性方法能否真正把一个被模型因果使用的实体属性与相关属性分离，而不只是把它解码出来。基准把忠实性、因果性、泛化性和隔离性具体化，并比较不同表示学习方法在未见实体和上下文上能否同时满足。
 
-    **方法。** 为帮助回答这一问题，我们推出 RAVEL（Resolving Attribute-Value Entanglements in Language Models），这是一个可对多种现有可解释性方法进行严格控制和定量比较的数据集。我们利用由此形成的概念框架，定义一种新方法——多任务分布式对齐搜索（MDAS）；它使我们能够找到同时满足多项因果标准的分布式表征。
+    **方法。** RAVEL 为交换干预构造基础/来源提示对：把属性 (A) 的候选特征在样本间交换后，Cause 衡量目标属性是否正确改变，Isolation 衡量其他属性是否保持不变，两者相加形成 Disentangle 分数。比较主成分、稀疏自编码器、松弛线性对抗探针、差分二值掩码（Differential Binary Masking, DBM）和分布式对齐搜索（Distributed Alignment Search, DAS）；多任务 DBM/DAS 联合监督所有属性，使每个子空间因改变其他属性而受罚。
 
-    **实验验证。** 基准见 https://github.com/explanare/ravel。
+    **实验验证。** 完整数据涵盖城市、诺奖得主、动词、物体和职业，共 6,828 个实体、420 个模板和 23 个属性。筛选后的 Llama-2-7B 实例含模型能可靠预测的 2,800 个实体，并在留出实体或上下文上做干预。方法搜索实体末词元上方的残差流状态，交换后逐属性计算 Cause、Isolation 和 Disentangle。多任务监督在实体/上下文划分上分别使 DBM 提高 1.5/4.1 点、DAS 提高 3.6/8.3 点；多任务 DAS 最佳，主成分和稀疏自编码器最低。逐层扫描中 Isolation 约从第 8 层的 0.5 升到第 16 层的 0.8。
 
-    **结论与证据。** 以 Llama2-7B 为目标语言模型，MDAS 在 RAVEL 上取得最先进结果，证明分析不能止于神经元层面，而应识别分布于激活中的特征。反例和控制实验有力限定了被审计方法能够支持的结论，但它们本身不能证明任何替代方法普遍忠实或充分。
+    **结论与证据。** 可解码不等于可解耦；直接以反事实因果目标训练的方法，尤其多任务 DAS，比无监督分解更能隔离属性。大规模受控干预和留出实体/上下文划分为方法比较提供强证据。但基准筛选的是 Llama-2-7B 已能回答的事实，只评一个模型和一个残差位置，并依赖具有明确反事实值的构造属性，尚不能证明优胜方法适用于自由形式概念或跨词元分布式机制。
   generation:
     status: complete
     generated_by: project_agent

@@ -72,23 +72,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Are apparently abrupt capability transitions driven by smoother changes in internal mechanisms? In this paper, *Progress measures for grokking via mechanistic interpretability* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Neural networks often exhibit emergent behavior, where qualitatively new capabilities arise from scaling up the amount of parameters, training data, or training steps. One approach to understanding emergence is to find continuous progress measures that underlie the seemingly discontinuous qualitative changes.
+    **Research Question.** The paper asks what algorithm a small Transformer learns when it suddenly generalizes (“groks”) modular addition, and whether mechanistic variables can reveal smooth, causally relevant progress before test accuracy abruptly rises. It also asks how weight decay produces the transition from memorization to generalization.
 
-    **Method.** We argue that progress measures can be found via mechanistic interpretability: reverse-engineering learned behaviors into their individual components. We fully reverse engineer the algorithm learned by these networks, which uses discrete Fourier transforms and trigonometric identities to convert addition to rotation about a circle. Based on this understanding, we define progress measures that allow us to study the dynamics of training and split training into three continuous phases: memorization, circuit formation, and cleanup.
+    **Method.** Weight composition and Fourier analysis identify a “Fourier multiplication” algorithm: embeddings map integers to sine/cosine rotations, attention and the multilayer perceptron construct \(\sin \omega_k(a+b)\) and \(\cos \omega_k(a+b)\), and unembedding combines frequencies so they interfere constructively at \(c=a+b\pmod p\). Restricted/excluded loss, Fourier sparsity, and circuit size track the learned algorithm; targeted frequency and neuron ablations test whether the interpretation is functionally necessary.
 
-    **Validation.** As a case study, we investigate the recently-discovered phenomenon of ``grokking'' exhibited by small transformers trained on modular addition tasks. We confirm the algorithm by analyzing the activations and weights and by performing ablations in Fourier space.
+    **Validation.** The main model is a one-layer ReLU Transformer with four attention heads, 128-dimensional embeddings, and a 512-unit multilayer perceptron, trained on 30% of all \(113^2\) input pairs and tested exhaustively on the rest. Training accuracy reaches 100% early, while test accuracy stays low until roughly 10,000 epochs and then approaches 100%. Composed-weight projections explain more than 90% of the variance in the predicted trigonometric features. Ablating the identified key frequencies destroys generalization while preserving much memorization; removing non-key frequencies has the complementary effect. Additional seeds, prime moduli, widths, depths, and optimization settings reproduce the broad phase pattern.
 
-    **Conclusion & Evidence.** Our results show that grokking, rather than being a sudden shift, arises from the gradual amplification of structured mechanisms encoded in the weights, followed by the later removal of memorizing components. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+    **Conclusion & Evidence.** Grokking is not a single instantaneous event: the generalizing Fourier circuit forms gradually while a memorizing solution still dominates, then weight decay favors the smaller structured circuit and a cleanup phase removes memorization. The exact weight-level derivation, variance fits, antagonistic ablations, and checkpoint trajectories give strong evidence for this mechanism in modular arithmetic. The proposed progress measures depend on having first reverse-engineered the task-specific algorithm, so their usefulness and scalability to large natural-language models remain unproven.
   zh: |-
-    **研究问题。** 看似突然出现的 grokking 是否由模型内部更平滑的机制变化驱动？通过逆向工程 modular addition circuit，能否构造在 test accuracy 跃迁之前连续变化且与泛化因果相关的 progress measures，并解释 memorization、circuit formation 与 cleanup 三阶段？
+    **研究问题。** 该论文研究小型 Transformer 在模加法上突然泛化（“顿悟”）时究竟学到什么算法，以及机制变量能否在测试准确率突升之前揭示平滑且具有因果关联的进展；同时分析权重衰减如何推动模型从记忆转向泛化。
 
-    **方法。** 我们主张，可以通过机制可解释性——把学到的行为逆向工程为各个组成部分——找到这类进展度量。我们完整逆向工程了这些网络学到的算法：它使用离散傅里叶变换和三角恒等式，把加法转换为绕圆旋转。基于这种理解，我们定义了用于研究训练动力学的进展度量，并把训练划分为三个连续阶段：记忆、回路形成和清理。
+    **方法。** 通过组合权重与 Fourier 分析，研究识别出“Fourier 乘法”算法：嵌入把整数映射为正弦/余弦旋转，注意力和多层感知机构造 \(\sin \omega_k(a+b)\) 与 \(\cos \omega_k(a+b)\)，反嵌入再组合多个频率，使它们在 \(c=a+b\pmod p\) 处相长干涉。受限/排除损失、Fourier 稀疏度和电路规模用于追踪算法；定向频率与神经元消融检验解释是否具有功能必要性。
 
-    **实验验证。** 作为案例研究，我们考察在模加法任务上训练的小型 Transformer 最近表现出的“顿悟”（grokking）现象。我们通过分析激活和权重以及在傅里叶空间中实施消融来验证这一算法。
+    **实验验证。** 主模型是一层 ReLU Transformer，含 4 个注意力头、128 维嵌入和 512 单元多层感知机；训练集为全部 \(113^2\) 输入对的 30%，其余输入全部用于测试。训练准确率很早达到 100%，测试准确率则在约 1 万个 epoch 后才升至接近 100%。组合权重投影对预测的三角特征解释超过 90% 方差。消融已识别的关键频率会破坏泛化却保留较多记忆，消融非关键频率则呈互补效果；不同随机种子、素数模、宽度、深度和优化设置复现了总体阶段模式。
 
-    **结论与证据。** 结果表明，顿悟并非突然发生的转变，而是源于权重所编码的结构化机制逐步增强，随后记忆型组件又在较晚阶段被移除。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+    **结论与证据。** 顿悟并非单一瞬间：泛化用 Fourier 电路逐步形成时，记忆方案仍占主导；随后权重衰减偏好更小的结构化电路，清理阶段再移除记忆。精确的权重级推导、方差拟合、方向相反的消融和检查点轨迹，为模运算中的机制提供强证据。但这些进展指标需要先逆向得到任务特定算法，能否扩展到大型自然语言模型仍未得到验证。
   generation:
     status: complete
     generated_by: project_agent

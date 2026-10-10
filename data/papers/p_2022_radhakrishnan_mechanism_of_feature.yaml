@@ -68,23 +68,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** The paper asks what mechanism causes deep fully connected networks to select and amplify prediction-relevant features during training. It proposes that layerwise weight geometry is governed by average gradient outer products and asks whether this principle explains feature-learning phenomena and can endow kernel methods with recursive feature learning.
+    **Research Question.** The paper asks what determines the features learned by deep fully connected networks and whether that mechanism can be extracted into a non-neural algorithm. It further tests whether the same principle explains spurious-feature learning, simplicity bias, grokking, pruning, and lottery-ticket effects.
 
-    **Method.** The Deep Neural Feature Ansatz relates a layer's learned weight Gram matrix to the average outer product of gradients with respect to that layer's inputs. This quantity emphasizes directions that most affect the output. The authors turn the relation into Recursive Feature Machines, which alternate fitting a kernel predictor with updating its feature metric from gradient outer products, without backpropagating through a deep network.
+    **Method.** The Deep Neural Feature Ansatz relates each learned weight Gram matrix to an average gradient outer product with respect to that layer's inputs, (W_l^T W_l \propto \mathbb{E}[\nabla_{h_l}f\,\nabla_{h_l}f^T]). Directions that most affect predictions therefore receive a larger learned metric. Recursive Feature Machines (RFMs) alternate kernel regression with recomputing this gradient-derived metric, recursively changing distances without training a deep network by backpropagation.
 
-    **Validation.** Analytical arguments and controlled neural-network experiments compare predicted and observed feature metrics across depths and training regimes. Case studies examine spurious features, simplicity bias, grokking, pruning, and lottery-ticket behavior. Recursive Feature Machines are evaluated on multiple tabular benchmarks against classical kernels, tree ensembles, and neural networks.
+    **Validation.** The ansatz is checked across depth, width, nonlinearities, Adam and gradient descent, six image tasks from CelebA and Street View House Numbers, and 121 tabular datasets; first-layer metric/gradient correlations exceed 0.97 on four CelebA tasks. Controlled CIFAR-10/MNIST and CelebA examples test spurious versus simple features, and an airplane/truck problem shows test accuracy rising from about 80% to 99.38% after training accuracy is already near 100%. RFMs are then compared with 179 methods on 121 classification tasks and on a second benchmark totaling over 150 classification/regression datasets, using average accuracy, near-best percentages, normalized maximum accuracy, and Friedman rank.
 
-    **Conclusion & Evidence.** Average gradient geometry captures important directions learned by deep networks and yields a practical kernel algorithm with strong tabular performance. The theory offers a unifying mechanism for several feature-learning observations, supported by empirical correspondence. Its strength is formal and predictive under the studied assumptions; it is not a universal proof for all architectures, optimizers, or high-dimensional language-model representations.
+    **Conclusion & Evidence.** Average gradient geometry is a strong predictor of which directions fully connected networks amplify, and iterating that geometry gives kernel machines competitive or leading tabular results. High measured correspondence, predicted case studies, theoretical arguments, and downstream RFM performance provide substantial support. The proportionality is an ansatz rather than a universal equality; evidence centers on fully connected networks and kernels, so convolutional, Transformer, and large-scale representation learning need separate tests.
   zh: |-
-    **研究问题。** 论文研究深层全连接网络在训练中选择并增强预测相关特征的机制，提出各层权重几何可能由输入上的平均梯度外积决定，并考察这一原理能否统一解释多种特征学习现象，以及让核方法获得递归特征学习能力。
+    **研究问题。** 该论文研究深层全连接网络依据什么机制选择特征，以及能否把该机制提取成非神经算法；并检验同一原则能否解释伪特征、简单性偏置、涌现式泛化、剪枝和彩票票据现象。
 
-    **方法。** 深度神经特征假设（Deep Neural Feature Ansatz）把某层学习后的权重 Gram 矩阵与该层输入梯度的平均外积联系起来，后者会强调最能影响模型输出的方向。作者进一步构造递归特征机（Recursive Feature Machine, RFM），交替拟合核预测器并根据梯度外积更新特征度量，从而不通过深网反向传播也能迭代学习特征。
+    **方法。** 深度神经特征假设（Deep Neural Feature Ansatz）把每层学习后的权重 Gram 矩阵与该层输入梯度的平均外积联系起来：(W_l^T W_l \propto \mathbb{E}[\nabla_{h_l}f\,\nabla_{h_l}f^T])，即对预测影响更大的方向获得更大度量。递归特征机器（Recursive Feature Machine, RFM）在核回归与重算梯度度量之间交替，递归改变距离，而无需按深网方式反向传播。
 
-    **实验验证。** 理论分析与受控神经网络实验比较不同深度和训练设置下预测的特征度量与实际权重几何。案例覆盖虚假特征、简单性偏置、grokking、剪枝和彩票假说；RFM 还在多个表格数据基准上与传统核方法、树模型和神经网络比较。
+    **实验验证。** 假设在不同深度、宽度、非线性、Adam/梯度下降、CelebA 与街景门牌号码的 6 个图像任务及 121 个表格数据集上检查；四个 CelebA 任务的首层度量–梯度相关性超过 0.97。受控 CIFAR-10/MNIST、CelebA 实验考察伪特征与简单特征；飞机/卡车任务中，训练准确率已接近 100% 后，测试准确率仍从约 80% 升至 99.38%。RFM 再与 179 种方法在 121 个分类任务比较，并在总计超过 150 个分类/回归数据集的另一基准上，以平均准确率、接近最优比例、归一化最高准确率和 Friedman 排名评测。
 
-    **结论与证据。** 平均梯度几何能够刻画深网学到的重要方向，并导出在表格任务上表现很强的实用核算法。理论为多种特征学习现象提供了统一机制，并得到经验对应支持。其证据在所研究假设下具有较强形式性和预测性，但并不是对所有架构、优化器或高维语言模型表示的普遍证明。
+    **结论与证据。** 平均梯度几何能较好预测全连接网络放大的方向，迭代该几何也使核方法在表格任务上达到有竞争力或领先表现。高相关性、受控案例、理论论证和 RFM 下游性能构成较强支持。但该关系是 ansatz 而非普适等式，证据集中在全连接网络与核方法，卷积网络、Transformer 和大规模表示学习仍需独立验证。
   generation:
     status: complete
     generated_by: project_agent

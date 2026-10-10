@@ -50,23 +50,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** What compositional representation mechanism dynamically binds entities, attributes, and variable roles? In this paper, *How do Language Models Bind Entities in Context?* addresses that question through its specific object of study and tests how far the resulting claim can be supported. To correctly use in-context information, language models (LMs) must bind entities to their attributes. For example, given a context describing a"green square"and a"blue circle", LMs must bind the shapes to their respective colors.
+    **Research Question.** The paper asks how language models bind multiple entities to their corresponding attributes in context and later retrieve the correct pair, despite using distributed representations rather than explicit symbolic pointers. It tests whether a shared, position-independent binding identifier is added to both members of each pair.
 
-    **Method.** We analyze LM representations and identify the binding ID mechanism: a general mechanism for solving the binding problem, which we observe in every sufficiently large model from the Pythia and LLaMA families.
+    **Method.** Entity and attribute activations are factorized into content components plus binding-ID vectors. Difference vectors between two binding slots are estimated from one context and added or subtracted at entity and attribute positions in another; if the factorization is correct, matched interventions should swap the model's beliefs about the pairings while leaving content intact. Further tests examine additivity, approximate orthogonality, position independence, and cross-task transfer of these vectors.
 
-    **Validation.** Using causal interventions, we show that LMs' internal activations represent binding information by attaching binding ID vectors to corresponding entities and attributes.
+    **Validation.** Experiments sample 100 contexts per condition from capitals, parallel facts, fruits, shapes, biographies, multiple-choice questions, and one-hop or three-term binding tasks. They evaluate LLaMA models at several scales and instruction-tuned Tulu-13B, reporting correct-answer mean log probability, top-1 accuracy, and median-calibrated accuracy before and after activation interventions. Controls move only the entity or only the attribute identifier, change token positions, transfer vectors between tasks, and use LLaMA-65B for the harder one-hop setting.
 
-    **Conclusion & Evidence.** We further show that binding ID vectors form a continuous subspace, in which distances between binding ID vectors reflect their discernability. Overall, our results uncover interpretable strategies in LMs for representing symbolic knowledge in-context, providing a step towards understanding general in-context reasoning in large-scale LMs. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+    **Conclusion & Evidence.** Paired vector interventions reliably swap which attribute is retrieved for an entity, remain effective across positions, and often transfer across tasks, with stronger effects in larger models. The geometry is approximately additive and close to orthogonal across binding slots, supporting a reusable binding-ID mechanism rather than separate memorized pair circuits. Evidence is causal for the intervened representations but not exhaustive: some formats are out of distribution, transfer is imperfect, and the analysis does not identify the upstream circuit that constructs the identifiers.
   zh: |-
-    **研究问题。** 语言模型如何在上下文激活中保存“哪个实体绑定哪个属性”的关系？是否存在可加、位置无关、位于结构化子空间且能跨任务迁移的抽象 binding IDs；这一机制是否随规模稳定出现？
+    **研究问题。** 该论文研究语言模型如何在上下文中把多个实体分别绑定到对应属性，并在没有显式符号指针的分布式表示中取回正确配对；核心假设是每一对实体和属性都被加入一个共享、与位置无关的绑定标识。
 
-    **方法。** 我们分析语言模型表征，并识别出绑定 ID 机制：这是一种解决绑定问题的通用机制，在 Pythia 和 LLaMA 家族中所有规模足够大的模型里都能观察到。
+    **方法。** 方法把实体和属性激活分解为内容分量与绑定标识向量。从一个上下文估计两个绑定槽之间的差向量，再在另一上下文的实体和属性位置加上或减去该向量；若分解成立，匹配干预应交换模型对配对关系的判断，同时保留内容。其他测试检验标识向量的可加性、近似正交性、位置独立性和跨任务迁移。
 
-    **实验验证。** 通过因果干预，我们表明，语言模型的内部激活会把绑定 ID 向量附加到相应实体和属性上，以此表征绑定信息。
+    **实验验证。** 每个条件抽取 100 个上下文，任务包括国家—首都、平行事实、水果、形状、人物简介、多项选择、一步关系和三项绑定。实验覆盖多个规模的 LLaMA 以及指令微调 Tulu-13B，并在激活干预前后报告正确答案平均对数概率、top-1 准确率和中位数校准准确率。对照分别只移动实体或属性标识、改变 token 位置、跨任务转移向量；较难的一步任务使用 LLaMA-65B。
 
-    **结论与证据。** 我们进一步发现，绑定 ID 向量构成一个连续子空间，其中向量之间的距离反映它们的可辨别程度。总体而言，我们的结果揭示了语言模型在上下文中表征符号知识的可解释策略，为理解大规模语言模型的一般上下文推理迈出一步。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+    **结论与证据。** 成对向量干预能够稳定交换实体取回的属性，其效果跨位置保持并常可跨任务迁移，而且模型越大越明显。绑定槽之间的几何近似可加且近似正交，支持可复用绑定标识机制，而非每对事实拥有独立电路。证据对被干预表示具有因果性，但并不完备：部分格式超出模型分布，迁移并非总是成功，分析也没有定位构造这些标识的上游电路。
   generation:
     status: complete
     generated_by: project_agent

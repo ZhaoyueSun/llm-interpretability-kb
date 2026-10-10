@@ -83,23 +83,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** The paper asks how an input-level attribution map that only says where evidence occurs can be extended to explain what concepts a network recognized, where those concepts appear, and how they jointly support a particular prediction. It seeks to connect local attribution with global concept analysis in one model-specific explanation.
+    **Research Question.** The paper asks how a local attribution map can be converted from a pixel-level answer to “where” into a concept-level account of “what” the network used, how hidden concepts compose and affect predictions, and whether such explanations help people detect spurious model behavior.
 
-    **Method.** Concept Relevance Propagation (CRP) extends Layer-wise Relevance Propagation by conditioning relevance flows on internal concept channels. Relevance is propagated backward from a chosen output through selected neurons or feature maps to the input, producing concept-conditioned heatmaps and scores. Aggregating these scores across data yields global concept views, while conditioning on one sample yields a local concept decomposition.
+    **Method.** Concept Relevance Propagation (CRP) extends Layer-wise Relevance Propagation by conditionally masking the backward relevance flow through selected outputs, layers, and channels, yielding concept-conditional input maps. Relevance Maximization (RelMax) ranks reference samples by a channel's contribution to a prediction rather than by activation alone. The resulting examples, conditional heatmaps, relevance-flow graphs, and similarity clusters form local-to-global explanations; concept ablation then tests behavioral impact.
 
-    **Validation.** CRP is demonstrated on image classifiers including convolutional and concept-based architectures. The experiments visualize concept-specific evidence, compare explanations across classes and samples, perform concept interventions or removals, and use controlled examples and established attribution baselines to test whether the recovered concepts correspond to prediction-relevant regions.
+    **Validation.** Case studies analyze ImageNet VGG-16 models, a ResNet-34 on Caltech-UCSD Birds 200, LeNet-5 on Fashion-MNIST, an Adience face classifier, and a one-dimensional convolutional network on PhysioNet MIT-BIH electrocardiograms. On ImageNet, CRP identifies watermark channels and sequentially zeros the 20 most relevant filters to test their effect; reference-sample stability and fine-grained button-like channel clusters are also examined. A between-subject Amazon Mechanical Turk study assigns 25 participants to each explanation method and asks whether a black border affected a VGG-16 prediction. CRP reaches 89.1±2.4% true-positive and 72.6±3.4% true-negative rates, significantly above Layer-wise Relevance Propagation, SHAP, Grad-CAM, and Integrated Gradients.
 
-    **Conclusion & Evidence.** CRP produces explanations that connect output relevance to named or inspected internal concepts and their spatial evidence, revealing both useful strategies and spurious cues. Intervention and relevance-conservation analyses provide stronger support than visualization alone, but the explanation remains conditional on the chosen layer, concept basis, and attribution rule. It identifies model-sensitive concept relevance rather than proving a unique human-level causal account of the prediction.
+    **Conclusion & Evidence.** CRP and RelMax expose concept composition, distinguish strongly activated features from features actually used for an output, and support targeted discovery and ablation of Clever Hans artifacts. The multi-domain cases plus controlled human study provide stronger practical evidence than visual examples alone. However, concepts are still associated with chosen channels and reference data, user-rated clarity was not highest for CRP, and the method does not prove that its concept partition is unique or complete.
   zh: |-
-    **研究问题。** 论文研究如何把只说明“哪里重要”的输入归因图，扩展为同时解释模型识别了什么概念、概念出现在哪里，以及多个概念如何共同支持某次预测；目标是把局部归因和全局概念分析统一到同一份模型解释中。
+    **研究问题。** 该论文研究如何把只回答像素“在哪里重要”的局部归因图，转化为解释网络“使用了什么”的概念级说明；同时考察隐藏概念如何组合并影响预测，以及这类解释能否帮助人识别模型的虚假相关行为。
 
-    **方法。** 概念相关性传播（Concept Relevance Propagation, CRP）在逐层相关性传播的基础上，对内部概念通道施加条件。相关性从指定输出经由选定神经元或特征图反向传播到输入，从而得到概念条件化的热图和分数；跨样本聚合形成全局概念视图，而在单个样本上计算则给出局部概念分解。
+    **方法。** 概念相关性传播（Concept Relevance Propagation, CRP）扩展逐层相关性传播，在反向传播时根据指定输出、层和通道有条件地遮蔽相关性流，从而得到概念条件输入图。相关性最大化（Relevance Maximization, RelMax）按照某通道对预测的贡献而非单纯激活强度选取参考样本。参考样本、条件热图、相关性流图和相似通道聚类共同形成从局部到全局的解释，随后通过概念消融检验行为影响。
 
-    **实验验证。** CRP 在卷积图像分类器和概念式架构上展示。实验可视化特定概念对应的输入证据，比较不同类别与样本的解释，执行概念移除或干预，并通过受控案例和既有归因基线检验恢复的概念是否对应真正影响预测的图像区域。
+    **实验验证。** 案例覆盖 ImageNet 上的 VGG-16、Caltech-UCSD Birds 200 上的 ResNet-34、Fashion-MNIST 上的 LeNet-5、Adience 人脸分类器，以及 PhysioNet MIT-BIH 心电图上的一维卷积网络。ImageNet 分析定位水印通道，并依次将 20 个最相关滤波器置零以测量影响，同时考察参考样本稳定性和用于细粒度判别的“按钮”通道簇。Amazon Mechanical Turk 的组间用户研究为每种解释方法分配 25 名参与者，要求判断黑边是否影响 VGG-16 预测；CRP 的真正率为 (89.1\pm2.4\%\)，真负率为 (72.6\pm3.4\%\)，显著高于逐层相关性传播、SHAP、Grad-CAM 和 Integrated Gradients。
 
-    **结论与证据。** CRP 能把输出相关性连接到可命名或可检查的内部概念及其空间证据，并揭示合理策略与虚假线索。概念干预和相关性守恒分析使证据强于单纯可视化，但解释仍取决于所选层、概念基和归因规则；它刻画的是模型敏感的概念相关性，而不是唯一的人类层次因果解释。
+    **结论与证据。** CRP 与 RelMax 能展示概念组合，区分“强烈激活”与“确实用于某输出”的特征，并支持定向发现和消融 Clever Hans 伪相关。多领域案例与受控用户研究比单纯视觉示例提供了更强的实用证据。不过，概念仍依赖所选通道和参考数据，参与者并未认为 CRP 最清晰，方法也不能证明所得概念划分唯一或完备。
   generation:
     status: complete
     generated_by: project_agent

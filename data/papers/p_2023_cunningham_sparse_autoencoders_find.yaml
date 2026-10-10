@@ -74,23 +74,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Can sparse dictionaries recover interpretable and intervenable latent features from superposition? In this paper, *Sparse Autoencoders Find Highly Interpretable Features in Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. One of the roadblocks to a better understanding of neural networks' internals is polysemanticity, where neurons appear to activate in multiple, semantically distinct contexts. Polysemanticity prevents us from identifying concise, human-understandable explanations for what neural networks are doing internally. One hypothesised cause of polysemanticity is superposition, where neural networks represent more features than they have neurons by assigning features to an overcomplete set of directions in activation space, rather than to individual neurons.
+    **Research Question.** The paper asks whether sparse dictionary learning can separate superposed language-model activations into features that are more monosemantic and interpretable than neurons or principal components, and whether those features can localize causal mechanisms at finer granularity.
 
-    **Method.** Here, we attempt to identify those directions, using sparse autoencoders to reconstruct the internal activations of a language model.
+    **Method.** Overcomplete sparse autoencoders are trained on residual-stream and multilayer-perceptron activations from a small Transformer. An encoder maps an activation to nonnegative sparse coefficients and a decoder reconstructs it as a linear combination of learned feature directions, balancing reconstruction error against an (L_1) sparsity penalty. Features are interpreted from their highest-activating token contexts and automatically scored by a language model; feature-level activation patching tests causal contribution.
 
-    **Validation.** These autoencoders learn sets of sparsely activating features that are more interpretable and monosemantic than directions identified by alternative approaches, where interpretability is measured by automated methods.
+    **Validation.** Dictionaries of several widths are trained on model activations and compared with individual neurons, the residual-stream basis, and principal-component baselines under the same automated interpretation protocol. Qualitative cases inspect input triggers, direct effects on output logits, and upstream features that activate a target feature. On the Indirect Object Identification (IOI) task, clean and corrupted activations are decomposed into dictionary features and patched individually, then ranked by their effect on the IOI logit-difference metric; the resulting sparse feature set is compared with coarser neuron- and activation-level localization.
 
-    **Conclusion & Evidence.** Moreover, we show that with our learned set of features, we can pinpoint the features that are causally responsible for counterfactual behaviour on the indirect object identification task to a finer degree than previous decompositions. This work indicates that it is possible to resolve superposition in language models using a scalable, unsupervised method. Our method may serve as a foundation for future mechanistic interpretability work, which we hope will enable greater model transparency and steerability. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+    **Conclusion & Evidence.** Learned sparse features score as more interpretable and often more monosemantic than the tested baselines, and feature-level interventions isolate a small set relevant to IOI more precisely than raw activation dimensions. Agreement between activation examples, logit effects, upstream connections, and patching supplies both descriptive and causal-local evidence. Reconstruction is not exact, automated interpretation may miss or overstate semantics, and robust overcomplete dictionaries are not obtained for every multilayer-perceptron site, so the study does not yet provide a complete feature basis.
   zh: |-
-    **研究问题。** 稀疏自编码器能否从 superposition 中恢复过完备特征基？所得特征是否比单个神经元或 主成分分析（Principal Component Analysis, PCA） components 更可解释、更单义，并对模型行为具有可验证的因果作用？
+    **研究问题。** 该论文研究稀疏字典学习能否把语言模型中的叠加激活分解为比神经元或主成分更单义、更可解释的特征，以及这些特征能否以更细粒度定位因果机制。
 
-    **方法。** 多义性使我们无法为神经网络内部正在进行的计算找出简洁且人类可理解的解释。关于多义性成因的一种假说是叠加：神经网络并非把特征分配给单个神经元，而是分配到激活空间中的一组过完备方向，从而表征比神经元数量更多的特征。这些自编码器学习到一组稀疏激活的特征；根据自动化方法衡量的可解释性，它们比替代方法识别出的方向更易解释且单义性更强。此外，利用所学到的这组特征，我们能够比以往分解更精细地定位在间接宾语识别任务（Wang 等，2022）中对反事实行为负有因果责任的特征。我们的方法可以成为未来机制可解释性研究的基础，并有望带来更高的模型透明度和可引导性。
+    **方法。** 研究在小型 Transformer 的残差流和多层感知机激活上训练过完备稀疏自编码器。编码器把激活映射为非负稀疏系数，解码器将其重构为学习特征方向的线性组合，并在重构误差与 (L_1) 稀疏惩罚之间权衡。特征语义由最高激活 token 上下文解释，并由语言模型自动评分；特征级激活修补用于检验因果贡献。
 
-    **实验验证。** 本文尝试使用稀疏自编码器重构语言模型的内部激活，以识别这些方向。
+    **实验验证。** 实验训练多个字典宽度，并在同一自动解释协议下同单个神经元、残差流坐标基和主成分基线比较。案例分别检查输入触发上下文、特征对输出 logit 的直接影响，以及激活目标特征的上游特征。在间接宾语识别（Indirect Object Identification, IOI）任务上，干净和损坏激活被分解为字典特征并逐个修补，再按其对 IOI logit difference 的影响排序；所得稀疏特征集合与更粗粒度的神经元和激活定位比较。
 
-    **结论与证据。** 这项工作表明，可以使用可扩展的无监督方法消解语言模型中的叠加。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+    **结论与证据。** 学到的稀疏特征在所用评分下比基线更可解释，且往往更接近单义；特征级干预也能比原始激活维度更精确地隔离少量 IOI 相关特征。激活案例、logit 影响、上游连接与修补结果相互印证，提供描述性和局部因果证据。但重构并不精确，自动解释可能遗漏或夸大语义，而且并非所有多层感知机位置都能稳定学到过完备字典，因此尚不能视为完整特征基。
   generation:
     status: complete
     generated_by: project_agent

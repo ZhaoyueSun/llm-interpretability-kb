@@ -55,23 +55,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** The paper asks whether seemingly different local explanation methods share a common mathematical form, and whether desirable explanation properties determine a unique feature-attribution rule. It further asks how that rule can be approximated efficiently for different model classes.
+    **Research Question.** The paper asks whether apparently different local feature-attribution methods share a common mathematical form, which axioms should a faithful additive explanation satisfy, and whether those axioms determine a unique attribution rule that can be approximated efficiently for different model classes.
 
-    **Method.** The authors define additive feature-attribution methods as local surrogate models over binary indicators of whether features are present. They show that local accuracy, missingness, and consistency select a unique attribution equal to Shapley values, yielding SHapley Additive exPlanations (SHAP). Model-agnostic KernelSHAP and model-specific algorithms such as TreeSHAP and DeepSHAP are derived as practical estimators within the same framework.
+    **Method.** The Shapley Additive Explanations (SHAP) framework represents a local explanation as an additive model (g(z')=\phi_0+\sum_i\phi_i z'_i) over simplified feature-presence variables. The paper proves that local accuracy, missingness, and consistency uniquely select Shapley values within this class, thereby relating six prior methods. It then derives model-agnostic Kernel SHAP as a specially weighted linear regression and model-specific approximations including Linear SHAP and Deep SHAP.
 
-    **Validation.** The paper proves the uniqueness result and maps six prior explanation methods into the additive framework, identifying where some violate the proposed properties. Experiments compare approximation accuracy, computational cost, stability under model changes, and agreement with human intuition across tabular and image prediction settings.
+    **Validation.** Computational experiments compare Kernel SHAP with Local Interpretable Model-Agnostic Explanations (LIME) and Shapley sampling on dense and sparse decision-tree models, using repeated estimates to measure error as the number of model evaluations grows. Two Amazon Mechanical Turk studies, with 30 and 52 participants, compare SHAP, LIME, and DeepLIFT credit assignments against human judgments on simple sickness-score and maximum-payoff functions. A Modified National Institute of Standards and Technology (MNIST) convolutional classifier supplies a class-change test: Kernel SHAP, LIME, and DeepLIFT variants identify pixels to mask when changing a prediction from 8 to 3, with SHAP and LIME each run for 50,000 samples.
 
-    **Conclusion & Evidence.** SHAP provides a principled common target for local feature attribution and explains why several existing methods behave similarly or inconsistently. The formal axioms and proofs strongly support uniqueness within the stated additive explanation class, while experiments support the usefulness of the proposed estimators. The result does not make feature attribution a causal account of model reasoning: conclusions still depend on the chosen background distribution and on how “missing” features are represented.
+    **Conclusion & Evidence.** The axiomatic result is formal: within additive feature-attribution models, the three stated properties yield a unique solution. Kernel SHAP reaches accurate estimates with fewer model evaluations than the compared sampling methods, and SHAP attributions align more closely with participant allocations and class-discriminating pixels in the tested settings. These results support the unification and the tested estimators, but they do not make an additive explanation a complete causal account; results still depend on how missing features and conditional expectations are defined.
   zh: |-
-    **研究问题。** 论文研究多种看似不同的局部解释方法是否具有共同的数学结构，以及一组理想解释性质能否唯一确定特征归因规则；进一步考察该规则如何在不同模型类型上被高效近似。
+    **研究问题。** 该论文研究多种看似不同的局部特征归因方法是否共享同一种数学形式、可信的加性解释应满足哪些公理，以及这些公理能否唯一确定一种可针对不同模型高效近似的归因规则。
 
-    **方法。** 作者把加性特征归因方法形式化为一个局部替代模型，其输入是特征是否出现的二元指示变量。他们证明，局部准确性、缺失性和一致性三项性质会唯一导出 Shapley 值，从而得到 SHAP（SHapley Additive exPlanations）框架。模型无关的 KernelSHAP，以及面向树模型和深度模型的 TreeSHAP、DeepSHAP，都被视为同一归因目标的实用估计方法。
+    **方法。** Shapley 加性解释（SHapley Additive exPlanations, SHAP）把局部解释写成简化特征存在变量上的加性模型 (g(z')=\phi_0+\sum_i\phi_i z'_i)。论文证明，在该模型类中，局部准确性、缺失性和一致性三个性质唯一确定 Shapley 值，并由此统一六类已有方法；随后给出把 Shapley 估计转化为特殊加权线性回归的 Kernel SHAP，以及 Linear SHAP、Deep SHAP 等模型特定近似。
 
-    **实验验证。** 论文首先给出唯一性定理，并将六类既有解释方法映射到统一的加性框架中，指出其中部分方法违反哪些理想性质。随后在表格和图像预测场景中比较不同近似算法的准确性、计算成本、模型变化下的一致性，以及与人类直觉的符合程度。
+    **实验验证。** 计算实验在稠密和稀疏决策树上比较 Kernel SHAP、局部可解释模型无关解释（Local Interpretable Model-Agnostic Explanations, LIME）与 Shapley sampling，通过重复估计考察模型调用次数增加时的误差。两项 Amazon Mechanical Turk 用户研究分别包含 30 和 52 名参与者，在疾病评分函数和最大收益分配函数上比较 SHAP、LIME、DeepLIFT 与人工信用分配的一致性。另一个美国国家标准与技术研究院手写数字数据集（Modified National Institute of Standards and Technology, MNIST）实验要求解释卷积分类器从数字 8 变为 3 的类别差异，并按归因遮蔽 20% 像素；其中 SHAP 和 LIME 均使用 50,000 个样本。
 
-    **结论与证据。** SHAP 为局部特征归因提供了一个有公理依据的共同目标，也解释了不同既有方法为何会出现相似或不一致的行为。形式化公理与证明对“在所定义的加性解释类中解是唯一的”提供了很强证据，实验则支持相应估计方法的实用性；但特征归因并不因此成为模型推理的因果解释，结果仍取决于背景分布以及“特征缺失”的具体定义。
+    **结论与证据。** 公理部分给出形式化保证：在加性特征归因模型内，三个性质对应唯一解。实验还表明 Kernel SHAP 用较少模型调用即可得到更准确的估计，SHAP 在所测简单函数和数字分类器上也更接近人工分配并更能区分类别。证据支持该统一框架及这些估计器，但加性归因并不因此成为完整的因果解释，结果仍取决于如何定义“特征缺失”和条件期望。
   generation:
     status: complete
     generated_by: project_agent

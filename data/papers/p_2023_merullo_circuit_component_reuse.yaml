@@ -66,23 +66,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Do different training runs, models, and architectures reproduce the same mechanism, or only share an abstract algorithm? In this paper, *Circuit Component Reuse Across Tasks in Transformer Language Models* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Recent work in mechanistic interpretability has shown that behaviors in language models can be successfully reverse-engineered through circuit analysis. A common criticism, however, is that each circuit is task-specific, and thus such analysis cannot contribute to understanding the models at a higher level.
+    **Research Question.** The paper asks whether components and multi-head subcircuits found for one language-model task are reused on a superficially different task. It compares indirect-object identification (Indirect Object Identification (IOI)) with selecting a queried color from a list, then asks whether the missing IOI components can be deliberately activated to repair the second behavior.
 
-    **Method.** In this work, we present evidence that insights (both low-level findings about specific heads and higher-level findings about general algorithms) can indeed generalize across tasks.
+    **Method.** Path patching swaps head-to-head paths between matched prompts and scores changes in the correct-versus-alternative logit difference. Attention patterns and output attribution assign roles to duplicate/induction heads, content-gatherer or inhibition heads, positive mover heads, and a negative mover head. A targeted intervention alters four mid-layer heads so that the inactive inhibition–mover pathway in Colored Objects receives the signal predicted by the IOI circuit.
 
-    **Validation.** We further present a proof-of-concept intervention experiment, in which we adjust four attention heads in middle layers in order to 'repair' the Colored Objects circuit and make it behave like the indirect object identification (IOI) circuit. In doing so, we boost accuracy from 49.6% to 93.7% on the Colored Objects task and explain most sources of error.
+    **Validation.** Both tasks are analyzed in GPT-2 Medium with 1,000 examples each; Colored Objects also has 1,000 counterfactual variants that change which of three objects is queried. GPT-2 Medium prefers the correct IOI name in all examples but scores only 49.6% on the color task. Among the top 2% most important heads at each patching stage, 25 of 32 (78%) are shared. Blocking content-gatherer access to the question drops color accuracy to 35%, versus 49.9%±1.0 for matched random heads. The four-head repair raises accuracy to 93.7%, introduces no new errors, and changes downstream mover-head attention in the predicted direction.
 
-    **Conclusion & Evidence.** Specifically, we study the circuit discovered in Wang et al. (2022) for the Indirect Object Identification (IOI) task and 1.) show that it reproduces on a larger GPT2 model, and 2.) that it is mostly reused to solve a seemingly different task: Colored Objects (Ippolito & Callison-Burch, 2023). We provide evidence that the process underlying both tasks is functionally very similar, and contains about a 78% overlap in in-circuit attention heads. The intervention affects downstream attention heads in specific ways predicted by their interactions in the IOI circuit, indicating that this subcircuit behavior is invariant to the different task inputs. Overall, our results provide evidence that it may yet be possible to explain large language models' behavior in terms of a relatively small number of interpretable task-general algorithmic building blocks and computational components. The coordinated interventions provide comparatively strong structural causal evidence for the proposed information flow or circuit. Completeness, uniqueness, and transfer to other models still require separate validation.
+    **Conclusion & Evidence.** The two tasks reuse a common algorithmic skeleton—detect a repeated cue, select or suppress candidates, then copy the remaining token—even though one uses positive content gathering and the other inhibition. Component overlap alone is correlational, but targeted blocking and successful circuit repair provide strong causal evidence that the same subcircuit interactions are reusable. This remains a proof of concept in one moderate-size model and two copying-style tasks; it does not show that most capabilities decompose into a small universal library.
   zh: |-
-    **研究问题。** Transformer 在 间接宾语识别（Indirect Object Identification, IOI） 与 Colored Objects 等表面不同的任务中，是否复用相同的 attention heads 和算法功能？从一个任务获得的电路知识能否预测并改善另一个任务的机制分析？
+    **研究问题。** 该论文研究在一个语言模型任务中发现的组件和多注意力头子电路，是否会被表面不同的任务复用。研究比较间接宾语识别（Indirect Object Identification, IOI）与从列表中选择被问及颜色的任务，并检验能否主动激活缺失的 IOI 组件来修复后者。
 
-    **方法。** 然而，一种常见批评认为，每个回路都只适用于特定任务，因此这类分析无法帮助我们在更高层面理解模型。在本研究中，我们给出证据，说明相关认识——既包括关于特定注意力头的底层发现，也包括关于一般算法的高层发现——确实能够跨任务泛化。
+    **方法。** 路径修补在匹配提示间交换注意力头到注意力头的路径，并以正确答案和替代答案的 logit 差变化计分。注意力模式与输出归因分别识别重复/归纳头、内容汇集或抑制头、正向搬运头及负向搬运头。定向干预修改 4 个中层注意力头，使 Colored Objects 中未激活的“抑制—搬运”路径得到 IOI 电路预测的信号。
 
-    **实验验证。** 具体而言，我们研究 Wang 等（2022）为间接宾语识别（IOI）任务发现的回路，并证明：（1）该回路能在更大的 GPT2 模型上复现；（2）它在很大程度上被复用于解决一个表面上不同的任务：彩色物体（Colored Objects；Ippolito 与 Callison-Burch，2023）。我们还给出一个概念验证式干预实验：调整中间层的四个注意力头，以“修复”彩色物体回路，使其像 IOI 回路一样工作。由此，我们将彩色物体任务的准确率从 49.6% 提升至 93.7%，并解释了大多数错误来源。
+    **实验验证。** 两个任务都在 GPT-2 Medium 上用 1,000 个样本分析；Colored Objects 另有 1,000 个只改变三个对象中被询问对象的反事实变体。模型在全部 IOI 样本上偏好正确姓名，但颜色任务准确率只有 49.6%。按每轮路径修补最重要的前 2% 注意力头计，32 个中有 25 个（78%）共享。阻断内容汇集头读取问题后，颜色准确率降到 35%，同规模随机头对照为 49.9%±1.0；四头修复则把准确率升至 93.7%，没有新增错误，并按预测方向改变下游搬运头注意力。
 
-    **结论与证据。** 我们提供证据表明，这两个任务背后的过程在功能上非常相似，其回路内注意力头约有 78% 重叠。该干预以 IOI 回路中组件交互所预测的特定方式影响下游注意力头，说明这一子回路的行为对不同任务输入保持不变。总体而言，我们的结果表明，或许可以用相对少量、可解释且跨任务通用的算法构件与计算组件来解释大语言模型的行为。相互配合的干预为所提出的信息流或电路提供了较强的结构因果证据，但机制的完备性、唯一性以及跨模型迁移仍需独立验证。
+    **结论与证据。** 两任务复用共同的算法骨架：检测重复线索、选择或抑制候选项，再复制剩余词元；差别是一个使用正向内容汇集，另一个使用抑制。组件重叠本身只是相关证据，但定向阻断和成功修复提供了较强因果证据，表明同一子电路交互可被复用。结论仍只是一个中等规模模型、两个复制型任务上的概念验证，尚不能证明大多数能力都能分解为少量通用模块。
   generation:
     status: complete
     generated_by: project_agent

@@ -69,23 +69,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Can circuit discovery be automated and scaled while preserving the quality of mechanism recovery? In this paper, *Towards Automated Circuit Discovery for Mechanistic Interpretability* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Through considerable effort and intuition, several recent works have reverse-engineered nontrivial behaviors of transformer models.
+    **Research Question.** The paper asks whether the labor-intensive activation-patching stage of mechanistic circuit discovery can be automated, and how well an automated method recovers known causal subgraphs compared with pruning baselines across different tasks and metrics.
 
-    **Method.** This paper systematizes the mechanistic interpretability process they followed. For example, the ACDC algorithm rediscovered 5/5 of the component types in a circuit in GPT-2 Small that computes the Greater-Than operation.
+    **Method.** Automated Circuit Discovery (ACDC) represents a Transformer as a directed graph of attention heads, multilayer perceptrons, and their connections. Starting from the output and traversing backward, it replaces one candidate edge at a time with the activation from a corrupted input; if removing the clean edge changes Kullback–Leibler divergence or a task metric by less than a threshold, the edge is pruned. The algorithm is compared with Head Importance Score for Pruning and a modified Subnetwork Probing method.
 
-    **Validation.** First, researchers choose a metric and dataset that elicit the desired model behavior. Then, they apply activation patching to find which abstract neural network units are involved in the behavior. By varying the dataset, metric, and units under investigation, researchers can understand the functionality of each component. We automate one of the process' steps: to identify the circuit that implements the specified behavior in the model's computational graph. We propose several algorithms and reproduce previous interpretability results to validate them.
+    **Validation.** Recovery is tested against hand-derived circuits for indirect object identification (IOI), greater-than comparison, Python docstring completion, and two Tracr-compiled programs. Both edge- and node-level receiver-operating-characteristic area under the curve quantify recovery as the pruning threshold varies; retained-subgraph task performance supplies a stand-alone check. With corrupted activation patching and Kullback–Leibler divergence, ACDC edge-level areas are 0.982 for docstrings, 0.853 for greater-than, and 0.869 for IOI. The IOI study uses 50 clean template examples paired with corrupted ABC examples, and ablations compare corrupted versus zero patching and task loss versus distributional metrics.
 
-    **Conclusion & Evidence.** ACDC selected 68 of the 32,000 edges in GPT-2 Small, all of which were manually found by previous work. Our code is available at https://github.com/ArthurConmy/Automatic-Circuit-Discovery. The coordinated interventions provide comparatively strong structural causal evidence for the proposed information flow or circuit. Completeness, uniqueness, and transfer to other models still require separate validation.
+    **Conclusion & Evidence.** ACDC recovers much of several known compositional circuits and can generate useful hypotheses for previously unanalyzed behavior, showing that recursive causal pruning can automate a substantial part of circuit discovery. Ground-truth circuit comparisons, threshold curves, metric ablations, and retained-performance tests provide meaningful causal-local evidence. Recovery is sensitive to the corruption distribution, graph granularity, and metric; known circuit annotations are themselves incomplete, so the method neither guarantees a unique minimal circuit nor eliminates human interpretation.
   zh: |-
-    **研究问题。** 高度依赖人工迭代的 circuit discovery 流程中，哪些步骤可以自动化？自动电路发现（Automated Circuit Discovery, ACDC） 等算法能否依据行为数据、metric 和 activation patching 自动抽取近似已知回路，并用统一指标比较不同自动发现方法？
+    **研究问题。** 该论文研究能否自动化机制电路发现中耗费人工的激活修补阶段，以及自动方法在不同任务和指标下恢复已知因果子图的能力相对于剪枝基线有多强。
 
-    **方法。** 本文将这些工作所遵循的机制可解释性流程系统化。
+    **方法。** 自动电路发现（Automated Circuit Discovery, ACDC）把 Transformer 表示为由注意力头、多层感知机及其连接组成的有向图。算法从输出向后遍历，每次用损坏输入产生的激活替换一条候选边；若移除该干净边对 Kullback–Leibler 散度或任务指标的影响低于阈值，就剪除该边。比较方法包括 Head Importance Score for Pruning 和改造后的 Subnetwork Probing。
 
-    **实验验证。** 首先，研究者选择能够诱发目标模型行为的指标和数据集；随后应用激活修补，找出哪些抽象神经网络单元参与该行为；通过改变所研究的数据集、指标和单元，研究者可以理解各组件的功能。我们自动化了这一流程中的一个步骤：识别模型计算图中实现指定行为的回路。我们提出多种算法，并通过复现此前的可解释性结果加以验证。
+    **实验验证。** 恢复实验以间接宾语识别（Indirect Object Identification, IOI）、大小比较、Python docstring 补全和两个 Tracr 编译程序的人工电路为参照。阈值变化时，边级和节点级受试者工作特征曲线下面积衡量恢复能力，保留子图的任务表现提供独立检查。使用损坏激活和 Kullback–Leibler 散度时，ACDC 的边级曲线下面积在 docstring、大小比较和 IOI 上分别为 0.982、0.853 和 0.869。IOI 实验含 50 个干净模板样本及配对 ABC 损坏样本；消融比较损坏值与零值修补，以及任务损失与分布指标。
 
-    **结论与证据。** 例如，ACDC 算法重新发现了 GPT-2 Small 中计算“大于”操作的一个回路里全部五类组件。ACDC 从 GPT-2 Small 的 32,000 条边中选择了 68 条，而这些边此前都已由人工研究发现。代码见 https://github.com/ArthurConmy/Automatic-Circuit-Discovery。相互配合的干预为所提出的信息流或电路提供了较强的结构因果证据，但机制的完备性、唯一性以及跨模型迁移仍需独立验证。
+    **结论与证据。** ACDC 能恢复多个已知组合电路的大部分结构，也能为未分析行为产生有用假设，说明递归因果剪枝可以自动化相当一部分电路发现工作。与已知电路的比较、阈值曲线、指标消融和保留性能测试提供了有意义的局部因果证据。但结果对损坏分布、图粒度和指标敏感，所谓“真值电路”本身也不完整，因此方法不能保证找到唯一最小电路，也没有消除人工解释环节。
   generation:
     status: complete
     generated_by: project_agent

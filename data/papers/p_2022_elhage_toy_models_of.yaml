@@ -129,23 +129,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** The paper asks why neural-network neurons become polysemantic and whether models represent more features than they have dimensions by placing features in non-orthogonal directions, a phenomenon called superposition. It further asks how feature sparsity, importance, and nonlinearity determine when this strategy is favored.
+    **Research Question.** The paper asks why a neuron can respond to several unrelated features and whether this polysemanticity arises because a network stores more sparse features than it has representational dimensions. It separately studies when superposition is favored, how importance and correlations allocate capacity, and what geometry the packed features adopt.
 
-    **Method.** The authors construct small models with known input features and a bottleneck representation, then optimize reconstruction or task loss while varying sparsity, feature importance, dimensionality, and activation functions. Because the ground-truth features are known, the geometry of learned feature vectors can be inspected directly and compared with predictions based on interference costs.
+    **Method.** Ground-truth nonnegative features are sampled independently or with controlled correlations and sparsity, compressed by a learned matrix, and reconstructed by linear or rectified-linear output models. Feature importance, sparsity, the number of features (n), and hidden dimension (m) are swept. Because every true feature and weight vector is known, the analysis directly measures represented features, interference, dimensionality, and the angles among feature directions; additional toy networks test computation performed in superposition.
 
-    **Validation.** Parameter sweeps visualize phase changes between ignoring features, allocating dedicated dimensions, and packing many features into superposition. The study examines geometric configurations such as antipodal pairs and regular polytopes, compares ReLU and linear settings, studies correlated and anticorrelated features, and reproduces qualitative phenomena observed in larger networks.
+    **Validation.** Core experiments include (n=20,m=5) sweeps from dense to sparse inputs, small (n=2,m=1) and (n=3,m=2) phase diagrams, nonuniform importance, correlated/anticorrelated pairs, and one- and two-layer ReLU variants. Dense settings retain roughly one orthogonal feature per dimension, whereas sparse settings encode additional nonorthogonal features. Learned directions repeatedly form predicted structures such as antipodal pairs, triangles, pentagons, tetrahedra, and larger uniform polytopes; phase boundaries and abrupt feature reallocation track loss crossovers.
 
-    **Conclusion & Evidence.** Sparse features make non-orthogonal packing advantageous because most interfering features are inactive at any one time; importance and sparsity determine which features receive dedicated capacity, share capacity, or are dropped. The controlled models provide strong mechanistic evidence that superposition can generate polysemantic neurons and predict its geometry. They establish a plausible mechanism, not direct proof that the same optimization fully explains feature organization in large language models.
+    **Conclusion & Evidence.** Sparsity makes superposition economical because interference is rarely active, so models can trade occasional interference for representing more features; importance and correlation decide which features are dedicated, shared, or dropped. Exact ground truth, broad parameter sweeps, and reproducible geometric transitions give strong constructive evidence that superposition can cause polysemantic neurons. They do not establish its prevalence in language models: the tasks are synthetic, the objectives unusually transparent, and real networks may face additional constraints and feature hierarchies.
   zh: |-
-    **研究问题。** 论文研究神经网络中的神经元为何会呈现多义性，以及模型是否会通过把特征放在非正交方向上，在有限维空间中表示多于维度数量的特征，即形成叠加（superposition）；并进一步考察特征稀疏性、重要性和非线性在什么条件下使这种策略成为最优。
+    **研究问题。** 该论文研究神经元为何会响应多个无关特征，以及这种多义性是否源于网络把多于表示维数的稀疏特征存入叠加态；并分别考察何时叠加更优、重要性与相关性如何分配容量，以及被压缩特征形成什么几何。
 
-    **方法。** 作者构造具有已知输入特征和表示瓶颈的小型模型，在改变稀疏度、特征重要性、表示维度与激活函数的条件下优化重构或任务损失。由于真值特征已知，可以直接检查学习到的特征向量几何，并将其与“非正交特征相互干扰所产生的代价”这一理论预期比较。
+    **方法。** 研究从独立或受控相关分布采样已知的非负特征，经可学习矩阵压缩，再由线性或 ReLU 输出模型重构；系统扫描特征重要性、稀疏度、特征数 (n) 与隐藏维数 (m)。由于真值特征和权重完全已知，可直接测量哪些特征被表示、相互干扰、有效维数及方向夹角；附加玩具网络还测试叠加状态下能否完成计算。
 
-    **实验验证。** 参数扫描展示了忽略特征、为特征分配独占维度以及把多个特征压入 superposition 之间的相变。研究分析对跖向量、正多面体等几何结构，比较线性与线性整流单元（Rectified Linear Unit, ReLU）设置，并考察相关或负相关特征，同时复现大模型中观察到的若干定性现象。
+    **实验验证。** 核心实验包括 (n=20,m=5) 的密集到稀疏扫描、(n=2,m=1) 与 (n=3,m=2) 相图、非均匀重要性、相关/反相关特征，以及一层和两层 ReLU 变体。密集输入大致每维保留一个正交特征，稀疏输入则编码更多非正交特征。学习方向反复形成反向点对、三角形、五边形、四面体等预测结构，特征容量的突变边界也与不同解的损失交叉一致。
 
-    **结论与证据。** 当特征稀疏时，大部分相互干扰的特征不会同时激活，因此非正交打包具有收益；特征重要性和稀疏度共同决定哪些特征获得独占容量、共享容量或被完全忽略。受控模型为 superposition 能产生多义神经元并形成特定几何提供了较强机制证据，但它证明的是一种可行机制，而非大型语言模型中的特征组织完全由同一优化过程解释。
+    **结论与证据。** 稀疏性让干扰很少同时出现，因此模型可用偶发干扰换取更多特征；重要性与相关性决定特征是独占维度、共享容量还是被舍弃。已知真值、广泛参数扫描和稳定几何相变强力证明叠加足以产生多义神经元。但这不等于证明大型语言模型普遍如此：任务是合成的、目标函数很透明，真实网络还可能受层级特征和其他约束支配。
   generation:
     status: complete
     generated_by: project_agent

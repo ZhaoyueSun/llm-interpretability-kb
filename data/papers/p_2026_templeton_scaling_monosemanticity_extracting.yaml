@@ -198,23 +198,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Can interpretable feature extraction scale to frontier models, all relevant layers and positions, and the long tail of the training distribution? In this paper, *Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet* addresses that question through its specific object of study and tests how far the resulting claim can be supported.
+    **Research Question.** The paper asks whether dictionary learning scales from small models to a production-scale multimodal language model, whether millions of sparse features remain interpretable and causally steerable, and how dictionary size relates to resolving rare versus common concepts.
 
-    **Method.** We demonstrate that sparse autoencoders can extract interpretable features from Claude 3 Sonnet, a production-scale language model, addressing the open question of whether dictionary learning methods scale beyond small transformers. We trained sparse autoencoders with up to 34 million features on the model's middle layer residual stream, using scaling laws to guide hyperparameter selection. The resulting features are multilingual and multimodal (generalizing to images despite text-only training), respond to both concrete instances and abstract discussions of concepts, and can be used to steer model behavior in ways consistent with their interpretations.
+    **Method.** Sparse Autoencoders (SAEs) with up to 34 million latents are trained on the middle residual-stream layer of Claude 3 Sonnet. Scaling-law fits choose compute allocation, width, steps, and learning rate. Top activating contexts, automated descriptions, specificity tests, feature neighborhoods, attribution, and activation addition inspect concrete, abstract, multilingual, multimodal, and safety-related features.
 
-    **Validation.** However, significant limitations remain: our suite of features is incomplete, and we lack rigorous methods for evaluating whether our features faithfully capture model computations.
+    **Validation.** Three dictionary scales are compared; each activates fewer than 300 features per token and explains at least 65% of activation variance. Dead features are measured over (10^7) tokens. Case studies include people, places, code errors, functions, the Golden Gate Bridge, deception, power-seeking, sycophancy, and bias. Features trained only on text activate appropriately on images and across languages; dose–response steering changes related generation, with probe-direction and neuron comparisons. Frequency analyses show rarer concepts require larger dictionaries to separate.
 
-    **Conclusion & Evidence.** We find features corresponding to famous entities and locations, as well as more abstract concepts like sarcasm or errors in code. We also identify features relevant to ways in which language models might cause harm--including features representing deception, power-seeking, sycophancy, and bias--and show that these causally influence model outputs when manipulated. Additionally, we conduct analyses of feature interpretability, geometry, and computational function. The evidence is primarily descriptive or correlational: it establishes a repeatable pattern in the studied models, but does not by itself identify a necessary causal mechanism or guarantee generalization beyond those settings.
+    **Conclusion & Evidence.** SAE feature extraction can scale to tens of millions of readable features, and some directions generalize across modality/language and causally influence behavior. Scale, breadth, and steering provide important existence evidence. Completeness and faithfulness remain unresolved: one middle layer is studied, the proprietary model/data hide replication details, feature samples are partly curated, reconstruction is incomplete, steering can be off-distribution, and no ground truth establishes that a feature is monosemantic or used by the native circuit.
   zh: |-
-    **研究问题。** 稀疏字典学习能否扩展到 frontier-scale model，并仍提取可解释、抽象、跨语言/模态且能 steering 行为的 features？模型规模、concept frequency 与所需 dictionary size 之间有什么规律，安全相关特征能否被发现？
+    **研究问题。** 该论文研究字典学习能否从小模型扩展到生产级多模态语言模型，数百万稀疏特征是否仍可解释并可因果引导，以及字典规模如何影响常见与罕见概念的分离。
 
-    **方法。** 我们证明，稀疏自编码器可以从生产规模的语言模型 Claude 3 Sonnet 中提取可解释特征，从而回答字典学习方法能否扩展到小型 Transformer 之外这一开放问题。我们在模型中间层的残差流上训练了最多包含 3,400 万个特征的稀疏自编码器，并利用缩放定律指导超参数选择。所得特征具有多语言和多模态性质——尽管只用文本训练，却能泛化到图像；它们既响应概念的具体实例，也响应对概念的抽象讨论；还可用于以符合其解释的方式引导模型行为。
+    **方法。** 在 Claude 3 Sonnet 中间层残差流训练最多 3,400 万潜变量的稀疏自编码器（Sparse Autoencoder, SAE）；以缩放律选择计算分配、宽度、步数和学习率。最高激活语境、自动描述、特异性测试、特征邻域、归因和激活加法用于检查具体、抽象、多语、多模态及安全相关特征。
 
-    **实验验证。** 不过，仍存在显著局限：现有特征集合并不完整，而且我们缺少严格的方法来评估这些特征是否忠实捕捉了模型计算。
+    **实验验证。** 比较三种字典规模；每个词元平均激活少于 300 个特征，至少解释 65% 激活方差，死亡特征在 (10^7) 词元上测定。案例涵盖人物、地点、代码错误、函数、金门大桥、欺骗、权力追求、迎合和偏见。纯文本训练特征会在图像和多语言中适当激活；剂量–响应引导改变相关生成，并与探针方向和神经元比较。频率分析显示罕见概念需更大字典才能分离。
 
-    **结论与证据。** 我们发现了对应著名实体和地点的特征，也发现了讽刺或代码错误等更抽象概念的特征。我们还识别出与语言模型潜在危害方式有关的特征，包括表征欺骗、权力寻求、谄媚和偏见的特征，并表明操纵这些特征会对模型输出产生因果影响。此外，我们分析了特征的可解释性、几何结构和计算功能。证据主要属于描述性或相关性证据：它确认了所研究模型中的可复现规律，但不能单独识别必要的因果机制，也不能保证结论超出这些设置后仍成立。
+    **结论与证据。** SAE 可扩展到数千万可读特征，部分方向跨模态/语言泛化并因果影响行为。规模、覆盖面和引导提供重要存在性证据。但完整性与忠实性仍未解决：只研究一个中层，专有模型/数据限制复现，特征案例部分精选，重构不完整，引导可能离开分布，也没有真值证明特征单义或被原生电路使用。
   generation:
     status: complete
     generated_by: project_agent

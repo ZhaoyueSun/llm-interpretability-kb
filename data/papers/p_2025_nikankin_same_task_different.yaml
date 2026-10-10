@@ -66,23 +66,23 @@ abstract:
     translated_by: project_agent
     third_party_api_used: false
 ai_summary:
-  basis: PaperKnowledgeBase Docling full text, verified abstract, and project research-question review
+  basis: PaperKnowledgeBase Docling full text, verified against the paper methods, experiments, results, and limitations
   en: |-
-    **Research Question.** Do different modalities use structurally different but functionally related mechanisms for the same task? In this paper, *Same Task, Different Circuits: Disentangling Modality-Specific Mechanisms in vision–language models (VLMs)* addresses that question through its specific object of study and tests how far the resulting claim can be supported. Vision-Language models (VLMs) show impressive abilities to answer questions on visual inputs (e.g., counting objects in an image), yet demonstrate higher accuracies when performing an analogous task on text (e.g., counting words in a text).
+    **Research Question.** The paper asks why vision-language models perform analogous operations, such as counting, better when the input is text than when it is an image. It separates whether modalities use different circuits, whether those circuits compute different functions, and whether visual representations become text-like too late to exploit the shared decoder.
 
-    **Method.** We investigate this accuracy gap by identifying and comparing the circuits - the task-specific computational sub-graphs - in different modalities.
+    **Method.** Automated circuit discovery and activation patching identify component subgraphs for matched visual and textual versions of each task. Head functions are compared through attention patterns and path effects rather than node identity alone. Representational alignment across layers measures when image tokens approach their higher-performing text counterparts. A “back-patching” intervention copies later visual-token representations into earlier layers without retraining.
 
-    **Validation.** To overcome this, we patch the representations of visual data tokens from later layers back into earlier layers. In experiments with multiple tasks and models, this simple intervention closes a third of the performance gap between the modalities, on average.
+    **Validation.** Several models and matched tasks compare accuracy, circuit overlap, retain/remove faithfulness, and component function across modalities. Controls patch text, random layers, random tokens, or norm-matched activations to isolate timing from generic perturbation. Visual and textual circuits are largely disjoint yet concentrate on analogous data positions; image-to-text alignment rises only in later layers. Feeding those late visual states back to earlier layers closes about one third of the average modality performance gap.
 
-    **Conclusion & Evidence.** We show that while circuits are largely disjoint between modalities, they implement relatively similar functionalities: the differences lie primarily in processing modality-specific data positions (an image or a text sequence). Zooming in on the image data representations, we observe they become aligned with the higher-performing analogous textual representations only towards later layers, too late in processing to effectively influence subsequent positions. Our analysis sheds light on the multi-modal performance gap in VLMs and suggests a training-free approach for reducing it. The coordinated interventions provide comparatively strong structural causal evidence for the proposed information flow or circuit. Completeness, uniqueness, and transfer to other models still require separate validation.
+    **Conclusion & Evidence.** The gap is explained less by missing high-level operations than by delayed visual representation: modality-specific circuits implement related functions, but useful visual states arrive too late for enough downstream computation. Matched-task circuits and a prediction-improving timing intervention provide strong local causal evidence. Back-patching creates an artificial trajectory, averaging can hide task/model variation, and the result does not show how to train naturally earlier alignment or that all multimodal gaps share this cause.
   zh: |-
-    **研究问题。** 视觉—语言模型（Vision-Language Model, VLM） 在同构视觉与文本任务上的性能差距，是否来自两种模态使用结构不同且功能不等价的 circuits？data、query 与 generation subcircuits 中哪一部分造成差距，能否借助跨模态 circuit swapping 与层间 patching 改善视觉处理？
+    **研究问题。** 该论文研究视觉语言模型为何在计数等同构任务上处理文本优于图像，并拆分为：两种模态是否使用不同电路、电路功能是否不同，以及视觉表示是否过晚才变得像文本表示，从而无法充分利用共享解码器。
 
-    **方法。** 我们通过识别并比较不同模态中的回路——即任务特定的计算子图——来研究这一准确率差距。
+    **方法。** 自动电路发现和激活修补为每项任务的视觉版与文本版定位组件子图；通过注意力模式和路径效应比较功能，而非只看节点身份。跨层表示对齐测量图像词元何时接近高性能文本对应物；“回修补”无需训练，直接把后层视觉词元表示复制到早层。
 
-    **实验验证。** 为解决这一问题，我们把较后层的视觉数据 token 表征修补回较早层。在涉及多个任务和模型的实验中，这项简单干预平均弥合了模态间性能差距的三分之一。
+    **实验验证。** 多模型、多组匹配任务比较准确率、电路重合、保留/移除保真性及跨模态组件功能。对照修补文本、随机层、随机词元或范数匹配激活，以分离时序因素与一般扰动。视觉和文本电路大体不重合，却聚焦功能相似的数据位置；图文表示只在后层明显对齐。把晚层视觉状态送回早层，平均缩小约三分之一的模态性能差距。
 
-    **结论与证据。** 我们发现，不同模态的回路虽然大多互不重叠，但实现的功能相对相似；差异主要在于对模态特定数据位置（图像或文本序列）的处理。进一步观察图像数据表征可以发现，它们直到较后层才与表现更好的对应文本表征对齐，此时在处理流程中已为时过晚，无法有效影响后续位置。我们的分析揭示了 VLM 多模态性能差距的成因，并提出一种无需训练即可缩小该差距的方法。相互配合的干预为所提出的信息流或电路提供了较强的结构因果证据，但机制的完备性、唯一性以及跨模型迁移仍需独立验证。
+    **结论与证据。** 差距更多来自视觉表示延迟，而非缺少高层操作：模态专用电路功能相近，但有用视觉状态到达过晚，留给下游计算的深度不足。匹配任务电路和能改善预测的时序干预提供强局部因果证据。但回修补制造了非自然轨迹，平均值可能掩盖任务/模型差异，研究也未说明如何通过训练自然提前对齐，或证明所有多模态差距都源于此。
   generation:
     status: complete
     generated_by: project_agent
