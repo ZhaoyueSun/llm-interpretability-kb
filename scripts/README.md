@@ -50,7 +50,7 @@ conda run -n interpret-vis python scripts/enrich_authors.py --include-semantic-s
 
 ## `build_author_network.py`
 
-从当前 corpus、论文作者顺序和 `data/authors.yaml` 生成完整且不做视觉剪枝的作者合作网络。节点包含 corpus 内论文、第一作者论文、末位作者论文、合作者及加权合作次数；边保存两位作者共同署名的论文及共同论文数。
+从当前 corpus、论文作者顺序和 `data/authors.yaml` 生成完整且不做视觉剪枝的作者合作网络。节点包含 corpus 内论文、第一作者论文、中间作者论文、末位作者论文、合作者及加权合作次数；边保存两位作者共同署名的论文及共同论文数。
 
 默认输出是 Git 忽略的 `.generated/author-network.json`。它是可重复生成的派生数据，不作为作者或论文事实来源：
 
@@ -59,3 +59,33 @@ conda run -n interpret-vis python scripts/build_author_network.py
 ```
 
 输出格式由 `schemas/author-network.schema.json` 约束。
+
+## `audit_research_question_edges.rb`
+
+读取 `docs/research-question-graph-draft.yaml` 中的概念演化边，在只读的
+PaperKnowledgeBase Docling 全文中查找较晚论文对较早论文的标题或作者—年份引用候选。
+报告只用于人工核对：检出引用不自动证明所提议的 RQ 关系成立，未检出也不证明不存在引用。
+
+```text
+ruby scripts/audit_research_question_edges.rb > imports/research-question-edge-citation-audit.md
+```
+
+可用第一个位置参数覆盖默认的 PaperKnowledgeBase records 目录。
+
+## `validate_research_question_graph.rb`
+
+校验 RQ 工作草案的节点、论文覆盖、首次提出时间、边方向和关系证据等级。它要求
+corpus 中每篇论文恰有一个 primary RQ，并阻止时间倒置的演化边进入后续可视化数据。
+
+```text
+ruby scripts/validate_research_question_graph.rb
+```
+
+## `discover_research_question_edge_candidates.rb`
+
+跨全部 corpus 论文扫描正文引用，列出尚未进入 RQ 图的潜在节点关系。输出只是人工审核队列，
+不会自动新增边，也不会把作者—年份字符串匹配当成历史继承证据。
+
+```text
+ruby scripts/discover_research_question_edge_candidates.rb
+```

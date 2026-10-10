@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "controlled-vocabulary.schema.json",
+  "title": "Controlled Vocabulary Display Metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "version",
+    "status",
+    "updated_at",
+    "change_reason",
+    "paper_attributes",
+    "taxonomy_relation_roles"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "version": {"type": "integer", "minimum": 1},
+    "status": {"enum": ["draft", "active", "deprecated"]},
+    "updated_at": {"type": "string", "format": "date"},
+    "change_reason": {"type": "string", "minLength": 1},
+    "paper_attributes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contribution_role", "evidence_strength", "modality"],
+      "properties": {
+        "contribution_role": {
+          "$ref": "#/$defs/contributionRole"
+        },
+        "evidence_strength": {
+          "$ref": "#/$defs/evidenceStrength"
+        },
+        "modality": {
+          "$ref": "#/$defs/modality"
+        }
+      }
+    },
+    "taxonomy_relation_roles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["techniques"],
+      "properties": {
+        "techniques": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["primary", "secondary"],
+          "properties": {
+            "primary": {"$ref": "#/$defs/displayEntry"},
+            "secondary": {"$ref": "#/$defs/displayEntry"}
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "localizedText": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "zh"],
+      "properties": {
+        "en": {"type": "string", "minLength": 1},
+        "zh": {"type": "string", "minLength": 1}
+      }
+    },
+    "displayEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "description"],
+      "properties": {
+        "label": {"$ref": "#/$defs/localizedText"},
+        "description": {"$ref": "#/$defs/localizedText"}
+      }
+    },
+    "contributionRole": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "description", "values"],
+      "properties": {
+        "label": {"$ref": "#/$defs/localizedText"},
+        "description": {"$ref": "#/$defs/localizedText"},
+        "values": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["method", "empirical-discovery", "theory", "evaluation", "application"],
+          "properties": {
+            "method": {"$ref": "#/$defs/displayEntry"},
+            "empirical-discovery": {"$ref": "#/$defs/displayEntry"},
+            "theory": {"$ref": "#/$defs/displayEntry"},
+            "evaluation": {"$ref": "#/$defs/displayEntry"},
+            "application": {"$ref": "#/$defs/displayEntry"}
+          }
+        }
+      }
+    },
+    "evidenceStrength": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "description", "note", "values"],
+      "properties": {
+        "label": {"$ref": "#/$defs/localizedText"},
+        "description": {"$ref": "#/$defs/localizedText"},
+        "note": {"$ref": "#/$defs/localizedText"},
+        "values": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["descriptive", "decodable", "sensitivity", "causal-local", "causal-structural", "formal", "audit"],
+          "properties": {
+            "descriptive": {"$ref": "#/$defs/displayEntry"},
+            "decodable": {"$ref": "#/$defs/displayEntry"},
+            "sensitivity": {"$ref": "#/$defs/displayEntry"},
+            "causal-local": {"$ref": "#/$defs/displayEntry"},
+            "causal-structural": {"$ref": "#/$defs/displayEntry"},
+            "formal": {"$ref": "#/$defs/displayEntry"},
+            "audit": {"$ref": "#/$defs/displayEntry"}
+          }
+        }
+      }
+    },
+    "modality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "description", "values"],
+      "properties": {
+        "label": {"$ref": "#/$defs/localizedText"},
+        "description": {"$ref": "#/$defs/localizedText"},
+        "values": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["language", "vision", "vision-language", "biological-sequence", "architecture-agnostic"],
+          "properties": {
+            "language": {"$ref": "#/$defs/displayEntry"},
+            "vision": {"$ref": "#/$defs/displayEntry"},
+            "vision-language": {"$ref": "#/$defs/displayEntry"},
+            "biological-sequence": {"$ref": "#/$defs/displayEntry"},
+            "architecture-agnostic": {"$ref": "#/$defs/displayEntry"}
+          }
+        }
+      }
+    }
+  }
+}

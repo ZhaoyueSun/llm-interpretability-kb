@@ -1,0 +1,2008 @@
+schema_version: 0
+status: working-draft
+source: docs/research-question-timeline-draft.md
+updated_at: '2026-10-10'
+notes:
+  - This is a consolidation draft, not an approved taxonomy or classification source.
+  - Primary paper assignments are exhaustive for the current 123-paper corpus.
+  - Every paper has exactly one primary RQ; secondary paper assignments are intentionally non-exclusive.
+  - Existing Research Object, Technique, and Application metadata must be derived through paper IDs.
+  - Edge types describe how the later target question changes the earlier source question.
+  - Edge evidence distinguishes direct textual engagement, uncited continuity, and analyst synthesis.
+
+edge_evidence_levels:
+  direct-citation: The target papers cite and substantively engage source-node papers in the main text.
+  same-lineage: The questions form a clear continuation, but no substantive main-text citation was verified.
+  analyst-inference: The connection is a synthesis proposed for this graph and is not attributed to the papers.
+
+families:
+  - family_id: representation-form
+    label_en: Representation Form
+    label_zh: 表示形式
+    guiding_question_en: What does the model represent, and in what form?
+    guiding_question_zh: 模型表示了什么，以及以什么形式表示？
+    meaning_en: >-
+      This family studies what information is encoded inside a model and the structural form of that encoding.
+      Candidate units include neurons, directions, subspaces, sparse features, task vectors, binding structures, and
+      latent world states. The focus is not the analysis technique but the geometry, compositionality, sparsity, and
+      organization of the representation itself.
+    meaning_zh: >-
+      这一类别研究模型内部编码了哪些信息，以及这些信息采用何种结构形式存在。可能的表示单位包括神经元、方向、子空间、
+      稀疏特征、任务向量、绑定结构和世界状态。重点不是使用哪种分析技术，而是模型表示本身具有怎样的几何、组合和稀疏结构。
+    evolution_en: >-
+      Early work asked whether information could be decoded from intermediate layers and whether individual units
+      aligned with human concepts. Unsupervised feature discovery then attempted to remove dependence on predefined
+      labels. Research on superposition challenged the one-concept–one-neuron assumption and redirected attention
+      toward directions, subspaces, and distributed representations. The field subsequently examined world states,
+      task vectors, compositional binding, and causally meaningful representation geometry. Sparse representation
+      learning sought to recover latent features from superposition, leading to questions about training objectives,
+      frontier-scale feature atlases, and failures such as splitting and absorption. The progression is: information
+      localization → representational form → latent-feature recovery → functional validation and failure boundaries.
+    evolution_zh: >-
+      早期研究主要询问信息能否从中间层读出，以及单个神经元是否对应人类概念。随后，无监督特征发现开始尝试摆脱预设标签。
+      Superposition 研究进一步挑战了“一个概念对应一个神经元”的假设，推动研究转向方向、子空间和分布式表示。之后，研究扩展到
+      世界状态、任务向量、实体—属性绑定和具有因果意义的表示几何。Sparse Autoencoder 等工作则试图从 superposition 中恢复潜在特征，
+      继而引出训练目标、规模化特征图谱以及 splitting、absorption 等失败问题。整体脉络是：信息定位 → 表示形式 → 潜在特征恢复 →
+      功能验证与失败边界。
+    display_order: 1
+  - family_id: computational-mechanism
+    label_en: Computational Mechanism
+    label_zh: 计算机制
+    guiding_question_en: How do internal computations produce model behavior?
+    guiding_question_zh: 模型如何通过内部计算产生行为？
+    meaning_en: >-
+      This family concerns the computations actually performed inside a model and how information flows across
+      components, layers, token positions, and paths to produce behavior. The relevant objects may be attention heads,
+      MLPs, paths, or complete circuits, but the central goal is to explain the computation rather than merely enumerate
+      components.
+    meaning_zh: >-
+      这一类别关注模型内部实际执行了什么计算，以及信息如何在组件、层、token 位置和路径之间流动并最终产生行为。
+      研究对象可能是 attention head、MLP、路径或完整电路，但类别的核心是解释计算过程，而不是罗列组件。
+    evolution_en: >-
+      The line began with the functions of individual components, such as how attention heads move information and how
+      MLPs store or promote concepts. Work on knowledge localization and causal abstraction then examined storage,
+      routing, and the correspondence between low-level computation and high-level algorithms. Full behavioral-circuit
+      studies organized components into end-to-end mechanisms, motivating path localization, automated circuit
+      discovery, and analysis at larger scales. More recent branches extend mechanism analysis to safety and refusal,
+      multilingual processing, multimodal information flow, knowledge conflict, and multimodal hallucination. The
+      progression is: component function → information pathways → complete circuits → automation and scaling → complex
+      behaviors and failure mechanisms.
+    evolution_zh: >-
+      研究最初集中于单个组件的功能，例如 attention head 如何移动信息、MLP 如何存储或促进概念。之后，知识定位和因果抽象研究开始追踪
+      信息的存储、路由以及低层计算与高层算法之间的对应。完整行为电路研究进一步把组件组织成端到端机制，并推动路径定位、自动电路发现
+      和规模化分析。近期分支把机制分析扩展到安全与拒绝、跨语言处理、多模态信息流、知识冲突以及多模态幻觉等复杂行为。
+      总体演化是：组件功能 → 信息路径 → 完整电路 → 自动化与规模化 → 复杂行为和失败机制。
+    display_order: 2
+  - family_id: mechanism-explanation
+    label_en: Mechanism Explanation
+    label_zh: 机制解释
+    guiding_question_en: How can internal computation be discovered, organized, and expressed as an inspectable explanation?
+    guiding_question_zh: 如何把模型内部计算发现、组织并表达为可检查的机制解释？
+    meaning_en: >-
+      This family studies the explanatory interface between a model's computation and a human analyst. It asks how an
+      explanation target should be formalized and how semantic descriptions, causal alignments, paths, circuits, or
+      feature graphs can be extracted efficiently. A boundary branch covers post-hoc attribution formalisms such as
+      SHAP: they construct inspectable explanation artifacts, but do not by themselves recover an internal causal
+      mechanism. This family is distinct from the computation itself and from the evidence required to trust the
+      resulting explanation.
+    meaning_zh: >-
+      这一类别关注模型内部计算与人类分析者之间的解释接口：解释对象应如何形式化，以及如何高效提取语义描述、因果对齐、
+      路径、电路或特征因果图。其中一个边界分支是 SHAP 等事后归因形式：它们构造可检查的解释产物，
+      但不因此等同于发现了模型内部的因果机制。该类别不等同于模型实际执行的计算，也不等同于证明所得解释可信。
+    evolution_en: >-
+      Early work formalized attribution targets and automatic semantic descriptions of internal units. The focus then
+      shifted to causal alignments, lenses, and path-level hypotheses that make intermediate computation inspectable.
+      Automated circuit discovery reduced manual reverse engineering, while sparse features and analytic decompositions
+      enabled finer-grained and more scalable explanation graphs. The progression is: explanation target and vocabulary
+      → semantic readout and causal alignment → automated path and circuit extraction → scalable feature-level graphs.
+    evolution_zh: >-
+      早期工作形式化了归因对象，并尝试自动命名内部单元。随后研究转向因果对齐、lens 和路径级假说，使中间计算变得可检查。
+      自动电路发现降低了人工逆向工程成本，稀疏特征和解析分解又把解释推向更细粒度和更大规模。整体脉络是：解释对象与语汇 → 语义读出与因果对齐 →
+      自动路径和电路提取 → 可扩展的特征级解释图。
+    display_order: 3
+  - family_id: intervention-control
+    label_en: Intervention and Control
+    label_zh: 干预与控制
+    guiding_question_en: Can mechanistic understanding support predictable and localized changes?
+    guiding_question_zh: 对内部机制的理解能否支持可预测、可局部化的改变？
+    meaning_en: >-
+      This family asks whether interpretability can be translated into reliable changes to a model, including inducing
+      structure during training, editing knowledge, and manipulating representations at inference time. It explicitly
+      distinguishes a location that causally contributes to behavior from a location that is an effective and localized
+      intervention target.
+    meaning_zh: >-
+      这一类别研究解释是否能够转化为对模型的可靠改变，包括在训练时诱导结构、编辑知识以及在推理时操纵内部表示。
+      它特别区分“某个位置对行为具有因果作用”和“该位置是最有效、最局部的修改目标”。
+    evolution_en: >-
+      The line began with attempts to induce internal structures during training that correspond to human-specified
+      causal models. Knowledge-editing research then exposed an important discontinuity: the location at which
+      information causally affects behavior is not necessarily the best place to edit it. Representation engineering and
+      inference-time intervention extended the question to whether internal directions can serve as stable control
+      levers. The emphasis has shifted from merely changing outputs to achieving specificity, transferability, stability,
+      and limited side effects. This branch is relatively small in the current corpus but forms the bridge between
+      explanation and practical model control.
+    evolution_zh: >-
+      这一研究线首先尝试在训练阶段直接诱导符合人类高层因果模型的内部结构。随后，知识编辑研究揭示了一个重要断裂：因果定位得到的
+      知识使用位置不一定是最佳编辑位置。Representation engineering 和 inference-time intervention 又把问题扩展到内部方向是否可以作为
+      稳定的控制杠杆。研究重点也由“是否能够改变输出”逐渐转向改变是否具有特异性、可迁移性、稳定性以及有限副作用。
+      当前 corpus 中这一分支规模较小，但它连接了解释和实际模型控制。
+    display_order: 4
+  - family_id: temporal-development
+    label_en: Temporal Development and Learning
+    label_zh: 时序学习
+    guiding_question_en: How do representations and mechanisms evolve across training, network depth, and generation?
+    guiding_question_zh: 表示与机制如何随训练、网络深度和生成过程演化？
+    meaning_en: >-
+      This family studies how internal representations and mechanisms change across temporal or computational stages.
+      Time includes training checkpoints, network depth, post-training, and autoregressive generation steps. It is a
+      family of questions about formation, transition, and temporal unfolding rather than a target-object label.
+    meaning_zh: >-
+      这一类别研究内部表示和机制如何随时间或计算阶段变化。这里的时序包括训练检查点、网络层深、后训练和自回归生成步骤；
+      它是关于形成、转变与时序展开的问题，而不是“learning process”对象标签。
+    evolution_en: >-
+      Early theory examined feature selection and reweighting during training. Checkpoint analysis then traced circuit
+      formation and internal progress measures behind apparent capability jumps. Layerwise lenses extended the dynamic
+      view to a single forward pass, and later work studied future-token commitments, post-training changes, and causal
+      computation across Chain-of-Thought steps. The progression is: feature formation → circuit formation and phase
+      transitions → depth-wise prediction dynamics → generation-time and CoT dynamics.
+    evolution_zh: >-
+      早期理论研究训练中的特征选择与重加权；检查点分析随后开始追踪电路形成，并用内部 progress measures 解释表面突发的能力跃迁。
+      层间 lens 把动态视角扩展到单次前向传播，后续研究又进入未来 token 承诺、后训练变化和 Chain-of-Thought 跨步骤因果计算。整体脉络是：
+      特征形成 → 电路形成与相变 → 层间预测演化 → 生成时序与 CoT 动态。
+    display_order: 5
+  - family_id: evidential-standards
+    label_en: Evidential Standards
+    label_zh: 证据标准
+    guiding_question_en: What evidence is sufficient to support an interpretability claim?
+    guiding_question_zh: 什么证据足以支持一项解释性主张？
+    meaning_en: >-
+      This family concerns the justification of interpretability claims. It asks what conclusions attribution, probing,
+      intervention, and circuit analysis support, whether explanations depend on the actual model, and whether claims
+      survive controls, counterfactuals, alternative explanations, and out-of-distribution tests.
+    meaning_zh: >-
+      这一类别关注我们凭什么相信某项解释：归因、probe、干预和电路分析分别能支持多强的结论，解释是否依赖真实模型，
+      以及主张能否经受对照、反事实、替代解释和分布外测试。
+    evolution_en: >-
+      Sanity checks first asked whether explanations depend on model parameters. Probe research then calibrated positive
+      and null results and separated decodability from causal use. With causal interventions and circuit discovery,
+      attention moved to design robustness, behavioral faithfulness, and strong baselines. Recent work studies audit
+      limits, staged causal evidence, and solver-checkable guarantees: correlation → causation → behavioral and OOD
+      validation → formal verification.
+    evolution_zh: >-
+      早期 sanity checks 检验解释是否真正依赖模型参数；probe 研究随后校准正结果和空结果，并区分可解码性与因果使用。随着干预和电路发现普及，
+      问题转向实验设计稳健性、行为忠实性和强基线。近期研究又进入审计边界、分阶段因果证据与求解器可检查保证：相关 → 因果 → 行为与分布外验证 → 形式验证。
+    display_order: 6
+  - family_id: generality-transfer
+    label_en: Generality and Transfer
+    label_zh: 泛化与迁移
+    guiding_question_en: Do explanations hold or transfer across tasks, models, scales, architectures, and modalities?
+    guiding_question_zh: 解释在任务、模型、规模、架构与模态之间能否成立或迁移？
+    meaning_en: >-
+      This family studies the scope over which an explanation remains valid. It distinguishes structural recurrence—
+      whether the same neurons, features, or circuits reappear—from functional recurrence, in which different models
+      implement the same function or abstract algorithm. Successful transfer across models can support shared
+      representations without proving that the underlying mechanisms are identical.
+    meaning_zh: >-
+      这一类别研究解释的适用范围。它区分具体神经元、特征和电路是否重复出现的结构一致性，与不同模型是否实现相同功能或抽象算法的
+      功能一致性。跨模型迁移成功可以支持共享表示，但不能自动证明底层机制完全相同。
+    evolution_en: >-
+      Early mechanistic explanations were usually confined to a single model and task, with generality often left
+      implicit. From 2023 onward, researchers began systematically comparing recurring motifs, component reuse, and
+      function vectors across data runs, model scales, and architectures. Cross-model alignment, model stitching, and
+      feature transfer turned “similar mechanisms” into operational transfer tests. Current evidence generally supports
+      partial universality: abstract functions may recur even when concrete components and circuit structures differ. In
+      the present corpus this family remains concentrated in one broad RQ and may later split into cross-run stability,
+      cross-model transfer, and cross-architecture functional equivalence.
+    evolution_zh: >-
+      早期机制解释大多局限于单个模型和单项任务，研究者往往默认发现具有一定普遍性。自 2023 年起，研究开始系统比较不同数据运行、
+      模型规模和架构中的 recurring motifs、组件复用和功能向量。跨模型表示对齐、model stitching 和特征迁移进一步把“相似机制”转化为
+      可操作的迁移检验。现有结果总体支持部分 universality：抽象功能可能复现，但具体组件和电路结构经常变化。当前数据中这一类别仍主要
+      集中在一个综合 RQ，未来可能拆分为跨运行稳定性、跨模型迁移和跨架构功能等子问题。
+    display_order: 7
+
+nodes:
+  - rq_id: rq-attribution-foundations
+    family_id: mechanism-explanation
+    question_en: >-
+      Can local feature attribution be given a unified definition whose desired properties determine a unique solution?
+    question_zh: 如何用一组明确原则统一定义局部特征归因，并由这些原则确定唯一解？
+    introduction_en: >-
+      This question asks what local attribution is estimating and which properties should hold simultaneously.
+      It defines the form of an explanation artifact rather than the form of a model's internal representation;
+      whether that target is faithful or useful is a separate evidential question.
+    introduction_zh: >-
+      该问题关注局部归因究竟在估计什么，以及哪些性质应同时成立。它定义的是解释产物的形式，而不是模型内部表示的形式；
+      该目标是否忠实、有用，则是另一个证据问题。
+    progress_en: >-
+      Lundberg and Lee unified several local explanation methods as additive feature attribution and showed that a
+      particular solution is uniquely determined under three desired properties. This established the target later
+      estimators compute, without establishing that feature attribution is a complete model-mechanism explanation.
+    progress_zh: >-
+      Lundberg 与 Lee 将多种局部解释统一为 additive feature attribution，并说明三项理想性质会唯一确定特定解。
+      这项工作确立了后续估计方法的目标量，但并未证明特征归因已经构成完整的模型机制解释。
+    first_date: '2017-05-22'
+    primary_paper_ids:
+      - p_2017_lundberg_a_unified_approach
+
+  - rq_id: rq-attribution-efficiency
+    family_id: mechanism-explanation
+    question_en: >-
+      How can an expensive attribution quantity be estimated accurately in a single amortized computation?
+    question_zh: 如何将昂贵的逐样本归因估计，摊销为准确的单次计算？
+    introduction_en: >-
+      Once an attribution target is fixed, a separate question is whether its computation can be learned and reused
+      across samples without changing the target quantity or its defining constraints. This is explanation
+      construction, not a claim about how the explained model internally represents information.
+    introduction_zh: >-
+      当归因目标已经确定后，还需要回答其计算能否被学习并在样本间复用，同时不改变目标量及其定义约束。
+      这是解释的构造问题，不是关于被解释模型如何在内部表示信息的主张。
+    progress_en: >-
+      FastSHAP reframed Shapley estimation as amortized learning and generated per-sample attributions in one forward
+      pass without precomputed Shapley labels. The result addresses explanation cost, not whether Shapley attribution is
+      a faithful account of the model's internal mechanism.
+    progress_zh: >-
+      FastSHAP 将 Shapley 估计重写为摊销学习，无需预先计算 Shapley 标签即可用一次前向传播生成逐样本归因。
+      它回答的是解释计算成本，而不是 Shapley 归因是否忠实描述内部机制。
+    first_date: '2021-07-15'
+    primary_paper_ids:
+      - p_2021_jethani_fastshap_real_time_shapley
+
+  - rq_id: rq-explanation-validity
+    family_id: evidential-standards
+    question_en: >-
+      Under what definitions, controls, and counterfactual constraints does an explanation genuinely depend on the model it explains?
+    question_zh: 在什么定义、对照和反事实约束下，一个解释才真正依赖被解释模型？
+    introduction_en: >-
+      Visual plausibility or intuitive credibility is not sufficient evidence of faithfulness.
+      This question requires testable dependence on model parameters, training data, and counterfactual changes, while distinguishing plausible from faithful explanations.
+    introduction_zh: >-
+      视觉上合理或直觉上可信并不足以证明忠实性。该问题要求解释对模型参数、训练数据和反事实变化表现出可检验的依赖，
+      并明确 plausible explanation 与 faithful explanation 的边界。
+    progress_en: >-
+      Parameter- and label-randomization tests showed that visually plausible saliency maps may not depend on the model being explained.
+      Work on attention added explicit explanation definitions, baselines, and model-consistent counterfactual tests.
+      These studies established necessary negative controls and definitional calibration, but no single faithfulness criterion covers all explanation objects.
+    progress_zh: >-
+      参数与标签随机化实验表明，视觉上合理的显著性图可能并不依赖被解释模型；围绕 attention 的研究进一步引入解释定义、基线和模型一致的反事实检验。
+      现有工作确立了必要的负向对照与定义校准，但尚未形成适用于所有解释对象的单一忠实性判据。
+    first_date: '2018-10-08'
+    primary_paper_ids:
+      - p_2018_adebayo_sanity_checks_for
+      - p_2019_wiegreffe_attention_is_not
+
+  - rq_id: rq-conceptual-prediction-explanation
+    family_id: mechanism-explanation
+    question_en: >-
+      How can input attribution and internal concept semantics be combined into an understandable explanation of a prediction mechanism?
+    question_zh: 如何把输入归因与内部概念语义结合为可理解的预测机制解释？
+    introduction_en: >-
+      An explanation should identify not only where the input matters, but also which concepts the model recognized, where they occur, and how they jointly produce the current prediction.
+    introduction_zh: >-
+      该问题要求解释不仅指出输入哪里重要，还说明模型识别了什么概念、概念出现在哪里，
+      以及它们如何在模型内部共同促成当前预测。
+    progress_en: >-
+      Concept Relevance Propagation integrated input-location attribution, internal concept identification, and concept composition into one sample-level framework, allowing explanations to answer both where and what.
+      Evidence currently comes mainly from vision models; extension to language and multimodal models, together with causal validation, remains open.
+    progress_zh: >-
+      Concept Relevance Propagation 已把输入位置归因、内部概念识别和概念组合纳入同一个样本级解释框架，使解释能同时回答“哪里重要”和“识别了什么”。
+      目前证据主要来自视觉模型，向语言模型、多模态模型扩展以及验证概念解释的因果忠实性仍是开放问题。
+    first_date: '2022-06-07'
+    primary_paper_ids:
+      - p_2022_achtibat_from_attribution_maps
+
+  - rq_id: rq-probe-meaning
+    family_id: evidential-standards
+    question_en: >-
+      What conclusions about internal information are supported by a probe's success or failure?
+    question_zh: Probe 的成功或失败分别能支持什么关于内部信息的结论？
+    introduction_en: >-
+      This question separates signal in the representation, capability learned by the probe, and statistical power under finite samples.
+      High accuracy does not by itself show that the model uses the information, and a null result does not show that the information is absent.
+    introduction_zh: >-
+      该问题区分表示中的信号、probe 自身学习出的能力和有限样本下的统计功效。高准确率不自动说明模型使用该信息，
+      空结果也不自动说明信息不存在。
+    progress_en: >-
+      Control tasks and selectivity first separated representational signal from probe memorization; later counterexamples showed that decodability does not imply task use, and recent geometric and statistical theory explains when linear probes produce false negatives.
+      The field has moved from controlling probe capacity to calibrating both positive and null results, although conclusions still depend on sample size, representation geometry, and probe class.
+    progress_zh: >-
+      Control task 与 selectivity 首先用于区分表示信号和 probe 自身的记忆能力；后续反例说明可解码性不等于任务使用，最新几何与统计理论又开始解释线性 probe 何时会产生假阴性。
+      研究已从控制 probe 容量推进到校准正结果与空结果的含义，但结论仍依赖样本量、表示几何和 probe 类别。
+    first_date: '2019-09-08'
+    primary_paper_ids:
+      - p_2019_hewitt_designing_and_interpreting
+      - p_2026_hai_when_and_why
+    secondary_paper_ids:
+      - p_2020_ravichander_probing_the_probing
+
+  - rq_id: rq-causal-use
+    family_id: evidential-standards
+    question_en: >-
+      Is information readable from internal representations actually used by the model to produce behavior?
+    question_zh: 内部可读出的信息是否被模型实际用于产生行为？
+    introduction_en: >-
+      This question separates information availability from task relevance.
+      Task construction, intervention, or counterfactual geometry must show whether a representation participates in the model's actual computation.
+    introduction_zh: >-
+      该问题把 information availability 与 task relevance 分开。它要求通过任务构造、干预或反事实几何判断某种表示是否进入了模型的实际计算。
+    progress_en: >-
+      Constructed experiments showed that an attribute can remain highly decodable even when the main task does not require it.
+      Geometric causal probing and world-state interventions then used counterfactual changes to test whether representations enter the computation.
+      Availability and causal use are now treated as distinct, but a scalable general test for complex natural behavior is still missing.
+    progress_zh: >-
+      构造性实验已经证明，即使主任务不需要某种属性，该属性仍可能被高准确率解码；几何因果 probing 和世界状态干预则尝试用反事实变化判断表示是否真正进入计算。
+      当前共识是必须把 information availability 与 causal use 分开，但可扩展到复杂自然行为的统一检验仍未建立。
+    first_date: '2020-05-02'
+    primary_paper_ids:
+      - p_2020_ravichander_probing_the_probing
+    secondary_paper_ids:
+      - p_2023_guerner_a_geometric_notion
+      - p_2023_nanda_emergent_linear_representations
+
+  - rq_id: rq-intervention-reliability
+    family_id: evidential-standards
+    question_en: >-
+      How robust are causal-intervention conclusions to metrics, replacement values, and experimental-design choices?
+    question_zh: 因果干预结论对指标、替换值和实验设计选择有多稳健？
+    introduction_en: >-
+      Patching or ablation results can change with the metric, baseline, and corruption scheme.
+      This question seeks reproducible design principles and limits strong localization claims drawn from a single experimental setup.
+    introduction_zh: >-
+      Patching 或 ablation 的结果可能随度量、基线和 corruption scheme 改变。该问题要求干预实验具有可复现的设计原则，
+      并限制由单一设置推出过强的定位结论。
+    progress_en: >-
+      Systematic comparisons showed that activation-patching conclusions vary substantially with metrics, corruption procedures, replacement values, and normalization choices, motivating concrete design recommendations.
+      Current progress is largely a best-practice framework validated for one method family; broader replication across tasks, models, and intervention paradigms is still needed.
+    progress_zh: >-
+      系统比较表明，activation patching 的结论会随度量、corruption、替换值和归一化方式显著变化，并据此提出了实验设计建议。
+      当前进展主要是一套经单类方法验证的最佳实践；它在不同任务、模型和其他干预范式上的稳定性仍需更广泛复现。
+    first_date: '2023-09-27'
+    primary_paper_ids:
+      - p_2023_zhang_towards_best_practices
+
+  - rq_id: rq-circuit-faithfulness
+    family_id: evidential-standards
+    question_en: >-
+      How should the faithfulness of a discovered circuit be validated through behavioral preservation rather than component overlap?
+    question_zh: 一个被发现的电路应如何以行为保持而非组件重合来验证其忠实性？
+    introduction_en: >-
+      This question distinguishes finding similar components from preserving the original model computation.
+      Central evidence is whether retaining the candidate mechanism preserves the target behavior and removing it produces the expected loss.
+    introduction_zh: >-
+      该问题区分“找到了相似组件”与“保留了原模型计算”。核心证据是只保留候选机制后能否维持目标行为，
+      以及删去候选机制是否产生预期损失。
+    progress_en: >-
+      Existing work showed that component overlap between candidate circuits is not a substitute for behavioral faithfulness and proposed comparing behavior after retaining or removing the candidate mechanism.
+      A function-preserving evaluation framework now exists, but unified benchmarks across discovery methods, distributions, and models remain limited.
+    progress_zh: >-
+      已有研究指出，候选电路之间的组件重合度不能替代行为忠实性，并提出用保留与删除候选机制后的行为变化比较电路质量。
+      该问题已获得面向功能保持的评估框架，但跨发现算法、跨分布和跨模型的统一 benchmark 仍不充分。
+    first_date: '2024-03-26'
+    primary_paper_ids:
+      - p_2024_hanna_have_faith_in
+
+  - rq_id: rq-method-usefulness
+    family_id: evidential-standards
+    question_en: >-
+      Do interpretability methods provide distinctive practical value on causal tasks, realistic distributions, and against strong baselines?
+    question_zh: 解释方法在因果任务、现实分布和强基线下是否提供差异化实用价值？
+    introduction_en: >-
+      Being interpretable, reconstructive, or steerable is not automatically useful.
+      A method should demonstrate gains on explicit downstream goals, counterfactual baselines, and out-of-task generalization, while allowing a finding of no added value.
+    introduction_zh: >-
+      可解释、可重建或可操纵不必然等于有用。该问题要求方法在明确下游目标、反事实基线和任务外泛化上证明优势，
+      并允许得到“方法没有增益”的结论。
+    progress_en: >-
+      RAVEL made representation disentanglement comparable, and subsequent work tested SAEs and related methods through reconstruction, control, sparse probing, and simple steering baselines.
+      The results show that greater interpretability does not automatically yield greater causal or practical value, and simple baselines are often competitive.
+      Evaluation criteria remain use-case dependent.
+    progress_zh: >-
+      RAVEL 将表示解缠结转化为可比较任务，随后多项工作以重建、控制、稀疏 probing 和简单 steering baseline 检验 SAE 等方法。
+      结果显示“更可解释”不自动意味着更有因果或实用价值，且简单基线经常具有竞争力；不同用途所需的评价指标仍未统一。
+    first_date: '2024-02-27'
+    primary_paper_ids:
+      - p_2024_huang_ravel_evaluating_interpretability
+      - p_2024_makelov_towards_principled_evaluations
+      - p_2025_wu_axbench_steering_llms
+      - p_2025_kantamneni_are_sparse_autoencoders
+
+  - rq_id: rq-audit-limits
+    family_id: evidential-standards
+    question_en: >-
+      Can hidden mechanisms exist that are in principle undiscoverable through behavioral elicitation alone?
+    question_zh: 是否存在原则上无法仅靠行为诱导发现的隐蔽机制？
+    introduction_en: >-
+      This question studies computational limits of interpretability and safety auditing: a mechanism may genuinely control behavior yet resist reliable elicitation through finite queries because of cryptographic or related constructions.
+    introduction_zh: >-
+      该问题研究解释与安全审计的计算边界：一个机制可以真实存在并控制行为，却因密码学或其他构造而无法通过有限查询可靠诱导出来。
+    progress_en: >-
+      Cryptographic Transformer circuits constructed backdoors that genuinely control behavior but are difficult to elicit through finite behavioral queries, establishing a principled negative result for auditing.
+      This proves that unelicitable mechanisms can exist, but their prevalence in realistic training and feasible defenses remain unresolved.
+    progress_zh: >-
+      密码学 Transformer 电路构造出真实控制行为却难以通过有限行为查询诱导的 backdoor，为审计能力给出了原则性负面结果。
+      它证明了不可诱导机制可以存在，但现实训练中这类机制的普遍性以及可行防御仍未解决。
+    first_date: '2024-06-03'
+    primary_paper_ids:
+      - p_2024_draguns_unelicitable_backdoors_in
+
+  - rq_id: rq-evidence-ladder
+    family_id: evidential-standards
+    question_en: >-
+      How can correlational findings be progressively upgraded into causal, out-of-distribution, and deployment-relevant interpretability evidence?
+    question_zh: 如何把相关性发现逐级升级为因果、分布外和部署条件下可信的解释证据？
+    introduction_en: >-
+      This question treats explanation as staged evidence accumulation.
+      Candidate features must pass correlation, localization, intervention, generalization, and cost calibration rather than being called mechanisms after one correlational observation.
+    introduction_zh: >-
+      该问题把解释看成分阶段证据积累过程，要求候选特征依次通过相关、定位、干预、泛化和成本校准，
+      避免把单次相关观察直接称为机制。
+    progress_en: >-
+      A five-stage workflow now moves from correlational discovery through intervention, mechanism composition, out-of-distribution testing, and deployment-condition auditing, allowing interpretability claims to be graded by strength.
+      The main contribution is methodological integration; whether every stage is sufficient and reproducible across model classes and real research workflows remains to be tested.
+    progress_zh: >-
+      现有工作提出从相关性发现、干预验证、机制组合、分布外检验到部署条件审计的五阶段证据流程，使不同强度的解释性主张可以被分级。
+      当前贡献主要是方法论整合，尚需在多类模型和真实研究流程中检验各阶段标准是否充分且可重复。
+    first_date: '2026-05-21'
+    primary_paper_ids:
+      - p_2026_munigety_from_correlation_to
+
+  - rq_id: rq-formal-verification
+    family_id: evidential-standards
+    question_en: >-
+      Can mechanistic explanations receive explicit domains of validity, counterexample search, and solver-checkable guarantees?
+    question_zh: 机制解释能否获得明确适用域、反例搜索与 solver-checkable 的形式保证？
+    introduction_en: >-
+      This question elevates empirical circuit claims into verifiable propositions, requiring checkable proof objects for algorithmic equivalence, edge necessity, irrelevant-input invariance, and perturbation robustness.
+    introduction_zh: >-
+      该问题把经验性的 circuit claim 提升为可验证命题，要求算法等价、边必要性、无关输入不变性与扰动稳健性具有可检查的证明对象。
+    progress_en: >-
+      Recent work formulates circuit explanations as formal claims with explicit domains and uses solvers to find counterexamples and check guarantees, moving from empirical to machine-verifiable evidence.
+      It remains a proof of concept, constrained by expressiveness, computational scale, and the difficulty of representing approximate neural computation.
+    progress_zh: >-
+      研究已开始把电路解释写成带明确适用域的形式命题，并利用求解器搜索反例和检查保证，从经验性证据推进到机器可验证证据。
+      当前仍处于概念验证阶段，约束表达能力、计算规模以及与近似神经计算的衔接是主要限制。
+    first_date: '2026-05-21'
+    primary_paper_ids:
+      - p_2026_somani_towards_verifiable_transformers
+
+  - rq_id: rq-information-accessibility
+    family_id: temporal-development
+    question_en: >-
+      When, where, and in how readily readable a form does task-relevant information appear inside a network?
+    question_zh: 任务相关信息在网络内部何时、何处以及以多容易读取的形式出现？
+    introduction_en: >-
+      This question uses non-invasive readout to describe information accessibility across depth or training.
+      It provides diagnostic evidence but does not itself establish that the model uses the information.
+    introduction_zh: >-
+      该问题以非侵入式读出描述信息沿网络深度或训练过程的可访问性。它提供诊断线索，但本身不回答模型是否真正使用这些信息。
+    progress_en: >-
+      Linear classifier probes tracked class information non-invasively across layers and training and exposed training failures not visible in final loss.
+      This established a layerwise representation-diagnostic paradigm, while later causal work is still required to determine whether the model actually uses the decoded information.
+    progress_zh: >-
+      线性 classifier probe 已用于非侵入式追踪类别信息随网络深度和训练过程的可访问性，并能揭示最终 loss 难以发现的训练异常。
+      这奠定了层间表示诊断范式，但 probe 结果是否对应模型实际使用该信息，需要后续因果研究补充。
+    first_date: '2016-10-05'
+    primary_paper_ids:
+      - p_2016_alain_understanding_intermediate_layers
+
+  - rq_id: rq-concept-unit-alignment
+    family_id: representation-form
+    question_en: >-
+      Do internal units stably align with human concepts, and how can that alignment be quantified and named?
+    question_zh: 内部单元是否与人类概念稳定对齐，这种对齐如何被量化和命名？
+    introduction_en: >-
+      This question asks whether unit-level semantics are genuine structure rather than an artifact of coordinate choice or a fixed label vocabulary, and whether open-vocabulary descriptions can be generated at low cost.
+    introduction_zh: >-
+      该问题研究单元级语义是否是表示的真实结构，而非坐标选择或标签词表造成的表象，并进一步考察能否低成本地生成开放词汇描述。
+    progress_en: >-
+      Network Dissection quantified unit-to-human-concept alignment and tested its dependence on the representation basis.
+      CLIP-Dissect then used a vision-language model to expand naming to an open vocabulary with lower annotation cost.
+      Unit semantics can now be discovered and named at scale, but their stability across inputs, compositionality, and causal role remain uncertain.
+    progress_zh: >-
+      Network Dissection 建立了单元—人工概念对齐的量化方法并检验其基底依赖性；CLIP-Dissect 又借助视觉—语言模型把命名扩展到开放词汇并降低标注成本。
+      当前已能大规模发现和命名单元语义，但其跨输入稳定性、组合性与因果作用仍不确定。
+    first_date: '2017-04-19'
+    primary_paper_ids:
+      - p_2017_bau_network_dissection_quantifying
+    secondary_paper_ids:
+      - p_2022_oikarinen_clip_dissect_automatic_description
+      - p_2022_achtibat_from_attribution_maps
+
+  - rq_id: rq-automatic-unit-description
+    family_id: mechanism-explanation
+    question_en: >-
+      How can internal units be given accurate, open-vocabulary semantic descriptions without concept-labelled data?
+    question_zh: 如何在没有概念标注数据的情况下，自动为内部单元生成准确的开放词汇语义描述？
+    introduction_en: >-
+      This question treats semantic labelling as an explanation-construction problem: the target units already exist,
+      but their functions must be translated into descriptions without a fixed ontology or expensive dense annotation.
+    introduction_zh: >-
+      该问题把语义命名视为机制解释的构造过程：内部单元已经存在，但需要在没有固定概念本体和昂贵密集标注的情况下，
+      将其功能转换为可理解描述。
+    progress_en: >-
+      CLIP-Dissect used pretrained vision-language alignment to label hidden visual units with unrestricted concepts,
+      improving flexibility and efficiency over fixed-vocabulary dissection. Whether the resulting names capture causal
+      function rather than activation correlation remains a separate evidential question.
+    progress_zh: >-
+      CLIP-Dissect 利用预训练视觉—语言对齐，以开放概念命名视觉网络隐单元，相比固定词汇的 dissection 更灵活高效。
+      这些名称是否反映因果功能而非激活相关，仍属于证据标准问题。
+    first_date: '2022-04-23'
+    primary_paper_ids:
+      - p_2022_oikarinen_clip_dissect_automatic_description
+
+  - rq_id: rq-unsupervised-feature-discovery
+    family_id: representation-form
+    question_en: >-
+      Can stable, interpretable representational factors be discovered from activation statistics without predefined concept labels or probing hypotheses?
+    question_zh: 不预设概念标签或 probing 假说，能否从激活统计中发现稳定、可解释的表示因素？
+    introduction_en: >-
+      This question asks whether activations expose reproducible latent structure and whether it can be extracted without training a large supervised interpreter or an overcomplete dictionary.
+    introduction_zh: >-
+      该问题关注模型激活自身是否暴露出可重复的潜在结构，以及这种结构能否在不训练大型监督解释器或过完备字典的情况下被提取。
+    progress_en: >-
+      Sparse dictionary learning first recovered shared Transformer factors without predefined labels; ICA Lens then explored a statistical decomposition that does not require training another dictionary.
+      The line has moved from predefined probing hypotheses to data-driven discovery of unknown features, but stability, uniqueness, and functional meaning across decompositions remain unresolved.
+    progress_zh: >-
+      稀疏 dictionary learning 首先从 Transformer 激活中发现无需预设标签的共享因素；ICA Lens 进一步探索无需再训练一个字典的统计分解。
+      研究已从预设 probing 假说转向数据驱动的未知特征发现，但不同分解的稳定性、唯一性和功能意义仍需验证。
+    first_date: '2021-03-29'
+    primary_paper_ids:
+      - p_2021_yun_transformer_visualization_via
+      - p_2026_liu_ica_lens_interpreting
+
+  - rq_id: rq-neuron-feature-structure
+    family_id: representation-form
+    question_en: >-
+      How sparsely and stably are functional features implemented by native neurons in real large models?
+    question_zh: 真实大模型中的功能特征以多稀疏、多稳定的原生神经元结构实现？
+    introduction_en: >-
+      Moving beyond toy models, this question tests whether features concentrate in small neuron sets, appear compositionally, or change systematically with model scale.
+    introduction_zh: >-
+      该问题从 toy model 转向真实模型，检验特征是否集中于少量 neurons、以组合形式出现，或随模型规模发生系统变化。
+    progress_en: >-
+      Sparse-probing case studies found that some functions can be decoded from very small neuron sets, while large-scale neuron surveys identified many dead, n-gram, and positional units.
+      The evidence supports coexistence of locally sparse structure and widespread nonsemantic structure, but not yet a unified account of feature-to-neuron organization in real large models.
+    progress_zh: >-
+      Sparse probing 的案例表明部分功能可由很小的神经元集合读出，而大规模神经元普查又发现大量 dead、n-gram 和 positional units。
+      现有证据支持局部稀疏结构与广泛非语义结构并存，尚不足以给出真实大模型中“特征—神经元”关系的统一图景。
+    first_date: '2023-05-02'
+    primary_paper_ids:
+      - p_2023_gurnee_finding_neurons_in
+      - p_2023_voita_neurons_in_large
+
+  - rq_id: rq-superposition
+    family_id: representation-form
+    question_en: >-
+      Why do capacity constraints, sparsity, and optimization objectives produce polysemantic superposition?
+    question_zh: 容量约束、稀疏性与优化目标为何会产生 polysemantic superposition？
+    introduction_en: >-
+      This question explains why models represent more features than available dimensions using non-orthogonal directions and studies transitions among ignored features, dedicated dimensions, and shared dimensions.
+    introduction_zh: >-
+      该问题解释模型为何用非正交方向在有限维空间中表示更多特征，并研究忽略、独占维度与共享维度之间的相变。
+    progress_en: >-
+      Toy models demonstrated when sparse features form non-orthogonal representations in finite-dimensional spaces, and capacity theory characterized how optimization allocates features among omission, dedicated dimensions, and sharing.
+      This provides a mechanistic theory of polysemanticity, although direct measurement of its parameters and phase transitions in real large models remains limited.
+    progress_zh: >-
+      Toy model 展示了稀疏特征在有限维空间中形成非正交表示的条件，capacity 理论进一步刻画优化目标如何在忽略、独占维度和共享维度之间分配特征。
+      该分支已形成解释 polysemanticity 的机制性理论，但其参数和相变在真实大模型中的直接测量仍有限。
+    first_date: '2022-09-21'
+    primary_paper_ids:
+      - p_2022_elhage_toy_models_of
+      - p_2022_scherlis_polysemanticity_and_capacity
+
+  - rq_id: rq-sparse-feature-recovery
+    family_id: representation-form
+    question_en: >-
+      Can sparse dictionaries recover interpretable and intervenable latent features from superposition?
+    question_zh: 稀疏字典能否从 superposition 中恢复可解释、可干预的潜在特征？
+    introduction_en: >-
+      This question treats sparse dictionary learning as a hypothesis about representation structure: are the resulting latents more monosemantic than native units while preserving enough model function for mechanistic analysis?
+    introduction_zh: >-
+      该问题把 sparse dictionary learning 作为对表示结构的假说检验：所得 latent 是否比原生单元更单义，
+      并保留足够的模型功能以支持后续机制分析。
+    progress_en: >-
+      Initial SAE studies extracted latent features from language-model activations that were easier to name and intervene on than native neurons.
+      They established feasibility for feature recovery from superposition, but identifiability, preservation of the original computation, and superiority to alternative decompositions remain unsettled.
+    progress_zh: >-
+      首批 SAE 研究表明，稀疏字典可从语言模型激活中提取比原生神经元更易命名和干预的潜在特征。
+      它建立了从 superposition 恢复特征的可行性证据，但特征是否可识别、是否忠实保留原计算以及是否优于其他分解仍未定论。
+    first_date: '2023-09-15'
+    primary_paper_ids:
+      - p_2023_cunningham_sparse_autoencoders_find
+
+  - rq_id: rq-sparse-objective
+    family_id: representation-form
+    question_en: >-
+      What should sparse representation learning optimize to balance sparsity, reconstruction faithfulness, and functional fidelity?
+    question_zh: 稀疏表示学习应优化什么，才能兼顾稀疏性、重建忠实度与功能保真？
+    introduction_en: >-
+      This question compares activation reconstruction, behavioral preservation, gating, and explicit sparsity penalties to determine which objectives produce units that are genuinely useful for explanation.
+    introduction_zh: >-
+      该问题比较激活重建、行为保持、门控和显式稀疏惩罚等目标，关注不同目标是否学到对解释真正有用的单位。
+    progress_en: >-
+      Gated SAEs, end-to-end sparse dictionary learning, and JumpReLU objectives targeted shrinkage, functional importance, and reconstruction loss respectively.
+      The work establishes real tradeoffs among sparsity, reconstruction fidelity, and functional fidelity, but no single objective dominates across interpretability uses.
+    progress_zh: >-
+      Gated SAE、端到端 sparse dictionary learning 和 JumpReLU 分别针对 shrinkage、功能重要性与重建损失改进训练目标。
+      研究已明确稀疏度、重建忠实度和功能保真之间存在真实权衡，但尚无在不同解释用途上都占优的统一目标。
+    first_date: '2024-04-24'
+    primary_paper_ids:
+      - p_2024_rajamanoharan_improving_dictionary_learning
+      - p_2024_braun_identifying_functionally_important
+      - p_2024_rajamanoharan_jumping_ahead_improving
+
+  - rq_id: rq-sparse-feature-failure
+    family_id: representation-form
+    question_en: >-
+      Under what geometric, hierarchical, and optimization conditions do sparse dictionaries produce erroneous or fabricated feature explanations?
+    question_zh: 稀疏字典在何种几何、层级和优化条件下会产生错误或伪造的特征解释？
+    introduction_en: >-
+      This question studies splitting, absorption, sparsity artifacts, spurious minima, and structural mismatch between one-dimensional latents and multidimensional concepts.
+      It advances from asking whether features can be learned to asking when learned features should not be trusted.
+    introduction_zh: >-
+      该问题研究 splitting、absorption、稀疏优化伪影、spurious minima 以及一维 latent 对多维概念的结构性错配，
+      从“能否学到特征”推进到“何时不应相信学到的特征”。
+    progress_en: >-
+      Feature splitting and absorption have been systematically identified; feature-aligned and subspace-aware methods now target geometric mismatch, while theory attributes some errors to spurious minima in piecewise-biconvex objectives.
+      An initial chain from failure types to optimization causes and proposed fixes now exists, but cross-model diagnostics and real causal consequences remain unstandardized.
+    progress_zh: >-
+      Feature splitting 与 absorption 已被系统识别，feature-aligned、subspace-aware 方法开始直接针对几何错配进行修正，理论工作则把部分错误归因于 piecewise-biconvex 目标中的 spurious minima。
+      当前已形成失败类型、优化原因和修复思路的初步链条，但跨模型诊断标准和真实因果影响仍待统一。
+    first_date: '2024-09-22'
+    primary_paper_ids:
+      - p_2024_chanin_a_is_for
+      - p_2024_marks_enhancing_neural_network
+      - p_2025_tang_a_unified_theory
+      - p_2026_dalili_subspace_aware_sparse
+
+  - rq_id: rq-feature-atlas-scaling
+    family_id: representation-form
+    question_en: >-
+      Can interpretable feature extraction scale to frontier models, all relevant layers and positions, and the long tail of the training distribution?
+    question_zh: 可解释特征提取能否扩展到前沿模型、全层位和训练分布长尾？
+    introduction_en: >-
+      This question moves from single-layer experiments to industrial-scale feature atlases, requiring coverage across positions, widths, model sizes, and rare concepts together with fidelity, splitting, and distribution-shift reporting.
+    introduction_zh: >-
+      该问题从单层实验推进到工业规模特征图谱，要求覆盖位置、宽度、模型规模和稀有概念，
+      同时报告 fidelity、splitting 与跨分布表现。
+    progress_en: >-
+      Gemma Scope and Llama Scope extended SAEs across many layers and millions of features, specialized SAEs targeted rare concepts in the distribution tail, and work on Claude demonstrated monosemantic feature extraction at frontier scale.
+      Large resources now exist, but atlas coverage, quality calibration, rare-concept recovery, and closure over full-model computation remain unresolved.
+    progress_zh: >-
+      Gemma Scope 与 Llama Scope 将 SAE 扩展到多层和数百万特征，专用 SAE 开始覆盖训练分布长尾，Claude 研究则展示了前沿模型上的 monosemantic feature extraction。
+      规模化资源已出现，但特征图谱的覆盖率、质量校准、稀有概念和全模型计算闭合性仍未解决。
+    first_date: '2024-08-09'
+    primary_paper_ids:
+      - p_2024_lieberum_gemma_scope_open
+      - p_2024_he_llama_scope_extracting
+      - p_2024_muhamed_decoding_dark_matter
+      - p_2026_templeton_scaling_monosemanticity_extracting
+
+  - rq_id: rq-causal-representation-geometry
+    family_id: representation-form
+    question_en: >-
+      Can semantic variables be represented by directions or subspaces with measurable, intervenable, and compositional properties?
+    question_zh: 语义变量能否由具有可测量、可干预和可组合性质的方向或子空间表示？
+    introduction_en: >-
+      This question does not equate linear separability with linear representation.
+      The geometry must rule out confounds, affect outputs, and explain how directions, subspaces, and concepts compose.
+    introduction_zh: >-
+      该问题不把线性可分性等同于线性表示，而要求几何结构排除混淆、影响输出，并解释方向、子空间与概念组合之间的关系。
+    progress_en: >-
+      The line advanced from causal probing to interventionally validated semantic directions such as sentiment, geometric theories of linear representation, and measurements of prompt intrinsic dimension.
+      Results support some variables as composable directions or low-dimensional subspaces, but the conditions, uniqueness, and cross-model stability of linear structure remain open.
+    progress_zh: >-
+      研究从 causal probing 推进到 sentiment 等语义方向的干预验证、线性表示的几何理论，以及 prompt 表示内在维度的测量。
+      现有结果支持部分变量以方向或低维子空间存在并可组合控制，但线性结构的适用条件、唯一性及跨模型稳定性仍是开放问题。
+    first_date: '2023-07-27'
+    primary_paper_ids:
+      - p_2023_guerner_a_geometric_notion
+      - p_2023_tigges_linear_representations_of
+      - p_2023_park_the_linear_representation
+
+  - rq_id: rq-prompt-geometry-monitoring
+    family_id: representation-form
+    question_en: >-
+      Can prompt-level token geometry reveal uncertainty and support monitoring before generation?
+    question_zh: Prompt 的 token 级几何能否表征预测不确定性，并支持生成前监测？
+    introduction_en: >-
+      This question concerns the geometry of the whole prompt token cloud rather than a single causal semantic
+      direction. It asks whether intrinsic dimension summarizes token interactions and supports pre-output screening.
+    introduction_zh: >-
+      该问题关注整个 prompt token point cloud 的几何，而非单一因果语义方向；
+      它研究内在维度能否概括 token 交互并用于输出前筛查。
+    progress_en: >-
+      Prompt intrinsic dimension was connected to average surprisal and used in a malicious-prompt classifier. The
+      evidence supports a monitoring signal, but not a causal semantic subspace or a general uncertainty guarantee.
+    progress_zh: >-
+      已有工作将 prompt 内在维度与平均 surprisal 联系起来，并用它构建恶意 prompt 分类器。
+      这些结果支持一种监测信号，但不支持因果语义子空间或通用不确定性保证。
+    first_date: '2025-01-17'
+    primary_paper_ids:
+      - p_2025_viswanathan_the_intrinsic_dimension
+
+  - rq_id: rq-world-model-representation
+    family_id: representation-form
+    question_en: >-
+      Do sequence-prediction models form and use world states or belief states of the generating process?
+    question_zh: 序列预测模型是否形成并使用生成过程的世界状态或信念状态？
+    introduction_en: >-
+      This question tests whether a model goes beyond surface sequence statistics to form hidden-state representations that are decodable, geometrically structured, and causally involved in prediction.
+    introduction_zh: >-
+      该问题检验模型是否超越表面序列统计，形成可解码、具有特定几何且对预测有因果作用的隐状态表示。
+    progress_en: >-
+      Othello studies first showed that sequence prediction can form and use board state, later work characterized its linear representation, and belief-state research extended geometry analysis to uncertain generative processes.
+      The question has advanced from whether world state exists to how it is organized and used, while complete world models in natural-language settings remain difficult to establish.
+    progress_zh: >-
+      Othello 模型研究先证明序列预测可形成并使用棋盘状态，后续工作刻画了其线性表示；belief-state 研究进一步把几何分析扩展到不确定生成过程。
+      进展已从“是否存在世界状态”推进到“状态以何种几何组织并参与预测”，但自然语言环境中的完整世界模型仍难确认。
+    first_date: '2022-10-24'
+    primary_paper_ids:
+      - p_2022_li_emergent_world_representations
+      - p_2023_nanda_emergent_linear_representations
+      - p_2024_shai_transformers_represent_belief
+
+  - rq_id: rq-hidden-state-readout
+    family_id: mechanism-explanation
+    question_en: >-
+      How can a single hidden state reveal model knowledge richer and more expressive than its next-token distribution?
+    question_zh: 如何从单个 hidden state 中读出比下一 token 更丰富、更可表达的模型知识？
+    introduction_en: >-
+      This question compares direct vocabulary projection, learned correction, and cross-context state transplantation to identify the boundary of information present in a hidden state but not yet explicitly emitted.
+    introduction_zh: >-
+      该问题比较直接词表投影、学习校正和跨上下文 state transplantation，考察 hidden state 中尚未显式输出的信息边界。
+    progress_en: >-
+      Patchscopes unified several hidden-state inspection methods by using a target model and natural-language prompts, revealing information beyond the current next-token distribution.
+      Tuned Lens and Future Lens supplied related precedents for layerwise and future-token readout.
+      A more expressive general framework now exists, but outputs remain sensitive to prompts, target models, and mapping design.
+    progress_zh: >-
+      Patchscopes 用目标模型和自然语言 prompt 统一多种 hidden-state 检查方式，并能读出超出当前 next-token distribution 的信息；Tuned Lens 与 Future Lens 分别提供层间和未来 token 的相关先例。
+      当前已形成表达力更强的通用读出框架，但读出结果对 prompt、目标模型和映射设计的依赖仍需校准。
+    first_date: '2024-01-11'
+    primary_paper_ids:
+      - p_2024_ghandeharioun_patchscopes_a_unifying
+    secondary_paper_ids:
+      - p_2023_belrose_eliciting_latent_predictions
+      - p_2023_pal_future_lens_anticipating
+
+  - rq_id: rq-task-function-vectors
+    family_id: representation-form
+    question_en: >-
+      Can a model compress a task or program into a composable, transferable, and causally effective vector?
+    question_zh: 模型能否把任务或程序压缩为可组合、可迁移并具有因果作用的向量？
+    introduction_en: >-
+      This question asks whether weight differences or activation directions form modular task representations and whether vector operations can combine, remove, or trigger the corresponding capabilities.
+    introduction_zh: >-
+      该问题研究权重差分或激活方向是否形成模块化任务表示，以及向量运算能否组合、删除或触发相应能力。
+    progress_en: >-
+      Task arithmetic showed that parameter differences can combine, negate, and support analogies between tasks; function-vector work identified transferable, causally effective task directions in activation space.
+      Together they show vectorized task structure at both parameter and representation levels, while composition interference, scope, and cross-model transfer boundaries remain unclear.
+    progress_zh: >-
+      Task arithmetic 发现参数差分可以组合、抵消或类比任务，function-vector 研究又在激活空间识别出可迁移且具有因果作用的任务方向。
+      两条证据表明任务可在参数与表示层面被向量化，但组合干扰、适用范围和跨模型迁移边界仍未清楚。
+    first_date: '2023-10-23'
+    primary_paper_ids:
+      - p_2023_todd_function_vectors_in
+    secondary_paper_ids:
+      - p_2022_ilharco_editing_models_with
+
+  - rq_id: rq-compositional-binding
+    family_id: representation-form
+    question_en: >-
+      What compositional representation mechanism dynamically binds entities, attributes, and variable roles?
+    question_zh: 模型用什么可组合表示机制动态绑定实体、属性与变量角色？
+    introduction_en: >-
+      This question concerns how temporary contextual relations are encoded so that the same entity can be retrieved reliably under different attribute and relation queries, rather than merely recognizing static concepts.
+    introduction_zh: >-
+      该问题关注上下文中的临时关系如何被编码，使同一实体可在不同属性和关系查询中被稳定检索，而不是只识别静态概念。
+    progress_en: >-
+      Current work identifies composable low-dimensional binding representations for contextual entities, separating entity identity, attributes, and roles and testing their function through intervention.
+      Evidence is still concentrated in limited models and tasks, leaving complex variable structures, long contexts, and cross-architecture generality open.
+    progress_zh: >-
+      现有研究在上下文实体处理中识别出可组合的低维绑定表示，用以区分实体身份、属性和角色关系，并通过干预检验其功能。
+      该结论目前主要来自有限模型与任务，对复杂变量结构、长上下文和跨架构的普遍性仍缺少证据。
+    first_date: '2023-10-26'
+    primary_paper_ids:
+      - p_2023_feng_how_do_language
+
+  - rq_id: rq-component-function
+    family_id: computational-mechanism
+    question_en: >-
+      What information does an individual model component read, transform, and write back within a distributed computation?
+    question_zh: 单个模型组件在分布式计算中读取、变换和写回什么信息？
+    introduction_en: >-
+      This question advances descriptions of attention heads, MLPs, or exceptional activation values from correlated patterns to input conditions, information content, and downstream effects, while allowing component roles to vary with context.
+    introduction_zh: >-
+      该问题要求把 attention head、MLP 或异常激活值的功能从相关模式推进到输入条件、信息内容和下游效应，
+      并允许组件角色随上下文改变。
+    progress_en: >-
+      Work first described MLPs as key-value memories, then used copy-suppression analysis and massive-value studies to refine the suppression, routing, and contextual-integration roles of components.
+      Component descriptions have moved from correlation toward causal decomposition, but roles can change with context and do not by themselves explain complete behavior.
+    progress_zh: >-
+      研究先将 MLP 描述为 key-value memories，随后用 copy-suppression 分析和 massive-value 研究细化组件的抑制、路由与上下文整合作用。
+      组件级功能描述已从相关观察走向因果拆解，但单个组件的角色可能随上下文改变，也不足以单独解释完整行为。
+    first_date: '2020-12-29'
+    primary_paper_ids:
+      - p_2020_geva_transformer_feed_forward
+      - p_2024_mcdougall_copy_suppression_comprehensively
+      - p_2025_jin_massive_values_in
+    secondary_paper_ids:
+      - p_2024_dunefsky_transcoders_find_interpretable
+      - p_2025_nam_causal_head_gating
+
+  - rq_id: rq-component-semantic-readout
+    family_id: mechanism-explanation
+    question_en: >-
+      How can the information written by an individual component be translated into human-interpretable semantic content?
+    question_zh: 如何把单个组件写入残差流的信息，翻译为人可理解的语义内容？
+    introduction_en: >-
+      This question constructs a semantic interface for component outputs. It is distinct from establishing the
+      component's full causal role, which requires downstream mechanism and intervention evidence.
+    introduction_zh: >-
+      该问题为组件输出构建语义接口。它不等同于确定组件的完整因果角色，后者还需要下游机制和干预证据。
+    progress_en: >-
+      Attention Lens learned head-specific maps from attention outputs to vocabulary space and revealed specialized
+      retrieval content. The approach makes component writes inspectable, but its dependence on lens training data and
+      the gap between decoded content and causal use remain unresolved.
+    progress_zh: >-
+      Attention Lens 学习从 attention-head output 到词表空间的 head-specific 映射，显示出专门化的检索内容。
+      它使组件写入变得可检查，但对 lens 训练数据的依赖，以及解码内容与因果使用的差距仍未解决。
+    first_date: '2023-10-25'
+    primary_paper_ids:
+      - p_2023_sakarvadia_attention_lens_a
+
+  - rq_id: rq-distributed-component-role-discovery
+    family_id: mechanism-explanation
+    question_en: >-
+      How can facilitating, interfering, and irrelevant component roles be discovered within distributed computation?
+    question_zh: 如何在分布式计算中发现组件的促进、干扰与无关角色？
+    introduction_en: >-
+      This question asks how to construct component-role explanations without predefined functions or prompt templates,
+      while allowing several interacting component subsets to be sufficient for the same task.
+    introduction_zh: >-
+      该问题研究如何在没有预设功能或 prompt template 的情况下构造组件角色解释，
+      并允许多个相互作用的组件子集都足以完成同一任务。
+    progress_en: >-
+      Causal Head Gating introduced scalable soft gates and a causal role taxonomy, finding multiple sparse sufficient
+      subcircuits and context-dependent head roles. The method challenges fixed component labels, while the stability
+      and semantic interpretation of the learned roles need further validation.
+    progress_zh: >-
+      Causal Head Gating 引入可扩展软门控和因果角色分类，发现多个稀疏的充分子电路以及随上下文变化的 head 角色。
+      该方法挑战了固定组件标签，但学得角色的稳定性与语义解释仍需进一步验证。
+    first_date: '2025-01-01'
+    primary_paper_ids:
+      - p_2025_nam_causal_head_gating
+
+  - rq_id: rq-knowledge-localization-routing
+    family_id: computational-mechanism
+    question_en: >-
+      Where is factual knowledge stored, routed, combined, and used to generate answers?
+    question_zh: 事实知识在哪里被存储、路由、组合并用于生成答案？
+    introduction_en: >-
+      This question moves from individual knowledge neurons or parameter locations to the factual-recall process unfolding across tokens, layers, components, and coordinated knowledge circuits.
+    introduction_zh: >-
+      该问题从单个 knowledge neuron 或参数位置，推进到沿 token、层和组件展开的事实召回过程以及协同知识电路。
+    progress_en: >-
+      Knowledge research advanced from unit-level localization in knowledge neurons to token-by-layer causal tracing, decomposition of factual-recall pathways, and end-to-end knowledge circuits.
+      The picture has shifted from static storage to routing and composition, but localization does not consistently predict editing success and stable singular knowledge locations remain disputed.
+    progress_zh: >-
+      知识研究从 knowledge neurons 的单元定位，推进到 causal tracing 的 token—层定位、事实回忆路径拆解以及端到端 knowledge circuits。
+      当前图景已由静态“存在哪里”扩展为“如何被路由和组合”，但定位结果与编辑效果并不总一致，知识是否具有稳定单一位置仍有争议。
+    first_date: '2021-04-18'
+    primary_paper_ids:
+      - p_2021_dai_knowledge_neurons_in
+      - p_2022_meng_locating_and_editing
+      - p_2023_geva_dissecting_recall_of
+      - p_2024_yao_knowledge_circuits_in
+
+  - rq_id: rq-latent-knowledge
+    family_id: representation-form
+    question_en: >-
+      How can knowledge that a model has but does not express be distinguished from correlated signals and genuine absence of knowledge?
+    question_zh: 如何区分模型知道但没有表达的知识、相关信号与真正不存在的知识？
+    introduction_en: >-
+      This question requires reading knowledge without relying on the model's current answer and validating through intervention that the readout can causally improve or change the output.
+    introduction_zh: >-
+      该问题要求在不依赖模型当前答案的情况下读取知识，并以干预验证所读出的内容能够因果性地改善或改变输出。
+    progress_en: >-
+      Unsupervised truth discovery used logical consistency to recover knowledge not directly expressed in outputs, inference-time intervention showed that truthful answers can be causally elicited, and MechELK began combining readout with mechanistic evidence.
+      The line has advanced from correlational readout to mechanistic elicitation, but dataset bias, representational artifacts, and probe learning remain central confounds.
+    progress_zh: >-
+      无监督真值发现利用逻辑一致性从表示中恢复未被模型直接表达的知识，inference-time intervention 展示了因果诱导真实回答的可能，MechELK 则尝试把读出与机制证据结合。
+      该分支已从相关信号读出推进到机制化 elicitation，但如何排除数据偏差、表达伪影和 probe 学习仍是核心难题。
+    first_date: '2022-12-07'
+    primary_paper_ids:
+      - p_2022_burns_discovering_latent_knowledge
+    secondary_paper_ids:
+      - p_2023_li_inference_time_intervention
+      - p_2026_park_mechelk_a_mechanistic
+
+  - rq_id: rq-causal-abstraction
+    family_id: evidential-standards
+    question_en: >-
+      When does a neural network's low-level mechanism faithfully implement a high-level interpretable causal process?
+    question_zh: 神经网络的低层机制何时忠实实现了一个高层可解释因果过程？
+    introduction_en: >-
+      This question seeks an intervenable and falsifiable correspondence between high-level variables and distributed neural representations.
+      Counterfactual agreement constrains the strength of claims made by probing, ablation, and circuit explanations.
+    introduction_zh: >-
+      该问题要求在高层变量与分布式神经表示之间建立可干预、可证伪的对应，
+      并用反事实行为一致性约束 probing、ablation 和 circuit explanation 的解释强度。
+    progress_en: >-
+      Early frameworks used interchange interventions to test counterfactual agreement between networks and high-level causal models.
+      Later theory admitted distributed, overlapping, and nonlinear variables and unified several interpretability
+      claims under explicit causal criteria. Selecting the high-level model and scaling the criteria remain unresolved.
+    progress_zh: >-
+      早期框架用 interchange intervention 检验神经网络与高层因果模型的反事实一致性，后续理论允许分布式、重叠和非线性变量，
+      并用明确因果标准统一多种解释性主张。高层模型如何选择，以及这些标准如何规模化，仍未解决。
+    first_date: '2021-06-06'
+    primary_paper_ids:
+      - p_2021_geiger_causal_abstractions_of
+      - p_2023_geiger_causal_abstraction_a
+    secondary_paper_ids:
+      - p_2023_geiger_finding_alignments_between
+
+  - rq_id: rq-causal-variable-alignment
+    family_id: mechanism-explanation
+    question_en: >-
+      How can high-level causal variables be discovered and aligned with distributed neural representations and circuits?
+    question_zh: 如何发现高层因果变量，并将其与分布式神经表示和电路对齐？
+    introduction_en: >-
+      Given a candidate high-level variable, this question concerns the construction of an explanatory alignment rather
+      than the criterion that makes the alignment faithful. Search must support distributed and overlapping variables.
+    introduction_zh: >-
+      在给定候选高层变量后，该问题关注如何构造解释性对齐，而不是什么标准使这种对齐忠实。
+      搜索过程需要支持分布式和重叠变量。
+    progress_en: >-
+      Distributed Alignment Search optimized rotations that align neural subspaces with causal variables, while circuit
+      probing learned sparse masks for candidate intermediate variables. These methods automate alignment construction,
+      but remain dependent on the analyst's high-level hypothesis and intervention design.
+    progress_zh: >-
+      Distributed Alignment Search 优化旋转以将神经子空间与因果变量对齐，circuit probing 则为候选中间变量学习稀疏 mask。
+      它们自动化了对齐构造，但仍依赖分析者提出的高层假说与干预设计。
+    first_date: '2023-03-05'
+    primary_paper_ids:
+      - p_2023_geiger_finding_alignments_between
+      - p_2023_lepori_uncovering_intermediate_variables
+
+  - rq_id: rq-behavior-circuit
+    family_id: computational-mechanism
+    question_en: >-
+      Can a model behavior be reduced to a complete, intervenable, end-to-end component circuit?
+    question_zh: 能否把一项模型行为还原为完整、可干预的端到端组件电路？
+    introduction_en: >-
+      This question goes beyond locating correlated components to explaining how information passes among them to implement an algorithm.
+      Candidate circuits should satisfy conditions such as sufficiency, necessity, and minimality.
+    introduction_zh: >-
+      该问题从定位相关组件推进到解释信息如何在组件之间传递并实现算法，要求候选回路满足 sufficiency、necessity 和 minimality 等条件。
+    progress_en: >-
+      Case studies of indirect-object identification, numerical comparison, arithmetic, syllogistic inference, and visual counting have demonstrated end-to-end intervenable circuit analysis across capabilities and modalities.
+      Results still emphasize carefully selected behaviors and limited models, with circuit completeness, distributional robustness, and replication at frontier scale remaining major bottlenecks.
+    progress_zh: >-
+      IOI、数值比较、算术、三段论和视觉计数等案例已经展示从行为到端到端可干预电路的完整分析，并把范式扩展到不同能力和模态。
+      现有成果仍以精心选择的行为和有限模型为主，电路的完整性、跨分布保持与前沿规模复现仍是主要瓶颈。
+    first_date: '2022-11-01'
+    primary_paper_ids:
+      - p_2022_wang_interpretability_in_the
+      - p_2023_hanna_how_does_gpt
+      - p_2023_stolfo_a_mechanistic_interpretation
+      - p_2025_kim_reasoning_circuits_in
+      - p_2026_che_counting_circuits_mechanistic
+    secondary_paper_ids:
+      - p_2023_lieberum_does_circuit_analysis
+
+  - rq_id: rq-circuit-localization
+    family_id: mechanism-explanation
+    question_en: >-
+      How can paths and shared circuits implementing a target subcomputation be localized from behavioral constraints?
+    question_zh: 如何从行为约束出发定位实现目标子计算的路径与共享回路？
+    introduction_en: >-
+      This question shifts localization from individual components to edges, paths, and subgraphs satisfying behavioral desiderata without requiring the researcher to know the complete algorithm in advance.
+    introduction_zh: >-
+      该问题把定位单位从单个组件推进到 edges、paths 和满足行为 desiderata 的子图，
+      同时避免要求研究者事先知道完整算法。
+    progress_en: >-
+      Work on variable binding showed that functional desiderata can drive an automated search for reusable shared
+      circuitry. The method reduces the need for a complete mechanism hypothesis, but its result is still a localized
+      candidate subgraph rather than a complete account of the computation.
+    progress_zh: >-
+      Variable-binding 研究表明，功能 desiderata 可以驱动对可复用共享回路的自动搜索。
+      该方法减少了预先提出完整机制假说的需求，但所得结果仍是局部候选子图，而非对计算的完整说明。
+    first_date: '2023-07-07'
+    primary_paper_ids:
+      - p_2023_davies_discovering_variable_binding
+    secondary_paper_ids:
+      - p_2023_goldowsky_dill_localizing_model_behavior
+
+  - rq_id: rq-localization-claim-validity
+    family_id: evidential-standards
+    question_en: >-
+      How should a claim that behavior is localized to particular paths be defined, falsified, and iteratively revised?
+    question_zh: “行为局部化于特定路径”的主张应如何定义、证伪并迭代修正？
+    introduction_en: >-
+      This question concerns the evidential content of localization rather than merely producing a ranked component
+      list. A useful claim must specify the paths, intervention, behavioral criterion, and where the hypothesis fails.
+    introduction_zh: >-
+      该问题关注定位主张能够支持什么结论，而不只是产生一份组件排名。
+      可检验的主张必须说明路径、干预、行为标准以及假说在哪里失败。
+    progress_en: >-
+      Generalized path patching turned path-level localization into a quantitative, falsifiable hypothesis and used
+      residual error to guide refinement. It strengthens localization evidence, while sensitivity to metrics and
+      intervention baselines remains linked to broader intervention-reliability questions.
+    progress_zh: >-
+      广义 path patching 将路径级定位转化为定量、可证伪的假说，并用剩余误差指导后续修正。
+      它强化了定位证据，但对度量和干预基线的敏感性仍与更广泛的干预可靠性问题相连。
+    first_date: '2023-04-12'
+    primary_paper_ids:
+      - p_2023_goldowsky_dill_localizing_model_behavior
+
+  - rq_id: rq-automated-circuit-discovery
+    family_id: mechanism-explanation
+    question_en: >-
+      Can circuit discovery be automated and scaled while preserving the quality of mechanism recovery?
+    question_zh: 电路发现能否自动化并扩展，同时保持机制恢复质量？
+    introduction_en: >-
+      This question compares repeated intervention, gradient approximation, attribution decomposition, and information-flow search, asking whether speed gains sacrifice faithfulness, granularity, or architectural generality.
+    introduction_zh: >-
+      该问题比较反复干预、梯度近似、归因分解和信息流搜索，关注速度提升是否牺牲 faithfulness、粒度或架构通用性。
+    progress_en: >-
+      ACDC introduced automated pruning for circuit discovery; attribution patching, information-flow routes, and contextual decomposition subsequently improved speed, coverage, or decomposition efficiency.
+      Automation has substantially reduced manual effort, but whether algorithms recover the same underlying mechanism and whether efficiency compromises faithfulness still require standardized evaluation.
+    progress_zh: >-
+      ACDC 建立了自动剪枝式电路发现流程，attribution patching、information-flow routes 和 contextual decomposition 随后提升了速度、覆盖范围或分解效率。
+      自动化已明显降低人工成本，但不同算法恢复的是否是同一真实机制，以及效率提升是否牺牲忠实性，仍需标准化评测。
+    first_date: '2023-04-28'
+    primary_paper_ids:
+      - p_2023_conmy_towards_automated_circuit
+      - p_2023_syed_attribution_patching_outperforms
+      - p_2024_ferrando_information_flow_routes
+      - p_2024_hsu_efficient_automated_circuit
+
+  - rq_id: rq-circuit-scaling
+    family_id: generality-transfer
+    question_en: >-
+      Can manual mechanistic analysis scale to frontier-size models while preserving semantics across the input distribution?
+    question_zh: 人工机制分析能否扩展到前沿规模模型并保持跨分布语义？
+    introduction_en: >-
+      This question asks whether important components found in a large model can receive functional explanations that hold across inputs rather than remaining local localization results.
+    introduction_zh: >-
+      该问题检验在大模型中找到若干重要组件之后，是否还能给出跨输入成立的功能解释，而不是停留在局部定位结果。
+    progress_en: >-
+      A study of multiple-choice capabilities in Chinchilla showed that manual analysis can identify components and paths with semantics shared across examples in larger models, providing early evidence for scale.
+      Evidence remains concentrated in one capability family and a limited model set, so routine full-circuit analysis at frontier scale has not been demonstrated.
+    progress_zh: >-
+      Chinchilla 多选能力研究表明，人工机制分析可以在更大模型上发现具有跨样本语义的组件和路径，为规模化提供了早期实证。
+      当前证据仍集中于单类能力和有限模型，尚未证明完整电路分析能够常规扩展到前沿模型。
+    first_date: '2023-07-18'
+    primary_paper_ids:
+      - p_2023_lieberum_does_circuit_analysis
+
+  - rq_id: rq-sparse-feature-circuits
+    family_id: mechanism-explanation
+    question_en: >-
+      Can sparse features serve as more interpretable and scalable circuit nodes than native model components?
+    question_zh: 稀疏特征能否成为比原生组件更可解释、更可扩展的电路节点？
+    introduction_en: >-
+      This question connects sparse features or transcoders to circuit analysis, asking whether feature-to-feature causal graphs can be discovered more cheaply while preserving model function.
+    introduction_zh: >-
+      该问题把 sparse features 或 transcoders 接入 circuit analysis，考察能否以更低成本发现 feature-to-feature causal graphs，
+      同时保留模型功能。
+    progress_en: >-
+      Dictionary features enabled patch-free circuit discovery in Othello; sparse feature circuits, SAE-based circuit identification, and transcoders then recast native-component graphs as interpretable feature graphs.
+      Feature-level circuits improve readability and scaling, but their nodes inherit dictionary artifacts and require strict validation that reconstructed graphs preserve the original computation.
+    progress_zh: >-
+      Dictionary features 已用于 Othello 的免 patch 电路发现，随后 sparse feature circuits、SAE circuit identification 和 transcoders 把原生组件图改写为可解释特征图。
+      特征级电路在可读性和规模上显示优势，但其节点受 dictionary artifacts 影响，重建后的图是否忠实保留原计算仍需严格验证。
+    first_date: '2024-02-19'
+    primary_paper_ids:
+      - p_2024_he_dictionary_learning_improves
+      - p_2024_marks_sparse_feature_circuits
+      - p_2024_o_neill_sparse_autoencoders_enable
+      - p_2024_dunefsky_transcoders_find_interpretable
+
+  - rq_id: rq-crossmodal-alignment
+    family_id: representation-form
+    question_en: >-
+      Where and how do separately trained modality representations achieve semantic alignment?
+    question_zh: 分开训练的模态表示在哪里、如何实现语义对齐？
+    introduction_en: >-
+      This question distinguishes superficial alignment in a projection layer from shared semantics inside the language model and seeks units or directions whose alignment causally affects cross-modal outputs.
+    introduction_zh: >-
+      该问题区分投影层完成的表面对齐与语言模型内部形成的共享语义，并要求定位对跨模态输出有因果作用的对齐单元或方向。
+    progress_en: >-
+      Existing work found multimodal neurons responding to shared semantics across separately trained vision and text systems, providing initial evidence that modality representations converge.
+      The branch still mainly establishes the existence of alignment; its location, causal role, and stability across training schemes lack systematic comparison.
+    progress_zh: >-
+      现有工作在分开训练的视觉与文本系统中发现响应共同语义的 multimodal neurons，提供了模态表示汇合的初步证据。
+      该分支目前主要回答“对齐是否存在”，对对齐形成的位置、因果作用以及不同训练方案下的稳定性仍缺乏系统比较。
+    first_date: '2023-08-03'
+    primary_paper_ids:
+      - p_2023_schwettmann_multimodal_neurons_in
+
+  - rq_id: rq-multimodal-information-flow
+    family_id: computational-mechanism
+    question_en: >-
+      How is visual information represented, routed, and converted into text predictions after entering a language model?
+    question_zh: 视觉信息进入语言模型后如何被表示、路由并转化为文本预测？
+    introduction_en: >-
+      This question traces information flow among image patches, visual tokens, cross-modal attention, and language components and requires agreement between token-level and component-level attribution.
+    introduction_zh: >-
+      该问题追踪 image patches、visual tokens、跨模态 attention 和语言组件之间的信息流，
+      并要求 token 与 component 两个层级的归因相互一致。
+    progress_en: >-
+      Work decomposed stages of visual processing in vision-language models and localized attention heads responsible for image-to-text routing.
+      Major pathways can now be mapped in several architectures, but no unified mechanism model spans different projectors, vision encoders, and language backbones.
+    progress_zh: >-
+      研究已分解视觉信息在 VLM 中的处理阶段，并进一步定位承担 image-to-text 路由的 attention heads。
+      当前已能描绘若干架构中的主要信息路径，但不同投影器、视觉编码器和语言骨干之间尚无统一机制模型。
+    first_date: '2024-10-09'
+    primary_paper_ids:
+      - p_2024_neo_towards_interpreting_visual
+      - p_2025_kim_interpreting_attention_heads
+    secondary_paper_ids:
+      - p_2023_palit_towards_vision_language
+      - p_2023_schwettmann_multimodal_neurons_in
+
+  - rq_id: rq-multimodal-causal-tracing
+    family_id: mechanism-explanation
+    question_en: >-
+      How can causal tracing be adapted to construct mechanism explanations in vision-language architectures?
+    question_zh: 如何改造 causal tracing，以在视觉—语言架构中构造机制解释？
+    introduction_en: >-
+      This question concerns adapting an explanation procedure across modality boundaries so interventions can locate
+      image, question, and fusion states that causally affect a multimodal prediction.
+    introduction_zh: >-
+      该问题关注如何让解释流程跨越模态边界，使干预能够定位对多模态预测产生因果影响的图像、问题和融合状态。
+    progress_en: >-
+      A causal-tracing tool for BLIP extended mediation analysis to vision-language modules and localized states carrying
+      VQA information. It established a multimodal procedure, while later mechanism studies supplied richer accounts of
+      the information flow itself.
+    progress_zh: >-
+      针对 BLIP 的 causal-tracing 工具将 mediation analysis 扩展到视觉—语言模块，并定位承载 VQA 信息的状态。
+      它建立了多模态解释流程，而后续机制研究则给出信息流本身的更丰富解释。
+    first_date: '2023-08-27'
+    primary_paper_ids:
+      - p_2023_palit_towards_vision_language
+    secondary_paper_ids:
+      - p_2024_neo_towards_interpreting_visual
+
+  - rq_id: rq-modality-specific-mechanisms
+    family_id: computational-mechanism
+    question_en: >-
+      Do different modalities use structurally different but functionally related mechanisms for the same task?
+    question_zh: 同一任务的不同模态是否使用结构不同但功能相关的机制？
+    introduction_en: >-
+      This question does not equate equal performance with equal mechanism.
+      It compares circuit structure, interchangeability, and feature compositionality across visual and textual pathways.
+    introduction_zh: >-
+      该问题不把性能相同视为机制相同，而是比较视觉与文本路径的电路结构、可交换性和特征可组合性。
+    progress_en: >-
+      Cross-modal comparisons show that the same task may be implemented by structurally different but functionally corresponding circuits, while sparse visual-thought circuits add a feature-level view.
+      The work begins to separate functional equivalence from structural identity, but coverage across tasks, models, and modalities remains too small to establish generality.
+    progress_zh: >-
+      跨模态比较发现，同一任务可能由结构不同但功能相应的电路完成；sparse visual thought circuits 又提供了特征级分析视角。
+      现有结果开始区分功能等价与结构相同，但覆盖的任务、模型与模态仍较少，尚不能判断这种差异是否普遍。
+    first_date: '2025-06-10'
+    primary_paper_ids:
+      - p_2025_nikankin_same_task_different
+    secondary_paper_ids:
+      - p_2026_zhou_sparse_visual_thought
+
+  - rq_id: rq-sparse-feature-composability
+    family_id: representation-form
+    question_en: >-
+      Are causally useful sparse features modular and composable, or geometrically entangled when combined?
+    question_zh: 具有因果作用的稀疏特征是否模块化且可组合，还是在合并时发生几何纠缠？
+    introduction_en: >-
+      This question asks whether independently meaningful feature directions retain their function under union and
+      joint steering. Failure can arise from non-orthogonality, off-manifold movement, or distributed dependence.
+    introduction_zh: >-
+      该问题研究单独有意义的特征方向在并集和联合 steering 时是否仍保持功能；
+      失败可能来自非正交性、off-manifold 偏移或分布式依赖。
+    progress_en: >-
+      Sparse visual-thought studies found task-selective features that were individually causal yet interfered when
+      combined. This separates causal validity from modular composability and exposes a geometric boundary for
+      feature-level control.
+    progress_zh: >-
+      Sparse visual-thought 研究发现，任务选择性特征可以单独具有因果作用，但在组合时会相互干扰。
+      这将因果有效性与模块可组合性分开，并暴露了特征级控制的几何边界。
+    first_date: '2026-03-26'
+    primary_paper_ids:
+      - p_2026_zhou_sparse_visual_thought
+
+  - rq_id: rq-multimodal-failure-mechanisms
+    family_id: computational-mechanism
+    question_en: >-
+      Do multimodal hallucinations arise from reproducible competing pathways or architectural bottlenecks?
+    question_zh: 多模态幻觉是否由可复现的竞争路径或架构瓶颈机制产生？
+    introduction_en: >-
+      This question traces output errors to causal interactions among visual-evidence pathways, language-prior pathways, and architectural bottlenecks, and tests recurrence across error types and model architectures.
+    introduction_zh: >-
+      该问题从输出错误追溯到视觉证据路径、语言先验路径和架构 bottleneck 的因果交互，
+      并检验机制是否跨错误类型和模型架构复现。
+    progress_en: >-
+      Recent work explains object hallucination as competition between genuine visual evidence and language-prior pathways and searches for recurrent failure circuits in VQ-tokenized architectures.
+      The branch has advanced from output correlation to intervenable mechanism hypotheses, but it contains few studies, narrow architectural coverage, and limited evidence across failure types.
+    progress_zh: >-
+      最新工作把对象幻觉解释为真实视觉证据路径与语言先验路径的竞争，并在 VQ-tokenized 架构中寻找跨模型复现的故障电路。
+      该分支已从输出相关性推进到可干预的失败机制假说，但论文数量少、架构范围窄，跨故障类型的普遍性尚未建立。
+    first_date: '2026-05-13'
+    primary_paper_ids:
+      - p_2026_liu_dual_pathway_circuits
+      - p_2026_hegde_where_hallucinations_live
+
+  - rq_id: rq-multilingual-mechanisms
+    family_id: computational-mechanism
+    question_en: >-
+      Which internal units and broadcast mechanisms implement language choice and cross-lingual capability?
+    question_zh: 语言选择与跨语言能力由哪些内部单元和广播机制实现？
+    introduction_en: >-
+      This question distinguishes mechanisms controlling output language, carrying task information, and enabling cross-lingual transfer, while tracing how a language decision forms and propagates before the first generated token.
+    introduction_zh: >-
+      该问题区分控制输出语言、承载任务信息和促进跨语言迁移的机制，并追踪语言决定在生成首 token 前如何形成和传播。
+    progress_en: >-
+      Work localized components causing vision-language models to default to English and later proposed first-token
+      broadcasters and language-identity head circuits. The line has moved toward generation-level broadcast mechanisms,
+      while language choice, knowledge sharing, and transfer still require different explanations.
+    progress_zh: >-
+      研究先定位导致 VLM 默认英语回复的组件，后续工作进一步提出 first-token broadcasters 与 language-identity head circuits。
+      问题正在转向生成级的广播机制，但语言选择、知识共享和迁移仍需不同解释。
+    first_date: '2024-07-02'
+    primary_paper_ids:
+      - p_2024_hinck_why_do_llava
+      - p_2026_pillai_ftb_graph_determining
+    secondary_paper_ids:
+      - p_2024_tang_language_specific_neurons
+
+  - rq_id: rq-safety-mechanisms
+    family_id: computational-mechanism
+    question_en: >-
+      Are safety, refusal, and hidden-trigger behaviors implemented by low-dimensional directions or distributed circuits?
+    question_zh: 安全、拒绝与隐蔽触发行为由低维方向还是分布式电路实现？
+    introduction_en: >-
+      This question localizes structures mediating safety behavior, compares single directions, attention subcircuits, and backdoor mechanisms, and examines task specificity, coordination, and vulnerability to intervention.
+    introduction_zh: >-
+      该问题定位安全行为的中介结构，比较单一方向、attention 子电路和后门机制，
+      并考察其任务专属性、协同性与对干预的脆弱性。
+    progress_en: >-
+      Studies of backdoors, refusal, and safety have identified early-layer mechanisms, a single refusal direction, critical attention heads, and linear instability of that direction.
+      Evidence suggests that low-dimensional control directions and distributed circuits can coexist, while the one-direction account varies across contexts and models.
+      A more complete causal account of safety mechanisms remains open.
+    progress_zh: >-
+      Backdoor、拒绝和安全行为研究分别发现早层机制、单一 refusal direction、关键 attention heads 与方向的线性不稳定性。
+      现有证据表明低维控制方向与分布式电路可以同时成立，而“安全由一个方向实现”的结论受上下文和模型影响；更完整的因果安全机制仍待建立。
+    first_date: '2023-02-24'
+    primary_paper_ids:
+      - p_2023_lamparth_analyzing_and_editing
+      - p_2024_arditi_refusal_in_language
+      - p_2024_zhou_on_the_role
+      - p_2026_ratnakar_the_geometry_of
+
+  - rq_id: rq-knowledge-conflict
+    family_id: computational-mechanism
+    question_en: >-
+      How does a model arbitrate between parametric and contextual knowledge when they conflict?
+    question_zh: 参数知识与上下文知识发生冲突时，模型如何竞争并选择信息来源？
+    introduction_en: >-
+      This question studies how the two knowledge sources overlap, compete, and reach a decision across components and paths, and whether source selection can be controlled without damaging other capabilities.
+    introduction_zh: >-
+      该问题研究两类知识在组件和路径中的叠加、竞争与决策位置，并进一步询问能否在不破坏其余能力的情况下控制来源选择。
+    progress_en: >-
+      Existing work localized competition between parametric and contextual knowledge to specific attention heads and mitigated conflict by cutting or modulating relevant pathways; later studies pursued more stable control.
+      Intervenable local mechanisms have been identified, but tested conflict types, confidence regimes, and cross-model transfer remain limited.
+    progress_zh: >-
+      已有工作把参数知识与上下文知识的竞争定位到特定 attention heads，并通过切断或调节相关路径缓解冲突；后续研究继续探索更稳定的冲突控制。
+      当前已获得可干预的局部机制，但冲突类型、答案置信度和跨模型迁移范围仍较有限。
+    first_date: '2024-02-28'
+    primary_paper_ids:
+      - p_2024_jin_cutting_off_the
+      - p_2025_li_taming_knowledge_conflicts
+
+  - rq_id: rq-layerwise-prediction-dynamics
+    family_id: temporal-development
+    question_en: >-
+      How do model predictions form and change across network depth?
+    question_zh: 模型的预测如何沿网络深度逐层形成和修正？
+    introduction_en: >-
+      This question treats each layer's hidden state as an iterative update to the output prediction.
+      Readout methods must correct cross-layer representation mismatch and test whether intermediate trajectories are smooth and causally related to final behavior.
+    introduction_zh: >-
+      该问题把各层 hidden state 视为对输出预测的迭代更新，要求读出方法校正层间表示偏差，
+      并检验中间预测轨迹是否平滑且与最终行为因果相关。
+    progress_en: >-
+      Tuned Lens learned layerwise translators to correct logit-lens bias, enabling more reliable decoding of intermediate prediction trajectories; earlier linear probes and studies of layerwise MLP outputs supplied representational and computational foundations.
+      Prediction convergence and revision are now observable, but whether readouts fully capture causal internal state still depends on calibration and intervention.
+    progress_zh: >-
+      Tuned Lens 通过学习层间翻译器校正 logit lens 偏差，使中间预测轨迹能够被更可靠地解码；早期线性 probe 与 MLP 逐层输出研究提供了表示和计算基础。
+      当前可观察预测如何收敛或修正，但中间读出是否完整反映实际因果状态仍依赖校准与干预验证。
+    first_date: '2023-03-14'
+    primary_paper_ids:
+      - p_2023_belrose_eliciting_latent_predictions
+    secondary_paper_ids:
+      - p_2016_alain_understanding_intermediate_layers
+      - p_2020_geva_transformer_feed_forward
+
+  - rq_id: rq-generation-trajectory
+    family_id: temporal-development
+    question_en: >-
+      How far into the future generation trajectory is the current internal state already committed?
+    question_zh: 当前内部状态提前承诺了多远的未来生成轨迹？
+    introduction_en: >-
+      This question extends next-token prediction to multiple later tokens, asking how much future plan or constraint is readable from one state and distinguishing it from later revision during actual generation.
+    introduction_zh: >-
+      该问题从 next-token prediction 扩展到后续多个 token，考察单个 state 中未来计划或约束的可读范围，
+      并与真实生成过程中的后续修正区分开来。
+    progress_en: >-
+      Future Lens showed that a current hidden state can contain information about multiple not-yet-generated tokens, extending analysis from next-token prediction to future generation plans.
+      Current evidence mainly establishes readability; how far the model is causally committed, when it replans, and whether the result generalizes across tasks remain unclear.
+    progress_zh: >-
+      Future Lens 表明单个当前 hidden state 可包含尚未生成的多个后续 token 信息，使研究从下一 token 预测扩展到未来生成计划。
+      现阶段主要证明未来轨迹可被读出，模型究竟提前因果承诺多远、何时重规划以及结论能否跨任务复现仍不清楚。
+    first_date: '2023-11-08'
+    primary_paper_ids:
+      - p_2023_pal_future_lens_anticipating
+
+  - rq_id: rq-sequential-reasoning-dynamics
+    family_id: temporal-development
+    question_en: >-
+      How does causal computation unfold and reorganize across the generated steps of Chain-of-Thought reasoning?
+    question_zh: 因果计算如何沿 Chain-of-Thought 的生成步骤展开和重组？
+    introduction_en: >-
+      This question extends static activation intervention to sequential reasoning, locating the token positions, heads, and cross-step transfers that shift computation from direct answering to Chain-of-Thought-like execution.
+    introduction_zh: >-
+      该问题把静态 activation intervention 扩展到序列化推理，定位哪些 token positions、heads 和跨步传递使计算从直接作答转向 CoT-like execution。
+    progress_en: >-
+      Sequential activation patching has begun tracing when information enters, propagates, and reorganizes across Chain-of-Thought steps, providing a direct tool for temporal causal analysis.
+      Evidence is still early: written reasoning may not match latent computation, and robustness to prompts, decoding paths, and alternative reasoning trajectories remains untested.
+    progress_zh: >-
+      Sequential activation patching 已开始沿 Chain-of-Thought 的生成步骤追踪信息何时进入、传递和重组，为时序化因果分析提供了直接工具。
+      当前仅有早期实证，仍需检验书面推理链与潜在计算是否一致，以及结果对 prompt、解码路径和替代推理轨迹是否稳健。
+    first_date: '2026-08-23'
+    primary_paper_ids:
+      - p_2026_dura_mechanistic_interpretability_of
+
+  - rq_id: rq-training-feature-dynamics
+    family_id: temporal-development
+    question_en: >-
+      How does a network select, reweight, and progressively form prediction-relevant features during training?
+    question_zh: 网络在训练中如何选择、重加权并逐层形成预测相关特征？
+    introduction_en: >-
+      This question seeks analyzable or computable feature-learning dynamics that explain how finite-width networks depart from fixed kernels and whether the same laws transfer to kernel machines or convolutional architectures.
+    introduction_zh: >-
+      该问题寻求可解析或可计算的 feature-learning 动力学，解释有限宽网络如何偏离固定 kernel、
+      以及这些规律能否迁移到 kernel machines 或卷积架构。
+    progress_en: >-
+      Infinite-width theory first supplied analyzable limits that retain feature learning, and average-gradient-outer-product laws were later used to explain feature selection and layerwise amplification in fully connected networks and CNNs.
+      These works provide mathematical mechanisms of training dynamics, but a large gap remains between controlled architectures and Transformers trained at scale.
+    progress_zh: >-
+      无限宽理论首先给出保留 feature learning 的可解析极限，随后 average gradient outer product 规律被用于解释全连接网络和 CNN 中的特征选择与逐层增强。
+      现有工作建立了训练动力学的数学机制，但从受控架构推广到 Transformer 和大规模预训练仍有明显鸿沟。
+    first_date: '2020-11-30'
+    primary_paper_ids:
+      - p_2020_yang_feature_learning_in
+      - p_2022_radhakrishnan_mechanism_of_feature
+      - p_2023_beaglehole_mechanism_of_feature
+
+  - rq_id: rq-circuit-formation
+    family_id: temporal-development
+    question_en: >-
+      How do circuits implementing a capability form progressively from random initialization?
+    question_zh: 实现能力的电路如何从随机初始化逐步形成？
+    introduction_en: >-
+      This question follows training checkpoints and subcomputations to understand how matching, copying, causal structure, and other local mechanisms interact and assemble into a complete circuit.
+    introduction_zh: >-
+      该问题追踪训练检查点和子计算，研究 match、copy、causal structure 等局部机制如何相互作用并组合成完整电路。
+    progress_en: >-
+      Studies examined how gradient descent learns causal structure and which conditions are required for an induction circuit to form.
+      Checkpoint evidence now describes stages from initialization to maturity for some circuits, but the results are concentrated on in-context learning and say little about formation in other abilities or post-training.
+    progress_zh: >-
+      现有工作分析梯度下降如何学习因果结构，以及 induction circuit 成形所需的条件。
+      检查点证据已能描述部分电路从初始化到成熟的阶段，但结论主要集中在 in-context learning，其他能力与后训练机制的形成尚少。
+    first_date: '2024-02-22'
+    primary_paper_ids:
+      - p_2024_nichani_how_transformers_learn
+      - p_2024_singh_what_needs_to
+    secondary_paper_ids:
+      - p_2022_olsson_in_context_learning
+
+  - rq_id: rq-capability-phase-transition
+    family_id: temporal-development
+    question_en: >-
+      Are apparently abrupt capability transitions driven by smoother changes in internal mechanisms?
+    question_zh: 表面突发的能力相变是否由更平滑的内部机制变化驱动？
+    introduction_en: >-
+      This question explains grokking through internal progress measures and competing circuits, distinguishing memorization, formation of a generalizing circuit, and cleanup, and asking why optimization delays selection of a more efficient mechanism.
+    introduction_zh: >-
+      该问题用内部 progress measures 和竞争电路解释 grokking，区分记忆、泛化电路形成与 cleanup，
+      并研究优化为何延迟选择更高效的机制。
+    progress_en: >-
+      Reverse engineering of grokking found smoothly changing internal progress measures before test accuracy jumps, while circuit-efficiency analysis further explained competition among memorization, generalizing-circuit formation, and cleanup.
+      The mechanism accounts for phase transitions in several controlled tasks, but generalization to complex capabilities and large-scale training remains uncertain.
+    progress_zh: >-
+      Grokking 研究通过电路逆向工程发现，测试准确率突变之前已有平滑变化的内部 progress measures；circuit-efficiency 分析进一步解释了记忆、泛化回路形成与 cleanup 的竞争。
+      该机制解释了若干受控任务的表面相变，但是否适用于更复杂能力和大规模训练仍未确定。
+    first_date: '2023-01-12'
+    primary_paper_ids:
+      - p_2023_nanda_progress_measures_for
+      - p_2023_varma_explaining_grokking_through
+
+  - rq_id: rq-posttraining-mechanism-change
+    family_id: temporal-development
+    question_en: >-
+      Do fine-tuning and post-training create new mechanisms, or strengthen, suppress, and reorganize existing ones?
+    question_zh: Fine-tuning 与后训练产生新机制，还是强化、抑制或重组既有机制？
+    introduction_en: >-
+      This question compares base and post-trained models to distinguish shared circuits, amplified representations, and genuinely new features while guarding against sparsity artifacts introduced by model-difference tools.
+    introduction_zh: >-
+      该问题通过 base 与 post-trained 模型比较，区分共享电路、被增强的表示和真正新增的特征，
+      同时警惕模型差分工具引入的稀疏伪影。
+    progress_en: >-
+      Entity-tracking studies suggest that fine-tuning can strengthen an existing mechanism rather than create a new
+      one. Reasoning-feature and crosscoder studies provide secondary evidence, but also show why novelty claims require
+      separate representational and evidential analysis.
+    progress_zh: >-
+      Entity tracking 案例表明，fine-tuning 可以强化既有机制，而非必然创建新机制。
+      推理特征与 crosscoder 研究提供次级证据，但也说明“新机制”的主张还需单独的表示和证据分析。
+    first_date: '2024-02-22'
+    primary_paper_ids:
+      - p_2024_prakash_fine_tuning_enhances
+    secondary_paper_ids:
+      - p_2025_galichin_i_have_covered
+      - p_2025_minder_overcoming_sparsity_artifacts
+
+  - rq_id: rq-localization-editing
+    family_id: intervention-control
+    question_en: >-
+      Is a causally localized site of information use also the most effective and localized place to edit behavior?
+    question_zh: 因果定位出的使用位置是否也是最有效、最局部的编辑位置？
+    introduction_en: >-
+      This question challenges the intuition that locating where behavior occurs tells us where to modify it, distinguishing mediation, storage, use, and editability.
+    introduction_zh: >-
+      该问题挑战“找到行为在哪里发生，就知道应该在哪里修改”的直觉，区分 mediation、storage、use 与 editability。
+    progress_en: >-
+      Direct comparison of causal tracing with knowledge editing found that localization strength generally fails to predict the best editing layer, challenging the assumption that a use site is an edit site.
+      Localization and editing are now established as distinct questions, but mechanism-based prediction of efficient, local, low-side-effect edit targets remains unsolved.
+    progress_zh: >-
+      对 causal tracing 与 knowledge editing 的直接比较发现，定位强度通常不能预测最佳编辑层，挑战了“使用位置就是修改位置”的默认假设。
+      该工作已经确立定位和编辑是两个不同问题，但如何从机制信息可靠预测高效、局部且低副作用的编辑目标仍待解决。
+    first_date: '2023-01-10'
+    primary_paper_ids:
+      - p_2023_hase_does_localization_inform
+    secondary_paper_ids:
+      - p_2022_meng_locating_and_editing
+
+  - rq_id: rq-representation-control
+    family_id: intervention-control
+    question_en: >-
+      Can readable internal directions be manipulated reliably to produce specific and predictable behavioral changes?
+    question_zh: 可读出的内部方向能否被稳定操纵，从而产生特异且可预测的行为变化？
+    introduction_en: >-
+      This question advances from representation description to inference-time control.
+      Steering should be causal, transferable, and low in side effects rather than merely changing outputs on a small prompt set.
+    introduction_zh: >-
+      该问题从表示描述推进到 inference-time control，要求 steering 效果具有因果性、可迁移性和有限副作用，
+      而不是仅在少量提示上改变输出。
+    progress_en: >-
+      Inference-time intervention used internal directions to increase truthful answers, representation engineering generalized directional control, and later theory and vision-language experiments began explaining when it works.
+      Representation directions can serve as control levers, but specificity, distributional stability, transferability, and side effects require systematic calibration.
+    progress_zh: >-
+      Inference-time intervention 用内部方向提高真实回答概率，representation engineering 将方向控制扩展为通用框架，后续理论与 VLM 实验开始解释其有效条件。
+      研究已证明表示方向可以成为控制杠杆，但特异性、跨分布稳定性、可迁移性和副作用仍需系统校准。
+    first_date: '2023-06-06'
+    primary_paper_ids:
+      - p_2023_li_inference_time_intervention
+      - p_2023_zou_representation_engineering_a
+      - p_2025_tian_why_representation_engineering
+    secondary_paper_ids:
+      - p_2025_galichin_i_have_covered
+
+  - rq_id: rq-interpretable-learning
+    family_id: intervention-control
+    question_en: >-
+      Can training actively induce a human-specified interpretable causal structure inside a network?
+    question_zh: 能否在训练时主动使网络获得人类指定的可解释因果结构？
+    introduction_en: >-
+      Rather than settling for post hoc explanation, this question uses a high-level causal model as a learning constraint and tests whether interpretable structure and systematic generalization can be achieved together.
+    introduction_zh: >-
+      该问题不满足于事后解释，而把高层 causal model 作为学习约束，检验可解释结构与系统性泛化能否共同成为训练结果。
+    progress_en: >-
+      Interchange intervention training showed that training can actively induce an internal counterfactual structure aligned with a human-specified causal model and may improve systematic generalization.
+      This remains a feasibility demonstration for one training paradigm and limited tasks, with misspecified high-level models, optimization cost, and scaling to large models unresolved.
+    progress_zh: >-
+      Interchange intervention training 已证明，可以在训练时主动诱导与人类高层因果模型一致的内部反事实结构，并可能改善系统性泛化。
+      当前仍是单一训练范式和有限任务上的可行性证明，高层规范错误、优化成本和大模型可扩展性尚未解决。
+    first_date: '2021-12-01'
+    primary_paper_ids:
+      - p_2021_geiger_inducing_causal_structure
+
+  - rq_id: rq-mechanism-universality
+    family_id: generality-transfer
+    question_en: >-
+      Do different training runs, models, and architectures reproduce the same mechanism, or only share an abstract algorithm?
+    question_zh: 不同任务运行、模型与架构会复现同一机制，还是只共享抽象算法？
+    introduction_en: >-
+      This question distinguishes strong universality of concrete features, components, and circuits from weak universality at the functional or algorithmic level, allowing equal performance with different structures.
+    introduction_zh: >-
+      该问题区分具体 feature、component、circuit 的强 universality 与功能或算法层面的弱 universality，
+      并允许性能相同但结构不同。
+    progress_en: >-
+      A group-operation toy model first separated strong circuit identity from weak algorithmic universality.
+      Later work found component reuse across tasks, recurring successor heads, stitchable linear features, and numerical-comparison circuits across architectures.
+      The evidence supports greater recurrence of abstract function than exact structure, but equivalence metrics and boundaries across scale remain unsettled.
+    progress_zh: >-
+      群运算 toy model 首先区分具体电路相同的强 universality 与共享算法的弱 universality，随后研究发现跨任务组件复用、重复出现的 successor heads、可 stitching 的线性特征和跨架构数值比较电路。
+      总体证据支持抽象功能比具体结构更普遍，但衡量等价性的标准及其跨规模边界仍未统一。
+    first_date: '2023-02-06'
+    primary_paper_ids:
+      - p_2023_chughtai_a_toy_model
+      - p_2023_merullo_circuit_component_reuse
+      - p_2023_gould_successor_heads_recurring
+      - p_2025_chen_transferring_linear_features
+      - p_2026_bhardia_mechanistic_analysis_of
+
+  - rq_id: rq-induction-head-icl-mechanism
+    family_id: computational-mechanism
+    question_en: >-
+      Do induction heads implement most in-context learning through a reusable match-and-copy circuit?
+    question_zh: Induction heads 是否通过可复用的 match-and-copy 回路实现了大部分 in-context learning？
+    introduction_en: >-
+      This question concerns the mechanism responsible for in-context learning. Training phase changes, ablations, and
+      cross-scale recurrence are evidence for the mechanism rather than the primary unknown.
+    introduction_zh: >-
+      该问题关注 in-context learning 的实现机制。训练相变、消融和跨规模复现是支持该机制的证据，而不是主问题本身。
+    progress_en: >-
+      Induction-head studies identified a concrete match-and-copy circuit, linked its appearance to in-context-learning
+      gains, and tested it with ablation and scale comparisons. The mechanism is compelling for repeated-pattern
+      induction, while the fraction of broader in-context learning it explains remains disputed.
+    progress_zh: >-
+      Induction-head 研究识别出具体的 match-and-copy 回路，将其出现与 in-context learning 提升联系起来，并用消融与规模比较进行检验。
+      该机制能较好解释重复模式 induction，但它能覆盖多少更广义的上下文学习仍有争议。
+    first_date: '2022-09-24'
+    primary_paper_ids:
+      - p_2022_olsson_in_context_learning
+
+  - rq_id: rq-task-vector-editing
+    family_id: intervention-control
+    question_en: >-
+      Can parameter-difference task vectors support modular deletion, composition, and transfer of model behavior?
+    question_zh: 参数差分形成的任务向量能否支持行为的模块化删除、组合与迁移？
+    introduction_en: >-
+      This question treats task vectors as intervention operators. Their representational structure matters, but the
+      central test is whether vector arithmetic predictably edits behavior with limited collateral damage.
+    introduction_zh: >-
+      该问题把 task vector 视为干预算子。其表示结构很重要，但核心检验是向量运算能否可预测地修改行为且限制附带损害。
+    progress_en: >-
+      Task arithmetic showed that fine-tuning differences can be negated, added, and used in analogies without access to
+      the original training data. Composition is feasible, but interference, calibration, and transfer beyond related
+      model families remain open.
+    progress_zh: >-
+      Task arithmetic 表明，微调参数差分可以取反、相加并用于类比，且不需要原始训练数据。
+      这证明了组合的可行性，但干扰、校准和跨不同模型家族的迁移仍待解决。
+    first_date: '2022-12-08'
+    primary_paper_ids:
+      - p_2022_ilharco_editing_models_with
+    secondary_paper_ids:
+      - p_2023_todd_function_vectors_in
+
+  - rq_id: rq-language-specific-representation
+    family_id: representation-form
+    question_en: >-
+      Is language identity concentrated in selective internal units that causally influence output-language choice?
+    question_zh: 语言身份是否集中表示在选择性内部单元中，并因果影响输出语言选择？
+    introduction_en: >-
+      This question concerns the representational locus of language identity. Intervention establishes causal relevance,
+      but does not by itself show that the same units support task knowledge or cross-lingual transfer.
+    introduction_zh: >-
+      该问题关注语言身份的表示位置。干预可用于确立因果相关性，但不能单独证明同一批单元还承载任务知识或跨语言迁移。
+    progress_en: >-
+      Language-selective neurons were identified through activation-probability entropy and shown to influence output
+      language under activation changes. Later transfer tests indicate that output-language control and cross-lingual
+      task competence are not the same function.
+    progress_zh: >-
+      研究用 activation-probability entropy 识别出语言选择性神经元，并表明改变其激活会影响输出语言。
+      后续迁移实验说明，输出语言控制与跨语言任务能力并非同一功能。
+    first_date: '2024-02-26'
+    primary_paper_ids:
+      - p_2024_tang_language_specific_neurons
+    secondary_paper_ids:
+      - p_2025_mondal_language_specific_neurons
+
+  - rq_id: rq-language-neuron-control
+    family_id: intervention-control
+    question_en: >-
+      Can targeted manipulation of language-selective neurons improve cross-lingual task transfer?
+    question_zh: 对语言选择性神经元的定向操作，能否改善跨语言任务迁移？
+    introduction_en: >-
+      This question tests whether a localized language representation is an effective control target for downstream
+      transfer, using activation intervention and targeted fine-tuning rather than output-language changes alone.
+    introduction_zh: >-
+      该问题检验局部化的语言表示是否是下游迁移的有效控制目标，
+      其证据来自激活干预和定向微调，而不只是输出语言的变化。
+    progress_en: >-
+      Existing tests found that activating or fine-tuning language-specific neurons did not meaningfully improve
+      cross-lingual transfer and could disrupt task information because the units are polysemantic. The negative result
+      separates descriptive localization from effective control.
+    progress_zh: >-
+      现有实验发现，激活或微调 language-specific neurons 并未显著改善跨语言迁移，且可能因单元 polysemanticity 而破坏任务信息。
+      这一负面结果将描述性定位与有效控制区分开来。
+    first_date: '2025-03-21'
+    primary_paper_ids:
+      - p_2025_mondal_language_specific_neurons
+
+  - rq_id: rq-reasoning-state-features
+    family_id: representation-form
+    question_en: >-
+      Are uncertainty, exploration, reflection, and conclusion states encoded as identifiable sparse reasoning features?
+    question_zh: 不确定、探索、反思与结论状态是否被编码为可识别的稀疏推理特征？
+    introduction_en: >-
+      This question asks how reasoning states are represented. Their emergence after reasoning fine-tuning and their
+      steering effects are temporal and control-related secondary questions.
+    introduction_zh: >-
+      该问题关注推理状态以什么形式表示。它们是否在 reasoning fine-tuning 后出现，以及 steering 能产生什么效果，分别是时序和控制层面的次级问题。
+    progress_en: >-
+      SAE and ReasonScore analyses identified sparse features associated with uncertainty, exploration, reflection, and
+      conclusion stages and tested them through steering. The evidence suggests manipulable reasoning-state structure,
+      while separating genuine computation from stylistic markers remains difficult.
+    progress_zh: >-
+      SAE 与 ReasonScore 分析识别出与不确定、探索、反思和结论阶段相关的稀疏特征，并用 steering 检验其作用。
+      证据支持存在可操作的推理状态结构，但如何将真实计算与语言风格标记区分仍很困难。
+    first_date: '2025-03-24'
+    primary_paper_ids:
+      - p_2025_galichin_i_have_covered
+
+  - rq_id: rq-model-diffing-validity
+    family_id: evidential-standards
+    question_en: >-
+      How can model-difference methods distinguish genuine post-training features from sparsity-induced artifacts?
+    question_zh: 模型差分方法如何区分真实的后训练特征与稀疏优化伪影？
+    introduction_en: >-
+      This question concerns the validity of claims that a feature is unique to a fine-tuned model. Decoder norms and
+      sparse objectives can manufacture apparent novelty unless the feature is cross-checked against both models.
+    introduction_zh: >-
+      该问题关注“某特征是微调模型所独有”这类主张是否有效。
+      Decoder norm 和稀疏目标可能制造表面上的新特征，因此必须在两个模型中交叉检验。
+    progress_en: >-
+      Crosscoder analysis identified complete shrinkage and latent decoupling as sources of false chat-only features,
+      introduced Latent Scaling diagnostics, and found BatchTopK more robust. The work supplies controls for novelty
+      claims but does not by itself determine the full mechanism of chat tuning.
+    progress_zh: >-
+      Crosscoder 分析识别出 complete shrinkage 和 latent decoupling 两类伪 chat-only feature 来源，提出 Latent Scaling 诊断，并发现 BatchTopK 更稳健。
+      该工作为“新特征”主张提供了对照，但未单独确定 chat tuning 的完整机制。
+    first_date: '2025-04-03'
+    primary_paper_ids:
+      - p_2025_minder_overcoming_sparsity_artifacts
+
+  - rq_id: rq-latent-knowledge-elicitation
+    family_id: intervention-control
+    question_en: >-
+      How can causally verified latent knowledge be reliably elicited when a model does not express it?
+    question_zh: 当模型不表达已有知识时，如何将经因果验证的潜在知识可靠地诱导出来？
+    introduction_en: >-
+      This question turns latent-knowledge diagnosis into intervention. A successful pipeline must distinguish genuine
+      hidden knowledge from correlation and absence before changing the model's expressed answer.
+    introduction_zh: >-
+      该问题将潜在知识诊断推进到干预。成功流程必须先区分真实隐藏知识、相关信号和知识缺失，再改变模型的显式回答。
+    progress_en: >-
+      MechELK combined sparse-feature analysis, activation patching, and representation engineering into a
+      Locate–Verify–Elicit pipeline. It advances from reading latent knowledge to causally supported elicitation, but
+      robustness to deceptive, multi-step, and distribution-shifted settings remains open.
+    progress_zh: >-
+      MechELK 将稀疏特征分析、activation patching 和 representation engineering 组合为 Locate–Verify–Elicit 流程。
+      它将研究从读出潜在知识推进到有因果支持的诱导，但对欺骗、多步与分布偏移情形的稳健性仍待检验。
+    first_date: '2026-04-07'
+    primary_paper_ids:
+      - p_2026_park_mechelk_a_mechanistic
+
+  - rq_id: rq-monosemanticity-measurement
+    family_id: evidential-standards
+    question_en: >-
+      How can SAE latent monosemanticity be measured without concept labels or external embedding geometry?
+    question_zh: 如何在不依赖概念标签或外部 embedding 几何的情况下，测量 SAE latent 的单义性？
+    introduction_en: >-
+      This question operationalizes a central interpretability claim. A metric should be self-contained, stable across
+      training, and related to causal concept manipulation rather than merely agreeing with external labels.
+    introduction_zh: >-
+      该问题将“单义性”这一核心解释性主张操作化。指标应当自包含、跨训练稳定，
+      并与概念因果操作相关，而不只是与外部标签一致。
+    progress_en: >-
+      The Tversky Monosemanticity Score used coherence of binary latent activation sets and was tested against training
+      dynamics and concept deletion. It provides a label-free metric, while broader agreement with human concepts and
+      downstream mechanism quality remains unestablished.
+    progress_zh: >-
+      Tversky Monosemanticity Score 使用二值 latent activation set 的一致性，并通过训练动态与概念删除进行检验。
+      它提供了无标签指标，但与人类概念及下游机制解释质量的更广泛一致性仍未建立。
+    first_date: '2026-07-20'
+    primary_paper_ids:
+      - p_2026_filus_measuring_monosemanticity_in
+
+edges:
+  - source: rq-attribution-foundations
+    target: rq-attribution-efficiency
+    type: scales
+    evidence_status: direct-citation
+    rationale_zh: 在归因目标被明确定义后，后续工作转向如何将逐样本估计摊销为单次计算。
+  - source: rq-attribution-foundations
+    target: rq-conceptual-prediction-explanation
+    type: integrates
+    evidence_status: same-lineage
+    rationale_zh: 局部输入贡献被进一步连接到内部概念语义和组合机制。
+  - source: rq-concept-unit-alignment
+    target: rq-conceptual-prediction-explanation
+    type: integrates
+    evidence_status: same-lineage
+    rationale_zh: 全局概念对齐被用于解释单个样本的输入证据与预测形成。
+  - source: rq-concept-unit-alignment
+    target: rq-automatic-unit-description
+    type: scales
+    evidence_status: direct-citation
+    rationale_zh: 单元—概念对齐从固定标注词汇扩展到无密集标注的开放词汇自动命名。
+  - source: rq-information-accessibility
+    target: rq-probe-meaning
+    type: challenges
+    evidence_status: direct-citation
+    rationale_zh: 后续工作追问读出结果究竟来自表示还是解释器，并分析空结果的检测边界。
+  - source: rq-probe-meaning
+    target: rq-causal-use
+    type: refines
+    evidence_status: direct-citation
+    rationale_zh: 问题从“信息能否读出”推进到“信息是否进入模型实际计算”。
+  - source: rq-explanation-validity
+    target: rq-intervention-reliability
+    type: extends
+    evidence_status: same-lineage
+    rationale_zh: 忠实性检验从 saliency 与 attention 扩展到干预实验本身的设计敏感性。
+  - source: rq-explanation-validity
+    target: rq-circuit-faithfulness
+    type: extends
+    evidence_status: same-lineage
+    rationale_zh: 解释对象从单次归因扩展到完整机制，验证标准转向行为保持与必要性。
+  - source: rq-circuit-faithfulness
+    target: rq-evidence-ladder
+    type: integrates
+    evidence_status: same-lineage
+    rationale_zh: 后者把候选发现、因果验证、分布外测试与部署成本组织为连续证据链。
+  - source: rq-circuit-faithfulness
+    target: rq-formal-verification
+    type: formalizes
+    evidence_status: same-lineage
+    rationale_zh: 忠实性由经验行为测试推进到具有明确适用域和 proof object 的形式保证。
+  - source: rq-audit-limits
+    target: rq-formal-verification
+    type: challenges
+    evidence_status: analyst-inference
+    rationale_zh: 行为审计的不可诱导边界推动解释主张采用更强的内部和形式证据。
+  - source: rq-concept-unit-alignment
+    target: rq-superposition
+    type: challenges
+    evidence_status: same-lineage
+    rationale_zh: Superposition 质疑概念天然对应单个轴对齐单元的假设。
+  - source: rq-concept-unit-alignment
+    target: rq-neuron-feature-structure
+    type: scales
+    evidence_status: direct-citation
+    rationale_zh: 单元概念对齐被扩展到真实大模型中的稀疏性、组合性与规模规律。
+  - source: rq-information-accessibility
+    target: rq-unsupervised-feature-discovery
+    type: extends
+    evidence_status: same-lineage
+    rationale_zh: 从针对预设标签训练读出器，推进到不预设概念类别而直接发现激活中的稳定因素。
+  - source: rq-superposition
+    target: rq-sparse-feature-recovery
+    type: extends
+    evidence_status: direct-citation
+    rationale_zh: 发现 polysemantic superposition 后，研究转向能否恢复其背后的潜在特征。
+  - source: rq-sparse-feature-recovery
+    target: rq-sparse-objective
+    type: refines
+    evidence_status: direct-citation
+    rationale_zh: 问题从是否能恢复特征，细化为哪种训练目标能保留真正重要的计算。
+  - source: rq-sparse-feature-recovery
+    target: rq-sparse-feature-failure
+    type: challenges
+    evidence_status: direct-citation
+    rationale_zh: 后续工作系统研究 splitting、absorption、伪极小值和表示单位错配。
+  - source: rq-sparse-objective
+    target: rq-sparse-feature-failure
+    type: challenges
+    evidence_status: direct-citation
+    rationale_zh: 即使改进稀疏目标与门控形式，后续工作仍追问所得特征何时会分裂、吸收或偏离真实表示单位。
+  - source: rq-sparse-feature-recovery
+    target: rq-method-usefulness
+    type: validates
+    evidence_status: direct-citation
+    rationale_zh: 特征质量从主观可解释性转向因果任务、控制效用和强基线验证。
+  - source: rq-sparse-feature-recovery
+    target: rq-feature-atlas-scaling
+    type: scales
+    evidence_status: direct-citation
+    rationale_zh: 稀疏特征提取从小模型局部实验扩展到前沿模型全层位和长尾概念。
+  - source: rq-sparse-feature-recovery
+    target: rq-sparse-feature-circuits
+    type: extends
+    evidence_status: direct-citation
+    rationale_zh: 稀疏特征由描述单位进一步成为因果电路中的节点和边。
+  - source: rq-causal-use
+    target: rq-causal-representation-geometry
+    type: formalizes
+    evidence_status: same-lineage
+    rationale_zh: 相关的可解码性被提升为排除混淆、支持干预的几何定义。
+  - source: rq-causal-abstraction
+    target: rq-causal-representation-geometry
+    type: refines
+    evidence_status: direct-citation
+    rationale_zh: 高层因果变量与低层表示的对应，被细化为可测量概念子空间及其干预性质。
+  - source: rq-causal-abstraction
+    target: rq-causal-variable-alignment
+    type: extends
+    evidence_status: direct-citation
+    rationale_zh: 在忠实因果对应标准建立后，研究转向自动搜索分布式对齐与中间变量电路。
+  - source: rq-causal-abstraction
+    target: rq-method-usefulness
+    type: validates
+    evidence_status: direct-citation
+    rationale_zh: 因果抽象和分布式对齐方法进一步接受多属性、因果控制与强基线下的统一效用评估。
+  - source: rq-information-accessibility
+    target: rq-layerwise-prediction-dynamics
+    type: refines
+    evidence_status: direct-citation
+    rationale_zh: 层间可访问性进一步被组织为模型预测逐层形成和修正的轨迹。
+  - source: rq-layerwise-prediction-dynamics
+    target: rq-generation-trajectory
+    type: extends
+    evidence_status: direct-citation
+    rationale_zh: 时间范围从单次前向传播的深度扩展到尚未生成的后续 token。
+  - source: rq-layerwise-prediction-dynamics
+    target: rq-hidden-state-readout
+    type: extends
+    evidence_status: direct-citation
+    rationale_zh: 从校准各层的 next-token 预测，扩展为训练数据无关、可生成自然语言解释的通用 hidden-state 读取。
+  - source: rq-generation-trajectory
+    target: rq-sequential-reasoning-dynamics
+    type: extends
+    evidence_status: same-lineage
+    rationale_zh: 可读出的未来承诺进一步被提升为跨 CoT 生成步骤的因果计算追踪。
+  - source: rq-training-feature-dynamics
+    target: rq-circuit-formation
+    type: extends
+    evidence_status: analyst-inference
+    rationale_zh: 训练动力学从一般特征选择扩展到具体子计算和完整电路的形成。
+  - source: rq-training-feature-dynamics
+    target: rq-interpretable-learning
+    type: extends
+    evidence_status: same-lineage
+    rationale_zh: 从描述训练如何形成内部特征，推进到能否在训练过程中主动诱导人类指定的可解释因果结构。
+  - source: rq-induction-head-icl-mechanism
+    target: rq-circuit-formation
+    type: extends
+    evidence_status: direct-citation
+    rationale_zh: 在 induction head 被提出为 ICL 机制后，后续工作转向解析这一电路如何经梯度训练形成。
+  - source: rq-training-feature-dynamics
+    target: rq-capability-phase-transition
+    type: extends
+    evidence_status: analyst-inference
+    rationale_zh: 一般特征学习动力学被进一步用来理解表面突发能力背后的平滑内部变化。
+  - source: rq-induction-head-icl-mechanism
+    target: rq-posttraining-mechanism-change
+    type: extends
+    evidence_status: analyst-inference
+    rationale_zh: 从预训练中自发形成的机制，扩展到后训练阶段是强化既有回路还是产生新机制。
+  - source: rq-component-function
+    target: rq-behavior-circuit
+    type: integrates
+    evidence_status: direct-citation
+    rationale_zh: 单组件功能解释被组合为端到端行为机制。
+  - source: rq-component-function
+    target: rq-component-semantic-readout
+    type: extends
+    evidence_status: same-lineage
+    rationale_zh: 对组件功能的研究推动建立专门语义接口，以读出 attention head 写入的信息。
+  - source: rq-behavior-circuit
+    target: rq-circuit-localization
+    type: refines
+    evidence_status: direct-citation
+    rationale_zh: 从完整人工逆向工程推进到路径和行为约束驱动的定位问题。
+  - source: rq-behavior-circuit
+    target: rq-automated-circuit-discovery
+    type: scales
+    evidence_status: direct-citation
+    rationale_zh: 人工逆向得到的端到端电路推动了可自动搜索的子图发现方法。
+  - source: rq-behavior-circuit
+    target: rq-circuit-scaling
+    type: challenges
+    evidence_status: direct-citation
+    rationale_zh: 在小模型上成立的人工回路解释被要求扩展到前沿规模和宽分布。
+  - source: rq-circuit-scaling
+    target: rq-sparse-feature-circuits
+    type: extends
+    evidence_status: direct-citation
+    rationale_zh: 原生组件电路的扩展瓶颈推动研究改用稀疏特征作为更细粒度、可扩展的因果图节点。
+  - source: rq-causal-abstraction
+    target: rq-formal-verification
+    type: formalizes
+    evidence_status: analyst-inference
+    rationale_zh: 高低层反事实对应进一步被表达为可由求解器检查的机制性质。
+  - source: rq-knowledge-localization-routing
+    target: rq-localization-editing
+    type: challenges
+    evidence_status: direct-citation
+    rationale_zh: 后续工作质疑因果使用位置是否等同于最优编辑位置。
+  - source: rq-knowledge-localization-routing
+    target: rq-knowledge-conflict
+    type: extends
+    evidence_status: direct-citation
+    rationale_zh: 从定位单一事实的存储与调用，扩展到参数记忆和上下文证据同时存在时如何竞争与路由。
+  - source: rq-latent-knowledge
+    target: rq-representation-control
+    type: extends
+    evidence_status: direct-citation
+    rationale_zh: 从读出未表达知识推进到通过内部干预使其影响生成。
+  - source: rq-latent-knowledge
+    target: rq-latent-knowledge-elicitation
+    type: extends
+    evidence_status: direct-citation
+    rationale_zh: 问题从无监督读出“模型知道什么”，推进到先因果验证再稳定诱导相应知识。
+  - source: rq-latent-knowledge
+    target: rq-audit-limits
+    type: challenges
+    evidence_status: direct-citation
+    rationale_zh: 不可诱导的密码学后门表明，即使采用 latent-knowledge elicitation，也可能存在计算上无法触发或验证的隐藏机制。
+  - source: rq-safety-mechanisms
+    target: rq-audit-limits
+    type: challenges
+    evidence_status: same-lineage
+    rationale_zh: 对拒绝、触发器和隐蔽安全行为机制的研究进一步暴露了部署前审计在最坏情况下的可发现性边界。
+  - source: rq-causal-use
+    target: rq-representation-control
+    type: extends
+    evidence_status: same-lineage
+    rationale_zh: 对“模型是否使用该信息”的因果检验进一步发展为以内部干预稳定改变生成行为。
+  - source: rq-crossmodal-alignment
+    target: rq-multimodal-information-flow
+    type: extends
+    evidence_status: direct-citation
+    rationale_zh: 问题从表示在哪里对齐推进到视觉证据如何沿完整架构流向输出。
+  - source: rq-multimodal-causal-tracing
+    target: rq-multimodal-information-flow
+    type: extends
+    evidence_status: direct-citation
+    rationale_zh: 早期多模态 causal tracing 工具为后续更完整的视觉信息路由与 head 级机制研究提供了起点。
+  - source: rq-multimodal-information-flow
+    target: rq-modality-specific-mechanisms
+    type: challenges
+    evidence_status: direct-citation
+    rationale_zh: 后续研究不再假定同一任务的视觉和文本路径共享同一机制。
+  - source: rq-multimodal-information-flow
+    target: rq-multimodal-failure-mechanisms
+    type: extends
+    evidence_status: same-lineage
+    rationale_zh: 正常信息流分析被扩展到幻觉中的竞争路径和架构性失败。
+  - source: rq-behavior-circuit
+    target: rq-mechanism-universality
+    type: extends
+    evidence_status: direct-citation
+    rationale_zh: 单模型中的行为电路被进一步比较其跨任务、规模和架构复现程度。
+  - source: rq-task-vector-editing
+    target: rq-task-function-vectors
+    type: extends
+    evidence_status: direct-citation
+    rationale_zh: 参数空间的任务向量运算被扩展到激活空间中可诱发、可组合的功能向量。
+  - source: rq-language-specific-representation
+    target: rq-language-neuron-control
+    type: challenges
+    evidence_status: direct-citation
+    rationale_zh: 后续工作直接检验“找到语言选择性单元”是否能推出“这些单元是跨语言迁移的有效控制点”。
+  - source: rq-sparse-feature-failure
+    target: rq-model-diffing-validity
+    type: extends
+    evidence_status: direct-citation
+    rationale_zh: 稀疏字典的分裂与吸收失败被扩展到模型差分中的完全收缩和 latent decoupling 伪影。
+  - source: rq-sparse-feature-recovery
+    target: rq-monosemanticity-measurement
+    type: validates
+    evidence_status: same-lineage
+    rationale_zh: 在稀疏特征能够被提取之后，研究进一步追问如何不借助外部标签定量其单义性。
+
+coverage:
+  expected_corpus_papers: 123
+  primary_assignment_policy: exactly-one
+  secondary_assignment_policy: zero-or-more
+  relation_evidence_policy: full-text-audited-with-three-evidence-levels

@@ -71,6 +71,7 @@ def build_author_network(
 
     paper_ids_by_author: dict[str, set[str]] = defaultdict(set)
     first_paper_ids_by_author: dict[str, set[str]] = defaultdict(set)
+    middle_paper_ids_by_author: dict[str, set[str]] = defaultdict(set)
     last_paper_ids_by_author: dict[str, set[str]] = defaultdict(set)
     paper_ids_by_edge: dict[tuple[str, str], set[str]] = defaultdict(set)
 
@@ -85,6 +86,8 @@ def build_author_network(
             paper_ids_by_author[author_id].add(paper_id)
             if "first" in roles:
                 first_paper_ids_by_author[author_id].add(paper_id)
+            if "first" not in roles and "last" not in roles:
+                middle_paper_ids_by_author[author_id].add(paper_id)
             if "last" in roles:
                 last_paper_ids_by_author[author_id].add(paper_id)
         for left, right in itertools.combinations(sorted(author_ids), 2):
@@ -121,6 +124,7 @@ def build_author_network(
         )
         paper_ids = sorted(paper_ids_by_author[author_id])
         first_paper_ids = sorted(first_paper_ids_by_author[author_id])
+        middle_paper_ids = sorted(middle_paper_ids_by_author[author_id])
         last_paper_ids = sorted(last_paper_ids_by_author[author_id])
         nodes.append(
             {
@@ -134,6 +138,8 @@ def build_author_network(
                 "paper_count": len(paper_ids),
                 "first_author_paper_ids": first_paper_ids,
                 "first_author_paper_count": len(first_paper_ids),
+                "middle_author_paper_ids": middle_paper_ids,
+                "middle_author_paper_count": len(middle_paper_ids),
                 "last_author_paper_ids": last_paper_ids,
                 "last_author_paper_count": len(last_paper_ids),
                 "coauthor_count": len(adjacent),

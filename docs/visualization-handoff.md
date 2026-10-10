@@ -7,9 +7,11 @@
 1. `AGENTS.md`：项目边界和强制维护规则；
 2. `PROJECT_CHARTER.md`：已确认需求和尚待讨论事项；
 3. `docs/data-model.md`：事实数据、高阶分析和派生数据的职责；
-4. `data/model-families.yaml`：模型族选择器与论文归属；
-5. `data/taxonomies/techniques.yaml` 与 `data/taxonomies/research-object.yaml`：两棵正式分类树；
-6. `data/classification-events.jsonl` 与 `data/classification-proposals.yaml`：已批准关系和待审关系。
+4. `docs/visualization-design.md`：已确认的页面结构与交互设计；
+5. `data/controlled-vocabulary.yaml`：论文属性和关系角色的双语显示语义；
+6. `data/model-families.yaml`：模型族选择器与论文归属；
+7. `data/taxonomies/techniques.yaml` 与 `data/taxonomies/research-object.yaml`：两棵正式分类树；
+8. `data/classification-events.jsonl` 与 `data/classification-proposals.yaml`：已批准关系和待审关系。
 
 ## 当前正式状态
 
@@ -127,6 +129,6 @@ Research Objects
 
 ## 可视化数据边界
 
-正式来源包括 corpus、paper records、authors、model families、taxonomies、classification events 与 proposals。作者图、当前分类关系、节点论文列表、搜索索引、前端 JSON、图布局坐标和视觉剪枝结果全部是可重建派生数据，不得反向覆盖 `data/`。
+正式来源包括 corpus、paper records、controlled vocabulary、authors、model families、taxonomies、classification events 与 proposals。作者图、当前分类关系、节点论文列表、搜索索引、前端 JSON、图布局坐标和视觉剪枝结果全部是可重建派生数据，不得反向覆盖 `data/`。
 
-Taxonomy 节点变更或介绍的实质修改必须先形成提案并获用户批准。论文分类同样先进入 proposal；批准后才能追加事件，不得修改已有事件。网页技术栈、最终布局、部署方式和 proposal 是否支持交互编辑仍待后续决定。
+Taxonomy 节点变更或介绍的实质修改必须先形成提案并获用户批准。论文分类同样先进入 proposal；批准后才能追加事件，不得修改已有事件。网页技术栈和部署方式仍待后续决定。已确认的布局与交互见 `docs/visualization-design.md`；第一版网页不提供 proposal 预览、交互编辑或审批能力。

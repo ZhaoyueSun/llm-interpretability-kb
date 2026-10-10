@@ -26,19 +26,21 @@ abstract 的中文翻译在完整论文列表确定后由本项目统一完成�
 
 ### 网页可视化平台
 
-可视化平台部署在网页上，并包含多个页面或 tab。每个页面展示一张主题图谱。
+可视化平台部署在网页上。顶层 tab 按 `Research Questions`、`Techniques`、`Target Objects`、`Applications`、`Authors` 的顺序排列；Research Questions 展示时间—关系图，中间三个页面展示分类树，最后一个页面展示作者合作图。界面中的 `Target Objects` 对应正式数据中的 Research Objects taxonomy。
 
-网站提供中英文切换。论文标题、taxonomy 页面标题和节点标题统一使用英文；节点介绍和论文 abstract 分别保存英文与中文版本，并随语言设置切换。节点介绍采用综述式内容，允许包含需要在网页中渲染的 LaTeX 数学公式。具体页面布局后续讨论。
+网站提供中英文切换，用于切换节点 overview、论文 abstract，以及非 taxonomy 属性和关系角色的显示名称与说明。论文标题、taxonomy 页面标题和节点标题统一使用英文；属性数据键和枚举值也保持稳定英文形式。节点介绍采用综述式内容，允许包含需要在网页中渲染的 LaTeX 数学公式。
 
-目前已明确的页面包括：
+已确认的主题页面包括：
 
-- 研究对象图：采用架构通用的分支结构；模型族作为独立选择器，控制 Token Embedding、Patch Embedding、Feature Map、State-Space State 等特化节点的显示。点击任意节点时展示相关论文，并区分 primary 与 secondary 关系。
-- 研究技术图：展示研究者用于读出、分解、干预、发现 circuit、操控模型及验证解释的方法；与研究对象图共享主次论文关系结构，但不混入模型组件或表征对象。
-- 作者连接图：在所收集论文中出现较多的作者使用较大的节点表示；作者之间通过共同合作论文连接。图中可以进行适当剪枝，例如排除从未作为第一作者或最后作者出现的作者。点击作者节点时，在页面右侧展示该作者的相关论文列表。
+- Research Questions：按首次提出时间展示论文试图回答的问题及其演化关系；当前图模型是待评审 working draft，不等同于正式 taxonomy。
+- Techniques：展示研究者用于读出、分解、干预、发现 circuit、操控模型及验证解释的方法，不混入模型组件或表征对象。
+- Target Objects：采用架构通用的分支结构；模型族作为独立选择器，控制 Token Embedding、Patch Embedding、Feature Map、State-Space State 等特化节点的显示。
+- Applications：展示论文检验机制主张时使用的应用和实验场景，对应 `application-scenarios` taxonomy。
+- Authors：作者节点与合著边构成合作图，节点大小反映其在 corpus 中的出现频率。
 
-其他页面可能包括研究方法论、数学基础等，但具体页面和结构尚未确定。
+图谱主窗口左侧显示分类树或作者图，右侧在 overview 与论文列表之间切换，左右分区可以拖动调整大小。分类树初始只展开第一层，支持逐层展开和收起、整图缩放以及水平和垂直滚动。详细交互见 `docs/visualization-design.md`。
 
-点击论文列表中的论文后，进入该论文的独立页面，展示其属性、abstract 英文原文及中文翻译。
+点击论文列表中的论文后，进入论文详情页，展示论文事实、主题分类与三个独立属性、abstract 英文原文及中文翻译，以及可折叠的入选原因。`contribution_role`、`evidence_strength` 和 `modality` 的内部数据键与枚举值保持英文，界面显示名称和说明随全站语言设置切换。作者信息不使用独立详情页，而在 Authors 页面的右侧栏展示。
 
 ## 论文范围与筛选流程
 
@@ -135,8 +137,7 @@ abstract 的整理和中文翻译由本项目负责，不属于 PaperManage 的�
 
 ## 尚待讨论
 
-- 除研究对象图、研究技术图和作者连接图外的页面；
-- 尚未建立页面的正式分类结构；
+- Research Questions 图模型的正式审核、批准与版本化方式；
 - 高阶属性的分析、提案和审批流程；
 - 本项目与 PaperManage 在后续增量更新中的具体协作流程；
-- 网页平台的技术实现和部署方式。
+- 网页平台的技术实现、部署方式和进一步视觉细节。

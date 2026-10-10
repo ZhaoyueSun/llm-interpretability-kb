@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="An interactive map of the LLM interpretability research corpus."
+    />
+    <title>Interpretability Atlas</title>
+    <link rel="stylesheet" href="styles.css?v=summary-math-2" />
+  </head>
+  <body>
+    <div id="app" class="app-shell">
+      <header class="topbar">
+        <div class="brand" aria-label="Interpretability Atlas home">
+          <span class="brand-mark" aria-hidden="true">IA</span>
+          <span class="brand-copy">
+            <strong>Interpretability Atlas</strong>
+            <small>LLM research knowledge base</small>
+          </span>
+        </div>
+
+        <nav class="primary-nav" aria-label="Primary views">
+          <button type="button" class="nav-tab" data-tab="research-questions">Research Questions</button>
+          <button type="button" class="nav-tab is-active" data-tab="techniques">Techniques</button>
+          <button type="button" class="nav-tab" data-tab="target-objects">Target Objects</button>
+          <button type="button" class="nav-tab" data-tab="applications">Applications</button>
+          <button type="button" class="nav-tab" data-tab="authors">Authors</button>
+        </nav>
+
+        <div class="top-actions">
+          <button id="paper-search-open" class="paper-search-open" type="button" aria-haspopup="dialog">
+            <span aria-hidden="true">⌕</span>
+            <span>Search papers</span>
+            <kbd>⌘K</kbd>
+          </button>
+          <div class="language-switch" role="group" aria-label="Content language">
+            <button type="button" class="language-option is-active" data-language="en">EN</button>
+            <button type="button" class="language-option" data-language="zh">中文</button>
+          </div>
+        </div>
+      </header>
+
+      <div id="paper-search-backdrop" class="paper-search-backdrop" hidden>
+        <section class="paper-search-dialog" role="dialog" aria-modal="true" aria-labelledby="paper-search-title">
+          <div class="paper-search-heading">
+            <div>
+              <p id="paper-search-kicker">Corpus search</p>
+              <h2 id="paper-search-title">Find a paper</h2>
+            </div>
+            <button id="paper-search-close" type="button" aria-label="Close paper search">×</button>
+          </div>
+          <label class="paper-search-field">
+            <span aria-hidden="true">⌕</span>
+            <input id="paper-search-input" type="search" autocomplete="off" placeholder="Title, author, year, venue, DOI, arXiv…" />
+          </label>
+          <div id="paper-search-status" class="paper-search-status" aria-live="polite"></div>
+          <div id="paper-search-results" class="paper-search-results"></div>
+        </section>
+      </div>
+
+      <div id="return-context" class="return-context" hidden></div>
+
+      <main id="graph-view" class="graph-view">
+        <section id="visual-pane" class="visual-pane" aria-label="Visualization">
+          <div class="visual-toolbar">
+            <div>
+              <p id="view-kicker" class="eyebrow">Taxonomy</p>
+              <h1 id="view-title">Techniques</h1>
+            </div>
+            <div id="tree-tools" class="tree-tools">
+              <div id="model-family-control" class="model-family-control" hidden>
+                <label for="model-family">Model family</label>
+                <select id="model-family"></select>
+                <label class="secondary-toggle">
+                  <input id="include-secondary-family" type="checkbox" />
+                  Include secondary
+                </label>
+              </div>
+              <fieldset id="author-role-control" class="author-role-control" hidden>
+                <legend>Filter authors by corpus authorship position</legend>
+                <label><input type="checkbox" data-author-role="first" checked /> First</label>
+                <label><input type="checkbox" data-author-role="middle" checked /> Middle</label>
+                <label><input type="checkbox" data-author-role="last" checked /> Last</label>
+                <span id="author-visible-count" class="author-visible-count" aria-live="polite"></span>
+              </fieldset>
+              <div class="zoom-controls" role="group" aria-label="Visualization zoom controls">
+                <button id="zoom-out" type="button" title="Zoom out" aria-label="Zoom out">−</button>
+                <button id="zoom-reset" type="button" title="Reset zoom"><span id="zoom-value">100%</span></button>
+                <button id="zoom-in" type="button" title="Zoom in" aria-label="Zoom in">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="canvas-scroll" class="canvas-scroll">
+            <div id="canvas-stage" class="canvas-stage">
+              <svg id="tree-svg" role="img" aria-label="Taxonomy tree"></svg>
+            </div>
+            <div id="empty-view" class="empty-view" hidden>
+              <span class="empty-mark" aria-hidden="true"></span>
+              <p>This view is reserved for the next phase.</p>
+            </div>
+          </div>
+        </section>
+
+        <div id="splitter" class="splitter" role="separator" aria-orientation="vertical" tabindex="0">
+          <span></span>
+        </div>
+
+        <aside id="detail-pane" class="detail-pane" aria-label="Selected item details">
+          <div class="panel-tabs" role="tablist" aria-label="Detail panel">
+            <button type="button" class="panel-tab is-active" data-panel="overview" role="tab">Overview</button>
+            <button type="button" class="panel-tab" data-panel="papers" role="tab">Paper List</button>
+          </div>
+          <div id="detail-content" class="detail-content"></div>
+        </aside>
+      </main>
+
+      <main id="paper-view" class="paper-view" hidden></main>
+
+      <div id="loading-state" class="loading-state" role="status">
+        <span class="loading-ring" aria-hidden="true"></span>
+        Loading the knowledge base…
+      </div>
+
+      <div id="error-state" class="error-state" hidden>
+        <h1>Visualization data is not ready</h1>
+        <p id="error-message"></p>
+        <code>conda run -n interpret-vis python scripts/build_web_data.py</code>
+      </div>
+    </div>
+
+    <script src="app.js?v=summary-math-2" defer></script>
+  </body>
+</html>

@@ -1,0 +1,191 @@
+schema_version: 1
+version: 1
+status: active
+updated_at: '2026-10-09'
+change_reason: >-
+  Add user-approved bilingual display names and explanations for paper attributes and
+  technique relation roles without changing their stable English data keys.
+paper_attributes:
+  contribution_role:
+    label:
+      en: Contribution Role
+      zh: 贡献角色
+    description:
+      en: >-
+        Describes the paper’s primary contribution to interpretability research. It
+        captures the paper’s central scholarly role rather than every activity performed
+        in the paper.
+      zh: >-
+        这篇论文对可解释性研究的主要贡献是什么。它概括论文最核心的学术角色，而不是罗列论文做过的所有工作。
+    values:
+      method:
+        label:
+          en: Method
+          zh: 方法
+        description:
+          en: Introduces or substantially improves a reusable technique, tool, workflow, or algorithm.
+          zh: 提出或显著改进一种可以复用的技术、工具、流程或算法。
+      empirical-discovery:
+        label:
+          en: Empirical Discovery
+          zh: 实证发现
+        description:
+          en: Reports a substantive finding about how a model represents, computes, learns, or behaves.
+          zh: 通过实验发现模型如何表征、计算、学习或产生行为。
+      theory:
+        label:
+          en: Theory
+          zh: 理论
+        description:
+          en: Develops a mathematical, conceptual, or formal account of a mechanism or interpretability method.
+          zh: 对模型机制或可解释性方法给出数学、概念或形式化解释。
+      evaluation:
+        label:
+          en: Evaluation
+          zh: 评估
+        description:
+          en: Tests the validity, reliability, faithfulness, robustness, or usefulness of interpretability methods.
+          zh: 检验可解释性方法的有效性、可靠性、忠实性、稳健性或实用价值。
+      application:
+        label:
+          en: Application
+          zh: 应用
+        description:
+          en: Applies interpretability or model-control techniques to a practical behavioral, safety, or scientific objective.
+          zh: 把可解释性或模型控制技术用于具体的行为、安全或科学问题。
+  evidence_strength:
+    label:
+      en: Evidence Strength
+      zh: 证据类型与强度
+    description:
+      en: >-
+        Describes the main type of evidence supporting the paper’s central mechanistic
+        claim. It is not a general quality score: formal and audit evidence are distinct
+        from the empirical causal ladder.
+      zh: >-
+        论文使用哪一种主要证据来支持其核心机制主张。它不是简单的论文质量分数；formal 和 audit
+        与经验因果证据属于不同类型，不能机械地理解为“最高”或“最低”。
+    note:
+      en: >-
+        This field records the primary evidence supporting the paper’s central claim; a
+        paper may also contain other forms of evidence.
+      zh: 该字段记录论文核心主张所依赖的主要证据类型，不代表论文只使用了这一种证据。
+    values:
+      descriptive:
+        label:
+          en: Descriptive Evidence
+          zh: 描述性证据
+        description:
+          en: Identifies an internal pattern, feature, direction, component, or correlation without establishing its causal role.
+          zh: 观察到内部模式、特征、方向、组件或相关性，但尚未证明其因果作用。
+      decodable:
+        label:
+          en: Decodable Evidence
+          zh: 可解码证据
+        description:
+          en: Shows that information can be recovered from an internal state using a probe, lens, concept alignment, or related readout.
+          zh: 说明某种信息可以通过探针、lens、概念对齐等方法从内部状态中读出，但可读出不等于模型实际使用了它。
+      sensitivity:
+        label:
+          en: Sensitivity Evidence
+          zh: 敏感性证据
+        description:
+          en: Estimates how a prediction or metric responds locally to a component using gradients, attribution, or approximated effects.
+          zh: 通过梯度、归因或近似效应衡量输出对某个组件的局部敏感程度，但通常不等同于直接干预。
+      causal-local:
+        label:
+          en: Local Causal Evidence
+          zh: 局部因果证据
+        description:
+          en: Directly intervenes on an activation, feature, component, or parameter and observes a behavioral change or restoration.
+          zh: 直接修改激活、特征、组件或参数，并观察行为改变或恢复，从而支持局部因果作用。
+      causal-structural:
+        label:
+          en: Structural Causal Evidence
+          zh: 结构性因果证据
+        description:
+          en: Establishes how multiple components, paths, or edges jointly form a necessary, sufficient, or faithful mechanism.
+          zh: 说明多个组件、路径或边如何共同构成具有必要性、充分性或忠实性的机制。
+      formal:
+        label:
+          en: Formal Evidence
+          zh: 形式化证据
+        description:
+          en: Supports a claim through mathematical derivation, proof, formal specification, or solver-checkable verification.
+          zh: 通过数学推导、证明、形式规范或可由求解器检查的验证来支持结论。
+      audit:
+        label:
+          en: Audit Evidence
+          zh: 审计证据
+        description:
+          en: Evaluates whether an interpretability method is reliable, robust, faithful, or useful under controlled tests.
+          zh: 通过受控实验评估一种可解释性方法是否可靠、稳健、忠实或有用；它主要评价方法，而不是直接证明模型机制。
+  modality:
+    label:
+      en: Modality
+      zh: 数据模态
+    description:
+      en: >-
+        Identifies the primary data modality in which the paper’s central claim is
+        established. It reflects the main experimental setting rather than every dataset
+        mentioned.
+      zh: >-
+        论文核心结论主要在哪一种数据模态上建立。以支撑核心结论的主要实验对象为准，而不是罗列论文使用过的全部数据集。
+    values:
+      language:
+        label:
+          en: Language
+          zh: 语言
+        description:
+          en: The central evidence comes from text, tokens, linguistic tasks, or language models.
+          zh: 核心证据来自文本、token、语言任务或语言模型。
+      vision:
+        label:
+          en: Vision
+          zh: 视觉
+        description:
+          en: The central evidence comes from images, visual representations, or vision models.
+          zh: 核心证据来自图像、视觉表征或视觉模型。
+      vision-language:
+        label:
+          en: Vision–Language
+          zh: 视觉—语言
+        description:
+          en: The central claim concerns interactions between visual and linguistic representations or multimodal models.
+          zh: 核心结论涉及视觉与语言表征之间的交互，或直接研究视觉—语言多模态模型。
+      biological-sequence:
+        label:
+          en: Biological Sequence
+          zh: 生物序列
+        description:
+          en: The central evidence comes from proteins, DNA, RNA, or other biological sequences.
+          zh: 核心证据来自蛋白质、DNA、RNA 或其他生物序列。当前 corpus 中暂时没有此类论文。
+      architecture-agnostic:
+        label:
+          en: Architecture- and Modality-Agnostic
+          zh: 架构与模态无关
+        description:
+          en: The central claim is formulated independently of a particular data modality or model architecture.
+          zh: 核心结论不依赖某一种数据模态或模型架构，常见于一般理论、形式化框架和通用解释方法。
+taxonomy_relation_roles:
+  techniques:
+    primary:
+      label:
+        en: Primary Technique
+        zh: 主要技术
+      description:
+        en: >-
+          The technique that best represents the paper’s central methodological
+          contribution or main analytical operation. Each paper has exactly one.
+        zh: 最能代表论文核心方法贡献或主要分析操作的技术。每篇论文恰好有一个。
+    secondary:
+      label:
+        en: Secondary Technique
+        zh: 辅助技术
+      description:
+        en: >-
+          Other techniques materially used in the paper’s main analysis or validation
+          pipeline. Methods mentioned only as background, ordinary baselines, or incidental
+          experiments are excluded.
+        zh: >-
+          论文主要分析或验证流程中实质使用的其他技术，不包括仅在相关工作、普通 baseline 或附带实验中出现的方法。

@@ -88,7 +88,8 @@
       "required": [
         "author_id", "canonical_name", "aliases", "external_ids", "current_affiliations", "profiles",
         "paper_ids", "paper_count", "first_author_paper_ids", "first_author_paper_count",
-        "last_author_paper_ids", "last_author_paper_count", "coauthor_count", "weighted_degree", "collaborators"
+        "middle_author_paper_ids", "middle_author_paper_count", "last_author_paper_ids",
+        "last_author_paper_count", "coauthor_count", "weighted_degree", "collaborators"
       ],
       "properties": {
         "author_id": {"type": "string", "pattern": "^a_[a-z0-9_]+$"},
@@ -118,6 +119,8 @@
         "paper_count": {"type": "integer", "minimum": 1},
         "first_author_paper_ids": {"$ref": "#/$defs/paper_ids"},
         "first_author_paper_count": {"type": "integer", "minimum": 0},
+        "middle_author_paper_ids": {"$ref": "#/$defs/paper_ids"},
+        "middle_author_paper_count": {"type": "integer", "minimum": 0},
         "last_author_paper_ids": {"$ref": "#/$defs/paper_ids"},
         "last_author_paper_count": {"type": "integer", "minimum": 0},
         "coauthor_count": {"type": "integer", "minimum": 0},

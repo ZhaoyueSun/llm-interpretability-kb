@@ -10,6 +10,7 @@ PaperManage 提供最终论文名单、筛选过程、论文信息、入选原�
 
 - `data/corpus.yaml`：正式 corpus 的成员、Core 或 Classic 身份及入选原因。
 - `data/papers/<paper_id>.yaml`：单篇论文事实、双语 abstract 和双语 AI Summary。
+- `data/controlled-vocabulary.yaml`：论文属性及分类关系角色的稳定键、双语显示名称和双语说明。
 - `data/authors.yaml`：跨论文作者身份与别名。
 - `data/model-families.yaml`：模型族定义、选择器文案以及论文与模型族的主次关系。
 - `data/taxonomies/*.yaml`：树结构和各节点的双语综述式介绍。
@@ -60,6 +61,22 @@ AI Summary 不是 abstract 的改写或翻译，而是基于 PaperKnowledgeBase 
 
 属性判断以论文的中心贡献为准。论文同时使用的其他技术、对象或模型族继续由各自的 primary/secondary 关系表达，不在属性字段中重复罗列。论文文件不包含 Core 或 Classic 身份、taxonomy 节点、当前引用数或作者图统计。
 
+## Controlled Vocabulary
+
+`data/controlled-vocabulary.yaml` 集中维护跨论文复用的语义词汇。论文文件只保存稳定的英文数据键和枚举值，不复制显示名称或解释文本。
+
+每个论文属性定义包括：
+
+- 稳定英文属性键；
+- 属性的中英文显示名称；
+- 属性的中英文说明；
+- 每个稳定英文枚举值的中英文显示名称和中英文说明；
+- 必要时用于避免误读的中英文补充说明。
+
+该文件还保存 Techniques 中 `primary` 与 `secondary` 关系角色的双语显示名称和说明，但不改变 `classification-events.jsonl` 中稳定的 `relation_role` 值。前端和网页派生数据必须从这份词汇表读取文案，不在组件代码中重复维护。
+
+`data/controlled-vocabulary.yaml` 是这些术语显示语义的正式来源；`paper.schema.json` 和 `classification-event.schema.json` 继续约束记录中允许出现的稳定值。词汇表必须完整覆盖 schema 枚举，二者的键集合不得漂移。
+
 ## Author
 
 `data/authors.yaml` 为跨论文作者提供稳定 ID、规范姓名、别名、外部 ID、自报当前机构、作者主页、Google Scholar 主页和消歧状态。当前机构优先来自公开 ORCID employment、已确认 Google Scholar 主页或作者及机构的官方页面；机构与主页必须保存来源和核验日期。Wikidata 只在其记录与已确认的 ORCID、OpenAlex 或 Semantic Scholar ID 一致时用于发现主页和 Google Scholar ID。OpenAlex 等聚合服务的 last-known institution 只用于发现和审计，不直接写成当前机构。无法通过已知论文、可信主页或稳定外部标识确认的候选不得写成已核实事实。引用数、h-index 等易变且平台口径不同的指标不进入作者正式数据。
@@ -79,7 +96,7 @@ AI Summary 不是 abstract 的改写或翻译，而是基于 PaperKnowledgeBase 
 - 可选的 `applicable_model_families`，用于说明节点在哪些模型族视图中有意义；字段缺省表示跨架构适用；
 - 可选的 `applicable_object_roles`，取值为 `input`、`internal`、`output`、`structural` 或 `process`。
 
-介绍文本采用 Markdown，并允许 LaTeX。介绍面向尚不熟悉该技术的研究者，而不是充当字段说明或术语定义：通常应先说明它要解决的问题，再用直观语言解释核心做法，并指出结果可以支持什么判断、不能单独证明什么。中英文应分别符合各自语言的自然表达，不要求逐句直译。网页语言开关只切换节点介绍和论文 abstract；标题统一保持英文。
+介绍文本采用 Markdown，并允许 LaTeX。介绍面向尚不熟悉该技术的研究者，而不是充当字段说明或术语定义：通常应先说明它要解决的问题，再用直观语言解释核心做法，并指出结果可以支持什么判断、不能单独证明什么。中英文应分别符合各自语言的自然表达，不要求逐句直译。网页语言开关切换节点介绍、论文 abstract，以及受控词汇表中的显示名称和说明；论文标题和 taxonomy 节点标题统一保持英文。
 
 当前正式 taxonomy 包括 Research Objects、Techniques 和 Application and Experimental Scenarios，三者必须保持正交：
 
@@ -100,6 +117,14 @@ AI Summary 不是 abstract 的改写或翻译，而是基于 PaperKnowledgeBase 
 当前视图包括 General / Cross-Architecture、Transformer LM、RNN、CNN、Vision Transformer、Vision–Language、State-Space / Mamba、Sparse MoE 和 Diffusion。后四类是相对原始示意图补充或拆分出的模型族；即使当前 corpus 暂无某模型族的主论文，也保留其视图定义，以便可视化正确显示架构特化对象并支持后续扩展。
 
 选择模型族时，前端依据 taxonomy 节点的 `applicable_model_families` 隐藏不适用的叶节点，并保留通用祖先节点。例如 Transformer LM 显示 Token Embeddings，Vision Transformer 显示 Patch Embeddings；Scores and Predictions 始终保留，但下属的 Token Logits、Class Scores、Similarity Scores 或 Denoising Predictions 会随模型族变化。筛选只改变视图，不改变稳定 `node_id`，也不派生新的 taxonomy。
+
+## Research Question Graph（working draft）
+
+Research Questions 当前采用独立的时间—关系图模型，不写入 `data/taxonomies/`，也不进入 `classification-events.jsonl`。评审稿位于 `docs/research-question-graph-draft.yaml`；在其正式批准与版本化方案确定前，网页只能将它标记为 working draft 的只读派生输入。
+
+每个研究板块保存稳定 `family_id`、中英文名称、引导问题、介绍、演化总结和显示顺序。板块用于可视化泳道组织，不是 RQ 父节点。每个 RQ 保存稳定 `rq_id`、所属板块、中英文问题、中英文介绍、中英文当前进展、首次提出日期，以及 `primary_paper_ids` 和 `secondary_paper_ids`。每篇论文恰好有一个 primary RQ，并可有零个或多个 secondary RQ。网页中的 `RQ01` 等短码按首次提出日期确定性生成，不作为数据标识。
+
+RQ 之间的有向边从较早问题指向较晚问题，`type` 表示后一个问题如何改变前一个问题；`evidence_status` 区分 `direct-citation`、`same-lineage` 与 `analyst-inference`。三种证据状态必须在图例中显式区分，尤其不能把分析者提出的关系显示成论文已经主张的历史事实。
 
 ## Classification Event
 
