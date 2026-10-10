@@ -2742,3 +2742,29 @@ proposals:
     transforms, or passes onward; and state the research questions attached to this
     object. Remove the cross-branch comparison with Native Model Components. The tree
     structure, node title, and paper assignments are unchanged.
+- proposal_id: tp_20261010_research_objects_v3_core_object_intros
+  kind: taxonomy_content
+  status: approved
+  created_at: '2026-10-10'
+  approved_at: '2026-10-10'
+  approval_basis: >-
+    The user reviewed the five introductions individually, requested that each define its
+    own object without taxonomy-design commentary, approved the revised wording, and then
+    requested a unified update.
+  title: Rewrite five core Research Objects introductions
+  taxonomy_id: research-object
+  from_taxonomy_version: 2
+  resulting_taxonomy_version: 3
+  taxonomy_file: data/taxonomies/research-object.yaml
+  affected_node_ids:
+  - linear-direction-vector
+  - learned-feature
+  - native-component
+  - model-parameter
+  - composed-mechanism
+  revision_reason: >-
+    Explain how linear directions are obtained and what evidence supports causal use;
+    describe learned features by their sources and research questions without referring
+    readers to another taxonomy; and rewrite the component, parameter, and composed-
+    mechanism introductions as self-contained object definitions. The tree structure,
+    node titles, and paper assignments are unchanged.

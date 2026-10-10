@@ -1,6 +1,6 @@
 schema_version: 1
 taxonomy_id: research-object
-version: 2
+version: 3
 status: active
 title: Research Objects
 nodes:
@@ -279,16 +279,22 @@ nodes:
   parent_id: data-state-representation
   title: Linear Directions and Vectors
   status: active
-  proposal_id: tp_20261009_research_objects_v2
+  proposal_id: tp_20261010_research_objects_v3_core_object_intros
   applicable_object_roles: [internal, structural]
   introduction:
     en: >-
-      A linear direction is a vector \(v\) for which \(v^Th\) tracks a concept, function,
-      or behavior, or intervention along \(v\) changes it. Causal use must be established
-      by intervention rather than decoding accuracy alone.
+      A linear direction is a vector \(v\) estimated or constructed in a model's
+      activation space. It may come from the difference between mean activations for
+      contrasting examples, the weights of a linear readout, or optimization for a
+      targeted intervention. If \(v^T h\) varies systematically with a concept, function,
+      or behavior, that information is linearly accessible along the direction. If
+      modifying activations along \(v\) reliably changes model behavior, this provides
+      stronger evidence for a causal role; decoding accuracy alone is not sufficient.
     zh: >-
-      Linear Direction 是向量 \(v\)：投影 \(v^Th\) 能追踪某个概念、功能或行为，或沿 \(v\) 的干预能改变它。
-      是否被模型因果使用，仍需通过干预而非仅凭解码准确率来判断。
+      Linear Direction 是研究者从模型激活空间中估计或构造出的向量 \(v\)。它可以来自对比样本的平均激活差、
+      线性读出模型，或针对特定行为优化的干预方向。若投影 \(v^T h\) 随某个概念、功能或行为系统变化，
+      说明该信息沿此方向可被线性读出；若沿 \(v\) 修改激活能够稳定改变模型行为，则进一步支持该方向具有因果作用。
+      仅有解码准确率并不足以证明模型自身使用了这一方向。
 - node_id: subspace-manifold-geometry
   parent_id: data-state-representation
   title: Subspaces, Manifolds, and Geometry
@@ -307,16 +313,19 @@ nodes:
   parent_id: data-state-representation
   title: Learned Features
   status: active
-  proposal_id: tp_20261009_research_objects_v2
+  proposal_id: tp_20261010_research_objects_v3_core_object_intros
   applicable_object_roles: [internal, structural]
   introduction:
     en: >-
-      Learned features are coordinates introduced by an auxiliary decomposition to make
-      model activity easier to analyze. The resulting feature is the research object;
-      the SAE, transcoder, crosscoder, or ICA procedure belongs in Techniques.
+      Learned features are representational coordinates or directions obtained by applying
+      an auxiliary decomposition to model activations or to the input–output relation of a
+      component. Common sources include SAEs, transcoders, crosscoders, and ICA. Research
+      typically asks what these features represent, when they activate, and whether they
+      participate in model computation.
     zh: >-
-      Learned Features 是辅助分解方法引入的坐标，用来使模型活动更容易分析。这里的对象是分解得到的表征特征；
-      产生它的 SAE、transcoder、crosscoder 或 ICA 过程属于 Techniques 分类树。
+      Learned Features 是从模型激活或组件的输入—输出关系中，通过辅助分解方法学习得到的表征坐标或方向。
+      常见来源包括 SAE、transcoder、crosscoder 与 ICA。研究通常关注这些特征表示什么、在什么条件下激活，
+      以及是否参与模型计算。
 - node_id: sparse-dictionary-feature
   parent_id: learned-feature
   title: Sparse Dictionary Features
@@ -480,16 +489,19 @@ nodes:
   parent_id: research-object
   title: Native Model Components
   status: active
-  proposal_id: tp_20261009_research_objects_v2
+  proposal_id: tp_20261010_research_objects_v3_core_object_intros
   applicable_object_roles: [structural]
   introduction:
     en: >-
-      Native components are reusable computations or storage mechanisms already present
-      in the target model. Routing, transformation, memory, normalization, and unit-level
-      objects are separated so architecture-specific names need not become tree roots.
+      Native model components are internal structures defined directly by the model's
+      architecture and parameters to perform particular operations during a forward pass,
+      such as attention heads, MLPs, convolutional layers, or state-update modules. Research
+      typically asks what information they read, which transformation they perform, what
+      they produce, and how they causally contribute to model behavior.
     zh: >-
-      Native Model Components 是目标模型中原生存在的可复用计算或存储机制。本分支区分路由、变换、记忆、
-      归一化与单元级对象，使架构特有名称不必成为整棵树的根分支。
+      Native Model Components 是由模型架构和参数直接定义、在前向传播中执行特定运算的内部结构，
+      例如 attention head、MLP、卷积层或状态更新模块。研究这类对象通常关注它们读取什么信息、执行什么变换、
+      产生什么输出，以及对模型行为具有怎样的因果贡献。
 - node_id: routing-selection-component
   parent_id: native-component
   title: Routing and Selection Components
@@ -864,16 +876,20 @@ nodes:
   parent_id: research-object
   title: Model Parameters
   status: active
-  proposal_id: tp_20261009_research_objects_v2
+  proposal_id: tp_20261010_research_objects_v3_core_object_intros
   applicable_object_roles: [structural]
   introduction:
     en: >-
-      Parameter objects live in weight space rather than in one example's activation
-      trace. They are appropriate when a study localizes behavior to weights, analyzes
-      matrix structure, or interprets differences between trained models.
+      Model parameters are numerical quantities learned during training that determine
+      how the model computes at inference time. Collectively written as \(\theta\), they
+      include weight matrices, biases, convolutional kernels, and other trainable values.
+      Research typically asks how parameter structure shapes computation, whether
+      particular parameter subsets store or control knowledge and behavior, and how
+      training- or editing-induced changes correspond to changes in capability.
     zh: >-
-      Model Parameters 位于权重空间，而不是某个样本的一次激活轨迹中。当研究把行为定位到权重、分析矩阵结构，
-      或解释训练模型之间的差异时，应归入这一分支。
+      Model Parameters 是模型在训练过程中学习、并在推理时决定计算方式的数值量，通常统一记为 \(\theta\)，
+      包括权重矩阵、偏置、卷积核及其他可学习参数。研究这类对象通常关注参数的结构如何塑造模型计算，
+      知识或行为是否集中于特定参数集合，以及训练或编辑引起的参数变化如何对应能力变化。
 - node_id: weight-matrix-kernel
   parent_id: model-parameter
   title: Weight Matrices and Kernels
@@ -920,16 +936,19 @@ nodes:
   parent_id: research-object
   title: Composed Mechanisms
   status: active
-  proposal_id: tp_20261009_research_objects_v2
+  proposal_id: tp_20261010_research_objects_v3_core_object_intros
   applicable_object_roles: [structural]
   introduction:
     en: >-
-      Composed mechanisms are explanatory structures assembled from several states,
-      components, parameters, or causal relations. They explain how a behavior is
-      implemented, not merely where a correlated signal is visible.
+      Composed mechanisms describe how multiple internal states, model components, or
+      parameters work together through specific connections and causal relations to carry
+      out a computation or produce a behavior. Research typically identifies the variables,
+      information-flow paths, and composition rules involved, and tests whether the proposed
+      mechanism is necessary, sufficient, and faithful to the model's computation.
     zh: >-
-      Composed Mechanisms 是由多个状态、组件、参数或因果关系组成的解释结构。它们试图说明行为如何被实现，
-      而不仅是相关信号可以在哪里被观察到。
+      Composed Mechanisms 描述多个内部状态、模型组件或参数如何通过特定的连接与因果关系协同完成一项计算
+      或产生某种行为。研究这类对象通常需要识别参与机制的变量、信息传递路径及其组合方式，
+      并检验该机制对目标行为的必要性、充分性与忠实性。
 - node_id: path-edge-information-flow
   parent_id: composed-mechanism
   title: Paths, Edges, and Information Flow
