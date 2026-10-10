@@ -3,6 +3,11 @@
 Status: working draft
 Scope: Research Questions tab only; this document does not modify any approved taxonomy or classification event.
 
+The operational rules for writing and auditing bilingual RQ titles, introductions,
+progress summaries, paper assignments, and relationship rationales are defined in
+`docs/research-question-writing-guidelines.md`. Future RQ data updates must follow both
+documents.
+
 ## 1. What an RQ node represents
 
 An RQ node represents a scientific uncertainty that can be stated as a question and
