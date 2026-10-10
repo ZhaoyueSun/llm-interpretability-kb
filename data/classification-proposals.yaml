@@ -2506,3 +2506,35 @@ proposals:
     and Gates to Learned Intervention Masks and Gates. The tree structure and paper
     assignments are unchanged. The approved bilingual text is recorded on the affected
     nodes in techniques taxonomy version 21.
+- proposal_id: tp_20261010_techniques_v22_circuit_discovery_branch
+  kind: taxonomy_content
+  status: approved
+  created_at: '2026-10-10'
+  approved_at: '2026-10-10'
+  approval_basis: >-
+    The user requested a complete review of the Circuit Discovery parent and its six
+    child introductions, approved an explanation that treats discovery, mechanistic
+    interpretation, representational granularity, comparison, and verification as
+    complementary parts of the branch, and then approved writing all seven bilingual
+    introductions.
+  title: Clarify the Circuit Discovery workflow and child-method relationships
+  taxonomy_id: techniques
+  from_taxonomy_version: 21
+  resulting_taxonomy_version: 22
+  taxonomy_file: data/taxonomies/techniques.yaml
+  affected_node_ids:
+  - circuit-discovery
+  - manual-circuit-analysis
+  - automated-intervention-search
+  - attribution-edge-search
+  - feature-circuit-discovery
+  - circuit-comparison-universality
+  - solver-checkable-verification
+  revision_reason: >-
+    Present Circuit Discovery as a workflow that locates a compact subgraph, interprets
+    its information processing, evaluates its faithfulness, and tests its scope. Clarify
+    that the child nodes cover different search strategies, a feature-level graph
+    representation, and complementary forms of comparison or verification rather than
+    mutually exclusive methods. The tree structure, node titles, and paper assignments
+    are unchanged. The approved bilingual text is recorded on the affected nodes in
+    techniques taxonomy version 22.

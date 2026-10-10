@@ -1,6 +1,6 @@
 schema_version: 1
 taxonomy_id: techniques
-version: 21
+version: 22
 status: active
 title: Techniques
 nodes:
@@ -1135,118 +1135,159 @@ nodes:
   parent_id: technique
   title: Circuit Discovery
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v22_circuit_discovery_branch
   introduction:
     en: >-
-      Circuit discovery moves from isolated important components to an account of how
-      several components work together. A circuit is usually a sparse subgraph of heads,
-      MLPs, features, and directed edges that reproduces or explains a behavior. The
-      techniques here concern how that subgraph is proposed, searched, and validated;
-      the algorithm implemented by the circuit is the scientific result, not another
-      discovery technique.
+      A model usually performs a task through a sequence of information transfers among
+      several internal components rather than through a single attention head, MLP, or
+      feature acting alone. Circuit Discovery starts from a clearly specified model
+      behavior, represents the model as a computational graph of components and directed
+      connections, and searches for a relatively compact subgraph that accounts for that
+      behavior. It also seeks to explain how information is read, transformed, and passed
+      through the subgraph until it affects the output. A complete circuit analysis
+      typically identifies candidate components and connections, interprets their
+      functional roles, tests whether the resulting subgraph faithfully preserves the
+      target behavior, and asks whether the explanation generalizes to other inputs,
+      tasks, or models. The child nodes therefore cover complementary choices in search
+      strategy, representational granularity, and validation rather than mutually
+      exclusive methods; one paper may use several of them.
     zh: >-
-      Circuit Discovery 把研究从“哪些孤立组件重要”推进到“多个组件怎样协同工作”。
-      Circuit 通常是由 attention head、MLP、学习特征和有向边组成的稀疏子图，能够复现或解释某种行为。
-      这里分类的是如何提出、搜索和验证这个子图；子图实现的算法则是科学发现，而不是另一种发现技术。
+      模型完成一项任务，通常依赖多个内部组件之间连续的信息传递，而不是某个 attention head、MLP 或特征单独发挥作用。
+      Circuit Discovery 围绕一个明确的模型行为，把模型看作由组件和有向连接构成的计算图，从中寻找一个相对紧凑的子图，
+      并解释信息如何在这个子图中被读取、转换和传递，最终影响模型输出。完整的 circuit 分析通常包括确定候选组件和连接、
+      解释它们承担的功能、检验所得子图能否忠实保留目标行为，以及判断该解释能否推广到其他输入、任务或模型。
+      下面的子节点分别涉及 circuit 的搜索方式、表示粒度和验证方法，因此同一篇论文可能同时使用其中多种技术。
 - node_id: manual-circuit-analysis
   parent_id: circuit-discovery
   title: Hypothesis-Driven Circuit Analysis
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v22_circuit_discovery_branch
   introduction:
     en: >-
-      In hypothesis-driven analysis, researchers begin with a tentative story about the
-      computation—for example, one head finds a token and another copies its value. They
-      inspect activations and weights, intervene on predicted components, and repeatedly
-      revise the graph until it accounts for the observed behavior. This close reading
-      can produce unusually rich explanations, but it is time-consuming and may overlook
-      mechanisms outside the researcher's initial hypotheses.
+      Hypothesis-Driven Circuit Analysis builds an explanation of a model's computation
+      step by step around a particular behavior. Researchers combine evidence from
+      attention patterns, weights and activations, vocabulary projections, patching, and
+      ablation to propose functional roles for candidate components, then repeatedly test
+      and revise those hypotheses. The goal is not merely to list important components,
+      but to explain the sequence in which they read, transform, and transmit information
+      to carry out a computation. For example, one head may locate a relevant token and
+      another may write the corresponding information to the prediction position. This
+      approach can produce detailed mechanistic explanations, but it requires substantial
+      human judgment and may miss components or alternative circuits outside the initial
+      hypotheses.
     zh: >-
-      Hypothesis-Driven Circuit Analysis 从一个暂定的计算故事开始，例如某个 head 负责找到 token，另一个 head 负责复制其 value。
-      研究者检查激活和权重，对预测中的组件做干预，再反复修正计算图，直到它能够解释观察到的行为。
-      这种“精读模型”的方式可以产生非常丰富的解释，但成本高，也可能遗漏最初假设之外的机制。
+      Hypothesis-Driven Circuit Analysis 由研究者围绕某个具体行为逐步建立对模型计算过程的解释。研究者通常结合 attention pattern、
+      权重和激活分析、vocabulary projection、patching 与 ablation 等证据，提出某些组件可能承担的功能，再通过干预不断检验和修正这些假设。
+      最终目标不只是列出哪些组件重要，而是说明它们按什么顺序读取、转换和传递信息，从而共同实现某种计算。例如，一个 head 可能找到相关 token，
+      另一个 head 再把相应信息写入预测位置。这种方法能够形成细致的机制解释，但依赖大量人工判断，也可能遗漏初始假设之外的组件或替代 circuit。
 - node_id: automated-intervention-search
   parent_id: circuit-discovery
   title: Automated Intervention-Based Circuit Search
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v22_circuit_discovery_branch
   introduction:
     en: >-
-      Automated circuit search treats the model's computational graph as a large set of
-      candidate nodes and edges. Procedures such as ACDC repeatedly remove or patch
-      candidates, retaining those whose absence would damage the target behavior. The
-      automation makes larger searches possible, but the recovered circuit reflects the
-      search order, graph granularity, and metric used to decide what counts as damage.
+      Automated Intervention-Based Circuit Search treats the model's nodes and
+      connections as a search space and automatically tests which parts can be removed,
+      replaced, or patched without substantially damaging the target behavior. Methods
+      such as ACDC use a chosen dataset and evaluation metric to intervene repeatedly on
+      candidate edges or components, discard unnecessary elements, and recover a sparse
+      subgraph that largely preserves the original behavior. What these methods automate
+      is the search for which components and connections belong in the circuit; the
+      functional role of each retained element usually still requires further analysis.
+      Results also depend on the intervention baseline, graph granularity, search order,
+      and behavioral metric.
     zh: >-
-      Automated Circuit Search 把模型计算图看成大量候选节点与边组成的搜索空间。
-      ACDC 等方法反复移除或 patch 候选元素，保留那些一旦缺失就会损害目标行为的部分。
-      自动化使更大规模的搜索成为可能，但恢复出的 circuit 会受到搜索顺序、图粒度和“损害”评价指标的影响。
+      Automated Intervention-Based Circuit Search 把模型中的节点和连接视为候选搜索空间，并自动测试哪些部分可以移除、替换或 patch，
+      而不使目标行为明显受损。ACDC 等方法会根据预先选定的数据集和评价指标反复干预候选边或组件，逐步删去不必要的部分，
+      得到一个能够较好保留原模型行为的稀疏子图。这类方法主要自动化的是“哪些组件和连接应被纳入 circuit”的搜索过程；
+      所得子图中各组件具体承担什么功能，通常仍需进一步分析。结果也会受到干预基线、计算图粒度、搜索顺序和行为指标的影响。
 - node_id: attribution-edge-search
   parent_id: circuit-discovery
   title: Attribution-Based Edge Search
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v22_circuit_discovery_branch
   introduction:
     en: >-
-      Edge-attribution methods avoid intervening on every candidate edge. They estimate
-      how strongly each connection contributes to the target output—using EAP, EAP-IG,
-      contextual decomposition, or a related score—and then keep the highest-scoring
-      subgraph. This is much faster than exhaustive causal search, but the resulting
-      circuit must be checked because local scores and pruning thresholds can miss
-      interactions between individually weak edges.
+      Attribution-Based Edge Search avoids running a complete intervention experiment on
+      every candidate connection. Instead, it scores each edge's contribution to the
+      target output and uses those scores to select a candidate circuit. EAP and EAP-IG
+      use gradients to approximate the intervention effect of changing an edge, whereas
+      methods such as contextual decomposition estimate contributions by decomposing the
+      model's computation. These approaches can search large computational graphs much
+      more quickly, but a local edge score may miss cooperation or substitution among
+      several connections. The selected subgraph must therefore still be tested with
+      actual ablation, patching, or retained-circuit evaluations to determine whether it
+      faithfully reproduces the target behavior.
     zh: >-
-      Edge Attribution 方法避免对每条候选边逐一做干预。
-      它使用 EAP、EAP-IG、contextual decomposition 等方法估计每条连接对目标输出的贡献，再保留高分子图。
-      这比穷尽因果搜索快得多，但仍需验证所得 circuit，因为局部分数和剪枝阈值可能漏掉多条弱边之间的交互。
+      Attribution-Based Edge Search 不对每条候选连接分别运行完整的干预实验，而是先为各条边计算其对目标输出的贡献分数，
+      再根据分数筛选出候选 circuit。EAP 和 EAP-IG 使用梯度近似改变一条边所产生的干预效果，contextual decomposition 等方法则通过分解模型计算来估计不同连接传递的贡献。
+      这样可以更快地处理大型计算图，但边的局部分数不一定能反映多条连接之间的协同或替代关系。因此，筛选出的子图仍需通过实际消融、patching 或保留子图后的行为测试，
+      检查它是否忠实地复现目标行为。
 - node_id: feature-circuit-discovery
   parent_id: circuit-discovery
   title: Sparse Feature Circuit Discovery
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v22_circuit_discovery_branch
   introduction:
     en: >-
-      Native neurons are often polysemantic, so a circuit written only in terms of heads
-      and neurons may still be difficult to understand. Feature-circuit methods replace
-      some native nodes with SAE or transcoder features and trace how those features
-      influence one another. The resulting graph can be semantically clearer, but every
-      claim now depends on whether the learned feature dictionary faithfully represents
-      the original computation.
+      Conventional circuits often use attention heads, MLPs, or neurons as nodes, but
+      these units may participate in several unrelated computations and leave the graph
+      difficult to interpret. Sparse Feature Circuit Discovery instead uses sparse
+      features learned by SAEs, transcoders, or other dictionary-learning methods as
+      finer-grained nodes. Researchers then trace which features activate, how they
+      influence one another, and which features ultimately affect the model's output.
+      The resulting circuit can correspond more closely to interpretable semantics and
+      intermediate computations, but its reliability also depends on whether the feature
+      dictionary adequately reconstructs the model's activity and whether the inferred
+      feature-to-feature connections faithfully reflect the original computation.
     zh: >-
-      原生神经元往往具有 polysemanticity，因此只用 head 和 neuron 描述的 circuit 仍可能很难理解。
-      Feature Circuit 方法用 SAE 或 Transcoder 特征替换部分原生节点，并追踪这些特征如何相互影响。
-      得到的图在语义上可能更清楚，但每个主张也开始依赖学习字典是否忠实地表示了原始计算。
+      传统 circuit 通常以 attention head、MLP 或神经元作为节点，但这些单元可能同时参与多种不相关的计算，使所得图仍然难以解释。
+      Sparse Feature Circuit Discovery 使用 SAE、Transcoder 或其他字典学习方法得到的稀疏特征作为更细粒度的节点，再追踪哪些特征被激活、
+      它们之间如何传递影响，以及哪些特征最终作用于模型输出。这样得到的 circuit 往往更接近可理解的语义和中间计算，
+      但其可靠性同时取决于特征字典是否充分重构原模型活动，以及基于这些特征建立的连接是否忠实反映原模型中的计算。
 - node_id: circuit-comparison-universality
   parent_id: circuit-discovery
   title: Circuit Comparison and Universality Testing
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v22_circuit_discovery_branch
   introduction:
     en: >-
-      A circuit found in one model or prompt may be a local accident rather than a general
-      mechanism. Comparison studies align components or functional roles across tasks,
-      prompts, random seeds, architectures, modalities, or model scales and ask which
-      parts recur. Repeated structure provides evidence for reuse or universality, while
-      systematic differences show where a mechanistic explanation stops generalizing.
+      A circuit that works for one task, prompt, or model does not necessarily recur under
+      other conditions. Circuit Comparison and Universality Testing compares circuits
+      across tasks, input forms, random seeds, model scales, architectures, or modalities
+      to determine which components, connections, or functional roles are reused. The
+      comparison cannot rely only on matching component names or graph overlap: different
+      components may perform the same function, while apparently similar components may
+      play different roles in different settings. This analysis helps distinguish a
+      local case study from a computation reused across tasks or a mechanism with broader
+      universality.
     zh: >-
-      在一个模型或 prompt 中发现的 circuit，可能只是局部偶然现象，而不是一般机制。
-      比较研究会在任务、prompt、随机种子、架构、模态或模型规模之间对齐组件和功能角色，考察哪些结构反复出现。
-      重复结构支持复用或普适性；系统差异则告诉我们某个机制解释在何处不再成立。
+      一个 circuit 在某个任务、prompt 或模型中成立，并不意味着相同机制会在其他条件下重复出现。Circuit Comparison and Universality Testing
+      比较不同任务、输入形式、随机种子、模型规模、架构或模态中的 circuit，考察哪些组件、连接或功能角色得到复用。比较时不能只看组件名称或图结构是否重合，
+      因为不同组件可能承担相同功能，相似组件也可能在不同情境中发挥不同作用。该方法帮助判断一个机制解释是局部案例、可跨任务复用的计算模块，还是具有更广泛普适性的模型机制。
 - node_id: solver-checkable-verification
   parent_id: circuit-discovery
   title: Solver-Checkable Circuit Verification
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v22_circuit_discovery_branch
   introduction:
     en: >-
-      Empirical circuit tests cover only the examples that were run. Solver-checkable
-      verification translates a circuit claim—such as equivalence, invariance, or
-      robustness within a bounded input set—into constraints that an automated solver
-      can prove or refute. A successful proof is stronger than another test set, although
-      its guarantee extends only as far as the encoded assumptions and bounds.
+      Ordinary circuit validation relies on ablation, patching, or behavioral tests over
+      a finite collection of examples, so it establishes only what happened in the cases
+      that were tested. Solver-Checkable Circuit Verification translates a circuit claim
+      into formal constraints that an automated solver can prove or refute over an
+      explicitly bounded input domain. Such claims may concern functional equivalence,
+      edge necessity, invariance, or robustness to specified perturbations. A formal
+      proof can provide a stronger guarantee than adding more test examples, but the
+      guarantee applies only to the model, domain, and assumptions encoded in the
+      constraints. If the verified object has been simplified, replaced, or recalibrated,
+      the result is not automatically a proof about the original unmodified model.
     zh: >-
-      经验性 circuit 检验只能覆盖实际运行过的样本。
-      Solver-Checkable Verification 把“等价”“不变”或“在有界输入集合内稳健”等 circuit 主张转换为自动求解器可证明或反驳的约束。
-      成功证明比再增加一个测试集更强，但保证只能覆盖被编码进去的假设与边界。
+      一般的 circuit 验证依赖有限样本上的消融、patching 或行为测试，因此只能说明该 circuit 在已经测试的案例中有效。
+      Solver-Checkable Circuit Verification 把 circuit 主张转化为形式约束，让自动求解器在明确限定的输入范围内证明或反驳某些性质，
+      例如子图与目标计算是否等价、关键边是否必要，或输出是否对特定扰动保持不变。形式证明能够提供比增加测试样本更强的保证，
+      但保证只适用于编码进约束的模型、输入域和假设；如果验证对象经过了简化、替换或重新校准，结论也不能直接视为对未经修改原模型的证明。
 - node_id: steering-model-change
   parent_id: technique
   title: Steering and Model Change
