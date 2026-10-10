@@ -2662,3 +2662,34 @@ proposals:
     search as distinct leaves. The organizing node carries no paper assignments. Existing
     formalism and interchange assignments retain their stable leaf IDs; only papers whose
     recorded method explicitly centers Distributed Alignment Search move to the new leaf.
+- proposal_id: tp_20261010_techniques_v25_formal_temporal_intros
+  kind: taxonomy_content
+  status: approved
+  created_at: '2026-10-10'
+  approved_at: '2026-10-10'
+  approval_basis: >-
+    After causal abstraction was moved to Causal Intervention, the user requested complete
+    revised introductions for the remaining Formal and Temporal Mechanism Analysis branch,
+    reviewed the full Chinese draft for the parent and every descendant, and approved
+    writing it to the taxonomy.
+  title: Rewrite the Formal and Temporal Mechanism Analysis introductions
+  taxonomy_id: techniques
+  from_taxonomy_version: 24
+  resulting_taxonomy_version: 25
+  taxonomy_file: data/taxonomies/techniques.yaml
+  affected_node_ids:
+  - formal-temporal-analysis
+  - toy-model-construction
+  - checkpoint-trajectory-analysis
+  - analytic-training-dynamics
+  - neural-feature-learning-analysis
+  - nfm-agop-egop
+  - kernel-ntk-feature-regimes
+  - convolutional-nfm
+  - optimization-landscape-analysis
+  revision_reason: >-
+    Refocus the branch on the formation and evolution of mechanisms and learned
+    explanatory features after removing causal abstraction. Clarify the complementary
+    roles of controlled toy models, empirical checkpoint trajectories, analytic training
+    dynamics, neural feature-learning theory, and optimization-landscape analysis. The
+    tree structure, node titles, and paper assignments are unchanged.

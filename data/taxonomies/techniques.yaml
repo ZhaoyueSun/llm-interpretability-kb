@@ -1,6 +1,6 @@
 schema_version: 1
 taxonomy_id: techniques
-version: 24
+version: 25
 status: active
 title: Techniques
 nodes:
@@ -1615,156 +1615,226 @@ nodes:
   parent_id: technique
   title: Formal and Temporal Mechanism Analysis
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v25_formal_temporal_intros
   introduction:
     en: >-
-      A snapshot of a trained model cannot tell us how its mechanism emerged, whether it
-      had to emerge that way, or what exactly would count as the same mechanism. Formal
-      and temporal methods address these questions by following training over time,
-      constructing simplified systems that can be solved, or expressing mechanistic
-      claims mathematically. They complement empirical inspection with explanations of
-      origin, possibility, and identifiability.
+      Formal and Temporal Mechanism Analysis studies how features, circuits, and other
+      computational structures form, change, and stabilize during training, and why
+      particular training conditions produce them. A snapshot of a trained model shows
+      how it computes now, but not when that computation emerged, how it changed along the
+      way, or whether optimization could have selected a different solution. Researchers
+      can isolate a phenomenon in a controlled toy model, compare internal structure
+      across checkpoints, derive its evolution from training equations, or characterize
+      the stable solutions permitted by an objective. Neural Feature-Learning Analysis
+      asks how training selects and amplifies features, while Optimization-Landscape
+      Analysis examines why learned explanatory features admit alternative solutions or
+      recurring pathologies. Together, these approaches trace mechanism formation through
+      empirical trajectories and mathematical theory, subject to the simplifying models,
+      training settings, data distributions, and optimization assumptions they use.
     zh: >-
-      一张训练后模型的静态快照无法告诉我们：机制怎样出现、它是否必然以这种方式出现，以及什么才算“同一个机制”。
-      Formal and Temporal 方法通过追踪训练过程、构造可以求解的简化系统，或用数学形式表达机制主张来回答这些问题。
-      它们为经验观察补上机制的来源、可能性和可辨识性解释。
+      Formal and Temporal Mechanism Analysis 研究模型内部的特征、circuit 和其他计算结构怎样在训练中形成、变化并逐渐稳定，
+      以及训练条件为什么会产生这些结构。训练完成后的静态快照只能显示模型现在怎样计算，却难以说明这种计算方式何时出现、经历过哪些变化，或者是否还存在其他同样可行的解。
+      研究者可以构造受控的 Toy Model 来隔离目标现象，比较不同 checkpoint 中的内部结构，从训练方程推导机制的演化过程，或分析优化目标允许形成哪些稳定解。
+      Neural Feature-Learning Analysis 进一步研究训练依据什么原则选择和强化特征，而 Optimization-Landscape Analysis 则考察学习得到的解释性特征为何会出现不同解或系统性缺陷。
+      这些方法从经验轨迹和数学理论两个角度追溯机制的形成过程，但结论仍会受到模型简化、训练设置、数据分布和优化假设的限制。
 - node_id: toy-model-construction
   parent_id: formal-temporal-analysis
   title: Controlled Toy-Model Construction
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v25_formal_temporal_intros
   introduction:
     en: >-
-      A toy model deliberately removes the complexity of a production-scale network so
-      that one phenomenon—such as superposition, grokking, or an induction circuit—can be
-      observed in full. Researchers can control the data, architecture, and objective,
-      then inspect every relevant weight and activation or derive the solution
-      analytically. The clarity is valuable, but one must still show which conclusions
-      survive when returning to large, naturally trained models.
+      A Controlled Toy Model deliberately simplifies the data distribution, task,
+      architecture, or training objective so that a phenomenon such as superposition,
+      polysemanticity, grokking, or circuit formation can be observed in full.
+      Researchers can inspect every relevant weight and activation, vary capacity,
+      sparsity, or data structure, repeat training across random seeds, and sometimes
+      derive the optimal representation or learned algorithm analytically. This differs
+      from Mechanism Induction and Circuit Construction: that family requires a model to
+      implement a mechanism specified in advance, whereas a toy model usually creates an
+      analyzable environment and lets training select the solution. Toy models can reveal
+      conditions under which a mechanism may form and suggest why, but their conclusions
+      must still be tested in larger models, natural data, and more complex tasks.
     zh: >-
-      Toy Model 有意移除生产级网络的复杂性，让 superposition、grokking 或 induction circuit 等单一现象能够被完整观察。
-      研究者可以控制数据、架构和训练目标，检查所有相关权重与激活，甚至解析推导出解。
-      这种清晰性非常宝贵，但仍需说明哪些结论在回到大型、自然训练的模型后依然成立。
+      Controlled Toy Model 有意简化数据分布、任务、模型架构或训练目标，使 superposition、polysemanticity、grokking 或 circuit formation 等现象能够被完整观察。
+      研究者可以检查所有相关权重和激活，改变容量、稀疏度或数据结构，在不同随机种子下重复训练，有时还能解析推导模型的最优表示或学习到的算法。
+      它与 Mechanism Induction and Circuit Construction 不同：后者要求模型实现一个事先指定的机制，而 Toy Model 通常只是创造一个可以分析的环境，让模型通过训练自行选择解决方案。
+      Toy Model 可以揭示某种机制可能形成的条件和原因，但仍需进一步验证这些结论能否推广到更大模型、自然数据和复杂任务。
 - node_id: checkpoint-trajectory-analysis
   parent_id: formal-temporal-analysis
   title: Checkpoint and Training-Trajectory Analysis
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v25_formal_temporal_intros
   introduction:
     en: >-
-      Checkpoint analysis turns training into a time series. By applying the same probes,
-      circuit tests, or representation measurements at many saved checkpoints,
-      researchers can see when a capability appears, whether its mechanism changes, and
-      which internal developments precede a behavioral transition. Temporal precedence
-      narrows the causal story, although it does not by itself explain why optimization
-      produced the observed sequence.
+      Checkpoint and Training-Trajectory Analysis saves a model at different stages of
+      training and repeats the same representation measurements, probes, circuit
+      analyses, or causal experiments at each checkpoint. This reveals when a capability
+      appears, whether its associated features or circuits emerge gradually or reorganize
+      abruptly, and whether the model changes its internal solution while preserving
+      similar behavior. Matching components by index alone can be misleading because a
+      function may migrate, split, or be recombined during training; cross-checkpoint
+      comparisons may instead require alignment by function, activation pattern, or
+      representational similarity. An internal change that precedes a behavioral change
+      narrows the set of plausible mechanism hypotheses, but does not by itself show that
+      the former caused the latter. Random seeds, data order, and training hyperparameters
+      can also alter the observed trajectory.
     zh: >-
-      Checkpoint Analysis 把训练过程变成一条时间序列。
-      在多个保存点重复相同的 probe、circuit 检验或表征测量，可以看到能力何时出现、机制是否改变，
-      以及哪些内部发展先于行为转变。时间先后能缩小因果故事的范围，却不能单独解释优化为何产生这种顺序。
+      Checkpoint and Training-Trajectory Analysis 保存训练不同阶段的模型，并在各个 checkpoint 上重复相同的表征测量、probe、circuit analysis 或因果实验。
+      这样可以观察某种能力何时出现，相关特征或 circuit 是逐渐形成还是突然重组，以及模型在行为表现相近时是否更换了内部解决方案。
+      比较时不能只追踪编号相同的神经元或 attention head，因为组件的功能可能在训练中迁移、分裂或重新组合；必要时需要根据功能、激活模式或表示相似性进行跨 checkpoint 对齐。
+      内部变化先于行为变化可以缩小机制假设的范围，但不能单独证明前者造成了后者；随机种子、数据顺序和训练超参数也可能改变观察到的轨迹。
 - node_id: analytic-training-dynamics
   parent_id: formal-temporal-analysis
   title: Analytic Optimization and Training Dynamics
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v25_formal_temporal_intros
   introduction:
     en: >-
-      Analytic training-dynamics work replaces a purely empirical learning curve with a
-      mathematical account of how gradient descent moves the parameters. Under a
-      simplified data distribution or architecture, researchers derive when a feature,
-      circuit, or phase transition should appear and what controls its timescale. The
-      derivation can make precise predictions, but those predictions inherit every
-      simplifying assumption of the analyzed regime.
+      Analytic Optimization and Training Dynamics writes down parameter-update equations
+      for simplified models, data distributions, and optimization rules, then derives how
+      features or circuits evolve during training. Researchers can ask which solutions
+      appear first, which eventually become stable, when a phase transition occurs, and
+      how data scale, initialization, learning rate, or regularization changes the
+      process. Such analyses can explain, for example, why a solution that memorizes the
+      training data emerges before a better-generalizing solution later becomes dominant.
+      The distinction from Checkpoint Analysis is that checkpoints record what happened,
+      whereas analytic dynamics aims to explain why it happened and predict the effects
+      of changing the training conditions. Its conclusions require empirical validation
+      and apply only within the simplified assumptions used in the derivation.
     zh: >-
-      Analytic Training Dynamics 不只绘制经验学习曲线，而是从数学上解释梯度下降如何移动参数。
-      在简化的数据分布或架构下，研究者推导特征、circuit 或相变应在何时出现，以及什么决定其时间尺度。
-      这种推导能产生精确预测，但预测也会继承分析区间中的每一项简化假设。
+      Analytic Optimization and Training Dynamics 为经过简化的模型、数据分布和优化规则写出参数更新方程，并从这些方程推导特征或 circuit 随训练变化的轨迹。
+      研究者可能分析哪些解首先出现、哪些解最终稳定、何时发生相变，以及数据规模、初始化、学习率和正则化如何改变这些过程。
+      例如，这类分析可以解释为什么记忆训练样本的解先形成，而具有更好泛化能力的解在更晚阶段占据主导。
+      它与 Checkpoint Analysis 的区别在于：Checkpoint Analysis 记录实际发生了什么，这里则试图从训练方程解释为什么发生，并预测改变训练条件后会出现什么结果。
+      推导能够提供比经验曲线更明确的机制解释，但其结论只在采用的模型和简化假设范围内成立，仍需通过实际训练实验检验。
 - node_id: neural-feature-learning-analysis
   parent_id: formal-temporal-analysis
   title: Neural Feature-Learning Analysis
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v25_formal_temporal_intros
   introduction:
     en: >-
-      Neural feature-learning analysis asks a different question from dictionary learning:
-      not “Can we fit an interpretable basis afterward?” but “Which directions did the
-      original network itself learn to emphasize, and why?” It compares geometry derived
-      from weights, gradients, and kernels to characterize how training reshapes the
-      input space. The goal is a mechanism of feature learning inside the trained model,
-      rather than another explanatory model placed on top of it.
+      Neural Feature-Learning Analysis asks why training causes the original model to
+      emphasize particular input directions or data patterns. Here, a feature is mainly a
+      direction that can affect prediction and acquires a distinguished role in the
+      geometry of the weights or model function; it need not correspond directly to a
+      concept that can be named in natural language. By comparing weights, input
+      gradients, kernels, and training parameterizations, researchers determine whether a
+      model merely adjusts its outputs over nearly fixed features or continually reshapes
+      its representation during training. This differs from Feature Dictionary Learning,
+      which fits a separate feature decomposition to activations after the target model
+      has been trained. The child nodes study weight–gradient alignment, feature learning
+      versus fixed-kernel behavior at infinite width, and the corresponding theory for
+      convolutional networks.
     zh: >-
-      Neural Feature-Learning Analysis 与字典学习询问的是不同问题：不是“事后能否拟合一个可解释基底”，
-      而是“原网络自身学会强调了哪些方向，以及为什么”。它比较由权重、梯度和 kernel 导出的几何，刻画训练如何重塑输入空间。
-      目标是解释原模型内部的特征学习机制，而不是在模型之上再放一个解释模型。
+      Neural Feature-Learning Analysis 研究训练为什么会让原模型强调某些输入方向或数据模式。
+      这里的“特征”主要指能够影响预测，并在权重或模型函数的几何结构中获得特殊地位的方向，不一定直接对应可以用自然语言命名的概念。
+      研究者通过比较权重、输入梯度、kernel 和不同训练参数化，判断模型是在一组近似固定的特征上调整输出，还是会在训练中不断重塑用于表示数据的方向。
+      它与 Feature Dictionary Learning 不同：字典学习是在模型训练完成后，另外学习一套特征来分解已有激活；这里分析的是原网络自身如何在训练中形成特征。
+      下面的子节点分别研究梯度外积与权重几何的对应、无限宽和 kernel 极限下是否发生特征学习，以及这些思想在卷积网络中的形式。
 - node_id: nfm-agop-egop
   parent_id: neural-feature-learning-analysis
   title: NFM–AGOP/EGOP Alignment and Recursive Feature Machines
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v25_formal_temporal_intros
   introduction:
     en: >-
-      The Neural Feature Ansatz observes that a layer's weight geometry often aligns with
-      the average or expected outer product of input gradients. Intuitively, directions
-      along which the output is sensitive receive greater emphasis in the learned
-      representation. Recursive Feature Machines turn this observation into an algorithm:
-      gradient-derived geometry repeatedly updates a kernel so that it can learn features
-      without conventional backpropagation through a deep neural network.
+      For a trained predictor, researchers can differentiate the output with respect to
+      the input or a layer's input. A single gradient indicates which small changes most
+      readily affect the current prediction. Taking its outer product and averaging over
+      a finite dataset gives an AGOP; taking the expectation over a data distribution
+      gives an EGOP. Their stronger directions summarize sensitivities that persist across
+      many examples. The Neural Feature Ansatz tests whether this gradient geometry aligns
+      with the weight geometry formed by training, motivating the hypothesis that training
+      amplifies directions important to prediction. This alignment must be established
+      theoretically or empirically; it is not an automatic identity and correlation alone
+      does not prove a unique learning mechanism. Recursive Feature Machines turn the
+      relationship into an algorithm by using the current predictor's AGOP to update a
+      kernel's feature metric, refitting the predictor, and iterating so that an initially
+      fixed-kernel model can learn task-relevant features.
     zh: >-
-      Neural Feature Ansatz 发现，一层权重的几何往往与输入梯度的平均或期望外积对齐。
-      直观上，输出最敏感的方向会在学到的表征中获得更大权重。
-      Recursive Feature Machine 进一步把这一观察变成算法：反复用梯度导出的几何更新 kernel，
-      使传统 kernel model 也能学习特征，而无需通过深层神经网络做常规反向传播。
+      对于一个已经训练的预测函数，研究者可以计算模型输出相对于输入或某层输入的梯度。
+      一个样本上的梯度表示，沿哪些输入方向做小幅改变最容易影响当前预测；将梯度与自身做外积，再在有限数据集上取平均得到 AGOP，在数据分布上取期望则得到 EGOP。
+      矩阵中较强的方向因此概括了模型在许多样本上持续敏感的输入方向。Neural Feature Ansatz 检查这种梯度几何是否与网络训练后形成的权重几何对齐，并据此提出一种特征学习解释：训练会在权重中强化对预测重要的方向。
+      这种对齐是一项需要通过理论和实验检验的假设，并不意味着权重几何与梯度外积天然相同，也不能单靠相关性证明唯一的训练机制。
+      Recursive Feature Machine 进一步把这一关系转化为学习算法：用当前预测器的 AGOP 更新 kernel 中衡量样本距离的特征度量，再重新拟合预测器并反复迭代，使原本使用固定相似度的 kernel model 也能逐步学习与任务有关的特征。
 - node_id: kernel-ntk-feature-regimes
   parent_id: neural-feature-learning-analysis
   title: Kernel and NTK Feature Regimes
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v25_formal_temporal_intros
   introduction:
     en: >-
-      Infinite-width theory can make neural-network training mathematically tractable,
-      but the standard NTK limit often behaves like a fixed kernel: predictions change
-      while learned features barely move. Kernel/NTK regime analysis identifies which
-      parameterizations lead to this “lazy” behavior and which allow genuine feature
-      learning even at infinite width. This clarifies when a kernel description is an
-      adequate model of training and when it erases the phenomenon we want to explain.
+      Infinite-width analysis studies the limit in which network width grows without
+      bound, making aspects of neural-network training mathematically tractable. Under
+      standard Neural Tangent Kernel conditions, the network usually remains close to its
+      initialization: training changes the prediction while the hidden representation and
+      the kernel that defines sample similarity barely move. This is often called lazy
+      training. Other parameterizations, such as Maximal Update Parameterization, permit
+      order-one changes to hidden representations even at infinite width and therefore
+      retain genuine feature learning. Kernel and NTK Feature Regime Analysis identifies
+      which choices of initialization, learning rate, and width scaling produce fixed
+      features and which allow the task to reshape the representation. It clarifies when
+      a fixed-kernel account is adequate and when feature formation must be modeled, while
+      recognizing that an infinite-width limit need not directly describe a finite network
+      trained for a finite time.
     zh: >-
-      无限宽理论可以让神经网络训练变得易于数学分析，但标准 NTK 极限往往像固定 kernel：预测在变，学习特征却几乎不动。
-      Kernel/NTK Regime Analysis 区分哪些参数化会产生这种 lazy training，哪些参数化即使在无限宽下仍能真正学习特征。
-      它说明何时 kernel 描述足够准确，何时这种描述反而抹掉了我们想解释的现象。
+      无限宽分析通过研究网络宽度不断增加时的极限，简化对神经网络训练的数学描述。
+      在标准 Neural Tangent Kernel（NTK）条件下，网络通常停留在初始化附近：训练可以改变最终预测，但隐藏表示和决定样本相似度的 kernel 几乎保持不变，这种情况常被称为 lazy training。
+      其他参数化方式，例如 Maximal Update Parameterization，可以让隐藏表示在无限宽极限下仍发生常数量级的变化，从而保留真正的 feature learning。
+      Kernel and NTK Feature Regime Analysis 研究哪些初始化、学习率和宽度缩放方式会产生固定特征，哪些设置允许任务重新塑造表示。
+      它帮助判断模型的训练行为是否可以由固定 kernel 解释，还是必须考虑特征本身的形成和演化；不过，无限宽极限中的结论不一定能够直接描述有限宽、有限训练时间的实际网络。
 - node_id: convolutional-nfm
   parent_id: neural-feature-learning-analysis
   title: Convolutional NFM and Network-as-Filter Analysis
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v25_formal_temporal_intros
   introduction:
     en: >-
-      Convolutional NFM adapts the feature-ansatz idea to spatially shared filters. It
-      compares the covariance of learned filters with gradient outer products computed
-      on local image patches, asking whether the network amplifies patch directions that
-      matter for the task. The same geometry can be used to build convolutional recursive
-      feature machines, offering a “network as learned filter” account of features such
-      as edge detectors.
+      A convolutional network applies the same filters at different spatial locations, so
+      its feature learning can be studied through local image patches. The Convolutional
+      Neural Feature Ansatz computes outer products of output gradients with respect to
+      these patches and compares their average geometry with the covariance of the filters
+      formed by training, testing whether the network amplifies local directions important
+      to the task. Convolutional Recursive Feature Machines turn the relationship into an
+      algorithm by alternating convolutional-kernel regression with AGOP-based patch
+      transformations; deeper variants can learn transformations at successive scales.
+      This analysis explains which local variations the filter population emphasizes. It
+      does not directly assign a semantic label to each filter or show how the filters
+      compose into a complete computational circuit.
     zh: >-
-      Convolutional NFM 把 Neural Feature Ansatz 扩展到空间共享的卷积滤波器。
-      它比较学习滤波器的协方差与局部图像 patch 上的梯度外积，检验网络是否放大了对任务重要的 patch 方向。
-      同样的几何还可构造卷积 Recursive Feature Machine，从“网络在学习任务适配滤波器”的角度解释边缘检测器等特征。
+      卷积网络在不同空间位置重复使用同一组滤波器，因此其特征学习需要在局部图像 patch 上分析。
+      Convolutional Neural Feature Ansatz 计算模型输出相对于这些局部 patch 的梯度外积，并比较其平均几何与卷积层训练后形成的滤波器协方差，检验网络是否强化了对任务预测重要的局部方向。
+      Convolutional Recursive Feature Machine 则把这种关系转化为算法：在卷积 kernel 回归与基于 AGOP 的 patch 变换之间反复迭代，使 kernel 逐渐适应数据中的局部结构；深层版本还可以逐层学习不同尺度的变换。
+      该方法解释的是卷积滤波器整体偏向哪些局部变化，而不是直接为单个滤波器贴上语义标签，也不会自动说明这些滤波器怎样组合成完整的计算 circuit。
 - node_id: optimization-landscape-analysis
   parent_id: formal-temporal-analysis
   title: Optimization-Landscape Analysis
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v25_formal_temporal_intros
   introduction:
     en: >-
-      Many interpretability methods solve an optimization problem, but a good loss value
-      need not imply a uniquely correct explanation. Landscape analysis studies whether
-      the target decomposition is identifiable, which equivalent solutions exist, and
-      whether optimization contains spurious minima or unstable critical points. It
-      helps distinguish limitations of the optimizer from limitations built into the
-      explanatory objective itself.
+      The explanatory features produced by an SAE, Transcoder, or Crosscoder are
+      themselves formed by optimization. Optimization-Landscape Analysis asks which
+      solutions reconstruction and sparsity objectives permit, whether different
+      solutions are equivalent, whether the decomposition is identifiable from the data,
+      and whether the landscape contains spurious local minima or unstable solutions.
+      Analyses of Sparse Dictionary Learning show that dead features, feature absorption,
+      duplicate features, or polysemantic features may be genuine optima or local minima
+      of the standard objective rather than mere implementation failures. Researchers can
+      characterize the biconvex structure within a fixed activation pattern or add
+      constraints such as feature anchoring to reduce equivalent and spurious solutions.
+      The goal is to distinguish an optimizer that failed to find a suitable solution
+      from an objective that cannot uniquely specify the desired explanation. Theoretical
+      conclusions remain conditional on assumptions about sparsity, linear generative
+      structure, and the data distribution.
     zh: >-
-      许多可解释性方法都在求解优化问题，但较低的 loss 并不意味着找到了唯一正确的解释。
-      Optimization-Landscape Analysis 研究目标分解是否可辨识、存在哪些等价解，以及优化中是否存在伪极小值或不稳定临界点。
-      它帮助区分：问题来自优化器没有找到答案，还是解释目标本身就无法唯一决定答案。
+      通过 SAE、Transcoder 或 Crosscoder 得到的解释性特征，本身也是优化过程形成的结果。
+      Optimization-Landscape Analysis 研究重构与稀疏目标允许产生哪些解、不同解之间是否等价、目标分解能否由数据唯一确定，以及训练中是否存在伪局部极小值或不稳定解。
+      对 Sparse Dictionary Learning 的分析表明，即使优化器成功降低了 loss，所得字典仍可能出现 dead features、feature absorption、重复特征或 polysemantic features；这些现象有时是目标函数允许的真正最优解或局部极小值，而不只是代码或训练失败。
+      研究者可以进一步分析固定激活模式下的双凸结构，或通过 feature anchoring 等约束减少等价解和伪解。
+      该方向帮助区分两个问题：优化器没有找到合适的解，还是目标函数本身就无法唯一确定所期待的解释。相关结论仍依赖稀疏性、线性生成过程和数据分布等理论假设。
 - node_id: evaluation-protocols
   parent_id: technique
   title: Evaluation and Falsification Protocols
