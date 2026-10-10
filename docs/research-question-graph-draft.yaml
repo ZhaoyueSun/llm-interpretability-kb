@@ -906,18 +906,16 @@ nodes:
   - rq_id: rq-knowledge-localization-routing
     family_id: computational-mechanism
     question_en: >-
-      Where is factual knowledge stored, routed, combined, and used to generate answers?
-    question_zh: 事实知识在哪里被存储、路由、组合并用于生成答案？
+      How is factual knowledge localized, retrieved, and routed to an answer?
+    question_zh: 事实知识如何被定位、检索并传递到答案？
     introduction_en: >-
-      This question moves from individual knowledge neurons or parameter locations to the factual-recall process unfolding across tokens, layers, components, and coordinated knowledge circuits.
+      This question asks how a factual association enters model computation: whether it is concentrated in particular neurons or weights, how it is retrieved from a subject and relation, and how it is routed through layers and components to the answer position. Being able to edit a fact at one location does not show that the fact is stored only there. A fuller account must distinguish storage, retrieval, routing, and answer generation.
     introduction_zh: >-
-      该问题从单个 knowledge neuron 或参数位置，推进到沿 token、层和组件展开的事实召回过程以及协同知识电路。
+      该问题研究一条事实知识如何进入模型计算：它是否集中在少量神经元或权重中，如何从主语和关系中被取回，又如何经过不同层和组件传递到最终答案位置。“能够在某处编辑事实”不等于“事实只存储在那里”；完整解释需要区分知识存储、信息检索、跨位置路由和答案生成。
     progress_en: >-
-      Knowledge research advanced from unit-level localization in knowledge neurons to token-by-layer causal tracing, decomposition of factual-recall pathways, and end-to-end knowledge circuits.
-      The picture has shifted from static storage to routing and composition, but localization does not consistently predict editing success and stable singular knowledge locations remain disputed.
+      Knowledge Neurons first identified small sets of FFN neurons with causal effects on particular factual expressions, although neurons are shared across facts and editing succeeds only partially. ROME then used causal tracing to locate middle-layer MLPs at the final subject token and rewrote associations through rank-one updates, establishing high-leverage write locations without proving exclusive storage. Later work decomposed recall into early MLP enrichment of subject representations followed by late attention-head transport to the answer position. Knowledge Circuits incorporated embeddings, MLPs, and attention heads into end-to-end graphs, showing that factual expression depends on coordinated components. The picture has shifted from isolated “knowledge neurons” to distributed storage, retrieval, and routing, but unique knowledge locations and the ability of localization to predict editing success remain disputed.
     progress_zh: >-
-      知识研究从 knowledge neurons 的单元定位，推进到 causal tracing 的 token—层定位、事实回忆路径拆解以及端到端 knowledge circuits。
-      当前图景已由静态“存在哪里”扩展为“如何被路由和组合”，但定位结果与编辑效果并不总一致，知识是否具有稳定单一位置仍有争议。
+      Knowledge Neurons 首先发现少量 FFN 神经元与特定事实表达存在因果联系，但同一关系会共享神经元，编辑成功率也有限。ROME 随后通过 causal tracing 定位主语末词元的中层 MLP，并以秩一更新改写事实关联，证明这些位置是高杠杆写入点，但没有证明知识只存于此处。事实回忆路径研究进一步把过程拆成两个阶段：早期 MLP 在主语位置丰富属性信息，后期注意力头将其传递到答案位置。Knowledge Circuits 又把嵌入、MLP 和注意力头纳入端到端电路，显示知识表达依赖多类组件协作。当前图景已经从“知识神经元”转向分布式的存储、检索和路由过程，但是否存在稳定唯一的知识位置，以及定位结果能否可靠预测编辑效果，仍无定论。
     first_date: '2021-04-18'
     primary_paper_ids:
       - p_2021_dai_knowledge_neurons_in
@@ -996,19 +994,16 @@ nodes:
   - rq_id: rq-behavior-circuit
     family_id: computational-mechanism
     question_en: >-
-      Can a model behavior be reduced to a complete, intervenable, end-to-end component circuit?
-    question_zh: 能否把一项模型行为还原为完整、可干预的端到端组件电路？
+      Can a specific model behavior be explained as an end-to-end computational circuit?
+    question_zh: 一个具体行为能否被解释为端到端计算电路？
     introduction_en: >-
-      This question goes beyond locating correlated components to explaining how information passes among them to implement an algorithm.
-      Candidate circuits should satisfy conditions such as sufficiency, necessity, and minimality.
+      This question attempts to decompose a specific model behavior into connected components, explaining what each component computes, how information travels along the resulting paths, and whether the circuit is sufficient and necessary for the behavior. It differs from merely ranking high-attribution components and from studying circuit-discovery algorithms. The intended result is an interventionally tested, task-level computational explanation.
     introduction_zh: >-
-      该问题从定位相关组件推进到解释信息如何在组件之间传递并实现算法，要求候选回路满足 sufficiency、necessity 和 minimality 等条件。
+      该问题尝试把模型的一项具体行为分解为一组相互连接的组件，并说明每个组件执行什么操作、信息如何沿路径传递，以及该电路对行为是否充分且必要。它不同于只寻找高归因组件，也不同于研究自动发现电路的方法；核心产物是一个经干预检验的、任务级计算解释。
     progress_en: >-
-      Case studies of indirect-object identification, numerical comparison, arithmetic, syllogistic inference, and visual counting have demonstrated end-to-end intervenable circuit analysis across capabilities and modalities.
-      Results still emphasize carefully selected behaviors and limited models, with circuit completeness, distributional robustness, and replication at frontier scale remaining major bottlenecks.
+      A study of indirect object identification (IOI) first provided a functionally organized end-to-end attention circuit in GPT-2 Small and explicitly tested its faithfulness, completeness, and minimality. Research on numerical comparison then connected attention-based information transport with numerical transformations in late MLPs. Studies of simple arithmetic used causal mediation to localize operand and result flows, while work on syllogistic inference found a partially reusable middle-term suppression pathway and identified interference from commonsense beliefs. Visual counting extended circuit analysis to a perception-to-number-abstraction mechanism. Work on 70B Chinchilla also localized a compact multiple-choice output mechanism, though not the complete upstream computation. These studies establish the feasibility of end-to-end explanations in small models and controlled tasks, but circuits are rarely unique, may be obscured by redundancy and self-repair, and seldom transfer unchanged across tasks or scales.
     progress_zh: >-
-      IOI、数值比较、算术、三段论和视觉计数等案例已经展示从行为到端到端可干预电路的完整分析，并把范式扩展到不同能力和模态。
-      现有成果仍以精心选择的行为和有限模型为主，电路的完整性、跨分布保持与前沿规模复现仍是主要瓶颈。
+      针对间接宾语识别（Indirect Object Identification, IOI）的研究，首次为 GPT-2 Small 给出了功能分工明确的端到端注意力电路，并检验了该电路的保真性、完整性和最小性。随后，对数值大小比较的研究把注意力头的信息传递与晚层 MLP 的数值变换连接起来；对简单算术的研究使用因果中介分析定位操作数与结果的信息流；对三段论推理的研究发现了可在部分论式间复用的中项抑制路径，同时揭示常识知识造成的信念偏置。视觉计数研究又将电路分析扩展为“个体感知—数字抽象”机制。在 70B 参数的 Chinchilla 中，研究者也定位出了多项选择题输出阶段的紧凑机制，但尚未恢复完整的上游计算。现有工作证明，在小模型和受控任务中构建端到端电路解释是可行的；不过电路通常并不唯一，会受到冗余与自修复影响，也很少能够原样迁移到新任务或更大模型。
     first_date: '2022-11-01'
     primary_paper_ids:
       - p_2022_wang_interpretability_in_the
@@ -1944,6 +1939,11 @@ edges:
     type: extends
     evidence_status: direct-citation
     rationale_zh: 从定位单一事实的存储与调用，扩展到参数记忆和上下文证据同时存在时如何竞争与路由。
+  - source: rq-knowledge-localization-routing
+    target: rq-latent-knowledge
+    type: extends
+    evidence_status: analyst-inference
+    rationale_zh: 从解释事实知识被成功检索并传递到答案的过程，扩展到模型未表达正确答案时如何判断相关知识是否仍存在于内部表示中。
   - source: rq-latent-knowledge
     target: rq-representation-control
     type: extends
