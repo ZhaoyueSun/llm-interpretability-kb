@@ -2178,3 +2178,50 @@ proposals:
       “eye” 概念贡献了多少，以及这些概念出现在图像的什么位置，从而同时回答证据“是什么”和“在哪里”。
       这些结果会受到传播规则、稳定化方式和概念通道选择的影响，因此仍然是对当前预测的归因，而不是因果证明；
       若要确认模型是否必须使用某个概念，还需要通过移除、替换或插入该概念进行干预验证。
+- proposal_id: tp_20261010_techniques_v14_shap_workflow
+  kind: taxonomy_content
+  status: approved
+  created_at: '2026-10-10'
+  approved_at: '2026-10-10'
+  approval_basis: >-
+    The user approved a more concrete explanation of SHAP's marginal-contribution
+    calculation, output interpretation, practical approximations, and dependence on the
+    definition of a missing feature.
+  title: Explain the SHAP attribution workflow
+  taxonomy_id: techniques
+  from_taxonomy_version: 13
+  resulting_taxonomy_version: 14
+  taxonomy_file: data/taxonomies/techniques.yaml
+  affected_node_ids: [shapley-attribution]
+  revision_reason: >-
+    Replace the abstract cooperative-game analogy with an operational explanation,
+    illustrate positive and negative SHAP values, connect the parent node to KernelSHAP
+    and FastSHAP, and make the method's baseline-dependent evidential scope explicit.
+    The tree structure and paper assignments are unchanged.
+  approved_introduction:
+    en: >-
+      SHAP explains, for a particular input, how much each feature raises or lowers the
+      model's prediction relative to a baseline. It treats tokens, image regions, or
+      tabular variables as members that participate in making the prediction. To estimate
+      one feature's contribution, SHAP adds it to many different combinations of the
+      other features, measures how the model output changes, and takes a weighted average
+      of these marginal changes. In sentiment classification, for example, "not" may
+      receive a negative SHAP value because it pulls the positive-class score down, while
+      "excellent" may receive a positive value because it pushes that score up. Adding
+      all feature-level SHAP values to the baseline output reconstructs the prediction
+      being explained. Exact computation requires considering a number of combinations
+      that grows exponentially with the number of features, so KernelSHAP estimates the
+      values through sampling and weighted regression, while FastSHAP trains an explainer
+      to predict them directly. The result nevertheless depends on what counts as a
+      feature and how an absent feature is represented: deleting a token, masking it,
+      setting it to zero, or sampling a replacement from a conditional distribution can
+      produce different attributions. SHAP therefore provides an attribution under a
+      particular baseline and definition of absence, not causal proof.
+    zh: >-
+      SHAP 解释的是：对于某个具体输入，各个特征分别让模型的预测相对于基线升高或降低了多少。
+      它把 token、图像区域或表格变量等视为参与预测的“成员”。为了计算某个特征的贡献，SHAP 会把它加入许多不同的特征组合，
+      比较加入前后模型输出的变化，再对这些边际变化进行加权平均。例如，在情感分类中，“not” 可能得到负的 SHAP 值，表示它把正面预测向下拉；
+      “excellent” 可能得到正值，表示它把预测向上推。各特征的 SHAP 值与基线输出相加，可以还原当前预测。
+      精确计算需要考察数量随特征数指数增长的组合，因此 KernelSHAP 通过抽样和加权回归进行估计，FastSHAP 则训练一个解释器直接预测这些值。
+      不过，结果会受到“什么算一个特征”以及“特征缺失时怎样替代”的影响；删除 token、使用掩码、置零或从条件分布采样，可能得到不同的归因。
+      因此，SHAP 提供的是在特定缺失定义和基线下的归因，而不是因果证明。
