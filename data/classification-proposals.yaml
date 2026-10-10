@@ -2721,3 +2721,24 @@ proposals:
     measurement, and controlled cross-method comparison without repeating the child list
     in the parent introduction. The tree structure, node titles, and paper assignments
     are unchanged.
+- proposal_id: tp_20261010_research_objects_v2_representation_state_intro
+  kind: taxonomy_content
+  status: approved
+  created_at: '2026-10-10'
+  approved_at: '2026-10-10'
+  approval_basis: >-
+    The user requested that the Representation States introduction define the node on its
+    own terms rather than comparing it with the distant Native Model Components branch,
+    and explicitly approved updating the text.
+  title: Rewrite the Representation States introduction
+  taxonomy_id: research-object
+  from_taxonomy_version: 1
+  resulting_taxonomy_version: 2
+  taxonomy_file: data/taxonomies/research-object.yaml
+  affected_node_ids: [representation-state]
+  revision_reason: >-
+    Define representation states as input-specific activations at a position, layer, or
+    time step; explain that they carry information that later computation reads,
+    transforms, or passes onward; and state the research questions attached to this
+    object. Remove the cross-branch comparison with Native Model Components. The tree
+    structure, node title, and paper assignments are unchanged.

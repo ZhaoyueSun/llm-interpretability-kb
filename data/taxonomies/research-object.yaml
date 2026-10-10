@@ -1,6 +1,6 @@
 schema_version: 1
 taxonomy_id: research-object
-version: 1
+version: 2
 status: active
 title: Research Objects
 nodes:
@@ -113,16 +113,19 @@ nodes:
   parent_id: data-state-representation
   title: Representation States
   status: active
-  proposal_id: tp_20261009_research_objects_v2
+  proposal_id: tp_20261010_research_objects_v2_representation_state_intro
   applicable_object_roles: [input, internal]
   introduction:
     en: >-
-      Representation states are activation vectors or tensors instantiated during a
-      forward pass. Unlike a component, which denotes a reusable computation, a state is
-      the value produced for a particular example, position, layer, or time step.
+      Representation states are activation vectors or tensors formed as a model processes
+      a particular input at a particular position, layer, or time step. They carry
+      information from the current context and are read, transformed, or passed onward by
+      subsequent computation. Studies of these states ask what information is encoded and
+      how it changes over the course of processing.
     zh: >-
-      Representation States 是前向传播中实际产生的激活向量或张量。组件表示可重复使用的计算，而状态表示该计算
-      在某个样本、位置、层或时间步上得到的具体取值。
+      Representation States 是模型处理具体输入时，在某个位置、层或时间步形成的激活向量或张量。
+      它们承载当前上下文中的信息，并会在后续计算中被读取、转换或传递。研究这类对象通常关注其中编码了什么信息，
+      以及这些信息如何随模型计算过程发生变化。
 - node_id: token-embedding
   parent_id: representation-state
   title: Token Embeddings
