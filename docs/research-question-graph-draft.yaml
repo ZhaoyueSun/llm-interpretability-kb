@@ -238,21 +238,27 @@ nodes:
   - rq_id: rq-explanation-validity
     family_id: evidential-standards
     question_en: >-
-      Under what definitions, controls, and counterfactual constraints does an explanation genuinely depend on the model it explains?
-    question_zh: 在什么定义、对照和反事实约束下，一个解释才真正依赖被解释模型？
+      Does an explanation genuinely depend on the model it claims to explain?
+    question_zh: 解释结果是否真正依赖被解释的模型？
     introduction_en: >-
-      Visual plausibility or intuitive credibility is not sufficient evidence of faithfulness.
-      This question requires testable dependence on model parameters, training data, and counterfactual changes, while distinguishing plausible from faithful explanations.
+      A visually plausible explanation is not necessarily faithful. This question asks whether an explanation changes
+      appropriately with model parameters, training-label relations, or counterfactual model behavior. It also requires
+      the explanatory claim to be defined before suitable controls and faithfulness criteria are selected.
     introduction_zh: >-
-      视觉上合理或直觉上可信并不足以证明忠实性。该问题要求解释对模型参数、训练数据和反事实变化表现出可检验的依赖，
-      并明确 plausible explanation 与 faithful explanation 的边界。
+      看起来合理的解释不一定忠实。该问题检验解释是否会随模型参数、训练标签关系或模型行为的反事实变化而相应改变，
+      并要求先明确“解释”试图说明什么，再选择合适的对照和忠实性标准。
     progress_en: >-
-      Parameter- and label-randomization tests showed that visually plausible saliency maps may not depend on the model being explained.
-      Work on attention added explicit explanation definitions, baselines, and model-consistent counterfactual tests.
-      These studies established necessary negative controls and definitional calibration, but no single faithfulness criterion covers all explanation objects.
+      Randomization tests by Adebayo and colleagues showed that some saliency maps remain visually similar after model
+      parameters or label relations are destroyed, demonstrating that plausibility is not evidence of faithfulness. Work
+      by Wiegreffe and Pinter further showed that the existence of alternative attention distributions does not by itself
+      invalidate the original attention explanation; explicit definitions, diagnostic baselines, and seed variation are
+      also required. Necessary negative controls now exist, but no single faithfulness criterion covers every explanation
+      object.
     progress_zh: >-
-      参数与标签随机化实验表明，视觉上合理的显著性图可能并不依赖被解释模型；围绕 attention 的研究进一步引入解释定义、基线和模型一致的反事实检验。
-      现有工作确立了必要的负向对照与定义校准，但尚未形成适用于所有解释对象的单一忠实性判据。
+      Adebayo 等人的随机化检验发现，一些显著性图在模型参数或标签被破坏后仍保持相似外观，说明视觉合理性不能作为忠实性证据。
+      Wiegreffe 与 Pinter 对注意力解释的研究进一步表明，存在替代注意力分布并不能单独否定原注意力的解释价值；
+      判断必须结合明确的解释定义、诊断基线和随机种子差异。现有研究建立了必要的负向对照，
+      但尚无适用于所有解释对象的统一忠实性标准。
     first_date: '2018-10-08'
     primary_paper_ids:
       - p_2018_adebayo_sanity_checks_for
@@ -278,20 +284,26 @@ nodes:
   - rq_id: rq-probe-meaning
     family_id: evidential-standards
     question_en: >-
-      What conclusions about internal information are supported by a probe's success or failure?
-    question_zh: Probe 的成功或失败分别能支持什么关于内部信息的结论？
+      What can probe results actually tell us about internal representations?
+    question_zh: 探针结果究竟能说明模型内部有什么？
     introduction_en: >-
-      This question separates signal in the representation, capability learned by the probe, and statistical power under finite samples.
-      High accuracy does not by itself show that the model uses the information, and a null result does not show that the information is absent.
+      This question separates information present in a representation, regularities learned by the probe from finite
+      data, and information actually used by the original model. Probe success does not establish causal use, while
+      probe failure may reflect insufficient data, unfavorable geometry, or an unsuitable probe class rather than
+      absence of information.
     introduction_zh: >-
-      该问题区分表示中的信号、probe 自身学习出的能力和有限样本下的统计功效。高准确率不自动说明模型使用该信息，
-      空结果也不自动说明信息不存在。
+      该问题区分三件事：表示中存在的信息、探针自身从有限数据中学到的规律，以及原模型是否使用这些信息。
+      探针成功不能直接证明因果使用，探针失败也可能来自样本不足、表示几何或探针类别不合适，而不能直接证明信息不存在。
     progress_en: >-
-      Control tasks and selectivity first separated representational signal from probe memorization; later counterexamples showed that decodability does not imply task use, and recent geometric and statistical theory explains when linear probes produce false negatives.
-      The field has moved from controlling probe capacity to calibrating both positive and null results, although conclusions still depend on sample size, representation geometry, and probe class.
+      Hewitt and Liang introduced control tasks and selectivity to expose memorization by the probe. Controlled
+      experiments by Ravichander and colleagues then showed that high decodability does not imply relevance to the
+      original task. Recent geometric and statistical theory characterizes conditions under which linear probes produce
+      false negatives. The field has therefore moved from controlling probe capacity to calibrating both positive and
+      null results, although conclusions remain dependent on sample size, representation geometry, and probe assumptions.
     progress_zh: >-
-      Control task 与 selectivity 首先用于区分表示信号和 probe 自身的记忆能力；后续反例说明可解码性不等于任务使用，最新几何与统计理论又开始解释线性 probe 何时会产生假阴性。
-      研究已从控制 probe 容量推进到校准正结果与空结果的含义，但结论仍依赖样本量、表示几何和 probe 类别。
+      Hewitt 与 Liang 通过控制任务和选择性指标揭示了探针记忆造成的混淆。Ravichander 等人的受控实验进一步证明，
+      高可解码性不意味着信息与原任务相关。最新理论又开始刻画线性探针产生假阴性的几何和统计条件，
+      使研究从“控制探针容量”推进到同时校准正结果与空结果。但具体结论仍依赖样本量、表示几何和探针假设。
     first_date: '2019-09-08'
     primary_paper_ids:
       - p_2019_hewitt_designing_and_interpreting
@@ -302,20 +314,25 @@ nodes:
   - rq_id: rq-causal-use
     family_id: evidential-standards
     question_en: >-
-      Is information readable from internal representations actually used by the model to produce behavior?
-    question_zh: 内部可读出的信息是否被模型实际用于产生行为？
+      Does the model actually use information that can be decoded from its representations?
+    question_zh: 能被读出的信息，是否真的被模型使用？
     introduction_en: >-
-      This question separates information availability from task relevance.
-      Task construction, intervention, or counterfactual geometry must show whether a representation participates in the model's actual computation.
+      Information being present in a representation does not mean that it participates in the computation producing
+      behavior. This question requires controlled tasks, representation interventions, or counterfactual changes to test
+      whether decoded information causally affects model outputs.
     introduction_zh: >-
-      该问题把 information availability 与 task relevance 分开。它要求通过任务构造、干预或反事实几何判断某种表示是否进入了模型的实际计算。
+      表示中存在某种信息，不等于该信息参与了模型产生行为的计算。该问题要求通过受控任务、表示干预或反事实变化，
+      检验被读出的信息是否会因果影响模型输出。
     progress_en: >-
-      Constructed experiments showed that an attribute can remain highly decodable even when the main task does not require it.
-      Geometric causal probing and world-state interventions then used counterfactual changes to test whether representations enter the computation.
-      Availability and causal use are now treated as distinct, but a scalable general test for complex natural behavior is still missing.
+      Controlled probing experiments show that an attribute can remain highly decodable even when the task does not
+      require it. Geometric causal probing then sought to isolate and intervene on concept directions, while OthelloGPT
+      experiments directly edited internal board-state directions and observed corresponding counterfactual changes in
+      predictions. Decodability and causal use are now clearly distinguished, but a scalable general test for complex
+      natural-language behavior remains unavailable.
     progress_zh: >-
-      构造性实验已经证明，即使主任务不需要某种属性，该属性仍可能被高准确率解码；几何因果 probing 和世界状态干预则尝试用反事实变化判断表示是否真正进入计算。
-      当前共识是必须把 information availability 与 causal use 分开，但可扩展到复杂自然行为的统一检验仍未建立。
+      受控探针实验表明，即使任务完全不需要某种属性，它仍可能被高准确率读出。几何因果探针随后尝试隔离概念方向并对其实施干预；
+      OthelloGPT 的棋盘状态实验则通过直接修改内部方向，使模型预测随反事实棋局变化。
+      现有研究已经明确区分“可读出”与“被使用”，但适用于自然语言复杂行为的通用因果检验仍然缺失。
     first_date: '2020-05-02'
     primary_paper_ids:
       - p_2020_ravichander_probing_the_probing
@@ -326,20 +343,26 @@ nodes:
   - rq_id: rq-intervention-reliability
     family_id: evidential-standards
     question_en: >-
-      How robust are causal-intervention conclusions to metrics, replacement values, and experimental-design choices?
-    question_zh: 因果干预结论对指标、替换值和实验设计选择有多稳健？
+      How sensitive are conclusions from intervention experiments to experimental design?
+    question_zh: 干预实验的结论对实验设计有多敏感？
     introduction_en: >-
-      Patching or ablation results can change with the metric, baseline, and corruption scheme.
-      This question seeks reproducible design principles and limits strong localization claims drawn from a single experimental setup.
+      Activation patching and ablation do not automatically yield a unique localization of mechanism. The corruption
+      procedure defines the counterfactual question, while replacement values, output metrics, normalization, and
+      intervention scope can change the result. This question seeks designs that produce stable, reproducible, and
+      appropriately limited conclusions.
     introduction_zh: >-
-      Patching 或 ablation 的结果可能随度量、基线和 corruption scheme 改变。该问题要求干预实验具有可复现的设计原则，
-      并限制由单一设置推出过强的定位结论。
+      激活修补和消融并不会自动给出唯一的机制定位结果。污染方式定义了反事实问题，替换值、输出指标、
+      归一化和干预范围也可能改变结论。该问题研究哪些设计选择能够得到稳定、可复现且不过度推断的结果。
     progress_en: >-
-      Systematic comparisons showed that activation-patching conclusions vary substantially with metrics, corruption procedures, replacement values, and normalization choices, motivating concrete design recommendations.
-      Current progress is largely a best-practice framework validated for one method family; broader replication across tasks, models, and intervention paradigms is still needed.
+      Systematic comparisons show that activation-patching locations and effect sizes vary substantially with corruption
+      procedures, metrics, and single-layer versus windowed interventions; windowed patching can also produce nonlinear
+      recovery unsupported by individual layers. These findings motivate concrete recommendations such as
+      in-distribution replacements and logit-difference metrics, but no recipe is universally optimal, and validation
+      remains concentrated on a limited set of tasks, models, and patching designs.
     progress_zh: >-
-      系统比较表明，activation patching 的结论会随度量、corruption、替换值和归一化方式显著变化，并据此提出了实验设计建议。
-      当前进展主要是一套经单类方法验证的最佳实践；它在不同任务、模型和其他干预范式上的稳定性仍需更广泛复现。
+      系统比较发现，激活修补得到的位置和效应大小会随污染方式、指标以及单层或窗口式修补而显著变化，
+      窗口干预还可能产生单层结果无法预测的非线性恢复。研究已经据此提出分布内替换、logit difference 等具体建议，
+      但这些建议并非普遍最优，目前主要在有限任务、模型和激活修补范式中得到验证。
     first_date: '2023-09-27'
     primary_paper_ids:
       - p_2023_zhang_towards_best_practices
@@ -347,20 +370,25 @@ nodes:
   - rq_id: rq-circuit-faithfulness
     family_id: evidential-standards
     question_en: >-
-      How should the faithfulness of a discovered circuit be validated through behavioral preservation rather than component overlap?
-    question_zh: 一个被发现的电路应如何以行为保持而非组件重合来验证其忠实性？
+      Does a discovered circuit faithfully preserve the model's target behavior?
+    question_zh: 发现的电路是否忠实保留了模型的目标行为？
     introduction_en: >-
-      This question distinguishes finding similar components from preserving the original model computation.
-      Central evidence is whether retaining the candidate mechanism preserves the target behavior and removing it produces the expected loss.
+      Component overlap with a known circuit does not show that a candidate performs the same computation. This question
+      requires direct tests of whether retaining the candidate preserves the target behavior and whether removing
+      components inside or outside it produces the expected effects.
     introduction_zh: >-
-      该问题区分“找到了相似组件”与“保留了原模型计算”。核心证据是只保留候选机制后能否维持目标行为，
-      以及删去候选机制是否产生预期损失。
+      候选电路与已有电路包含相似组件，并不能证明它实现了相同计算。该问题要求直接检验：
+      只保留候选电路时目标行为能否维持，移除电路外或电路内组件时是否产生符合预期的变化。
     progress_en: >-
-      Existing work showed that component overlap between candidate circuits is not a substitute for behavioral faithfulness and proposed comparing behavior after retaining or removing the candidate mechanism.
-      A function-preserving evaluation framework now exists, but unified benchmarks across discovery methods, distributions, and models remain limited.
+      Hanna and colleagues showed that node or edge overlap between candidate circuits does not reliably predict
+      behavioral faithfulness and advocated direct functional evaluation by retaining or removing candidate subgraphs.
+      Integrated gradients improve edge-attribution patching but do not consistently match exact interventions.
+      Behavioral preservation is now an important circuit-evaluation criterion, although faithfulness does not imply
+      completeness, minimality, or uniqueness and remains sensitive to task metrics and corruption choices.
     progress_zh: >-
-      已有研究指出，候选电路之间的组件重合度不能替代行为忠实性，并提出用保留与删除候选机制后的行为变化比较电路质量。
-      该问题已获得面向功能保持的评估框架，但跨发现算法、跨分布和跨模型的统一 benchmark 仍不充分。
+      Hanna 等人发现，候选电路之间的节点或边重合度不能可靠预测行为忠实性，并提出通过保留或删除候选子图直接评估功能。
+      积分梯度能够改善边归因修补，但仍不能稳定替代精确干预。行为保持已经成为电路评估的重要标准，
+      不过忠实性仍不等于完整性、最小性或唯一性，而且会受任务指标和污染方式影响。
     first_date: '2024-03-26'
     primary_paper_ids:
       - p_2024_hanna_have_faith_in
@@ -368,21 +396,28 @@ nodes:
   - rq_id: rq-method-usefulness
     family_id: evidential-standards
     question_en: >-
-      Do interpretability methods provide distinctive practical value on causal tasks, realistic distributions, and against strong baselines?
-    question_zh: 解释方法在因果任务、现实分布和强基线下是否提供差异化实用价值？
+      Do interpretability methods provide practical value beyond simple baselines?
+    question_zh: 可解释性方法是否比简单基线更有实际价值？
     introduction_en: >-
-      Being interpretable, reconstructive, or steerable is not automatically useful.
-      A method should demonstrate gains on explicit downstream goals, counterfactual baselines, and out-of-task generalization, while allowing a finding of no added value.
+      Producing readable features, reconstructing activations, or steering outputs does not by itself make a method
+      useful. This question evaluates methods on explicit goals such as causal analysis, attribute isolation, behavioral
+      control, or prediction, using strong simple baselines and tests on unseen examples or realistic distributions.
     introduction_zh: >-
-      可解释、可重建或可操纵不必然等于有用。该问题要求方法在明确下游目标、反事实基线和任务外泛化上证明优势，
-      并允许得到“方法没有增益”的结论。
+      一种方法能够产生可读特征、重构激活或操纵输出，并不代表它对研究或应用真正有用。
+      该问题要求在明确的因果分析、属性隔离、行为控制或预测任务中，将方法与强而简单的基线公平比较，
+      并检查其在新样本和现实分布上的表现。
     progress_en: >-
-      RAVEL made representation disentanglement comparable, and subsequent work tested SAEs and related methods through reconstruction, control, sparse probing, and simple steering baselines.
-      The results show that greater interpretability does not automatically yield greater causal or practical value, and simple baselines are often competitive.
-      Evaluation criteria remain use-case dependent.
+      RAVEL showed that decodability does not imply causal disentanglement and that methods trained on counterfactual
+      objectives often outperform unsupervised decompositions. Task-grounded SAE evaluations added behavioral
+      reconstruction, controllable editing, and explanation–function agreement. AxBench and sparse-probing studies
+      further found that prompting, mean differences, fine-tuning, and other simple methods often match or outperform
+      SAEs. These results reject the assumption that greater interpretability automatically yields greater usefulness,
+      while leaving evaluation criteria dependent on the intended use.
     progress_zh: >-
-      RAVEL 将表示解缠结转化为可比较任务，随后多项工作以重建、控制、稀疏 probing 和简单 steering baseline 检验 SAE 等方法。
-      结果显示“更可解释”不自动意味着更有因果或实用价值，且简单基线经常具有竞争力；不同用途所需的评价指标仍未统一。
+      RAVEL 发现，信息可解码不代表属性能够被因果隔离，直接优化反事实目标的方法通常优于无监督分解。
+      面向 SAE 的任务级评估进一步引入行为重构、可控编辑和解释—功能一致性。AxBench 和稀疏探针研究则发现，
+      提示、均值差、微调及其他简单方法经常匹配或超过 SAE。现有结果否定了“更可解释必然更有用”，
+      但不同用途仍需要不同的评价标准。
     first_date: '2024-02-27'
     primary_paper_ids:
       - p_2024_huang_ravel_evaluating_interpretability
@@ -393,18 +428,27 @@ nodes:
   - rq_id: rq-audit-limits
     family_id: evidential-standards
     question_en: >-
-      Can hidden mechanisms exist that are in principle undiscoverable through behavioral elicitation alone?
-    question_zh: 是否存在原则上无法仅靠行为诱导发现的隐蔽机制？
+      Can hidden mechanisms exist that behavioral testing alone cannot discover?
+    question_zh: 是否存在仅靠行为测试无法发现的隐藏机制？
     introduction_en: >-
-      This question studies computational limits of interpretability and safety auditing: a mechanism may genuinely control behavior yet resist reliable elicitation through finite queries because of cryptographic or related constructions.
+      This question studies computational limits of interpretability and safety auditing. A model may contain a
+      mechanism that genuinely controls behavior while remaining difficult to trigger through any computationally
+      bounded prompt search or behavioral elicitation. Failure to observe dangerous behavior therefore need not
+      establish that the mechanism is absent.
     introduction_zh: >-
-      该问题研究解释与安全审计的计算边界：一个机制可以真实存在并控制行为，却因密码学或其他构造而无法通过有限查询可靠诱导出来。
+      该问题研究解释和安全审计的计算边界：模型内部可能存在真实控制行为的机制，
+      但任何计算资源有限的提示搜索或行为诱导都很难触发它。无法观察到危险行为，因此不一定证明危险机制不存在。
     progress_en: >-
-      Cryptographic Transformer circuits constructed backdoors that genuinely control behavior but are difficult to elicit through finite behavioral queries, establishing a principled negative result for auditing.
-      This proves that unelicitable mechanisms can exist, but their prevalence in realistic training and feasible defenses remain unresolved.
+      Cryptographic Transformer circuits construct backdoors triggered by passwords, NP-complete search conditions, or
+      cryptographically hidden predicates and show that increasingly strong behavioral searches may still fail to elicit
+      them. This establishes that behaviorally unelicitable mechanisms can exist, but it is an existence result under
+      computational assumptions rather than evidence that such backdoors are common in naturally trained models. Weight
+      inspection, provenance controls, and internal analysis may also bypass limitations of behavioral auditing alone.
     progress_zh: >-
-      密码学 Transformer 电路构造出真实控制行为却难以通过有限行为查询诱导的 backdoor，为审计能力给出了原则性负面结果。
-      它证明了不可诱导机制可以存在，但现实训练中这类机制的普遍性以及可行防御仍未解决。
+      密码学 Transformer 电路已经构造出由密码、NP 完全搜索和密码学隐藏条件触发的后门，
+      并展示更强的行为搜索仍可能无法可靠诱导这些机制。这证明“不可行为诱导的机制可以存在”，
+      但属于存在性与条件性结果，不能说明现实训练模型中普遍存在此类后门；
+      权重检查、来源控制或内部分析也可能绕开纯行为审计的限制。
     first_date: '2024-06-03'
     primary_paper_ids:
       - p_2024_draguns_unelicitable_backdoors_in
@@ -412,20 +456,25 @@ nodes:
   - rq_id: rq-evidence-ladder
     family_id: evidential-standards
     question_en: >-
-      How can correlational findings be progressively upgraded into causal, out-of-distribution, and deployment-relevant interpretability evidence?
-    question_zh: 如何把相关性发现逐级升级为因果、分布外和部署条件下可信的解释证据？
+      How can interpretability evidence progress from correlation to causal and deployment validation?
+    question_zh: 解释证据如何从相关性推进到因果与部署验证？
     introduction_en: >-
-      This question treats explanation as staged evidence accumulation.
-      Candidate features must pass correlation, localization, intervention, generalization, and cost calibration rather than being called mechanisms after one correlational observation.
+      This question treats mechanistic explanation as a progressively strengthened chain of evidence. A readable or
+      selective candidate feature must also pass causal intervention, mechanism-composition, out-of-distribution, and
+      deployment-cost tests before supporting stronger explanatory or practical claims.
     introduction_zh: >-
-      该问题把解释看成分阶段证据积累过程，要求候选特征依次通过相关、定位、干预、泛化和成本校准，
-      避免把单次相关观察直接称为机制。
+      该问题把机制解释看成逐步加强的证据链。一个可读或选择性较强的候选特征，
+      需要继续接受因果干预、机制组合、分布外检验和部署成本评估，才能支持更强的解释或应用主张。
     progress_en: >-
-      A five-stage workflow now moves from correlational discovery through intervention, mechanism composition, out-of-distribution testing, and deployment-condition auditing, allowing interpretability claims to be graded by strength.
-      The main contribution is methodological integration; whether every stage is sufficient and reproducible across model classes and real research workflows remains to be tested.
+      A five-stage framework organizes feature discovery, causal validation, mechanism composition, distribution-shift
+      testing, and deployment auditing into one workflow, allowing claims of different strength to be distinguished
+      explicitly. Its main contribution is methodological integration rather than proof that every stage is sufficient.
+      Validation remains limited to a small model and task, and reproducibility in realistic research workflows has not
+      been established.
     progress_zh: >-
-      现有工作提出从相关性发现、干预验证、机制组合、分布外检验到部署条件审计的五阶段证据流程，使不同强度的解释性主张可以被分级。
-      当前贡献主要是方法论整合，尚需在多类模型和真实研究流程中检验各阶段标准是否充分且可重复。
+      现有五阶段框架把特征发现、因果验证、机制组合、分布偏移检验和部署审计组织在同一流程中，
+      使研究者能够明确区分不同强度的结论。其主要贡献是整合已有证据标准，而不是证明每一步已经充分。
+      当前验证限于较小模型和任务，各阶段能否在真实研究流程中稳定复现仍待检验。
     first_date: '2026-05-21'
     primary_paper_ids:
       - p_2026_munigety_from_correlation_to
@@ -433,18 +482,26 @@ nodes:
   - rq_id: rq-formal-verification
     family_id: evidential-standards
     question_en: >-
-      Can mechanistic explanations receive explicit domains of validity, counterexample search, and solver-checkable guarantees?
-    question_zh: 机制解释能否获得明确适用域、反例搜索与 solver-checkable 的形式保证？
+      Can mechanistic explanations receive machine-checkable formal guarantees?
+    question_zh: 机制解释能否得到机器可验证的形式保证？
     introduction_en: >-
-      This question elevates empirical circuit claims into verifiable propositions, requiring checkable proof objects for algorithmic equivalence, edge necessity, irrelevant-input invariance, and perturbation robustness.
+      Empirical tests show only that an explanation works on the evaluated examples. This question seeks to express
+      mechanistic explanations as formal propositions with explicit domains and to generate checkable proofs or
+      counterexamples for functional equivalence, edge necessity, invariance to irrelevant inputs, and robustness to
+      internal perturbations.
     introduction_zh: >-
-      该问题把经验性的 circuit claim 提升为可验证命题，要求算法等价、边必要性、无关输入不变性与扰动稳健性具有可检查的证明对象。
+      经验实验通常只能说明解释在已测试样本上成立。该问题尝试把机制解释写成带有明确适用域的形式命题，
+      并为功能等价、边必要性、无关输入不变性和内部扰动稳健性生成可检查的证明或反例。
     progress_en: >-
-      Recent work formulates circuit explanations as formal claims with explicit domains and uses solvers to find counterexamples and check guarantees, moving from empirical to machine-verifiable evidence.
-      It remains a proof of concept, constrained by expressiveness, computational scale, and the difficulty of representing approximate neural computation.
+      Recent work uses solvers to check circuit explanations and find counterexamples in deliberately verifiable
+      Transformers, showing that some mechanistic claims can be upgraded from empirical support to formal guarantees
+      within a declared domain. The verified object is typically a calibrated circuit or controlled model rather than
+      the original large dense model. Domain expressiveness, solver scale, and approximate neural computation remain
+      major obstacles.
     progress_zh: >-
-      研究已开始把电路解释写成带明确适用域的形式命题，并利用求解器搜索反例和检查保证，从经验性证据推进到机器可验证证据。
-      当前仍处于概念验证阶段，约束表达能力、计算规模以及与近似神经计算的衔接是主要限制。
+      近期工作已经在专门设计的可验证 Transformer 上，用求解器检查电路解释并自动寻找反例，
+      证明部分机制主张可以从经验支持提升为声明域内的形式保证。但被验证的通常是校准后的电路或受控模型，
+      而不是原始大规模密集模型；适用域表达、求解规模和近似神经计算仍是主要瓶颈。
     first_date: '2026-05-21'
     primary_paper_ids:
       - p_2026_somani_towards_verifiable_transformers
@@ -918,21 +975,27 @@ nodes:
   - rq_id: rq-causal-abstraction
     family_id: evidential-standards
     question_en: >-
-      When does a neural network's low-level mechanism faithfully implement a high-level interpretable causal process?
-    question_zh: 神经网络的低层机制何时忠实实现了一个高层可解释因果过程？
+      When can a neural network be faithfully explained as a high-level causal process?
+    question_zh: 神经网络何时可以被忠实地解释为高层因果过程？
     introduction_en: >-
-      This question seeks an intervenable and falsifiable correspondence between high-level variables and distributed neural representations.
-      Counterfactual agreement constrains the strength of claims made by probing, ablation, and circuit explanations.
+      This question requires an intervenable and falsifiable correspondence between high-level variables and low-level
+      neural states. A network can be said to implement a high-level causal process only when interventions on the
+      aligned neural states reproduce the counterfactual behavior predicted by that process, rather than merely
+      revealing correlated information.
     introduction_zh: >-
-      该问题要求在高层变量与分布式神经表示之间建立可干预、可证伪的对应，
-      并用反事实行为一致性约束 probing、ablation 和 circuit explanation 的解释强度。
+      该问题要求高层变量与低层神经状态之间建立可干预、可证伪的对应。
+      只有当替换低层状态能够复现高层因果模型预测的反事实行为时，才能说网络实现了该高层过程，而不只是包含相关信息。
     progress_en: >-
-      Early frameworks used interchange interventions to test counterfactual agreement between networks and high-level causal models.
-      Later theory admitted distributed, overlapping, and nonlinear variables and unified several interpretability
-      claims under explicit causal criteria. Selecting the high-level model and scaling the criteria remain unresolved.
+      Early work used interchange interventions to test whether BERT implements intermediate computations from a
+      natural-logic program. Later theory generalized causal abstraction into a formal framework encompassing multiple
+      mechanistic-interpretability claims and allowing distributed, overlapping, or nonlinear variables. The criterion
+      is stronger than probe accuracy, but still requires an analyst-specified high-level model, variables, and
+      intervention set. Finding and validating such correspondences in large natural models remains difficult.
     progress_zh: >-
-      早期框架用 interchange intervention 检验神经网络与高层因果模型的反事实一致性，后续理论允许分布式、重叠和非线性变量，
-      并用明确因果标准统一多种解释性主张。高层模型如何选择，以及这些标准如何规模化，仍未解决。
+      早期研究通过 interchange intervention 检验 BERT 是否实现了自然逻辑程序中的部分中间计算。
+      后续理论把因果抽象扩展为统一多种机制解释主张的形式框架，并允许变量采用分布式、重叠或非线性表示。
+      该标准比探针准确率更强，但仍需要分析者预先提出高层模型、变量和干预范围；
+      在大型自然模型中搜索并验证这些对应仍然困难。
     first_date: '2021-06-06'
     primary_paper_ids:
       - p_2021_geiger_causal_abstractions_of
@@ -1003,21 +1066,25 @@ nodes:
   - rq_id: rq-localization-claim-validity
     family_id: evidential-standards
     question_en: >-
-      How should a claim that behavior is localized to particular paths be defined, falsified, and iteratively revised?
-    question_zh: “行为局部化于特定路径”的主张应如何定义、证伪并迭代修正？
+      How can claims that behavior is localized to specific computational paths be tested?
+    question_zh: 如何检验行为是否真的局部化在特定计算路径中？
     introduction_en: >-
-      This question concerns the evidential content of localization rather than merely producing a ranked component
-      list. A useful claim must specify the paths, intervention, behavioral criterion, and where the hypothesis fails.
+      Localization should amount to more than a ranking of important components. A testable localization claim must
+      specify the computational graph, input and counterfactual distributions, retained or replaced paths, behavioral
+      metric, and examples on which the claim fails.
     introduction_zh: >-
-      该问题关注定位主张能够支持什么结论，而不只是产生一份组件排名。
-      可检验的主张必须说明路径、干预、行为标准以及假说在哪里失败。
+      定位不应只是输出一份组件重要性排名。一个可检验的定位主张必须明确计算图、输入与反事实分布、
+      被保留或替换的路径、目标行为指标，以及在什么样本上主张不成立。
     progress_en: >-
-      Generalized path patching turned path-level localization into a quantitative, falsifiable hypothesis and used
-      residual error to guide refinement. It strengthens localization evidence, while sensitivity to metrics and
-      intervention baselines remains linked to broader intervention-reliability questions.
+      Generalized path patching turns the claim that a behavior is localized to particular paths into a quantitative,
+      falsifiable hypothesis and uses residual error to identify omitted paths and revise the mechanism. This advances
+      localization from one-shot attribution to iterative testing. Results nevertheless remain sensitive to input
+      distributions, counterfactual construction, and metrics, linking the problem closely to broader intervention
+      reliability.
     progress_zh: >-
-      广义 path patching 将路径级定位转化为定量、可证伪的假说，并用剩余误差指导后续修正。
-      它强化了定位证据，但对度量和干预基线的敏感性仍与更广泛的干预可靠性问题相连。
+      广义路径修补把“行为位于某些路径中”写成定量、可证伪的假说，并利用未被解释的剩余误差寻找遗漏路径和修正机制。
+      它把路径定位从一次性归因推进为迭代检验过程。不过结果仍会随输入分布、反事实构造和指标变化，
+      因此与更一般的干预可靠性问题密切相关。
     first_date: '2023-04-12'
     primary_paper_ids:
       - p_2023_goldowsky_dill_localizing_model_behavior
@@ -1686,21 +1753,27 @@ nodes:
   - rq_id: rq-model-diffing-validity
     family_id: evidential-standards
     question_en: >-
-      How can model-difference methods distinguish genuine post-training features from sparsity-induced artifacts?
-    question_zh: 模型差分方法如何区分真实的后训练特征与稀疏优化伪影？
+      Are novel features found by model diffing genuine changes or methodological artifacts?
+    question_zh: 模型差分发现的新特征是真实变化还是方法伪影？
     introduction_en: >-
-      This question concerns the validity of claims that a feature is unique to a fine-tuned model. Decoder norms and
-      sparse objectives can manufacture apparent novelty unless the feature is cross-checked against both models.
+      A sparse feature that differs between a base and fine-tuned model does not automatically indicate that
+      post-training created a new mechanism. Decoder norms, sparsity objectives, and feature splitting can manufacture
+      apparent model specificity. Novelty claims must therefore be cross-checked through activation, reconstruction
+      contribution, and causal effects in both models.
     introduction_zh: >-
-      该问题关注“某特征是微调模型所独有”这类主张是否有效。
-      Decoder norm 和稀疏目标可能制造表面上的新特征，因此必须在两个模型中交叉检验。
+      基础模型与微调模型之间出现不同的稀疏特征，并不自动说明后训练创造了新机制。
+      解码器范数、稀疏目标和特征拆分可能制造表面上的模型特异性，因此新特征必须在两个模型的激活、重构贡献和因果作用中交叉验证。
     progress_en: >-
-      Crosscoder analysis identified complete shrinkage and latent decoupling as sources of false chat-only features,
-      introduced Latent Scaling diagnostics, and found BatchTopK more robust. The work supplies controls for novelty
-      claims but does not by itself determine the full mechanism of chat tuning.
+      Crosscoder studies identify complete shrinkage and latent decoupling as major artifacts, showing that many
+      features labeled chat-specific by decoder norm remain functionally present in the base model. Latent Scaling
+      provides an alternative diagnostic, while BatchTopK reduces these artifacts. Evidence remains concentrated on one
+      model pair and layer and cannot yet fully distinguish genuinely new concepts, amplification of existing concepts,
+      and shifts in activation distributions.
     progress_zh: >-
-      Crosscoder 分析识别出 complete shrinkage 和 latent decoupling 两类伪 chat-only feature 来源，提出 Latent Scaling 诊断，并发现 BatchTopK 更稳健。
-      该工作为“新特征”主张提供了对照，但未单独确定 chat tuning 的完整机制。
+      Crosscoder 研究识别出 complete shrinkage 和 latent decoupling 两种主要伪影，
+      说明许多按解码器范数判断的“聊天模型独有”特征实际上仍在基础模型中发挥作用。
+      Latent Scaling 提供了新的诊断方法，BatchTopK 也减少了相关伪影。但证据目前主要来自一个模型对和单一层，
+      尚不能彻底区分新概念、旧概念增强与激活分布变化。
     first_date: '2025-04-03'
     primary_paper_ids:
       - p_2025_minder_overcoming_sparsity_artifacts
@@ -1743,21 +1816,26 @@ nodes:
   - rq_id: rq-monosemanticity-measurement
     family_id: evidential-standards
     question_en: >-
-      How can SAE latent monosemanticity be measured without concept labels or external embedding geometry?
-    question_zh: 如何在不依赖概念标签或外部 embedding 几何的情况下，测量 SAE latent 的单义性？
+      How can SAE feature monosemanticity be measured without concept labels?
+    question_zh: 如何在没有概念标签时衡量 SAE 特征的单义性？
     introduction_en: >-
-      This question operationalizes a central interpretability claim. A metric should be self-contained, stable across
-      training, and related to causal concept manipulation rather than merely agreeing with external labels.
+      This question seeks to turn the claim that an SAE feature expresses one concept into a computable evaluation
+      criterion. An ideal metric should not require human concept labels or external embedding geometry and should
+      relate to feature stability during training and selective causal manipulation.
     introduction_zh: >-
-      该问题将“单义性”这一核心解释性主张操作化。指标应当自包含、跨训练稳定，
-      并与概念因果操作相关，而不只是与外部标签一致。
+      该问题尝试把“一个 SAE 特征只表达一个概念”转化为可计算的评价标准。
+      理想指标不应依赖人工概念标签或外部嵌入空间，并应与特征在训练中的稳定性以及选择性因果操作能力相关。
     progress_en: >-
-      The Tversky Monosemanticity Score used coherence of binary latent activation sets and was tested against training
-      dynamics and concept deletion. It provides a label-free metric, while broader agreement with human concepts and
-      downstream mechanism quality remains unestablished.
+      The Tversky Monosemanticity Score measures monosemanticity through coherence among the examples activating a
+      latent. It is less distorted by anisotropy than external-embedding metrics and, in some settings, better predicts
+      whether a concept can be selectively removed. This provides a label-free measure, but continuous activations are
+      reduced to binary sets and results depend on thresholds and sampling. Concept deletion also does not necessarily
+      imply selective effects on model behavior, so the metric is not a final standard of monosemanticity.
     progress_zh: >-
-      Tversky Monosemanticity Score 使用二值 latent activation set 的一致性，并通过训练动态与概念删除进行检验。
-      它提供了无标签指标，但与人类概念及下游机制解释质量的更广泛一致性仍未建立。
+      Tversky Monosemanticity Score 根据一个潜变量所激活样本集合的内部一致性衡量单义性，
+      相比外部嵌入指标更少受各向异性影响，并能在部分设置中更好预测概念是否可被选择性删除。
+      这提供了一种无标签测量方案，但连续激活被简化为二值集合，结果依赖阈值和采样；
+      概念删除也不等于对模型行为产生选择性影响，因此尚未形成单义性的最终标准。
     first_date: '2026-07-20'
     primary_paper_ids:
       - p_2026_filus_measuring_monosemanticity_in
