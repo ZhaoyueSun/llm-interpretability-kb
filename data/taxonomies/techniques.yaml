@@ -1,6 +1,6 @@
 schema_version: 1
 taxonomy_id: techniques
-version: 14
+version: 15
 status: active
 title: Techniques
 nodes:
@@ -195,19 +195,40 @@ nodes:
   parent_id: readout-measurement
   title: Representation Geometry and Subspace Analysis
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v15_representation_geometry
   introduction:
     en: >-
-      Geometric analysis steps back from individual neurons and asks how many directions
-      a concept occupies, how examples are arranged, and which relations are preserved
-      in activation space. Researchers may identify a line, a multidimensional subspace,
-      a manifold, or an estimate of intrinsic dimension. Such structure can reveal how
-      the model organizes information, but additional tests are needed to show that the
-      organization matters for computation or behavior.
+      Representation Geometry treats the activation vectors produced for different
+      tokens, examples, or prompts as points in a high-dimensional space and studies
+      their distances, angles, arrangement, and degrees of freedom. Researchers usually
+      collect activations for a controlled set of examples and look for structure using
+      cosine similarity, Euclidean distance, mean differences, PCA or SVD, local
+      neighborhoods, or intrinsic-dimension estimators. If positive and negative texts
+      are separated mainly along one direction, sentiment can be described as an
+      approximately linear direction. If a concept requires several independent
+      directions, it is better described as a subspace; if the points lie on a curved
+      low-dimensional surface with complex local structure, they can instead be modeled
+      as a manifold. Intrinsic dimension measures not the full width of a model's hidden
+      state, but the number of independent degrees of freedom needed to describe how the
+      observed representations actually vary. Studies in this corpus, for example, find
+      sentiment arranged along a single direction, entity-binding IDs forming a
+      continuous subspace with meaningful distances, belief states exhibiting complex
+      fractal geometry, and prompt-level intrinsic dimension varying with predictive
+      uncertainty. These analyses reveal how information is organized and whether
+      relationships are preserved across layers or models, but geometric structure may
+      still be only a readable correlation. Showing that the model uses it requires
+      projecting it out, removing it, or moving activations along the relevant direction
+      and then testing whether computation or behavior changes.
     zh: >-
-      Representation Geometry 不再把注意力局限在单个神经元上，而是考察概念占据多少个方向、样本如何排列，
-      以及哪些关系在激活空间中得到保持。研究者可能找到一条线、一个多维子空间、一张流形，或估计表征的内在维度。
-      这些结构揭示模型如何组织信息，但还需要额外检验来说明这种组织确实参与了计算或行为。
+      Representation Geometry 把模型为不同 token、样本或 prompt 产生的激活向量看作高维空间中的点，
+      并研究这些点之间的距离、夹角、排列方式和自由度。研究者通常先收集一组受控样本的激活，再用余弦相似度、
+      欧氏距离、均值差、PCA/SVD、局部邻域或内在维度估计等方法寻找结构。如果正面与负面文本主要沿同一个方向分开，
+      可以说情感近似由一条线性方向表示；如果一个概念需要多个相互独立的方向才能描述，则更适合看作一个子空间；
+      如果样本位于弯曲或具有复杂局部结构的低维表面上，则可以用流形来描述。内在维度估计的则不是模型 hidden state 的总维数，
+      而是这些表征实际变化所需的独立自由度数量。例如，相关研究发现情感可以沿单一方向排列，实体绑定 ID 构成距离具有意义的连续子空间，
+      belief state 甚至可能形成复杂的分形结构，而 prompt 表征的内在维度会随预测不确定性变化。这些分析可以揭示信息怎样被组织、
+      不同关系是否在层间或模型间得到保持，但几何结构本身仍可能只是可读出的相关规律；要证明模型确实使用它，还需要通过投影、移除或沿相应方向进行干预，
+      并观察模型计算或行为是否随之改变。
 - node_id: attribution-sensitivity
   parent_id: readout-measurement
   title: Attribution and Sensitivity
