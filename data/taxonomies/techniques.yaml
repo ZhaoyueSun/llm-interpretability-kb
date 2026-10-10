@@ -1,6 +1,6 @@
 schema_version: 1
 taxonomy_id: techniques
-version: 3
+version: 4
 status: active
 title: Techniques
 nodes:
@@ -59,19 +59,24 @@ nodes:
   parent_id: readout-measurement
   title: Attention Pattern and OV/QK Analysis
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v4_attention_heatmap_wording
   introduction:
     en: >-
-      Attention analysis separates two questions that are easy to conflate: where a
-      head reads information from, and what information it writes back. Attention
-      patterns and the QK circuit describe routing, whereas the OV circuit helps explain
-      the resulting update to the residual stream. Looking at both gives a richer picture
-      than an attention heatmap alone, which may show correlation without revealing the
-      head's actual effect on the prediction.
+      Attention analysis separates two questions: which tokens a head attends to, and
+      what information it writes back to the model. For a given input, an attention-weight
+      heatmap shows how the head distributes attention across token pairs. Each cell links
+      a query token to a key token, and its color indicates the attention weight. The
+      attention pattern and QK circuit explain where the head looks, while the OV circuit
+      helps explain how the information it reads is written into the residual stream.
+      The heatmap alone therefore shows where attention goes, but not what information is
+      carried or whether the head has a causal effect on the final prediction.
     zh: >-
-      注意力分析需要区分两个很容易混在一起的问题：一个 head 从哪里读取信息，以及它把什么信息写回模型。
-      Attention pattern 和 QK circuit 描述路由选择，OV circuit 则帮助解释它对 residual stream 造成的更新。
-      两者结合比单看热力图更完整；热力图可能显示相关性，却不一定说明该 head 对最终预测产生了什么作用。
+      注意力分析需要区分两个问题：一个 head 关注哪些 token，以及它把什么信息写回模型。
+      对于给定输入，attention 权重热力图显示这个 head 如何在不同 token 之间分配注意力。
+      每个格子对应一个 query token 和一个 key token，颜色表示 attention 权重大小。
+      Attention pattern 和 QK circuit 解释这个 head“看向哪里”，OV circuit 则帮助说明它读到的信息如何写入
+      residual stream。因此，热力图只能告诉我们注意力流向哪里，不能单独说明传递了什么信息，也不能证明
+      这个 head 对最终预测具有因果作用。
 - node_id: vocabulary-projection
   parent_id: readout-measurement
   title: Native Vocabulary Projection

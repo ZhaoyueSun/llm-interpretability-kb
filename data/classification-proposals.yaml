@@ -1775,3 +1775,21 @@ proposals:
   - Multi-purpose benchmark papers use Cross-Domain Task Suites as primary and retain concrete task families as secondary labels.
   - Papers evaluated only on generic pretraining text use General Language Modeling rather than an invented downstream scenario.
   - The approved taxonomy and relations are written to the formal taxonomy file and append-only event stream.
+- proposal_id: tp_20261010_techniques_v4_attention_heatmap_wording
+  kind: taxonomy_content
+  status: approved
+  created_at: '2026-10-10'
+  approved_at: '2026-10-10'
+  approval_basis: >-
+    The user identified that the phrase attention heatmap did not explain what quantity
+    was visualized and requested a clearer researcher-facing formulation.
+  title: Define attention heatmaps in the attention-analysis introduction
+  taxonomy_id: techniques
+  from_taxonomy_version: 3
+  resulting_taxonomy_version: 4
+  taxonomy_file: data/taxonomies/techniques.yaml
+  affected_node_ids: [attention-pattern-analysis]
+  revision_reason: >-
+    Define an attention-weight heatmap in plain language, explain its query-key cells and
+    color encoding, and distinguish where a head attends from what it carries and whether
+    it has a causal effect. The tree structure and paper assignments are unchanged.
