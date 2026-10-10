@@ -1414,18 +1414,16 @@ nodes:
   - rq_id: rq-localization-editing
     family_id: intervention-control
     question_en: >-
-      Is a causally localized site of information use also the most effective and localized place to edit behavior?
-    question_zh: 因果定位出的使用位置是否也是最有效、最局部的编辑位置？
+      Is the location where knowledge is used also the best place to edit it?
+    question_zh: 知识被调用的位置，也是最佳编辑位置吗？
     introduction_en: >-
-      This question challenges the intuition that locating where behavior occurs tells us where to modify it, distinguishing mediation, storage, use, and editability.
+      Causal localization can identify layers or activation sites that affect how a model expresses a fact, whereas knowledge editing changes model parameters. A site that is important during inference need not be the easiest, most effective, or most localized place to modify, because other layers may compensate for or overwrite the change. This question asks whether localization scores predict editing success, generalization, and specificity, and under what conditions localization and editability are related.
     introduction_zh: >-
-      该问题挑战“找到行为在哪里发生，就知道应该在哪里修改”的直觉，区分 mediation、storage、use 与 editability。
+      因果定位可以识别哪些层或激活位置会影响模型表达某条知识，但知识编辑改变的是模型参数。一个位置在推理时非常重要，并不意味着修改对应层的权重最容易、最有效或副作用最小；其他层可能补偿或覆盖该位置的变化。该问题研究因果定位分数能否预测编辑成功率、泛化能力和局部性，以及定位与编辑究竟在什么条件下相关。
     progress_en: >-
-      Direct comparison of causal tracing with knowledge editing found that localization strength generally fails to predict the best editing layer, challenging the assumption that a use site is an edit site.
-      Localization and editing are now established as distinct questions, but mechanism-based prediction of efficient, local, low-side-effect edit targets remains unsolved.
+      ROME combines causal tracing with targeted weight editing, identifying middle-layer MLPs at the final subject token as high-leverage sites for factual recall and successful local rewriting. This result invites the assumption that stronger localization implies a better editing target. Does Localization Inform Editing? tests that assumption across models, datasets, localization methods, editors, and evaluation metrics, finding that example-level localization scores are usually nearly uncorrelated with editing success. Restoring an activation at a site can affect factual expression without making the corresponding weights the best editing target, because downstream layers may overwrite the edit. The evidence rejects causal localization as a direct layer-selection rule for editing without undermining its value for explaining knowledge use during inference.
     progress_zh: >-
-      对 causal tracing 与 knowledge editing 的直接比较发现，定位强度通常不能预测最佳编辑层，挑战了“使用位置就是修改位置”的默认假设。
-      该工作已经确立定位和编辑是两个不同问题，但如何从机制信息可靠预测高效、局部且低副作用的编辑目标仍待解决。
+      ROME 将 causal tracing 与定向权重编辑结合，在主语末词元的中层 MLP 中定位事实回忆的高杠杆位置，并成功进行局部事实改写。这一结果容易使人推断：定位分数越高的位置越适合编辑。Does Localization Inform Editing? 系统比较了不同模型、数据集、定位方法、编辑器和评价指标，却发现逐样本定位分数与编辑成功率通常接近零相关。在一个位置恢复激活能够影响事实表达，不代表修改该位置的权重就是最佳编辑方案，因为下游层可能覆盖编辑结果。现有证据因此否定了“因果定位可以直接作为编辑选层规则”的简单假设，但并未否定定位对解释推理时知识调用的价值。
     first_date: '2023-01-10'
     primary_paper_ids:
       - p_2023_hase_does_localization_inform
@@ -1435,20 +1433,16 @@ nodes:
   - rq_id: rq-representation-control
     family_id: intervention-control
     question_en: >-
-      Can readable internal directions be manipulated reliably to produce specific and predictable behavioral changes?
-    question_zh: 可读出的内部方向能否被稳定操纵，从而产生特异且可预测的行为变化？
+      Can model behavior be controlled reliably by manipulating internal directions?
+    question_zh: 能否通过操纵内部方向稳定控制模型行为？
     introduction_en: >-
-      This question advances from representation description to inference-time control.
-      Steering should be causal, transferable, and low in side effects rather than merely changing outputs on a small prompt set.
+      Decoding a direction associated with truthfulness, emotion, safety, or reasoning state does not imply that moving activations along that direction will control behavior reliably. This question asks whether internal directions can serve as inference-time control interfaces: whether interventions remain effective across inputs and distributions, produce predictable and reversible changes, and avoid destroying other information, increasing evasiveness, or merely changing surface style.
     introduction_zh: >-
-      该问题从表示描述推进到 inference-time control，要求 steering 效果具有因果性、可迁移性和有限副作用，
-      而不是仅在少量提示上改变输出。
+      从模型激活中读出与真实性、情绪、安全性或推理状态相关的方向，并不意味着沿该方向移动就能可靠控制行为。该问题研究内部方向能否作为推理时的控制接口：干预是否跨输入和数据分布保持有效，行为变化是否可预测且可逆，以及是否会同时破坏其他信息、增加回避回答或只改变表面表达风格。
     progress_en: >-
-      Inference-time intervention used internal directions to increase truthful answers, representation engineering generalized directional control, and later theory and vision-language experiments began explaining when it works.
-      Representation directions can serve as control levers, but specificity, distributional stability, transferability, and side effects require systematic calibration.
+      Inference-Time Intervention first shows that linearly accessible truth-related signals in a small number of attention heads can shift answers and partially transfer out of distribution. Strong intervention, however, can increase evasive answers and damage other information carried by the same activations. Representation Engineering extends directional control to high-level properties such as honesty, harmlessness, emotion, power seeking, and factuality, showing that simple linear patterns can support both diagnosis and reversible behavior change. Work in vision-language models further suggests that control persists across layers when a dominant activity direction remains aligned with successive updates. Experiments on SAE reasoning features also obtain modest performance gains by steering reflection or uncertainty features, although reasoning length changes more strongly. Internal directions can therefore provide useful local control interfaces, but their stability, specificity, and cross-model generality remain insufficient for a universal control guarantee.
     progress_zh: >-
-      Inference-time intervention 用内部方向提高真实回答概率，representation engineering 将方向控制扩展为通用框架，后续理论与 VLM 实验开始解释其有效条件。
-      研究已证明表示方向可以成为控制杠杆，但特异性、跨分布稳定性、可迁移性和副作用仍需系统校准。
+      Inference-Time Intervention 首先发现，少量注意力头中可线性读出的真实性信号可以通过激活移动改变回答，在部分分布外数据上也能迁移；但强干预会增加回避回答，并可能破坏同一激活中的其他信息。Representation Engineering 随后把方向控制扩展到诚实、无害、情绪、权力倾向和事实性等高层属性，显示简单线性模式既可用于诊断，也能产生可逆行为变化。针对视觉语言模型的研究进一步提出，当主导活动方向与逐层更新保持对齐时，控制效果更容易跨层维持。SAE 推理特征实验还表明，操纵反思或不确定性特征可以小幅改善任务表现，但对推理长度的影响更明显。当前已证明内部方向可以成为有效的局部控制接口，但稳定性、特异性和跨模型泛化仍不足以支持通用控制保证。
     first_date: '2023-06-06'
     primary_paper_ids:
       - p_2023_li_inference_time_intervention
@@ -1460,18 +1454,16 @@ nodes:
   - rq_id: rq-interpretable-learning
     family_id: intervention-control
     question_en: >-
-      Can training actively induce a human-specified interpretable causal structure inside a network?
-    question_zh: 能否在训练时主动使网络获得人类指定的可解释因果结构？
+      Can training make a model implement a specified causal structure?
+    question_zh: 能否在训练中让模型形成指定的因果结构？
     introduction_en: >-
-      Rather than settling for post hoc explanation, this question uses a high-level causal model as a learning constraint and tests whether interpretable structure and systematic generalization can be achieved together.
+      Most interpretability methods search for internal structure after training. This question instead asks whether an analyst can specify an interpretable high-level causal model in advance and train a neural network whose internal representations and counterfactual behavior align with it. The goal is not only correct outputs but computation through the specified intermediate variables and causal relations, potentially improving systematic generalization while making the internal mechanism easier to interpret.
     introduction_zh: >-
-      该问题不满足于事后解释，而把高层 causal model 作为学习约束，检验可解释结构与系统性泛化能否共同成为训练结果。
+      多数解释方法是在训练完成后寻找模型已经形成的内部结构。该问题反过来研究，能否事先给出一个人类可理解的高层因果模型，并在训练过程中要求神经网络的内部表示和反事实行为与它对应。目标不仅是获得正确输出，还要使模型按照指定的中间变量和因果关系完成计算，从而改善系统性泛化并使内部机制更容易解释。
     progress_en: >-
-      Interchange intervention training showed that training can actively induce an internal counterfactual structure aligned with a human-specified causal model and may improve systematic generalization.
-      This remains a feasibility demonstration for one training paradigm and limited tasks, with misspecified high-level models, optimization cost, and scaling to large models unresolved.
+      Inducing Causal Structure trains with interchange interventions, aligning intermediate variables in a high-level causal model with internal neural locations and requiring swaps of those representations to produce the corresponding high-level counterfactual outputs. Across vision, embodied navigation, and natural-language inference, this internal counterfactual training improves agreement with the specified causal structure and often improves systematic generalization over ordinary supervision, multitask probe objectives, and selected data augmentation methods. A zero-loss result provides a conditional formal guarantee, while held-out intervention accuracy tests approximate realization under finite training. The main limitation is that the high-level causal model and alignment locations must be supplied by the analyst; discovering the correct structure for complex real tasks remains unresolved.
     progress_zh: >-
-      Interchange intervention training 已证明，可以在训练时主动诱导与人类高层因果模型一致的内部反事实结构，并可能改善系统性泛化。
-      当前仍是单一训练范式和有限任务上的可行性证明，高层规范错误、优化成本和大模型可扩展性尚未解决。
+      Inducing Causal Structure 使用 interchange intervention 训练，把高层因果模型中的中间变量与网络内部位置对齐，并要求交换这些表示后得到与高层反事实一致的输出。在视觉、具身导航和自然语言推断任务中，这种内部反事实训练提高了对指定因果结构的符合度，也经常改善系统性泛化，优于普通监督、多任务 probe 目标和部分数据增强方法。零损失结果提供了条件性的形式保证，留出干预准确率则检验有限训练下的近似实现。主要限制是高层因果模型及其对齐位置必须由研究者预先给出；如何在复杂真实任务中发现正确结构仍未解决。
     first_date: '2021-12-01'
     primary_paper_ids:
       - p_2021_geiger_inducing_causal_structure
@@ -1521,20 +1513,34 @@ nodes:
   - rq_id: rq-task-vector-editing
     family_id: intervention-control
     question_en: >-
-      Can parameter-difference task vectors support modular deletion, composition, and transfer of model behavior?
-    question_zh: 参数差分形成的任务向量能否支持行为的模块化删除、组合与迁移？
+      Can parameter task vectors remove or combine model capabilities?
+    question_zh: 能否用参数任务向量删除或组合模型能力？
     introduction_en: >-
-      This question treats task vectors as intervention operators. Their representational structure matters, but the
-      central test is whether vector arithmetic predictably edits behavior with limited collateral damage.
+      The parameter difference between a base model and a model fine-tuned for a task can be treated as a task vector.
+      This question asks whether such vectors can act as modular editing operators: negation should remove a behavior,
+      addition should combine capabilities, and vector analogies should transfer task relations to new tasks.
+      Behavioral success does not imply that parameter space is intrinsically linear, and evaluation must account for
+      scaling, task interference, and collateral effects on other capabilities.
     introduction_zh: >-
-      该问题把 task vector 视为干预算子。其表示结构很重要，但核心检验是向量运算能否可预测地修改行为且限制附带损害。
+      模型针对某项任务微调前后的参数差分，可以被视为一个任务向量。该问题研究这些向量能否作为模块化编辑算子：
+      取反后删除相应行为，相加后组合多项能力，或通过向量类比把任务关系迁移到新任务。
+      行为上的成功并不意味着参数空间真正线性，也需要检查缩放系数、任务冲突和对其他能力的副作用。
     progress_en: >-
-      Task arithmetic showed that fine-tuning differences can be negated, added, and used in analogies without access to
-      the original training data. Composition is feasible, but interference, calibration, and transfer beyond related
-      model families remain open.
+      Task Arithmetic shows that parameter differences induced by fine-tuning exhibit approximately linear structure
+      across many tasks. Negating a vector can selectively suppress behavior, adding vectors can combine capabilities,
+      and some analogies improve a target task without target-task training data. The experiments span vision and
+      language and measure trade-offs with control-task performance. Coefficients nevertheless require tuning, and
+      unrelated tasks, large parameter shifts, or incompatible capabilities produce nonlinear interference. Function
+      Vectors provide related but distinct evidence in activation space: tasks can also appear as injectable
+      hidden-state directions, but these are not the same object as parameter task vectors. Task vectors are useful
+      editing tools, but general interference-free modular arithmetic over capabilities has not been established.
     progress_zh: >-
-      Task arithmetic 表明，微调参数差分可以取反、相加并用于类比，且不需要原始训练数据。
-      这证明了组合的可行性，但干扰、校准和跨不同模型家族的迁移仍待解决。
+      Task Arithmetic 表明，微调形成的参数差分在多项任务中具有近似线性结构。向量取反可以选择性压制某些行为，
+      多个向量相加能够组合能力，部分类比关系还能在没有目标任务训练数据时提高性能。
+      这些结果覆盖视觉与语言任务，并检验了编辑效果与控制任务性能之间的权衡。不过系数通常需要调节，
+      无关任务、大幅参数移动和不相容能力会产生非线性交互。Function Vectors 在激活空间中提供了相关但不同的证据：
+      任务也可以表现为可注入的隐藏状态方向，但它不等同于参数任务向量。现有研究支持任务向量作为实用编辑工具，
+      尚未证明模型能力可以普遍进行无干扰的模块化运算。
     first_date: '2022-12-08'
     primary_paper_ids:
       - p_2022_ilharco_editing_models_with
@@ -1563,21 +1569,30 @@ nodes:
   - rq_id: rq-language-neuron-control
     family_id: intervention-control
     question_en: >-
-      Can targeted manipulation of language-selective neurons improve cross-lingual task transfer?
-    question_zh: 对语言选择性神经元的定向操作，能否改善跨语言任务迁移？
+      Can manipulating language-selective neurons improve cross-lingual transfer?
+    question_zh: 操纵语言选择性神经元能否改善跨语言迁移？
     introduction_en: >-
-      This question tests whether a localized language representation is an effective control target for downstream
-      transfer, using activation intervention and targeted fine-tuning rather than output-language changes alone.
+      Some neurons are strongly selective for particular languages and can influence which language a model generates.
+      This descriptive localization does not imply that they carry transferable linguistic knowledge. This question
+      tests, through inference-time activation manipulation and targeted fine-tuning, whether language-selective neurons
+      provide an effective control target for improving low-resource-language task performance rather than merely
+      changing the output language.
     introduction_zh: >-
-      该问题检验局部化的语言表示是否是下游迁移的有效控制目标，
-      其证据来自激活干预和定向微调，而不只是输出语言的变化。
+      一些神经元对特定语言表现出较强选择性，并能影响模型使用哪种语言生成。但这种描述性定位不意味着它们承载了可迁移的语言知识。
+      该问题通过推理时激活操纵和定向微调，检验语言选择性神经元能否成为改善低资源语言任务表现的有效控制目标，
+      而不只是改变输出语言。
     progress_en: >-
-      Existing tests found that activating or fine-tuning language-specific neurons did not meaningfully improve
-      cross-lingual transfer and could disrupt task information because the units are polysemantic. The negative result
-      separates descriptive localization from effective control.
+      Existing work tests increasing target-language-neuron activations, suppressing source-language neurons, and
+      fine-tuning only the selected language neurons, but none reliably improves cross-lingual task accuracy. Zeroing
+      these neurons often causes little task-performance loss, suggesting that transferable multilingual competence is
+      not independently concentrated in them. The negative result does not deny their influence on output-language
+      choice; instead, it separates language-identity control from cross-lingual knowledge transfer. Localizing and
+      manipulating a language representation is therefore insufficient to establish an effective transfer lever.
     progress_zh: >-
-      现有实验发现，激活或微调 language-specific neurons 并未显著改善跨语言迁移，且可能因单元 polysemanticity 而破坏任务信息。
-      这一负面结果将描述性定位与有效控制区分开来。
+      现有研究分别尝试增强目标语言神经元的激活、抑制源语言神经元，以及只微调被选中的语言神经元，
+      但均未稳定改善跨语言任务准确率。将这些神经元置零也常常几乎不损害任务表现，说明跨语言能力并未独立集中在这些单元中。
+      负面结果不否定语言选择性神经元会影响输出语言，而是表明语言身份控制与跨语言知识迁移属于不同功能。
+      当前证据因此构成一个重要边界：能够定位和操纵语言身份表示，并不足以得到有效的迁移杠杆。
     first_date: '2025-03-21'
     primary_paper_ids:
       - p_2025_mondal_language_specific_neurons
@@ -1624,20 +1639,34 @@ nodes:
   - rq_id: rq-latent-knowledge-elicitation
     family_id: intervention-control
     question_en: >-
-      How can causally verified latent knowledge be reliably elicited when a model does not express it?
-    question_zh: 当模型不表达已有知识时，如何将经因果验证的潜在知识可靠地诱导出来？
+      How can a model be made to express knowledge it has internally but does not reveal?
+    question_zh: 如何让模型说出内部已有但未表达的知识？
     introduction_en: >-
-      This question turns latent-knowledge diagnosis into intervention. A successful pipeline must distinguish genuine
-      hidden knowledge from correlation and absence before changing the model's expressed answer.
+      When a model gives an incorrect, evasive, or deceptive answer, changing the output does not show that the correct
+      knowledge was already present internally. This question asks how to distinguish encoded-but-unexpressed knowledge
+      from knowledge that was never encoded, then localize the relevant representation, verify its causal relation to
+      the correct answer, and use a localized intervention to make it reliably influence generation. The central risk
+      is that the intervention may create a new answer rather than reveal existing knowledge.
     introduction_zh: >-
-      该问题将潜在知识诊断推进到干预。成功流程必须先区分真实隐藏知识、相关信号和知识缺失，再改变模型的显式回答。
+      当模型给出错误、回避或欺骗性回答时，直接改变输出并不能说明正确知识原本已经存在。
+      该问题研究如何先区分“知识已编码但没有表达”与“模型根本没有编码”，再定位相关内部表示、验证它对正确答案具有因果作用，
+      并通过尽量局部的干预使知识稳定影响生成。核心风险是干预可能制造一个新答案，而不是揭示模型原有知识。
     progress_en: >-
-      MechELK combined sparse-feature analysis, activation patching, and representation engineering into a
-      Locate–Verify–Elicit pipeline. It advances from reading latent knowledge to causally supported elicitation, but
-      robustness to deceptive, multi-step, and distribution-shifted settings remains open.
+      MechELK decomposes latent-knowledge elicitation into three stages: sparse representations localize candidate
+      knowledge features, interventions test whether those features causally affect the correct answer, and only
+      validated directions are used to steer generation. Compared with contrast consistency or correlational readout
+      alone, the pipeline elicits hidden answers more effectively on deceptive, evasive, and multi-step tasks, while
+      stage ablations suggest that causal validation removes some invalid candidates. The experiments nevertheless use
+      known candidate answers and ground truth and depend on the quality of public SAEs; leakage during validation could
+      still cause the intervention to manufacture an answer. The line has advanced from reading latent knowledge to
+      eliciting it after causal validation, but reliability under genuine strategic deception and open-ended answering
+      remains unestablished.
     progress_zh: >-
-      MechELK 将稀疏特征分析、activation patching 和 representation engineering 组合为 Locate–Verify–Elicit 流程。
-      它将研究从读出潜在知识推进到有因果支持的诱导，但对欺骗、多步与分布偏移情形的稳健性仍待检验。
+      MechELK 将潜在知识诱导拆成三个阶段：用稀疏表示定位候选知识特征，通过干预验证这些特征是否影响正确答案，
+      再利用通过验证的方向引导生成。与纯对比一致性或相关读出相比，该流程在欺骗、回避和多步问题上更能诱导隐藏答案；
+      阶段消融也表明因果验证能够排除部分无效候选。不过实验使用已知候选答案和真值，效果依赖公开 SAE 的特征质量；
+      如果验证过程发生信息泄漏，干预仍可能是在制造答案。研究已经从“能否读出潜在知识”推进到“能否在因果验证后诱导表达”，
+      但真实策略性欺骗和开放式答案中的可靠性仍未建立。
     first_date: '2026-04-07'
     primary_paper_ids:
       - p_2026_park_mechelk_a_mechanistic
