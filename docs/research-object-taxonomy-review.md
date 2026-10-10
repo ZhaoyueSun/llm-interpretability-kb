@@ -9,6 +9,8 @@ Corpus: 123 papers
 
 Research Objects 应描述论文试图解释的对象，而不是所用模型族或分析工具。正式设计因此采用“稳定通用对象树 + 独立模型族视图”：模型族在 `data/model-families.yaml` 中维护，Techniques 在另一棵 taxonomy 中维护，Research Objects 只保存状态、表征、组件、参数、组合机制与学习过程。
 
+后续新增或修改节点介绍时，统一遵循 [Research Objects 节点介绍写作与检查准则](research-object-writing-guide.md)；其中规定了对象定义、来源说明、证据措辞、公式、双语一致性与审批检查要求。
+
 ```text
 Research Objects
 ├── Data, States, and Representations
