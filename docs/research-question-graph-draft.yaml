@@ -452,19 +452,26 @@ nodes:
   - rq_id: rq-information-accessibility
     family_id: temporal-development
     question_en: >-
-      When, where, and in how readily readable a form does task-relevant information appear inside a network?
-    question_zh: 任务相关信息在网络内部何时、何处以及以多容易读取的形式出现？
+      Does task-relevant information become more linearly decodable as network depth and training progress?
+    question_zh: 任务相关信息是否会随网络加深和训练推进而更容易被线性读出？
     introduction_en: >-
-      This question uses non-invasive readout to describe information accessibility across depth or training.
-      It provides diagnostic evidence but does not itself establish that the model uses the information.
+      This question asks whether task-relevant information, such as class identity or attributes, becomes increasingly
+      accessible to a simple readout across network layers or training checkpoints. Readability usually means improved
+      linear separability. It can reveal representational development and training failures, but does not show that the
+      original model uses the decoded information.
     introduction_zh: >-
-      该问题以非侵入式读出描述信息沿网络深度或训练过程的可访问性。它提供诊断线索，但本身不回答模型是否真正使用这些信息。
+      该问题研究类别、属性等任务相关信息，是否随着网络逐层计算或训练推进而变得更容易被简单读出器提取。
+      这里的“容易读出”通常指线性可分性提高，可以用来观察表示形成过程并诊断训练异常，但不代表原模型实际使用了这些信息。
     progress_en: >-
-      Linear classifier probes tracked class information non-invasively across layers and training and exposed training failures not visible in final loss.
-      This established a layerwise representation-diagnostic paradigm, while later causal work is still required to determine whether the model actually uses the decoded information.
+      Alain and Bengio showed that linear-probe error decreases almost monotonically with depth in ResNet-50 and
+      Inception v3, while training checkpoints reveal class information becoming progressively more accessible. Probes
+      also expose inactive network regions that final loss can miss. This established readout trajectories as a
+      diagnostic of representation formation, but the evidence is concentrated on image classifiers and establishes
+      linear accessibility rather than causal use.
     progress_zh: >-
-      线性 classifier probe 已用于非侵入式追踪类别信息随网络深度和训练过程的可访问性，并能揭示最终 loss 难以发现的训练异常。
-      这奠定了层间表示诊断范式，但 probe 结果是否对应模型实际使用该信息，需要后续因果研究补充。
+      Alain 与 Bengio 发现，线性探针的分类误差在 ResNet-50 和 Inception v3 中几乎随网络加深而持续下降，
+      训练检查点也显示类别信息逐渐变得更容易读出。探针还能发现最终损失没有暴露的无效网络区域。
+      这建立了用读出轨迹观察表示形成的基本范式，但证据主要来自图像分类器，只说明线性可访问性，不能证明信息被模型因果使用。
     first_date: '2016-10-05'
     primary_paper_ids:
       - p_2016_alain_understanding_intermediate_layers
@@ -1262,20 +1269,26 @@ nodes:
   - rq_id: rq-layerwise-prediction-dynamics
     family_id: temporal-development
     question_en: >-
-      How do model predictions form and change across network depth?
-    question_zh: 模型的预测如何沿网络深度逐层形成和修正？
+      How do model predictions form and change across layers?
+    question_zh: 模型的预测如何在层间逐步形成和修正？
     introduction_en: >-
-      This question treats each layer's hidden state as an iterative update to the output prediction.
-      Readout methods must correct cross-layer representation mismatch and test whether intermediate trajectories are smooth and causally related to final behavior.
+      This question treats each hidden state as an intermediate stage in the formation of the final prediction. It asks
+      when candidate answers appear, strengthen, or are replaced. Because intermediate states are not distributed like
+      the final-layer representation, reliable analysis must correct this mismatch and distinguish a decoded trajectory
+      from the model's native computation.
     introduction_zh: >-
-      该问题把各层 hidden state 视为对输出预测的迭代更新，要求读出方法校正层间表示偏差，
-      并检验中间预测轨迹是否平滑且与最终行为因果相关。
+      该问题把每层隐藏状态看作最终预测形成过程中的一个中间状态，研究候选答案何时出现、如何增强或被替换。
+      由于中间层表示与最终输出层并不处于同一坐标分布，可靠的分析需要校正这种层间偏差，并区分解码器展示的轨迹与模型真实计算过程。
     progress_en: >-
-      Tuned Lens learned layerwise translators to correct logit-lens bias, enabling more reliable decoding of intermediate prediction trajectories; earlier linear probes and studies of layerwise MLP outputs supplied representational and computational foundations.
-      Prediction convergence and revision are now observable, but whether readouts fully capture causal internal state still depends on calibration and intervention.
+      Tuned Lens learns layer-specific translators into the final output space and produces smoother, more accurate
+      prediction trajectories than the Logit Lens across GPT-2, OPT, Pythia, BLOOM, and LLaMA-family models.
+      Perturbation experiments also show better alignment with actual output changes. It nevertheless remains a
+      separately trained probe with approximation error and does not establish that token distributions are the model's
+      native intermediate representation.
     progress_zh: >-
-      Tuned Lens 通过学习层间翻译器校正 logit lens 偏差，使中间预测轨迹能够被更可靠地解码；早期线性 probe 与 MLP 逐层输出研究提供了表示和计算基础。
-      当前可观察预测如何收敛或修正，但中间读出是否完整反映实际因果状态仍依赖校准与干预验证。
+      Tuned Lens 为各层学习到最终输出空间的转换器，在 GPT-2、OPT、Pythia、BLOOM 和 LLaMA 等模型上得到比
+      Logit Lens 更平滑、准确的预测轨迹。内部扰动实验还表明，它通常能更好地跟踪模型输出的实际变化。
+      不过它仍是一个额外训练的探针，存在自身的近似误差，不能证明解码出的 token 分布就是模型原生采用的表示形式。
     first_date: '2023-03-14'
     primary_paper_ids:
       - p_2023_belrose_eliciting_latent_predictions
@@ -1286,19 +1299,26 @@ nodes:
   - rq_id: rq-generation-trajectory
     family_id: temporal-development
     question_en: >-
-      How far into the future generation trajectory is the current internal state already committed?
-    question_zh: 当前内部状态提前承诺了多远的未来生成轨迹？
+      How far ahead can future generation be decoded from a single hidden state?
+    question_zh: 单个隐藏状态能提前读出多远的后续生成？
     introduction_en: >-
-      This question extends next-token prediction to multiple later tokens, asking how much future plan or constraint is readable from one state and distinguishing it from later revision during actual generation.
+      This question asks whether the hidden state at the current token already contains information about tokens beyond
+      the immediate next one, and how that readability changes with prediction horizon and layer. Decodable future
+      information indicates short-range anticipation, but does not imply that the model has committed to a fixed
+      multi-token plan.
     introduction_zh: >-
-      该问题从 next-token prediction 扩展到后续多个 token，考察单个 state 中未来计划或约束的可读范围，
-      并与真实生成过程中的后续修正区分开来。
+      该问题研究当前 token 的隐藏状态是否已经包含下一 token 之外的后续生成信息，以及这种可读性如何随预测距离和网络层数变化。
+      能够提前读出未来 token，说明模型具有短期预期信息，但不等于模型已经确定了不可修改的多步生成计划。
     progress_en: >-
-      Future Lens showed that a current hidden state can contain information about multiple not-yet-generated tokens, extending analysis from next-token prediction to future generation plans.
-      Current evidence mainly establishes readability; how far the model is causally committed, when it replans, and whether the result generalizes across tasks remain unclear.
+      Future Lens shows that middle-layer states in GPT-J contain decodable information about several subsequent tokens,
+      and that routing the state through the remaining pretrained computation exposes more information than a simple
+      linear projection. Accuracy declines with distance and model uncertainty, and only one model and three future
+      offsets were tested. The evidence therefore supports short-range anticipatory information, not commitment to a
+      complete future trajectory.
     progress_zh: >-
-      Future Lens 表明单个当前 hidden state 可包含尚未生成的多个后续 token 信息，使研究从下一 token 预测扩展到未来生成计划。
-      现阶段主要证明未来轨迹可被读出，模型究竟提前因果承诺多远、何时重规划以及结论能否跨任务复现仍不清楚。
+      Future Lens 表明，GPT-J 的中层隐藏状态包含未来数个 token 的可读信息，将状态重新送入预训练模型的后续计算，
+      比简单线性投影能提取更多信息。准确率会随预测距离增加和模型置信度下降而衰减，而且实验只覆盖一个模型及三个未来偏移。
+      因此，目前证据支持“短期未来信息可被读出”，尚不支持“模型已经提前承诺整段生成轨迹”。
     first_date: '2023-11-08'
     primary_paper_ids:
       - p_2023_pal_future_lens_anticipating
@@ -1306,18 +1326,26 @@ nodes:
   - rq_id: rq-sequential-reasoning-dynamics
     family_id: temporal-development
     question_en: >-
-      How does causal computation unfold and reorganize across the generated steps of Chain-of-Thought reasoning?
-    question_zh: 因果计算如何沿 Chain-of-Thought 的生成步骤展开和重组？
+      How does internal computation evolve across Chain-of-Thought steps?
+    question_zh: 思维链生成过程中，内部计算如何随步骤演化？
     introduction_en: >-
-      This question extends static activation intervention to sequential reasoning, locating the token positions, heads, and cross-step transfers that shift computation from direct answering to Chain-of-Thought-like execution.
+      This question asks whether Chain-of-Thought prompting merely changes the generated text or causally reorganizes
+      computation across the reasoning process. The object of analysis is no longer one static token or component, but
+      how information moves across generated positions and how groups of attention heads jointly support intermediate
+      reasoning and the final answer.
     introduction_zh: >-
-      该问题把静态 activation intervention 扩展到序列化推理，定位哪些 token positions、heads 和跨步传递使计算从直接作答转向 CoT-like execution。
+      该问题研究思维链提示是否只改变了生成文本，还是会使模型内部计算沿整个推理过程发生因果变化。
+      分析对象不再是某个静态 token 或单一组件，而是信息如何跨生成位置传递，以及不同注意力头如何共同支持中间推理和最终答案。
     progress_en: >-
-      Sequential activation patching has begun tracing when information enters, propagates, and reorganizes across Chain-of-Thought steps, providing a direct tool for temporal causal analysis.
-      Evidence is still early: written reasoning may not match latent computation, and robustness to prompts, decoding paths, and alternative reasoning trajectories remains untested.
+      Sequential Activation Patching extends activation intervention across complete generation trajectories. Current
+      results identify overlapping head sets involved in maintaining the reasoning trajectory, separating demonstrations
+      from the target question, generating numbers, and anchoring the answer; joint patching and zero ablation provide
+      causal support. Written reasoning may nevertheless diverge from latent computation, and the evidence remains
+      limited to a narrow mathematical setting and relatively coarse trajectory aggregation.
     progress_zh: >-
-      Sequential activation patching 已开始沿 Chain-of-Thought 的生成步骤追踪信息何时进入、传递和重组，为时序化因果分析提供了直接工具。
-      当前仅有早期实证，仍需检验书面推理链与潜在计算是否一致，以及结果对 prompt、解码路径和替代推理轨迹是否稳健。
+      Sequential Activation Patching 将激活修补扩展到完整生成轨迹。现有结果表明，维持推理过程、区分示例与问题、
+      生成数字和确定答案依赖不同但相互重叠的注意力头集合；联合修补和置零消融也支持这些集合具有因果作用。
+      不过书面思维链未必忠实反映潜在计算，当前实验的数学任务、模型和轨迹聚合方式也较受限。
     first_date: '2026-08-23'
     primary_paper_ids:
       - p_2026_dura_mechanistic_interpretability_of
@@ -1325,19 +1353,28 @@ nodes:
   - rq_id: rq-training-feature-dynamics
     family_id: temporal-development
     question_en: >-
-      How does a network select, reweight, and progressively form prediction-relevant features during training?
-    question_zh: 网络在训练中如何选择、重加权并逐层形成预测相关特征？
+      How do neural networks learn and select useful features during training?
+    question_zh: 神经网络如何在训练中学习和选择有用特征？
     introduction_en: >-
-      This question seeks analyzable or computable feature-learning dynamics that explain how finite-width networks depart from fixed kernels and whether the same laws transfer to kernel machines or convolutional architectures.
+      This question asks how gradient-based training changes internal features so that task-relevant structure is
+      progressively selected and amplified, rather than leaving the model equivalent to a fixed initial kernel. It
+      covers both the conditions that permit genuine feature evolution and mathematical laws that describe feature
+      selection, amplification, and propagation.
     introduction_zh: >-
-      该问题寻求可解析或可计算的 feature-learning 动力学，解释有限宽网络如何偏离固定 kernel、
-      以及这些规律能否迁移到 kernel machines 或卷积架构。
+      该问题研究梯度训练如何改变内部特征，使模型逐渐突出与任务相关的结构，而不是始终依赖固定的初始特征。
+      它既关注哪些训练设定能够产生真正的特征变化，也试图寻找可计算的规律来解释特征选择、增强和跨层传播。
     progress_en: >-
-      Infinite-width theory first supplied analyzable limits that retain feature learning, and average-gradient-outer-product laws were later used to explain feature selection and layerwise amplification in fully connected networks and CNNs.
-      These works provide mathematical mechanisms of training dynamics, but a large gap remains between controlled architectures and Transformers trained at scale.
+      Yang and Hu showed that standard and NTK parameterizations approach fixed-kernel behavior at infinite width,
+      whereas µP preserves nontrivial feature learning. Radhakrishnan and colleagues then found that the average gradient
+      outer product predicts directions amplified by fully connected networks and used it to build recursively
+      feature-learning kernels. Beaglehole and colleagues extended the principle to convolutional networks and local
+      visual features. These results provide mathematical mechanisms in controlled architectures, but do not yet
+      explain feature formation in large-scale Transformer pretraining.
     progress_zh: >-
-      无限宽理论首先给出保留 feature learning 的可解析极限，随后 average gradient outer product 规律被用于解释全连接网络和 CNN 中的特征选择与逐层增强。
-      现有工作建立了训练动力学的数学机制，但从受控架构推广到 Transformer 和大规模预训练仍有明显鸿沟。
+      Yang 与 Hu 证明，标准参数化和 NTK 参数化在无限宽极限下趋向固定核，而 µP 可以保留非平凡的特征学习。
+      随后，Radhakrishnan 等人发现平均梯度外积能够预测全连接网络放大的特征方向，并据此构造递归学习特征的核方法；
+      Beaglehole 等人又把这一规律扩展到卷积网络和局部视觉特征。现有结果在受控网络中提供了较明确的数学机制，
+      但尚未解释大规模 Transformer 预训练中的特征形成。
     first_date: '2020-11-30'
     primary_paper_ids:
       - p_2020_yang_feature_learning_in
@@ -1347,18 +1384,31 @@ nodes:
   - rq_id: rq-circuit-formation
     family_id: temporal-development
     question_en: >-
-      How do circuits implementing a capability form progressively from random initialization?
-    question_zh: 实现能力的电路如何从随机初始化逐步形成？
+      How do circuits for specific capabilities form during training?
+    question_zh: 实现特定能力的电路如何在训练中形成？
     introduction_en: >-
-      This question follows training checkpoints and subcomputations to understand how matching, copying, causal structure, and other local mechanisms interact and assemble into a complete circuit.
+      Starting from an identified functional circuit, this question asks when its matching, copying, routing, and other
+      subcomputations emerge, how they depend on one another, and why several smoothly developing components can produce
+      an apparently abrupt capability. Evidence typically combines training checkpoints, theoretical dynamics, and
+      interventions applied throughout training.
     introduction_zh: >-
-      该问题追踪训练检查点和子计算，研究 match、copy、causal structure 等局部机制如何相互作用并组合成完整电路。
+      该问题从已经识别出的功能电路继续向前追问：组成电路的匹配、复制、路由等子计算分别在何时形成，
+      它们如何相互依赖，以及多个平滑变化的部件为何会产生看似突然出现的完整能力。
+      研究通常结合训练检查点、理论动力学和贯穿训练过程的内部干预。
     progress_en: >-
-      Studies examined how gradient descent learns causal structure and which conditions are required for an induction circuit to form.
-      Checkpoint evidence now describes stages from initialization to maturity for some circuits, but the results are concentrated on in-context learning and say little about formation in other abilities or post-training.
+      Olsson and colleagues first observed that induction heads emerge alongside a phase change in in-context-learning
+      loss. Nichani and colleagues then showed that, in a controlled two-layer Transformer, early gradients recover
+      latent dependency structure through token mutual information, after which the second layer learns matching and
+      retrieval. Singh and colleagues found that matching, previous-token routing, and label-copying subcircuits develop
+      smoothly, while their multiplicative or cooperative interaction produces the apparent transition; multiple
+      induction heads also form redundant paths. The account is strong in synthetic settings but has not been established
+      for complex circuits in natural-language models.
     progress_zh: >-
-      现有工作分析梯度下降如何学习因果结构，以及 induction circuit 成形所需的条件。
-      检查点证据已能描述部分电路从初始化到成熟的阶段，但结论主要集中在 in-context learning，其他能力与后训练机制的形成尚少。
+      Olsson 等人首先观察到 induction heads 与上下文学习的损失相变同步出现。Nichani 等人进一步证明，
+      在受控两层 Transformer 中，早期梯度通过 token 间互信息恢复潜在依赖结构，随后第二层形成匹配与检索操作。
+      Singh 等人则发现 induction circuit 的多个匹配、前一 token 路由和标签复制子电路会平滑成长，
+      其乘性或协同作用造成最终突变；多个 induction heads 还形成冗余路径。现有解释在合成任务中较强，
+      但尚不能说明自然语言模型中的复杂电路遵循相同形成过程。
     first_date: '2024-02-22'
     primary_paper_ids:
       - p_2024_nichani_how_transformers_learn
@@ -1369,19 +1419,28 @@ nodes:
   - rq_id: rq-capability-phase-transition
     family_id: temporal-development
     question_en: >-
-      Are apparently abrupt capability transitions driven by smoother changes in internal mechanisms?
-    question_zh: 表面突发的能力相变是否由更平滑的内部机制变化驱动？
+      Why does a model suddenly shift from memorization to generalization?
+    question_zh: 模型为何会突然从记忆转向泛化？
     introduction_en: >-
-      This question explains grokking through internal progress measures and competing circuits, distinguishing memorization, formation of a generalizing circuit, and cleanup, and asking why optimization delays selection of a more efficient mechanism.
+      This question concerns grokking: why test performance can rise abruptly long after a model has already fit the
+      training set. By examining internal circuits and continuous progress measures, it asks whether the visible
+      transition results from smoother formation, competition, and replacement between memorizing and generalizing
+      mechanisms.
     introduction_zh: >-
-      该问题用内部 progress measures 和竞争电路解释 grokking，区分记忆、泛化电路形成与 cleanup，
-      并研究优化为何延迟选择更高效的机制。
+      该问题关注 grokking：模型已经完全拟合训练集之后，为何测试性能会在很久以后突然上升。
+      研究通过内部电路和连续进展指标，检验这种表面突变是否来自记忆机制与泛化机制之间较为平滑的形成、竞争和替代。
     progress_en: >-
-      Reverse engineering of grokking found smoothly changing internal progress measures before test accuracy jumps, while circuit-efficiency analysis further explained competition among memorization, generalizing-circuit formation, and cleanup.
-      The mechanism accounts for phase transitions in several controlled tasks, but generalization to complex capabilities and large-scale training remains uncertain.
+      Nanda and colleagues identified a gradually forming Fourier generalization circuit in modular addition and
+      separated training into memorization, circuit formation, and cleanup phases; internal measures change continuously
+      before test accuracy jumps. Varma and colleagues proposed a circuit-efficiency account: memorizing circuits learn
+      faster, but generalizing circuits produce the same training outputs with lower parameter norm and eventually
+      dominate under weight decay. The account successfully predicted ungrokking and semi-grokking, but remains grounded
+      in controlled algorithmic tasks rather than general capability emergence in large models.
     progress_zh: >-
-      Grokking 研究通过电路逆向工程发现，测试准确率突变之前已有平滑变化的内部 progress measures；circuit-efficiency 分析进一步解释了记忆、泛化回路形成与 cleanup 的竞争。
-      该机制解释了若干受控任务的表面相变，但是否适用于更复杂能力和大规模训练仍未确定。
+      Nanda 等人在模加法模型中识别出逐渐形成的 Fourier 泛化电路，并把训练过程分为记忆、泛化电路形成和清理阶段；
+      内部指标在测试准确率突升前已经连续变化。Varma 等人进一步提出电路效率解释：记忆电路学习较快，
+      但泛化电路能以更小参数范数产生相同训练输出，因此在权重衰减下最终占据主导。
+      该理论成功预测了 ungrokking 和 semi-grokking，但仍主要适用于受控算法任务，尚未解释大模型中的一般能力涌现。
     first_date: '2023-01-12'
     primary_paper_ids:
       - p_2023_nanda_progress_measures_for
@@ -1390,20 +1449,30 @@ nodes:
   - rq_id: rq-posttraining-mechanism-change
     family_id: temporal-development
     question_en: >-
-      Do fine-tuning and post-training create new mechanisms, or strengthen, suppress, and reorganize existing ones?
-    question_zh: Fine-tuning 与后训练产生新机制，还是强化、抑制或重组既有机制？
+      Does fine-tuning create new mechanisms or reorganize existing ones?
+    question_zh: 微调会创造新机制，还是重组已有机制？
     introduction_en: >-
-      This question compares base and post-trained models to distinguish shared circuits, amplified representations, and genuinely new features while guarding against sparsity artifacts introduced by model-difference tools.
+      This question compares base and fine-tuned models to determine whether behavioral changes arise from genuinely new
+      representations and circuits or from strengthening, suppressing, extending, and recombining existing mechanisms.
+      Because model-difference methods can mistake activation shifts or sparse-optimization artifacts for novel features,
+      claims of a new mechanism require both representational and causal evidence.
     introduction_zh: >-
-      该问题通过 base 与 post-trained 模型比较，区分共享电路、被增强的表示和真正新增的特征，
-      同时警惕模型差分工具引入的稀疏伪影。
+      该问题比较基础模型与微调后模型的内部计算，判断性能变化来自全新的表示和电路，
+      还是来自对已有机制的强化、抑制、扩展或重新组合。由于模型差分方法可能把激活变化或稀疏优化伪影误判成新特征，
+      因此“出现新机制”需要表示和因果两方面的证据。
     progress_en: >-
-      Entity-tracking studies suggest that fine-tuning can strengthen an existing mechanism rather than create a new
-      one. Reasoning-feature and crosscoder studies provide secondary evidence, but also show why novelty claims require
-      separate representational and evidential analysis.
+      Entity-tracking studies find that arithmetic fine-tuning largely preserves and strengthens an existing
+      positional-routing circuit while recruiting additional heads, rather than replacing the algorithm. SAE analyses
+      of reasoning models similarly suggest that post-training amplifies features associated with uncertainty,
+      exploration, and reflection, but cannot show that these features were completely absent from the base model.
+      Crosscoder studies further demonstrate that many apparently chat-specific features arise from shrinkage or feature
+      splitting induced by sparse objectives. Current evidence therefore favors strengthening and reorganization in
+      several cases, but does not establish a general law of post-training.
     progress_zh: >-
-      Entity tracking 案例表明，fine-tuning 可以强化既有机制，而非必然创建新机制。
-      推理特征与 crosscoder 研究提供次级证据，但也说明“新机制”的主张还需单独的表示和证据分析。
+      实体追踪研究发现，算术微调模型主要保留并增强基础模型已有的位置路由电路，同时招募更多注意力头，
+      而不是替换整个算法。对推理模型的 SAE 分析也发现后训练会增强与不确定、探索和反思相关的特征，
+      但尚不能证明这些特征在基础模型中完全不存在。Crosscoder 研究进一步表明，许多看似“聊天模型独有”的特征
+      其实来自稀疏目标造成的收缩或特征拆分。当前证据更支持后训练经常强化和重组已有机制，但还不足以形成普遍规律。
     first_date: '2024-02-22'
     primary_paper_ids:
       - p_2024_prakash_fine_tuning_enhances
@@ -1838,7 +1907,7 @@ edges:
     target: rq-sequential-reasoning-dynamics
     type: extends
     evidence_status: same-lineage
-    rationale_zh: 可读出的未来承诺进一步被提升为跨 CoT 生成步骤的因果计算追踪。
+    rationale_zh: 从读出单个状态包含的后续 token 信息，推进到通过跨生成位置的干预追踪推理过程中的因果计算变化。
   - source: rq-training-feature-dynamics
     target: rq-circuit-formation
     type: extends
