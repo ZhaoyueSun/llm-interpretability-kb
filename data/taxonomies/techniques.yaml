@@ -1,6 +1,6 @@
 schema_version: 1
 taxonomy_id: techniques
-version: 16
+version: 17
 status: active
 title: Techniques
 nodes:
@@ -526,53 +526,78 @@ nodes:
   parent_id: feature-discovery-decomposition
   title: Concept–Unit Alignment
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v17_concept_unit_alignment
   introduction:
     en: >-
-      Concept–unit alignment asks whether a unit already present in the model can be
-      given a stable human-interpretable description. A unit's activation pattern is
-      compared with labeled examples, a concept vocabulary, or embeddings from another
-      model. When the match is reliable, the method offers a direct semantic handle on
-      a neuron or channel; when concepts are distributed across many units, however, a
-      one-unit–one-concept description may be too simple.
+      Concept–Unit Alignment does not learn new feature coordinates. Instead, it treats
+      the model's existing neurons or channels as candidate entries in an "internal
+      vocabulary." Researchers collect a unit's activations over many inputs and compare
+      the resulting activation pattern with human-defined concept evidence, candidate
+      text descriptions, or semantic representations supplied by another model. The
+      resulting label describes what the unit frequently responds to under the chosen
+      data and scoring method; it is not a complete definition of the unit's function. A
+      single unit may respond to several concepts, and one concept may be distributed
+      across many units. Even a stable semantic correspondence does not by itself show
+      that the unit causally contributes to model behavior.
     zh: >-
-      Concept–Unit Alignment 询问：模型中已经存在的某个单元，能否获得一个稳定、可由人理解的描述。
-      研究者会把它的激活模式与标注样本、概念词表或其他模型的嵌入进行比较。
-      匹配可靠时，我们就得到一个直接理解神经元或通道的语义抓手；但若概念分布在许多单元上，
-      “一个单元对应一个概念”的叙述可能过于简单。
+      Concept–Unit Alignment 不学习新的特征坐标，而是把模型已有的神经元或通道当作“内部词汇表”的候选条目。
+      研究者会收集某个单元在大量输入上的激活，并将这种激活规律与人工定义的概念证据、候选文本或其他模型提供的语义表示进行比较，
+      从而为该单元寻找候选描述。这个标签描述的是单元在给定数据和评分方法下经常响应什么，而不是对其功能的完整定义。
+      同一单元可能响应多个概念，一个概念也可能分布在多个单元中；稳定的语义对应也不能单独证明该单元对模型行为具有因果作用。
 - node_id: network-dissection
   parent_id: concept-unit-alignment
   title: Network Dissection
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v17_concept_unit_alignment
   introduction:
     en: >-
-      Network Dissection turns unit interpretation into a matching problem. For each
-      convolutional unit, it compares the unit's spatial activation map with pixel-level
-      annotations for objects, parts, textures, colors, and other concepts. A high overlap
-      suggests a possible semantic label and makes interpretability measurable across
-      networks, but the method can only recognize concepts represented in its annotation set.
+      Network Dissection tests whether an individual convolutional unit in a CNN behaves
+      like a detector for a visual concept. Researchers collect the unit's spatial
+      activation maps on annotated images, resize each map to the image resolution, and
+      threshold it into a binary region. They then compute Intersection over Union (IoU)
+      between this region and pixel-level masks for concepts such as objects, parts,
+      scenes, textures, materials, and colors. If the unit's active region consistently
+      overlaps a concept across many images, the unit is labeled as a candidate detector
+      for that concept. Counting how many distinct concepts align with units in a layer
+      also supports comparisons of axis-aligned interpretability across networks. The
+      result depends on which concepts the annotation set contains and on the activation
+      and IoU thresholds. It measures spatial alignment between one unit and one concept:
+      a missed concept may simply be absent from the vocabulary, while high overlap does
+      not show that the unit represents only that concept or causally drives behavior.
     zh: >-
-      Network Dissection 把单元解释变成一个匹配问题：对每个卷积单元，将其空间激活图与对象、部件、纹理、颜色等概念的
-      像素级标注进行比较。高度重合意味着这个概念可能是该单元的语义标签，也使不同网络的“可解释单元数量”可以被量化比较。
-      但它只能识别标注词表中已经存在的概念。
+      Network Dissection 检查 CNN 中的单个卷积单元是否表现得像某个视觉概念的 detector。研究者先收集该单元在标注图像上的空间激活图，
+      将激活图放大到原图尺寸并按阈值转换成二值区域，再与对象、部件、场景、纹理、材质和颜色等概念的像素级标注区域计算
+      Intersection over Union（IoU）。如果一个单元的激活区域与某个概念在大量图像上持续重合，就把它标记为该概念的候选 detector；
+      一层中能够与多少种概念形成这种对应，也可以用来比较不同网络表征的 axis-aligned interpretability。这个结果依赖标注数据包含哪些概念、
+      激活与 IoU 阈值如何设置，并且只衡量单个单元与概念的空间对应关系：未被识别的概念可能不在标注词表中，高重合也不代表该单元只表示这个概念或对模型行为具有因果作用。
 - node_id: clip-unit-labeling
   parent_id: concept-unit-alignment
   title: CLIP-Based Unit Labeling
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v17_concept_unit_alignment
   introduction:
     en: >-
-      CLIP-based labeling replaces a fixed, densely annotated concept dataset with the
-      shared image–text space of a vision-language model. A unit's preferred images are
-      compared with candidate text descriptions, allowing CLIP-Dissect to produce more
-      open-ended labels with much less annotation effort. This flexibility is valuable,
-      but the resulting explanation reflects what CLIP can distinguish and how the
-      candidate descriptions were chosen.
+      CLIP-Based Unit Labeling uses a vision–language model to find text labels for units
+      in a vision network, avoiding the need for pixel-level annotations for every
+      candidate concept. Researchers begin with a set of unlabeled probe images and a
+      set of candidate text descriptions. CLIP scores how well every image matches every
+      candidate description, producing a score pattern across images for each concept;
+      the vision model being interpreted produces the target unit's activation pattern
+      over the same images. CLIP-Dissect compares these two cross-image patterns and uses
+      the best-matching candidate text as the unit's description, rather than simply
+      captioning its most activating images. Probe images and candidate descriptions can
+      be changed independently, so the method is not tied to a fixed pixel-annotated
+      dataset. It must still choose from the supplied candidate texts, however, and its
+      output depends on CLIP's semantic distinctions, the probe images, the activation
+      summary, and the matching function. The label describes a correlated response
+      pattern; it may not capture all of the unit's meanings and does not by itself
+      establish a causal function.
     zh: >-
-      CLIP-Based Unit Labeling 用视觉—语言模型共享的图文空间，替代固定且需要密集标注的概念数据集。
-      研究者把某个单元偏好的图像与候选文本描述进行比较，因此 CLIP-Dissect 能以更少标注成本产生更开放的标签。
-      这种灵活性很有价值，但解释结果也受 CLIP 能区分什么以及候选描述如何选择的影响。
+      CLIP-Based Unit Labeling 使用视觉—语言模型为视觉网络中的单元寻找文本标签，从而避免为每个候选概念准备像素级标注。
+      研究者先准备一组无需人工标注的 probe images 和一个候选文本集合。CLIP 为每张图像和每个候选文本计算匹配分数，由此得到每个概念在整组图像上的得分变化；
+      待解释的视觉模型则给出某个单元在同一组图像上的激活变化。CLIP-Dissect 比较这两种跨图像的变化模式，并把最匹配的候选文本作为该单元的描述，
+      而不是简单地给最高激活图像生成 caption。它可以灵活更换 probe images 和候选文本，不受固定像素标注数据集限制，但仍只能从提供的候选文本中选择标签，
+      结果也会受到 CLIP 的语义能力、probe images、激活汇总方式和匹配函数影响。所得标签描述的是相关的响应模式，不一定覆盖单元的全部语义，也不能单独证明其因果功能。
 - node_id: feature-dictionary-learning
   parent_id: feature-discovery-decomposition
   title: Feature Dictionary Learning
