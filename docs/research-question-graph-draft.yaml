@@ -487,19 +487,35 @@ nodes:
   - rq_id: rq-concept-unit-alignment
     family_id: representation-form
     question_en: >-
-      Do internal units stably align with human concepts, and how can that alignment be quantified and named?
-    question_zh: 内部单元是否与人类概念稳定对齐，这种对齐如何被量化和命名？
+      Do individual internal units correspond to human-interpretable concepts?
+    question_zh: 模型中的单个内部单元是否对应人类可理解的概念？
     introduction_en: >-
-      This question asks whether unit-level semantics are genuine structure rather than an artifact of coordinate choice or a fixed label vocabulary, and whether open-vocabulary descriptions can be generated at low cost.
+      This question asks whether semantic concepts are concentrated in individual neurons or channels, and whether
+      such unit–concept correspondence reflects the organization of the representation or appears only in a particular
+      coordinate basis. Studies typically compare a unit's activation regions or responsive examples with human
+      concept annotations. Such alignment does not establish that the unit is monosemantic or causally used in
+      prediction. Automatically generating open-vocabulary unit descriptions is treated as a separate
+      explanation-construction question.
     introduction_zh: >-
-      该问题研究单元级语义是否是表示的真实结构，而非坐标选择或标签词表造成的表象，并进一步考察能否低成本地生成开放词汇描述。
+      该问题考察模型是否将某些语义概念集中编码在单个神经元或通道上，以及这种“单元—概念”对应是表示的真实组织方式，
+      还是只有在特定坐标基底下才会显现。研究通常将单元的激活区域或响应样本与人工概念标注进行比较。这样的对齐不等于单元具有单一含义，
+      也不能单独证明模型在预测时因果地使用了该概念。如何自动为单元生成开放词汇名称，则属于另一个解释构造问题。
     progress_en: >-
-      Network Dissection quantified unit-to-human-concept alignment and tested its dependence on the representation basis.
-      CLIP-Dissect then used a vision-language model to expand naming to an open vocabulary with lower annotation cost.
-      Unit semantics can now be discovered and named at scale, but their stability across inputs, compositionality, and causal role remain uncertain.
+      Network Dissection operationalized unit–concept alignment using the densely annotated Broden dataset and an
+      IoU-based detector metric for objects, parts, materials, textures, and other visual concepts. Its rotation
+      experiments showed that unit-level interpretability can fall sharply while information content and classification
+      performance remain largely unchanged, demonstrating dependence on the representation basis. CLIP-Dissect later
+      reduced reliance on dense segmentation labels and fixed concept vocabularies, enabling scalable open-vocabulary
+      descriptions. CRP and RelMax further showed that maximally activating examples need not reveal how a unit is
+      actually used in a particular prediction, extending the line toward prediction-conditioned relevance and concept
+      composition. Unit semantics can now be measured and described at greater scale, but conclusions remain dependent
+      on the basis, vocabulary, probe data, and input context, and do not establish monosemanticity or causal necessity.
     progress_zh: >-
-      Network Dissection 建立了单元—人工概念对齐的量化方法并检验其基底依赖性；CLIP-Dissect 又借助视觉—语言模型把命名扩展到开放词汇并降低标注成本。
-      当前已能大规模发现和命名单元语义，但其跨输入稳定性、组合性与因果作用仍不确定。
+      Network Dissection 使用带语义分割标注的 Broden 数据集和 IoU 指标，系统量化了视觉网络中单元与物体、部件、材质、纹理等概念的对应关系。
+      随机旋转实验表明：在分类性能和信息量基本不变的情况下，单元级可解释性会显著下降，说明这种对应依赖表示空间的坐标轴。CLIP-Dissect 随后减少了对密集分割标注
+      和固定概念词表的依赖，使单元语义能够以开放词汇进行规模化描述。CRP 与 RelMax 进一步指出，最强激活样本不一定反映单元在具体预测中实际发挥的作用，
+      并把分析推进到预测条件下的概念相关性与概念组合。当前已经可以较大规模地测量和描述单元语义，但结果仍受坐标基底、候选词表、探测数据和输入情境影响，
+      也尚不能据此证明单义性或因果必要性。
     first_date: '2017-04-19'
     primary_paper_ids:
       - p_2017_bau_network_dissection_quantifying
@@ -532,18 +548,38 @@ nodes:
   - rq_id: rq-unsupervised-feature-discovery
     family_id: representation-form
     question_en: >-
-      Can stable, interpretable representational factors be discovered from activation statistics without predefined concept labels or probing hypotheses?
-    question_zh: 不预设概念标签或 probing 假说，能否从激活统计中发现稳定、可解释的表示因素？
+      Can interpretable representational factors be discovered from model activations without predefined concepts?
+    question_zh: 不预设概念时，能否从模型激活中发现可解释的表示因素？
     introduction_en: >-
-      This question asks whether activations expose reproducible latent structure and whether it can be extracted without training a large supervised interpreter or an overcomplete dictionary.
+      This question asks whether recurring directions or latent factors can emerge from model activations without
+      beginning with a human-defined concept vocabulary or a specific probing target. Methods such as dictionary
+      learning and ICA decompose the activation distribution into candidate factors, whose meanings are then assessed
+      using high-response examples, controlled input changes, and downstream tests. Readable factors do not imply a
+      unique decomposition, complete coverage of the representation, or causal necessity for model behavior. Unlike
+      the later SAE branch, this question concerns hypothesis-free exploratory factor discovery rather than
+      specifically recovering latent features from superposition with an overcomplete sparse dictionary.
     introduction_zh: >-
-      该问题关注模型激活自身是否暴露出可重复的潜在结构，以及这种结构能否在不训练大型监督解释器或过完备字典的情况下被提取。
+      该问题关注能否不从人工概念词表或特定 probe 目标出发，而让模型激活本身揭示反复出现的表示方向或潜在因素。
+      Dictionary learning、ICA 等方法通过分解激活分布得到候选因素，再根据高响应样本、受控输入变化和下游测试判断其是否具有一致语义。
+      发现可读因素并不意味着分解结果唯一，也不能证明这些因素覆盖了模型的全部表示或对模型行为具有因果必要性。与后续 SAE 分支相比，
+      这里关注的是无预设假说的探索性因素发现，而不是专门检验过完备稀疏字典能否从 superposition 中恢复潜在特征。
     progress_en: >-
-      Sparse dictionary learning first recovered shared Transformer factors without predefined labels; ICA Lens then explored a statistical decomposition that does not require training another dictionary.
-      The line has moved from predefined probing hypotheses to data-driven discovery of unknown features, but stability, uniqueness, and functional meaning across decompositions remain unresolved.
+      Yun et al. decomposed contextual representations from different BERT layers using a shared nonnegative sparse
+      dictionary. High-response contexts and layerwise trajectories exposed factors associated with word-sense
+      disambiguation, sentence patterns, and long-range dependencies. This showed that meaningful representational
+      hypotheses can be generated without predefined linguistic probes, although the evidence was concentrated in
+      selected cases from one model. ICA Lens later extracted non-Gaussian directions from three language models and
+      added convergence diagnostics, random-component audits, sparse probing, and targeted perturbations. Its results
+      show that many readable and functionally useful directions can be recovered cheaply without training an
+      overcomplete dictionary for every layer. Data-driven factor discovery is therefore feasible, but its results
+      still depend on the decomposition objective, activation corpus, factor capacity, and human interpretation
+      procedure. Whether different methods recover consistent, unique, and broadly transferable factors remains
+      unresolved.
     progress_zh: >-
-      稀疏 dictionary learning 首先从 Transformer 激活中发现无需预设标签的共享因素；ICA Lens 进一步探索无需再训练一个字典的统计分解。
-      研究已从预设 probing 假说转向数据驱动的未知特征发现，但不同分解的稳定性、唯一性和功能意义仍需验证。
+      Yun 等人将不同 BERT 层的上下文化表示分解为同一个非负稀疏字典中的因素，并通过高响应语境和逐层变化轨迹发现词义消歧、句内模式和长距离依赖等结构。
+      这表明，不预设具体语言学 probe，也能从激活中提出有意义的表示假说，但证据主要来自少量筛选案例和单一模型。ICA Lens 随后使用独立成分分析，从三个语言模型的激活中提取非高斯方向，
+      并加入收敛诊断、随机成分审计、稀疏 probing 和定向扰动。结果表明，无需为每层训练过完备字典，也能低成本获得许多可读且具有一定功能效用的方向。
+      目前已经证明数据驱动的因素发现是可行的，但结果仍取决于分解目标、激活语料、因素数量和人工解释过程；不同方法能否恢复一致、唯一且可推广的表示因素，仍未解决。
     first_date: '2021-03-29'
     primary_paper_ids:
       - p_2021_yun_transformer_visualization_via
@@ -552,18 +588,16 @@ nodes:
   - rq_id: rq-neuron-feature-structure
     family_id: representation-form
     question_en: >-
-      How sparsely and stably are functional features implemented by native neurons in real large models?
-    question_zh: 真实大模型中的功能特征以多稀疏、多稳定的原生神经元结构实现？
+      Are features in large language models represented by individual neurons or neuron populations?
+    question_zh: 大语言模型中的特征由单个神经元还是神经元群表示？
     introduction_en: >-
-      Moving beyond toy models, this question tests whether features concentrate in small neuron sets, appear compositionally, or change systematically with model scale.
+      This question asks whether native model neurons have relatively distinct, interpretable functions or whether features are distributed across neuron populations while individual neurons participate in several features. Studies compare activation sparsity, feature localization, and neuron types across layers and model scales. Sparse probes can show that a small neuron set contains readable information, but do not by themselves establish causal use. The question concerns native units rather than learned SAE latents.
     introduction_zh: >-
-      该问题从 toy model 转向真实模型，检验特征是否集中于少量 neurons、以组合形式出现，或随模型规模发生系统变化。
+      该问题考察模型原生神经元是否具有相对独立、可理解的功能，还是一个特征通常分布在多个神经元中，同时单个神经元也参与多个特征。研究会比较不同层和不同规模模型中的激活稀疏性、特征定位及神经元类型。Sparse probe 能说明少量神经元包含足够的可读信号，但不能单独证明模型实际依赖这些神经元。这里研究的是模型原生单元，不包括 SAE 等方法学习出的潜在特征。
     progress_en: >-
-      Sparse-probing case studies found that some functions can be decoded from very small neuron sets, while large-scale neuron surveys identified many dead, n-gram, and positional units.
-      The evidence supports coexistence of locally sparse structure and widespread nonsemantic structure, but not yet a unified account of feature-to-neuron organization in real large models.
+      Sparse-probing studies find both near-monosemantic neurons and distributed or superposed representations. Shallow layers often detect tokens and n-grams, while middle layers contain cleaner contextual-category units. Larger models sometimes represent a feature with fewer neurons, but can also split it across units. Large-scale surveys additionally identify inactive, positional, and lexical-pattern neurons and coordination across layers. Native neuron organization is therefore heterogeneous, and neither a one-feature–one-neuron view nor a fully distributed account is sufficient. Much of the evidence remains observational or decodability-based.
     progress_zh: >-
-      Sparse probing 的案例表明部分功能可由很小的神经元集合读出，而大规模神经元普查又发现大量 dead、n-gram 和 positional units。
-      现有证据支持局部稀疏结构与广泛非语义结构并存，尚不足以给出真实大模型中“特征—神经元”关系的统一图景。
+      Sparse probing 研究发现，大语言模型中既存在接近单义的神经元，也存在分布式和叠加表示。较浅层常检测词元与 n-gram 模式，中间层会出现更清晰的上下文类别单元；模型增大后，部分特征由更少神经元读出，但也可能发生特征分裂。大规模神经元普查进一步发现了大量未激活、位置选择性和词汇模式神经元，并观察到不同层之间的协作。现有证据表明原生神经元的组织方式高度混合，尚不能用“一个特征对应一个神经元”或“所有特征都完全分布式”统一解释；多数结果仍以观察和解码证据为主。
     first_date: '2023-05-02'
     primary_paper_ids:
       - p_2023_gurnee_finding_neurons_in
@@ -572,18 +606,40 @@ nodes:
   - rq_id: rq-superposition
     family_id: representation-form
     question_en: >-
-      Why do capacity constraints, sparsity, and optimization objectives produce polysemantic superposition?
-    question_zh: 容量约束、稀疏性与优化目标为何会产生 polysemantic superposition？
+      Why do models represent multiple features in superposition?
+    question_zh: 模型为什么会用叠加方式表示多个特征？
     introduction_en: >-
-      This question explains why models represent more features than available dimensions using non-orthogonal directions and studies transitions among ignored features, dedicated dimensions, and shared dimensions.
+      When the number of useful features exceeds the available representational dimensions, a model can encode
+      features along non-orthogonal directions rather than assigning each feature a dedicated dimension. If the
+      features rarely co-occur, the cost of occasional interference may be smaller than the benefit of representing
+      additional features, making superposition advantageous. This question studies how feature sparsity, importance,
+      correlation, nonlinearities, and a limited dimensional budget determine whether a feature is omitted, given a
+      dedicated dimension, or made to share capacity, as well as the geometry that shared representations adopt. It
+      does not establish how prevalent superposition is in real large models or address how latent features can be
+      recovered from it.
     introduction_zh: >-
-      该问题解释模型为何用非正交方向在有限维空间中表示更多特征，并研究忽略、独占维度与共享维度之间的相变。
+      当需要表示的特征多于可用维度时，模型可以不为每个特征分配独立维度，而是将多个特征编码为不同的非正交方向。
+      如果这些特征很少同时出现，偶发干扰造成的损失可能小于额外表示更多特征带来的收益，叠加因而可能成为更优方案。该问题研究特征的稀疏性、重要性、相关性、
+      非线性以及有限的维度预算，如何决定一个特征被舍弃、独占维度或与其他特征共享容量，以及共享时会形成什么几何结构。它不直接回答真实大型模型中叠加有多普遍，
+      也不讨论如何从叠加表示中恢复潜在特征。
     progress_en: >-
-      Toy models demonstrated when sparse features form non-orthogonal representations in finite-dimensional spaces, and capacity theory characterized how optimization allocates features among omission, dedicated dimensions, and sharing.
-      This provides a mechanistic theory of polysemanticity, although direct measurement of its parameters and phase transitions in real large models remains limited.
+      Toy Models of Superposition showed in synthetic models with known ground-truth features that sparse features
+      rarely activate together, allowing a model to trade occasional interference for representing more features in a
+      limited-dimensional space. Feature importance, sparsity, and correlation determine whether features are omitted,
+      assigned dedicated dimensions, or placed in superposition, with sharp transitions between solutions and geometric
+      arrangements such as antipodal pairs, triangles, pentagons, and tetrahedra. Polysemanticity and Capacity
+      subsequently formalized the phenomenon as constrained optimization under a finite capacity budget: high-value
+      features receive full capacity, low-value features are omitted, and intermediate features with diminishing returns
+      share dimensions; architecture and nonlinearities also affect the size and structure of superposition blocks.
+      Together, these studies provide a substantial theory of superposition and polysemanticity in toy models. It
+      remains unclear whether real large models satisfy assumptions such as known independent features and transparent
+      objectives, or whether the predicted capacity allocations and phase transitions can be measured directly.
     progress_zh: >-
-      Toy model 展示了稀疏特征在有限维空间中形成非正交表示的条件，capacity 理论进一步刻画优化目标如何在忽略、独占维度和共享维度之间分配特征。
-      该分支已形成解释 polysemanticity 的机制性理论，但其参数和相变在真实大模型中的直接测量仍有限。
+      Toy Models of Superposition 在具有已知真值特征的合成模型中表明，稀疏特征很少同时激活，因此模型可以用少量干扰换取在有限维空间中表示更多特征。
+      特征的重要性、稀疏性和相关性决定它们被舍弃、获得独立维度还是进入叠加，最优解之间还会出现清晰的相变；叠加方向则形成反向点对、三角形、五边形和四面体等几何结构。
+      Polysemanticity and Capacity 随后把这一现象形式化为有限容量下的约束优化：高价值特征获得完整容量，低价值特征被忽略，具有递减容量收益的中间特征共享维度；
+      架构和激活函数还会影响叠加块的大小与结构。这两项工作已经为玩具模型中的 superposition 和 polysemanticity 提供了较完整的理论解释，但真实大型模型是否满足已知、独立特征和透明损失等假设，
+      以及理论预测的容量分配与相变能否被直接测量，仍未解决。
     first_date: '2022-09-21'
     primary_paper_ids:
       - p_2022_elhage_toy_models_of
@@ -592,19 +648,16 @@ nodes:
   - rq_id: rq-sparse-feature-recovery
     family_id: representation-form
     question_en: >-
-      Can sparse dictionaries recover interpretable and intervenable latent features from superposition?
-    question_zh: 稀疏字典能否从 superposition 中恢复可解释、可干预的潜在特征？
+      Can sparse autoencoders recover interpretable features from superposed representations?
+    question_zh: 稀疏自编码器能否从叠加表示中恢复可解释特征？
     introduction_en: >-
-      This question treats sparse dictionary learning as a hypothesis about representation structure: are the resulting latents more monosemantic than native units while preserving enough model function for mechanistic analysis?
+      Sparse autoencoders represent model activations as combinations of a small number of latent features. This question asks whether those latents more closely match the representational units actually used by the model than native neurons do, while preserving enough of the original activation for precise intervention. Readability and sparsity do not imply that the recovered features are true, unique, or complete; reconstruction, identifiability, and causal function require separate evaluation.
     introduction_zh: >-
-      该问题把 sparse dictionary learning 作为对表示结构的假说检验：所得 latent 是否比原生单元更单义，
-      并保留足够的模型功能以支持后续机制分析。
+      稀疏自编码器将模型激活表示为少量潜在特征的组合。该问题考察这些潜在特征是否比原生神经元更接近模型内部实际使用的表示单位，同时能否充分重建原始激活并支持更精确的干预。可读或稀疏并不意味着所得特征是真实、唯一或完整的；重构误差、特征可识别性和因果功能需要分别检验。
     progress_en: >-
-      Initial SAE studies extracted latent features from language-model activations that were easier to name and intervene on than native neurons.
-      They established feasibility for feature recovery from superposition, but identifiability, preservation of the original computation, and superiority to alternative decompositions remain unsettled.
+      Early work by Cunningham et al. showed that sparse autoencoders can extract latent features that are more interpretable than native neurons or principal components. In an indirect-object-identification task, feature-level patching also localized relevant factors more precisely than interventions on raw activation dimensions. This established the feasibility of recovering readable and intervenable features from superposition. Reconstruction nevertheless remains incomplete, automated descriptions can miss or overstate semantics, and overcomplete dictionaries are not equally stable at every activation site. SAEs have therefore not been shown to recover a unique or complete ground-truth feature basis.
     progress_zh: >-
-      首批 SAE 研究表明，稀疏字典可从语言模型激活中提取比原生神经元更易命名和干预的潜在特征。
-      它建立了从 superposition 恢复特征的可行性证据，但特征是否可识别、是否忠实保留原计算以及是否优于其他分解仍未定论。
+      Cunningham 等人的早期研究表明，稀疏自编码器可以从语言模型激活中提取比原始神经元和主成分更容易解释的潜在特征。在间接宾语识别任务中，特征级 patching 还比直接干预原始激活维度更精确地定位了少量相关因素。这建立了从叠加表示中恢复可读、可干预特征的可行性证据。但重构仍不完整，自动解释可能遗漏或夸大语义，部分激活位置也难以稳定学习过完备字典，因此尚不能认为 SAE 已恢复模型的真实完整特征基。
     first_date: '2023-09-15'
     primary_paper_ids:
       - p_2023_cunningham_sparse_autoencoders_find
@@ -612,18 +665,16 @@ nodes:
   - rq_id: rq-sparse-objective
     family_id: representation-form
     question_en: >-
-      What should sparse representation learning optimize to balance sparsity, reconstruction faithfulness, and functional fidelity?
-    question_zh: 稀疏表示学习应优化什么，才能兼顾稀疏性、重建忠实度与功能保真？
+      How should sparse autoencoders balance sparsity and fidelity?
+    question_zh: 稀疏自编码器如何在稀疏性与保真度之间取得平衡？
     introduction_en: >-
-      This question compares activation reconstruction, behavioral preservation, gating, and explicit sparsity penalties to determine which objectives produce units that are genuinely useful for explanation.
+      Sparse autoencoders should activate only a small number of features while preserving the information and computation of the original model. Fidelity may refer to activation reconstruction, preservation of downstream hidden states, or preservation of final outputs, and these objectives are not equivalent. This question studies how sparsity penalties, gates, thresholds, and end-to-end losses shape the learned dictionary. A better sparsity–reconstruction frontier does not automatically imply greater interpretability or causal value.
     introduction_zh: >-
-      该问题比较激活重建、行为保持、门控和显式稀疏惩罚等目标，关注不同目标是否学到对解释真正有用的单位。
+      稀疏自编码器既要让每个输入只激活少量特征，又要尽量保留原模型的信息和计算。这里的保真度可能指激活重建、下游隐藏状态保持或最终输出保持，这些目标并不等价。该问题研究稀疏惩罚、门控、阈值和端到端损失如何改变学到的特征。更好的稀疏—重建曲线不自动意味着特征更容易理解或具有更强的因果意义。
     progress_en: >-
-      Gated SAEs, end-to-end sparse dictionary learning, and JumpReLU objectives targeted shrinkage, functional importance, and reconstruction loss respectively.
-      The work establishes real tradeoffs among sparsity, reconstruction fidelity, and functional fidelity, but no single objective dominates across interpretability uses.
+      Gated SAEs separate feature detection from magnitude estimation, reducing the shrinkage caused by L1 penalties and improving reconstruction at matched sparsity. End-to-end sparse dictionary learning optimizes model outputs or downstream states rather than only reconstructing one activation layer, prioritizing features that preserve more of the original computation. JumpReLU SAEs use learned thresholds to approximate direct L0 optimization and further improve the sparsity–reconstruction frontier. These studies show that part of the standard SAE trade-off is created by the objective itself, but no objective has yet proved uniformly superior for reconstruction, behavioral fidelity, causal use, and human interpretability.
     progress_zh: >-
-      Gated SAE、端到端 sparse dictionary learning 和 JumpReLU 分别针对 shrinkage、功能重要性与重建损失改进训练目标。
-      研究已明确稀疏度、重建忠实度和功能保真之间存在真实权衡，但尚无在不同解释用途上都占优的统一目标。
+      Gated SAE 将“特征是否出现”与“特征强度是多少”分开，减少了 L1 惩罚造成的幅度收缩，并在相同稀疏度下改善重建。端到端稀疏字典学习不再只重建单层激活，而是直接优化模型输出或后续隐藏状态，从而优先保留对原计算更重要的因素。JumpReLU SAE 则通过可学习阈值直接近似优化 L0，进一步改善稀疏—重建前沿。这些工作说明标准 SAE 的部分损失来自目标函数本身，但尚未出现同时在重建、模型行为、因果用途和人工可解释性上都占优的统一目标。
     first_date: '2024-04-24'
     primary_paper_ids:
       - p_2024_rajamanoharan_improving_dictionary_learning
@@ -633,20 +684,16 @@ nodes:
   - rq_id: rq-sparse-feature-failure
     family_id: representation-form
     question_en: >-
-      Under what geometric, hierarchical, and optimization conditions do sparse dictionaries produce erroneous or fabricated feature explanations?
-    question_zh: 稀疏字典在何种几何、层级和优化条件下会产生错误或伪造的特征解释？
+      Why do sparse autoencoders learn misleading features?
+    question_zh: 稀疏自编码器为什么会学到误导性的特征？
     introduction_en: >-
-      This question studies splitting, absorption, sparsity artifacts, spurious minima, and structural mismatch between one-dimensional latents and multidimensional concepts.
-      It advances from asking whether features can be learned to asking when learned features should not be trusted.
+      Sparse autoencoders may split one concept across several latents, absorb a broad concept into more specific features, or produce duplicated, dead, or mixed features through optimization. A structural mismatch also arises when a semantic feature is multidimensional but each learned latent is forced to decode along one direction. This question asks when these failures occur, whether they arise from activation geometry or optimization, and how to determine whether an apparently readable feature should be trusted.
     introduction_zh: >-
-      该问题研究 splitting、absorption、稀疏优化伪影、spurious minima 以及一维 latent 对多维概念的结构性错配，
-      从“能否学到特征”推进到“何时不应相信学到的特征”。
+      稀疏自编码器可能把一个概念拆成多个潜变量，也可能把一个较宽泛的概念吸收到多个更具体的特征中；优化还可能产生重复、死亡或混合特征。如果真实语义本身是多维子空间，而解码器强制每个特征只对应一个方向，也会造成结构性错配。该问题研究这些失败何时出现、来自数据几何还是优化目标，以及如何判断一个看似可读的特征是否值得信任。
     progress_en: >-
-      Feature splitting and absorption have been systematically identified; feature-aligned and subspace-aware methods now target geometric mismatch, while theory attributes some errors to spurious minima in piecewise-biconvex objectives.
-      An initial chain from failure types to optimization causes and proposed fixes now exists, but cross-model diagnostics and real causal consequences remain unstandardized.
+      Feature splitting and absorption can hide concepts that the underlying model causally uses even when activation reconstruction is strong. Aligning features across independent SAE runs improves recovery in some settings, although cross-run consistency is only a weak signal. A unified optimization theory further shows that polysemantic, duplicated, or dead features can be genuine global or local optima of standard sparse objectives rather than implementation mistakes. Subspace-aware SAEs show that one-direction latents systematically fragment multidimensional concepts and that grouped latents can mitigate the mismatch. A preliminary account now connects failure types, optimization, and representation geometry, but no reliable general diagnostic separates true features from stable artifacts in large models.
     progress_zh: >-
-      Feature splitting 与 absorption 已被系统识别，feature-aligned、subspace-aware 方法开始直接针对几何错配进行修正，理论工作则把部分错误归因于 piecewise-biconvex 目标中的 spurious minima。
-      当前已形成失败类型、优化原因和修复思路的初步链条，但跨模型诊断标准和真实因果影响仍待统一。
+      Feature splitting 与 absorption 已被证明即使在激活重建良好时仍会遮蔽模型因果使用的概念。跨 SAE 运行进行特征对齐可以提高部分真实因素的恢复率，但一致性仍只是弱信号。统一优化理论进一步表明，多义、重复和死亡特征有时是标准稀疏目标的真实最优解或局部极小，而不只是实现错误。Subspace-aware SAE 则指出，单方向潜变量会系统性地碎片化多维概念，使用组值潜变量可以缓解这一问题。当前已经形成了失败类型、优化原因和几何错配之间的初步解释，但尚无能够在真实大模型中可靠区分真实特征与稳定伪影的统一诊断。
     first_date: '2024-09-22'
     primary_paper_ids:
       - p_2024_chanin_a_is_for
@@ -657,19 +704,16 @@ nodes:
   - rq_id: rq-feature-atlas-scaling
     family_id: representation-form
     question_en: >-
-      Can interpretable feature extraction scale to frontier models, all relevant layers and positions, and the long tail of the training distribution?
-    question_zh: 可解释特征提取能否扩展到前沿模型、全层位和训练分布长尾？
+      Can interpretable feature extraction scale across large models, layers, and rare concepts?
+    question_zh: 可解释特征提取能否扩展到大型模型的全部层和长尾概念？
     introduction_en: >-
-      This question moves from single-layer experiments to industrial-scale feature atlases, requiring coverage across positions, widths, model sizes, and rare concepts together with fidelity, splitting, and distribution-shift reporting.
+      This question asks whether sparse feature extraction can move from single-layer, small-model experiments to many activation sites in large models, millions of learned features, and rare concepts in the tail of the training distribution. Scaling is not only an engineering problem: dictionary width, training data, and deployment distribution affect feature splitting, coverage, and explanation quality. Releasing a large dictionary does not establish that every feature is real, monosemantic, or causally used.
     introduction_zh: >-
-      该问题从单层实验推进到工业规模特征图谱，要求覆盖位置、宽度、模型规模和稀有概念，
-      同时报告 fidelity、splitting 与跨分布表现。
+      该问题关注稀疏特征提取能否从单层、小模型实验扩展到大型模型的不同层位、不同激活位置和数百万级特征，同时覆盖训练数据中的稀有概念。规模扩大不仅是工程问题：字典宽度、训练数据和部署分布会影响特征分裂、覆盖率和解释质量。发布大规模字典并不等于证明其中每个特征都真实、单义或具有因果作用。
     progress_en: >-
-      Gemma Scope and Llama Scope extended SAEs across many layers and millions of features, specialized SAEs targeted rare concepts in the distribution tail, and work on Claude demonstrated monosemantic feature extraction at frontier scale.
-      Large resources now exist, but atlas coverage, quality calibration, rare-concept recovery, and closure over full-model computation remain unresolved.
+      Gemma Scope and Llama Scope provide large SAE dictionaries across layers, activation sites, widths, and sparsity levels, establishing the engineering feasibility of model-wide feature extraction and limited transfer to related instruction models or longer contexts. Decoding Dark Matter uses targeted data retrieval and tail-oriented objectives to capture rare domain concepts more efficiently. Scaling Monosemanticity extends dictionary learning to a production-scale multimodal model and tens of millions of features, including directions that transfer across languages or modalities and can steer behavior. The central challenge has shifted from whether such dictionaries can be trained to whether their coverage is complete, features are identifiable, quality can be calibrated, and the original computation is preserved.
     progress_zh: >-
-      Gemma Scope 与 Llama Scope 将 SAE 扩展到多层和数百万特征，专用 SAE 开始覆盖训练分布长尾，Claude 研究则展示了前沿模型上的 monosemantic feature extraction。
-      规模化资源已出现，但特征图谱的覆盖率、质量校准、稀有概念和全模型计算闭合性仍未解决。
+      Gemma Scope 和 Llama Scope 已经发布覆盖多层、不同子层、宽度和稀疏度的大规模 SAE 字典，证明全模型范围的特征提取在工程上可行，并显示部分字典可以迁移到相近的指令模型或更长上下文。Decoding Dark Matter 通过定向数据检索和尾部风险目标提高了稀有领域概念的覆盖效率。Scaling Monosemanticity 又把字典学习扩展到生产级多模态模型和数千万特征，并展示部分跨语言、跨模态及可引导的方向。当前瓶颈已经从“能否训练”转向“覆盖是否完整、特征是否唯一、质量如何校准以及是否保留全模型计算”；尤其是长尾特征和全模型因果闭合性仍未解决。
     first_date: '2024-08-09'
     primary_paper_ids:
       - p_2024_lieberum_gemma_scope_open
@@ -680,19 +724,16 @@ nodes:
   - rq_id: rq-causal-representation-geometry
     family_id: representation-form
     question_en: >-
-      Can semantic variables be represented by directions or subspaces with measurable, intervenable, and compositional properties?
-    question_zh: 语义变量能否由具有可测量、可干预和可组合性质的方向或子空间表示？
+      Do models represent semantic concepts as linear directions or subspaces?
+    question_zh: 模型是否以线性方向或子空间表示语义概念？
     introduction_en: >-
-      This question does not equate linear separability with linear representation.
-      The geometry must rule out confounds, affect outputs, and explain how directions, subspaces, and concepts compose.
+      This question asks whether a semantic variable corresponds to a direction or low-dimensional subspace that can be measured by projection across inputs and manipulated by moving representations along it. Successful linear probing establishes only decodability. A stronger linear-representation claim must rule out correlated confounds and test whether the direction affects model outputs. Directions and subspaces may also be non-unique and depend on the chosen inner product and representation coordinates.
     introduction_zh: >-
-      该问题不把线性可分性等同于线性表示，而要求几何结构排除混淆、影响输出，并解释方向、子空间与概念组合之间的关系。
+      该问题研究一个语义变量是否对应表示空间中的方向或低维子空间，使不同输入中的同一概念能够通过投影被测量，并通过沿该方向移动而被改变。线性 probe 成功只能说明信息可以被线性读出；更强的线性表示主张还需要排除相关混淆，并检验该方向是否影响模型输出。方向或子空间也可能不唯一，并依赖所采用的内积和表示坐标。
     progress_en: >-
-      The line advanced from causal probing to interventionally validated semantic directions such as sentiment, geometric theories of linear representation, and measurements of prompt intrinsic dimension.
-      Results support some variables as composable directions or low-dimensional subspaces, but the conditions, uniqueness, and cross-model stability of linear structure remain open.
+      Causal-probing work adds geometric and causal conditions to concept subspaces and shows that some linguistic variables can be selectively erased or manipulated, although success varies by concept. Sentiment studies identify an approximately shared linear direction across words and contexts and support its causal role through representation interventions and circuit ablations. Theory of linear representation later relates subspaces, probes, and intervention vectors within an appropriate causal geometry. The evidence supports linear structure for some semantic variables, but does not imply that every concept is linear, that its direction is unique, or that the same geometry persists across models.
     progress_zh: >-
-      研究从 causal probing 推进到 sentiment 等语义方向的干预验证、线性表示的几何理论，以及 prompt 表示内在维度的测量。
-      现有结果支持部分变量以方向或低维子空间存在并可组合控制，但线性结构的适用条件、唯一性及跨模型稳定性仍是开放问题。
+      Causal probing 工作为概念子空间加入了几何与因果条件，并证明部分语言变量可以被选择性擦除或操纵，但不同概念的成功程度并不一致。情感研究发现，一条近似共享的线性方向能够跨词汇和语境表示正负情感，并通过干预和电路消融影响预测。线性表示理论随后统一了子空间、线性 probe 和表示操控等定义，说明在合适的因果几何下，词对差分可以同时构造读出方向和控制方向。现有证据支持部分语义变量具有线性结构，但不能推出所有概念都线性、方向唯一或跨模型保持稳定。
     first_date: '2023-07-27'
     primary_paper_ids:
       - p_2023_guerner_a_geometric_notion
@@ -702,20 +743,16 @@ nodes:
   - rq_id: rq-prompt-geometry-monitoring
     family_id: representation-form
     question_en: >-
-      Can prompt-level token geometry reveal uncertainty and support monitoring before generation?
-    question_zh: Prompt 的 token 级几何能否表征预测不确定性，并支持生成前监测？
+      Can the internal geometry of a prompt reveal model uncertainty?
+    question_zh: Prompt 的内部几何能否反映模型的不确定性？
     introduction_en: >-
-      This question concerns the geometry of the whole prompt token cloud rather than a single causal semantic
-      direction. It asks whether intrinsic dimension summarizes token interactions and supports pre-output screening.
+      This question treats the token representations produced by one prompt at a layer as a point cloud and asks whether its intrinsic dimension summarizes the complexity of token interactions. Rather than searching for one semantically defined direction, it uses global geometry as a monitoring signal for uncertainty or anomalous inputs. Predictive correlations can support screening, but do not show that high-dimensional geometry causes uncertainty.
     introduction_zh: >-
-      该问题关注整个 prompt token point cloud 的几何，而非单一因果语义方向；
-      它研究内在维度能否概括 token 交互并用于输出前筛查。
+      该问题把一条 prompt 在某层产生的全部 token 表示看作一个点云，并考察其内在维度是否概括了 token 之间的复杂关系。它不同于寻找某个具有明确语义的方向，而是使用整体几何作为模型不确定性或异常输入的监测信号。几何相关性能够支持预测和筛查，但不自动说明高维结构导致了不确定性。
     progress_en: >-
-      Prompt intrinsic dimension was connected to average surprisal and used in a malicious-prompt classifier. The
-      evidence supports a monitoring signal, but not a causal semantic subspace or a general uncertainty guarantee.
+      Prompt intrinsic dimension often peaks in early-to-middle layers, increases under linguistic perturbations, and correlates strongly with average surprisal. Layerwise dimension profiles can also distinguish some malicious prompts before generation. Replication across models and estimators supports intrinsic dimension as a geometric monitoring signal, but the evidence remains correlational. Reliable estimation generally requires long prompts, and malicious-prompt classification may exploit dataset artifacts, so intrinsic dimension is not yet a general uncertainty or safety guarantee.
     progress_zh: >-
-      已有工作将 prompt 内在维度与平均 surprisal 联系起来，并用它构建恶意 prompt 分类器。
-      这些结果支持一种监测信号，但不支持因果语义子空间或通用不确定性保证。
+      现有研究发现，prompt 的内在维度通常在模型早中层达到峰值，语言扰动会提高这一维度，逐层维度轮廓与平均 surprisal 存在较强关系，并可在生成前区分部分恶意提示。跨模型和不同内在维度估计器的结果支持它作为几何监测信号，但证据仍是相关性的。可靠估计通常需要较长 prompt，恶意提示分类也可能利用数据集差异，因此尚不能把内在维度视为通用的不确定性或安全风险指标。
     first_date: '2025-01-17'
     primary_paper_ids:
       - p_2025_viswanathan_the_intrinsic_dimension
@@ -723,18 +760,16 @@ nodes:
   - rq_id: rq-world-model-representation
     family_id: representation-form
     question_en: >-
-      Do sequence-prediction models form and use world states or belief states of the generating process?
-    question_zh: 序列预测模型是否形成并使用生成过程的世界状态或信念状态？
+      Do sequence models form and use representations of world state?
+    question_zh: 序列预测模型会形成并使用世界状态表示吗？
     introduction_en: >-
-      This question tests whether a model goes beyond surface sequence statistics to form hidden-state representations that are decodable, geometrically structured, and causally involved in prediction.
+      This question asks whether models trained only to predict the next symbol construct a latent state of the process generating the sequence rather than merely memorizing surface patterns. The state may be a definite environment configuration or a belief distribution over possible hidden states under uncertainty. Strong evidence should show that the state is decodable, geometrically structured, and functionally involved in prediction.
     introduction_zh: >-
-      该问题检验模型是否超越表面序列统计，形成可解码、具有特定几何且对预测有因果作用的隐状态表示。
+      该问题考察仅通过预测下一个符号训练的模型，是否会构建产生当前序列的潜在状态，而不只是记忆表面模式。世界状态可以是确定的环境配置，也可以是在信息不完整时对多个潜在状态的信念分布。强证据需要同时说明状态可以被读出、具有可解释的几何，并在被改变时影响模型预测。
     progress_en: >-
-      Othello studies first showed that sequence prediction can form and use board state, later work characterized its linear representation, and belief-state research extended geometry analysis to uncertain generative processes.
-      The question has advanced from whether world state exists to how it is organized and used, while complete world models in natural-language settings remain difficult to establish.
+      OthelloGPT studies first showed that a sequence model can develop a decodable board state and that modifying the corresponding representation changes legal-move predictions. Later analysis found that this state need not be fundamentally nonlinear: a current-player-relative coordinate system reveals causally effective linear directions. Belief-state work extends the question to uncertain generative processes and shows that Transformer residual streams can reproduce the geometry of Bayesian belief updating rather than only next-symbol probabilities. Evidence is strong in controlled settings, but board games and small hidden-state processes remain far from natural language and do not establish a unified, complete world model in realistic LLMs.
     progress_zh: >-
-      Othello 模型研究先证明序列预测可形成并使用棋盘状态，后续工作刻画了其线性表示；belief-state 研究进一步把几何分析扩展到不确定生成过程。
-      进展已从“是否存在世界状态”推进到“状态以何种几何组织并参与预测”，但自然语言环境中的完整世界模型仍难确认。
+      OthelloGPT 研究首先表明，序列模型能够形成可解码的棋盘状态，修改相关表示还会改变合法落子预测。后续重新分析发现，棋盘并非必须以非线性方式表示；采用“相对当前玩家”的坐标后，可以找到具有因果作用的线性方向。信念状态研究进一步扩展到具有隐藏状态的不确定生成过程，发现 Transformer 的残差流能够匹配贝叶斯信念更新的几何，而不只编码下一符号概率。现有证据在受控环境中较强，但棋类游戏和小型隐马尔可夫过程与自然语言相距较远，尚不能证明真实语言模型形成了统一、完整且被实际使用的世界模型。
     first_date: '2022-10-24'
     primary_paper_ids:
       - p_2022_li_emergent_world_representations
@@ -767,18 +802,16 @@ nodes:
   - rq_id: rq-task-function-vectors
     family_id: representation-form
     question_en: >-
-      Can a model compress a task or program into a composable, transferable, and causally effective vector?
-    question_zh: 模型能否把任务或程序压缩为可组合、可迁移并具有因果作用的向量？
+      Can models represent tasks as reusable vectors?
+    question_zh: 模型能否把任务表示为可复用的向量？
     introduction_en: >-
-      This question asks whether weight differences or activation directions form modular task representations and whether vector operations can combine, remove, or trigger the corresponding capabilities.
+      This question asks whether a task or function can be compressed into a vector whose addition, removal, or combination predictably changes model behavior. A task vector may be a parameter difference created by fine-tuning or a hidden-state direction produced during in-context learning. These objects live in different spaces and need not reflect the same mechanism. The central issue is whether they can be reused across inputs, composed, and shown to have predictable behavioral effects.
     introduction_zh: >-
-      该问题研究权重差分或激活方向是否形成模块化任务表示，以及向量运算能否组合、删除或触发相应能力。
+      该问题考察一个任务或函数能否被压缩为模型空间中的向量，并通过向量的加入、删除或组合来触发相应行为。任务向量可能来自微调前后的参数差分，也可能来自模型执行上下文学习时的隐藏状态；二者位于不同空间，并不代表同一种内部机制。关键问题是这些向量能否跨输入复用、组合并对行为产生可预测影响。
     progress_en: >-
-      Task arithmetic showed that parameter differences can combine, negate, and support analogies between tasks; function-vector work identified transferable, causally effective task directions in activation space.
-      Together they show vectorized task structure at both parameter and representation levels, while composition interference, scope, and cross-model transfer boundaries remain unclear.
+      Task Arithmetic shows that fine-tuning-induced parameter differences can sometimes suppress behavior when negated, combine tasks when added, and support limited task analogies. Function-vector work later extracts compact activation directions from causally important attention heads and shows that inserting them can trigger a task even when demonstrations are absent or misleading. Together, these lines support vector-like task representations, but parameter task vectors and activation-space function vectors have not been shown to share one mechanism. Composition remains limited by nonlinear interactions, layer choice, scaling, and task compatibility.
     progress_zh: >-
-      Task arithmetic 发现参数差分可以组合、抵消或类比任务，function-vector 研究又在激活空间识别出可迁移且具有因果作用的任务方向。
-      两条证据表明任务可在参数与表示层面被向量化，但组合干扰、适用范围和跨模型迁移边界仍未清楚。
+      Task Arithmetic 发现，微调产生的参数差分可以在一定范围内通过取反删除行为、通过相加组合任务，并支持部分任务类比。Function Vectors 随后在激活空间中，从具有因果重要性的注意力头提取出紧凑任务方向；把这些方向加入其他输入后，即使示例缺失或具有误导性，也能触发相应任务。两条研究线共同表明任务信息可以呈现向量化结构，但参数任务向量与激活 function vector 尚未被证明具有统一机制，组合会受到非线性交互、层位置、缩放系数和任务相容性的限制。
     first_date: '2023-10-23'
     primary_paper_ids:
       - p_2023_todd_function_vectors_in
@@ -788,18 +821,16 @@ nodes:
   - rq_id: rq-compositional-binding
     family_id: representation-form
     question_en: >-
-      What compositional representation mechanism dynamically binds entities, attributes, and variable roles?
-    question_zh: 模型用什么可组合表示机制动态绑定实体、属性与变量角色？
+      How do models bind entities to their attributes in context?
+    question_zh: 模型如何在上下文中绑定实体及其属性？
     introduction_en: >-
-      This question concerns how temporary contextual relations are encoded so that the same entity can be retrieved reliably under different attribute and relation queries, rather than merely recognizing static concepts.
+      When a context contains several entities and attributes, a model must preserve which attributes belong to which entities and retrieve the correct pairing when queried. This question asks whether temporary relations are represented through reusable binding identifiers rather than separate circuits for every entity–attribute pair. It concerns the form of the binding representation; the upstream computation that creates the identifiers is a further mechanism question.
     introduction_zh: >-
-      该问题关注上下文中的临时关系如何被编码，使同一实体可在不同属性和关系查询中被稳定检索，而不是只识别静态概念。
+      当上下文同时出现多个实体及其属性时，模型必须保留哪些属性属于哪个实体，并在查询时取回正确配对。该问题研究这种临时关系是否通过可复用的绑定标识表示，而不是为每一个实体—属性组合建立独立电路。它关注绑定的表示形式；绑定标识由什么上游计算产生，则是进一步的机制问题。
     progress_en: >-
-      Current work identifies composable low-dimensional binding representations for contextual entities, separating entity identity, attributes, and roles and testing their function through intervention.
-      Evidence is still concentrated in limited models and tasks, leaving complex variable structures, long contexts, and cross-architecture generality open.
+      Current evidence suggests that language models attach approximately additive, position-insensitive binding identifiers to entity–attribute pairs. Paired interventions on these representations can reliably swap which attributes are retrieved for two entities, and some binding directions transfer across positions and tasks. This supports a reusable low-dimensional binding representation rather than an independent circuit for every fact. Evidence remains limited to a small set of models and controlled tasks, transfer is imperfect, and the upstream mechanism that constructs the identifiers has not been fully localized.
     progress_zh: >-
-      现有研究在上下文实体处理中识别出可组合的低维绑定表示，用以区分实体身份、属性和角色关系，并通过干预检验其功能。
-      该结论目前主要来自有限模型与任务，对复杂变量结构、长上下文和跨架构的普遍性仍缺少证据。
+      现有研究发现，语言模型可以为上下文中的实体—属性对加入近似可加、与位置相对独立的绑定标识。对这些表示进行成对干预，可以稳定交换模型为两个实体取回的属性；部分绑定方向还能跨位置和任务迁移。结果支持一种可复用的低维绑定表示，而不是每个事实使用完全独立的电路。但证据目前集中于有限模型和受控任务，跨任务迁移并不总是成功，也尚未定位产生绑定标识的完整上游机制。
     first_date: '2023-10-26'
     primary_paper_ids:
       - p_2023_feng_how_do_language
@@ -897,18 +928,16 @@ nodes:
   - rq_id: rq-latent-knowledge
     family_id: representation-form
     question_en: >-
-      How can knowledge that a model has but does not express be distinguished from correlated signals and genuine absence of knowledge?
-    question_zh: 如何区分模型知道但没有表达的知识、相关信号与真正不存在的知识？
+      Can knowledge that a model does not express be reliably recovered from its internal representations?
+    question_zh: 模型没有说出的知识，能否从内部表示中可靠读出？
     introduction_en: >-
-      This question requires reading knowledge without relying on the model's current answer and validating through intervention that the readout can causally improve or change the output.
+      When a model gives an incorrect, evasive, or misleading answer, its internal representations may still contain information associated with the correct answer. This question asks how to determine whether such knowledge is present without trusting the model’s output, while separating genuine latent knowledge from correlated signals or patterns learned by a probe. Successful readout establishes accessibility; reliably eliciting the answer through intervention provides stronger functional evidence.
     introduction_zh: >-
-      该问题要求在不依赖模型当前答案的情况下读取知识，并以干预验证所读出的内容能够因果性地改善或改变输出。
+      模型给出错误、回避或误导性答案时，内部表示中可能仍保留与正确答案有关的信息。该问题研究如何在不直接相信模型输出的情况下判断这种知识是否存在，并区分真正的潜在知识、与答案偶然相关的信号以及 probe 自身学到的模式。读出成功只说明信息可访问；干预后能够稳定引出正确答案，才提供更强的功能证据。
     progress_en: >-
-      Unsupervised truth discovery used logical consistency to recover knowledge not directly expressed in outputs, inference-time intervention showed that truthful answers can be causally elicited, and MechELK began combining readout with mechanistic evidence.
-      The line has advanced from correlational readout to mechanistic elicitation, but dataset bias, representational artifacts, and probe learning remain central confounds.
+      Contrast-Consistent Search uses logical consistency between positive and negative statements to recover binary answers without labels, often outperforming the model’s verbal response and revealing partially task-general truth directions. It can nevertheless select some other binary structure correlated with truth. Inference-Time Intervention then shows that accessible truth-related signals in a small number of attention heads can causally shift answers, although intervention may increase evasiveness or damage other information. MechELK combines sparse localization with causal validation to distinguish unexpressed knowledge from absent encoding. The line has progressed from unsupervised readout to mechanistic elicitation, but dataset bias, answer leakage, probe learning, and the possibility of creating rather than revealing an answer remain unresolved.
     progress_zh: >-
-      无监督真值发现利用逻辑一致性从表示中恢复未被模型直接表达的知识，inference-time intervention 展示了因果诱导真实回答的可能，MechELK 则尝试把读出与机制证据结合。
-      该分支已从相关信号读出推进到机制化 elicitation，但如何排除数据偏差、表达伪影和 probe 学习仍是核心难题。
+      Contrast-Consistent Search 利用正反陈述之间的逻辑一致性，在没有真值标签的情况下恢复比模型口头回答更可靠的二元答案，并发现部分跨任务共享的真值方向。但该方法仍可能选择与真值相关的其他二分结构。Inference-Time Intervention 随后表明，少量注意力头中可访问的真实性信号能够通过激活移动改变模型回答，为“模型知道但没有表达”提供局部因果证据，但干预可能增加回避回答或破坏其他信息。MechELK 又把稀疏定位与因果验证结合，用于区分知识未表达与根本未编码。研究已经从无监督读出推进到机制化诱导，但数据偏差、候选答案泄漏、probe 学习和“干预制造答案”的可能性仍未解决。
     first_date: '2022-12-07'
     primary_paper_ids:
       - p_2022_burns_discovering_latent_knowledge
@@ -1102,18 +1131,16 @@ nodes:
   - rq_id: rq-crossmodal-alignment
     family_id: representation-form
     question_en: >-
-      Where and how do separately trained modality representations achieve semantic alignment?
-    question_zh: 分开训练的模态表示在哪里、如何实现语义对齐？
+      Where do separately trained vision and language models form shared semantic representations?
+    question_zh: 分开训练的视觉和语言模型在哪里形成共享语义？
     introduction_en: >-
-      This question distinguishes superficial alignment in a projection layer from shared semantics inside the language model and seeks units or directions whose alignment causally affects cross-modal outputs.
+      When a separately trained vision encoder is connected to a language model through a simple adapter, visual information may already be translated into linguistic form by the adapter or may only become language-usable inside the language model. This question asks where cross-modal semantics converge, which internal units carry them, and whether those units affect multimodal output. It is narrower than tracing the complete multimodal information flow or generation circuit.
     introduction_zh: >-
-      该问题区分投影层完成的表面对齐与语言模型内部形成的共享语义，并要求定位对跨模态输出有因果作用的对齐单元或方向。
+      当独立训练的视觉编码器通过简单适配器连接到语言模型时，视觉信息可能已经在适配器中被翻译成语言，也可能进入语言模型后才被转换为可用于生成的语义表示。该问题研究跨模态语义在哪里汇合、由什么内部单元承载，以及这些单元是否真正影响跨模态输出。它不同于追踪完整的多模态信息流或解释整个生成电路。
     progress_en: >-
-      Existing work found multimodal neurons responding to shared semantics across separately trained vision and text systems, providing initial evidence that modality representations converge.
-      The branch still mainly establishes the existence of alignment; its location, causal role, and stability across training schemes lack systematic comparison.
+      In LiMBeR-BEIT, the linear adapter output does not by itself fully expose image semantics; a substantial part of visual-to-language translation occurs in intermediate MLP layers of the frozen GPT-J model. The study identifies multimodal neurons that respond to image regions and corresponding language concepts, with cross-dataset activation, vocabulary projections, spatial selectivity, and targeted ablations supporting their role in image description. Separately trained modalities can therefore converge on shared semantic units inside the language model. Evidence currently comes mainly from one model combination, and gradient attribution or large ablations do not isolate every neuron’s contribution or establish cross-architecture stability.
     progress_zh: >-
-      现有工作在分开训练的视觉与文本系统中发现响应共同语义的 multimodal neurons，提供了模态表示汇合的初步证据。
-      该分支目前主要回答“对齐是否存在”，对对齐形成的位置、因果作用以及不同训练方案下的稳定性仍缺乏系统比较。
+      在 LiMBeR-BEIT 中，线性适配器的输出不能直接充分解释图像语义；较大一部分视觉—语言转换发生在冻结 GPT-J 的中间 MLP 层。研究识别出同时响应图像区域和对应语言概念的多模态神经元，并通过跨数据集激活、词表投影、空间选择性和定向消融说明这些单元会影响图像描述。这表明分开训练的模态可以在语言模型内部形成共享语义单元。不过证据目前主要来自一种模型组合，梯度归因和大规模消融也不能确定每个神经元的独立作用，跨架构稳定性仍不清楚。
     first_date: '2023-08-03'
     primary_paper_ids:
       - p_2023_schwettmann_multimodal_neurons_in
@@ -1190,21 +1217,16 @@ nodes:
   - rq_id: rq-sparse-feature-composability
     family_id: representation-form
     question_en: >-
-      Are causally useful sparse features modular and composable, or geometrically entangled when combined?
-    question_zh: 具有因果作用的稀疏特征是否模块化且可组合，还是在合并时发生几何纠缠？
+      Can sparse features be composed like independent modules?
+    question_zh: 稀疏特征能否像独立模块一样组合？
     introduction_en: >-
-      This question asks whether independently meaningful feature directions retain their function under union and
-      joint steering. Failure can arise from non-orthogonality, off-manifold movement, or distributed dependence.
+      A sparse feature may correspond to a readable concept and affect behavior when ablated or steered, yet still fail to combine cleanly with other features. This question asks whether individually effective features retain their function under union or joint steering, and how non-orthogonality, normalization, distributed dependencies, and off-manifold shifts disrupt composition. It separates causal effectiveness from modular composability.
     introduction_zh: >-
-      该问题研究单独有意义的特征方向在并集和联合 steering 时是否仍保持功能；
-      失败可能来自非正交性、off-manifold 偏移或分布式依赖。
+      一个稀疏特征可以单独对应清晰概念，并在消融或 steering 时影响行为，但这不意味着多个特征可以直接相加或取并集。该问题研究单个有效特征在联合使用时是否仍保持功能，以及非正交方向、幅度归一化、分布式依赖和 off-manifold 偏移如何破坏组合。它把“特征具有因果作用”与“特征是模块化组件”区分开来。
     progress_en: >-
-      Sparse visual-thought studies found task-selective features that were individually causal yet interfered when
-      combined. This separates causal validity from modular composability and exposes a geometric boundary for
-      feature-level control.
+      Sparse Visual Thought Circuits identifies SAE features in vision–language models that are spatially grounded, task-selective, and locally causal. Yet combining individually effective features can reduce performance: directions cancel semantic signal, normalization amplifies residual noise, and joint intervention can move the representation off manifold. This directly challenges the assumption that individually useful features naturally form a circuit through set union. Evidence is limited to selected models, layers, and feature-selection rules, so it does not show that all SAE features are non-composable, but it establishes that modularity requires independent testing.
     progress_zh: >-
-      Sparse visual-thought 研究发现，任务选择性特征可以单独具有因果作用，但在组合时会相互干扰。
-      这将因果有效性与模块可组合性分开，并暴露了特征级控制的几何边界。
+      Sparse Visual Thought Circuits 在视觉语言模型中发现了具有空间落地、任务选择性和局部因果作用的 SAE 特征。但把多个单独有效的特征合并后，性能可能下降：方向之间会抵消语义信号，归一化会放大残余噪声，联合干预还可能把表示推离模型熟悉的流形。这直接反驳了“单个有效特征可以通过集合并集自然组成电路”的简单假设。当前证据来自有限模型、层位和特征筛选规则，因此不能推出所有 SAE 特征都不可组合，但已经说明模块性必须单独验证。
     first_date: '2026-03-26'
     primary_paper_ids:
       - p_2026_zhou_sparse_visual_thought
@@ -1586,20 +1608,16 @@ nodes:
   - rq_id: rq-language-specific-representation
     family_id: representation-form
     question_en: >-
-      Is language identity concentrated in selective internal units that causally influence output-language choice?
-    question_zh: 语言身份是否集中表示在选择性内部单元中，并因果影响输出语言选择？
+      Do models use language-specific neurons to represent different languages?
+    question_zh: 模型是否用特定神经元表示不同语言？
     introduction_en: >-
-      This question concerns the representational locus of language identity. Intervention establishes causal relevance,
-      but does not by itself show that the same units support task knowledge or cross-lingual transfer.
+      This question asks whether language identity is concentrated in a small set of selective neurons and whether those units influence the language in which a model generates. Stronger activation for one language does not imply that a neuron exclusively represents language identity or carries transferable task knowledge. Language selection, language-modeling ability, and cross-lingual transfer must therefore be distinguished.
     introduction_zh: >-
-      该问题关注语言身份的表示位置。干预可用于确立因果相关性，但不能单独证明同一批单元还承载任务知识或跨语言迁移。
+      该问题研究语言身份是否集中在少量选择性神经元中，以及这些单元是否影响模型使用哪种语言生成。对某种语言激活更强并不意味着神经元只承担语言身份功能，也不意味着它承载了可迁移的任务知识。因此需要区分语言选择、语言建模能力和跨语言迁移能力。
     progress_en: >-
-      Language-selective neurons were identified through activation-probability entropy and shown to influence output
-      language under activation changes. Later transfer tests indicate that output-language control and cross-lingual
-      task competence are not the same function.
+      Language-Specific Neurons uses activation-probability entropy across languages to identify selective neurons concentrated in particular layers. Suppressing or increasing their activations changes language perplexity and output language, providing local causal evidence for language-identity representation. Later work finds that manipulating or selectively fine-tuning these neurons does not reliably improve cross-lingual task accuracy, while zeroing them often leaves task performance largely intact. A small neuron set can therefore influence language selection without independently carrying full language competence or transfer mechanisms. Selectivity, output control, and cross-lingual transfer are not interchangeable.
     progress_zh: >-
-      研究用 activation-probability entropy 识别出语言选择性神经元，并表明改变其激活会影响输出语言。
-      后续迁移实验说明，输出语言控制与跨语言任务能力并非同一功能。
+      Language-Specific Neurons 使用不同语言上的激活概率熵识别语言选择性神经元，并发现这些单元集中在特定层位；抑制或增强其激活会改变语言困惑度和输出语言，为语言身份表示提供局部因果证据。后续研究却发现，在推理时操纵或定向微调这些单元，并不能稳定提高低资源语言的跨语言任务准确率，置零也常常几乎不损害任务表现。现有结果说明，少量神经元可以影响语言选择，但它们并不独立承载完整语言能力或跨语言迁移机制；选择性、输出控制和迁移能力不能相互替代。
     first_date: '2024-02-26'
     primary_paper_ids:
       - p_2024_tang_language_specific_neurons
@@ -1631,20 +1649,16 @@ nodes:
   - rq_id: rq-reasoning-state-features
     family_id: representation-form
     question_en: >-
-      Are uncertainty, exploration, reflection, and conclusion states encoded as identifiable sparse reasoning features?
-    question_zh: 不确定、探索、反思与结论状态是否被编码为可识别的稀疏推理特征？
+      Do models represent different reasoning states with sparse features?
+    question_zh: 模型是否用稀疏特征表示不同的推理状态？
     introduction_en: >-
-      This question asks how reasoning states are represented. Their emergence after reasoning fine-tuning and their
-      steering effects are temporal and control-related secondary questions.
+      This question asks whether states such as uncertainty, exploration, reflection, and conclusion correspond to identifiable sparse features inside a reasoning model. Internal computational states must be distinguished from surface discourse markers such as “maybe,” “wait,” or “therefore.” Comparing base and reasoning-post-trained models can show whether such features are introduced or amplified, while steering provides only local evidence about their functional role.
     introduction_zh: >-
-      该问题关注推理状态以什么形式表示。它们是否在 reasoning fine-tuning 后出现，以及 steering 能产生什么效果，分别是时序和控制层面的次级问题。
+      该问题研究推理过程中的不确定、探索、反思和结论等状态，是否对应模型内部可识别的稀疏特征。需要区分真正参与推理计算的内部状态与“也许”“等等”“因此”等表面语言标记。比较基础模型与推理后训练模型可以观察这些特征是否被新增或增强，而 steering 只能为其功能作用提供局部证据。
     progress_en: >-
-      SAE and ReasonScore analyses identified sparse features associated with uncertainty, exploration, reflection, and
-      conclusion stages and tested them through steering. The evidence suggests manipulable reasoning-state structure,
-      while separating genuine computation from stylistic markers remains difficult.
+      Current work uses SAEs and a discourse-based ReasonScore to identify sparse features associated with uncertainty, exploration, reflection, and conclusion. Comparisons between base and reasoning-post-trained models suggest that post-training strengthens some readable reasoning features. Steering those features yields modest task improvements rather than only increasing the corresponding marker words. The evidence supports manipulable reasoning-state structure, but performance gains are much smaller than changes in reasoning length, and SAE splitting or absorption remains possible. Existing results do not fully separate computational state from language style or recover the complete reasoning algorithm.
     progress_zh: >-
-      SAE 与 ReasonScore 分析识别出与不确定、探索、反思和结论阶段相关的稀疏特征，并用 steering 检验其作用。
-      证据支持存在可操作的推理状态结构，但如何将真实计算与语言风格标记区分仍很困难。
+      现有研究使用 SAE 和基于推理话语模式的 ReasonScore，识别出与不确定、探索、反思和结论阶段相关的稀疏特征。基础模型与推理后训练模型的比较表明，后训练会增强一部分可读推理特征；对这些特征进行 steering 可以带来小幅任务性能提升，而不只是增加相应标记词。结果支持推理过程中存在可操作的状态结构，但性能增益远小于推理轨迹长度的变化，SAE 还可能拆分或吸收概念。现有证据尚不能完全区分真实计算状态与语言风格，也没有恢复完整的推理算法。
     first_date: '2025-03-24'
     primary_paper_ids:
       - p_2025_galichin_i_have_covered
