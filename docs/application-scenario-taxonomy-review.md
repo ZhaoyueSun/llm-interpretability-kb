@@ -6,6 +6,8 @@ Proposal: `tp_20261009_application_scenarios_v2`
 
 Corpus: 123 papers
 
+后续维护必须遵守 `docs/application-scenario-guidelines.md`。
+
 ## 判定原则
 
 这棵树只回答一个问题：**论文的实验数据在测试什么任务或行为场景？**
