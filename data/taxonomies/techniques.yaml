@@ -1,6 +1,6 @@
 schema_version: 1
 taxonomy_id: techniques
-version: 4
+version: 5
 status: active
 title: Techniques
 nodes:
@@ -59,24 +59,28 @@ nodes:
   parent_id: readout-measurement
   title: Attention Pattern and OV/QK Analysis
   status: active
-  proposal_id: tp_20261010_techniques_v4_attention_heatmap_wording
+  proposal_id: tp_20261010_techniques_v5_attention_analysis_focus
   introduction:
     en: >-
-      Attention analysis separates two questions: which tokens a head attends to, and
-      what information it writes back to the model. For a given input, an attention-weight
-      heatmap shows how the head distributes attention across token pairs. Each cell links
-      a query token to a key token, and its color indicates the attention weight. The
-      attention pattern and QK circuit explain where the head looks, while the OV circuit
-      helps explain how the information it reads is written into the residual stream.
-      The heatmap alone therefore shows where attention goes, but not what information is
-      carried or whether the head has a causal effect on the final prediction.
+      Attention analysis divides a head's computation into routing and writing. First,
+      the QK score matrix assigns a routing score to each query–key token pair. After
+      softmax, these scores form the attention pattern, which specifies how much the head
+      reads from each source token and is commonly displayed as an attention-weight
+      heatmap. The OV transformation then converts each source-token representation into
+      a vector that can be written to the residual stream, and the attention pattern
+      determines how these vectors are weighted and combined. QK and the attention
+      pattern therefore answer "where does the head read from, and how much?", while OV
+      answers "how is the retrieved information written back?". An attention-weight
+      heatmap shows routing alone; it does not reveal the content actually written or
+      establish the head's causal effect on the final prediction.
     zh: >-
-      注意力分析需要区分两个问题：一个 head 关注哪些 token，以及它把什么信息写回模型。
-      对于给定输入，attention 权重热力图显示这个 head 如何在不同 token 之间分配注意力。
-      每个格子对应一个 query token 和一个 key token，颜色表示 attention 权重大小。
-      Attention pattern 和 QK circuit 解释这个 head“看向哪里”，OV circuit 则帮助说明它读到的信息如何写入
-      residual stream。因此，热力图只能告诉我们注意力流向哪里，不能单独说明传递了什么信息，也不能证明
-      这个 head 对最终预测具有因果作用。
+      注意力分析可以把一个 head 的计算分成“路由”和“写入”两步。首先，QK score matrix 为不同的
+      query–key token 对计算路由分数；这些分数经过 softmax 后形成 attention pattern，也就是这个 head
+      从各个来源 token 读取多少信息，通常显示为 attention 权重热力图。随后，OV transformation 把来源
+      token 的表示转换成准备写入 residual stream 的向量，再由 attention pattern 对这些向量加权求和。
+      因此，QK 和 attention pattern 回答“从哪里读、读多少”，OV 回答“读到的信息怎样写回模型”。
+      只看 attention 权重热力图只能看到路由，不能看到实际写入的内容，也不能单独证明这个 head 对最终预测
+      具有因果作用。
 - node_id: vocabulary-projection
   parent_id: readout-measurement
   title: Native Vocabulary Projection

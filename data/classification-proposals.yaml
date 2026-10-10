@@ -1793,3 +1793,44 @@ proposals:
     Define an attention-weight heatmap in plain language, explain its query-key cells and
     color encoding, and distinguish where a head attends from what it carries and whether
     it has a causal effect. The tree structure and paper assignments are unchanged.
+- proposal_id: tp_20261010_techniques_v5_attention_analysis_focus
+  kind: taxonomy_content
+  status: approved
+  created_at: '2026-10-10'
+  approved_at: '2026-10-10'
+  approval_basis: >-
+    The user explicitly approved the final wording after reviewing the relationship among
+    the QK score matrix, attention pattern, attention-weight heatmap, and OV transformation.
+  title: Restore the focus of the attention-analysis introduction
+  taxonomy_id: techniques
+  from_taxonomy_version: 4
+  resulting_taxonomy_version: 5
+  taxonomy_file: data/taxonomies/techniques.yaml
+  affected_node_ids: [attention-pattern-analysis]
+  revision_reason: >-
+    Explain attention-head computation as routing and writing: the QK score matrix is
+    normalized into an attention pattern, while the OV transformation produces the vectors
+    that the pattern weights and combines. Preserve the warning that an attention-weight
+    heatmap alone does not establish written content or causal influence. The tree structure
+    and paper assignments are unchanged.
+  approved_introduction:
+    en: >-
+      Attention analysis divides a head's computation into routing and writing. First,
+      the QK score matrix assigns a routing score to each query–key token pair. After
+      softmax, these scores form the attention pattern, which specifies how much the head
+      reads from each source token and is commonly displayed as an attention-weight
+      heatmap. The OV transformation then converts each source-token representation into
+      a vector that can be written to the residual stream, and the attention pattern
+      determines how these vectors are weighted and combined. QK and the attention
+      pattern therefore answer "where does the head read from, and how much?", while OV
+      answers "how is the retrieved information written back?". An attention-weight
+      heatmap shows routing alone; it does not reveal the content actually written or
+      establish the head's causal effect on the final prediction.
+    zh: >-
+      注意力分析可以把一个 head 的计算分成“路由”和“写入”两步。首先，QK score matrix 为不同的
+      query–key token 对计算路由分数；这些分数经过 softmax 后形成 attention pattern，也就是这个 head
+      从各个来源 token 读取多少信息，通常显示为 attention 权重热力图。随后，OV transformation 把来源
+      token 的表示转换成准备写入 residual stream 的向量，再由 attention pattern 对这些向量加权求和。
+      因此，QK 和 attention pattern 回答“从哪里读、读多少”，OV 回答“读到的信息怎样写回模型”。
+      只看 attention 权重热力图只能看到路由，不能看到实际写入的内容，也不能单独证明这个 head 对最终预测
+      具有因果作用。
