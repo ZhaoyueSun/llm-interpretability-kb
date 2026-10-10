@@ -2023,3 +2023,50 @@ proposals:
       而是衡量继续对它做小幅改变时，预测会变化多快，通常通过输出梯度或小扰动造成的输出差值来计算。
       这些分数很适合缩小庞大的搜索空间，但其含义依赖基线、近似方式以及“特征缺失”的定义，因此高归因分数
       不应直接读成因果证明。
+- proposal_id: tp_20261010_techniques_v11_gradient_sensitivity_workflow
+  kind: taxonomy_content
+  status: approved
+  created_at: '2026-10-10'
+  approved_at: '2026-10-10'
+  approval_basis: >-
+    The user approved a paper-grounded rewrite that connects the parent node's distinction
+    between sensitivity and attribution to the concrete workflows used by Knowledge
+    Neurons, Attribution Patching, and EAP-IG.
+  title: Explain the gradient-sensitivity workflow with corpus examples
+  taxonomy_id: techniques
+  from_taxonomy_version: 10
+  resulting_taxonomy_version: 11
+  taxonomy_file: data/taxonomies/techniques.yaml
+  affected_node_ids: [gradient-sensitivity]
+  revision_reason: >-
+    Explain the selected output metric, gradient sign and magnitude, the transition from
+    local sensitivity to attribution, and the approximation limits documented by papers
+    assigned to this branch. The tree structure and paper assignments are unchanged.
+  approved_introduction:
+    en: >-
+      Gradient sensitivity begins by selecting an output metric to explain, such as the
+      probability of the correct token or the logit difference between two candidate
+      tokens, and then computes the gradient of that metric with respect to inputs or
+      internal activations. The sign of a gradient indicates whether increasing an
+      element would raise or lower the metric, while its magnitude measures how sensitive
+      the output is to a small local change; one backward pass can usually obtain
+      gradients for many elements at once. Estimating an element's contribution to the
+      current prediction additionally requires combining the gradient with a range of
+      actual change. Knowledge Neurons integrates gradients along the path from a zero
+      neuron activation to its observed value to find neurons associated with a factual
+      prediction. Attribution Patching instead multiplies a gradient by the activation
+      difference between clean and corrupted runs to linearly approximate the output
+      change caused by patching a node or edge; EAP-IG integrates gradients along that
+      path. Gradient methods efficiently screen candidate elements, but they rely on
+      local or path-based approximations. Saturation, interactions, and nonlinearity can
+      make their scores diverge from exact patching, so sanity checks or direct
+      interventions are still needed.
+    zh: >-
+      Gradient Sensitivity 首先选定一个需要解释的输出指标，例如正确 token 的概率或两个候选 token 的 logit
+      差，然后计算这个指标对输入或内部激活的梯度。梯度的正负表示增大该元素会让指标上升还是下降，绝对值则表示
+      输出对它的局部变化有多敏感；一次反向传播通常可以同时得到许多元素的梯度。若要进一步估计某个元素对当前
+      预测的贡献，还需要把梯度与一个实际变化范围结合起来：Knowledge Neurons 从神经元激活为零的基线到实际
+      激活值累积梯度，以寻找与事实预测相关的神经元；Attribution Patching 则把梯度与 clean、corrupted 两次
+      运行之间的激活差相乘，用线性近似估计 patching 某个节点或边会造成的输出变化，EAP-IG 再沿这段变化路径
+      累积梯度。梯度方法适合快速筛选候选元素，但它依赖局部或路径近似；模型饱和、元素交互和非线性都可能使分数
+      偏离精确 patching 的结果，因此还需要 sanity check 或实际干预验证。
