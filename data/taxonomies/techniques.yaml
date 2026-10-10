@@ -1,6 +1,6 @@
 schema_version: 1
 taxonomy_id: techniques
-version: 6
+version: 7
 status: active
 title: Techniques
 nodes:
@@ -104,20 +104,41 @@ nodes:
   parent_id: readout-measurement
   title: Learned and Model-Internal Lenses
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v7_lens_decoding_workflows
   introduction:
     en: >-
-      Intermediate representations are not always written in the same coordinate
-      system as the final output, so directly applying the unembedding can be
-      misleading. A lens supplies a decoder that translates an intermediate state into
-      a prediction or semantic readout that is easier to interpret. Different lenses
-      make different assumptions about this translation—for example, whether it should
-      be learned from data, borrowed from later layers, or implemented by the model itself.
+      Intermediate-layer residual-stream states usually have the same dimensionality as
+      the final-layer state, but their representational basis may change across layers.
+      Directly applying the unembedding can therefore mistake a coordinate mismatch for
+      a change in prediction. A learned lens trains a linear or affine transformation for
+      a particular layer or attention head. The transformation can produce vocabulary
+      logits directly, or produce a vector aligned with the final-layer state that the
+      model's original final layer normalization and unembedding convert into vocabulary
+      probabilities. For example, Tuned Lens learns such a transformation for each layer
+      to correct the mismatch between intermediate states and the final output space;
+      Attention Lens learns a dedicated transformation for each attention head and reads
+      its output as vocabulary tokens; Future Lens asks whether the current token's hidden
+      state can anticipate tokens that the model may generate several positions later.
+      Future Lens uses two approaches: one trains a linear model to predict these future
+      tokens directly; the other places the hidden state into a new prompt, lets the model
+      continue generating, and checks whether the future tokens predicted in the original
+      context still appear. Patchscopes generalizes the latter approach into a model-internal
+      readout framework: the researcher designs a prompt that poses a question, patches the
+      hidden state into the corresponding model computation, and lets the model generate an
+      answer. By varying the prompt and insertion site, researchers can ask which token or
+      entity the state represents, or what properties and relations it contains.
     zh: >-
-      中间表征未必与最终输出处在同一个坐标系中，因此直接套用 unembedding 可能产生误导。
-      Lens 会提供一个额外的解码器，把中间状态翻译成更容易理解的预测或语义读出。
-      Tuned Lens、Future Lens、Attention Lens 等方法的差别，主要在于这种“翻译”是从数据中学习、借助后续层，
-      还是由模型自身的结构完成。
+      中间层的 residual-stream state 通常与最终层状态维度相同，但其表征基底可能随层变化，因此直接套用
+      unembedding 可能把坐标差异误认为预测变化。学习型 Lens 会为特定层或 attention head 训练一个线性或
+      仿射变换。变换结果可以直接是词表 logits，也可以是接近最终层状态的向量，再由模型原有的 final layer
+      normalization 和 unembedding 转换成词表概率。例如，Tuned Lens 为每一层学习这种变换，以校正中间状态
+      与最终输出空间之间的偏差；Attention Lens 则为不同 attention head 学习专用变换，将其输出读成词表中的
+      token；Future Lens 研究当前 token 的 hidden state 能否提前读出模型之后几个位置可能生成的 token。
+      Future Lens 采用两种办法：一种是训练线性模型直接预测这些未来 token；另一种是把这个 hidden state 放进
+      一段新的提示中，让模型继续生成，观察原来预测的未来 token 是否仍会出现。Patchscopes 进一步将后一种
+      做法推广为通用的 model-internal readout 框架：研究者先设计一段用于提问的提示，把待解释的 hidden state
+      插入提示对应的模型计算中，再让模型继续生成答案。通过改变提示和插入位置，可以询问这个状态表示的是哪个
+      token、实体，或者包含什么属性和关系。
 - node_id: probing
   parent_id: readout-measurement
   title: Probing
