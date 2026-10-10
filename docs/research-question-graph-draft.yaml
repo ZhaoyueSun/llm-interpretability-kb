@@ -838,19 +838,16 @@ nodes:
   - rq_id: rq-component-function
     family_id: computational-mechanism
     question_en: >-
-      What information does an individual model component read, transform, and write back within a distributed computation?
-    question_zh: 单个模型组件在分布式计算中读取、变换和写回什么信息？
+      What functions do individual attention heads, MLPs, or activation dimensions perform?
+    question_zh: 单个注意力头、MLP 或激活维度承担什么功能？
     introduction_en: >-
-      This question advances descriptions of attention heads, MLPs, or exceptional activation values from correlated patterns to input conditions, information content, and downstream effects, while allowing component roles to vary with context.
+      This question asks what information a local model component reads, what transformation it performs, and what it writes back to the residual stream or output. Assigning a function requires more than correlating a component with an input pattern: studies should examine when it activates, how it affects downstream predictions, and whether its role changes with context or collaborating components. The question concerns local computational roles rather than a complete end-to-end circuit.
     introduction_zh: >-
-      该问题要求把 attention head、MLP 或异常激活值的功能从相关模式推进到输入条件、信息内容和下游效应，
-      并允许组件角色随上下文改变。
+      该问题研究模型中的局部组件在一次计算中读取什么信息、执行什么变换，以及向残差流或输出写回什么。这里的“功能”不仅要求观察组件与某类输入相关，还要说明它在什么条件下激活、如何影响下游预测，以及其作用是否随上下文或协作组件变化。它关注局部组件的计算角色，不要求同时恢复完整的端到端行为电路。
     progress_en: >-
-      Work first described MLPs as key-value memories, then used copy-suppression analysis and massive-value studies to refine the suppression, routing, and contextual-integration roles of components.
-      Component descriptions have moved from correlation toward causal decomposition, but roles can change with context and do not by themselves explain complete behavior.
+      Early work described Transformer FFNs as key–value memories: lower-layer keys tend to match surface patterns, upper-layer keys capture more semantic contexts, and many memories jointly determine a layer’s output. Copy Suppression later provided a more complete natural-distribution account of one attention head, showing that it reads contextual token identity and prediction confidence, suppresses over-copying, and participates in ablation-induced self-repair. Work on massive values further suggests that extreme Q/K activations support contextual-knowledge routing and are partly produced by RoPE. Transcoders and causal head gating extend the analysis through sparse substitutes and learned interventions, while also revealing multiple sufficient component sets. The field has progressed from asking what a component responds to toward what computation it performs, but component roles remain context-dependent and rarely belong uniquely to one unit.
     progress_zh: >-
-      研究先将 MLP 描述为 key-value memories，随后用 copy-suppression 分析和 massive-value 研究细化组件的抑制、路由与上下文整合作用。
-      组件级功能描述已从相关观察走向因果拆解，但单个组件的角色可能随上下文改变，也不足以单独解释完整行为。
+      早期研究把 Transformer FFN 描述为键—值记忆：低层键多匹配表面模式，高层键更偏向语义上下文，多个记忆共同形成层输出。随后，Copy Suppression 在自然文本上对单个注意力头进行了更完整的机制分析，证明它读取上下文词元及当前预测置信度，并抑制过度复制，同时参与消融后的自修复。对 massive values 的研究又发现，Q/K 支路中的极大激活主要支持上下文知识路由，其集中形成与 RoPE 有关。Transcoder 和 causal head gating 等工作进一步表明，组件功能可以借助稀疏替代模块或学习式干预进行分析，但一个任务往往存在多个充分组件集合。研究已从“组件响应什么”推进到“组件实际执行什么计算”，不过功能仍具有上下文依赖性，也很少能唯一归因于单个组件。
     first_date: '2020-12-29'
     primary_paper_ids:
       - p_2020_geva_transformer_feed_forward
@@ -1143,19 +1140,16 @@ nodes:
   - rq_id: rq-multimodal-information-flow
     family_id: computational-mechanism
     question_en: >-
-      How is visual information represented, routed, and converted into text predictions after entering a language model?
-    question_zh: 视觉信息进入语言模型后如何被表示、路由并转化为文本预测？
+      How does visual information flow through a vision-language model to its textual output?
+    question_zh: 视觉信息如何在视觉语言模型中流向文本输出？
     introduction_en: >-
-      This question traces information flow among image patches, visual tokens, cross-modal attention, and language components and requires agreement between token-level and component-level attribution.
+      This question traces how visual evidence is encoded after entering a vision-language model, converted into a form usable by the language model, and transported to the textual positions that generate an answer. It distinguishes where information can be detected from which components actually use it, and seeks a continuous path linking image patches, visual tokens, intermediate MLPs, attention heads, and answer positions.
     introduction_zh: >-
-      该问题追踪 image patches、visual tokens、跨模态 attention 和语言组件之间的信息流，
-      并要求 token 与 component 两个层级的归因相互一致。
+      该问题追踪图像进入模型后，视觉证据如何被编码、转换为语言可用的表示，并传递到生成答案的文本位置。研究需要区分信息“出现在哪里”和“通过哪些组件被实际使用”，并把图像块、视觉词元、中间 MLP、注意力头和答案位置连接成连续的信息流。
     progress_en: >-
-      Work decomposed stages of visual processing in vision-language models and localized attention heads responsible for image-to-text routing.
-      Major pathways can now be mapped in several architectures, but no unified mechanism model spans different projectors, vision encoders, and language backbones.
+      BLIP causal tracing first extended state patching to visual question answering and found that late encoder and decoder layers were especially important for answer recovery, although single-state restoration did not reveal a complete path. Multimodal Neurons then showed that part of visual-to-language translation occurs inside intermediate MLPs of a frozen language model rather than entirely in the linear adapter. Later work found that object information begins in spatially corresponding image patches, becomes progressively more vocabulary-aligned, and flows to the answer position in middle-to-late layers. Attention-head analysis further identified distributed sets of image-to-text routing heads whose identities depend more on image semantics than visual style. Major pathways can now be described in adapter-based models, but evidence remains dominated by simple recognition tasks and does not yet unify different vision encoders, projectors, and language backbones.
     progress_zh: >-
-      研究已分解视觉信息在 VLM 中的处理阶段，并进一步定位承担 image-to-text 路由的 attention heads。
-      当前已能描绘若干架构中的主要信息路径，但不同投影器、视觉编码器和语言骨干之间尚无统一机制模型。
+      BLIP causal tracing 首先把状态修补扩展到视觉问答，发现编码器和解码器晚层对答案恢复最重要，但单状态修补尚不能给出完整路径。Multimodal Neurons 随后表明，部分视觉—语言转换发生在冻结语言模型的中间 MLP 中，而不是全部由线性适配器完成。之后的研究发现，物体信息首先局限于对应图像块，随后逐层形成更接近语言词表的表示，并在中后层流向答案位置。注意力头层面的研究进一步识别了负责 image-to-text 路由的分布式头集合，并发现头的选择更多取决于图像语义而非视觉风格。当前已能描绘适配器式模型中的主要信息路径，但简单物体识别仍占多数，不同视觉编码器、投影器和语言骨干之间尚无统一机制。
     first_date: '2024-10-09'
     primary_paper_ids:
       - p_2024_neo_towards_interpreting_visual
@@ -1190,19 +1184,16 @@ nodes:
   - rq_id: rq-modality-specific-mechanisms
     family_id: computational-mechanism
     question_en: >-
-      Do different modalities use structurally different but functionally related mechanisms for the same task?
-    question_zh: 同一任务的不同模态是否使用结构不同但功能相关的机制？
+      Do models use the same mechanism for equivalent tasks in text and images?
+    question_zh: 模型对等价的文本任务和图像任务会使用相同机制吗？
     introduction_en: >-
-      This question does not equate equal performance with equal mechanism.
-      It compares circuit structure, interchangeability, and feature compositionality across visual and textual pathways.
+      This question compares whether a vision-language model uses the same internal circuits and computational stages for semantically equivalent tasks presented as text or images. The two modalities may implement similar high-level operations through different components because their representations become available at different depths or follow different routes. The focus is cross-modal mechanism correspondence rather than visual information flow in general.
     introduction_zh: >-
-      该问题不把性能相同视为机制相同，而是比较视觉与文本路径的电路结构、可交换性和特征可组合性。
+      该问题比较视觉语言模型处理内容等价、输入模态不同的任务时，是否调用相同的内部电路和计算步骤。两个模态可以执行相似的高层操作，却因为表示形成时间、路由方式或可用计算深度不同而使用不同组件。这里关注的是跨模态机制对应关系，而不是一般性的视觉信息流。
     progress_en: >-
-      Cross-modal comparisons show that the same task may be implemented by structurally different but functionally corresponding circuits, while sparse visual-thought circuits add a feature-level view.
-      The work begins to separate functional equivalence from structural identity, but coverage across tasks, models, and modalities remains too small to establish generality.
+      The main study on matched textual and visual counting tasks finds largely different circuits across modalities, even though their components perform related functions. Visual representations become text-like only at relatively late layers, leaving insufficient downstream depth for the shared decoder; patching those late visual states into earlier layers improves predictions. This suggests that cross-modal performance gaps can arise from representational timing rather than the absence of high-level operations. Evidence is currently limited to a narrow task family and a small set of models, and backward patching creates unnatural activation trajectories. Sparse Visual Thought Circuits further suggests that even functionally related sparse features across modalities do not necessarily combine into one modular mechanism.
     progress_zh: >-
-      跨模态比较发现，同一任务可能由结构不同但功能相应的电路完成；sparse visual thought circuits 又提供了特征级分析视角。
-      现有结果开始区分功能等价与结构相同，但覆盖的任务、模型与模态仍较少，尚不能判断这种差异是否普遍。
+      目前的核心研究在匹配的文本计数和视觉计数任务上发现，两种模态主要使用不同电路，但相关组件承担相似功能。视觉信息在网络中较晚才形成接近文本表示的状态，导致下游共享解码器缺少足够计算深度；把较晚视觉表示回补到较早层可以改善预测。这说明跨模态性能差距未必来自缺少高层推理操作，也可能来自表示到达时间不同。不过证据目前主要来自一个任务族和有限模型，回修补还会制造非自然激活轨迹，因此尚不能推广为所有跨模态差距的统一解释。Sparse Visual Thought Circuits 进一步显示，即使不同模态中能找到功能相关的稀疏特征，它们也未必可以直接组合成统一模块。
     first_date: '2025-06-10'
     primary_paper_ids:
       - p_2025_nikankin_same_task_different
@@ -1229,19 +1220,16 @@ nodes:
   - rq_id: rq-multimodal-failure-mechanisms
     family_id: computational-mechanism
     question_en: >-
-      Do multimodal hallucinations arise from reproducible competing pathways or architectural bottlenecks?
-    question_zh: 多模态幻觉是否由可复现的竞争路径或架构瓶颈机制产生？
+      What internal mechanisms cause object hallucinations in vision-language models?
+    question_zh: 视觉语言模型为什么会产生物体幻觉？
     introduction_en: >-
-      This question traces output errors to causal interactions among visual-evidence pathways, language-prior pathways, and architectural bottlenecks, and tests recurrence across error types and model architectures.
+      This question traces object hallucinations from output errors back to internal causal mechanisms: how grounded visual evidence competes with language priors, which pathways promote nonexistent objects, and whether particular visual representations install or amplify those pathways. The goal is not merely to predict hallucination but to alter it through targeted intervention and test whether the mechanism recurs across examples and architectures.
     introduction_zh: >-
-      该问题从输出错误追溯到视觉证据路径、语言先验路径和架构 bottleneck 的因果交互，
-      并检验机制是否跨错误类型和模型架构复现。
+      该问题试图把物体幻觉从输出错误追溯到内部因果机制：真实视觉证据与语言先验如何竞争，哪些路径会推动不存在的物体进入输出，以及特定视觉编码方式是否会安装或放大这些路径。目标不仅是预测幻觉，还要通过定向干预改变错误，并检验机制能否跨样本和架构复现。
     progress_en: >-
-      Recent work explains object hallucination as competition between genuine visual evidence and language-prior pathways and searches for recurrent failure circuits in VQ-tokenized architectures.
-      The branch has advanced from output correlation to intervenable mechanism hypotheses, but it contains few studies, narrow architectural coverage, and limited evidence across failure types.
+      Dual-Pathway Circuits explains object hallucination as competition between a visually grounded pathway and hallucination-promoting pathways. Grounding components can reverse polarity on incorrect examples, while hallucination signals are distributed across several directions; selectively suppressing the latter reduces some errors. Where Hallucinations Live further identifies a recurring early-layer hallucination circuit in VQ-tokenized models and uses constructive experiments to show that VQ modules can couple existing backbone pathways into this mechanism. Targeted ablation outperforms generic logit correction in some open-generation settings. Current evidence supports both competing-pathway and architecture-installed bottleneck accounts, but remains limited to object hallucination and selected VQ architectures.
     progress_zh: >-
-      最新工作把对象幻觉解释为真实视觉证据路径与语言先验路径的竞争，并在 VQ-tokenized 架构中寻找跨模型复现的故障电路。
-      该分支已从输出相关性推进到可干预的失败机制假说，但论文数量少、架构范围窄，跨故障类型的普遍性尚未建立。
+      Dual-Pathway Circuits 把物体幻觉解释为视觉落地路径与促幻觉路径的竞争。落地组件在错误样本上可能发生极性翻转，而幻觉信号分布在多个方向；选择性抑制促幻觉路径可以降低部分错误。Where Hallucinations Live 进一步在 VQ-tokenized 模型中发现跨架构复现的早层幻觉电路，并通过构造实验表明 VQ 模块能够耦合骨干已有路径、形成该机制。定向消融在部分开放生成场景中优于通用 logit 修正。现有证据支持“竞争路径”和“架构安装的瓶颈电路”两类机制，但范围仍限于物体幻觉和部分 VQ 架构，不能代表所有多模态错误。
     first_date: '2026-05-13'
     primary_paper_ids:
       - p_2026_liu_dual_pathway_circuits
@@ -1250,19 +1238,16 @@ nodes:
   - rq_id: rq-multilingual-mechanisms
     family_id: computational-mechanism
     question_en: >-
-      Which internal units and broadcast mechanisms implement language choice and cross-lingual capability?
-    question_zh: 语言选择与跨语言能力由哪些内部单元和广播机制实现？
+      How do models decide which language to answer in?
+    question_zh: 模型如何决定用哪种语言作答？
     introduction_en: >-
-      This question distinguishes mechanisms controlling output language, carrying task information, and enabling cross-lingual transfer, while tracing how a language decision forms and propagates before the first generated token.
+      This question asks how output-language choice is formed and propagated inside a model: which units represent language identity, which attention heads aggregate and broadcast the decision before the first generated token, and why nonlinguistic inputs such as images can bias the model toward one language. It is distinct from explaining full multilingual competence or cross-lingual knowledge transfer.
     introduction_zh: >-
-      该问题区分控制输出语言、承载任务信息和促进跨语言迁移的机制，并追踪语言决定在生成首 token 前如何形成和传播。
+      该问题研究输出语言的选择如何在模型内部形成并传播，包括语言身份由哪些单元表示、首个生成词元之前哪些注意力头负责汇总和广播，以及图像等非语言输入为什么会使模型偏向某种语言。它不等同于研究完整的多语言能力或跨语言知识迁移。
     progress_en: >-
-      Work localized components causing vision-language models to default to English and later proposed first-token
-      broadcasters and language-identity head circuits. The line has moved toward generation-level broadcast mechanisms,
-      while language choice, knowledge sharing, and transfer still require different explanations.
+      Language-Specific Neurons identifies a small set of FFN units selective for language identity; intervening on them changes perplexity and output language without showing that they carry full linguistic competence. Work on LLaVA then finds that adding an image can shift non-English answers toward English, mainly because the language backbone interprets out-of-distribution visual embeddings rather than because the projector directly maps images near English tokens. FTB Graph advances the question to first-token decision circuits and identifies deep attention heads that act as language-choice broadcasters. However, precise patching overturns some gradient-attribution results, and component necessity differs across models. The line has progressed from selective units to generation-level broadcast mechanisms, but no stable cross-architecture circuit has been established.
     progress_zh: >-
-      研究先定位导致 VLM 默认英语回复的组件，后续工作进一步提出 first-token broadcasters 与 language-identity head circuits。
-      问题正在转向生成级的广播机制，但语言选择、知识共享和迁移仍需不同解释。
+      Language-Specific Neurons 发现少量 FFN 单元对语言身份具有较强选择性，干预这些单元可以改变困惑度和输出语言，但不能证明它们承载完整语言能力。LLaVA 研究进一步发现，加入图像会让非英语回答偏向英语，主要原因不是投影器把图像直接映射到英语词元，而是语言骨干如何解释分布外视觉嵌入。FTB Graph 随后把研究推进到首词元决策电路，发现深层注意力头充当语言选择的广播枢纽，但精确修补会推翻部分梯度归因结果，而且不同模型中的必要性并不一致。当前已从语言选择性单元推进到生成级广播机制，但尚未得到跨架构稳定的完整电路。
     first_date: '2024-07-02'
     primary_paper_ids:
       - p_2024_hinck_why_do_llava
@@ -1273,42 +1258,52 @@ nodes:
   - rq_id: rq-safety-mechanisms
     family_id: computational-mechanism
     question_en: >-
-      Are safety, refusal, and hidden-trigger behaviors implemented by low-dimensional directions or distributed circuits?
-    question_zh: 安全、拒绝与隐蔽触发行为由低维方向还是分布式电路实现？
+      What internal mechanisms produce refusal behavior?
+    question_zh: 模型的拒答行为由哪些内部机制产生？
     introduction_en: >-
-      This question localizes structures mediating safety behavior, compares single directions, attention subcircuits, and backdoor mechanisms, and examines task specificity, coordination, and vulnerability to intervention.
+      This question asks how a safety-aligned model detects harmful requests and enters a refusal state, and whether the behavior is mediated by a low-dimensional direction, a small set of attention heads, or a more distributed computation. The ability to disable refusal through one direction establishes a high-leverage control variable, but does not imply that the complete safety judgment is one-dimensional.
     introduction_zh: >-
-      该问题定位安全行为的中介结构，比较单一方向、attention 子电路和后门机制，
-      并考察其任务专属性、协同性与对干预的脆弱性。
+      该问题研究安全对齐模型如何识别有害请求并进入拒答状态，以及这种行为主要由低维表示方向、少量注意力头还是更分布式的计算共同实现。能够通过一个方向关闭拒答，只能证明它是高杠杆控制变量，不一定意味着完整的安全判断过程也是一维的。
     progress_en: >-
-      Studies of backdoors, refusal, and safety have identified early-layer mechanisms, a single refusal direction, critical attention heads, and linear instability of that direction.
-      Evidence suggests that low-dimensional control directions and distributed circuits can coexist, while the one-direction account varies across contexts and models.
-      A more complete causal account of safety mechanisms remains open.
+      Refusal in Language Models shows that refusal in several open-weight chat models can be strongly controlled through a single linear direction: removing it disables much refusal, while adding it induces refusal. Attention-head studies further find a small number of components with disproportionate effects, acting more like harmful-content detectors than complete refusal generators. The Geometry of Refusal suggests that different architectures share manipulable linear refusal axes but integrate the decision at different depths: late-layer safety wrappers are easier to bypass, whereas earlier integration is more robust. The evidence supports a low-dimensional control interface for refusal, but the underlying safety judgment may remain distributed, and refusal is not equivalent to actual safety or general capability.
     progress_zh: >-
-      Backdoor、拒绝和安全行为研究分别发现早层机制、单一 refusal direction、关键 attention heads 与方向的线性不稳定性。
-      现有证据表明低维控制方向与分布式电路可以同时成立，而“安全由一个方向实现”的结论受上下文和模型影响；更完整的因果安全机制仍待建立。
-    first_date: '2023-02-24'
+      Refusal in Language Models 发现，多种开放权重聊天模型的拒答可由单一线性方向强力控制：移除该方向可关闭拒答，加入它可诱发拒答。注意力头研究进一步发现少量组件对拒答具有不成比例的影响，其作用更接近危险特征提取，而不是独立生成完整拒答。Geometry of Refusal 又表明，不同架构都可能存在可操控的线性拒答轴，但该决策进入模型计算的深度不同：晚层包装更容易绕过，早层整合相对稳健。现有证据表明拒答具有低维控制界面，但安全判断本身仍可能是分布式的；拒答、真实安全性和一般模型能力也不能等同。
+    first_date: '2024-06-17'
     primary_paper_ids:
-      - p_2023_lamparth_analyzing_and_editing
       - p_2024_arditi_refusal_in_language
       - p_2024_zhou_on_the_role
       - p_2026_ratnakar_the_geometry_of
 
+  - rq_id: rq-backdoor-mechanism
+    family_id: computational-mechanism
+    question_en: >-
+      How do trigger tokens activate backdoor behavior inside a model?
+    question_zh: 触发词如何在模型内部激活后门行为？
+    introduction_en: >-
+      This question asks how a backdoor trigger is represented and propagated through a model, how it overrides normal behavior to produce an attacker-chosen output, and whether the responsible mechanism can be localized, edited, or blocked during training. It concerns deliberately implanted conditional behavior and should be kept separate from normally learned safety-refusal mechanisms.
+    introduction_zh: >-
+      该问题研究后门触发信号进入模型后经过哪些内部位置和表示，如何压倒正常行为并产生攻击者指定的输出，以及这些机制能否被定位、编辑或在训练阶段阻断。它研究的是人为植入的条件行为，不应与模型正常学习到的安全拒答机制合并。
+    progress_en: >-
+      Existing work finds that a simple toxic backdoor relies heavily on the trigger embedding and early MLPs, with a low-rank activation subspace sufficient to reproduce or continuously modulate much of the behavior. Ablation, representation projection, activation replacement, and training-time freezing provide convergent causal evidence, with partial replication in GPT-2 Medium. The study covers only one relatively simple poisoning scheme, low-rank editing can damage general language modeling, and causal-patching results are not fully consistent. Current evidence therefore shows that some backdoors form localized, low-rank control mechanisms, but does not yet generalize to more covert or sophisticated attacks.
+    progress_zh: >-
+      现有研究发现，简单有毒后门主要依赖触发词嵌入和早期 MLP，其激活中的低秩子空间足以重现或连续调节大部分后门行为。消融、表示投影、激活替换和训练阶段冻结形成了相互印证的因果证据，并在 GPT-2 Medium 上得到部分复现。但研究仅覆盖一种较简单的投毒方式，低秩编辑有时会损害一般语言建模能力，因果修补结果也不完全一致。因此目前只能说明部分后门可以形成局部、低秩的控制机制，尚不能推广到更隐蔽或更复杂的攻击。
+    first_date: '2023-02-24'
+    primary_paper_ids:
+      - p_2023_lamparth_analyzing_and_editing
+
   - rq_id: rq-knowledge-conflict
     family_id: computational-mechanism
     question_en: >-
-      How does a model arbitrate between parametric and contextual knowledge when they conflict?
-    question_zh: 参数知识与上下文知识发生冲突时，模型如何竞争并选择信息来源？
+      How do models arbitrate between parametric and contextual knowledge?
+    question_zh: 参数知识与上下文冲突时，模型如何决定相信哪一个？
     introduction_en: >-
-      This question studies how the two knowledge sources overlap, compete, and reach a decision across components and paths, and whether source selection can be controlled without damaging other capabilities.
+      This question asks how internally memorized facts and conflicting information in the current prompt are retrieved, routed, and made to compete at the answer position. A useful model must resist misleading context while accepting correct updates when its parametric knowledge is outdated, so neither always trusting memory nor always trusting context constitutes a complete mechanism.
     introduction_zh: >-
-      该问题研究两类知识在组件和路径中的叠加、竞争与决策位置，并进一步询问能否在不破坏其余能力的情况下控制来源选择。
+      该问题研究模型内部记忆的事实与当前提示提供的信息不一致时，两类信息如何被检索、路由并在答案位置竞争。模型既需要抵抗错误上下文，也需要在内部知识过时后接受正确的新信息，因此“总是相信参数”或“总是相信上下文”都不是完整机制。
     progress_en: >-
-      Existing work localized competition between parametric and contextual knowledge to specific attention heads and mitigated conflict by cutting or modulating relevant pathways; later studies pursued more stable control.
-      Intervenable local mechanisms have been identified, but tested conflict types, confidence regimes, and cross-model transfer remain limited.
+      Cutting Off the Head Ends the Conflict finds that late attention heads with different source preferences deliver parametric and contextual attributes to the answer position, where they compete; selectively suppressing one group changes which source controls the answer. Taming Knowledge Conflicts later shows that these are not cleanly separated “memory heads” and “context heads”: both signals are often superposed within the same components, making one-pass head scaling unstable. Its calibrated two-run method improves both resistance to misleading context and acceptance of correct updates across several models. The account has therefore shifted from competition between separate pathways toward dynamic arbitration over overlapping representations, but upstream retrieval, multi-step conflicts, and open-ended generation remain unexplained.
     progress_zh: >-
-      已有工作把参数知识与上下文知识的竞争定位到特定 attention heads，并通过切断或调节相关路径缓解冲突；后续研究继续探索更稳定的冲突控制。
-      当前已获得可干预的局部机制，但冲突类型、答案置信度和跨模型迁移范围仍较有限。
+      Cutting Off the Head Ends the Conflict 发现，参数属性和上下文属性由不同偏好的晚层注意力头送往答案位置，并在此发生竞争；选择性抑制一组头可以改变模型偏向的知识来源。Taming Knowledge Conflicts 随后指出，这些头并不是互斥的“记忆头”和“上下文头”，两种信息往往在同一组件中叠加，因此单次头缩放容易产生不稳定副作用。其双运行方法分别提取两种预测并进行校准，在多个模型上同时改善抵抗错误上下文和接受正确上下文的能力。研究已经从“两条独立路线竞争”推进到“重叠表示中的动态裁决”，但仍未解释上游检索、多步冲突和开放式生成中的完整机制。
     first_date: '2024-02-28'
     primary_paper_ids:
       - p_2024_jin_cutting_off_the
@@ -1559,20 +1554,16 @@ nodes:
   - rq_id: rq-induction-head-icl-mechanism
     family_id: computational-mechanism
     question_en: >-
-      Do induction heads implement most in-context learning through a reusable match-and-copy circuit?
-    question_zh: Induction heads 是否通过可复用的 match-and-copy 回路实现了大部分 in-context learning？
+      How do induction heads support in-context learning?
+    question_zh: Induction head 如何支持上下文学习？
     introduction_en: >-
-      This question concerns the mechanism responsible for in-context learning. Training phase changes, ablations, and
-      cross-scale recurrence are evidence for the mechanism rather than the primary unknown.
+      This question asks whether the match-and-copy circuit implemented by induction heads provides a general mechanism for in-context learning. The model matches the current token to an earlier occurrence and copies what followed that occurrence, allowing it to exploit repeated or analogous structures in context. Three increasingly strong claims must be distinguished: that the circuit can implement the algorithm, that it emerges alongside in-context learning during training, and that it explains most in-context learning in large models.
     introduction_zh: >-
-      该问题关注 in-context learning 的实现机制。训练相变、消融和跨规模复现是支持该机制的证据，而不是主问题本身。
+      该问题研究 induction head 的 match-and-copy 电路是否构成上下文学习的一种通用机制：模型先匹配当前词元与先前出现的位置，再复制先前位置之后的内容，从而利用上下文中的重复或类比结构。需要区分“能够执行该算法”“训练时与上下文学习同时出现”和“解释大模型中的大部分上下文学习”这三种强度不同的主张。
     progress_en: >-
-      Induction-head studies identified a concrete match-and-copy circuit, linked its appearance to in-context-learning
-      gains, and tested it with ablation and scale comparisons. The mechanism is compelling for repeated-pattern
-      induction, while the fraction of broader in-context learning it explains remains disputed.
+      In small attention-only models, researchers reconstruct a two-layer circuit involving previous-token heads and induction heads and show through ablation and architectural interventions that it explains most of the measured improvement in in-context loss. Small models with MLPs also exhibit a training phase transition in which induction heads and in-context learning emerge together. Larger models show evidence of a progression from exact repetition to more abstract pattern matching, but have not received equally strong causal ablation tests. Induction heads can therefore be treated as an important in-context-learning mechanism, particularly for match-and-copy over repeated or analogous sequences, but the claim that they explain most in-context learning in large models remains insufficiently supported.
     progress_zh: >-
-      Induction-head 研究识别出具体的 match-and-copy 回路，将其出现与 in-context learning 提升联系起来，并用消融与规模比较进行检验。
-      该机制能较好解释重复模式 induction，但它能覆盖多少更广义的上下文学习仍有争议。
+      在小型纯注意力模型中，研究完整重构了由前序词元头与 induction head 组成的两层电路，并通过消融和架构干预证明它解释了大部分所测上下文损失改善。含 MLP 的小模型中也观察到 induction head 出现与上下文学习能力的训练相变同步。在更大模型中，相关头表现出从精确重复到更抽象模式匹配的迹象，但没有获得同等强度的因果消融证据。当前可以较有把握地说 induction head 是上下文学习的重要机制之一，尤其负责重复和类比序列中的匹配—复制；但“它解释大模型中的大部分上下文学习”仍属于证据不足的强主张。
     first_date: '2022-09-24'
     primary_paper_ids:
       - p_2022_olsson_in_context_learning
@@ -1959,11 +1950,11 @@ edges:
     type: challenges
     evidence_status: direct-citation
     rationale_zh: 不可诱导的密码学后门表明，即使采用 latent-knowledge elicitation，也可能存在计算上无法触发或验证的隐藏机制。
-  - source: rq-safety-mechanisms
+  - source: rq-backdoor-mechanism
     target: rq-audit-limits
     type: challenges
-    evidence_status: same-lineage
-    rationale_zh: 对拒绝、触发器和隐蔽安全行为机制的研究进一步暴露了部署前审计在最坏情况下的可发现性边界。
+    evidence_status: analyst-inference
+    rationale_zh: 从定位可观察触发词激活的局部后门机制，推进到追问更隐蔽的后门在最坏情况下是否可能无法被触发、定位或验证。
   - source: rq-causal-use
     target: rq-representation-control
     type: extends
