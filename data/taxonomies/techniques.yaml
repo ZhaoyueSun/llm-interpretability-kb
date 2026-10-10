@@ -1,6 +1,6 @@
 schema_version: 1
 taxonomy_id: techniques
-version: 19
+version: 20
 status: active
 title: Techniques
 nodes:
@@ -898,20 +898,36 @@ nodes:
       其效果也取决于配对数据、层的选择、模型家族和 tokenizer。较低的重构误差或成功的 stitching 不能单独证明两个模型具有逐特征的一一对应关系，也不能证明它们执行了相同的内部算法。
 - node_id: causal-intervention-attribution
   parent_id: technique
-  title: Causal Intervention and Attribution
+  title: Causal Intervention
   status: active
-  proposal_id: tp_20261009_techniques_v2_reader_intros
+  proposal_id: tp_20261010_techniques_v20_causal_intervention_parent
   introduction:
     en: >-
-      Observational patterns tell us where a mechanism might be, but causal analysis asks
-      what happens when we actually change the suspected component. These methods remove,
-      replace, restore, or exchange internal states—or approximate the effect of doing so—
-      and measure the resulting behavior. The intervention must be interpreted carefully:
-      an unnatural replacement can create a failure that the unmodified model would never encounter.
+      Causal Intervention actively changes a model's internal states or components to test
+      whether they affect a target behavior. Researchers first define the behavioral
+      contrast to be explained and the corresponding output metric. They then remove,
+      replace, restore, exchange, or gate activations, parameters, components, or
+      information-transfer paths and compare the model's outputs before and after the
+      change. This branch includes both interventions that are actually executed and
+      approximation methods that estimate the effect of a clearly specified intervention.
+      Whereas observational methods inspect activations, correlations, or decodable
+      information during an unmodified model run, a causal intervention poses a concrete
+      counterfactual question, such as, "How would the model behave if this internal state
+      were replaced by another one?" Different experiments can provide evidence about a
+      component's conditional necessity, its ability to restore a behavior, the paths
+      through which an effect travels, or how a high-level variable is implemented, but
+      these conclusions are not interchangeable. Results also depend on the replacement
+      baseline, component granularity, input distribution, and evaluation metric.
+      Redundancy and interactions can hide a real contribution, while an unnatural
+      replacement can create an out-of-distribution state. Reliable conclusions therefore
+      compare several intervention settings, include appropriate controls, and verify
+      important candidates from approximate methods with exact experiments.
     zh: >-
-      观察性模式只能告诉我们机制“可能在哪里”，因果分析则进一步询问：真正改变这个组件时会发生什么。
-      这些方法会移除、替换、恢复或交换内部状态，或者近似这种操作的效果，再观察行为如何变化。
-      干预必须谨慎解释，因为不自然的替换可能制造出原模型在正常运行中从不会遇到的故障。
+      Causal Intervention 通过主动改变模型的内部状态或组件，检验它们是否会影响目标行为。研究者首先定义需要解释的行为差异和相应的输出指标，
+      再对激活、参数、组件或信息传递路径进行移除、替换、恢复、交换或门控，并比较干预前后的模型输出。本分支既包括实际执行的内部干预，也包括以某种明确干预为目标、用于估计其效果的近似方法。
+      与观察模型自然运行时的激活、相关性或可解码信息不同，因果干预构造了一个具体的反事实问题，例如“如果这个内部状态被另一个状态替换，模型行为会怎样变化”。
+      不同实验可以分别提供组件必要性、行为恢复能力、效应传递路径或高层变量实现方式的证据，但这些结论不能相互替代。干预结果还取决于替换基线、组件粒度、输入分布和评价指标；
+      模型中的冗余与组件交互可能掩盖作用，不自然的替换也可能产生分布外状态。因此，可靠的结论通常需要比较多种干预设置、加入适当控制，并用精确实验验证近似方法发现的重要候选。
 - node_id: activation-ablation-replacement
   parent_id: causal-intervention-attribution
   title: Activation Ablation and Replacement
