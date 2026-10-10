@@ -1112,18 +1112,30 @@ nodes:
   - rq_id: rq-circuit-scaling
     family_id: generality-transfer
     question_en: >-
-      Can manual mechanistic analysis scale to frontier-size models while preserving semantics across the input distribution?
-    question_zh: 人工机制分析能否扩展到前沿规模模型并保持跨分布语义？
+      Can mechanistic analysis scale to large models while producing functional explanations that hold across examples?
+    question_zh: 机制分析能否扩展到大模型，并得到跨样本成立的功能解释？
     introduction_en: >-
-      This question asks whether important components found in a large model can receive functional explanations that hold across inputs rather than remaining local localization results.
+      Finding high-attribution components in a large model does not constitute a complete mechanistic explanation. This
+      question asks whether human-led circuit analysis can identify components and paths with stable functional roles in
+      large models, validate their causal effects across examples, and connect localized output mechanisms to upstream
+      computation.
     introduction_zh: >-
-      该问题检验在大模型中找到若干重要组件之后，是否还能给出跨输入成立的功能解释，而不是停留在局部定位结果。
+      在大模型中找出高归因组件，并不等于已经完成机制解释。该问题研究人工主导的电路分析能否在大规模模型中识别
+      具有稳定功能语义的组件和路径，验证其对多个输入样本的因果作用，并把局部输出机制继续连接到上游计算。
     progress_en: >-
-      A study of multiple-choice capabilities in Chinchilla showed that manual analysis can identify components and paths with semantics shared across examples in larger models, providing early evidence for scale.
-      Evidence remains concentrated in one capability family and a limited model set, so routine full-circuit analysis at frontier scale has not been demonstrated.
+      Analysis of multiple-choice behavior in the 70B-parameter Chinchilla model shows that standard attribution,
+      visualization, and activation patching can still localize a compact output mechanism. Some attention heads
+      translate an abstract “the N-th item in an enumeration” signal into A/B/C/D labels, while other components amplify
+      or specialize toward particular letters. Joint patching and low-rank replacement provide causal support. The
+      explanation nevertheless covers mainly the output stage and MMLU examples; component semantics weaken under
+      randomized labels, and the complete upstream circuit was not recovered. The work demonstrates feasibility rather
+      than routine scalability of full-circuit analysis.
     progress_zh: >-
-      Chinchilla 多选能力研究表明，人工机制分析可以在更大模型上发现具有跨样本语义的组件和路径，为规模化提供了早期实证。
-      当前证据仍集中于单类能力和有限模型，尚未证明完整电路分析能够常规扩展到前沿模型。
+      对 700 亿参数 Chinchilla 的多项选择能力分析表明，常用归因、可视化和激活修补仍能定位紧凑的输出机制。
+      其中部分注意力头把抽象的“枚举中第几个选项”转换成 A、B、C、D 标签，其他组件则放大或偏向特定字母。
+      联合修补和低秩替换支持这些功能具有因果作用。不过解释主要覆盖输出阶段和 MMLU 样本；
+      随机改变标签后，组件语义明显减弱，完整上游电路也没有恢复。因此，这项工作证明了大模型机制分析具有可行性，
+      尚未证明完整电路分析能够常规扩展到大模型。
     first_date: '2023-07-18'
     primary_paper_ids:
       - p_2023_lieberum_does_circuit_analysis
@@ -1607,27 +1619,94 @@ nodes:
   - rq_id: rq-mechanism-universality
     family_id: generality-transfer
     question_en: >-
-      Do different training runs, models, and architectures reproduce the same mechanism, or only share an abstract algorithm?
-    question_zh: 不同任务运行、模型与架构会复现同一机制，还是只共享抽象算法？
+      Do different models learn the same internal mechanisms?
+    question_zh: 不同模型会学到相同的内部机制吗？
     introduction_en: >-
-      This question distinguishes strong universality of concrete features, components, and circuits from weak universality at the functional or algorithmic level, allowing equal performance with different structures.
+      Independently trained models with the same behavior need not use the same features, components, or circuits. This
+      question distinguishes strong universality, where concrete representations and circuit structures recur, from
+      weak universality, where models implement the same abstract algorithm or function through different internal
+      realizations.
     introduction_zh: >-
-      该问题区分具体 feature、component、circuit 的强 universality 与功能或算法层面的弱 universality，
-      并允许性能相同但结构不同。
+      具有相同行为的独立训练模型，不一定使用相同特征、组件或电路。该问题区分两种普遍性：
+      强普遍性要求具体表示和电路结构重复出现；弱普遍性只要求模型实现相同的抽象算法或功能，即使底层实现不同。
     progress_en: >-
-      A group-operation toy model first separated strong circuit identity from weak algorithmic universality.
-      Later work found component reuse across tasks, recurring successor heads, stitchable linear features, and numerical-comparison circuits across architectures.
-      The evidence supports greater recurrence of abstract function than exact structure, but equivalence metrics and boundaries across scale remain unsettled.
+      Studies of group-operation models find that all generalizing networks implement a variant of the group-convolution
+      theorem, supporting weak algorithmic universality, while different irreducible representations and learning orders
+      undermine strong circuit identity. Successor heads recur across several architectures and scales and reuse abstract
+      ordinal structure, but are not present in every model. Numerical-comparison studies further find stable mechanisms
+      within the Qwen family but not across model families, with the same behavior implemented by either localized or
+      distributed circuits. Overall, abstract functions recur more reliably than exact internal structures.
     progress_zh: >-
-      群运算 toy model 首先区分具体电路相同的强 universality 与共享算法的弱 universality，随后研究发现跨任务组件复用、重复出现的 successor heads、可 stitching 的线性特征和跨架构数值比较电路。
-      总体证据支持抽象功能比具体结构更普遍，但衡量等价性的标准及其跨规模边界仍未统一。
+      群运算模型研究发现，所有能够泛化的模型都实现了群卷积定理的一种变体，支持算法层面的弱普遍性；
+      但模型会选择不同不可约表示，并以不同顺序形成机制，不支持具体电路的强普遍性。
+      Successor Heads 在多个架构和规模中重复出现，并复用抽象序数结构，但并非所有模型都具有相同组件。
+      数值比较研究进一步发现，机制在 Qwen 家族内部相对稳定，却不能跨模型家族保持一致；
+      相同行为可以由局部化或分布式电路实现。总体证据表明，抽象功能的复现远比具体结构的复现普遍。
     first_date: '2023-02-06'
     primary_paper_ids:
       - p_2023_chughtai_a_toy_model
-      - p_2023_merullo_circuit_component_reuse
       - p_2023_gould_successor_heads_recurring
-      - p_2025_chen_transferring_linear_features
       - p_2026_bhardia_mechanistic_analysis_of
+
+  - rq_id: rq-cross-task-component-reuse
+    family_id: generality-transfer
+    question_en: >-
+      Can circuit components be reused across different tasks?
+    question_zh: 电路组件能否被不同任务复用？
+    introduction_en: >-
+      This question asks whether a model reuses a limited set of attention heads, paths, or subcomputations as general
+      modules across superficially different tasks. Component overlap provides only preliminary evidence. Reuse requires
+      showing that the components perform corresponding functions across tasks and that manipulating them affects or
+      repairs those tasks as predicted.
+    introduction_zh: >-
+      该问题研究同一模型是否把有限的注意力头、路径或子计算作为通用模块，用于完成表面不同的任务。
+      组件重合只能提供初步线索；要证明复用，还需要检验相同组件是否在不同任务中承担对应功能，
+      以及操纵该组件能否同时影响或修复这些任务。
+    progress_en: >-
+      Comparison of indirect-object identification with a colored-object selection task reveals a shared algorithmic
+      skeleton: detect repeated cues, select or suppress candidates, and copy the remaining answer. The tasks differ in
+      whether candidate information is positively aggregated or suppressed. Targeted disruption impairs the shared
+      computation, while activating missing IOI components repairs the colored-object task, providing causal evidence of
+      reuse. The result is limited to one model and two copy-like tasks and does not establish that model capabilities
+      generally decompose into a small library of reusable modules.
+    progress_zh: >-
+      对间接宾语识别和列表颜色选择任务的比较发现，两者复用了“检测重复线索—选择或抑制候选项—复制剩余答案”的算法骨架，
+      但对候选信息的正向汇集和抑制方式不同。定向阻断共同组件会破坏任务，而激活缺失的 IOI 组件能够修复颜色选择行为，
+      为组件复用提供了因果证据。不过结果来自一个模型和两个都具有复制结构的任务，
+      尚不能说明模型普遍由少量可复用模块组成。
+    first_date: '2023-10-12'
+    primary_paper_ids:
+      - p_2023_merullo_circuit_component_reuse
+
+  - rq_id: rq-cross-model-feature-transfer
+    family_id: generality-transfer
+    question_en: >-
+      Can interpretable features learned in one model be transferred to another?
+    question_zh: 一个模型中的可解释特征能否迁移到另一个模型？
+    introduction_en: >-
+      This question asks whether representation spaces in different models can be aligned well enough to reuse probes,
+      sparse autoencoders, steering vectors, or functional directions trained on one model in another. It differs from
+      asking whether the models independently learned the same mechanism: successful transfer requires an effective
+      correspondence, not one-to-one identity between their representations.
+    introduction_zh: >-
+      该问题研究不同模型的表示空间能否通过简单映射建立对应，使在一个模型上训练的探针、稀疏自编码器、
+      引导向量或功能方向可以在另一个模型中复用。它不同于“两个模型是否自然学到了相同机制”：
+      迁移只要求存在有效对应，不要求两个表示空间逐单元相同。
+    progress_en: >-
+      Model-stitching studies find sufficient affine correspondence between residual spaces of differently sized models
+      from the same family to transfer many linear probes and steering directions and to initialize large-model SAEs more
+      efficiently than random initialization. Semantic and structural features differ in transferability, while some
+      functional directions retain their effects after mapping. Zero-shot SAE quality still degrades, experiments focus
+      mainly on related models trained on similar data, and behavior-preserving affine mappings do not establish identity
+      of internal concepts.
+    progress_zh: >-
+      Model Stitching 研究发现，同一家族、不同规模语言模型的残差空间具有足够的仿射对应，
+      可以迁移多种线性探针和引导方向，并为大模型 SAE 提供比随机初始化更有效的起点。
+      语义特征与结构特征的迁移能力不同，部分功能方向也能在映射后保持作用。不过零样本迁移的 SAE 质量仍会下降，
+      实验主要限于使用相似数据训练的同家族模型；保持输出行为的仿射映射也不能证明内部概念完全相同。
+    first_date: '2025-06-07'
+    primary_paper_ids:
+      - p_2025_chen_transferring_linear_features
 
   - rq_id: rq-induction-head-icl-mechanism
     family_id: computational-mechanism
@@ -2035,7 +2114,7 @@ edges:
     target: rq-circuit-scaling
     type: challenges
     evidence_status: direct-citation
-    rationale_zh: 在小模型上成立的人工回路解释被要求扩展到前沿规模和宽分布。
+    rationale_zh: 在小模型受控任务上得到的端到端电路解释，被进一步要求扩展到大模型并在多个样本上保持功能语义。
   - source: rq-circuit-scaling
     target: rq-sparse-feature-circuits
     type: extends
@@ -2110,7 +2189,17 @@ edges:
     target: rq-mechanism-universality
     type: extends
     evidence_status: direct-citation
-    rationale_zh: 单模型中的行为电路被进一步比较其跨任务、规模和架构复现程度。
+    rationale_zh: 从解释单个模型的行为电路，推进到比较独立模型是否复现相同具体机制或仅共享抽象算法。
+  - source: rq-behavior-circuit
+    target: rq-cross-task-component-reuse
+    type: extends
+    evidence_status: direct-citation
+    rationale_zh: 从解释单一任务的电路，推进到检验相同组件和子计算是否被表面不同的任务复用。
+  - source: rq-causal-representation-geometry
+    target: rq-cross-model-feature-transfer
+    type: extends
+    evidence_status: same-lineage
+    rationale_zh: 从识别单个模型中的线性方向和子空间，推进到检验这些可解释特征能否经表示对齐迁移到另一个模型。
   - source: rq-task-vector-editing
     target: rq-task-function-vectors
     type: extends
