@@ -204,22 +204,16 @@ nodes:
   - rq_id: rq-attribution-foundations
     family_id: mechanism-explanation
     question_en: >-
-      Can local feature attribution be given a unified definition whose desired properties determine a unique solution?
-    question_zh: 如何用一组明确原则统一定义局部特征归因，并由这些原则确定唯一解？
+      How should a prediction be attributed to its input features?
+    question_zh: 一个预测应如何归因到各个输入特征？
     introduction_en: >-
-      This question asks what local attribution is estimating and which properties should hold simultaneously.
-      It defines the form of an explanation artifact rather than the form of a model's internal representation;
-      whether that target is faithful or useful is a separate evidential question.
+      This question asks how a single prediction should be allocated among input features and which principles should constrain that allocation. Attribution methods are comparable only after fixing the explanation form, the meaning of feature absence, and the background distribution. Properties such as local accuracy, missingness, and consistency determine a unique solution within additive feature attribution, but this explains how outputs vary with inputs rather than recovering the model’s internal causal mechanism.
     introduction_zh: >-
-      该问题关注局部归因究竟在估计什么，以及哪些性质应同时成立。它定义的是解释产物的形式，而不是模型内部表示的形式；
-      该目标是否忠实、有用，则是另一个证据问题。
+      该问题研究如何把单次预测分配到不同输入特征，并用明确原则约束这种分配。不同归因方法只有在采用相同的解释形式、特征缺失定义和背景分布时才可以比较。满足局部准确性、缺失性和一致性等性质可以唯一确定加性特征归因中的解，但这种归因解释模型输出如何随输入变化，不等于恢复模型内部的因果机制。
     progress_en: >-
-      Lundberg and Lee unified several local explanation methods as additive feature attribution and showed that a
-      particular solution is uniquely determined under three desired properties. This established the target later
-      estimators compute, without establishing that feature attribution is a complete model-mechanism explanation.
+      SHAP unifies several local explanation methods as additive feature attribution and proves that three properties jointly determine a unique Shapley allocation within that class. Kernel SHAP supplies a model-agnostic approximation procedure. The theory and experiments support the framework as a principled way to construct and compare local attributions, but results depend strongly on how feature absence, background samples, and correlated inputs are handled. SHAP therefore provides a principled output attribution, not a unique explanation of internal computation.
     progress_zh: >-
-      Lundberg 与 Lee 将多种局部解释统一为 additive feature attribution，并说明三项理想性质会唯一确定特定解。
-      这项工作确立了后续估计方法的目标量，但并未证明特征归因已经构成完整的模型机制解释。
+      SHAP 将多种局部解释方法统一为加性特征归因，并证明在这一形式内，三项性质共同确定唯一的 Shapley 归因。Kernel SHAP 又提供了适用于任意模型的近似计算方法。理论与实验支持该框架用于比较和构造局部归因，但结果高度依赖如何模拟“特征缺失”、选择背景样本以及处理相关特征。因此，SHAP 提供的是原则明确的输出归因，而不是模型内部机制的唯一解释。
     first_date: '2017-05-22'
     primary_paper_ids:
       - p_2017_lundberg_a_unified_approach
@@ -227,22 +221,16 @@ nodes:
   - rq_id: rq-attribution-efficiency
     family_id: mechanism-explanation
     question_en: >-
-      How can an expensive attribution quantity be estimated accurately in a single amortized computation?
-    question_zh: 如何将昂贵的逐样本归因估计，摊销为准确的单次计算？
+      Can Shapley attributions be generated in real time?
+    question_zh: Shapley 归因能否实时生成？
     introduction_en: >-
-      Once an attribution target is fixed, a separate question is whether its computation can be learned and reused
-      across samples without changing the target quantity or its defining constraints. This is explanation
-      construction, not a claim about how the explained model internally represents information.
+      Traditional Shapley-value estimation repeatedly queries the explained model for every example, making it impractical for interactive systems or large datasets. This question asks whether a learned explainer can amortize that per-example computation into one forward pass while remaining close to the target Shapley values. Efficiency must be evaluated through attribution accuracy and explanation utility as well as runtime.
     introduction_zh: >-
-      当归因目标已经确定后，还需要回答其计算能否被学习并在样本间复用，同时不改变目标量及其定义约束。
-      这是解释的构造问题，不是关于被解释模型如何在内部表示信息的主张。
+      传统 Shapley 值估计需要针对每个样本反复调用待解释模型，难以用于交互系统或大规模数据。该问题研究能否预先训练一个解释器，把逐样本优化摊销为一次前向计算，同时保持对真实 Shapley 值的近似精度。效率提升不能只用运行速度衡量，还需要检查归因误差和实际解释效用。
     progress_en: >-
-      FastSHAP reframed Shapley estimation as amortized learning and generated per-sample attributions in one forward
-      pass without precomputed Shapley labels. The result addresses explanation cost, not whether Shapley attribution is
-      a faithful account of the model's internal mechanism.
+      FastSHAP formulates Shapley estimation as amortized supervised learning, allowing a new example to be explained with one forward pass. On tabular data it approaches computable Shapley targets at orders-of-magnitude lower per-example cost, and on images it performs well under deletion and preservation metrics. Its theoretical optimum nevertheless assumes sufficient data, explainer capacity, and successful optimization, while image experiments lack exact Shapley ground truth. Real-time approximation is feasible, but faithful recovery is not guaranteed for every model or distribution.
     progress_zh: >-
-      FastSHAP 将 Shapley 估计重写为摊销学习，无需预先计算 Shapley 标签即可用一次前向传播生成逐样本归因。
-      它回答的是解释计算成本，而不是 Shapley 归因是否忠实描述内部机制。
+      FastSHAP 把 Shapley 值估计转化为摊销学习，使新样本只需一次前向传播即可获得归因。在表格数据上，它以数量级更低的成本逼近可计算的 Shapley 真值；在图像任务上，也在删除和保留特征等指标中取得较好结果。不过其理论最优性依赖训练数据、解释器容量和优化质量，图像实验也没有精确 Shapley 真值。因此，目前已经证明实时近似可行，但不能保证每个分布和模型上都忠实恢复目标归因。
     first_date: '2021-07-15'
     primary_paper_ids:
       - p_2021_jethani_fastshap_real_time_shapley
@@ -273,19 +261,16 @@ nodes:
   - rq_id: rq-conceptual-prediction-explanation
     family_id: mechanism-explanation
     question_en: >-
-      How can input attribution and internal concept semantics be combined into an understandable explanation of a prediction mechanism?
-    question_zh: 如何把输入归因与内部概念语义结合为可理解的预测机制解释？
+      Which internal concepts contribute to a model’s current prediction?
+    question_zh: 哪些内部概念共同促成了模型的当前预测？
     introduction_en: >-
-      An explanation should identify not only where the input matters, but also which concepts the model recognized, where they occur, and how they jointly produce the current prediction.
+      This question does not ask what concept an individual internal unit generally represents. Instead, it asks which internal concepts the model actually uses for a specific prediction and how those concepts jointly support the result. Input-attribution maps often identify important pixels or regions without revealing the semantic information used by the model. For example, an attribution map may show that a bird classifier focuses on the bird’s head without revealing whether the decision depends on eye color, stripes, feather texture, or a combination of these concepts. A concept-level explanation should propagate output relevance to internal concepts and distinguish a concept that is merely activated by the input from one that actually contributes to the current prediction.
     introduction_zh: >-
-      该问题要求解释不仅指出输入哪里重要，还说明模型识别了什么概念、概念出现在哪里，
-      以及它们如何在模型内部共同促成当前预测。
+      该问题不再询问单个内部单元通常对应什么概念，而是针对一次具体预测，研究模型实际使用了哪些内部概念，以及这些概念如何共同支持当前结果。输入归因图通常只能指出哪些像素或区域重要，却不能说明模型利用了什么语义信息。例如，归因图可能显示模型主要关注鸟的头部，但不能判断真正影响分类的是眼睛颜色、条纹、羽毛纹理，还是这些概念的组合。概念级解释需要把输出相关性传递到内部概念，并区分“某个概念被输入激活”与“该概念实际影响了当前预测”。
     progress_en: >-
-      Concept Relevance Propagation integrated input-location attribution, internal concept identification, and concept composition into one sample-level framework, allowing explanations to answer both where and what.
-      Evidence currently comes mainly from vision models; extension to language and multimodal models, together with causal validation, remains open.
+      Concept Relevance Propagation lifts pixel-level attribution to internal concepts, while RelMax retrieves examples that best express a concept and its relevance to an output. Together they expose concept composition and distinguish high activation from actual relevance to a target class. The explanations also help identify and ablate Clever Hans shortcuts. Multi-domain cases and a user study support their diagnostic value, but concepts depend on selected channels and reference data, and participants do not always find them clearer than simpler heat maps. The methods provide useful conceptual explanations without establishing a unique or complete concept decomposition.
     progress_zh: >-
-      Concept Relevance Propagation 已把输入位置归因、内部概念识别和概念组合纳入同一个样本级解释框架，使解释能同时回答“哪里重要”和“识别了什么”。
-      目前证据主要来自视觉模型，向语言模型、多模态模型扩展以及验证概念解释的因果忠实性仍是开放问题。
+      Concept Relevance Propagation（CRP）把逐像素归因提升到内部概念层级，RelMax 则检索最能体现某个概念及其输出相关性的样本。二者能够展示概念组合，并区分高激活特征与对特定类别真正相关的特征。研究还利用这些解释发现并消融 Clever Hans 式虚假相关。多领域案例和用户实验支持其诊断价值，但概念仍依赖所选通道和参考数据，人工参与者也未始终认为它比简单热图更清晰。现有方法能够产生有用的概念解释，但没有证明概念划分唯一或完备。
     first_date: '2022-06-07'
     primary_paper_ids:
       - p_2022_achtibat_from_attribution_maps
@@ -526,21 +511,16 @@ nodes:
   - rq_id: rq-automatic-unit-description
     family_id: mechanism-explanation
     question_en: >-
-      How can internal units be given accurate, open-vocabulary semantic descriptions without concept-labelled data?
-    question_zh: 如何在没有概念标注数据的情况下，自动为内部单元生成准确的开放词汇语义描述？
+      Can internal model units be described automatically with an open vocabulary?
+    question_zh: 能否自动为模型内部单元生成开放词汇描述？
     introduction_en: >-
-      This question treats semantic labelling as an explanation-construction problem: the target units already exist,
-      but their functions must be translated into descriptions without a fixed ontology or expensive dense annotation.
+      Fixed concept datasets test only predefined labels and can miss rare or unexpected semantics. This question asks whether activation patterns over natural images can be matched to an open vocabulary using a vision–language model. The resulting label summarizes a unit’s observed behavior; it does not establish that the unit is monosemantic or causally controls the named concept.
     introduction_zh: >-
-      该问题把语义命名视为机制解释的构造过程：内部单元已经存在，但需要在没有固定概念本体和昂贵密集标注的情况下，
-      将其功能转换为可理解描述。
+      固定概念数据集只能检验预先列出的标签，也会遗漏长尾或意外语义。该问题研究能否根据内部单元在自然图像上的激活模式，利用视觉—语言模型从开放词汇中选择描述。生成的标签是对单元行为的语义摘要，不自动说明该单元是单义的或对相应概念具有因果作用。
     progress_en: >-
-      CLIP-Dissect used pretrained vision-language alignment to label hidden visual units with unrestricted concepts,
-      improving flexibility and efficiency over fixed-vocabulary dissection. Whether the resulting names capture causal
-      function rather than activation correlation remains a separate evidential question.
+      CLIP-Dissect compares image-level neuron activation profiles with candidate text concepts using CLIP, without pixel-segmentation labels, a fixed ontology, or an additional trained explanation model. It outperforms tested alternatives on known output labels, human evaluation, and runtime, while allowing the vocabulary to be replaced. Labels nevertheless inherit biases from CLIP, the candidate vocabulary, and highly activating images, and a single phrase can hide conditional or polysemantic behavior. Automatic open-vocabulary naming is feasible, but an accurate label is not a complete or causal account of a unit.
     progress_zh: >-
-      CLIP-Dissect 利用预训练视觉—语言对齐，以开放概念命名视觉网络隐单元，相比固定词汇的 dissection 更灵活高效。
-      这些名称是否反映因果功能而非激活相关，仍属于证据标准问题。
+      CLIP-Dissect 使用 CLIP 比较神经元的图像级激活轨迹与候选文本概念，无需像素分割标注、固定概念本体或额外训练解释模型。它在已知输出标签、人类评价和速度比较中优于所测替代方法，并允许按需要更换词汇表。但标签会继承 CLIP、候选词表和高激活样本的偏差，条件性或多义功能也可能被单一短语掩盖。自动开放词汇命名已经可行，但标签准确并不等于单元语义完整或因果有效。
     first_date: '2022-04-23'
     primary_paper_ids:
       - p_2022_oikarinen_clip_dissect_automatic_description
@@ -779,19 +759,16 @@ nodes:
   - rq_id: rq-hidden-state-readout
     family_id: mechanism-explanation
     question_en: >-
-      How can a single hidden state reveal model knowledge richer and more expressive than its next-token distribution?
-    question_zh: 如何从单个 hidden state 中读出比下一 token 更丰富、更可表达的模型知识？
+      How can hidden states be translated into inspectable predictions and semantic explanations?
+    question_zh: 如何将隐藏状态转化为可检查的预测与语义解释？
     introduction_en: >-
-      This question compares direct vocabulary projection, learned correction, and cross-context state transplantation to identify the boundary of information present in a hidden state but not yet explicitly emitted.
+      Intermediate hidden states are not directly interpretable, and projecting them through the final vocabulary head can be distorted by representation mismatch across layers. This question asks how to construct an explanatory interface that translates a hidden state into inspectable next-token predictions, future tokens, or semantic descriptions. Approaches include learning layer-specific vocabulary mappings and transplanting a hidden state into a target prompt so that the model continues the interpretation itself. The central issue is not the representational form of the hidden state, but whether the readout is faithful and whether its output comes from the original state or from additional computation introduced by the interpreter.
     introduction_zh: >-
-      该问题比较直接词表投影、学习校正和跨上下文 state transplantation，考察 hidden state 中尚未显式输出的信息边界。
+      模型的中间隐藏状态不能被人直接理解，直接将其投影到词表还可能受到层间表示错位影响。该问题研究如何构造解释接口，把隐藏状态转化为可检查的下一词元预测、未来词元或语义描述。方法包括学习逐层的词表映射，以及把隐藏状态移植到目标提示中、让模型自身继续解释。核心问题不是隐藏状态究竟采用什么表示形式，而是这些读出方法是否忠实，以及读出的内容来自原状态还是解释器额外补充的计算。
     progress_en: >-
-      Patchscopes unified several hidden-state inspection methods by using a target model and natural-language prompts, revealing information beyond the current next-token distribution.
-      Tuned Lens and Future Lens supplied related precedents for layerwise and future-token readout.
-      A more expressive general framework now exists, but outputs remain sensitive to prompts, target models, and mapping design.
+      Tuned Lens learns layer-specific translators that reduce the distribution mismatch caused by applying the final unembedding directly and more faithfully track intermediate predictions under perturbation. Future Lens shows that a single middle-layer state contains limited information about subsequent tokens and that reusing the pretrained model through learned prompts is more expressive than linear decoding. Patchscopes unifies vocabulary projection, probing, and activation transplantation by placing a source state into a target prompt and allowing the model to continue computing; it can expose attributes and repair selected multi-hop errors. Readout has become substantially more expressive, but remains sensitive to the target prompt, target model, and mapping, and does not guarantee that every generated detail originated in the source state.
     progress_zh: >-
-      Patchscopes 用目标模型和自然语言 prompt 统一多种 hidden-state 检查方式，并能读出超出当前 next-token distribution 的信息；Tuned Lens 与 Future Lens 分别提供层间和未来 token 的相关先例。
-      当前已形成表达力更强的通用读出框架，但读出结果对 prompt、目标模型和映射设计的依赖仍需校准。
+      Tuned Lens 为每一层学习转换器，减少直接套用最终反嵌入产生的分布偏移，并更可靠地追踪中间预测及其对扰动的响应。Future Lens 发现，中层单个位置的隐藏状态包含有限的后续词元信息，使用可学习提示重新送入模型比线性解码更有表达力。Patchscopes 将词表投影、probe 和激活迁移统一为“把源状态移植到目标提示后让模型继续计算”，能够读出属性信息并修复少量多跳推理错误。读出能力已明显增强，但结果对目标提示、目标模型和映射设计敏感，也不能保证输出完全来自源状态。
     first_date: '2024-01-11'
     primary_paper_ids:
       - p_2024_ghandeharioun_patchscopes_a_unifying
@@ -860,20 +837,16 @@ nodes:
   - rq_id: rq-component-semantic-readout
     family_id: mechanism-explanation
     question_en: >-
-      How can the information written by an individual component be translated into human-interpretable semantic content?
-    question_zh: 如何把单个组件写入残差流的信息，翻译为人可理解的语义内容？
+      How can the information written by an attention head be translated into words?
+    question_zh: 如何把注意力头写入的信息翻译成词语？
     introduction_en: >-
-      This question constructs a semantic interface for component outputs. It is distinct from establishing the
-      component's full causal role, which requires downstream mechanism and intervention evidence.
+      The vector written by an attention head may not be directly interpretable through the model’s final vocabulary projection because different heads can use different local representational conventions. This question asks whether a head-specific vocabulary map can make retrieved or written content readable. The resulting words form a semantic interface and still require intervention evidence to show that downstream computation actually uses the decoded information.
     introduction_zh: >-
-      该问题为组件输出构建语义接口。它不等同于确定组件的完整因果角色，后者还需要下游机制和干预证据。
+      注意力头写入残差流的向量通常不能直接通过最终词表投影解释，因为不同注意力头可能使用不同的局部表示方式。该问题研究能否为每个头学习专门的词表映射，使其检索或写入的内容变得可读。得到的词语描述只是语义接口，仍需干预证据确认该信息是否被下游计算实际使用。
     progress_en: >-
-      Attention Lens learned head-specific maps from attention outputs to vocabulary space and revealed specialized
-      retrieval content. The approach makes component writes inspectable, but its dependence on lens training data and
-      the gap between decoded content and causal use remain unresolved.
+      Attention Lens learns a separate mapping from each attention-head output into vocabulary space. Compared with direct unembedding, it produces more coherent word-level descriptions and suggests specialized information-retrieval roles for some heads. Evidence is still primarily qualitative and limited to GPT-2; the training objective may simply approximate final logits, and the lens is trained on data different from the model’s original corpus. Head-level semantic readout is feasible, but causal faithfulness, cross-model transfer, and quantitative evaluation remain unestablished.
     progress_zh: >-
-      Attention Lens 学习从 attention-head output 到词表空间的 head-specific 映射，显示出专门化的检索内容。
-      它使组件写入变得可检查，但对 lens 训练数据的依赖，以及解码内容与因果使用的差距仍未解决。
+      Attention Lens 为每个注意力头学习从头输出到词表空间的独立映射。相较直接反嵌入，它产生更连贯的词语描述，并提示部分头具有专门化的信息检索角色。但目前证据主要来自 GPT-2 的定性案例；lens 的训练目标可能只是逼近最终 logits，训练语料也与原模型不同。该方法证明头级语义读出具有可行性，但尚未建立因果忠实度、跨模型迁移或定量解释标准。
     first_date: '2023-10-25'
     primary_paper_ids:
       - p_2023_sakarvadia_attention_lens_a
@@ -881,21 +854,16 @@ nodes:
   - rq_id: rq-distributed-component-role-discovery
     family_id: mechanism-explanation
     question_en: >-
-      How can facilitating, interfering, and irrelevant component roles be discovered within distributed computation?
-    question_zh: 如何在分布式计算中发现组件的促进、干扰与无关角色？
+      How can facilitating, interfering, and irrelevant attention heads be distinguished for a task?
+    question_zh: 如何区分任务中促进、干扰和无关的注意力头？
     introduction_en: >-
-      This question asks how to construct component-role explanations without predefined functions or prompt templates,
-      while allowing several interacting component subsets to be sufficient for the same task.
+      A component’s importance cannot always be determined through isolated ablation: a head may be useful only within a particular collaborating set or may interfere with the task in the full model. This question asks how learned gating and causal intervention can identify jointly sufficient component sets and distinguish facilitating, interfering, and irrelevant roles. It does not assume that every behavior has one unique circuit.
     introduction_zh: >-
-      该问题研究如何在没有预设功能或 prompt template 的情况下构造组件角色解释，
-      并允许多个相互作用的组件子集都足以完成同一任务。
+      组件的重要性不能只由单独消融决定：一个头可能只在特定协作集合中有用，也可能在完整模型中干扰任务。该问题研究如何通过学习式门控和因果干预，识别能够共同支持任务的组件集合，并区分促进、干扰和无关角色。它不假设每项行为只有一个唯一电路。
     progress_en: >-
-      Causal Head Gating introduced scalable soft gates and a causal role taxonomy, finding multiple sparse sufficient
-      subcircuits and context-dependent head roles. The method challenges fixed component labels, while the stability
-      and semantic interpretation of the learned roles need further validation.
+      Causal Head Gating learns continuous head gates to find sparse task-supporting subsets without fixed prompt templates or predefined target labels. A task can have several sufficient attention-head sets, removing interfering heads can improve behavior, and instruction following only partially overlaps with in-context-learning heads. Ablation and mediation analyses support the functional relevance of these roles, but results depend on the objective and data distribution and omit interactions with MLPs. The evidence argues against fixed global head roles and a unique circuit per task, but does not yet provide a stable cross-task role taxonomy.
     progress_zh: >-
-      Causal Head Gating 引入可扩展软门控和因果角色分类，发现多个稀疏的充分子电路以及随上下文变化的 head 角色。
-      该方法挑战了固定组件标签，但学得角色的稳定性与语义解释仍需进一步验证。
+      Causal Head Gating 学习连续头门控，在不依赖固定提示模板或预设目标标签的情况下寻找稀疏任务子集。研究发现，同一任务可以存在多个充分的注意力头集合，删除干扰头还可能改善行为；指令遵循和上下文学习所依赖的头也只有部分重合。消融和中介分析支持这些角色具有功能意义，但结果依赖优化目标与数据分布，也没有覆盖 MLP 等其他组件。当前证据反对“每个头具有固定全局角色”和“任务只有唯一电路”，但尚未形成跨任务稳定的角色定义。
     first_date: '2025-01-01'
     primary_paper_ids:
       - p_2025_nam_causal_head_gating
@@ -968,21 +936,16 @@ nodes:
   - rq_id: rq-causal-variable-alignment
     family_id: mechanism-explanation
     question_en: >-
-      How can high-level causal variables be discovered and aligned with distributed neural representations and circuits?
-    question_zh: 如何发现高层因果变量，并将其与分布式神经表示和电路对齐？
+      How can distributed neural representations be aligned with high-level causal variables?
+    question_zh: 如何将分布式神经表示与高层因果变量对齐？
     introduction_en: >-
-      Given a candidate high-level variable, this question concerns the construction of an explanatory alignment rather
-      than the criterion that makes the alignment faithful. Search must support distributed and overlapping variables.
+      A high-level variable may be represented across multiple neurons and overlapping subspaces, making it impossible to localize through individual units alone. This question begins with a candidate high-level causal variable and searches for a corresponding direction, subspace, or parameter set in the distributed neural representation. The alignment is then tested by asking whether counterfactual interventions through it change the model as predicted by the proposed high-level causal model. The question concerns constructing an explanatory alignment; whether the high-level variable is appropriate and what evidence makes the alignment faithful are separate evidential questions.
     introduction_zh: >-
-      在给定候选高层变量后，该问题关注如何构造解释性对齐，而不是什么标准使这种对齐忠实。
-      搜索过程需要支持分布式和重叠变量。
+      模型可能通过多个神经元和相互重叠的子空间表示一个高层变量，因此无法依靠单个神经元直接定位。该问题从候选高层因果变量出发，在分布式神经表示中寻找对应的方向、子空间或参数集合，并检验通过这一对应实施反事实干预时，模型是否按照候选高层因果模型的预测发生变化。它关注如何构造解释性对齐；候选高层变量是否合理，以及什么证据足以证明这种对齐忠实，属于进一步的证据标准问题。
     progress_en: >-
-      Distributed Alignment Search optimized rotations that align neural subspaces with causal variables, while circuit
-      probing learned sparse masks for candidate intermediate variables. These methods automate alignment construction,
-      but remain dependent on the analyst's high-level hypothesis and intervention design.
+      Distributed Alignment Search learns rotations that expose distributed subspaces corresponding to proposed causal variables and evaluates them through held-out interchange interventions. Circuit Probing learns sparse parameter masks for candidate intermediate variables, testing whether the model computes and uses the variable rather than merely allowing a high-capacity probe to decode it. Both recover known variables in controlled tasks and extend to selected linguistic phenomena. Results nevertheless depend on analyst-specified variables, intervention locations, and sparsity assumptions, and alignments can be non-unique. Candidate causal correspondences can now be searched automatically, but the uniquely correct high-level explanation cannot.
     progress_zh: >-
-      Distributed Alignment Search 优化旋转以将神经子空间与因果变量对齐，circuit probing 则为候选中间变量学习稀疏 mask。
-      它们自动化了对齐构造，但仍依赖分析者提出的高层假说与干预设计。
+      Distributed Alignment Search 通过学习旋转，在预设位置寻找与高层因果变量对应的分布式子空间，并用留出 interchange intervention 检验反事实控制。Circuit Probing 则为候选中间变量学习稀疏参数掩码，以判断模型是否真正计算并使用该变量，而不只是能被高容量 probe 解码。两类方法都能在受控任务中恢复已知变量，并扩展到部分语言现象。但结果依赖分析者提出的高层变量、干预位置和稀疏性假设，对齐也可能不唯一。当前能够自动搜索候选因果对应，尚不能自动发现唯一正确的高层解释。
     first_date: '2023-03-05'
     primary_paper_ids:
       - p_2023_geiger_finding_alignments_between
@@ -1014,20 +977,16 @@ nodes:
   - rq_id: rq-circuit-localization
     family_id: mechanism-explanation
     question_en: >-
-      How can paths and shared circuits implementing a target subcomputation be localized from behavioral constraints?
-    question_zh: 如何从行为约束出发定位实现目标子计算的路径与共享回路？
+      Can a circuit be localized from behavioral requirements alone?
+    question_zh: 只给定行为要求，能否定位实现该行为的电路？
     introduction_en: >-
-      This question shifts localization from individual components to edges, paths, and subgraphs satisfying behavioral desiderata without requiring the researcher to know the complete algorithm in advance.
+      An analyst may know which counterfactual behaviors a target subcomputation should satisfy without knowing its algorithm or implementation. This question asks whether such behavioral requirements can be converted into optimization criteria that locate the relevant paths or shared components. The result is a candidate circuit satisfying the chosen requirements, not an automatically complete, minimal, or unique mechanism.
     introduction_zh: >-
-      该问题把定位单位从单个组件推进到 edges、paths 和满足行为 desiderata 的子图，
-      同时避免要求研究者事先知道完整算法。
+      研究者有时知道目标子计算应满足哪些反事实行为，却不知道它由什么算法或组件实现。该问题研究能否把这些行为要求转化为可优化的定位条件，从模型中找出相应路径或共享组件。所得结果是满足指定要求的候选电路，不自动保证完整、最小或唯一。
     progress_en: >-
-      Work on variable binding showed that functional desiderata can drive an automated search for reusable shared
-      circuitry. The method reduces the need for a complete mechanism hypothesis, but its result is still a localized
-      candidate subgraph rather than a complete account of the computation.
+      Variable Binding Circuitry uses functional desiderata such as preserving a bound variable and reusing it across operations to locate a shared numerical-copying circuit without specifying the full algorithm in advance, then validates it on unseen operations. Related path-patching work formalizes localization claims through a computation graph, input distribution, counterfactual, retained paths, and error metric, allowing failures to refine a candidate explanation. Behavioral constraints can therefore guide path-level localization, but the result depends on the chosen desiderata, patching distribution, and sparsity penalty and cannot rule out equivalent alternative circuits.
     progress_zh: >-
-      Variable-binding 研究表明，功能 desiderata 可以驱动对可复用共享回路的自动搜索。
-      该方法减少了预先提出完整机制假说的需求，但所得结果仍是局部候选子图，而非对计算的完整说明。
+      Variable Binding Circuitry 使用“保持被绑定变量”“跨不同运算复用”等功能要求，在无需预先给出完整算法的情况下定位出共享数值复制电路，并在未见运算上进行干预验证。Path Patching 的相关工作则把局部化主张形式化为计算图、输入分布、反事实、保留路径和误差指标的组合，使解释失败的位置能够被用于修正候选机制。现有方法证明行为约束可以指导路径级定位，但结果依赖要求、修补分布和稀疏惩罚，也无法排除其他等效电路。
     first_date: '2023-07-07'
     primary_paper_ids:
       - p_2023_davies_discovering_variable_binding
@@ -1059,18 +1018,16 @@ nodes:
   - rq_id: rq-automated-circuit-discovery
     family_id: mechanism-explanation
     question_en: >-
-      Can circuit discovery be automated and scaled while preserving the quality of mechanism recovery?
-    question_zh: 电路发现能否自动化并扩展，同时保持机制恢复质量？
+      How can candidate circuits explaining model behavior be extracted automatically?
+    question_zh: 如何自动提取解释模型行为的候选电路？
     introduction_en: >-
-      This question compares repeated intervention, gradient approximation, attribution decomposition, and information-flow search, asking whether speed gains sacrifice faithfulness, granularity, or architectural generality.
+      Manual component-by-component patching does not scale to large computation graphs. This question asks how nodes, edges, or paths relevant to a target behavior can be selected automatically while reducing the number of model evaluations. Speed is not sufficient: the resulting subgraph should preserve the behavior, recover known mechanisms where available, and remain reasonably stable to counterfactual construction and thresholds. The resulting circuit is still a candidate explanation whose completeness, uniqueness, and causal faithfulness require separate validation.
     introduction_zh: >-
-      该问题比较反复干预、梯度近似、归因分解和信息流搜索，关注速度提升是否牺牲 faithfulness、粒度或架构通用性。
+      人工逐组件修补难以扩展到大型计算图。该问题研究如何自动筛选与目标行为相关的节点、边和路径，构造可供分析者检查的候选电路解释。自动方法不仅要减少模型运行次数，还要检验所得子图能否保留原行为、恢复已知机制，并对反事实构造和筛选阈值保持稳定。所得电路仍是候选解释；它是否完整、唯一和因果忠实，需要进一步验证。
     progress_en: >-
-      ACDC introduced automated pruning for circuit discovery; attribution patching, information-flow routes, and contextual decomposition subsequently improved speed, coverage, or decomposition efficiency.
-      Automation has substantially reduced manual effort, but whether algorithms recover the same underlying mechanism and whether efficiency compromises faithfulness still require standardized evaluation.
+      ACDC recursively removes unimportant edges through causal patching and recovers much of several known small circuits, but its cost and output depend on the corrupted distribution and metric. Edge Attribution Patching later uses a single gradient calculation to rank all edges, greatly improving speed and motivating a coarse-to-fine workflow. Information Flow Routes removes the need for fixed contrastive templates and produces attribution paths for arbitrary next-token predictions, while contextual decomposition enables second-scale node selection through algebraic decomposition. Automation has progressed from repeated intervention to gradient and analytic approximations, but these scores usually produce candidate graphs rather than proving joint sufficiency or recovering a unique true circuit.
     progress_zh: >-
-      ACDC 建立了自动剪枝式电路发现流程，attribution patching、information-flow routes 和 contextual decomposition 随后提升了速度、覆盖范围或分解效率。
-      自动化已明显降低人工成本，但不同算法恢复的是否是同一真实机制，以及效率提升是否牺牲忠实性，仍需标准化评测。
+      ACDC 使用递归因果修补删除不重要边，能够恢复多个已知小型电路的大部分结构，但成本和结果都依赖损坏分布与指标。Edge Attribution Patching 随后用一次梯度近似同时排序全部边，大幅提高速度，并提出“快速筛选后再精细修补”的流程。Information Flow Routes 进一步摆脱固定对比模板，为任意下一词元预测生成归因路径；基于 contextual decomposition 的方法则以代数分解实现秒级节点筛选。自动发现已经从反复干预推进到梯度和解析近似，但这些分数通常只提供候选图，不证明联合保留后的充分性，也不能保证恢复唯一真实电路。
     first_date: '2023-04-28'
     primary_paper_ids:
       - p_2023_conmy_towards_automated_circuit
@@ -1100,19 +1057,16 @@ nodes:
   - rq_id: rq-sparse-feature-circuits
     family_id: mechanism-explanation
     question_en: >-
-      Can sparse features serve as more interpretable and scalable circuit nodes than native model components?
-    question_zh: 稀疏特征能否成为比原生组件更可解释、更可扩展的电路节点？
+      Can interpretable model circuits be built from sparse features?
+    question_zh: 能否用稀疏特征构建可解释的模型电路？
     introduction_en: >-
-      This question connects sparse features or transcoders to circuit analysis, asking whether feature-to-feature causal graphs can be discovered more cheaply while preserving model function.
+      When attention heads, MLPs, or neurons serve as circuit nodes, one node may participate in several functions, making circuits difficult to label and scale. This question asks whether SAE or transcoder features can replace native components to produce finer and more semantically legible causal graphs. Readability does not guarantee preservation of the original computation because the graph nodes themselves come from an approximate decomposition.
     introduction_zh: >-
-      该问题把 sparse features 或 transcoders 接入 circuit analysis，考察能否以更低成本发现 feature-to-feature causal graphs，
-      同时保留模型功能。
+      以注意力头、MLP 或神经元为电路节点时，一个节点可能同时参与多种功能，导致电路难以命名和扩展。该问题研究能否用 SAE 特征或 transcoder 特征替代原生组件，构建粒度更细、语义更清楚的因果图。特征图的可读性不自动保证其保留原模型计算，因为节点本身来自近似分解。
     progress_en: >-
-      Dictionary features enabled patch-free circuit discovery in Othello; sparse feature circuits, SAE-based circuit identification, and transcoders then recast native-component graphs as interpretable feature graphs.
-      Feature-level circuits improve readability and scaling, but their nodes inherit dictionary artifacts and require strict validation that reconstructed graphs preserve the original computation.
+      Work on Othello-GPT first combines dictionary features with algebraic attribution to recover state variables and information flow without patching every edge. Sparse Feature Circuits then constructs feature-level causal graphs in language tasks and uses feature semantics to guide removal of spurious classification signals. Another approach uses discrete SAE codes to identify task-relevant attention heads and head pairs efficiently, while transcoders directly approximate MLP input–output mappings so feature connections through nonlinear sublayers become traceable. Feature-level circuits improve readability and scale but inherit SAE reconstruction error, dead features, threshold sensitivity, and uninterpretable error nodes. They are promising explanatory units, but have not been shown to dominate native-component circuits generally.
     progress_zh: >-
-      Dictionary features 已用于 Othello 的免 patch 电路发现，随后 sparse feature circuits、SAE circuit identification 和 transcoders 把原生组件图改写为可解释特征图。
-      特征级电路在可读性和规模上显示优势，但其节点受 dictionary artifacts 影响，重建后的图是否忠实保留原计算仍需严格验证。
+      Othello-GPT 研究首先将字典特征与代数归因结合，在不逐边修补的情况下恢复状态变量及其信息流。Sparse Feature Circuits 随后在语言任务中构建特征级因果图，并利用特征语义指导虚假分类信号的定向移除。另一项工作使用离散 SAE 编码快速识别任务相关注意力头和头对；Transcoder 则直接近似 MLP 输入—输出映射，使穿过非线性子层的特征连接可追踪。特征级电路提高了可读性和规模，但仍受 SAE 重建误差、死亡特征、阈值和不可解释误差节点影响。它们是更有希望的解释图单位，尚未被证明普遍优于原生组件电路。
     first_date: '2024-02-19'
     primary_paper_ids:
       - p_2024_he_dictionary_learning_improves
@@ -1161,20 +1115,16 @@ nodes:
   - rq_id: rq-multimodal-causal-tracing
     family_id: mechanism-explanation
     question_en: >-
-      How can causal tracing be adapted to construct mechanism explanations in vision-language architectures?
-    question_zh: 如何改造 causal tracing，以在视觉—语言架构中构造机制解释？
+      How can answer-relevant internal states be traced in vision-language models?
+    question_zh: 如何在视觉语言模型中追踪影响答案的内部状态？
     introduction_en: >-
-      This question concerns adapting an explanation procedure across modality boundaries so interventions can locate
-      image, question, and fusion states that causally affect a multimodal prediction.
+      Vision-language models combine a visual encoder, cross-modal interface, and language generator, so corruption-and-restoration procedures from text-only models cannot be transferred directly. This question asks how image, question, and fused states can be intervened on separately and how restoring one state changes the answer probability. It concerns constructing a cross-modal causal-tracing explanation; the complete route followed by visual information is a computational-mechanism question.
     introduction_zh: >-
-      该问题关注如何让解释流程跨越模态边界，使干预能够定位对多模态预测产生因果影响的图像、问题和融合状态。
+      视觉语言模型包含视觉编码器、跨模态连接模块和语言生成器，纯文本模型中的污染—恢复实验不能直接套用。该问题研究如何分别干预图像、问题和融合状态，并测量恢复某个状态对答案概率的影响。它关注如何构造跨模态因果追踪解释；视觉信息实际沿什么完整路径流动，则属于计算机制问题。
     progress_en: >-
-      A causal-tracing tool for BLIP extended mediation analysis to vision-language modules and localized states carrying
-      VQA information. It established a multimodal procedure, while later mechanism studies supplied richer accounts of
-      the information flow itself.
+      A BLIP-specific method extends causal tracing to visual question answering by corrupting image or question representations and restoring individual states, finding the strongest answer recovery in encoder layer 11 and decoder layers 9–11. This establishes that cross-modal states can be studied through a common mediation procedure, but the experiment covers only a small set of color questions, restores one state at a time, and may favor late layers because of downstream overwrite effects. Later visual-information-flow work adds patch localization, logit-lens analysis, targeted ablation, and attention blocking to form richer pathway hypotheses. A multimodal causal-tracing tool now exists, but it does not independently recover a complete or unique mechanism.
     progress_zh: >-
-      针对 BLIP 的 causal-tracing 工具将 mediation analysis 扩展到视觉—语言模块，并定位承载 VQA 信息的状态。
-      它建立了多模态解释流程，而后续机制研究则给出信息流本身的更丰富解释。
+      针对 BLIP 的方法把 causal tracing 扩展到视觉问答，通过污染图像或问题表示并逐状态恢复，发现编码器第 11 层和解码器第 9—11 层具有最高答案恢复效果。该结果证明跨模态状态可以接受统一的中介分析，但目前只覆盖少量颜色问题，每次恢复单个状态，晚层占优也可能来自下游覆盖效应。后续视觉信息流研究加入图像块定位、logit lens、定向消融和注意力阻断，提供了更完整的路径假说。因果追踪工具已经建立，但尚不能单独恢复完整或唯一的多模态机制。
     first_date: '2023-08-27'
     primary_paper_ids:
       - p_2023_palit_towards_vision_language
@@ -1727,9 +1677,9 @@ edges:
     rationale_zh: 局部输入贡献被进一步连接到内部概念语义和组合机制。
   - source: rq-concept-unit-alignment
     target: rq-conceptual-prediction-explanation
-    type: integrates
-    evidence_status: same-lineage
-    rationale_zh: 全局概念对齐被用于解释单个样本的输入证据与预测形成。
+    type: extends
+    evidence_status: direct-citation
+    rationale_zh: 从识别内部单元与人类概念的全局对应，扩展到追踪这些概念在一次具体预测中的贡献及组合方式。
   - source: rq-concept-unit-alignment
     target: rq-automatic-unit-description
     type: scales
