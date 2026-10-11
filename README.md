@@ -56,7 +56,7 @@ conda run -n interpret-vis python scripts/build_author_network.py
 conda run -n interpret-vis python scripts/build_web_data.py
 ```
 
-Generated files are written to `.generated/` and `web/.generated/`. They are reproducible, ignored by Git, and must not be treated as sources of record.
+The intermediate author network is written to `.generated/` and remains ignored by Git. The ready-to-serve web dataset is written to `web/.generated/knowledge-base.json` and committed so the website works immediately after cloning. Both files are reproducible and must not be treated as sources of record.
 
 ### 3. Start the local website
 

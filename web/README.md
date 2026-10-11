@@ -10,7 +10,7 @@ conda run -n interpret-vis python scripts/build_web_data.py
 conda run -n interpret-vis python -m http.server 4173 --directory web
 ```
 
-随后访问 `http://localhost:4173/`。派生文件位于 `web/.generated/knowledge-base.json`，不得作为事实来源或反向覆盖 `data/`。
+随后访问 `http://localhost:4173/`。派生文件位于 `web/.generated/knowledge-base.json`，并纳入 Git 以支持仓库克隆后直接运行；它不得作为事实来源或反向覆盖 `data/`。
 
 完整的已确认页面结构与交互设计见 [`docs/visualization-design.md`](../docs/visualization-design.md)。
 

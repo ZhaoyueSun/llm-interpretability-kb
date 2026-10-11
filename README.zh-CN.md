@@ -56,7 +56,7 @@ conda run -n interpret-vis python scripts/build_author_network.py
 conda run -n interpret-vis python scripts/build_web_data.py
 ```
 
-生成文件位于 `.generated/` 和 `web/.generated/`。它们可由正式数据重建，已被 Git 忽略，不应作为事实来源。
+作者网络中间文件生成于 `.generated/`，并继续由 Git 忽略。可直接供网页使用的最终数据生成于 `web/.generated/knowledge-base.json`，该文件纳入 Git，使仓库克隆后即可运行网页。两者均可由正式数据重建，不应作为事实来源。
 
 ### 3. 启动本地网页
 
