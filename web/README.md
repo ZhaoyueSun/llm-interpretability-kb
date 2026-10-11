@@ -21,6 +21,7 @@ conda run -n interpret-vis python -m http.server 4173 --directory web
 - Research Questions 顶部显示年度主刻度、季度细刻度、板块颜色和关系证据线型图例；板块与 RQ 节点均可点击，右栏提供双语 Overview 与 Paper List；
 - 主窗口左侧显示可视化，右侧在 `Overview` 与 `Paper List` 之间切换，左右分区可拖动调整宽度；
 - 顶栏提供全站论文检索，支持标题、作者、年份、venue 与 DOI、arXiv、OpenReview 标识符，并可用 `⌘K / Ctrl+K` 或 `/` 打开；
+- 顶栏提供独立 Contact 页面，链接项目 GitHub 仓库与 Issues，用于推荐论文、报告纠错或提出改进建议；
 - taxonomy 使用可展开的树状结构；
 - 分类树初始只展开第一层，使用 `+ / −` 逐层展开或收起，支持整图缩放及水平、垂直滚动；
 - Research Objects 页面左上角提供模型族选择器；`All Models` 展示完整通用树，具体模型族依据 `applicable_model_families` 收起不适用叶节点；

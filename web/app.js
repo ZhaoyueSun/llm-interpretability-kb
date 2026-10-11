@@ -60,10 +60,12 @@ const state = {
 const elements = {
   graphView: document.querySelector("#graph-view"),
   paperView: document.querySelector("#paper-view"),
+  contactView: document.querySelector("#contact-view"),
   loading: document.querySelector("#loading-state"),
   error: document.querySelector("#error-state"),
   errorMessage: document.querySelector("#error-message"),
   paperSearchOpen: document.querySelector("#paper-search-open"),
+  contactOpen: document.querySelector("#contact-open"),
   paperSearchBackdrop: document.querySelector("#paper-search-backdrop"),
   paperSearchClose: document.querySelector("#paper-search-close"),
   paperSearchKicker: document.querySelector("#paper-search-kicker"),
@@ -830,6 +832,10 @@ function applyInitialLocation() {
     return;
   }
   const view = params.get("view");
+  if (view === "contact") {
+    state.view = "contact";
+    return;
+  }
   if (!view || !TAB_CONFIG[view]) return;
   state.activeTab = view;
   const nodeId = params.get("node");
@@ -891,6 +897,7 @@ function applyHistorySnapshot(snapshot) {
 
 function historyUrl() {
   if (state.view === "paper" && state.currentPaperId) return `#paper=${encodeURIComponent(state.currentPaperId)}`;
+  if (state.view === "contact") return "#view=contact";
   const selected = state.tabs[state.activeTab]?.selectedNodeId;
   const suffix = selected ? `&node=${encodeURIComponent(selected)}` : "";
   return `#view=${encodeURIComponent(state.activeTab)}${suffix}`;
@@ -927,6 +934,8 @@ function updateNavigation() {
   elements.languageOptions.forEach((button) => {
     button.classList.toggle("is-active", button.dataset.language === state.language);
   });
+  elements.contactOpen.classList.toggle("is-active", state.view === "contact");
+  elements.contactOpen.setAttribute("aria-current", state.view === "contact" ? "page" : "false");
 }
 
 function updatePanelTabs() {
@@ -977,9 +986,59 @@ function switchTab(tabId, { push = true, keepPaperContext = false } = {}) {
   render();
 }
 
+function openContact({ push = true } = {}) {
+  if (state.view === "graph") captureCanvasScroll();
+  if (state.view === "paper") state.paperScroll = elements.paperView.scrollTop;
+  state.view = "contact";
+  state.currentPaperId = null;
+  if (push) pushHistory();
+  render();
+}
+
+function renderContact() {
+  const isChinese = state.language === "zh";
+  elements.contactView.innerHTML = `
+    <article class="contact-article">
+      <p class="eyebrow">Contact</p>
+      <h1>${isChinese ? "参与完善知识库" : "Help improve the knowledge base"}</h1>
+      <p class="contact-intro">
+        ${
+          isChinese
+            ? "如果你有建议收录的论文、发现内容或分类需要纠正，或对网站有其他改进意见，欢迎在 GitHub 提交 Issue。"
+            : "If you would like to suggest a paper, report a correction to the content or taxonomy, or propose another improvement, please open an issue on GitHub."
+        }
+      </p>
+      <section class="contact-repository" aria-labelledby="contact-repository-title">
+        <div>
+          <p class="contact-label">${isChinese ? "项目仓库" : "Repository"}</p>
+          <h2 id="contact-repository-title">ZhaoyueSun/llm-interpretability-kb</h2>
+          <code>git@github.com:ZhaoyueSun/llm-interpretability-kb.git</code>
+        </div>
+        <div class="contact-actions">
+          <a href="https://github.com/ZhaoyueSun/llm-interpretability-kb" target="_blank" rel="noreferrer">
+            ${isChinese ? "查看 GitHub 仓库" : "View repository"} ↗
+          </a>
+          <a class="is-primary" href="https://github.com/ZhaoyueSun/llm-interpretability-kb/issues" target="_blank" rel="noreferrer">
+            ${isChinese ? "提交 Issue" : "Open an issue"} ↗
+          </a>
+        </div>
+      </section>
+    </article>
+  `;
+}
+
 function render() {
   updateNavigation();
   updateReturnContext();
+  if (state.view === "contact") {
+    elements.graphView.hidden = true;
+    elements.paperView.hidden = true;
+    elements.contactView.hidden = false;
+    elements.returnContext.hidden = true;
+    renderContact();
+    return;
+  }
+  elements.contactView.hidden = true;
   if (state.view === "paper") {
     elements.graphView.hidden = true;
     elements.paperView.hidden = false;
@@ -2489,6 +2548,7 @@ function setZoom(nextZoom) {
 }
 
 function bindInteractions() {
+  elements.contactOpen.addEventListener("click", () => openContact());
   elements.paperSearchOpen.addEventListener("click", openPaperSearch);
   elements.paperSearchClose.addEventListener("click", () => closePaperSearch());
   elements.paperSearchBackdrop.addEventListener("click", (event) => {
