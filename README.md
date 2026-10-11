@@ -6,6 +6,8 @@
 
 ### [Open the visualization platform →](https://atlas.interpretability.site/)
 
+## Updates
+
 > **Latest update (2026-10-09):** 13 representative papers were added to fill gaps in the Techniques taxonomy. The corpus now contains 123 papers: 100 recent core papers, 10 earlier classic papers, and 13 taxonomy supplements.
 
 ## About the project
