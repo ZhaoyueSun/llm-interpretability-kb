@@ -2,6 +2,8 @@
 
 **简体中文** | [English](README.md)
 
+> **在线可视化平台：** 可通过 [atlas.interpretability.site](https://atlas.interpretability.site/) 访问本项目的可视化平台。
+
 > **最新更新（2026-10-09）**：针对 Techniques 分类中的分支空缺，补充了 13 篇代表性论文。当前语料库共收录 123 篇论文：100 篇近五年 core papers、10 篇较早的 classic papers，以及 13 篇 taxonomy supplements。
 
 ## 项目介绍
