@@ -1,41 +1,41 @@
 # LLM Interpretability Knowledge Base
 
-**中文** | [English](README_EN.md)
+[简体中文](README.zh-CN.md) | **English**
 
-> **最新更新（2026-10-09）**：针对 Techniques 分类中的分支空缺，补充了 13 篇代表性论文。当前语料库共收录 123 篇论文：100 篇近五年 core papers、10 篇较早的 classic papers，以及 13 篇 taxonomy supplements。
+> **Latest update (2026-10-09):** 13 representative papers were added to fill gaps in the Techniques taxonomy. The corpus now contains 123 papers: 100 recent core papers, 10 earlier classic papers, and 13 taxonomy supplements.
 
-## 项目介绍
+## About the project
 
-LLM Interpretability Knowledge Base 旨在帮助大语言模型可解释性研究者以可视化方式梳理研究脉络。项目将论文事实、研究分类和论文间的研究问题演化关系组织为可持续更新的结构化数据，并通过网页提供多种互补视角。
+The LLM Interpretability Knowledge Base helps researchers trace the development of LLM interpretability research through interactive visualizations. It organizes paper facts, research taxonomies, and the evolution of research questions as maintainable structured data, then presents them through several complementary views.
 
-当前网页包含五个主要板块：
+The current web application contains five main sections:
 
-| 板块 | 用途 |
+| Section | Purpose |
 | --- | --- |
-| **Research Questions** | 按研究问题最早出现的时间绘制时间—关系图，展示问题之间的延伸、细化、迁移和验证关系；点击节点可查看中英文介绍、当前进展和相关论文。 |
-| **Techniques** | 以分类树展示读出、归因、分解、因果干预、circuit discovery、模型控制和解释验证等研究方法。 |
-| **Target Objects** | 展示研究者实际分析的模型内部对象与过程，例如表征、组件、计算路径和学习过程；可按模型族过滤。 |
-| **Applications** | 展示解释方法和机制主张在哪些任务、能力与风险场景中被研究和验证。 |
-| **Authors** | 以作者合作网络展示 corpus 内的合著关系，并支持按第一、中间和末位作者角色筛选。 |
+| **Research Questions** | A timeline and relationship graph positioned by the earliest appearance of each question. It shows how questions were extended, refined, transferred, or validated. Each node provides a bilingual overview, a progress summary, and related papers. |
+| **Techniques** | A taxonomy of research methods for readout, attribution, decomposition, causal intervention, circuit discovery, model control, and explanation validation. |
+| **Target Objects** | A taxonomy of the internal objects and processes being studied, such as representations, components, computational paths, and learning processes, with model-family filtering. |
+| **Applications** | A taxonomy of the tasks, capabilities, and risk settings in which interpretability methods and mechanistic claims are studied or evaluated. |
+| **Authors** | A co-authorship network for the corpus, with filters for first-, middle-, and last-author roles. |
 
-网页还提供全局论文检索、中英文切换、可调整的图谱与详情分栏、节点相关论文列表，以及包含论文属性、分类路径、双语摘要和双语 AI Summary 的论文详情页。
+The application also supports global paper search, Chinese/English switching, a resizable graph-and-details layout, node-level paper lists, and paper pages containing metadata, taxonomy paths, bilingual abstracts, and bilingual AI-generated summaries.
 
-## 数据来源与筛选
+## Data provenance and selection
 
-本项目基于作者另行部署的本地 **PaperManage agent** 的交付结果工作。PaperManage 提供初始语料，包括：
+This project builds on the output of **PaperManage**, a separately deployed local agent maintained by the author. PaperManage supplied the initial corpus:
 
-- 100 篇在检索截止日前五年内公开、较具代表性的原创实证、方法或理论研究；
-- 10 篇早于该时间窗口、对后续研究具有持续影响的经典论文。
+- 100 representative original empirical, methodological, or theoretical papers released within the five years preceding the search cutoff;
+- 10 earlier classic papers with continued influence on subsequent interpretability research.
 
-初始语料经过候选发现、标题与摘要初筛、论文身份核验、合法全文获取、Docling 全文抽取和原文证据复核等阶段。后续 13 篇论文用于填补 Techniques 分类树中缺少代表论文的分支，不改变原始 100+10 名单。完整标准与各阶段数量见[论文筛选方法](docs/paper-selection-methodology.md)。
+The initial corpus passed through broad candidate discovery, title-and-abstract screening, identity verification, lawful full-text acquisition, Docling extraction, and full-text evidence review. A later set of 13 papers fills Techniques branches that lacked a representative paper; it does not alter the original 100+10 membership. See the [paper selection methodology](docs/paper-selection-methodology.md) for the complete criteria and stage counts.
 
-论文 PDF 与 Docling 抽取的全文 Markdown **不包含在本仓库中**，也不是运行网页所必需的。本仓库已包含网页使用的结构化论文属性、英文摘要及中文翻译、双语 AI Summary、分类数据和研究问题图数据。PaperKnowledgeBase 仅作为本地只读原文来源。
+Paper PDFs and Docling-extracted full-text Markdown are **not included in this repository** and are not required to run the website. The repository contains the structured paper metadata used by the application, English abstracts and Chinese translations, bilingual AI-generated summaries, taxonomy data, and the research-question graph. PaperKnowledgeBase remains a separate, read-only local source for the original texts.
 
-## 本地运行
+## Run locally
 
-前端使用原生 HTML、CSS 和 JavaScript，无需 Node.js 或前端构建工具。数据构建脚本使用独立的 Conda 环境 `interpret-vis`。
+The frontend uses plain HTML, CSS, and JavaScript, with no Node.js dependency or frontend build tool. Data-generation scripts run in the dedicated Conda environment `interpret-vis`.
 
-### 1. 获取项目并创建环境
+### 1. Clone the repository and create the environment
 
 ```bash
 git clone https://github.com/ZhaoyueSun/llm-interpretability-kb.git
@@ -43,45 +43,45 @@ cd LLM-Interpretability-KB
 conda env create -f environment.yml
 ```
 
-如果环境已存在，可按当前依赖文件更新：
+If the environment already exists, update it from the current environment file:
 
 ```bash
 conda env update -n interpret-vis -f environment.yml --prune
 ```
 
-### 2. 生成网页派生数据
+### 2. Build derived web data
 
 ```bash
 conda run -n interpret-vis python scripts/build_author_network.py
 conda run -n interpret-vis python scripts/build_web_data.py
 ```
 
-生成文件位于 `.generated/` 和 `web/.generated/`。它们可由正式数据重建，已被 Git 忽略，不应作为事实来源。
+Generated files are written to `.generated/` and `web/.generated/`. They are reproducible, ignored by Git, and must not be treated as sources of record.
 
-### 3. 启动本地网页
+### 3. Start the local website
 
 ```bash
 conda run -n interpret-vis python -m http.server 4173 --directory web
 ```
 
-在浏览器访问 [http://localhost:4173/](http://localhost:4173/)。
+Open [http://localhost:4173/](http://localhost:4173/) in a browser.
 
-## 目录结构
+## Repository layout
 
 ```text
 .
-├── data/                 # 论文、作者、语料清单、taxonomy 与分类事件等正式数据
-│   ├── papers/           # 每篇论文一个 YAML 文件
-│   └── taxonomies/       # Techniques、Target Objects、Applications 分类树
-├── docs/                 # 筛选方法、数据模型、写作规范、审计和可视化设计文档
-├── schemas/              # 正式数据与派生数据的 JSON Schema
-├── scripts/              # 导入、审计、校验和网页数据构建脚本
-├── tests/                # 数据与构建逻辑测试
-├── web/                  # 静态前端；.generated/ 保存本地生成的网页数据
-├── imports/              # 本地交付暂存目录，不纳入 Git
-├── environment.yml       # interpret-vis Conda 环境定义
-├── AGENTS.md             # 数据维护与 agent 协作规范
-└── PROJECT_CHARTER.md     # 项目目标、边界与数据管理原则
+├── data/                 # Source data: papers, authors, corpus, taxonomies, and classification events
+│   ├── papers/           # One YAML file per paper
+│   └── taxonomies/       # Techniques, Target Objects, and Applications taxonomies
+├── docs/                 # Selection, data-model, writing, audit, and visualization documents
+├── schemas/              # JSON Schemas for source and derived data
+├── scripts/              # Import, audit, validation, and web-data build scripts
+├── tests/                # Data and build-logic tests
+├── web/                  # Static frontend; .generated/ contains locally built web data
+├── imports/              # Local handoff staging directory; excluded from Git
+├── environment.yml       # Definition of the interpret-vis Conda environment
+├── AGENTS.md             # Data-maintenance and agent-collaboration rules
+└── PROJECT_CHARTER.md     # Project goals, boundaries, and data-management principles
 ```
 
-`data/` 是正式事实来源；网页 JSON、作者图和搜索索引均为可重建的派生结果。关于数据字段和更新流程，参见[数据模型](docs/data-model.md)与各主题写作规范。
+`data/` is the source of record. Web JSON, the author network, and search indexes are reproducible derived artifacts. See the [data model](docs/data-model.md) and topic-specific writing guides for field definitions and update procedures.
